@@ -1,0 +1,106 @@
+.tooltip-anchor {
+    position: relative;
+
+    .tooltip.open,
+    &:hover > .tooltip {
+        display: inline-block;
+    }
+
+    > .tooltip {
+        position: absolute;
+        box-sizing: border-box;
+        display: none;
+        z-index: 110;
+        padding: 6px 12px;
+        box-sizing: border-box;
+        white-space: nowrap;
+        background: #2f2f48;
+        color: #fff;
+        border-radius: 2px;
+        border: 1px rgba(255,255,255,0.2);
+        box-shadow: 0 0 4px rgba(0,0,0,0.5);
+
+        &.position-t,
+        &.position-tl,
+        &.position-tr {
+            bottom: 100%;
+            margin-bottom: 10px;
+            &:before {
+                top: 100%;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top-width: 4px;
+                border-bottom-width: 0;
+            }
+        }
+
+        &.position-b,
+        &.position-bl,
+        &.position-br {
+            top: 100%;
+            margin-top: 10px;
+            &:before {
+                bottom: 100%;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-bottom-width: 4px;
+                border-top-width: 0;
+            }
+        }
+
+        &.position-tl,
+        &.position-bl {
+            left: 0;
+            &:before {
+                left: 12px;
+            }
+        }
+        &.position-tr,
+        &.position-br {
+            right: 0;
+            &:before {
+                right: 12px;
+            }
+        }
+
+        &.position-t,
+        &.position-b {
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+            &:before {
+                left: 50%;
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        &.position-l,
+        &.position-r {
+            top: 50%;
+            transform: translate3d(0, -50%, 0);
+            &:before {
+                top: 50%;
+                margin-top: -4px;
+                border-top: 4px solid transparent;
+                border-bottom: 4px solid transparent;
+            }
+        }
+        &.position-l {
+            right: 100%;
+            margin-right: 10px;
+            &:before {
+                left: 100%;
+                border-left-width: 4px;
+                border-right-width: 0;
+            }
+        }
+        &.position-r {
+            left: 100%;
+            margin-left: 10px;
+            &:before {
+                right: 100%;
+                border-right-width: 4px;
+                border-left-width: 0;
+            }
+        }
+    }
+}
