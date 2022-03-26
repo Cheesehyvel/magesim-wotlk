@@ -5,7 +5,7 @@ class State
 
 public:
     double t;
-    int dmg;
+    unsigned long long dmg;
     int innervates;
     double duration;
     double evocated_at = -1;

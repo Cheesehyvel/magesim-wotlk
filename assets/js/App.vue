@@ -1,46 +1,5 @@
 <template>
     <div id="app">
-        <a class="github" href="https://github.com/Cheesehyvel/magesim-tbc2" target="_blank"></a>
-
-        <div class="fools" v-if="fools_open == 1">
-            <div class="inner">
-                <div class="title">Buy premium</div>
-                <div class="text mt-2">
-                    You currently have <b>{{ fools_remaining }}</b> free sim(s) remaining!<br>
-                    To get more sims sign up for our premium subscription of only <b>19.99€/month</b>!
-                </div>
-                <div class="btn large mt-2" @click="foolsBuy">Buy premium 19.99€</div>
-                <div></div>
-                <div class="btn-text mt-1" @click="foolsClose">No thanks, not right now</div>
-            </div>
-        </div>
-
-        <div class="fools2" v-if="fools_open == 2">
-            <div class="inner">
-                <div class="title">Please buy premium</div>
-                <div class="text mt-2">
-                    Come on man! I've got dust bunnies to feed!<br>
-                    For just 16.99€ I'll even toss in a free
-                    <a href="https://www.ikea.com/se/sv/images/products/hjalpreda-osthyvel-svart__0392887_PE560396_S4.JPG" target="_blank">osthyvel</a>
-                </div>
-                <div class="btn mt-2" @click="foolsBuy">Buy premium 14.99€</div>
-                <div></div>
-                <div class="btn-text mt-1" @click="foolsClose">I don't care about you</div>
-            </div>
-        </div>
-
-        <div class="fools2 notice" v-if="fools_open == 3">
-            <div class="inner">
-                <div class="title">Premium or else</div>
-                <div class="text mt-2">
-                    You know what? If you don't buy premium I'm just gonna mine Bitcoins in the background.
-                </div>
-                <div class="btn mt-2" @click="foolsBuy">Buy premium 9.99€</div>
-                <div></div>
-                <div class="btn-text mt-1" @click="foolsClose">Dude wtf, stop it</div>
-            </div>
-        </div>
-
         <div class="notice" v-if="donation_open" @click="donation_open = false">
             <div class="inner">
                 <div class="title">Thank you!</div>
@@ -64,64 +23,55 @@
         <div class="wrapper">
             <div class="sidebar">
                 <div class="actions">
-                    <div class="btn block" @click="configToggle" :class="[is_running ? 'disabled' : '']">Config</div>
-                    <div class="btn block mt-n" @click="runSingle" :class="[is_running ? 'disabled' : '']">Run</div>
+                    <div class="btn block mt-n" @click="runSingle" :class="[is_running ? 'disabled' : '']">Run one time</div>
                     <div class="btn block mt-n" @click="runMultiple" :class="[is_running ? 'disabled' : '']">Run {{ config.iterations }} times</div>
                     <div class="btn block mt-n" @click="runEP" :class="[is_running && !is_running_ep ? 'disabled' : '']">
                         <template v-if="!is_running_ep">Run stat weights</template>
                         <template v-else>Stop</template>
                     </div>
                 </div>
-                <div class="final-stats" v-if="final_stats">
+                <div class="display-stats" v-if="display_stats">
                     <table class="simple">
                         <tbody>
                             <tr>
+                                <td>Mana</td>
+                                <td>{{ display_stats.mana }}</td>
+                            </tr>
+                            <tr>
                                 <td>Intellect</td>
-                                <td>{{ final_stats.intellect }}</td>
+                                <td>{{ display_stats.intellect }}</td>
                             </tr>
                             <tr>
                                 <td>Spirit</td>
-                                <td>{{ final_stats.spirit }}</td>
+                                <td>{{ display_stats.spirit }}</td>
                             </tr>
                             <tr>
                                 <td>Mp5</td>
-                                <td>{{ final_stats.mp5 }}</td>
+                                <td>{{ display_stats.mp5 }}</td>
                             </tr>
                             <tr>
                                 <td>Spell power</td>
-                                <td>{{ final_stats.spell_power }}</td>
-                            </tr>
-                            <tr v-if="final_stats.spell_power_arcane">
-                                <td>SP Arcane</td>
-                                <td>+{{ final_stats.spell_power_arcane }}</td>
-                            </tr>
-                            <tr v-if="final_stats.spell_power_frost">
-                                <td>SP Frost</td>
-                                <td>+{{ final_stats.spell_power_frost }}</td>
-                            </tr>
-                            <tr v-if="final_stats.spell_power_fire">
-                                <td>SP Fire</td>
-                                <td>+{{ final_stats.spell_power_fire }}</td>
+                                <td>{{ display_stats.spell_power }}</td>
                             </tr>
                             <tr>
                                 <td>Crit</td>
                                 <td>
-                                    <span>{{ $round(final_stats.crit, 2) }}%</span>
-                                    <tooltip position="r">{{ final_stats.crit_rating }} crit rating</tooltip>
+                                    <span>{{ $round(display_stats.crit, 2) }}%</span>
+                                    <tooltip position="r">{{ display_stats.crit_rating }} crit rating</tooltip>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Hit</td>
                                 <td>
-                                    <span>{{ $round(final_stats.hit, 2) }}%</span>
-                                    <tooltip position="r">{{ final_stats.hit_rating }} hit rating</tooltip>
+                                    <span>{{ $round(display_stats.hit, 2) }}%</span>
+                                    <tooltip position="r">{{ display_stats.hit_rating }} hit rating</tooltip>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Haste</td>
                                 <td>
-                                    <span>{{ $round(final_stats.haste, 2) }}%</span>
-                                    <tooltip position="r">{{ final_stats.haste_rating }} haste rating</tooltip>
+                                    <span>{{ $round(display_stats.haste, 2) }}%</span>
+                                    <tooltip position="r">{{ display_stats.haste_rating }} haste rating</tooltip>
                                 </td>
                             </tr>
                         </tbody>
@@ -142,9 +92,6 @@
                         <option value="spi">Spirit (EP)</option>
                         <option value="mp5">Mp5 (EP)</option>
                         <option value="sp">Spell power (EP)</option>
-                        <option value="sp_arcane">SP Arcane (EP)</option>
-                        <option value="sp_frost">SP Frost (EP)</option>
-                        <option value="sp_fire">SP Fire (EP)</option>
                         <option value="crit">Crit rating (EP)</option>
                         <option value="hit">Hit rating (EP)</option>
                         <option value="haste">Haste rating (EP)</option>
@@ -167,18 +114,6 @@
                                 <td>Spell power</td>
                                 <td>{{ $nullRound(epCalc.sp, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'sp_arcane'">
-                                <td>SP Arcane</td>
-                                <td>{{ $nullRound(epCalc.sp_arcane, 2) }}</td>
-                            </tr>
-                            <tr @click="ep_weight = 'sp_frost'">
-                                <td>SP Frost</td>
-                                <td>{{ $nullRound(epCalc.sp_frost, 2) }}</td>
-                            </tr>
-                            <tr @click="ep_weight = 'sp_fire'">
-                                <td>SP Fire</td>
-                                <td>{{ $nullRound(epCalc.sp_fire, 2) }}</td>
-                            </tr>
                             <tr @click="ep_weight = 'sp_crit'">
                                 <td>Crit rating</td>
                                 <td>{{ $nullRound(epCalc.crit, 2) }}</td>
@@ -193,43 +128,41 @@
                             </tr>
                         </tbody>
                     </table>
+                    <loader class="small mt-2" v-if="is_running" />
+                </div>
+                <div class="no-result mt-4" v-else-if="is_running">
+                    <loader v-if="is_running" />
                 </div>
                 <div class="result" v-else-if="result">
                     <template v-if="result.iterations">
-                        <div>DPS</div>
-                        <div>{{ $round(result.avg_dps, 2) }}</div>
-                        <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
-                        <div class="mt-1"></div>
+                        <div class="dps-result">
+                            <div>DPS</div>
+                            <div>{{ $round(result.avg_dps, 2) }}</div>
+                            <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
+                        </div>
                         <div class="faded" v-if="result.stats.evocated.n">
                             Evocated: {{ $round(result.stats.evocated.t, 1) }}s
                             ({{ $round(result.stats.evocated.n / result.iterations * 100, 1) }}%)
-                        </div>
-                        <div class="faded" v-if="result.stats.regened.n">
-                            Filler: {{ $round(result.stats.regened.t, 1) }}s
-                            ({{ $round(result.stats.regened.n / result.iterations * 100, 1) }}%)
                         </div>
                         <div class="faded" v-if="result.stats.t_gcd_capped">
                             Wasted haste: {{ $round(result.stats.t_gcd_capped, 2) }}s
                             <help>Time spent gcd capped</help>
                         </div>
-                        <div class="btn mt-1" v-if="result.histogram" @click="histogramToggle">Histogram</div>
-                        <div class="btn mt-1" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find avg fight</div>
+                        <div class="btn mt-1" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
                         <div class="btn mt-1" v-if="result.all_results" @click="allResults">Simulation data</div>
                     </template>
                     <template v-else>
-                        <div>DPS</div>
-                        <div>{{ $round(result.dps, 2) }}</div>
-                        <div>Damage: {{ result.dmg }}</div>
+                        <div class="dps-result">
+                            <div>DPS</div>
+                            <div>{{ $round(result.dps, 2) }}</div>
+                            <div>Damage: {{ result.dmg }}</div>
+                        </div>
                         <div class="mt-1"></div>
                         <div class="faded" v-if="result.evocated_at > 0">Evocated at: {{ $round(result.evocated_at, 1) }}</div>
-                        <div class="faded" v-if="result.regened_at > 0">Filler at: {{ $round(result.regened_at, 1) }}</div>
                         <div class="faded" v-if="result.t_gcd_capped">
                             Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s
                             <help>Time spent gcd capped</help>
                         </div>
-                        <div class="btn mt-1" v-if="result.log" @click="logToggle">Combat log</div>
-                        <div class="btn mt-1" v-if="result.log" @click="timelineToggle">Timeline</div>
-                        <div class="btn mt-1" v-if="result.spells" @click="spellsToggle">Spells</div>
                     </template>
                     <template v-if="!isMetaGemActive()">
                         <div class="meta-warning mt-2">
@@ -240,6 +173,7 @@
                         </div>
                     </template>
                 </div>
+                <a class="github" href="https://github.com/Cheesehyvel/magesim-wotlk" target="_blank"></a>
                 <div class="donate">
                     <a href="https://www.paypal.com/donate/?hosted_button_id=CU9RF4LCMW8W6" target="_blank">
                         Donate
@@ -247,1021 +181,980 @@
                 </div>
             </div>
             <div class="main">
-                <div class="gear">
-                    <div class="slots">
-                        <div
-                            class="slot"
-                            :class="[active_slot == slot ? 'active' : '']"
-                            v-for="slot in slots"
-                            @click="setActiveSlot(slot);"
-                        >{{ formatKey(slot) }}</div>
-                    </div>
-                    <div class="items">
-                        <div class="items-wrapper">
-                            <div class="top">
-                                <div class="form-item">
-                                    <select v-model="phase_filter">
-                                        <option :value="0">- Filter by content phase -</option>
-                                        <option :value="1">Phase 1 - KZ, Gruul, Mag, Arena S1</option>
-                                        <option :value="2">Phase 2 - SSC, TK, Arena S2</option>
-                                        <option :value="3">Phase 3 - MH, BT, Arena S3</option>
-                                        <option :value="4">Phase 4 - Zul'Aman</option>
-                                        <option :value="5">Phase 5 - SWP, Arena S4</option>
-                                    </select>
+                <div class="tabs">
+                    <div class="tab" :class="{active: active_tab == 'gear'}" @click="setTab('gear')">Gear</div>
+                    <div class="tab" :class="{active: active_tab == 'config'}" @click="setTab('config')">Config</div>
+                    <template v-if="result && !result.iterations">
+                        <div class="tab" :class="{active: active_tab == 'log'}" @click="setTab('log')">Combat log</div>
+                        <div class="tab" :class="{active: active_tab == 'timeline'}" @click="setTab('timeline')">Timeline</div>
+                        <div class="tab" :class="{active: active_tab == 'spells'}" @click="setTab('spells')">Spells</div>
+                    </template>
+                    <template v-if="result && result.iterations">
+                        <div class="tab" :class="{active: active_tab == 'histogram'}" @click="setTab('histogram')">Histogram</div>
+                    </template>
+                </div>
+                <div class="body">
+                    <div class="gear" v-if="active_tab == 'gear'">
+                        <div class="slots">
+                            <div
+                                class="slot"
+                                :class="[active_slot == slot ? 'active' : '']"
+                                v-for="slot in slots"
+                                @click="setActiveSlot(slot);"
+                            >{{ formatKey(slot) }}</div>
+                        </div>
+                        <div class="items">
+                            <div class="items-wrapper">
+                                <div class="top clearfix">
+                                    <div class="fl clearfix">
+                                        <div class="form-item">
+                                            <select v-model="phase_filter">
+                                                <option :value="0">- Filter by content phase -</option>
+                                                <option :value="1">Phase 1 - Naxxramas</option>
+                                                <option :value="2">Phase 2 - Ulduar</option>
+                                                <option :value="3">Phase 3 - ICC idk</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="text" v-model="search_item" placeholder="Search...">
+                                        </div>
+                                    </div>
+                                    <div class="fr">
+                                        <div class="btn" :class="[!hasComparisons || is_running ? 'disabled' : '']" @click="runComparison">
+                                            Run item comparison
+                                        </div>
+                                        <div class="btn" @click="openEquiplist">
+                                            Equipped items overview
+                                        </div>
+                                        <div class="btn" @click="openCustomItem">
+                                            Add custom item
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="btn" :class="[!hasComparisons || is_running ? 'disabled' : '']" @click="runComparison">
-                                    Run item comparison
+
+                                <table class="mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="min">
+                                                <span class="compare" @click.stop="compareAll()" v-if="activeItems">
+                                                    <help icon="e915">Compare all items</help>
+                                                </span>
+                                            </th>
+                                            <th class="min"></th>
+                                            <th class="title">
+                                                <sort-link v-model="item_sort" name="title">Name</sort-link>
+                                            </th>
+                                            <th v-if="hasComparisons">
+                                                <sort-link v-model="item_sort" name="dps" order="desc">DPS</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="phase">Phase</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="sockets" order="desc">Sockets</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="sp" order="desc">Spell power</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="crit" order="desc">Crit rating</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="hit" order="desc">Hit rating</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="haste" order="desc">Haste rating</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="int" order="desc">Intellect</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="spi" order="desc">Spirit</sort-link>
+                                            </th>
+                                            <th>
+                                                <sort-link v-model="item_sort" name="mp5" order="desc">Mp5</sort-link>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            class="item"
+                                            :class="[isEquipped(active_slot, item.id) ? 'active' : '']"
+                                            v-for="item in activeItems"
+                                            @click="equipToggle(active_slot, item)"
+                                            :key="item.id"
+                                        >
+                                            <td class="min">
+                                                <span class="compare" :class="[isComparing(item) ? 'active' : '']" @click.stop="compareItem(item)">
+                                                    <help icon="e915">Add to comparison</help>
+                                                </span>
+                                            </td>
+                                            <td class="min">
+                                                <span class="delete" @click.stop="deleteCustomItem(item)" v-if="$get(item, 'custom')">
+                                                    <help icon="e872">Delete custom item</help>
+                                                </span>
+                                            </td>
+                                            <td class="title">
+                                                <a :href="itemUrl(item)" :class="['quality-'+$get(item, 'q', 'epic')]" target="_blank" @click.prevent>
+                                                    {{ item.title }}
+                                                </a>
+                                                <span class="link" @click.stop="openItem(item)">
+                                                    <span class="material-icons">
+                                                        &#xe895;
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td v-if="hasComparisons">
+                                                {{ comparisonDps(item) }}
+                                            </td>
+                                            <td>{{ $get(item, "phase", 1) }}</td>
+                                            <td>
+                                                <template v-if="item.sockets">
+                                                    <div class="socket-color" :class="['color-'+socket]" v-for="socket in item.sockets"></div>
+                                                </template>
+                                                <span class="ml-n" v-if="item.bonus" :class="[hasSocketBonus(active_slot) ? 'socket-bonus' : '']">
+                                                    +{{ formatStats(item.bonus) }}
+                                                </span>
+                                            </td>
+                                            <td>{{ $get(item, "sp", "") }}</td>
+                                            <td>{{ $get(item, "crit", "") }}</td>
+                                            <td>{{ $get(item, "hit", "") }}</td>
+                                            <td>{{ $get(item, "haste", "") }}</td>
+                                            <td>{{ $get(item, "int", "") }}</td>
+                                            <td>{{ $get(item, "spi", "") }}</td>
+                                            <td>{{ $get(item, "mp5", "") }}</td>
+                                        </tr>
+                                        <tr
+                                            class="item"
+                                            @click="quickset(set)"
+                                            v-for="(set, key) in items.quicksets"
+                                            v-if="active_slot == 'quicksets'"
+                                        >
+                                            <td></td>
+                                            <td></td>
+                                            <td>{{ set.title }}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="mt-4" v-if="activeEnchants.length">
+                                    <thead>
+                                        <tr>
+                                            <th>Enchant</th>
+                                            <th>Spell power</th>
+                                            <th>Crit rating</th>
+                                            <th>Hit rating</th>
+                                            <th>Intellect</th>
+                                            <th>Spirit</th>
+                                            <th>Mp5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            class="item"
+                                            :class="[isEnchanted(active_slot, item.id) ? 'active' : '']"
+                                            v-for="item in activeEnchants"
+                                            :key="item.id"
+                                            @click="enchant(active_slot, item)"
+                                        >
+                                            <td>
+                                                <a :href="spellUrl(item)" :class="['quality-'+$get(item, 'q', 'uncommon')]" target="_blank" @click.stop>
+                                                    {{ item.title }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $get(item, "sp", "") }}</td>
+                                            <td>{{ $get(item, "crit", "") }}</td>
+                                            <td>{{ $get(item, "hit", "") }}</td>
+                                            <td>{{ $get(item, "int", "") }}</td>
+                                            <td>{{ $get(item, "spi", "") }}</td>
+                                            <td>{{ $get(item, "mp5", "") }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="mt-4"></div>
+
+                                <div class="extra-socket mb-2" v-if="['hands', 'wrist'].indexOf(active_slot) != -1">
+                                    <label>
+                                        <input type="checkbox" v-model="config.hands_socket" v-if="active_slot == 'hands'">
+                                        <input type="checkbox" v-model="config.wrist_socket" v-if="active_slot == 'wrist'">
+                                        <span>Extra socket from blacksmithing</span>
+                                    </label>
                                 </div>
-                                <div class="btn" @click="openEquiplist">
-                                    Equipped items overview
+
+                                <div class="search-gem mb-2" v-if="activeSockets.length">
+                                    <input type="text" v-model="search_gem" placeholder="Search...">
                                 </div>
-                                <div class="btn" @click="openCustomItem">
-                                    Add custom item
+
+                                <div class="sockets" v-if="activeSockets.length">
+                                    <div class="socket" v-for="(socket, index) in activeSockets">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="min">
+                                                        <span class="socket-color" :class="['color-'+socket]"></span>
+                                                    </th>
+                                                    <th>Gem</th>
+                                                    <th>Stats</th>
+                                                    <th v-if="socket == 'm'">Requires</th>
+                                                    <th v-else>Unique</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr
+                                                    :class="[isSocketed(active_slot, gem.id, index) ? 'active' : '']"
+                                                    v-for="gem in activeGems(index)"
+                                                    @click="setSocket(active_slot, gem, index)"
+                                                    :key="gem.id"
+                                                >
+                                                    <td class="min">
+                                                        <span class="socket-color" :class="['color-'+gem.color]"></span>
+                                                    </td>
+                                                    <td>
+                                                        <a :href="itemUrl(gem)" class="gem-color" :class="['color-'+gem.color]" target="_blank" @click.stop>
+                                                            {{ gem.title }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ formatStats(gem) }}</td>
+                                                    <td v-if="socket == 'm'">
+                                                        <template v-if="gem.req">
+                                                            <template v-if="metaGemHasCustomReq(gem)">
+                                                                {{ gem.req }}
+                                                            </template>
+                                                            <template v-else>
+                                                                <div class="socket-text-color" :class="['color-'+c]" v-for="(n, c) in gem.req">{{ n }}</div>
+                                                            </template>
+                                                        </template>
+                                                    </td>
+                                                    <td v-else><template v-if="gem.unique">Yes</template></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <table class="mt-2">
+                    <div class="log" v-if="active_tab == 'log'">
+                        <div class="log-wrapper">
+                            <div class="filter">
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[1]"> <span>Show cast start</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[2]"> <span>Show cast success</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[3]"> <span>Show spell impact</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[4]"> <span>Show mana gain</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[5]"> <span>Show buffs</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter[9]"> <span>Show GCD cap</span></label>
+                                </div>
+                            </div>
+                            <table>
                                 <thead>
-                                    <tr>
-                                        <th class="min">
-                                            <span class="compare" @click.stop="compareAll()" v-if="activeItems">
-                                                <help icon="e915">Compare all items</help>
-                                            </span>
-                                        </th>
-                                        <th class="min"></th>
-                                        <th class="title">
-                                            <sort-link v-model="item_sort" name="title">Name</sort-link>
-                                        </th>
-                                        <th v-if="hasComparisons">
-                                            <sort-link v-model="item_sort" name="dps" order="desc">DPS</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="phase">Phase</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="sockets" order="desc">Sockets</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="sp" order="desc">Spell power</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="crit" order="desc">Crit rating</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="hit" order="desc">Hit rating</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="haste" order="desc">Haste rating</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="int" order="desc">Intellect</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="spi" order="desc">Spirit</sort-link>
-                                        </th>
-                                        <th>
-                                            <sort-link v-model="item_sort" name="mp5" order="desc">Mp5</sort-link>
-                                        </th>
-                                    </tr>
+                                    <th>Time</th>
+                                    <th>Mana</th>
+                                    <th>DPS</th>
+                                    <th>Event</th>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        class="item"
-                                        :class="[isEquipped(active_slot, item.id) ? 'active' : '']"
-                                        v-for="item in activeItems"
-                                        @click="equipToggle(active_slot, item)"
-                                        :key="item.id"
+                                        v-for="log in result.log"
+                                        v-if="showLog(log)"
+                                        :class="['type-'+log.type]"
                                     >
-                                        <td class="min">
-                                            <span class="compare" :class="[isComparing(item) ? 'active' : '']" @click.stop="compareItem(item)">
-                                                <help icon="e915">Add to comparison</help>
-                                            </span>
-                                        </td>
-                                        <td class="min">
-                                            <span class="delete" @click.stop="deleteCustomItem(item)" v-if="$get(item, 'custom')">
-                                                <help icon="e872">Delete custom item</help>
-                                            </span>
-                                        </td>
-                                        <td class="title">
-                                            <a :href="itemUrl(item)" :class="['quality-'+$get(item, 'q', 'epic')]" target="_blank" @click.prevent>
-                                                {{ item.title }}
-                                            </a>
-                                            <span class="link" @click.stop="openItem(item)">
-                                                <span class="material-icons">
-                                                    &#xe895;
+                                        <td>{{ formatTime(log.t) }}</td>
+                                        <td>{{ round(log.mana) }} ({{ round(log.mana_percent) }}%)</td>
+                                        <td>{{ (log.t ? round(log.dmg/log.t) : "0") }}</td>
+                                        <td>{{ log.text }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="timel" v-if="active_tab == 'timeline'">
+                        <timeline ref="timeline" :result="result"></timeline>
+                    </div>
+
+                    <div class="spells" v-if="active_tab == 'spells'">
+                        <div class="spells-wrapper">
+                            <table>
+                                <thead>
+                                    <th>Spell</th>
+                                    <th>Casts</th>
+                                    <th>Misses</th>
+                                    <th>Hits</th>
+                                    <th>Crits</th>
+                                    <th>Damage</th>
+                                    <th>Min dmg</th>
+                                    <th>Avg dmg</th>
+                                    <th>Max dmg</th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="spell in result.spells">
+                                        <td>{{ spell.name }}</td>
+                                        <td>{{ spell.casts }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
+                                        <td>{{ spell.misses }} ({{ $round(spell.misses/spell.casts*100, 2) }}%)</td>
+                                        <td>{{ spell.hits }}</td>
+                                        <td>{{ spell.crits }} ({{ $round(spell.crits/spell.casts*100, 2) }}%)</td>
+                                        <td>{{ $round(spell.dmg, 0) }} ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</td>
+                                        <td>{{ $round(spell.min_dmg, 0) }}</td>
+                                        <td>{{ $round(spell.dmg / (spell.casts - spell.misses), 0) }}</td>
+                                        <td>{{ $round(spell.max_dmg, 0) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="histog" v-if="active_tab == 'histogram'">
+                        <histogram :data="result.histogram"></histogram>
+                    </div>
+
+                    <div class="config" v-if="active_tab == 'config'">
+                        <div class="fieldsets">
+                            <fieldset class="config-general">
+                                <legend>General</legend>
+                                <div class="form-item">
+                                    <label>Race</label>
+                                    <select v-model="config.race">
+                                        <option :value="races.RACE_BLOOD_ELF">Blood elf</option>
+                                        <option :value="races.RACE_DRAENEI">Draenei</option>
+                                        <option :value="races.RACE_GNOME">Gnome</option>
+                                        <option :value="races.RACE_HUMAN">Human</option>
+                                        <option :value="races.RACE_TROLL">Troll</option>
+                                        <option :value="races.RACE_UNDEAD">Undead</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <label>Talents (<a :href="config.build" target="_blank">link</a>)</label>
+                                    <input type="text" v-model="config.build" @input="onBuildInput">
+                                </div>
+                                <div class="form-item">
+                                    <label>Number of sims</label>
+                                    <input type="text" v-model.number="config.iterations">
+                                </div>
+                                <div class="form-item">
+                                    <label>Fight duration (sec)</label>
+                                    <input type="text" v-model.number="config.duration">
+                                </div>
+                                <div class="form-item">
+                                    <label>Duration +/- (sec)</label>
+                                    <input type="text" v-model.number="config.duration_variance">
+                                </div>
+                                <div class="form-item">
+                                    <label>No. of targets</label>
+                                    <input type="text" v-model.number="config.targets">
+                                </div>
+                                <div class="form-item">
+                                    <label>Spell travel time (ms)</label>
+                                    <input type="text" v-model.number="config.spell_travel_time">
+                                </div>
+                                <div class="form-item">
+                                    <label>
+                                        <span>RNG seed</span>
+                                        <help>
+                                            A number above 0 will give all runs the same random seed.<br>
+                                            All iterations in the same run will still have different seeds.<br>
+                                            This might be useful for certain analysis.
+                                        </help>
+                                    </label>
+                                    <input type="text" v-model.number="config.rng_seed">
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.avg_spell_dmg">
+                                        <span>Use average spell damage</span>
+                                        <help>
+                                            This will eliminate the random damage from spells.<br>
+                                            This can be useful to verify calculations.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.additional_data">
+                                        <span>Additional data</span>
+                                        <help>
+                                            This will save data about dps and duration for each simulation.<br>
+                                            This will use more memory and can cause performance issues with a high number of sims.
+                                        </help>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-rotation">
+                                <legend>Rotation</legend>
+                                <div class="form-item">
+                                    <label>Main rotation</label>
+                                    <select v-model="config.rotation">
+                                        <option :value="rotations.ROTATION_ST_ARCANE">Arcane</option>
+                                    </select>
+                                </div>
+                                <div class="form-item" v-if="config.talents.imp_scorch">
+                                    <label><input type="checkbox" v-model="config.maintain_imp_scorch">
+                                        <span>Keep up imp. scorch</span>
+                                        <help>Imp. Scorch from you</help>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-debuffs">
+                                <legend>Debuffs</legend>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.debuff_crit" :disabled="config.totem_of_wrath">
+                                        <span>3% crit</span>
+                                        <help>
+                                            Heart of the Crusader<br>Master Poisoner<br>Totem of Wrath
+                                            <br><br>If you have Totem of Wrath you should select it under buffs instead.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.debuff_spell_crit">
+                                        <span>5% spell crit</span>
+                                        <help>
+                                            Imp. Shadow Bolt<br>Winter's Chill<br>Imp. Scorch
+                                            <br><br>Do no check this if you are the person keeping up Winter's Chill or Imp. Scorch.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.debuff_spell_hit">
+                                        <span>3% spell hit</span>
+                                        <help>Misery<br>Imp. Faerie Fire</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.debuff_spell_dmg">
+                                        <span>13% spell dmg</span>
+                                        <help>Curse of Elements<br>Earth and Moon<br>Ebon Spellbringer</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.judgement_of_wisdom">
+                                        <span>Judgement of Wisdom</span>
+                                        <help>Chance to restore 2% base mana on spell hit</help>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-buffs">
+                                <legend>Buffs</legend>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.mage_armor" @changed="dontStack($event, 'molten_armor')"> <span>Mage Armor</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.molten_armor" @input="dontStack($event, 'mage_armor')"> <span>Molten Armor</span></label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" :checked="true" :disabled="true">
+                                        <span>Arcane Intellect</span>
+                                        <help>60 intellect</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.divine_spirit" @input="dontStack($event, 'fel_intelligence')">
+                                        <span>Divine Spirit</span>
+                                        <help>80 spirit</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.fel_intelligence" @input="dontStack($event, 'divine_spirit')">
+                                        <span>Fel intelligence</span>
+                                        <help>64 spirit<br>The intellect part does not stack with Arcane Intellect</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.mark_of_the_wild">
+                                        <span>Mark of the Wild</span>
+                                        <help>37 stats</help>
+                                    </label>
+                                </div>
+                                <div class="form-item sub" v-if="config.mark_of_the_wild">
+                                    <label><input type="checkbox" v-model="config.imp_mark_of_the_wild">
+                                        <span class="material-icons">&#xe5da;</span>
+                                        <span>Imp. Mark of the Wild</span>
+                                        <help>52 stats instead of 37</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.totem_of_wrath" @input="dontStack($event, 'flametongue')">
+                                        <span>Totem of Wrath</span>
+                                        <help>3% crit + 280 spell power</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.flametongue" @input="dontStack($event, 'totem_of_wrath')">
+                                        <span>Flametongue Totem</span>
+                                        <help>144 spell power</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label>
+                                        <input type="checkbox" v-model="config.demonic_pact">
+                                        <span>Demonic Pact</span>
+                                        <help>Does not stack with Totem of Wrath or Flametongue totem.</help>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.demonic_pact">
+                                    <label>
+                                        <span>Demonic Pact Bonus</span>
+                                        <help>10% of the Warlocks spell power.</help>
+                                    </label>
+                                    <input type="text" v-model.number="config.demonic_pact_bonus">
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.buff_spell_haste">
+                                        <span>Wrath of Air Totem</span>
+                                        <help>5% spell haste</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.mana_spring" @input="dontStack($event, 'blessing_of_wisdom')">
+                                        <span>Mana Spring Totem</span>
+                                        <help>91 mp5</help>
+                                    </label>
+                                </div>
+                                <div class="form-item sub" v-if="config.mana_spring">
+                                    <label><input type="checkbox" v-model="config.restorative_totems">
+                                        <span class="material-icons">&#xe5da;</span>
+                                        <span>Restorative Totems</span>
+                                        <help>109 mp5 instead of 91</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.blessing_of_wisdom" @input="dontStack($event, 'mana_spring')">
+                                        <span>Blessing of Wisdom</span>
+                                        <help>92 mp5</help>
+                                    </label>
+                                </div>
+                                <div class="form-item sub" v-if="config.blessing_of_wisdom">
+                                    <label><input type="checkbox" v-model="config.imp_blessing_of_wisdom">
+                                        <span class="material-icons">&#xe5da;</span>
+                                        <span>Imp. Blessing of Wisdom</span>
+                                        <help>110 mp5 instead of 91</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.blessing_of_kings" @input="dontStack($event, 'drums_of_forgotten_kings')">
+                                        <span>Blessing of Kings</span>
+                                        <help>10% stats</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.drums_of_forgotten_kings" @input="dontStack($event, 'blessing_of_kings')">
+                                        <span>Drums of Forgotten Kings</span>
+                                        <help>8% stats</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.buff_dmg">
+                                        <span>3% damage</span>
+                                        <help>Sanctified Retribution<br>Ferocious Inspiration<br>Arcane Empowerment</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.buff_spell_crit">
+                                        <span>5% spell crit</span>
+                                        <help>Moonkin Aura<br>Elemental Oath</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.buff_haste">
+                                        <span>3% haste</span>
+                                        <help>Improved moonkin form<br>Swift Retribution</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.mana_replenishment">
+                                        <span>Replenish 1% mana every 5 sec</span>
+                                        <help>Vampiric Touch<br>Judgement of the Wise<br>Hunting Party<br>Improved Soul Leech<br>Enduring Winter</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.focus_magic">
+                                        <span>Focus Magic</span>
+                                        <help>
+                                            3% spell crit, put on you by another mage.<br>
+                                            If you have Focus Magic talented it will be factored in with permanent uptime after 5 seconds into the fight.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="faction == 'alliance'">
+                                    <label><input type="checkbox" v-model="config.heroic_presence">
+                                        <span>Heroic Presence</span>
+                                        <help>1% hit from Draenei Racial.<br>This is automatically applied if your race is Draenei</help>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-consumes">
+                                <legend>Consumes</legend>
+                                <div class="form-item" v-if="!config.battle_elixir && !config.guardian_elixir">
+                                    <label>Flask</label>
+                                    <select v-model="config.flask">
+                                        <option :value="flasks.FLASK_NONE">None</option>
+                                        <option :value="flasks.FLASK_FROSTWYRM">Flask of the Frostwyrm (125 sp)</option>
+                                        <option :value="flasks.FLASK_PURE_MOJO">Flask of Pure Mojo (45 mp5)</option>
+                                    </select>
+                                </div>
+                                <div class="form-item" v-if="!config.flask">
+                                    <label>Battle Elixir</label>
+                                    <select v-model="config.battle_elixir">
+                                        <option :value="elixirs.ELIXIR_NONE">None</option>
+                                        <option :value="elixirs.ELIXIR_SPELLPOWER">Spellpower Elixir (58 sp)</option>
+                                        <option :value="elixirs.ELIXIR_GURU">Guru's Elixir (20 stats)</option>
+                                        <option :value="elixirs.ELIXIR_ACCURACY">Elixir of Accuracy (45 hit)</option>
+                                        <option :value="elixirs.ELIXIR_DEADLY_STRIKES">Elixir of Deadly Strikes (45 crit)</option>
+                                        <option :value="elixirs.ELIXIR_LIGHTNING_SPEED">Elixir of Lightning Speed (45 haste)</option>
+                                    </select>
+                                </div>
+                                <div class="form-item" v-if="!config.flask">
+                                    <label>Guardian Elixir</label>
+                                    <select v-model="config.guardian_elixir">
+                                        <option :value="elixirs.ELIXIR_NONE">None</option>
+                                        <option :value="elixirs.ELIXIR_SPIRIT">Elixir of Spirit (50 spirit)</option>
+                                        <option :value="elixirs.ELIXIR_MIGHTY_MAGEBLOOD">Elixir of Mighty Mageblood (30 mp5)</option>
+                                        <option :value="elixirs.ELIXIR_MIGHTY_THOUGHTS">Elixir of Mighty Thoughts (45 int)</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <label>Food</label>
+                                    <select v-model="config.food">
+                                        <option :value="foods.FOOD_NONE">None</option>
+                                        <option :value="foods.FOOD_SPELL_POWER">Firecracker Salmon (46 sp)</option>
+                                        <option :value="foods.FOOD_CRIT">Spiced Worm Burger (40 crit)</option>
+                                        <option :value="foods.FOOD_HIT">Snapper Extreme (40 hit)</option>
+                                        <option :value="foods.FOOD_HASTE">Imperial Manta Steak (40 haste)</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <label>Drums</label>
+                                    <select v-model="config.drums">
+                                        <option :value="drums.DRUMS_NONE">None</option>
+                                        <option :value="drums.DRUMS_OF_BATTLE">Drums of Battle (80 haste)</option>
+                                        <option :value="drums.DRUMS_OF_WAR">Drums of War (30 sp)</option>
+                                        <option :value="drums.DRUMS_OF_RESTORATION">Drums of Restoration (600 mana)</option>
+                                    </select>
+                                </div>
+                                <div class="form-item" v-if="config.drums">
+                                    <label><input type="checkbox" v-model="config.drums_friend">
+                                        <span>Drumming friend</span>
+                                        <help>Someone else in your raid uses drums</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label>Potion</label>
+                                    <select v-model="config.potion">
+                                        <option :value="potions.POTION_NONE">None</option>
+                                        <option :value="potions.POTION_MANA">Mana potion</option>
+                                        <option :value="potions.POTION_SPEED">Potion of Speed</option>
+                                        <option :value="potions.POTION_WILD_MAGIC">Potion of Wild Magic</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <label>Conjured</label>
+                                    <select v-model="config.conjured">
+                                        <option :value="conjureds.CONJURED_NONE">None</option>
+                                        <option :value="conjureds.CONJURED_MANA_GEM">Mana Sapphire</option>
+                                        <option :value="conjureds.CONJURED_FLAME_CAP">Flame Cap</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-cooldowns">
+                                <legend>Cooldowns</legend>
+                                <template v-if="config.talents.presence_of_mind">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Presence of Mind timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.presence_of_mind_t">
+                                            <input type="text" v-model.number="config.presence_of_mind_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.talents.arcane_power">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Arcane Power timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.arcane_power_t">
+                                            <input type="text" v-model.number="config.arcane_power_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.talents.icy_veins">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Icy Veins timings</span>
+                                            <timing-helper>Haste component does not stack with Bloodlust, Power Infusion or Berserking</timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.icy_veins_t">
+                                            <input type="text" v-model.number="config.icy_veins_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.talents.cold_snap">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Cold Snap timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.cold_snap_t">
+                                            <input type="text" v-model.number="config.cold_snap_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.talents.combustion">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Combustion timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.combustion_t">
+                                            <input type="text" v-model.number="config.combustion_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.race == races.RACE_TROLL">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Berserking timings</span>
+                                            <timing-helper>Haste component does not stack with Bloodlust, Icy Veins or Power Infusion</timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.berserking_t">
+                                            <input type="text" v-model.number="config.berserking_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.potion && config.potion != potions.POTION_MANA && config.potion != potions.POTION_FEL_MANA">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Potion timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.potion_t">
+                                            <input type="text" v-model.number="config.potion_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.conjured">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Conjured timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.conjured_t">
+                                            <input type="text" v-model.number="config.conjured_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="hasUseTrinket(1)">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Trinket #1 timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.trinket1_t">
+                                            <input type="text" v-model.number="config.trinket1_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="hasUseTrinket(2)">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Trinket #2 timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.trinket2_t">
+                                            <input type="text" v-model.number="config.trinket2_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-if="config.drums">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Drums timings</span>
+                                            <timing-helper></timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.drums_t">
+                                            <input type="text" v-model.number="config.drums_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template>
+                                    <div class="form-item">
+                                        <label>
+                                            <input type="checkbox" v-model="config.bloodlust">
+                                            <span>
+                                                Bloodlust
+                                                <span v-if="config.bloodlust">
+                                                    timings
+                                                    <timing-helper :nocd="true">Haste component does not stack with Power Infusion, Icy Veins or Berserking</timing-helper>
                                                 </span>
                                             </span>
-                                        </td>
-                                        <th v-if="hasComparisons">
-                                            {{ comparisonDps(item) }}
-                                        </th>
-                                        <th>{{ $get(item, "phase", 1) }}</th>
-                                        <td>
-                                            <template v-if="item.sockets">
-                                                <div class="socket-color" :class="['color-'+socket]" v-for="socket in item.sockets"></div>
-                                            </template>
-                                            <span class="ml-n" v-if="item.bonus" :class="[hasSocketBonus(active_slot) ? 'socket-bonus' : '']">
-                                                +{{ formatStats(item.bonus) }}
-                                            </span>
-                                        </td>
-                                        <td>{{ formatSP(item) }}</td>
-                                        <td>{{ $get(item, "crit", "") }}</td>
-                                        <td>{{ $get(item, "hit", "") }}</td>
-                                        <td>{{ $get(item, "haste", "") }}</td>
-                                        <td>{{ $get(item, "int", "") }}</td>
-                                        <td>{{ $get(item, "spi", "") }}</td>
-                                        <td>{{ $get(item, "mp5", "") }}</td>
-                                    </tr>
-                                    <tr
-                                        class="item"
-                                        @click="quickset(set)"
-                                        v-for="(set, key) in items.quicksets"
-                                        v-if="active_slot == 'quicksets'"
-                                    >
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{ set.title }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <table class="mt-4" v-if="activeEnchants.length">
-                                <thead>
-                                    <tr>
-                                        <th>Enchant</th>
-                                        <th>Spell power</th>
-                                        <th>Crit rating</th>
-                                        <th>Hit rating</th>
-                                        <th>Intellect</th>
-                                        <th>Spirit</th>
-                                        <th>Mp5</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        class="item"
-                                        :class="[isEnchanted(active_slot, item.id) ? 'active' : '']"
-                                        v-for="item in activeEnchants"
-                                        :key="item.id"
-                                        @click="enchant(active_slot, item)"
-                                    >
-                                        <td>
-                                            <a :href="spellUrl(item)" :class="['quality-'+$get(item, 'q', 'uncommon')]" target="_blank" @click.stop>
-                                                {{ item.title }}
-                                            </a>
-                                        </td>
-                                        <td>{{ formatSP(item) }}</td>
-                                        <td>{{ $get(item, "crit", "") }}</td>
-                                        <td>{{ $get(item, "hit", "") }}</td>
-                                        <td>{{ $get(item, "int", "") }}</td>
-                                        <td>{{ $get(item, "spi", "") }}</td>
-                                        <td>{{ $get(item, "mp5", "") }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="sockets mt-4" v-if="activeSockets.length">
-                                <div class="socket" v-for="(socket, index) in activeSockets">
-                                    <div class="title">
-                                        <span>Socket {{ (index+1) }}</span>
-                                        <span class="socket-color" :class="['color-'+socket]"></span>
+                                        </label>
                                     </div>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Gem</th>
-                                                <th>Stats</th>
-                                                <th v-if="socket == 'm'">Requires</th>
-                                                <th v-else>Unique</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                :class="[isSocketed(active_slot, gem.id, index) ? 'active' : '']"
-                                                v-for="gem in activeGems(index)"
-                                                @click="setSocket(active_slot, gem, index)"
-                                                :key="gem.id"
-                                            >
-                                                <td>
-                                                    <a :href="itemUrl(gem)" class="gem-color" :class="['color-'+gem.color]" target="_blank" @click.stop>
-                                                        {{ gem.title }}
-                                                    </a>
-                                                </td>
-                                                <td>{{ formatStats(gem) }}</td>
-                                                <td v-if="socket == 'm'">
-                                                    <template v-if="gem.req">
-                                                        <template v-if="metaGemHasCustomReq(gem)">
-                                                            {{ gem.req }}
-                                                        </template>
-                                                        <template v-else>
-                                                            <div class="socket-text-color" :class="['color-'+c]" v-for="(n, c) in gem.req">{{ n }}</div>
-                                                        </template>
-                                                    </template>
-                                                </td>
-                                                <td v-else><template v-if="gem.unique">Yes</template></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="form-row mt-0" v-if="config.bloodlust">
+                                        <div class="form-item" v-for="(a, i) in config.bloodlust_t">
+                                            <input type="text" v-model.number="config.bloodlust_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template>
+                                    <div class="form-item">
+                                        <label>
+                                            <input type="checkbox" v-model="config.power_infusion">
+                                            <span>
+                                                Power Infusion
+                                                <span v-if="config.power_infusion">
+                                                    timings
+                                                    <timing-helper :nocd="true">Haste component does not stack with Bloodlust, Icy Veins or Berserking</timing-helper>
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0" v-if="config.power_infusion">
+                                        <div class="form-item" v-for="(a, i) in config.power_infusion_t">
+                                            <input type="text" v-model.number="config.power_infusion_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <template>
+                                    <div class="form-item">
+                                        <label>
+                                            <input type="checkbox" v-model="config.mana_tide">
+                                            <span>
+                                                Mana Tide
+                                                <template v-if="config.mana_tide">
+                                                    timings
+                                                    <timing-helper :nocd="true"></timing-helper>
+                                                </template>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0" v-if="config.mana_tide">
+                                        <div class="form-item" v-for="(a, i) in config.mana_tide_t">
+                                            <input type="text" v-model.number="config.mana_tide_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                                <div class="form-row">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Evocation at</span>
+                                            <help>Setting this to 0 will evocate when mana is low</help>
+                                        </label>
+                                        <input type="text" v-model.number="config.evocation_at">
+                                    </div>
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Cancel after n ticks</span>
+                                            <help>Setting this to 0 will not cancel evocation.</help>
+                                        </label>
+                                        <input type="text" v-model.number="config.evo_ticks">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-item">
+                                    <label>Number of innervates</label>
+                                    <input type="text" v-model.number="config.innervate">
+                                </div>
+                                <template v-if="config.innervate > 0">
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Innervate timings</span>
+                                            <timing-helper :nocd="true">Leaving empty will innervate when mana is low.</timing-helper>
+                                        </label>
+                                    </div>
+                                    <div class="form-row mt-0">
+                                        <div class="form-item" v-for="(a, i) in config.innervate_t" v-if="i < config.innervate">
+                                            <input type="text" v-model.number="config.innervate_t[i]">
+                                        </div>
+                                    </div>
+                                </template>
+                            </fieldset>
+                            <fieldset class="config-profiles">
+                                <legend>Profiles</legend>
+                                <div class="profiles">
+                                    <div class="profile" v-for="(profile, index) in profiles" :key="profile.id">
+                                        <div class="name" @click="loadProfile(profile)">{{ profile.name }}</div>
+                                        <div class="actions">
+                                            <div class="move move-up" @click="moveProfile(index, -1)">
+                                                <span class="material-icons">&#xe316;</span>
+                                                <tooltip position="t">Move up</tooltip>
+                                            </div>
+                                            <div class="move move-down" @click="moveProfile(index, 1)">
+                                                <span class="material-icons">&#xe313;</span>
+                                                <tooltip position="t">Move down</tooltip>
+                                            </div>
+                                            <div class="load-items" @click="loadProfile(profile, 'items')">
+                                                <span class="material-icons">&#xe84e;</span>
+                                                <tooltip position="t">Load items only</tooltip>
+                                            </div>
+                                            <div class="load-config" @click="loadProfile(profile, 'config')">
+                                                <span class="material-icons">&#xe8b8;</span>
+                                                <tooltip position="t">Load config only</tooltip>
+                                            </div>
+                                            <div class="save" @click="saveProfile(profile)">
+                                                <span class="material-icons">&#xe161;</span>
+                                                <tooltip position="t">Save profile</tooltip>
+                                            </div>
+                                            <div class="delete" @click="deleteProfile(profile)">
+                                                <span class="material-icons">&#xe872;</span>
+                                                <tooltip position="t">Delete profile</tooltip>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="new-profile mt-1">
+                                        <input type="text" v-model="new_profile" @keydown.enter="newProfile()">
+                                        <div class="btn" :class="[new_profile ? '' : 'disabled']" @click="newProfile()">
+                                            New profile
+                                            <tooltip position="r">Save your items and config</tooltip>
+                                        </div>
+                                    </div>
+                                    <div class="export-import clearfix mt-2">
+                                        <div class="btn fl" @click="openExport()">Export</div>
+                                        <div class="btn fl ml-n" @click="openImport()">Import</div>
+                                        <div class="btn danger fr" @click="nukeSettings()">Nuke settings</div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
-                    </div>
-                </div>
-
-                <div class="log" v-if="log_open">
-                    <div class="log-wrapper">
-                        <div class="filter">
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="log_filter[2]"> <span>Show mana gain</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="log_filter[3]"> <span>Show buffs</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="log_filter[7]"> <span>Show GCD cap</span></label>
-                            </div>
-                        </div>
-                        <table>
-                            <thead>
-                                <th>Time</th>
-                                <th>Mana</th>
-                                <th>DPS</th>
-                                <th>Event</th>
-                            </thead>
-                            <tbody>
-                                <tr
-                                    v-for="log in result.log"
-                                    v-if="showLog(log)"
-                                    :class="['type-'+log.type]"
-                                >
-                                    <td>{{ formatTime(log.t) }}</td>
-                                    <td>{{ round(log.mana) }} ({{ round(log.mana_percent) }}%)</td>
-                                    <td>{{ (log.t ? round(log.dmg/log.t) : "0") }}</td>
-                                    <td>{{ log.text }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="close" @click="logToggle">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
-                </div>
-
-                <div class="timel" v-if="timeline_open">
-                    <timeline ref="timeline" :result="result"></timeline>
-                    <div class="close" @click="timelineToggle">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
-                </div>
-
-                <div class="spells" v-if="spells_open">
-                    <div class="spells-wrapper">
-                        <table>
-                            <thead>
-                                <th>Spell</th>
-                                <th>Casts</th>
-                                <th>Misses</th>
-                                <th>Hits</th>
-                                <th>Crits</th>
-                                <th>Damage</th>
-                                <th>Min dmg</th>
-                                <th>Avg dmg</th>
-                                <th>Max dmg</th>
-                            </thead>
-                            <tbody>
-                                <tr v-for="spell in result.spells">
-                                    <td>{{ spell.name }}</td>
-                                    <td>{{ spell.casts }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
-                                    <td>{{ spell.misses }} ({{ $round(spell.misses/spell.casts*100, 2) }}%)</td>
-                                    <td>{{ spell.hits }}</td>
-                                    <td>{{ spell.crits }} ({{ $round(spell.crits/spell.casts*100, 2) }}%)</td>
-                                    <td>{{ $round(spell.dmg, 0) }} ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</td>
-                                    <td>{{ $round(spell.min_dmg, 0) }}</td>
-                                    <td>{{ $round(spell.dmg / (spell.casts - spell.misses), 0) }}</td>
-                                    <td>{{ $round(spell.max_dmg, 0) }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="close" @click="spellsToggle">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
-                </div>
-
-                <div class="histog" v-if="histogram_open">
-                    <histogram :data="result.histogram"></histogram>
-                    <div class="close" @click="histogramToggle">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
-                </div>
-
-                <div class="config" v-if="config_open">
-                    <div class="fieldsets">
-                        <fieldset>
-                            <legend>General</legend>
-                            <div class="form-item">
-                                <span class="btn-text" @click="setSpec('arcane')">Arcane</span>
-                                <span class="btn-text" @click="setSpec('fire')">Fire</span>
-                                <span class="btn-text" @click="setSpec('frost')">Frost</span>
-                            </div>
-                            <div class="form-item">
-                                <label>Race</label>
-                                <select v-model="config.race">
-                                    <option :value="races.RACE_BLOOD_ELF">Blood elf</option>
-                                    <option :value="races.RACE_DRAENEI">Draenei</option>
-                                    <option :value="races.RACE_GNOME">Gnome</option>
-                                    <option :value="races.RACE_HUMAN">Human</option>
-                                    <option :value="races.RACE_TROLL">Troll</option>
-                                    <option :value="races.RACE_UNDEAD">Undead</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>
-                                    <span>Shattrath Faction</span>
-                                    <help>Controls the proc from Shattered Sun Pendant of Acumen necklace</help>
-                                </label>
-                                <select v-model="config.shatt_faction">
-                                    <option :value="factions.FACTION_ALDOR">Aldor</option>
-                                    <option :value="factions.FACTION_SCRYER">Scryer</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>Talents (<a :href="config.talents" target="_blank">link</a>)</label>
-                                <input type="text" :value="config.talents" @input="onTalentsInput">
-                            </div>
-                            <div class="form-item">
-                                <label>Main spell</label>
-                                <select v-model="config.main_rotation">
-                                    <option :value="main_rotations.MAIN_ROTATION_AB">Arcane Blast</option>
-                                    <option :value="main_rotations.MAIN_ROTATION_AE">Arcane Explosion</option>
-                                    <option :value="main_rotations.MAIN_ROTATION_AM">Arcane Missiles</option>
-                                    <option :value="main_rotations.MAIN_ROTATION_SC">Scorch</option>
-                                    <option :value="main_rotations.MAIN_ROTATION_FIB">Fireball</option>
-                                    <option :value="main_rotations.MAIN_ROTATION_FRB">Frostbolt</option>
-                                </select>
-                            </div>
-                            <template v-if="config.main_rotation == main_rotations.MAIN_ROTATION_AB">
-                                <div class="form-item">
-                                    <label>Filler spells</label>
-                                    <select v-model="config.regen_rotation">
-                                        <option :value="regen_rotations.REGEN_ROTATION_FB">3xFrB</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_FB11">3xFrB (rank 11)</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_AMFB">1xAM, 1xFrB</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_AMSC">1xAM, 1xScorch</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_AMAM">2xAM</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_SC">5xScorch</option>
-                                        <option :value="regen_rotations.REGEN_ROTATION_SCFB">1xScorch, 2xFiB</option>
-                                    </select>
-                                </div>
-                                <div class="form-item">
-                                    <label>Arcane Blasts between fillers</label>
-                                    <select v-model="config.regen_ab_count">
-                                        <option :value="1">1x AB</option>
-                                        <option :value="2">2x AB</option>
-                                        <option :value="3">3x AB</option>
-                                        <option :value="4">4x AB</option>
-                                    </select>
-                                </div>
-                                <div class="form-item">
-                                    <label>Regen rotation at mana %</label>
-                                    <input type="text" v-model.number="config.regen_mana_at">
-                                </div>
-                                <div class="form-item">
-                                    <label>
-                                        <span>Stop regen rotation at mana %</span>
-                                        <help>Regen will always stop if it's possible to spam AB the rest of the fight</help>
-                                    </label>
-                                    <input type="text" v-model.number="config.regen_stop_at">
-                                </div>
-                                <div class="form-item">
-                                    <label>
-                                        <span>Stop Arcane Blast at haste %</span>
-                                        <help>
-                                            This will cast frostbolt/fireball/arcane missiles when above a certain haste %.<br>
-                                            At 100% haste you will reach GCD cap of 1 second.
-                                        </help>
-                                    </label>
-                                    <input type="text" v-model.number="config.ab_haste_stop">
-                                </div>
-                            </template>
-                            <template v-if="canCream">
-                                <div class="form-item">
-                                    <label>
-                                        <input type="checkbox" v-model="config.cc_am_queue">
-                                        <span>Queue AM after clearcast</span>
-                                        <help>
-                                            Queue Arcane Missiles after a spell with clearcast active has been cast.<br>
-                                            Arcane Missiles will gain the bonus from Arcane Potency but will still cost full mana.<br>
-                                            This does not work if the cast time of the spell that consumes CC is shorter than the GCD.<br>
-                                            Example: AB -> CC proc -> AB -> AM
-                                        </help>
-                                    </label>
-                                </div>
-                                <div class="form-item" v-if="config.cc_am_queue">
-                                    <label>
-                                        <input type="checkbox" v-model="config.cc_am_repeat">
-                                        <span>Repeat AM if it procs CC</span>
-                                    </label>
-                                </div>
-                            </template>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.fire_blast_weave"> <span>Fire Blast weave</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label>No. of targets</label>
-                                <input type="text" v-model.number="config.targets">
-                            </div>
-                            <div class="form-item">
-                                <label>Fight duration (sec)</label>
-                                <input type="text" v-model.number="config.duration">
-                            </div>
-                            <div class="form-item">
-                                <label>Duration +/- (sec)</label>
-                                <input type="text" v-model.number="config.duration_variance">
-                            </div>
-                            <div class="form-item">
-                                <label>Number of sims</label>
-                                <input type="text" v-model.number="config.iterations">
-                            </div>
-                            <div class="form-item">
-                                <label>
-                                    <span>RNG seed</span>
-                                    <help>
-                                        A number above 0 will give all runs the same random seed.<br>
-                                        All iterations in the same run will still have different seeds.<br>
-                                        This might be useful for certain analysis.
-                                    </help>
-                                </label>
-                                <input type="text" v-model.number="config.rng_seed">
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.gcd_unlocked">
-                                    <span>Unlock GCD</span>
-                                    <help>Enables the GCD to go below 1.0s with haste</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.avg_spell_dmg">
-                                    <span>Use average spell damage</span>
-                                    <help>
-                                        This will eliminate the random damage from spells.<br>
-                                        This can be useful to verify calculations.
-                                    </help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.additional_data">
-                                    <span>Additional data</span>
-                                    <help>
-                                        This will save data about dps and duration for each simulation.<br>
-                                        This will use more memory and can cause performance issues with a high number of sims.
-                                    </help>
-                                </label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Debuffs</legend>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.misery"> <span>Misery</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.curse_of_elements"> <span>Curse of Elements</span></label>
-                            </div>
-                            <div class="form-item" v-if="config.curse_of_elements">
-                                <label><input type="checkbox" v-model="config.malediction">
-                                    <span>Malediction</span>
-                                    <help>3% extra damage from curse of elements</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.judgement_of_the_crusader"> <span>Imp. Judgement of the Crusader</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.judgement_of_wisdom"> <span>Judgement of Wisdom</span></label>
-                            </div>
-                            <div class="form-item" v-if="hasTalent('imp_scorch')">
-                                <label><input type="checkbox" v-model="config.maintain_fire_vulnerability">
-                                    <span>Keep up Fire Vulnerability</span>
-                                    <help>Imp. Scorch from you</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.fire_vulnerability">
-                                    <span>Fire Vulnerability</span>
-                                    <help>Imp. Scorch from another mage</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.winters_chill">
-                                    <span>Winter's Chill</span>
-                                    <help>Winter's Chill from another mage</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.vampiric_touch"> <span>Vampiric Touch</span></label>
-                            </div>
-                            <div class="form-item" v-if="config.vampiric_touch">
-                                <label>Vampiric Touch mana/sec</label>
-                                <input type="text" v-model.number="config.vampiric_touch_regen">
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Buffs</legend>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.arcane_intellect"> <span>Arcane Intellect</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.mage_armor" @input="dontStack($event, 'molten_armor')"> <span>Mage Armor</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.molten_armor" @input="dontStack($event, 'mage_armor')"> <span>Molten Armor</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.divine_spirit" @input="dontStack($event, 'scroll_of_spirit')"> <span>Divine Spirit</span></label>
-                            </div>
-                            <div class="form-item" v-if="config.divine_spirit">
-                                <label><input type="checkbox" v-model="config.improved_divine_spirit"> <span>Imp. Divine Spirit</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.mark_of_the_wild"> <span>Mark of the Wild</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.totem_of_wrath"> <span>Totem of Wrath</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.wrath_of_air"> <span>Wrath of Air Totem</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.mana_spring"> <span>Mana Spring Totem</span></label>
-                            </div>
-                            <div class="form-item" v-if="config.mana_spring">
-                                <label><input type="checkbox" v-model="config.improved_mana_spring"> <span>Imp. Mana Spring Totem</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.blessing_of_kings"> <span>Blessing of Kings</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.blessing_of_wisdom"> <span>Blessing of Wisdom</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.moonkin_aura"> <span>Moonkin Aura</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.imp_sanctity"> <span>Imp. Sanctity Aura</span></label>
-                            </div>
-                            <div class="form-item" v-if="faction == 'alliance'">
-                                <label><input type="checkbox" v-model="config.inspiring_presence"> <span>Inspiring Presence (Draenei hit aura)</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.atiesh_mage">
-                                    <span>Mage Atiesh Aura</span>
-                                    <help>Another mage in your group has Atiesh</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.atiesh_warlock"> <span>Warlock Atiesh Aura</span></label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.eye_of_the_night" :disabled="isEquipped('neck', items.ids.EYE_OF_THE_NIGHT)">
-                                    <span>Eye of the Night</span>
-                                    <help>This is a party-wide buff from a JC necklace (34 sp)</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.chain_of_the_twilight_owl" :disabled="isEquipped('neck', items.ids.CHAIN_OF_THE_TWILIGHT_OWL)">
-                                    <span>Chain of the Twilight Owl</span>
-                                    <help>This is a party-wide buff from a JC necklace (2 crit)</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label><input type="checkbox" v-model="config.jade_pendant_of_blasting" :disabled="isEquipped('neck', items.ids.JADE_PENDANT_OF_BLASTING)">
-                                    <span>Jade Pendant of Blasting</span>
-                                    <help>This is a party-wide buff from a JC necklace (15 sp)</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label>Ferocious Inspirations</label>
-                                <input type="text" v-model.number="config.ferocious_inspiration">
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Consumes</legend>
-                            <div class="form-item" v-if="!config.battle_elixir && !config.guardian_elixir">
-                                <label>Flask</label>
-                                <select v-model="config.flask">
-                                    <option :value="flasks.FLASK_NONE">None</option>
-                                    <option :value="flasks.FLASK_SUPREME_POWER">Supreme Power (70 sp)</option>
-                                    <option :value="flasks.FLASK_BLINDING_LIGHT">Blinding Light (80 arc)</option>
-                                    <option :value="flasks.FLASK_PURE_DEATH">Pure Death (80 fire/frost)</option>
-                                    <option :value="flasks.FLASK_DISTILLED_WISDOM">Distilled Wisdom (65 int)</option>
-                                    <option :value="flasks.FLASK_CHROMATIC_WONDER">Chromatic Wonder (18 all stats)</option>
-                                </select>
-                            </div>
-                            <div class="form-item" v-if="!config.flask">
-                                <label>Battle Elixir</label>
-                                <select v-model="config.battle_elixir">
-                                    <option :value="elixirs.ELIXIR_NONE">None</option>
-                                    <option :value="elixirs.ELIXIR_ADEPTS">Adept's Elixir (24 sp / 24 crit)</option>
-                                    <option :value="elixirs.ELIXIR_GREATER_ARCANE">Greater Arcane (35 sp)</option>
-                                    <option :value="elixirs.ELIXIR_MAJOR_FIREPOWER">Major Firepower (55 fire)</option>
-                                    <option :value="elixirs.ELIXIR_MASTERY">Elixir of Mastery (15 all stats)</option>
-                                </select>
-                            </div>
-                            <div class="form-item" v-if="!config.flask">
-                                <label>Guardian Elixir</label>
-                                <select v-model="config.guardian_elixir">
-                                    <option :value="elixirs.ELIXIR_NONE">None</option>
-                                    <option :value="elixirs.ELIXIR_DRAENIC_WISDOM">Draenic Wisdom (30 int / 30 spi)</option>
-                                    <option :value="elixirs.ELIXIR_MAJOR_MAGEBLOOD">Major Mageblood (16 mp5)</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>Weapon oil</label>
-                                <select v-model="config.weapon_oil">
-                                    <option :value="weapon_oils.OIL_NONE">None</option>
-                                    <option :value="weapon_oils.OIL_BRILLIANT_WIZARD">Brilliant Wizard Oil (36 sp / 14 crit)</option>
-                                    <option :value="weapon_oils.OIL_SUPERIOR_WIZARD">Superior Wizard Oil (42 sp)</option>
-                                    <option :value="weapon_oils.OIL_BLESSED_WIZARD">Blessed Wizard Oil (60 sp to undead)</option>
-                                    <option :value="weapon_oils.OIL_SUPERIOR_MANA">Superior Mana Oil (14 mp5)</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>Food</label>
-                                <select v-model="config.food">
-                                    <option :value="foods.FOOD_NONE">None</option>
-                                    <option :value="foods.FOOD_SPELL_POWER">Blackened Basilisk (23 sp / 20 spi)</option>
-                                    <option :value="foods.FOOD_SPELL_CRIT">Skullfish Soup (20 crit / 20 spi)</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>Drums</label>
-                                <select v-model="config.drums">
-                                    <option :value="drums.DRUMS_NONE">None</option>
-                                    <option :value="drums.DRUMS_OF_BATTLE">Drums of Battle (80 haste)</option>
-                                    <option :value="drums.DRUMS_OF_WAR">Drums of War (30 sp)</option>
-                                    <option :value="drums.DRUMS_OF_RESTORATION">Drums of Restoration (600 mana)</option>
-                                </select>
-                            </div>
-                            <div class="form-item" v-if="config.drums">
-                                <label><input type="checkbox" v-model="config.drums_friend">
-                                    <span>Drumming friend</span>
-                                    <help>Someone else in your party uses drums</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label>Potion</label>
-                                <select v-model="config.potion">
-                                    <option :value="potions.POTION_NONE">None</option>
-                                    <option :value="potions.POTION_MANA">Mana potion</option>
-                                    <option :value="potions.POTION_FEL_MANA">Fel Mana potion</option>
-                                    <option :value="potions.POTION_DESTRUCTION">Destruction potion</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>Conjured</label>
-                                <select v-model="config.conjured">
-                                    <option :value="conjureds.CONJURED_NONE">None</option>
-                                    <option :value="conjureds.CONJURED_MANA_GEM">Mana Emerald</option>
-                                    <option :value="conjureds.CONJURED_FLAME_CAP">Flame Cap</option>
-                                </select>
-                            </div>
-                            <div class="form-item">
-                                <label>
-                                    <input type="checkbox" v-model="config.scroll_of_spirit" @input="dontStack($event, ['divine_spirit', 'improved_divine_spirit'])">
-                                    <span>Scroll of Spirit V</span>
-                                    <help>Does not stack with Divine Spirit (30 spirit)</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label>
-                                    <input type="checkbox" v-model="config.kreegs">
-                                    <span>Kreeg's Stout Beatdown</span>
-                                    <help>Stacks with other food buffs (25 spirit, -5 int)</help>
-                                </label>
-                            </div>
-                            <div class="form-item" v-if="config.race == races.RACE_BLOOD_ELF">
-                                <label>
-                                    <input type="checkbox" v-model="config.bloodthistle">
-                                    <span>Bloodthistle</span>
-                                    <help>10sp buff, only usable by Blood Elfs</help>
-                                </label>
-                            </div>
-                            <div class="form-item">
-                                <label>
-                                    <input type="checkbox" v-model="config.scourgebane">
-                                    <span>Scourgebane Infusion</span>
-                                    <help>15sp buff against undead</help>
-                                </label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Cooldowns</legend>
-                            <template v-if="hasTalent('presence_of_mind')">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Presence of Mind timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.presence_of_mind_t">
-                                        <input type="text" v-model.number="config.presence_of_mind_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasTalent('arcane_power')">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Arcane Power timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.arcane_power_t">
-                                        <input type="text" v-model.number="config.arcane_power_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasTalent('icy_veins')">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Icy Veins timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.icy_veins_t">
-                                        <input type="text" v-model.number="config.icy_veins_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasTalent('cold_snap')">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Cold Snap timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.cold_snap_t">
-                                        <input type="text" v-model.number="config.cold_snap_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasTalent('combustion')">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Combustion timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.combustion_t">
-                                        <input type="text" v-model.number="config.combustion_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="config.race == races.RACE_TROLL">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Berserking timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.berserking_t">
-                                        <input type="text" v-model.number="config.berserking_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="config.potion && config.potion != potions.POTION_MANA && config.potion != potions.POTION_FEL_MANA">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Potion timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.potion_t">
-                                        <input type="text" v-model.number="config.potion_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="config.conjured">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Conjured timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.conjured_t">
-                                        <input type="text" v-model.number="config.conjured_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasUseTrinket(1)">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Trinket #1 timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.trinket1_t">
-                                        <input type="text" v-model.number="config.trinket1_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="hasUseTrinket(2)">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Trinket #2 timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.trinket2_t">
-                                        <input type="text" v-model.number="config.trinket2_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template v-if="config.drums">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Drums timings</span>
-                                        <timing-helper></timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.drums_t">
-                                        <input type="text" v-model.number="config.drums_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template>
-                                <div class="form-item">
-                                    <label>
-                                        <input type="checkbox" v-model="config.bloodlust">
-                                        <span>
-                                            Bloodlust
-                                            <span v-if="config.bloodlust">
-                                                timings
-                                                <timing-helper :nocd="true"></timing-helper>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0" v-if="config.bloodlust">
-                                    <div class="form-item" v-for="(a, i) in config.bloodlust_t">
-                                        <input type="text" v-model.number="config.bloodlust_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template>
-                                <div class="form-item">
-                                    <label>
-                                        <input type="checkbox" v-model="config.power_infusion">
-                                        <span>
-                                            Power Infusion
-                                            <span v-if="config.power_infusion">
-                                                timings
-                                                <timing-helper :nocd="true">Does not stack with Arcane Power</timing-helper>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0" v-if="config.power_infusion">
-                                    <div class="form-item" v-for="(a, i) in config.power_infusion_t">
-                                        <input type="text" v-model.number="config.power_infusion_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <template>
-                                <div class="form-item">
-                                    <label>
-                                        <input type="checkbox" v-model="config.mana_tide">
-                                        <span>
-                                            Mana Tide
-                                            <template v-if="config.mana_tide">
-                                                timings
-                                                <timing-helper :nocd="true"></timing-helper>
-                                            </template>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0" v-if="config.mana_tide">
-                                    <div class="form-item" v-for="(a, i) in config.mana_tide_t">
-                                        <input type="text" v-model.number="config.mana_tide_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                            <div class="form-item" v-if="faction == 'alliance'">
-                                <label><input type="checkbox" v-model="config.symbol_of_hope">
-                                    <span>Symbol of Hope <template v-if="config.symbol_of_hope">at</template></span>
-                                    <help>Draenei priest racial.<br>Setting this to 0 will automatically cast it when mana is low.</help>
-                                </label>
-                                <input type="text" v-model.number="config.symbol_of_hope_at" v-if="config.symbol_of_hope">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Evocation at</span>
-                                        <help>Setting this to 0 will evocate when mana is low</help>
-                                    </label>
-                                    <input type="text" v-model.number="config.evocation_at">
-                                </div>
-                                <div class="form-item">
-                                    <label>
-                                        <span>Cancel after n ticks</span>
-                                        <help>Setting this to 0 will not cancel evocation.</help>
-                                    </label>
-                                    <input type="text" v-model.number="config.evo_ticks">
-                                </div>
-                            </div>
-                            <div class="form-item">
-                                <label>Number of innervates</label>
-                                <input type="text" v-model.number="config.innervate">
-                            </div>
-                            <template v-if="config.innervate > 0">
-                                <div class="form-item">
-                                    <label>
-                                        <span>Innervate timings</span>
-                                        <timing-helper :nocd="true">Leaving empty will innervate when mana is low.</timing-helper>
-                                    </label>
-                                </div>
-                                <div class="form-row mt-0">
-                                    <div class="form-item" v-for="(a, i) in config.innervate_t" v-if="i < config.innervate">
-                                        <input type="text" v-model.number="config.innervate_t[i]">
-                                    </div>
-                                </div>
-                            </template>
-                        </fieldset>
-                        <fieldset class="profiles-fieldset">
-                            <legend>Profiles</legend>
-                            <div class="profiles">
-                                <div class="profile" v-for="(profile, index) in profiles" :key="profile.id">
-                                    <div class="name" @click="loadProfile(profile)">{{ profile.name }}</div>
-                                    <div class="actions">
-                                        <div class="move move-up" @click="moveProfile(index, -1)">
-                                            <span class="material-icons">&#xe316;</span>
-                                            <tooltip position="t">Move up</tooltip>
-                                        </div>
-                                        <div class="move move-down" @click="moveProfile(index, 1)">
-                                            <span class="material-icons">&#xe313;</span>
-                                            <tooltip position="t">Move down</tooltip>
-                                        </div>
-                                        <div class="load-items" @click="loadProfile(profile, 'items')">
-                                            <span class="material-icons">&#xe84e;</span>
-                                            <tooltip position="t">Load items only</tooltip>
-                                        </div>
-                                        <div class="load-config" @click="loadProfile(profile, 'config')">
-                                            <span class="material-icons">&#xe8b8;</span>
-                                            <tooltip position="t">Load config only</tooltip>
-                                        </div>
-                                        <div class="save" @click="saveProfile(profile)">
-                                            <span class="material-icons">&#xe161;</span>
-                                            <tooltip position="t">Save profile</tooltip>
-                                        </div>
-                                        <div class="delete" @click="deleteProfile(profile)">
-                                            <span class="material-icons">&#xe872;</span>
-                                            <tooltip position="t">Delete profile</tooltip>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="new-profile mt-1">
-                                    <input type="text" v-model="new_profile" @keydown.enter="newProfile()">
-                                    <div class="btn" :class="[new_profile ? '' : 'disabled']" @click="newProfile()">
-                                        New profile
-                                        <tooltip position="r">Save your items and config</tooltip>
-                                    </div>
-                                </div>
-                                <div class="export-import mt-1">
-                                    <div class="btn" @click="openExport()">Export</div>
-                                    <div class="btn ml-n" @click="openImport()">Import</div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="close" @click="configToggle">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
                     </div>
                 </div>
             </div>
@@ -1411,18 +1304,6 @@
                             <input type="number" v-model.number="custom_item.sp">
                         </div>
                         <div class="form-item form-row">
-                            <label>Spell Power (fire)</label>
-                            <input type="number" v-model.number="custom_item.sp_fire">
-                        </div>
-                        <div class="form-item form-row">
-                            <label>Spell Power (frost)</label>
-                            <input type="number" v-model.number="custom_item.sp_frost">
-                        </div>
-                        <div class="form-item form-row">
-                            <label>Spell Power (arcane)</label>
-                            <input type="number" v-model.number="custom_item.sp_arcane">
-                        </div>
-                        <div class="form-item form-row">
                             <label>Crit rating</label>
                             <input type="number" v-model.number="custom_item.crit">
                         </div>
@@ -1464,15 +1345,15 @@
 <script>
     import { SimulationWorker, SimulationWorkers } from "./simulation";
     import items from "./items";
+    import glyphs from "./glyphs";
     import constants from "./constants";
 
     export default {
         mounted() {
             this.loadCustomItems();
-            this.loadConfig();
-            this.loadGear();
+            this.loadCurrentProfile();
             this.loadProfiles();
-            this.finalStats();
+            this.calcStats();
 
             this.checkDonation();
         },
@@ -1485,40 +1366,44 @@
 
                 duration: 180,
                 duration_variance: 0,
+                spell_travel_time: 500,
                 rng_seed: 0,
-                gcd_unlocked: false,
                 avg_spell_dmg: false,
                 additional_data: false,
                 targets: 1,
 
-                misery: true,
-                curse_of_elements: true,
-                malediction: false,
-                judgement_of_the_crusader: false,
-                judgement_of_wisdom: true,
-                vampiric_touch: true,
-                vampiric_touch_regen: 40,
+                // Debuffs
+                debuff_crit: false,
+                debuff_spell_crit: false,
+                debuff_spell_hit: false,
+                debuff_spell_dmg: false,
+                judgement_of_wisdom: false,
 
-                totem_of_wrath: true,
-                wrath_of_air: true,
-                mana_spring: true,
-                improved_mana_spring: false,
-                arcane_intellect: true,
-                divine_spirit: true,
-                improved_divine_spirit: false,
-                blessing_of_kings: true,
-                blessing_of_wisdom: true,
-                mark_of_the_wild: true,
-                moonkin_aura: false,
-                mage_armor: true,
-                molten_armor: false,
-                inspiring_presence: false,
-                fire_vulnerability: false,
-                maintain_fire_vulnerability: false,
-                winters_chill: false,
-                imp_sanctity: false,
-                ferocious_inspiration: 0,
+                // Buffs
+                mage_armor: false,
+                molten_armor: true,
+                divine_spirit: false,
+                fel_intelligence: false,
+                mark_of_the_wild: false,
+                totem_of_wrath: false,
+                flametongue: false,
+                demonic_pact: false,
+                demonic_pact_bonus: 0,
+                mana_spring: false,
+                restorative_totems: false,
+                blessing_of_wisdom: false,
+                imp_blessing_of_wisdom: false,
+                blessing_of_kings: false,
+                drums_of_forgotten_kings: false,
+                buff_dmg: false,
+                buff_spell_crit: false,
+                buff_haste: false,
+                buff_spell_haste: false,
+                mana_replenishment: false,
+                focus_magic: false,
+                heroic_presence: false,
 
+                // Consumes
                 food: 0,
                 flask: 0,
                 battle_elixir: 0,
@@ -1526,54 +1411,22 @@
                 weapon_oil: 0,
                 drums: 0,
                 drums_friend: false,
-                potion: 22832,
-                conjured: 22044,
-                atiesh_mage: false,
-                atiesh_warlock: false,
-                eye_of_the_night: false,
-                chain_of_the_twilight_owl: false,
-                jade_pendant_of_blasting: false,
-                scroll_of_spirit: false,
-                kreegs: false,
-                bloodthistle: false,
-                scourgebane: false,
+                potion: constants.potions.POTION_MANA,
+                conjured: constants.conjureds.CONJURED_MANA_GEM,
 
-                tirisfal_2set: true,
-                tirisfal_4set: true,
-                tempest_2set: false,
-                tempest_4set: false,
-                spellfire_set: false,
-                spellstrike_set: false,
-                eternal_sage: false,
-                wrath_of_cenarius: false,
-                blade_of_wizardry: false,
-                robe_elder_scribes: false,
-                blade_of_eternal_darkness: false,
-                sunwell_neck_aldor: false,
-                sunwell_neck_scryer: false,
-                mana_etched_4set: false,
+                wrist_socket: false,
+                hands_socket: false,
+
                 meta_gem: 0,
                 trinket1: 0,
                 trinket2: 0,
 
                 innervate: 0,
-                mana_tide: true,
-                bloodlust: true,
+                mana_tide: false,
+                bloodlust: false,
                 power_infusion: false,
-                symbol_of_hope: false,
 
-                main_rotation: 0,
-                regen_rotation: 0,
-                regen_mana_at: 20,
-                regen_stop_at: 30,
-                regen_ab_count: 3,
-                ab_haste_stop: 0,
-                fire_blast_weave: false,
-
-                cc_am_queue: false,
-                cc_am_repeat: false,
-
-                bis_ashtongue: false,
+                rotation: constants.rotations.ROTATION_ST_ARCANE,
 
                 trinket1_t: Array(4),
                 trinket2_t: Array(4),
@@ -1591,11 +1444,10 @@
                 potion_t: Array(4),
                 conjured_t: Array(4),
 
-                symbol_of_hope_at: 0,
                 evocation_at: 0,
                 evo_ticks: 0,
 
-                talents: "https://tbc.wowhead.com/talent-calc/mage/2500250300030150330125--053500031003001",
+                build: "",
 
                 stats: {
                     intellect: 465,
@@ -1604,13 +1456,96 @@
                     crit: 20,
                     hit: 0,
                     haste: 0,
-                    spell_power: 1000,
-                    spell_power_arcane: 50,
-                    spell_power_frost: 0,
-                    spell_power_fire: 0,
+                    spell_power: 0,
                     crit_rating: 0,
                     hit_rating: 0,
                     haste_rating: 0,
+                },
+
+                talents: {
+                    arcane_focus: 0,
+                    clearcast: 0,
+                    spell_impact: 0,
+                    student_of_the_mind: 0,
+                    focus_magic: 0,
+                    arcane_meditation: 0,
+                    torment_of_the_weak: 0,
+                    presence_of_mind: 0,
+                    arcane_mind: 0,
+                    arcane_instability: 0,
+                    arcane_potency: 0,
+                    arcane_empowerment: 0,
+                    arcane_power: 0,
+                    arcane_floes: 0,
+                    mind_mastery: 0,
+                    missile_barrage: 0,
+                    netherwind_presence: 0,
+                    spell_power: 0,
+                    arcane_barrage: 0,
+
+                    imp_fire_blast: 0,
+                    incineration: 0,
+                    imp_fireball: 0,
+                    ignite: 0,
+                    world_in_flames: 0,
+                    pyroblast: 0,
+                    imp_scorch: 0,
+                    master_of_elements: 0,
+                    playing_with_fire: 0,
+                    critical_mass: 0,
+                    blast_weave: 0,
+                    fire_power: 0,
+                    pyromaniac: 0,
+                    combustion: 0,
+                    molten_fury: 0,
+                    empowered_fire: 0,
+                    firestarter: 0,
+                    dragons_breath: 0,
+                    hot_streak: 0,
+                    burnout: 0,
+                    living_bomb: 0,
+
+                    imp_frostbolt: 0,
+                    ice_floes: 0,
+                    ice_shards: 0,
+                    precision: 0,
+                    piercing_ice: 0,
+                    icy_veins: 0,
+                    frost_channeling: 0,
+                    shatter: 0,
+                    cold_snap: 0,
+                    imp_cone_of_cold: 0,
+                    cold_as_ice: 0,
+                    winters_chill: 0,
+                    arctic_winds: 0,
+                    empowered_frostbolt: 0,
+                    fingers_of_frost: 0,
+                    brain_freeze: 0,
+                    water_elemental: 0,
+                    enduring_winter: 0,
+                    chilled_to_the_bone: 0,
+                    deep_freeze: 0,
+                },
+
+                glyphs: {
+                    arcane_barrage: false,
+                    arcane_blast: false,
+                    arcane_explosion: false,
+                    arcane_missiles: false,
+                    arcane_power: false,
+                    eternal_water: false,
+                    fireball: false,
+                    frostbolt: false,
+                    frostfire: false,
+                    ice_lance: false,
+                    living_bomb: false,
+                    mage_armor: false,
+                    mana_gem: false,
+                    mirror_image: false,
+                    molten_armor: false,
+                    scorch: false,
+                    water_elemental: false,
+                    blast_wave: false,
                 },
 
                 tooltips: false,
@@ -1618,8 +1553,6 @@
 
             var data = {
                 ...constants,
-                fools_open: 0,
-                fools_remaining: 3,
                 donation_open: false,
                 items: items,
                 equipped: {},
@@ -1667,9 +1600,6 @@
                     int: null,
                     spi: null,
                     sp: null,
-                    sp_fire: null,
-                    sp_arcane: null,
-                    sp_frost: null,
                     crit: null,
                     hit: null,
                     haste: null,
@@ -1680,29 +1610,30 @@
                 custom_item_error: null,
                 equiplist_open: false,
                 equiplist_string: null,
-                final_stats: null,
+                display_stats: null,
                 result: null,
                 ep_result: null,
                 ep_weight: "dps",
                 is_running: false,
                 is_running_ep: false,
-                config_open: false,
-                log_open: false,
-                timeline_open: false,
-                spells_open: false,
-                histogram_open: false,
+                active_tab: "gear",
                 item_source: "wowhead",
                 phase_filter: 0,
+                search_item: "",
+                search_gem: "",
                 log_filter: {
                     "0": true,
-                    "1": true,
+                    "1": false,
                     "2": false,
                     "3": true,
-                    "4": true,
+                    "4": false,
                     "5": true,
                     "6": true,
                     "7": true,
+                    "8": true,
+                    "9": true,
                 },
+                talent_map: [[],[],[]],
                 default_config: default_config,
                 config: _.cloneDeep(default_config),
             };
@@ -1728,29 +1659,77 @@
 
             data.slots = [...slots, "quicksets"];
 
+            data.talent_map[0][1] = "arcane_focus";
+            data.talent_map[0][5] = "clearcast";
+            data.talent_map[0][7] = "spell_impact";
+            data.talent_map[0][8] = "student_of_the_mind";
+            data.talent_map[0][9] = "focus_magic";
+            data.talent_map[0][12] = "arcane_meditation";
+            data.talent_map[0][13] = "torment_of_the_weak";
+            data.talent_map[0][15] = "presence_of_mind";
+            data.talent_map[0][16] = "arcane_mind";
+            data.talent_map[0][18] = "arcane_instability";
+            data.talent_map[0][19] = "arcane_potency";
+            data.talent_map[0][20] = "arcane_empowerment";
+            data.talent_map[0][21] = "arcane_power";
+            data.talent_map[0][23] = "arcane_floes";
+            data.talent_map[0][24] = "mind_mastery";
+            data.talent_map[0][26] = "missile_barrage";
+            data.talent_map[0][27] = "netherwind_presence";
+            data.talent_map[0][28] = "spell_power";
+            data.talent_map[0][29] = "arcane_barrage";
+
+            data.talent_map[1][0] = "imp_fire_blast";
+            data.talent_map[1][1] = "incineration";
+            data.talent_map[1][2] = "imp_fireball";
+            data.talent_map[1][3] = "ignite";
+            data.talent_map[1][5] = "world_in_flames";
+            data.talent_map[1][8] = "pyroblast";
+            data.talent_map[1][10] = "imp_scorch";
+            data.talent_map[1][12] = "master_of_elements";
+            data.talent_map[1][13] = "playing_with_fire";
+            data.talent_map[1][14] = "critical_mass";
+            data.talent_map[1][15] = "blast_weave";
+            data.talent_map[1][17] = "fire_power";
+            data.talent_map[1][18] = "pyromaniac";
+            data.talent_map[1][19] = "combustion";
+            data.talent_map[1][20] = "molten_fury";
+            data.talent_map[1][22] = "empowered_fire";
+            data.talent_map[1][23] = "firestarter";
+            data.talent_map[1][24] = "dragons_breath";
+            data.talent_map[1][25] = "hot_streak";
+            data.talent_map[1][26] = "burnout";
+            data.talent_map[1][27] = "living_bomb";
+
+            data.talent_map[2][1] = "imp_frostbolt";
+            data.talent_map[2][2] = "ice_floes";
+            data.talent_map[2][3] = "ice_shards";
+            data.talent_map[2][5] = "precision";
+            data.talent_map[2][7] = "piercing_ice";
+            data.talent_map[2][8] = "icy_veins";
+            data.talent_map[2][11] = "frost_channeling";
+            data.talent_map[2][12] = "shatter";
+            data.talent_map[2][13] = "cold_snap";
+            data.talent_map[2][14] = "imp_cone_of_cold";
+            data.talent_map[2][16] = "cold_as_ice";
+            data.talent_map[2][17] = "winters_chill";
+            data.talent_map[2][20] = "arctic_winds";
+            data.talent_map[2][21] = "empowered_frostbolt";
+            data.talent_map[2][22] = "fingers_of_frost";
+            data.talent_map[2][23] = "brain_freeze";
+            data.talent_map[2][24] = "water_elemental";
+            data.talent_map[2][25] = "enduring_winter";
+            data.talent_map[2][26] = "chilled_to_the_bone";
+            data.talent_map[2][27] = "deep_freeze";
+
             return data;
         },
 
         computed: {
-            foolsActive() {
-                var d = new Date;
-                return d.getMonth() == 3 && d.getDate() == 1;
-            },
-
             spec() {
-                if (this.config.main_rotation <= this.main_rotations.MAIN_ROTATION_AM)
+                if (this.config.rotation <= this.rotations.ROTATION_ST_ARCANE)
                     return "arcane";
-                if (this.config.main_rotation <= this.main_rotations.MAIN_ROTATION_FIB)
-                    return "fire";
-                if (this.config.main_rotation <= this.main_rotations.MAIN_ROTATION_FRB)
-                    return "frost";
                 return null;
-            },
-
-            canCream() {
-                return this.hasTalent('clearcast') &&
-                    this.config.main_rotation != this.main_rotations.MAIN_ROTATION_AM &&
-                    this.config.main_rotation != this.main_rotations.MAIN_ROTATION_AE;
             },
 
             faction() {
@@ -1776,6 +1755,9 @@
                 if (this.phase_filter)
                     items = items.filter(item => _.get(item, "phase", 1) <= this.phase_filter);
 
+                if (this.search_item)
+                    items = items.filter(item => item.title.toLowerCase().indexOf(this.search_item.toLowerCase()) != -1);
+
                 return this.sort(items, this.item_sort);
             },
 
@@ -1790,7 +1772,14 @@
 
             activeSockets() {
                 var item = this.equippedItem(this.active_slot);
-                return item && item.sockets ? item.sockets : [];
+                var sockets = [];
+                if (item && item.sockets)
+                    sockets = _.clone(item.sockets);
+                if (this.active_slot == "wrist" && this.config.wrist_socket)
+                    sockets.push("a");
+                if (this.active_slot == "hands" && this.config.hands_socket)
+                    sockets.push("a");
+                return sockets;
             },
 
             hasComparisons() {
@@ -1816,9 +1805,6 @@
                     spi: null,
                     mp5: null,
                     sp: null,
-                    sp_arcane: null,
-                    sp_frost: null,
-                    sp_fire: null,
                     crit: null,
                     hit: null,
                     haste: null,
@@ -1888,11 +1874,6 @@
                         if (!bv) bv = 1;
                     }
 
-                    if (sorting.name == "sp") {
-                        av = Math.max(_.get(a, "sp", 0), _.get(a, "sp_fire", 0), _.get(a, "sp_frost", 0), _.get(a, "sp_arcane", 0));
-                        bv = Math.max(_.get(b, "sp", 0), _.get(b, "sp_fire", 0), _.get(b, "sp_frost", 0), _.get(b, "sp_arcane", 0));
-                    }
-
                     if (sorting.name == "dps") {
                         av = _.get(_.find(self.item_comparison, {id: a.id}), "dps", 0);
                         bv = _.get(_.find(self.item_comparison, {id: b.id}), "dps", 0);
@@ -1924,21 +1905,6 @@
                 });
             },
 
-            foolsBuy() {
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            },
-
-            foolsClose() {
-                this.fools_open = (this.fools_open+1)%4;
-            },
-
-            foolsOpen() {
-                if (!this.foolsActive || !this.fools_remaining)
-                    return;
-                this.fools_remaining = Math.max(this.fools_remaining-1, 0);
-                this.fools_open = 1;
-            },
-
             checkDonation() {
                 if (window.location.hash == "#donation") {
                     window.location.hash = "";
@@ -1951,15 +1917,14 @@
                 var sim = new SimulationWorkers(this.config.iterations, (result) => {
                     self.is_running = false;
                     self.result = result;
-                    self.foolsOpen();
                 }, (error) => {
                     self.is_running = false;
                     console.error(error);
                 });
 
-                this.timeline_open = false;
-                this.spells_open = false;
-                this.log_open = false;
+                if (["log", "timeline", "spells"].indexOf(this.active_tab) != -1)
+                    this.setTab("gear");
+
                 this.ep_result = null;
                 this.prepare();
                 this.is_running = true;
@@ -1971,13 +1936,14 @@
                 var sim = new SimulationWorker((result) => {
                     self.is_running = false;
                     self.result = result;
-                    self.foolsOpen();
                 }, (error) => {
                     self.is_running = false;
                     console.error(error);
                 });
 
-                this.histogram_open = false;
+                if (this.active_tab == "histogram")
+                    this.setTab("gear");
+
                 this.ep_result = null;
                 this.prepare();
                 this.is_running = true;
@@ -1985,7 +1951,9 @@
             },
 
             async findAvg(avg) {
-                this.histogram_open = false;
+                if (this.active_tab == "histogram")
+                    this.setTab("gear");
+
                 this.ep_result = null;
                 this.prepare();
                 this.is_running = true;
@@ -2029,18 +1997,12 @@
                         hit: 0,
                         sp: 0,
                         haste: 0,
-                        sp_arcane: 0,
-                        sp_frost: 0,
-                        sp_fire: 0,
                     }, stats);
 
                     config.stats.intellect+= stats.int;
                     config.stats.spirit+= stats.spi;
                     config.stats.mp5+= stats.mp5;
                     config.stats.spell_power+= stats.sp;
-                    config.stats.spell_power_arcane+= stats.sp_arcane;
-                    config.stats.spell_power_frost+= stats.sp_frost;
-                    config.stats.spell_power_fire+= stats.sp_fire;
                     config.stats.crit+= self.critRatingToChance(stats.crit);
                     config.stats.hit+= self.hitRatingToChance(stats.hit);
                     config.stats.haste+= self.hasteRatingToHaste(stats.haste);
@@ -2056,7 +2018,6 @@
                         reject(error);
                     });
 
-                    self.log_open = false;
                     self.prepare();
                     var config = _.cloneDeep(self.config);
                     if (rng_seed)
@@ -2075,6 +2036,9 @@
                 if (this.is_running)
                     return;
 
+                if (["log", "timeline", "spells"].indexOf(this.active_tab) != -1)
+                    this.setTab("gear");
+
                 this.is_running_ep = true;
                 this.result = null;
                 this.ep_result = {
@@ -2083,9 +2047,6 @@
                     spi: null,
                     mp5: null,
                     sp: null,
-                    sp_arcane: null,
-                    sp_frost: null,
-                    sp_fire: null,
                     crit: null,
                     hit: null,
                     haste: null,
@@ -2101,8 +2062,6 @@
                 }
 
                 this.is_running_ep = false;
-
-                this.foolsOpen();
             },
 
             async runComparisonFor(item_id) {
@@ -2119,7 +2078,6 @@
                         reject(error);
                     });
 
-                    self.log_open = false;
                     self.prepare();
                     self.is_running = true;
                     sim.start(self.config);
@@ -2142,17 +2100,14 @@
                 }
 
                 this.equip(this.active_slot, old_item_id);
-
-                this.foolsOpen();
             },
 
             prepare() {
                 this.fillEmptyFields();
-                this.saveGear();
-                this.saveConfig();
+                this.saveCurrentProfile();
                 this.itemStats();
                 this.itemConfig();
-                this.finalStats();
+                this.calcStats();
             },
 
             setActiveSlot(slot) {
@@ -2229,18 +2184,29 @@
                 return this.getItem(slot, id);
             },
 
+            equippedEnchant(slot) {
+                var id = this.enchants[slot];
+                if (!id)
+                    return null;
+
+                return this.getEnchant(slot, id);
+            },
+
             activeGems(index) {
                 if (this.activeSockets.length < index)
                     return [];
+
                 if (this.activeSockets[index] == "m")
                     var gems = this.items.gems.filter(g => g.color == "m");
                 else
                     var gems = this.items.gems.filter(g => g.color != "m");
 
-                if (!this.phase_filter)
-                    return gems;
+                if (this.phase_filter)
+                    gems = gems.filter(g => _.get(g, "phase", 1) <= this.phase_filter);
+                if (this.search_gem)
+                    gems = gems.filter(g => g.title.toLowerCase().indexOf(this.search_gem.toLowerCase()) != -1);
 
-                return gems.filter(g => _.get(g, "phase", 1) <= this.phase_filter);
+                return gems;
             },
 
             fillEmptyFields() {
@@ -2250,189 +2216,40 @@
                 }
             },
 
-            finalStats() {
-                var x;
-                this.itemStats();
-                this.itemConfig();
-
-                var stats = _.cloneDeep(this.config.stats);
-
-                // Attribute additions
-                if (this.config.arcane_intellect)
-                    stats.intellect+= 40;
-                if (this.config.divine_spirit)
-                    stats.spirit+= 40;
-                if (this.config.guardian_elixir == this.elixirs.ELIXIR_DRAENIC_WISDOM) {
-                    stats.intellect+= 30;
-                    stats.spirit+= 30;
-                }
-                if (this.config.battle_elixir == this.elixirs.ELIXIR_MASTERY) {
-                    stats.intellect+= 15;
-                    stats.spirit+= 15;
-                }
-                if (this.config.mark_of_the_wild) {
-                    stats.intellect+= 18;
-                    stats.spirit+= 18;
-                }
-                if (this.config.flask == this.flasks.FLASK_DISTILLED_WISDOM)
-                    stats.intellect+= 65;
-                if (this.config.flask == this.flasks.FLASK_CHROMATIC_WONDER) {
-                    stats.intellect+= 18;
-                    stats.spirit+= 18;
-                }
-                if (this.config.food == this.foods.FOOD_SPELL_POWER || this.config.food == this.foods.FOOD_SPELL_CRIT)
-                    stats.spirit+= 20;
-                if (this.config.scroll_of_spirit)
-                    stats.spirit+= 30;
-                if (this.config.kreegs) {
-                    stats.spirit+= 25;
-                    stats.intellect-= 5;
-                }
-
-                // Attribute multipliers
-                if (x = this.hasTalent("arcane_mind"))
-                    stats.intellect*= 1.0 + x*0.03;
-                if (this.config.race == this.races.RACE_GNOME)
-                    stats.intellect*= 1.05;
-                if (this.config.race == this.races.RACE_HUMAN)
-                    stats.spirit*= 1.1;
-                if (this.config.blessing_of_kings) {
-                    stats.intellect*= 1.1;
-                    stats.spirit*= 1.1;
-                }
-                if (this.metaGem() && this.metaGem().id == this.items.ids.EMBER_SKYFIRE)
-                    stats.intellect*= 1.02;
-                stats.intellect = Math.round(stats.intellect);
-                stats.spirit = Math.round(stats.spirit);
-
-                // Mp5
-                if (this.config.guardian_elixir == this.elixirs.ELIXIR_MAJOR_MAGEBLOOD)
-                    stats.mp5+= 16;
-                if (this.config.weapon_oil == this.weapon_oils.OIL_SUPERIOR_MANA)
-                    stats.mp5+= 14;
-                if (this.config.blessing_of_wisdom)
-                    stats.mp5+= 49;
-
-                // Spell power
-                var int_multi = 0;
-                if (x = this.hasTalent("mind_mastery"))
-                    int_multi+= x*0.05;
-                if (this.config.spellfire_set)
-                    int_multi+= 0.07;
-                if (int_multi > 0)
-                    stats.spell_power+= Math.round(stats.intellect * int_multi);
-
-                if (this.config.improved_divine_spirit && this.config.divine_spirit)
-                    stats.spell_power+= stats.spirit*0.1;
-                if (this.config.wrath_of_air)
-                    stats.spell_power+= 101;
-                if (this.config.weapon_oil == this.weapon_oils.OIL_BRILLIANT_WIZARD)
-                    stats.spell_power+= 36;
-                if (this.config.weapon_oil == this.weapon_oils.OIL_SUPERIOR_WIZARD)
-                    stats.spell_power+= 42;
-                if (this.config.weapon_oil == this.weapon_oils.OIL_BLESSED_WIZARD)
-                    stats.spell_power+= 60;
-                if (this.config.food == this.foods.FOOD_SPELL_POWER)
-                    stats.spell_power+= 23;
-                if (this.config.flask == this.flasks.FLASK_SUPREME_POWER)
-                    stats.spell_power+= 70;
-                if (this.config.flask == this.flasks.FLASK_BLINDING_LIGHT)
-                    stats.spell_power_arcane+= 80;
-                if (this.config.flask == this.flasks.FLASK_PURE_DEATH) {
-                    stats.spell_power_fire+= 80;
-                    stats.spell_power_frost+= 80;
-                }
-                if (this.config.battle_elixir == this.elixirs.ELIXIR_ADEPTS)
-                    stats.spell_power+= 24;
-                if (this.config.battle_elixir == this.elixirs.ELIXIR_GREATER_ARCANE)
-                    stats.spell_power+= 35;
-                if (this.config.battle_elixir == this.elixirs.ELIXIR_MAJOR_FIREPOWER)
-                    stats.spell_power_fire+= 55;
-                if (this.config.atiesh_warlock)
-                    stats.spell_power+= 33;
-                if (this.config.eye_of_the_night)
-                    stats.spell_power+= 34;
-                if (this.config.jade_pendant_of_blasting)
-                    stats.spell_power+= 15;
-                if (this.config.bloodthistle && this.config.race == this.races.RACE_BLOOD_ELF)
-                    stats.spell_power+= 10;
-                if (this.config.scourgebane)
-                    stats.spell_power+= 15;
-
-                // Spell crit
-                var crit_rating = 0;
-                if (this.config.judgement_of_the_crusader)
-                    stats.crit+= 3;
-                if (this.config.moonkin_aura)
-                    stats.crit+= 5;
-                if (this.config.totem_of_wrath)
-                    stats.crit+= 3;
-                if (this.config.molten_armor)
-                    stats.crit+= 3;
-                if (this.config.chain_of_the_twilight_owl)
-                    stats.crit+= 2;
-                if (this.config.battle_elixir == this.elixirs.ELIXIR_ADEPTS)
-                    crit_rating+= 24;
-                if (this.config.weapon_oil == this.weapon_oils.OIL_BRILLIANT_WIZARD)
-                    crit_rating+= 14;
-                if (this.config.food == this.foods.FOOD_SPELL_CRIT)
-                    crit_rating+= 20;
-                if (this.config.atiesh_mage)
-                    crit_rating+= 28;
-                if (x = this.hasTalent("arcane_instability"))
-                    stats.crit+= x;
-                if (crit_rating > 0) {
-                    stats.crit+= this.critRatingToChance(crit_rating);
-                    stats.crit_rating+= crit_rating;
-                }
-                stats.crit+= stats.intellect/80;
-
-                // Spell hit
-                if (this.config.totem_of_wrath)
-                    stats.hit+= 3;
-                if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.inspiring_presence)
-                    stats.hit+= 1;
-
-                this.final_stats = stats;
-            },
-
             baseStats() {
                 // Undead default
                 var stats = {
-                    intellect: 149,
-                    spirit: 150,
+                    intellect: 179,
+                    spirit: 179,
                     mp5: 0,
                     crit: 0.91,
                     hit: 0,
                     haste: 0,
                     spell_power: 0,
-                    spell_power_arcane: 0,
-                    spell_power_frost: 0,
-                    spell_power_fire: 0,
                     crit_rating: 0,
                     hit_rating: 0,
                     haste_rating: 0,
                 };
 
                 if (this.config.race == this.races.RACE_TROLL) {
-                    stats.intellect = 147;
-                    stats.spirit = 146;
+                    stats.intellect = 177;
+                    stats.spirit = 175;
                 }
                 if (this.config.race == this.races.RACE_BLOOD_ELF) {
-                    stats.intellect = 155;
-                    stats.spirit = 144;
+                    stats.intellect = 185;
+                    stats.spirit = 173;
                 }
                 if (this.config.race == this.races.RACE_DRAENEI) {
-                    stats.intellect = 152;
-                    stats.spirit = 147;
+                    stats.intellect = 182;
+                    stats.spirit = 176;
                 }
                 if (this.config.race == this.races.RACE_GNOME) {
-                    stats.intellect = 155;
-                    stats.spirit = 145;
+                    stats.intellect = 193;
+                    stats.spirit = 174;
                 }
                 if (this.config.race == this.races.RACE_HUMAN) {
-                    stats.intellect = 151;
-                    stats.spirit = 145;
+                    stats.intellect = 181;
+                    stats.spirit = 179;
                 }
 
                 return stats;
@@ -2449,9 +2266,6 @@
                     hit: 0,
                     sp: 0,
                     haste: 0,
-                    sp_arcane: 0,
-                    sp_frost: 0,
-                    sp_fire: 0,
                 };
 
                 var addStats = function(itm) {
@@ -2514,54 +2328,14 @@
                 stats.spirit+= item_stats.spi;
                 stats.mp5+= item_stats.mp5;
                 stats.spell_power+= item_stats.sp;
-                stats.spell_power_arcane+= item_stats.sp_arcane;
-                stats.spell_power_frost+= item_stats.sp_frost;
-                stats.spell_power_fire+= item_stats.sp_fire;
-                stats.crit+= this.critRatingToChance(item_stats.crit);
-                stats.hit+= this.hitRatingToChance(item_stats.hit);
-                stats.haste+= this.hasteRatingToHaste(item_stats.haste);
-
                 stats.crit_rating = item_stats.crit;
                 stats.hit_rating = item_stats.hit;
                 stats.haste_rating = item_stats.haste;
-
-                stats.crit = stats.crit;
-                stats.hit = stats.hit;
-                stats.haste = stats.haste;
 
                 this.config.stats = stats;
             },
 
             itemConfig() {
-                var num = this.numEquippedSet(this.items.ids.TIRISFAL_SET);
-                this.config.tirisfal_2set = num > 1;
-                this.config.tirisfal_4set = num > 3;
-
-                num = this.numEquippedSet(this.items.ids.TEMPEST_SET);
-                this.config.tempest_2set = num > 1;
-                this.config.tempest_4set = num > 3;
-
-                this.config.spellstrike_set = this.numEquippedSet(this.items.ids.SPELLSTRIKE_SET) > 1;
-                this.config.spellfire_set = this.numEquippedSet(this.items.ids.SPELLFIRE_SET) > 2;
-
-                this.config.mana_etched_4set = this.numEquippedSet(this.items.ids.MANA_ETCHED_SET) > 3;
-
-                this.config.eternal_sage = this.isEquipped("finger", this.items.ids.ETERNAL_SAGE);
-                this.config.wrath_of_cenarius = this.isEquipped("finger", this.items.ids.WRATH_OF_CENARIUS);
-                this.config.blade_of_wizardry = this.isEquipped("weapon", this.items.ids.BLADE_OF_WIZARDRY);
-                this.config.blade_of_eternal_darkness = this.isEquipped("weapon", this.items.ids.BLADE_OF_ETERNAL_DARKNESS);
-                this.config.robe_elder_scribes = this.isEquipped("chest", this.items.ids.ROBE_ELDER_SCRIBES);
-
-                this.config.sunwell_neck_aldor = (this.isEquipped("neck", this.items.ids.PENDANT_OF_ACUMEN) && this.config.shatt_faction == this.factions.FACTION_ALDOR);
-                this.config.sunwell_neck_scryer = (this.isEquipped("neck", this.items.ids.PENDANT_OF_ACUMEN) && this.config.shatt_faction == this.factions.FACTION_SCRYER);
-
-                if (this.isEquipped("neck", this.items.ids.EYE_OF_THE_NIGHT))
-                    this.config.eye_of_the_night = true;
-                if (this.isEquipped("neck", this.items.ids.CHAIN_OF_THE_TWILIGHT_OWL))
-                    this.config.chain_of_the_twilight_owl = true;
-                if (this.isEquipped("neck", this.items.ids.JADE_PENDANT_OF_BLASTING))
-                    this.config.jade_pendant_of_blasting = true;
-
                 this.config.trinket1 = 0;
                 this.config.trinket2 = 0;
                 this.config.meta_gem = 0;
@@ -2571,6 +2345,201 @@
                     this.config.trinket2 = this.equipped.trinket2;
                 if (this.metaGem() && this.isSpecialItem(this.metaGem().id) && this.isMetaGemActive())
                     this.config.meta_gem = this.metaGem().id;
+            },
+
+            finalStats() {
+                var x;
+                this.itemStats();
+                this.itemConfig();
+
+                var stats = this.config.stats;
+
+                // Arcane intellect
+                stats.intellect+= 60;
+
+                // Spirit
+                if (this.config.divine_spirit)
+                    stats.spirit+= 80;
+                else if (this.config.fel_intelligence)
+                    stats.spirit+= 64;
+
+                if (this.config.mark_of_the_wild) {
+                    x = 37;
+                    if (this.config.imp_mark_of_the_wild)
+                        x = 52;
+                    stats.intellect+= x;
+                    stats.spirit+= x;
+                }
+
+                // Flask
+                if (this.config.flask) {
+                    if (this.config.flask == this.flasks.FLASK_FROSTWYRM)
+                        stats.spell_power+= 125;
+                    else if (this.config.flask == this.flasks.FLASK_PURE_MOJO)
+                        stats.mp5+= 45;
+                }
+                else {
+                    // Guardian Elxir
+                    if (this.config.guardian_elixir == this.elixirs.ELIXIR_SPIRIT)
+                        stats.spirit+= 50;
+                    else if (this.config.guardian_elixir == this.elixirs.ELIXIR_MIGHTY_THOUGHTS)
+                        stats.intellect+= 45;
+                    else if (this.config.guardian_elixir == this.elixirs.ELIXIR_MIGHTY_MAGEBLOOD)
+                        stats.mp5+= 30;
+
+                    // Battle elixir
+                    if (this.config.battle_elixir == this.elixirs.ELIXIR_SPELLPOWER) {
+                        stats.spell_power+= 58;
+                    }
+                    else if (this.config.battle_elixir == this.elixirs.ELIXIR_ACCURACY) {
+                        stats.hit_rating+= 45;
+                    }
+                    else if (this.config.battle_elixir == this.elixirs.ELIXIR_DEADLY_STRIKES) {
+                        stats.crit_rating+= 45;
+                    }
+                    else if (this.config.battle_elixir == this.elixirs.ELIXIR_LIGHTNING_SPEED) {
+                        stats.haste_rating+= 45;
+                    }
+                    else if (this.config.battle_elixir == this.elixirs.ELIXIR_GURU) {
+                        stats.intellect+= 20;
+                        stats.spirit+= 20;
+                    }
+                }
+
+                // Food
+                if (this.config.food == this.foods.FOOD_SPELL_POWER)
+                    stats.spell_power+= 46;
+                else if (this.config.food == this.foods.FOOD_HASTE)
+                    stats.haste_rating+= 40;
+                else if (this.config.food == this.foods.FOOD_HIT)
+                    stats.hit_rating+= 40;
+                else if (this.config.food == this.foods.FOOD_CRIT)
+                    stats.crit_rating+= 40;
+
+                // Debuff: Crit
+                if (this.config.debuff_crit || this.config.totem_of_wrath)
+                    stats.crit+= 3;
+
+                // Debuff: Spell hit
+                if (this.config.debuff_spell_hit)
+                    stats.hit+= 3;
+
+                // Buff: Spell power
+                if (this.config.demonic_pact || this.config.totem_of_wrath || this.config.flametongue) {
+                    x = 0;
+                    if (this.config.totem_of_wrath)
+                        x = 280;
+                    else if (this.config.flametongue)
+                        x = 144;
+                    if (this.config.demonic_pact && this.config.demonic_pact_bonus > x)
+                        x = this.config.demonic_pact_bonus;
+                    stats.spell_power+= x;
+                }
+
+                // Buff:: Spell haste
+                if (this.config.buff_spell_haste)
+                    stats.haste = this.multiplyHaste(stats.haste, 5);
+
+                // Buff:: Haste
+                if (this.config.buff_haste)
+                    stats.haste = this.multiplyHaste(stats.haste, 3);
+
+                // Buff:: Spell crit
+                if (this.config.buff_spell_crit)
+                    stats.crit+= 5;
+
+                // Focus magic
+                if (this.config.focus_magic)
+                    stats.crit+= 3;
+
+                // Mana Restoration
+                if (this.config.blessing_of_wisdom) {
+                    x = 92;
+                    if (this.config.imp_blessing_of_wisdom)
+                        x = 110;
+                    stats.mp5+= x;
+                }
+                else if (this.config.mana_spring) {
+                    x = 91;
+                    if (this.config.imp_blessing_of_wisdom)
+                        x = 109;
+                    stats.mp5+= x;
+                }
+
+                // Attribute multipliers
+                if (this.config.talents.student_of_the_mind) {
+                    if (x == 1) stats.spirit*= 1.04;
+                    if (x == 2) stats.spirit*= 1.07;
+                    if (x == 3) stats.spirit*= 1.1;
+                }
+                if (this.config.talents.arcane_mind)
+                    stats.intellect*= 1.0 + this.config.talents.arcane_mind*0.03;
+                if (this.config.race == this.races.RACE_GNOME)
+                    stats.intellect*= 1.05;
+                if (this.config.race == this.races.RACE_HUMAN)
+                    stats.spirit*= 1.1;
+                if (this.config.blessing_of_kings) {
+                    stats.intellect*= 1.1;
+                    stats.spirit*= 1.1;
+                }
+                if (this.config.drums_of_forgotten_kings) {
+                    stats.intellect*= 1.08;
+                    stats.spirit*= 1.08;
+                }
+                if (this.metaGem() && this.metaGem().id == this.items.ids.META_EMBER_SKYFLARE)
+                    stats.intellect*= 1.02;
+                stats.intellect = Math.round(stats.intellect);
+                stats.spirit = Math.round(stats.spirit);
+
+                if (this.config.talents.mind_mastery)
+                    stats.spell_power+= Math.round(stats.intellect * this.config.talents.mind_mastery * 0.05);
+                stats.crit+= this.config.talents.arcane_instability;
+                stats.crit+= this.config.talents.pyromaniac;
+                stats.hit+= this.config.talents.precision;
+                if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence)
+                    stats.hit+= 1;
+
+                // Calculate percentages
+                stats.crit+= stats.intellect/166.6667;
+                stats.crit+= this.critRatingToChance(stats.crit_rating);
+                stats.hit+= this.hitRatingToChance(stats.hit_rating);
+
+                this.config.stats = stats;
+            },
+
+            displayStats() {
+                var stats = _.cloneDeep(this.config.stats);
+                stats.mana = 3268;
+
+                // Debuff: Spell crit
+                // This is calculated dynamically in sim because it can depend on scorch/winters chill
+                if (this.config.debuff_spell_crit)
+                    stats.crit+= 5;
+
+                if (this.config.molten_armor) {
+                    var multi = 0.35;
+                    if (this.config.glyphs.molten_armor)
+                        multi+= 0.2;
+                    var rating = Math.round(stats.spirit * multi);
+                    stats.crit_rating+= rating;
+                    stats.crit+= this.critRatingToChance(rating);
+                }
+
+                // Haste rating is a little special
+                // We need to pass the raw haste rating to the sim, so we calculate the final percentage here
+                stats.haste = this.multiplyHaste(stats.haste, this.hasteRatingToHaste(stats.haste_rating));
+
+                // Mana
+                stats.mana+= stats.intellect*15 - 280;
+                if (this.metaGem() && this.metaGem().id == this.items.ids.META_BEAMING_EARTHSIEGE)
+                    stats.mana*= 1.02;
+
+                this.display_stats = stats;
+            },
+
+            calcStats() {
+                this.finalStats();
+                this.displayStats();
             },
 
             openItem(item) {
@@ -2607,15 +2576,19 @@
             },
 
             critRatingToChance(rating) {
-                return rating / 22.08;
+                return rating / 45.91;
             },
 
             hitRatingToChance(rating) {
-                return rating / 12.62;
+                return rating / 26.232;
             },
 
             hasteRatingToHaste(rating) {
-                return rating / 15.77;
+                return rating / 32.79;
+            },
+
+            multiplyHaste(h1, h2) {
+                return (1 + h1/100) * (1 + h2/100) * 100 - 100;
             },
 
             isSpecialItem(item_id) {
@@ -2634,7 +2607,7 @@
                         this.config.chain_of_the_twilight_owl = false;
                     if (this.equipped[slot] == this.items.ids.JADE_PENDANT_OF_BLASTING)
                         this.config.jade_pendant_of_blasting = false;
-                    this.saveConfig();
+                    this.saveCurrentProfile();
                 }
 
                 if (this.equipped[slot] && this.gems[slot]) {
@@ -2658,9 +2631,9 @@
                 this.equipped[slot] = null;
                 this.gems[slot] = [null, null, null];
 
-                this.finalStats();
+                this.calcStats();
                 if (typeof(save) == "undefined" || save)
-                    this.saveGear();
+                    this.saveCurrentProfile();
             },
 
             equip(slot, item, save) {
@@ -2690,6 +2663,12 @@
                         this.equipped.off_hand = null;
                     else if (!this.equipped.off_hand && this.item_off_hand)
                         this.equipped.off_hand = this.item_off_hand;
+
+                    var enchant = this.equippedEnchant(slot);
+                    if (!item.twohand && enchant && enchant.twohand)
+                        this.enchants[slot] = 60714;
+                    else if (item.twohand && enchant && !enchant.twohand)
+                        this.enchants[slot] = 62948;
                 }
 
                 this.equipped[slot] = item.id;
@@ -2705,9 +2684,9 @@
                     }
                 }
 
-                this.finalStats();
+                this.calcStats();
                 if (typeof(save) == "undefined" || save)
-                    this.saveGear();
+                    this.saveCurrentProfile();
 
                 this.refreshTooltips();
             },
@@ -2732,14 +2711,20 @@
                 return num;
             },
 
-            enchant(slot, item) {
-                if (this.enchants[slot] == item.id)
+            enchant(slot, enchant) {
+                if (enchant.twohand) {
+                    var item = this.equippedItem(slot);
+                    if (!item || !item.twohand)
+                        return;
+                }
+
+                if (this.enchants[slot] == enchant.id)
                     this.enchants[slot] = null;
                 else
-                    this.enchants[slot] = item.id;
+                    this.enchants[slot] = enchant.id;
 
-                this.saveGear();
-                this.finalStats();
+                this.saveCurrentProfile();
+                this.calcStats();
             },
 
             isEnchanted(slot, id) {
@@ -2766,8 +2751,8 @@
                     this.item_gems[item_id].splice(index, 1, gem.id);
                 }
 
-                this.saveGear();
-                this.finalStats();
+                this.saveCurrentProfile();
+                this.calcStats();
             },
 
             quickset(set) {
@@ -2781,8 +2766,8 @@
                         this.item_gems[this.equipped[slot]] = this.gems[slot];
                 }
 
-                this.saveGear();
-                this.finalStats();
+                this.saveCurrentProfile();
+                this.calcStats();
             },
 
             matchSocketColor(sock, gem) {
@@ -2914,72 +2899,8 @@
 
             defaultGem(color) {
                 if (color == "m")
-                    return this.items.ids.CHAOTIC_SKYFIRE;
-
-                if (this.config.main_rotation == this.main_rotations.MAIN_ROTATION_AB)
-                    return this.items.ids.BRILLIANT_DAWNSTONE;
-                return this.items.ids.RUNED_LIVING_RUBY;
-            },
-
-            setSpec(spec) {
-                var talents = null;
-
-                if (spec == "arcane") {
-                    talents = "https://tbc.wowhead.com/talent-calc/mage/2500250300030150330125--053500031003001";
-                    if (this.spec != "arcane")
-                        this.config.main_rotation = this.main_rotations.MAIN_ROTATION_AB;
-                }
-                else if (spec == "frost") {
-                    talents = "https://tbc.wowhead.com/talent-calc/mage/2500250300030150330125--053500031003001";
-                    if (this.spec != "frost")
-                        this.config.main_rotation = this.main_rotations.MAIN_ROTATION_FRB;
-                }
-                else if (spec == "fire") {
-                    talents = "https://tbc.wowhead.com/talent-calc/mage/2-505202012303331053125-043500001";
-                    if (this.spec != "fire")
-                        this.config.main_rotation = this.main_rotations.MAIN_ROTATION_FIB;
-                }
-
-                if (talents)
-                    this.config.talents = talents;
-            },
-
-            hasTalent(talent) {
-                var indexes = {
-                    clearcast: [0, 5],
-                    presence_of_mind: [0, 13],
-                    arcane_mind: [0, 14],
-                    arcane_instability: [0, 16],
-                    arcane_power: [0, 19],
-                    mind_mastery: [0, 21],
-                    imp_scorch: [1, 9],
-                    combustion: [1, 18],
-                    icy_veins: [2, 8],
-                    cold_snap: [2, 14],
-                };
-
-                if (!indexes.hasOwnProperty(talent))
-                    return false;
-
-                var m = this.config.talents.match(/tbc\.wowhead\.com.*mage\/([0-9\-]+)$/);
-                if (m) {
-                    var str = m[1];
-                    var tree = 0, t = 0;
-
-                    for (var i=0; i<str.length; i++) {
-                        if (str[i] == '-') {
-                            tree++;
-                            t = 0;
-                        }
-                        else {
-                            if (tree == indexes[talent][0] && t == indexes[talent][1])
-                                return parseInt(str[i]);
-                            t++;
-                        }
-                    }
-                }
-
-                return false;
+                    return this.items.ids.META_CHAOTIC_SKYFLARE;
+                return 1;
             },
 
             hasUseTrinket(nr) {
@@ -3028,20 +2949,90 @@
                 return cmp && cmp.dps ? _.round(cmp.dps, 2) : null;
             },
 
-            onTalentsInput(e) {
-                this.config.talents = this.conformTalents(e.target.value);
-                e.preventDefault();
+            onBuildInput() {
+                this.parseTalents();
             },
 
-            conformTalents(talents) {
-                var m;
+            resetTalents() {
+                for (var key in this.config.talents)
+                    this.config.talents[key] = 0;
+                for (var key in this.config.glyphs)
+                    this.config.glyphs[key] = false;
+            },
 
-                if (m = talents.match(/tbcdb\.com.*mage\&([0-9]+)/i)) {
-                    var fn = function(str) { return str.replace(/[0]+$/, ""); }
-                    talents = "https://tbc.wowhead.com/talent-calc/mage/"+fn(m[1].substr(0, 23))+"-"+fn(m[1].substr(23, 22))+"-"+fn(m[1].substr(45));
+            parseTalents() {
+                this.resetTalents();
+                var m;
+                if (m = this.config.build.match(/talent\#o(.*)/i))
+                    this.parseEvoTalents(m[1]);
+            },
+
+            parseEvoTalents(build) {
+                var encoding = "0zMcmVokRsaqbdrfwihuGINALpTjnyxtgevElBCDFHJKOPQSUWXYZ123456789";
+                var tree = 0, talent = 0;
+                var values = [];
+                var ch, n;
+                var has_glyphs = false;
+
+                var trees = [
+                    [2,3,5,3,2,5,2,3,3,1,2,2,3,3,2,1,5,3,3,2,3,1,3,2,5,1,5,3,2,1],
+                    [2,3,5,5,2,3,2,3,1,2,3,2,3,3,3,1,2,5,3,1,2,2,3,2,1,3,5,1],
+                    [3,5,3,3,2,3,3,3,1,3,2,3,3,1,3,3,2,3,2,1,5,2,2,3,1,3,5,1],
+                ];
+
+                for (var i=0; i<build.length; i++) {
+                    ch = build.charAt(i);
+
+                    if (ch == ":") {
+                        has_glyphs = true;
+                        i++;
+                        break;
+                    }
+                    else if (ch == "Z") {
+                        talent = 0;
+                        if (++tree == 3)
+                            break;
+                    }
+                    else {
+                        n = encoding.indexOf(ch);
+                        if (n < 0)
+                            continue;
+
+                        values[1] = n % 6;
+                        values[0] = (n - values[1]) / 6;
+
+                        for (var j=0; j<2; j++) {
+                            n = Math.min(values[j], trees[tree][talent]);
+                            if (this.talent_map[tree][talent])
+                                this.config.talents[this.talent_map[tree][talent]] = n;
+
+                            if (++talent >= trees[tree].length)
+                                break;
+                        }
+                    }
                 }
 
-                return talents;
+                if (has_glyphs) {
+                    var slot = 0;
+                    var glyph, key;
+                    var g = [[],[],[]];
+                    var fnSort = function(a, b) { return a.id - b.id };
+                    g[1] = glyphs.filter(a => a.type == 1).sort(fnSort);
+                    g[2] = glyphs.filter(a => a.type == 2).sort(fnSort);
+                    for (i; i<build.length; i++) {
+                        ch = build.charAt(i);
+                        if (ch == "Z") {
+                            slot = 3;
+                        }
+                        else {
+                            glyph = g[slot > 2 ? 2 : 1][encoding.indexOf(ch)];
+                            key = glyph.name.replace("Glyph of ", "").replace(/ /g, "_").toLowerCase();
+                            if (this.config.glyphs.hasOwnProperty(key))
+                                this.config.glyphs[key] = true;
+                            slot++;
+                        }
+                    }
+                }
             },
 
             formatStats(item) {
@@ -3076,30 +3067,6 @@
                     return null;
 
                 return item.sockets.join(" / ");
-            },
-
-            formatSP(data) {
-                var arr = [];
-
-                if (data.sp)
-                    arr.push(data.sp);
-                if (data.sp_arcane)
-                    arr.push(data.sp_arcane+" arc");
-                if (data.sp_frost)
-                    arr.push(data.sp_frost+" frost");
-                if (data.sp_fire)
-                    arr.push(data.sp_fire+" fire");
-
-                if (data.spell_power)
-                    arr.push(data.spell_power);
-                if (data.spell_power_arcane)
-                    arr.push(data.spell_power_arcane+" arc");
-                if (data.spell_power_frost)
-                    arr.push(data.spell_power_frost+" frost");
-                if (data.spell_power_fire)
-                    arr.push(data.spell_power_fire+" fire");
-
-                return arr.join(" / ");
             },
 
             formatTime(s) {
@@ -3226,6 +3193,14 @@
                 this.import_profile.string = null;
             },
 
+            nukeSettings() {
+                if (!window.confirm("This will remove all profiles and configurations from this computer"))
+                    return;
+
+                localStorage.clear();
+                window.location.reload(true);
+            },
+
             moveProfile(index, dir) {
                 var pos = (this.profiles.length + index + dir) % this.profiles.length;
                 this.profiles.splice(pos, 0, this.profiles.splice(index, 1)[0]);
@@ -3234,7 +3209,6 @@
 
             saveProfile(profile) {
                 profile.equipped = _.cloneDeep(this.equipped);
-                delete profile.equipped.stat_weight;
                 profile.enchants = _.cloneDeep(this.enchants);
                 profile.gems = _.cloneDeep(this.gems);
                 profile.config = _.cloneDeep(this.config);
@@ -3269,7 +3243,6 @@
 
                 if (profile.enchants && (!only || only == "items")) {
                     profile.enchants = _.pick(profile.enchants, _.keys(this.enchants));
-                    profile.enchants = this.convertEnchants(profile.enchants);
                     for (var slot in profile.enchants) {
                         if (!this.getEnchant(slot, profile.enchants[slot]))
                             profile.enchants[slot] = null;
@@ -3279,7 +3252,6 @@
 
                 if (profile.gems && (!only || only == "items")) {
                     profile.gems = _.pick(profile.gems, _.keys(this.gems));
-                    profile.gems = this.convertGems(profile.gems);
                     for (var slot in profile.gems) {
                         for (var i in profile.gems[slot]) {
                             if (!this.getGem(profile.gems[slot][i]))
@@ -3295,13 +3267,8 @@
                     this.profile_status.config = true;
                 }
 
-                this.finalStats();
-
-                if (!only || only == "items")
-                    this.saveGear();
-
-                if (profile.config && (!only || only == "config"))
-                    this.saveConfig();
+                this.calcStats();
+                this.saveCurrentProfile();
 
                 var self = this;
                 clearTimeout(this.profile_status.timeout);
@@ -3397,9 +3364,6 @@
                 this.custom_item.int = null;
                 this.custom_item.spi = null;
                 this.custom_item.sp = null;
-                this.custom_item.sp_fire = null;
-                this.custom_item.sp_frost = null;
-                this.custom_item.sp_arcane = null;
                 this.custom_item.crit = null;
                 this.custom_item.hit = null;
                 this.custom_item.haste = null;
@@ -3487,48 +3451,11 @@
                 return this.log_filter[log.type];
             },
 
-            configToggle() {
-                this.timeline_open = false;
-                this.spells_open = false;
-                this.histogram_open = false;
-                this.log_open = false;
-                this.config_open = !this.config_open;
-                if (!this.config_open) {
-                    this.saveConfig();
-                    this.finalStats();
-                }
-            },
-
-            logToggle() {
-                this.timeline_open = false;
-                this.spells_open = false;
-                this.histogram_open = false;
-                this.config_open = false;
-                this.log_open = !this.log_open;
-            },
-
-            histogramToggle() {
-                this.log_open = false;
-                this.config_open = false;
-                this.timeline_open = false;
-                this.spells_open = false;
-                this.histogram_open = !this.histogram_open;
-            },
-
-            timelineToggle() {
-                this.log_open = false;
-                this.config_open = false;
-                this.histogram_open = false;
-                this.spells_open = false;
-                this.timeline_open = !this.timeline_open;
-            },
-
-            spellsToggle() {
-                this.log_open = false;
-                this.config_open = false;
-                this.histogram_open = false;
-                this.timeline_open = false;
-                this.spells_open = !this.spells_open;
+            setTab(name) {
+                if (this.active_tab == name)
+                    this.active_tab = "gear";
+                else
+                    this.active_tab = name;
             },
 
             allResults() {
@@ -3547,178 +3474,37 @@
                 }
             },
 
-            convertEnchants(enchants) {
-                for (var slot in enchants)
-                    enchants[slot] = this.convertEnchant(enchants[slot]);
-
-                return enchants;
+            saveCurrentProfile() {
+                var profile = {};
+                profile.equipped = _.cloneDeep(this.equipped);
+                profile.enchants = _.cloneDeep(this.enchants);
+                profile.gems = _.cloneDeep(this.gems);
+                profile.config = _.cloneDeep(this.config);
+                window.localStorage.setItem("magesim_wotlk_profile", JSON.stringify(profile));
             },
 
-            convertEnchant(id) {
-                if (!id)
-                    return id;
+            loadCurrentProfile() {
+                var str = window.localStorage.getItem("magesim_wotlk_profile");
+                if (!str)
+                    return;
 
-                var map = {
-                    "46540": 27981,
-                    "46538": 27982,
-                    "46533": 27975,
-                    "46532": 27968,
-                    "46502": 27960,
-                    "46504": 33990,
-                    "46498": 27917,
-                    "46496": 34001,
-                    "46497": 27913,
-                    "46514": 33997,
-                    "46516": 33994,
-                    "46512": 33993,
-                    "46470": 34008,
-                    "46518": 27924,
-                };
+                var profile = JSON.parse(str);
+                if (!profile)
+                    return;
 
-                id = _.toString(id);
-                if (map.hasOwnProperty(id))
-                    id = map[id];
-
-                return parseInt(id);
+                this.loadProfile(profile);
             },
 
-            convertGems(gems) {
-                for (var slot in gems)
-                    gems[slot] = this.convertGemsSlot(slot, gems[slot]);
-
-                return gems;
-            },
-
-            convertGemsSlot(slot, gems) {
-                if (!this.hasSocketBonus(slot, gems)) {
-                    var item = this.equippedItem(slot);
-                    if (!item)
-                        return gems;
-                    var n = item.sockets ? item.sockets.length-1 : 0;
-                    var arr = _.clone(gems);
-                    for (var i=0; i<n; i++) {
-                        arr.splice(n, 0, arr.splice(0, 1)[0]);
-                        if (this.hasSocketBonus(slot, arr))
-                            return arr;
-                    }
-                }
-
-                return gems;
-            },
-
-            saveGear() {
-                window.localStorage.setItem("magesim_tbc_equipped", JSON.stringify(this.equipped));
-                window.localStorage.setItem("magesim_tbc_enchants", JSON.stringify(this.enchants));
-                window.localStorage.setItem("magesim_tbc_gems", JSON.stringify(this.gems));
-            },
-
-            loadGear() {
-                var equipped, enchants, gems;
-
-                var str = window.localStorage.getItem("magesim_tbc_equipped");
-                if (str) {
-                    equipped = JSON.parse(str);
-                    if (equipped)
-                        _.merge(this.equipped, _.pick(equipped, _.keys(this.equipped)));
-                }
-
-                var str = window.localStorage.getItem("magesim_tbc_enchants");
-                if (str) {
-                    enchants = JSON.parse(str);
-                    if (enchants) {
-                        enchants = this.convertEnchants(enchants);
-                        _.merge(this.enchants, _.pick(enchants, _.keys(this.enchants)));
-                    }
-                }
-
-                var str = window.localStorage.getItem("magesim_tbc_gems");
-                if (str) {
-                    gems = JSON.parse(str);
-                    if (gems) {
-                        gems = this.convertGems(gems);
-                        _.merge(this.gems, _.pick(gems, _.keys(this.gems)));
-                    }
-                }
-
-                if (!equipped)
-                    this.quickset(this.items.quicksets.t5_arcane_bis);
-            },
-
-            saveConfig() {
-                window.localStorage.setItem("magesim_tbc_config", JSON.stringify(this.config));
-            },
-
-            loadConfig() {
-                var str = window.localStorage.getItem("magesim_tbc_config");
-                if (str) {
-                    var config = JSON.parse(str);
-                    if (config) {
-                        _.merge(this.config, _.pick(config, _.keys(this.config)));
-                        this.onLoadConfig(config);
-
-                    }
-                }
-            },
-
-            // Backwards compatibility
             onLoadConfig(cfg) {
-                this.config.talents = this.conformTalents(this.config.talents);
-
-                var timings = [
-                    "trinket1", "trinket2",
-                    "presence_of_mind", "arcane_power",
-                    "icy_veins", "cold_snap",
-                    "combustion", "berserking",
-                    "drums", "bloodlust",
-                    "mana_tide", "power_infusion",
-                    "innervate",
-                    "potion", "conjured",
-                ];
-
-                if (_.get(cfg, "innervate_at") === 0)
-                    delete cfg.innervate_at;
-                if (_.get(cfg, "conjured_at") === 0 && cfg.conjured == this.conjureds.CONJURED_MANA_GEM)
-                    delete cfg.conjured_at;
-
-                // Fire spec
-                if (_.get(cfg, "spec") == 1) {
-                    if (_.get(cfg, "fire_rotation") == 1)
-                        this.config.main_rotation = this.main_rotations.MAIN_ROTATION_SC;
-                    else
-                        this.config.main_rotation = this.main_rotations.MAIN_ROTATION_FIB;
-                }
-                // Frost spec
-                else if (_.get(cfg, "spec") == 2) {
-                    this.config.main_rotation = this.main_rotations.MAIN_ROTATION_FRB;
-                }
-                // Arcane spec
-                else if (!cfg.hasOwnProperty("main_rotation")) {
-                    this.config.main_rotation = this.main_rotations.MAIN_ROTATION_AB;
-                }
-
-                if (!cfg.hasOwnProperty("targets"))
-                    this.config.targets = 1;
-
-                var from, to;
-                for (var i=0; i<timings.length; i++) {
-                    to = timings[i]+"_t";
-
-                    from = timings[i]+"_at";
-                    if (cfg.hasOwnProperty(from))
-                        this.config[to][0] = cfg[from];
-
-                    from = timings[i]+"_reuse_at";
-                    if (cfg.hasOwnProperty(from))
-                        this.config[to][1] = cfg[from];
-                }
+                this.parseTalents();
             },
 
             saveProfiles() {
-                window.localStorage.setItem("magesim_tbc_profiles", JSON.stringify(this.profiles));
+                window.localStorage.setItem("magesim_wotlk_profiles", JSON.stringify(this.profiles));
             },
 
             loadProfiles() {
-                var str = window.localStorage.getItem("magesim_tbc_profiles");
+                var str = window.localStorage.getItem("magesim_wotlk_profiles");
                 if (str) {
                     var profiles = JSON.parse(str);
                     if (profiles)
@@ -3727,11 +3513,11 @@
             },
 
             saveCustomItems() {
-                window.localStorage.setItem("magesim_tbc_custom_items", JSON.stringify(this.customItems()));
+                window.localStorage.setItem("magesim_wotlk_custom_items", JSON.stringify(this.customItems()));
             },
 
             loadCustomItems() {
-                var str = window.localStorage.getItem("magesim_tbc_custom_items");
+                var str = window.localStorage.getItem("magesim_wotlk_custom_items");
                 if (str) {
                     var items = JSON.parse(str);
                     if (items) {

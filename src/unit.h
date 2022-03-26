@@ -118,7 +118,7 @@ namespace unit
 
         virtual double spiritManaPerSecond()
         {
-            return 0.001 + stats.spirit*0.003345 * sqrt(stats.intellect);
+            return 0.001 + getSpirit()*0.003345 * sqrt(getIntellect());
         }
 
         virtual double staticManaPerSecond()
@@ -152,9 +152,8 @@ namespace unit
             return manaPerSecond() * 2;
         }
 
-        double gcd()
+        double gcd(double t = 1.5)
         {
-            double t = 1.5;
             double cap = 1.0;
 
             t*= castHaste();
@@ -206,13 +205,16 @@ namespace unit
             if (rating)
                 haste+= hasteRatingToHaste(rating) / 100.0;
 
+            if (stats.haste)
+                haste*= 1+stats.haste/100.0;
+
             if (hasBuff(buff::BLOODLUST))
                 haste*= 1.3;
-            if (hasBuff(buff::POWER_INFUSION))
+            else if (hasBuff(buff::POWER_INFUSION))
                 haste*= 1.2;
-            if (hasBuff(buff::ICY_VEINS))
+            else if (hasBuff(buff::ICY_VEINS))
                 haste*= 1.2;
-            if (hasBuff(buff::BERSERKING))
+            else if (hasBuff(buff::BERSERKING))
                 haste*= 1.2;
 
             return 1.0 / haste;
@@ -226,6 +228,21 @@ namespace unit
         virtual double critChance(shared_ptr<spell::Spell> spell)
         {
             return stats.crit;
+        }
+
+        virtual bool canMiss(shared_ptr<spell::Spell> spell)
+        {
+            return !spell->dot;
+        }
+
+        virtual bool canCrit(shared_ptr<spell::Spell> spell)
+        {
+            return !spell->dot;
+        }
+
+        virtual bool canResist(shared_ptr<spell::Spell> spell)
+        {
+            return !spell->dot;
         }
 
         virtual double baseCritMultiplier(shared_ptr<spell::Spell> spell)
@@ -295,12 +312,12 @@ namespace unit
 
         virtual double getIntellect()
         {
-            return stats.intellect * intellectMultiplier() * statMultiplier();
+            return stats.intellect * intellectMultiplier();
         }
 
         virtual double getSpirit()
         {
-            return stats.spirit * spiritMultiplier() * statMultiplier();
+            return stats.spirit * spiritMultiplier();
         }
 
         virtual double getSpellPower()
@@ -316,16 +333,6 @@ namespace unit
         virtual double spiritMultiplier()
         {
             return 1;
-        }
-
-        virtual double statMultiplier()
-        {
-            double multi = Unit::statMultiplier();
-
-            if (config->buff_kings)
-                multi*= 1.1;
-
-            return multi;
         }
 
         virtual double spellPowerMultiplier()
@@ -352,11 +359,34 @@ namespace unit
             return actions;
         }
 
-        virtual shared_ptr<action::Action> buffAction(shared_ptr<buff::Buff> buff)
+        virtual shared_ptr<action::Action> buffAction(shared_ptr<buff::Buff> buff, bool primary_action = false)
         {
             shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_BUFF);
             action->buff = buff;
-            action->self_action = true;
+            action->primary_action = primary_action;
+            return action;
+        }
+
+        virtual shared_ptr<action::Action> buffExpireAction(shared_ptr<buff::Buff> buff, bool primary_action = false)
+        {
+            shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_BUFF_EXPIRE);
+            action->buff = buff;
+            action->primary_action = primary_action;
+            return action;
+        }
+
+        virtual shared_ptr<action::Action> debuffAction(shared_ptr<debuff::Debuff> debuff, bool primary_action = false)
+        {
+            shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_DEBUFF);
+            action->debuff = debuff;
+            action->primary_action = primary_action;
+            return action;
+        }
+
+        virtual shared_ptr<action::Action> cooldownAction(shared_ptr<cooldown::Cooldown> cooldown)
+        {
+            shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_COOLDOWN);
+            action->cooldown = cooldown;
             return action;
         }
 
@@ -364,7 +394,15 @@ namespace unit
         {
             shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_SPELL);
             action->spell = spell;
-            action->self_action = true;
+            action->primary_action = spell->active_use;
+            return action;
+        }
+
+        virtual shared_ptr<action::Action> manaAction(double mana, string str = "")
+        {
+            shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_MANA);
+            action->value = mana;
+            action->str = str;
             return action;
         }
 

@@ -17,7 +17,6 @@
 #include "talents.h"
 #include "buff.h"
 #include "debuff.h"
-#include "dot.h"
 #include "cooldown.h"
 #include "spell.h"
 #include "state.h"

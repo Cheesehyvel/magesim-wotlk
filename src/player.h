@@ -12,6 +12,7 @@ namespace unit
         Race race = RACE_UNDEAD;
 
         int combustion = 0;
+        bool on_hot_streak = false;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -31,84 +32,24 @@ namespace unit
             stats = _stats;
         }
 
-        void loadTalentsFromString(std::string str)
+        Talents getTalents()
         {
-            int tree = 0, t = 0, p = 0;
+            return talents;
+        }
 
-            for (int i=0; i<str.length(); i++) {
-                if (str[i] == '-') {
-                    tree++;
-                    t = 0;
-                }
-                else {
-                    p = str[i] - '0';
+        void setTalents(Talents _talents)
+        {
+            talents = _talents;
+        }
 
-                    if (tree == 0 && t == 1) talents.arcane_focus = p;
-                    else if (tree == 0 && t == 5) talents.clearcast = p;
-                    else if (tree == 0 && t == 7) talents.spell_impact = p;
-                    else if (tree == 0 && t == 8) talents.student_of_the_mind = p;
-                    else if (tree == 0 && t == 9) talents.focus_magic = p;
-                    else if (tree == 0 && t == 12) talents.arcane_meditation = p;
-                    else if (tree == 0 && t == 13) talents.torment_of_the_weak = p;
-                    else if (tree == 0 && t == 15) talents.presence_of_mind = p;
-                    else if (tree == 0 && t == 16) talents.arcane_mind = p;
-                    else if (tree == 0 && t == 18) talents.arcane_instability = p;
-                    else if (tree == 0 && t == 19) talents.arcane_potency = p;
-                    else if (tree == 0 && t == 20) talents.arcane_empowerment = p;
-                    else if (tree == 0 && t == 21) talents.arcane_power = p;
-                    else if (tree == 0 && t == 23) talents.arcane_floes = p;
-                    else if (tree == 0 && t == 24) talents.mind_mastery = p;
-                    else if (tree == 0 && t == 26) talents.missile_barrage = p;
-                    else if (tree == 0 && t == 27) talents.netherwind_presence = p;
-                    else if (tree == 0 && t == 28) talents.spell_power = p;
-                    else if (tree == 0 && t == 29) talents.arcane_barrage = p;
+        Glyphs getGlyphs()
+        {
+            return glyphs;
+        }
 
-                    else if (tree == 1 && t == 0) talents.imp_fire_blast = p;
-                    else if (tree == 1 && t == 1) talents.incineration = p;
-                    else if (tree == 1 && t == 2) talents.imp_fireball = p;
-                    else if (tree == 1 && t == 3) talents.ignite = p;
-                    else if (tree == 1 && t == 5) talents.world_in_flames = p;
-                    else if (tree == 1 && t == 8) talents.pyroblast = p;
-                    else if (tree == 1 && t == 10) talents.imp_scorch = p;
-                    else if (tree == 1 && t == 12) talents.master_of_elements = p;
-                    else if (tree == 1 && t == 13) talents.playing_with_fire = p;
-                    else if (tree == 1 && t == 14) talents.critical_mass = p;
-                    else if (tree == 1 && t == 15) talents.blast_weave = p;
-                    else if (tree == 1 && t == 17) talents.fire_power = p;
-                    else if (tree == 1 && t == 18) talents.pyromaniac = p;
-                    else if (tree == 1 && t == 19) talents.combustion = p;
-                    else if (tree == 1 && t == 20) talents.molten_fury = p;
-                    else if (tree == 1 && t == 22) talents.empowered_fire = p;
-                    else if (tree == 1 && t == 23) talents.firestarter = p;
-                    else if (tree == 1 && t == 24) talents.dragons_breath = p;
-                    else if (tree == 1 && t == 25) talents.hot_streak = p;
-                    else if (tree == 1 && t == 26) talents.burnout = p;
-                    else if (tree == 1 && t == 27) talents.living_bomb = p;
-
-                    else if (tree == 2 && t == 1) talents.imp_frostbolt = p;
-                    else if (tree == 2 && t == 2) talents.ice_floes = p;
-                    else if (tree == 2 && t == 3) talents.ice_shards = p;
-                    else if (tree == 2 && t == 5) talents.precision = p;
-                    else if (tree == 2 && t == 7) talents.piercing_ice = p;
-                    else if (tree == 2 && t == 8) talents.icy_veins = p;
-                    else if (tree == 2 && t == 11) talents.frost_channeling = p;
-                    else if (tree == 2 && t == 12) talents.shatter = p;
-                    else if (tree == 2 && t == 13) talents.cold_snap = p;
-                    else if (tree == 2 && t == 14) talents.imp_cone_of_cold = p;
-                    else if (tree == 2 && t == 16) talents.cold_as_ice = p;
-                    else if (tree == 2 && t == 17) talents.winters_chill = p;
-                    else if (tree == 2 && t == 20) talents.arctic_winds = p;
-                    else if (tree == 2 && t == 21) talents.empowered_frostbolt = p;
-                    else if (tree == 2 && t == 22) talents.fingers_of_frost = p;
-                    else if (tree == 2 && t == 23) talents.brain_freeze = p;
-                    else if (tree == 2 && t == 24) talents.water_elemental = p;
-                    else if (tree == 2 && t == 25) talents.enduring_winter = p;
-                    else if (tree == 2 && t == 26) talents.chilled_to_the_bone = p;
-                    else if (tree == 2 && t == 27) talents.deep_freeze = p;
-
-                    t++;
-                }
-            }
+        void setGlyphs(Glyphs _glyphs)
+        {
+            glyphs = _glyphs;
         }
 
         Faction faction()
@@ -118,10 +59,18 @@ namespace unit
             return FACTION_HORDE;
         }
 
+        bool hasTrinket(Trinket trinket)
+        {
+            return config->trinket1 == trinket || config->trinket2 == trinket;
+        }
+
         double manaPerSecond()
         {
             double mps = staticManaPerSecond();
             double spi = spiritManaPerSecond();
+
+            if (config->mana_replenishment)
+                mps+= maxMana() * 0.01 / 5.0;
 
             double while_casting = 0;
             if (talents.arcane_meditation) {
@@ -161,30 +110,50 @@ namespace unit
             return mana;
         }
 
+        double maxMana()
+        {
+            double mana = Unit::maxMana();
+
+            if (config->meta_gem == META_BEAMING_EARTHSIEGE)
+                mana*= 1.02;
+
+            return mana;
+        }
+
         double baseCastTime(shared_ptr<spell::Spell> spell)
         {
             double t = Unit::baseCastTime(spell);
 
             if (spell->id == spell::FROSTBOLT && talents.imp_frostbolt)
                 t-= talents.imp_frostbolt*0.1;
+            if (spell->id == spell::FROSTBOLT && talents.empowered_frostbolt)
+                t-= talents.empowered_frostbolt*0.1;
 
             if (spell->id == spell::FIREBALL && talents.imp_fireball)
                 t-= talents.imp_fireball*0.1;
 
+            if (spell->id == spell::FIREBALL && glyphs.fireball)
+                t-= 0.15;
+
             if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE))
                 t-= 2.5;
+
+            if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK))
+                t = 0;
+            if (spell->id == spell::FLAMESTRIKE && hasBuff(buff::FIRESTARTER))
+                t = 0;
 
             return t;
         }
 
-        double castHaste(shared_ptr<spell::Spell> spell)
+        double castHaste()
         {
-            double haste = 1;
+            double haste = 1.0 / Unit::castHaste();
 
             if (talents.netherwind_presence)
-                haste*= talents.netherwind_presence*0.02;
+                haste*= 1 + talents.netherwind_presence*0.02;
 
-            return haste;
+            return 1.0 / haste;
         }
 
         double hitChance(shared_ptr<spell::Spell> spell, double dlevel = 3)
@@ -194,15 +163,22 @@ namespace unit
             if (spell->school == SCHOOL_ARCANE && talents.arcane_focus)
                 hit+= talents.arcane_focus*1.0;
 
-            if (talents.precision)
-                hit+= talents.precision;
-
             return hit;
         }
 
         double critChance(shared_ptr<spell::Spell> spell)
         {
             double crit = stats.crit;
+
+            if (config->molten_armor) {
+                double multi = 0.35;
+                if (glyphs.molten_armor)
+                    multi+= 0.2;
+                crit+= critRatingToChance(round(getSpirit() * multi));
+            }
+
+            if (hasBuff(buff::FOCUS_MAGIC))
+                crit+= 3.0;
 
             if (talents.arcane_potency) {
                 if (hasBuff(buff::CLEARCAST) || hasBuff(buff::PRESENCE_OF_MIND))
@@ -239,6 +215,7 @@ namespace unit
                     spell->id == spell::DRAGONS_BREATH ||
                     spell->id == spell::FLAMESTRIKE ||
                     spell->id == spell::LIVING_BOMB ||
+                    spell->id == spell::LIVING_BOMB_EXPLOSION ||
                     spell->id == spell::PYROBLAST)
                 {
                     crit+= talents.world_in_flames*2.0;
@@ -251,10 +228,15 @@ namespace unit
             if (hasBuff(buff::COMBUSTION) && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
                 crit+= buffStacks(buff::COMBUSTION)*10.0;
 
-            if (talents.pyromaniac)
-                crit+= talents.pyromaniac*1.0;
-
             return crit;
+        }
+
+        bool canCrit(shared_ptr<spell::Spell> spell)
+        {
+            if (glyphs.living_bomb && spell->id == spell::LIVING_BOMB)
+                return true;
+
+            return Unit::canCrit(spell);
         }
 
         double baseCritMultiplier(shared_ptr<spell::Spell> spell)
@@ -273,6 +255,9 @@ namespace unit
 
             if (talents.spell_power)
                 multi+= talents.spell_power*0.25;
+
+            if (talents.burnout)
+                multi+= talents.spell_power*0.1;
 
             if ((spell->school == SCHOOL_FROST || spell->school == SCHOOL_FROSTFIRE) && talents.ice_shards) {
                 if (talents.ice_shards == 3)
@@ -327,11 +312,22 @@ namespace unit
                 multi*= 1 + (talents.arctic_winds * 0.01);
             if (talents.fire_power && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
                 multi*= 1 + (talents.fire_power * 0.02);
-            if (talents.torment_of_the_weak)
-                multi*= 1 + (0.04 * talents.torment_of_the_weak);
+
+            if (talents.torment_of_the_weak) {
+                if (spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FROSTFIRE_BOLT ||
+                    spell->id == spell::PYROBLAST ||
+                    spell->id == spell::ARCANE_MISSILES ||
+                    spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::ARCANE_BARRAGE)
+                {
+                    multi*= 1 + (0.04 * talents.torment_of_the_weak);
+                }
+            }
 
             // Below 35% - We'll estimate that to last 35% of duration
-            if (talents.molten_fury && state->t / state->duration >= 0.8)
+            if (talents.molten_fury && state->t / state->duration >= 0.65)
                 multi*= 1 + (talents.molten_fury * 0.06);
 
             if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
@@ -367,40 +363,14 @@ namespace unit
         {
             double multi = Unit::manaCostMultiplier(spell);
 
+            if (spell->id == spell::FLAMESTRIKE && hasBuff(buff::FIRESTARTER))
+                return 0;
+
             if (talents.precision)
                 multi*= (1.0 - talents.precision*0.01);
 
-            return multi;
-        }
-
-        double intellectMultiplier()
-        {
-            double multi = Unit::intellectMultiplier();
-
-            if (race == RACE_GNOME)
-                multi*= 1.05;
-
-            if (talents.arcane_mind)
-                multi*= (1 + talents.arcane_mind * 0.03);
-
-            return multi;
-        }
-
-        double spiritMultiplier()
-        {
-            double multi = Unit::spiritMultiplier();
-
-            if (race == RACE_HUMAN)
-                multi*= 1.1;
-
-            if (talents.student_of_the_mind) {
-                if (talents.student_of_the_mind == 1)
-                    multi*= 1.04;
-                else if (talents.student_of_the_mind == 2)
-                    multi*= 1.07;
-                else if (talents.student_of_the_mind == 3)
-                    multi*= 1.1;
-            }
+            if (talents.arcane_focus && spell->school == SCHOOL_ARCANE)
+                multi*= (1.0 - talents.arcane_focus*0.01);
 
             return multi;
         }
@@ -444,9 +414,44 @@ namespace unit
         {
             std::list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
 
-            // Clearcast
-            if (random<double>(0, 100) <= talents.clearcast * 2)
+            // Cooldowns
+            if (spell->id == spell::FIRE_BLAST)
+                actions.push_back(cooldownAction(make_shared<cooldown::FireBlast>(talents.imp_fire_blast)));
+            if (spell->id == spell::ARCANE_BARRAGE)
+                actions.push_back(cooldownAction(make_shared<cooldown::ArcaneBarrage>()));
+            if (spell->id == spell::BLAST_WAVE)
+                actions.push_back(cooldownAction(make_shared<cooldown::BlastWave>()));
+            if (spell->id == spell::CONE_OF_COLD)
+                actions.push_back(cooldownAction(make_shared<cooldown::ConeOfCold>()));
+            if (spell->id == spell::DRAGONS_BREATH)
+                actions.push_back(cooldownAction(make_shared<cooldown::DragonsBreath>()));
+
+            if (random<int>(0, 99) < talents.clearcast * 2)
                 actions.push_back(buffAction(make_shared<buff::Clearcast>()));
+
+            if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE))
+                actions.push_back(buffExpireAction(make_shared<buff::MissileBarrage>()));
+            if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK))
+                actions.push_back(buffExpireAction(make_shared<buff::HotStreak>()));
+
+            if (talents.firestarter && (spell->id == spell::BLAST_WAVE || spell->id == spell::DRAGONS_BREATH))
+                actions.push_back(buffAction(make_shared<buff::Firestarter>()));
+
+            if (talents.missile_barrage) {
+                if (spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::ARCANE_BARRAGE ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT)
+                {
+                    int chance = talents.missile_barrage*4;
+                    if (spell->id == spell::ARCANE_BLAST)
+                        chance*= 2;
+
+                    if (random<int>(0, 99) < chance)
+                        actions.push_back(buffAction(make_shared<buff::MissileBarrage>()));
+                }
+            }
 
             return actions;
         }
@@ -455,8 +460,55 @@ namespace unit
         {
             std::list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
 
+            if (instance->result != spell::MISS) {
+                if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
+                    actions.push_back(debuffAction(make_shared<debuff::ImprovedScorch>()));
+
+                if (instance->spell->id == spell::IGNITE && talents.empowered_fire) {
+                    double chance = talents.empowered_fire * 33;
+                    if (talents.empowered_fire > 1)
+                        chance+= 1;
+                    if (chance == 100 || random<int>(0, 99) < chance)
+                        actions.push_back(manaAction(base_mana * 0.02, "Ignite"));
+                }
+            }
+
             if (instance->result == spell::CRIT) {
-                //
+                if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
+                    actions.push_back(buffAction(make_shared<buff::AshtongueTalisman>()));
+
+                if (talents.master_of_elements)
+                    actions.push_back(manaAction(baseManaCost(instance->spell) * 0.1 * talents.master_of_elements, "Master of Elements"));
+
+                // Ignite
+                if (talents.ignite && instance->spell->school == SCHOOL_FIRE && !instance->spell->dot) {
+                    shared_ptr<action::Action> ignite = make_shared<action::Action>(action::TYPE_SPELL);
+                    // 40% over for ticks = 10%
+                    ignite->spell = make_shared<spell::Ignite>(round(instance->dmg * 0.1));
+                    actions.push_back(ignite);
+                }
+
+                if (talents.burnout)
+                    actions.push_back(manaAction(instance->spell->actual_cost * -0.01 * talents.burnout, "Burnout"));
+            }
+
+            if (talents.hot_streak) {
+                double hot_streaked = false;
+
+                if (instance->spell->id == spell::FIREBALL ||
+                    instance->spell->id == spell::SCORCH ||
+                    instance->spell->id == spell::LIVING_BOMB_EXPLOSION ||
+                    instance->spell->id == spell::FROSTFIRE_BOLT)
+                {
+                    if (instance->result == spell::CRIT) {
+                        if (on_hot_streak)
+                            actions.push_back(buffAction(make_shared<buff::HotStreak>()));
+                        else
+                            hot_streaked = true;
+                    }
+                }
+
+                on_hot_streak = hot_streaked;
             }
 
             return actions;

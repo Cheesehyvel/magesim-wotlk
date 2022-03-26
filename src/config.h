@@ -11,8 +11,8 @@ struct Config
 
     bool debuff_spell_crit = false;
     bool debuff_spell_dmg = false;
-    bool buff_kings = false;
     bool buff_dmg = false;
+    bool mana_replenishment = false;
     bool mage_armor = true;
     bool molten_armor = false;
     bool drums_friend = false;
@@ -32,7 +32,6 @@ struct Config
     bool power_infusion = false;
 
     Rotation rotation = ROTATION_ST_ARCANE;
-    bool fire_blast_weave = false;
 
     std::vector<double> trinket1_t;
     std::vector<double> trinket2_t;

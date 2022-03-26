@@ -5,21 +5,28 @@ namespace spell
 
     enum ID : int
     {
+        ARCANE_BARRAGE = 44781,
         ARCANE_BLAST = 42897,
         ARCANE_EXPLOSION = 42921,
         ARCANE_MISSILES = 42846,
         FROSTBOLT = 42842,
         FIREBALL = 42833,
+        FIREBALL_DOT = 4283300,
         FROSTFIRE_BOLT = 47610,
+        FROSTFIRE_BOLT_DOT = 4761000,
         SCORCH = 42859,
         FIRE_BLAST = 42873,
         PYROBLAST = 42891,
+        PYROBLAST_DOT = 4289100,
         LIVING_BOMB = 55360,
+        LIVING_BOMB_EXPLOSION = 5536000,
         FLAMESTRIKE = 42926,
+        FLAMESTRIKE_DOT = 4292600,
         BLAST_WAVE = 42945,
         DRAGONS_BREATH = 42950,
         ICE_LANCE = 42914,
         CONE_OF_COLD = 42931,
+        IGNITE = 12848,
     };
 
     enum Result : int
@@ -41,12 +48,18 @@ namespace spell
         double cast_time = 0;
         double delay = 0;
         double coeff = 1;
+        double gcd = 1.5;
         bool channeling = false;
+        bool dot = false;
+        bool stackable = false;
         bool proc = false;
         bool binary = false;
         bool aoe = false;
         bool has_travel_time = false;
+        bool fixed_dmg = false;
+        bool active_use = true;
         int ticks = 0;
+        int t_interval = 1;
         School school;
 
         double actual_cost = 0;
@@ -72,11 +85,32 @@ namespace spell
         Result result;
         double dmg = 0;
         double resist = 0;
+        int tick = 0;
 
         SpellInstance(shared_ptr<Spell> _spell)
         {
             spell = _spell;
         }
+    };
+
+
+    class ArcaneBarrage : public Spell
+    {
+
+    public:
+        ArcaneBarrage()
+        {
+            id = ARCANE_BARRAGE;
+            name = "Arcane Barrage";
+            cost = 18;
+            min_dmg = 936;
+            max_dmg = 1144;
+            cast_time = 0;
+            coeff = 2.5/3.5;
+            school = SCHOOL_ARCANE;
+            has_travel_time = true;
+        }
+
     };
 
 
@@ -177,6 +211,26 @@ namespace spell
 
     };
 
+    class FireballDot : public Spell
+    {
+
+    public:
+        FireballDot()
+        {
+            id = FIREBALL_DOT;
+            name = "Fireball";
+            dot = true;
+            active_use = false;
+            coeff = 0;
+            t_interval = 2;
+            ticks = 4;
+            min_dmg = 29;
+            max_dmg = 29;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
     class FrostfireBolt : public Spell
     {
 
@@ -192,6 +246,26 @@ namespace spell
             coeff = 3/3.5;
             school = SCHOOL_FROSTFIRE;
             has_travel_time = true;
+        }
+
+    };
+
+    class FrostfireBoltDot : public Spell
+    {
+
+    public:
+        FrostfireBoltDot()
+        {
+            id = FROSTFIRE_BOLT_DOT;
+            name = "Frostfire Bolt";
+            dot = true;
+            active_use = false;
+            t_interval = 3;
+            ticks = 3;
+            coeff = 0;
+            min_dmg = 30;
+            max_dmg = 30;
+            school = SCHOOL_FROSTFIRE;
         }
 
     };
@@ -243,10 +317,30 @@ namespace spell
             cost = 22;
             min_dmg = 1190;
             max_dmg = 1510;
-            cast_time = 6;
+            cast_time = 5;
             coeff = 1.15;
             school = SCHOOL_FIRE;
             has_travel_time = true;
+        }
+
+    };
+
+    class PyroblastDot : public Spell
+    {
+
+    public:
+        PyroblastDot()
+        {
+            id = PYROBLAST;
+            name = "Pyroblast";
+            dot = true;
+            active_use = false;
+            t_interval = 3;
+            ticks = 4;
+            min_dmg = 113;
+            max_dmg = 113;
+            coeff = 0.05;
+            school = SCHOOL_FIRE;
         }
 
     };
@@ -257,13 +351,34 @@ namespace spell
     public:
         Flamestrike()
         {
-            id = PYROBLAST;
+            id = FLAMESTRIKE;
             name = "Flamestrike";
             cost = 30;
             min_dmg = 873;
             max_dmg = 1067;
             cast_time = 2;
             coeff = 0.2357;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class FlamestrikeDot : public Spell
+    {
+
+    public:
+        FlamestrikeDot()
+        {
+            id = FLAMESTRIKE_DOT;
+            name = "Flamestrike";
+            dot = true;
+            active_use = false;
+            t_interval = 2;
+            ticks = 4;
+            min_dmg = 195;
+            max_dmg = 195;
+            aoe = true;
+            coeff = 0.122;
             school = SCHOOL_FIRE;
         }
 
@@ -314,11 +429,55 @@ namespace spell
             id = LIVING_BOMB;
             name = "Living Bomb";
             cost = 22;
+            dot = true;
+            t_interval = 3;
+            ticks = 4;
+            min_dmg = 345;
+            max_dmg = 345;
+            coeff = 0.2;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class LivingBombExplosion : public Spell
+    {
+
+    public:
+        LivingBombExplosion()
+        {
+            id = LIVING_BOMB_EXPLOSION;
+            name = "Living Bomb";
+            active_use = false;
             min_dmg = 690;
             max_dmg = 690;
-            cast_time = 0;
-            delay = 12;
             coeff = 0.4286;
+            aoe = true;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class Ignite : public Spell
+    {
+
+    public:
+        double dmg2;
+        double dmg3;
+        double dmg4;
+
+        Ignite(double _dmg)
+        {
+            id = IGNITE;
+            name = "Ignite";
+            dot = true;
+            active_use = false;
+            t_interval = 1;
+            ticks = 4;
+            coeff = 0;
+            min_dmg = max_dmg = _dmg;
+            stackable = true;
+            fixed_dmg = true;
             school = SCHOOL_FIRE;
         }
 

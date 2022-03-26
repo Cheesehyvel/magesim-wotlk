@@ -61,7 +61,6 @@ enum Drums : int
     DRUMS_OF_RESTORATION = 29531,
     DRUMS_OF_BATTLE = 29529,
     DRUMS_OF_FORGOTTEN_KINGS = 49633,
-    DRUMS_OF_THE_WILD = 49634,
 };
 
 enum Potion : int
@@ -75,7 +74,7 @@ enum Potion : int
 enum Conjured : int
 {
     CONJURED_NONE = 0,
-    CONJURED_MANA_GEM = 22044,
+    CONJURED_MANA_GEM = 33312,
     CONJURED_FLAME_CAP = 22788,
 };
 
@@ -114,7 +113,7 @@ struct SimulationResult
     double t;
     double dps;
     double evocated_at;
-    double t_gcd_capped;
+    double t_gcd_capped = 0;
     std::string log;
     std::string spells;
 };

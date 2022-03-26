@@ -6,7 +6,9 @@ namespace action
         TYPE_WAIT,
         TYPE_SPELL,
         TYPE_BUFF,
+        TYPE_BUFF_EXPIRE,
         TYPE_DEBUFF,
+        TYPE_COOLDOWN,
         TYPE_POTION,
         TYPE_CONJURED,
         TYPE_MANA,
@@ -20,7 +22,7 @@ namespace action
         double value;
         double gcd = 0;
         std::string str;
-        bool self_action = false;
+        bool primary_action = false;
 
         Potion potion;
         Conjured conjured;

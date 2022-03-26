@@ -30,6 +30,22 @@
     transform: translate3d(0, 0, 0);
   }
 }
+@-webkit-keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /**
  * Margins
  */
@@ -496,7 +512,7 @@
 }
 
 body {
-  background: #222;
+  background: #000 url("/assets/img/wotlk_bg.jpg") no-repeat center top;
   color: #fff;
   margin: 0;
   padding: 0;
@@ -520,6 +536,20 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
 }
 
 .material-icons {
@@ -571,6 +601,9 @@ a:hover {
   font-size: 18px;
 }
 .btn.danger {
+  background: #800;
+}
+.btn.danger:hover {
   background: #f00;
 }
 .btn.disabled {
@@ -616,14 +649,10 @@ select {
   box-sizing: border-box;
 }
 
-option {
-  color: #000;
-}
-
 fieldset {
   padding: 5px 20px 20px;
   border: 0;
-  background: #161620;
+  background: rgba(10, 10, 20, 0.6);
 }
 fieldset legend {
   font-weight: 700;
@@ -633,17 +662,17 @@ fieldset legend {
 .form-item:nth-child(n+2) {
   margin-top: 10px;
 }
-.form-item input + span {
+.form-item input ~ span {
   color: #aaa;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
-.form-item input:checked + span {
+.form-item input:checked ~ span {
   color: #fff;
 }
-.form-item input:disabled + span {
+.form-item input:disabled ~ span {
   color: #888;
   pointer-events: none;
 }
@@ -760,34 +789,64 @@ table.simple th:last-child, table.simple td:last-child {
   color: inherit;
 }
 
-#app .github {
+.loader {
   display: block;
-  width: 64px;
-  height: 86px;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.loader div {
+  box-sizing: border-box;
+  display: block;
   position: absolute;
-  right: 0;
   top: 0;
-  z-index: 10;
-  background: url("../img/GitHub-Mark-Light-64px.png") no-repeat center center;
-  background-size: 32px auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 8px;
+  border: 8px solid #08f;
+  border-radius: 50%;
+  -webkit-animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #08f transparent transparent transparent;
 }
-@media all and (max-width: 1220px) {
-  #app .github {
-    display: none;
-  }
+.loader div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
 }
+.loader div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+.loader div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+.loader.small {
+  width: 80px;
+  height: 80px;
+}
+.loader.small div {
+  width: 64px;
+  height: 64px;
+}
+
 #app .wrapper {
   display: grid;
-  grid-template-columns: 200px auto;
-  height: 100vh;
+  grid-template-columns: 220px auto;
 }
 #app .wrapper .sidebar {
   position: relative;
-  background: #111;
-  padding: 30px 30px 60px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px 30px 360px;
 }
-#app .wrapper .sidebar .final-stats {
-  margin-top: 30px;
+#app .wrapper .sidebar .display-stats {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 130px;
 }
 #app .wrapper .sidebar .ep-stats {
   margin-top: 30px;
@@ -796,21 +855,34 @@ table.simple th:last-child, table.simple td:last-child {
   margin-top: 60px;
   text-align: center;
 }
-#app .wrapper .sidebar .result > div:nth-child(1) {
+#app .wrapper .sidebar .result .dps-result {
+  position: relative;
+}
+#app .wrapper .sidebar .result .dps-result > div:nth-child(1) {
   font-weight: 700;
   color: #08f;
 }
-#app .wrapper .sidebar .result > div:nth-child(2) {
+#app .wrapper .sidebar .result .dps-result > div:nth-child(2) {
   font-weight: 700;
   font-size: 32px;
 }
-#app .wrapper .sidebar .result > div.faded {
+#app .wrapper .sidebar .result .dps-result > div.faded {
   color: #aaa;
 }
 #app .wrapper .sidebar .result .meta-warning .material-icons {
   color: #fa0;
   cursor: pointer;
   font-size: 20px;
+}
+#app .wrapper .sidebar .github {
+  display: block;
+  height: 86px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 40px;
+  background: url("../img/GitHub-Mark-Light-64px.png") no-repeat center center;
+  background-size: 32px auto;
 }
 #app .wrapper .sidebar .donate {
   position: absolute;
@@ -821,13 +893,58 @@ table.simple th:last-child, table.simple td:last-child {
 }
 #app .wrapper .main {
   position: relative;
-  background: #1f1f28;
 }
-#app .wrapper .main .gear .slots {
-  background: #121220;
+#app .wrapper .main .tabs {
+  padding: 10px 10px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+#app .wrapper .main .tabs .tab {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: rgba(10, 20, 30, 0.9);
+  padding: 0 30px;
+  margin-right: 5px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+#app .wrapper .main .tabs .tab.active {
+  font-weight: 700;
+  opacity: 1;
+}
+#app .wrapper .main .body {
+  background: rgba(10, 20, 30, 0.9);
+  height: calc(100vh - 60px);
+  overflow: auto;
+}
+#app .wrapper .main .body > .close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+#app .wrapper .main .body > div {
+  padding: 30px;
+  -webkit-animation: fade 0.2s ease;
+          animation: fade 0.2s ease;
+}
+#app .wrapper .main .body .gear {
+  padding: 0;
+}
+#app .wrapper .main .body .gear .slots {
+  background: rgba(0, 0, 0, 0.2);
   padding: 30px 60px 30px 30px;
 }
-#app .wrapper .main .gear .slots .slot {
+#app .wrapper .main .body .gear .slots .slot {
   display: inline-block;
   font-weight: 700;
   font-size: 16px;
@@ -841,190 +958,189 @@ table.simple th:last-child, table.simple td:last-child {
           user-select: none;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-#app .wrapper .main .gear .slots .slot:hover {
+#app .wrapper .main .body .gear .slots .slot:hover {
   color: #fff;
 }
-#app .wrapper .main .gear .slots .slot.active {
+#app .wrapper .main .body .gear .slots .slot.active {
   color: #fff;
   border-color: #fff;
 }
 @media all and (max-width: 1820px) {
-  #app .wrapper .main .gear .slots .slot {
+  #app .wrapper .main .body .gear .slots .slot {
     margin-right: 20px;
   }
 }
 @media all and (max-width: 1620px) {
-  #app .wrapper .main .gear .slots .slot {
+  #app .wrapper .main .body .gear .slots .slot {
     margin-right: 15px;
   }
 }
 @media all and (max-width: 1540px) {
-  #app .wrapper .main .gear .slots .slot {
+  #app .wrapper .main .body .gear .slots .slot {
     font-size: 14px;
   }
 }
-#app .wrapper .main .gear .items {
-  max-height: calc(100vh - 86px);
+#app .wrapper .main .body .gear .items {
+  max-height: calc(100vh - 146px);
   overflow: auto;
   box-sizing: border-box;
 }
-#app .wrapper .main .gear .items .items-wrapper {
+#app .wrapper .main .body .gear .items select,
+#app .wrapper .main .body .gear .items input {
+  padding: 7px 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+#app .wrapper .main .body .gear .items .search-gem input {
+  width: 300px;
+}
+#app .wrapper .main .body .gear .items .items-wrapper {
   padding: 30px;
 }
-#app .wrapper .main .gear .items .items-wrapper > .top:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-#app .wrapper .main .gear .items .items-wrapper > .top > * {
+#app .wrapper .main .body .gear .items .items-wrapper > .top .form-item {
   float: left;
-  margin-right: 15px;
+  margin: 0 15px 0 0;
 }
-#app .wrapper .main .gear .items .items-wrapper > .top select {
-  padding: 7px 8px;
+#app .wrapper .main .body .gear .items .items-wrapper > .top input {
+  width: 300px;
 }
-#app .wrapper .main .gear .items .socket-color {
+#app .wrapper .main .body .gear .items .socket-color {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 25%;
   vertical-align: middle;
 }
-#app .wrapper .main .gear .items .socket-color.color-m {
+#app .wrapper .main .body .gear .items .socket-color.color-m {
   background: #aaa;
 }
-#app .wrapper .main .gear .items .socket-color.color-b {
+#app .wrapper .main .body .gear .items .socket-color.color-b {
   background: #3b9ac7;
 }
-#app .wrapper .main .gear .items .socket-color.color-r {
+#app .wrapper .main .body .gear .items .socket-color.color-r {
   background: #f00;
 }
-#app .wrapper .main .gear .items .socket-color.color-y {
+#app .wrapper .main .body .gear .items .socket-color.color-y {
   background: #ff0;
 }
-#app .wrapper .main .gear .items .socket-color.color-o {
+#app .wrapper .main .body .gear .items .socket-color.color-o {
   background: #f80;
 }
-#app .wrapper .main .gear .items .socket-color.color-p {
+#app .wrapper .main .body .gear .items .socket-color.color-p {
   background: #f0f;
 }
-#app .wrapper .main .gear .items .socket-color.color-g {
+#app .wrapper .main .body .gear .items .socket-color.color-g {
   background: #0f0;
 }
-#app .wrapper .main .gear .items .socket-color:nth-child(n+2) {
+#app .wrapper .main .body .gear .items .socket-color.color-a {
+  background: #eee;
+}
+#app .wrapper .main .body .gear .items .socket-color:nth-child(n+2) {
   margin-left: 5px;
 }
-#app .wrapper .main .gear .items .socket-color a {
+#app .wrapper .main .body .gear .items .socket-color a {
   color: inherit;
 }
-#app .wrapper .main .gear .items .socket-text-color {
+#app .wrapper .main .body .gear .items .socket-text-color {
   display: inline-block;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-m {
+#app .wrapper .main .body .gear .items .socket-text-color.color-m {
   color: #aaa;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-b {
+#app .wrapper .main .body .gear .items .socket-text-color.color-b {
   color: #3b9ac7;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-r {
+#app .wrapper .main .body .gear .items .socket-text-color.color-r {
   color: #f00;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-y {
+#app .wrapper .main .body .gear .items .socket-text-color.color-y {
   color: #ff0;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-o {
+#app .wrapper .main .body .gear .items .socket-text-color.color-o {
   color: #f80;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-p {
+#app .wrapper .main .body .gear .items .socket-text-color.color-p {
   color: #f0f;
 }
-#app .wrapper .main .gear .items .socket-text-color.color-g {
+#app .wrapper .main .body .gear .items .socket-text-color.color-g {
   color: #0f0;
 }
-#app .wrapper .main .gear .items .socket-text-color:nth-child(n+2) {
+#app .wrapper .main .body .gear .items .socket-text-color:nth-child(n+2) {
   margin-left: 5px;
 }
-#app .wrapper .main .gear .items .socket-text-color a {
+#app .wrapper .main .body .gear .items .socket-text-color a {
   color: inherit;
 }
-#app .wrapper .main .gear .items .compare {
+#app .wrapper .main .body .gear .items .compare {
   cursor: pointer;
 }
-#app .wrapper .main .gear .items .compare .help .material-icons {
+#app .wrapper .main .body .gear .items .compare .help .material-icons {
   color: #aaa;
 }
-#app .wrapper .main .gear .items .compare.active .help .material-icons {
+#app .wrapper .main .body .gear .items .compare.active .help .material-icons {
   color: #08f;
 }
-#app .wrapper .main .gear .items .compare.error .help .material-icons {
+#app .wrapper .main .body .gear .items .compare.error .help .material-icons {
   color: #f00;
 }
-#app .wrapper .main .gear .items .delete .material-icons {
+#app .wrapper .main .body .gear .items .delete .material-icons {
   cursor: pointer;
   color: #f00;
 }
-#app .wrapper .main .gear .items tr.active .socket-bonus {
+#app .wrapper .main .body .gear .items tr.active .socket-bonus {
   color: #bbe8ba;
 }
-#app .wrapper .main .gear .items .sockets:after {
+#app .wrapper .main .body .gear .items .sockets:after {
   content: "";
   display: block;
   clear: both;
 }
-#app .wrapper .main .gear .items .sockets .socket {
+#app .wrapper .main .body .gear .items .sockets .socket {
   float: left;
   width: 32%;
 }
-#app .wrapper .main .gear .items .sockets .socket:nth-child(n+2) {
+#app .wrapper .main .body .gear .items .sockets .socket:nth-child(n+2) {
   margin-left: 2%;
 }
-#app .wrapper .main .gear .items span.link {
+#app .wrapper .main .body .gear .items span.link {
   color: #888;
 }
-#app .wrapper .main .gear .items span.link:hover {
+#app .wrapper .main .body .gear .items span.link:hover {
   color: #08f;
 }
-#app .wrapper .main .gear .items table th:nth-child(n+4), #app .wrapper .main .gear .items table td:nth-child(n+4) {
+#app .wrapper .main .body .gear .items table th {
+  background: rgba(0, 0, 10, 0.6);
+  font-weight: 500;
+  color: #ccd4ff;
+}
+#app .wrapper .main .body .gear .items table th:nth-child(n+4), #app .wrapper .main .body .gear .items table td:nth-child(n+4) {
   width: 7%;
   white-space: nowrap;
   text-align: center;
 }
-#app .log .close,
-#app .config .close,
-#app .histog .close,
-#app .timel .close,
-#app .spells .close,
-#app .lightbox .close {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  line-height: 30px;
-  font-size: 20px;
-  cursor: pointer;
-  text-align: center;
-}
-#app .config {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  padding: 30px;
-  background: #1f1f28;
-  z-index: 100;
+#app .wrapper .main .body .gear .items table tbody tr {
+  border-top: 0;
+  border-bottom: 1px solid rgba(200, 210, 255, 0.2);
 }
 #app .config .fieldsets {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(5, 1fr);
 }
-#app .profiles-fieldset {
+#app .config .fieldsets fieldset {
+  grid-row: 1/3;
+}
+#app .config .fieldsets .config-rotation {
+  grid-row: 1;
+}
+#app .config .fieldsets .config-debuffs {
+  grid-row: 2;
+}
+#app .config .fieldsets .config-profiles {
   grid-column: 1/3;
+  grid-row: 3;
 }
 #app .profiles .profile {
-  background: #2f2f48;
+  background: rgba(40, 40, 60, 0.7);
   padding: 5px 10px;
   display: grid;
   grid-template-columns: auto -webkit-min-content;
@@ -1067,19 +1183,6 @@ table.simple th:last-child, table.simple td:last-child {
   grid-template-columns: 1fr min-content;
   grid-gap: 15px;
 }
-#app .log {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  background: #1f1f28;
-  z-index: 102;
-}
-#app .log .log-wrapper {
-  padding: 60px 30px 30px;
-}
 #app .log .log-wrapper .filter {
   margin-bottom: 30px;
 }
@@ -1102,43 +1205,18 @@ table.simple th:last-child, table.simple td:last-child {
 #app .log table td:nth-child(2) {
   color: #08f;
 }
-#app .log table tr.type-2 td:nth-child(4) {
+#app .log table tr.type-4 td:nth-child(4) {
   color: #807fa2;
 }
-#app .log table tr.type-3 td:nth-child(4) {
+#app .log table tr.type-5 td:nth-child(4) {
   color: #bbe8ba;
 }
-#app .log table tr.type-4 td:nth-child(4) {
+#app .log table tr.type-6 td:nth-child(4) {
   color: #aaa;
 }
-#app .log table tr.type-6 td:nth-child(4),
-#app .log table tr.type-7 td:nth-child(4) {
+#app .log table tr.type-8 td:nth-child(4),
+#app .log table tr.type-9 td:nth-child(4) {
   color: #b88;
-}
-#app .spells {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  background: #1f1f28;
-  z-index: 102;
-}
-#app .spells .spells-wrapper {
-  padding: 60px 30px 30px;
-}
-#app .timel,
-#app .histog {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  background: #1f1f28;
-  z-index: 102;
-  padding: 60px;
 }
 #app .lightbox {
   position: fixed;
@@ -1187,39 +1265,15 @@ table.simple th:last-child, table.simple td:last-child {
   width: 500px;
   margin: 10vh auto;
 }
-
-.fools {
-  position: fixed;
+#app .lightbox .close {
+  position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
-          animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
-}
-.fools > .inner {
-  position: absolute;
-  background: #161620;
-  padding: 60px;
-  top: calc(50vh - 200px);
-  left: 50%;
-  margin-left: -300px;
-  width: 600px;
+  width: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  cursor: pointer;
   text-align: center;
-}
-.fools > .inner .title {
-  font-size: 30px;
-  margin-bottom: 30px;
-  font-weight: 700;
-}
-.fools > .inner .text {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-.fools > .inner .text b {
-  font-weight: 700;
 }
 
 .notice {

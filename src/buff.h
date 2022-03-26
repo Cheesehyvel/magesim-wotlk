@@ -13,20 +13,25 @@ namespace buff
         POWER_INFUSION = 10060,
         INNERVATE = 29166,
         CLEARCAST = 12536,
-        SERPENT_COIL = 30720,
         MANA_TIDE = 39609,
         BERSERKING = 20554,
-        MQG = 23723,
-        ETERNAL_SAGE = 35084,
-        SKULL_GULDAN = 40396,
-        SHRUNKEN_HEAD = 43712,
-        NAARU_SLIVER = 45042,
+        MISSILE_BARRAGE = 44401,
+        HOT_STREAK = 48108,
+        FIRESTARTER = 54741,
+        FOCUS_MAGIC = 54648,
+        HYPERSPEED_ACCELERATION = 54758,
+        LIGHTWEAVE = 55637,
+        // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
         DRUMS_OF_RESTORATION = 35478,
         FLAME_CAP = 28714,
+        SERPENT_COIL = 30720,
+        SKULL_GULDAN = 40396,
+        SHRUNKEN_HEAD = 43712,
+        NAARU_SLIVER = 45042,
         ASHTONGUE_TALISMAN = 40482,
-        MISSILE_BARRAGE = 44401,
+        MQG = 23723,
     };
 
 
@@ -135,19 +140,6 @@ namespace buff
 
     };
 
-    class SerpentCoil : public Buff
-    {
-
-    public:
-        SerpentCoil()
-        {
-            id = SERPENT_COIL;
-            name = "Serpent Coil";
-            duration = 15;
-        }
-
-    };
-
     class Clearcast : public Buff
     {
 
@@ -226,66 +218,79 @@ namespace buff
 
     };
 
-    class MindQuickening : public Buff
+    class MissileBarrage : public Buff
     {
 
     public:
-        MindQuickening()
+        MissileBarrage()
         {
-            id = MQG;
-            name = "MQG";
-            duration = 20;
+            id = MISSILE_BARRAGE;
+            name = "Missile Barrage";
+            duration = 15;
         }
 
     };
 
-    class EternalSage : public Buff
+    class HotStreak : public Buff
     {
 
     public:
-        EternalSage()
+        HotStreak()
         {
-            id = ETERNAL_SAGE;
-            name = "Band of Eternal Sage";
+            id = HOT_STREAK;
+            name = "Hot Streak";
             duration = 10;
         }
 
     };
 
-    class SkullGuldan : public Buff
+    class Firestarter : public Buff
     {
 
     public:
-        SkullGuldan()
+        Firestarter()
         {
-            id = SKULL_GULDAN;
-            name = "Fel Infusion";
-            duration = 20;
+            id = FIRESTARTER;
+            name = "Firestarter";
+            duration = 10;
         }
 
     };
 
-    class ShrunkenHead : public Buff
+    class FocusMagic : public Buff
     {
 
     public:
-        ShrunkenHead()
+        FocusMagic()
         {
-            id = SHRUNKEN_HEAD;
-            name = "Mojo Madness";
-            duration = 20;
+            id = FOCUS_MAGIC;
+            name = "Focus Magic";
+            duration = 6000; // This is actually 10 sec but assume it gets refreshed
         }
 
     };
 
-    class NaaruSliver : public Buff
+    class HyperspeedAcceleration : public Buff
     {
 
     public:
-        NaaruSliver()
+        HyperspeedAcceleration()
         {
-            id = NAARU_SLIVER;
-            name = "Power Circle";
+            id = HYPERSPEED_ACCELERATION;
+            name = "Hyperspeed Acceleration";
+            duration = 12;
+        }
+
+    };
+
+    class Lightweave : public Buff
+    {
+
+    public:
+        Lightweave()
+        {
+            id = LIGHTWEAVE;
+            name = "Lightweave";
             duration = 15;
         }
 
@@ -343,6 +348,58 @@ namespace buff
 
     };
 
+    class SkullGuldan : public Buff
+    {
+
+    public:
+        SkullGuldan()
+        {
+            id = SKULL_GULDAN;
+            name = "Fel Infusion";
+            duration = 20;
+        }
+
+    };
+
+    class ShrunkenHead : public Buff
+    {
+
+    public:
+        ShrunkenHead()
+        {
+            id = SHRUNKEN_HEAD;
+            name = "Mojo Madness";
+            duration = 20;
+        }
+
+    };
+
+    class NaaruSliver : public Buff
+    {
+
+    public:
+        NaaruSliver()
+        {
+            id = NAARU_SLIVER;
+            name = "Power Circle";
+            duration = 15;
+        }
+
+    };
+
+    class SerpentCoil : public Buff
+    {
+
+    public:
+        SerpentCoil()
+        {
+            id = SERPENT_COIL;
+            name = "Serpent Coil";
+            duration = 15;
+        }
+
+    };
+
     class AshtongueTalisman : public Buff
     {
 
@@ -356,15 +413,15 @@ namespace buff
 
     };
 
-    class MissileBarrage : public Buff
+    class MindQuickening : public Buff
     {
 
     public:
-        MissileBarrage()
+        MindQuickening()
         {
-            id = MISSILE_BARRAGE;
-            name = "Missile Barrage";
-            duration = 15;
+            id = MQG;
+            name = "MQG";
+            duration = 20;
         }
 
     };

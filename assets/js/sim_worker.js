@@ -3,17 +3,6 @@ importScripts("./magesim.js");
 onmessage = (event) => {
     var data = event.data;
 
-    var parseTalentsLink = (str) => {
-        if (str.match(/^[0-9\-]+$/))
-            return str;
-
-        var m = str.match(/tbc\.wowhead\.com.*mage\/([0-9\-]+)/i);
-        if (m)
-            return m[1];
-
-        return "---";
-    };
-
     if (data.type == "start") {
         const wasm = fetch("./magesim.wasm", {cache: "no-store"})
         .then(r => r.arrayBuffer())
@@ -52,19 +41,29 @@ onmessage = (event) => {
                 config.conjured = m.Conjured.values[data.config.conjured];
 
             var player = m.allocPlayer(config);
+            if (m.Race.values.hasOwnProperty(data.config.race))
+                player.race = m.Race.values[data.config.race];
+
             var stats = JSON.parse(JSON.stringify(player.getStats()));
             for (var key in data.config.stats) {
                 if (stats.hasOwnProperty(key))
                     stats[key] = data.config.stats[key];
             }
-            if (m.Race.values.hasOwnProperty(data.config.race))
-                player.race = m.Race.values[data.config.race];
             player.setStats(stats);
 
-            if (data.config.talents) {
-                var talents = parseTalentsLink(data.config.talents);
-                player.loadTalentsFromString(talents);
+            var talents = JSON.parse(JSON.stringify(player.getTalents()));
+            for (var key in data.config.talents) {
+                if (talents.hasOwnProperty(key))
+                    talents[key] = data.config.talents[key];
             }
+            player.setTalents(talents);
+
+            var glyphs = JSON.parse(JSON.stringify(player.getGlyphs()));
+            for (var key in data.config.glyphs) {
+                if (glyphs.hasOwnProperty(key))
+                    glyphs[key] = data.config.glyphs[key];
+            }
+            player.setGlyphs(glyphs);
 
             if (data.iterations && data.iterations > 1)
                 var result = m.runSimulations(config, player, data.iterations);

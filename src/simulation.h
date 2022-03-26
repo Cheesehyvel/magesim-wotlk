@@ -14,7 +14,6 @@ public:
     shared_ptr<buff::Buff> buff;
     shared_ptr<debuff::Debuff> debuff;
     shared_ptr<cooldown::Cooldown> cooldown;
-    shared_ptr<dot::Dot> dot;
 
 };
 
@@ -141,6 +140,9 @@ public:
             for (int i=0; i<config->mana_tide_t.size(); i++)
                 pushBuffGain(player, make_shared<buff::ManaTide>(), config->mana_tide_t.at(i));
         }
+        if (player->talents.focus_magic) {
+            pushBuffGain(player, make_shared<buff::FocusMagic>(), 5.0);
+        }
         if (config->drums && config->drums_friend) {
             double t = 0;
             for (int i=0; i<config->drums_t.size(); i++) {
@@ -211,8 +213,6 @@ public:
             onDebuffGain(event->debuff);
         else if (event->type == EVENT_DEBUFF_EXPIRE)
             onDebuffExpire(event->debuff);
-        else if (event->type == EVENT_DOT)
-            onDot(event->unit, event->dot);
         else if (event->type == EVENT_CD_GAIN)
             onCooldownGain(event->unit, event->cooldown);
         else if (event->type == EVENT_CD_EXPIRE)
@@ -257,12 +257,12 @@ public:
         push(event);
     }
 
-    void pushSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t)
+    void pushSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t = 0)
     {
         shared_ptr<spell::SpellInstance> instance = getSpellInstance(unit, spell);
 
         shared_ptr<Event> event(new Event());
-        event->type = EVENT_CAST_FINISH;
+        event->type = EVENT_SPELL_IMPACT;
         event->instance = instance;
         event->unit = unit;
         event->t = t;
@@ -270,13 +270,38 @@ public:
         push(event);
     }
 
-    void pushSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance, double t)
+    void pushSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance, double t = 0)
     {
         shared_ptr<Event> event(new Event());
-        event->type = EVENT_CAST_FINISH;
+        event->type = EVENT_SPELL_IMPACT;
         event->instance = instance;
         event->unit = unit;
         event->t = t;
+
+        push(event);
+    }
+
+    void pushDot(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, int tick)
+    {
+        shared_ptr<spell::SpellInstance> instance = getSpellInstance(unit, spell);
+        instance->tick = tick;
+
+        shared_ptr<Event> event(new Event());
+        event->type = EVENT_SPELL_IMPACT;
+        event->instance = instance;
+        event->unit = unit;
+        event->t = tick * spell->t_interval;
+
+        push(event);
+    }
+
+    void pushDotTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
+    {
+        shared_ptr<Event> event(new Event());
+        event->type = EVENT_SPELL_IMPACT;
+        event->instance = instance;
+        event->unit = unit;
+        event->t = instance->tick * instance->spell->t_interval;
 
         push(event);
     }
@@ -344,20 +369,6 @@ public:
         push(event);
     }
 
-    void pushDot(shared_ptr<unit::Unit> unit, shared_ptr<dot::Dot> dot)
-    {
-        if (!dot->stackable && dot->tick == 0)
-            removeDot(dot);
-
-        shared_ptr<Event> event(new Event());
-        event->type = EVENT_DOT;
-        event->t = dot->t_interval;
-        event->unit = unit;
-        event->dot = dot;
-
-        push(event);
-    }
-
     void pushCooldownGain(shared_ptr<unit::Unit> unit, shared_ptr<cooldown::Cooldown> cooldown, double t)
     {
         shared_ptr<Event> event(new Event());
@@ -392,7 +403,7 @@ public:
         ostringstream s;
         s << std::fixed << std::setprecision(2);
         if (str.length())
-            s << str << ", waiting " << t << " seconds...";
+            s << str << ", waiting ";
         else
             s << "Waiting ";
         s << t << " seconds...";
@@ -402,37 +413,44 @@ public:
 
     void onAction(shared_ptr<unit::Unit> unit, shared_ptr<action::Action> action)
     {
-        bool go_next = true;
+        bool go_next = false;
 
         if (action->type == action::TYPE_WAIT) {
             pushWait(unit, action->value);
-            go_next = false;
         }
         else if (action->type == action::TYPE_SPELL) {
             cast(unit, action->spell);
-            go_next = false;
         }
         else if (action->type == action::TYPE_BUFF) {
             onBuffGain(unit, action->buff);
             if (action->cooldown)
                 onCooldownGain(unit, action->cooldown);
-            go_next = action->self_action;
+            go_next = action->primary_action;
+        }
+        else if (action->type == action::TYPE_BUFF_EXPIRE) {
+            onBuffExpire(unit, action->buff);
+            if (action->cooldown)
+                onCooldownGain(unit, action->cooldown);
+            go_next = action->primary_action;
         }
         else if (action->type == action::TYPE_DEBUFF) {
             onDebuffGain(action->debuff);
             if (action->cooldown)
                 onCooldownGain(unit, action->cooldown);
-            go_next = false;
+        }
+        else if (action->type == action::TYPE_COOLDOWN) {
+            onCooldownGain(unit, action->cooldown);
         }
         else if (action->type == action::TYPE_POTION) {
             usePotion(unit, action->potion);
+            go_next = true;
         }
         else if (action->type == action::TYPE_CONJURED) {
             useConjured(unit, action->conjured);
+            go_next = true;
         }
         else if (action->type == action::TYPE_MANA) {
             onManaGain(unit, action->value, action->str);
-            go_next = false;
         }
 
         if (go_next)
@@ -454,7 +472,7 @@ public:
     void cast(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         if (canCast(unit, spell)) {
-            if (unit->t_gcd > state->t)
+            if (spell->active_use && unit->t_gcd > state->t)
                 pushWait(unit, unit->t_gcd - state->t, "GCD");
             else
                 onCastStart(unit, spell);
@@ -466,8 +484,10 @@ public:
 
     void onCastStart(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (!spell->proc)
-            unit->t_gcd = state->t + unit->gcd();
+        logCastStart(unit, spell);
+
+        if (spell->active_use)
+            unit->t_gcd = state->t + unit->gcd(spell->gcd);
 
         if (spell->channeling)
             onCastSuccess(unit, spell);
@@ -488,6 +508,7 @@ public:
         if (!spell->tick) {
             spell->actual_cost = manaCost(unit, spell);
             unit->mana-= spell->actual_cost;
+            logCastSuccess(unit, spell);
         }
 
         if (spell->channeling && !spell->tick) {
@@ -497,11 +518,14 @@ public:
 
             spell->tick++;
         }
+        else if (spell->dot) {
+            dotApply(unit, spell);
+        }
         else {
             pushSpellImpact(unit, spell, travelTime(unit, spell));
         }
 
-        if (!spell->tick && !spell->proc) {
+        if (!spell->tick && spell->active_use) {
             if (unit->hasBuff(buff::CLEARCAST))
                 unit->removeBuff(buff::CLEARCAST);
             onCastSuccessProc(unit, spell);
@@ -515,15 +539,46 @@ public:
             spell->done = true;
         }
 
-        if (spell->done && !spell->proc)
+        if (spell->done && spell->active_use)
             nextAction(unit);
     }
 
     void onSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
-        state->dmg = instance->dmg;
+        state->dmg+= instance->dmg;
         logSpellImpact(unit, instance);
         onSpellImpactProc(unit, instance);
+    }
+
+    void dotApply(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        // Stackable dot dmg, ie Ignite
+        if (spell->stackable) {
+            list<shared_ptr<spell::SpellInstance>> dots = getDots(unit, spell);
+            shared_ptr<spell::SpellInstance> dot = NULL;
+            removeSpellImpacts(unit, spell);
+            for (int i=1; i<=spell->ticks; i++) {
+                dot = getSpellInstance(unit, spell);
+                dot->tick = i;
+                if (!dots.empty()) {
+                    dot->dmg+= dots.front()->dmg;
+                    dots.pop_front();
+                }
+                pushDotTick(unit, dot);
+            }
+        }
+        else {
+            removeSpellImpacts(unit, spell);
+            for (int i=1; i<=spell->ticks; i++)
+                pushDot(unit, spell, i);
+
+            // Living bomb special
+            if (spell->id == spell::LIVING_BOMB) {
+                shared_ptr<spell::Spell> bomb = make_shared<spell::LivingBombExplosion>();
+                removeSpellImpact(unit, bomb);
+                pushSpellImpact(unit, bomb, spell->ticks * spell->t_interval);
+            }
+        }
     }
 
     void onCastSuccessProc(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -548,17 +603,6 @@ public:
     {
         unit->mana = min(player->maxMana(), unit->mana + mana);
         logManaGain(unit, mana, source);
-    }
-
-    void onDot(shared_ptr<unit::Unit> unit, shared_ptr<dot::Dot> dot)
-    {
-        state->dmg+= dot->dmg;
-        logDotDmg(unit, dot);
-
-        dot->onTick();
-
-        if (dot->tick < dot->ticks)
-            pushDot(unit, dot);
     }
 
     void onWait(shared_ptr<unit::Unit> unit)
@@ -590,9 +634,6 @@ public:
 
         if (stacks)
             logBuffGain(unit, buff, stacks);
-
-        if (buff->id == buff::ARCANE_POWER && unit->hasBuff(buff::POWER_INFUSION))
-            onBuffExpire(unit, make_shared<buff::PowerInfusion>());
     }
 
     void onBuffExpire(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff)
@@ -701,6 +742,55 @@ public:
         return config->trinket1 == trinket || config->trinket2 == trinket;
     }
 
+    bool hasDot(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+       return getDot(unit, spell) != NULL;
+    }
+
+    shared_ptr<spell::SpellInstance> getDot(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        for (auto itr = queue.begin(); itr != queue.end(); itr++) {
+            if ((*itr)->type == EVENT_SPELL_IMPACT && (*itr)->instance->spell->id == spell->id && (*itr)->unit == unit) {
+                return (*itr)->instance;
+            }
+        }
+
+        return NULL;
+    }
+
+    list<shared_ptr<spell::SpellInstance>> getDots(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        list<shared_ptr<spell::SpellInstance>> dots;
+
+        for (auto itr = queue.begin(); itr != queue.end(); itr++) {
+            if ((*itr)->type == EVENT_SPELL_IMPACT && (*itr)->instance->spell->id == spell->id && (*itr)->unit == unit) {
+                dots.push_back((*itr)->instance);
+            }
+        }
+
+        return dots;
+    }
+
+    void removeSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        for (auto itr = queue.begin(); itr != queue.end();) {
+            if ((*itr)->type == EVENT_SPELL_IMPACT && (*itr)->instance->spell->id == spell->id && (*itr)->unit == unit) {
+                queue.erase(itr);
+                return;
+            }
+        }
+    }
+
+    void removeSpellImpacts(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        for (auto itr = queue.begin(); itr != queue.end();) {
+            if ((*itr)->type == EVENT_SPELL_IMPACT && (*itr)->instance->spell->id == spell->id && (*itr)->unit == unit)
+                itr = queue.erase(itr);
+            else
+                itr++;
+        }
+    }
+
     void removeBuffExpiration(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff)
     {
         for (auto itr = queue.begin(); itr != queue.end(); itr++) {
@@ -725,16 +815,6 @@ public:
     {
         for (auto itr = queue.begin(); itr != queue.end(); itr++) {
             if ((*itr)->type == EVENT_CD_EXPIRE && (*itr)->cooldown->id == cooldown->id && (*itr)->unit == unit) {
-                queue.erase(itr);
-                return;
-            }
-        }
-    }
-
-    void removeDot(shared_ptr<dot::Dot> dot)
-    {
-        for (auto itr = queue.begin(); itr != queue.end(); itr++) {
-            if ((*itr)->type == EVENT_DOT && (*itr)->dot->id == dot->id) {
                 queue.erase(itr);
                 return;
             }
@@ -786,7 +866,9 @@ public:
 
     double travelTime(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        return config->spell_travel_time;
+        if (!spell->has_travel_time)
+            return 0;
+        return config->spell_travel_time / 1000.0;
     }
 
     double castTime(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -871,6 +953,9 @@ public:
         else
             dmg = random<double>(spell->min_dmg, spell->max_dmg);
 
+        if (spell->fixed_dmg)
+            return dmg;
+
         if (spell->coeff) {
             double sp = unit->getSpellPower();
             double coeff = spell->coeff;
@@ -879,8 +964,6 @@ public:
                 sp+= 80.0;
             if (unit->hasBuff(buff::SERPENT_COIL))
                 sp+= 225.0;
-            if (unit->hasBuff(buff::ETERNAL_SAGE))
-                sp+= 95.0;
             if (unit->hasBuff(buff::SHRUNKEN_HEAD))
                 sp+= 211.0;
             if (unit->hasBuff(buff::NAARU_SLIVER))
@@ -936,10 +1019,10 @@ public:
 
     spell::Result getSpellResult(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (random<double>(0, 100) > hitChance(unit, spell))
+        if (unit->canMiss(spell) && random<double>(0, 100) > hitChance(unit, spell))
             return spell::MISS;
 
-        if (random<double>(0, 100) <= critChance(unit, spell))
+        if (unit->canCrit(spell) && random<double>(0, 100) <= critChance(unit, spell))
             return spell::CRIT;
 
         return spell::HIT;
@@ -956,8 +1039,10 @@ public:
             if (instance->result == spell::CRIT)
                 instance->dmg*= critMultiplier(unit, spell);
 
-            instance->resist = spellDmgResist(unit, instance);
-            instance->dmg-= instance->resist;
+            if (unit->canResist(spell)) {
+                instance->resist = spellDmgResist(unit, instance);
+                instance->dmg-= instance->resist;
+            }
 
             instance->dmg = round(instance->dmg);
         }
@@ -967,7 +1052,7 @@ public:
 
     void logCastStart(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (!logging || spell->proc)
+        if (!logging || !spell->active_use || !spell->cast_time)
             return;
 
         ostringstream s;
@@ -979,7 +1064,7 @@ public:
 
     void logCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (!logging || spell->proc || !spell->done)
+        if (!logging || !spell->active_use)
             return;
 
         ostringstream s;
@@ -997,6 +1082,8 @@ public:
         ostringstream s;
 
         s << unit->name << "'s " << instance->spell->name;
+        if (instance->spell->dot)
+            s << " (dot)";
         if (instance->result == spell::MISS)
             s << " was resisted";
         else if (instance->result == spell::CRIT)
@@ -1008,18 +1095,6 @@ public:
             s << " (" << instance->resist << " resisted)";
 
         addLog(unit, LOG_SPELL_IMPACT, s.str());
-    }
-
-    void logDotDmg(shared_ptr<unit::Unit> unit, shared_ptr<dot::Dot> dot)
-    {
-        if (!logging)
-            return;
-
-        ostringstream s;
-
-        s << unit->name << "'s " << dot->name << " ticks for " << dot->dmg;
-
-        addLog(unit, LOG_DOT, s.str());
     }
 
     void logBuffGain(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff, int stacks = 1)
@@ -1082,7 +1157,10 @@ public:
         ostringstream s;
 
         s << fixed << setprecision(0);
-        s << unit->name << " gained " << mana << " mana from " << source;
+        if (mana < 0)
+            s << unit->name << " lost " << (0-mana) << " mana from " << source;
+        else
+            s << unit->name << " gained " << mana << " mana from " << source;
 
         addLog(unit, LOG_MANA, s.str());
     }

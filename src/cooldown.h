@@ -13,15 +13,14 @@ namespace cooldown
         BERSERKING = 20554,
         ICY_VEINS = 12472,
         FIRE_BLAST = 42873,
-        LIVING_BOMB = 55360,
         BLAST_WAVE = 42945,
         DRAGONS_BREATH = 42950,
         CONE_OF_COLD = 42931,
+        ARCANE_BARRAGE = 44781,
         COMBUSTION = 29977,
         ARCANE_POWER = 12042,
         PRESENCE_OF_MIND = 12043,
         POWER_INFUSION = 10060,
-        ETERNAL_SAGE = 35084,
         DRUMS = 35476,
     };
 
@@ -110,7 +109,55 @@ namespace cooldown
         FireBlast(int imp_fire_blast = 0)
         {
             id = FIRE_BLAST;
-            duration = 8 - imp_fire_blast * 0.5;
+            duration = 8 - imp_fire_blast * 1.0;
+        }
+
+    };
+
+    class ArcaneBarrage : public Cooldown
+    {
+
+    public:
+        ArcaneBarrage()
+        {
+            id = ARCANE_BARRAGE;
+            duration = 3;
+        }
+
+    };
+
+    class ConeOfCold : public Cooldown
+    {
+
+    public:
+        ConeOfCold()
+        {
+            id = CONE_OF_COLD;
+            duration = 10;
+        }
+
+    };
+
+    class DragonsBreath : public Cooldown
+    {
+
+    public:
+        DragonsBreath()
+        {
+            id = DRAGONS_BREATH;
+            duration = 20;
+        }
+
+    };
+
+    class BlastWave : public Cooldown
+    {
+
+    public:
+        BlastWave()
+        {
+            id = BLAST_WAVE;
+            duration = 30;
         }
 
     };
@@ -171,18 +218,6 @@ namespace cooldown
         {
             id = POWER_INFUSION;
             duration = 180;
-        }
-
-    };
-
-    class EternalSage : public Cooldown
-    {
-
-    public:
-        EternalSage()
-        {
-            id = ETERNAL_SAGE;
-            duration = 60;
         }
 
     };
