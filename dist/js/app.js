@@ -103,7 +103,12 @@ __webpack_require__.r(__webpack_exports__);
     RACE_UNDEAD: 5
   },
   rotations: {
-    ROTATION_ST_ARCANE: 0
+    ROTATION_ST_FROSTFIRE: 0,
+    ROTATION_ST_AB_AM: 10,
+    ROTATION_ST_AB_AM_BARRAGE: 11,
+    ROTATION_ST_FIRE: 20,
+    ROTATION_ST_FROST: 30,
+    ROTATION_AOE_AE: 100
   },
   foods: {
     FOOD_NONE: 0,
@@ -2723,6 +2728,80 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2742,11 +2821,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       shatt_faction: 0,
       duration: 180,
       duration_variance: 0,
-      spell_travel_time: 500,
       rng_seed: 0,
       avg_spell_dmg: false,
       additional_data: false,
       targets: 1,
+      target_resistance: 0,
+      target_level: 83,
+      spell_travel_time: 500,
       // Debuffs
       debuff_crit: false,
       debuff_spell_crit: false,
@@ -2759,6 +2840,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       divine_spirit: false,
       fel_intelligence: false,
       mark_of_the_wild: false,
+      imp_mark_of_the_wild: false,
       totem_of_wrath: false,
       flametongue: false,
       demonic_pact: false,
@@ -2782,20 +2864,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       battle_elixir: 0,
       guardian_elixir: 0,
       weapon_oil: 0,
-      drums: 0,
       drums_friend: false,
+      black_magic: false,
+      lightweave_embroidery: false,
+      darkglow_embroidery: false,
+      hyperspeed_accelerators: false,
+      drums: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE,
       potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
+      pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
       conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_MANA_GEM,
       wrist_socket: false,
       hands_socket: false,
       meta_gem: 0,
       trinket1: 0,
       trinket2: 0,
+      rotation: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM,
+      rot_ab_stacks_three: false,
+      rot_ice_lance: false,
       innervate: 0,
       mana_tide: false,
       bloodlust: false,
       power_infusion: false,
-      rotation: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_ARCANE,
       trinket1_t: Array(4),
       trinket2_t: Array(4),
       arcane_power_t: Array(4),
@@ -2809,16 +2898,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       power_infusion_t: Array(4),
       drums_t: Array(4),
       innervate_t: Array(4),
-      potion_t: Array(4),
+      potion_t: Array(1),
       conjured_t: Array(4),
+      hyperspeed_t: Array(4),
       evocation_at: 0,
       evo_ticks: 0,
       build: "",
       stats: {
-        intellect: 465,
-        spirit: 285,
+        intellect: 0,
+        spirit: 0,
         mp5: 0,
-        crit: 20,
+        crit: 0,
         hit: 0,
         haste: 0,
         spell_power: 0,
@@ -2976,10 +3066,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       is_running: false,
       is_running_ep: false,
       active_tab: "gear",
-      item_source: "wowhead",
+      item_source: "evo",
       phase_filter: 0,
       search_item: "",
       search_gem: "",
+      search_log: "",
       log_filter: {
         "0": true,
         "1": false,
@@ -2990,7 +3081,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "6": true,
         "7": true,
         "8": true,
-        "9": true
+        "9": true,
+        "10": true
       },
       talent_map: [[], [], []],
       default_config: default_config,
@@ -3078,10 +3170,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return data;
   },
   computed: {
-    spec: function spec() {
-      if (this.config.rotation <= this.rotations.ROTATION_ST_ARCANE) return "arcane";
-      return null;
-    },
     faction: function faction() {
       var alliance = [this.races.RACE_GNOME, this.races.RACE_HUMAN, this.races.RACE_DRAENEI];
       if (alliance.indexOf(this.config.race) != -1) return "alliance";
@@ -3113,6 +3201,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.active_slot == "wrist" && this.config.wrist_socket) sockets.push("a");
       if (this.active_slot == "hands" && this.config.hands_socket) sockets.push("a");
       return sockets;
+    },
+    activeLog: function activeLog() {
+      var _this2 = this;
+
+      if (!this.result || !this.result.log) return [];
+      var log = this.result.log;
+      if (this.search_log) log = log.filter(function (l) {
+        return l.text.toLowerCase().indexOf(_this2.search_log.toLowerCase()) != -1;
+      });
+      log = log.filter(function (l) {
+        return _this2.log_filter[l.type];
+      });
+      return log;
     },
     hasComparisons: function hasComparisons() {
       return this.item_comparison.length > 1;
@@ -3256,6 +3357,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var sim = new _simulation__WEBPACK_IMPORTED_MODULE_1__.SimulationWorker(function (result) {
         self.is_running = false;
         self.result = result;
+        if (self.result.spells) self.result.spells = _.sortBy(self.result.spells, "casts").reverse();
       }, function (error) {
         self.is_running = false;
         console.error(error);
@@ -3267,7 +3369,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       sim.start(this.config);
     },
     findAvg: function findAvg(avg) {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var result;
@@ -3275,18 +3377,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (_this2.active_tab == "histogram") _this2.setTab("gear");
-                _this2.ep_result = null;
+                if (_this3.active_tab == "histogram") _this3.setTab("gear");
+                _this3.ep_result = null;
 
-                _this2.prepare();
+                _this3.prepare();
 
-                _this2.is_running = true;
+                _this3.is_running = true;
 
               case 4:
                 if (false) {}
 
                 _context.next = 7;
-                return _this2.runAvg(avg);
+                return _this3.runAvg(avg);
 
               case 7:
                 result = _context.sent;
@@ -3296,8 +3398,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                _this2.is_running = false;
-                _this2.result = result;
+                _this3.is_running = false;
+                _this3.result = result;
                 return _context.abrupt("break", 14);
 
               case 12:
@@ -3313,7 +3415,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     runAvg: function runAvg(avg) {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var self;
@@ -3321,7 +3423,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                self = _this3;
+                self = _this4;
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
                   var sim = new _simulation__WEBPACK_IMPORTED_MODULE_1__.SimulationWorker(function (result) {
                     resolve(result);
@@ -3342,7 +3444,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     runStat: function runStat(stat, value, rng_seed) {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var self, addStats;
@@ -3350,7 +3452,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                self = _this4;
+                self = _this5;
 
                 addStats = function addStats(config, stats) {
                   stats = _.merge({
@@ -3399,7 +3501,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     runEP: function runEP() {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var rng_seed, result, stat;
@@ -3407,9 +3509,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                if (_this5.is_running_ep) _this5.is_running_ep = false;
+                if (_this6.is_running_ep) _this6.is_running_ep = false;
 
-                if (!_this5.is_running) {
+                if (!_this6.is_running) {
                   _context4.next = 3;
                   break;
                 }
@@ -3417,10 +3519,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context4.abrupt("return");
 
               case 3:
-                if (["log", "timeline", "spells"].indexOf(_this5.active_tab) != -1) _this5.setTab("gear");
-                _this5.is_running_ep = true;
-                _this5.result = null;
-                _this5.ep_result = {
+                if (["log", "timeline", "spells"].indexOf(_this6.active_tab) != -1) _this6.setTab("gear");
+                _this6.is_running_ep = true;
+                _this6.result = null;
+                _this6.ep_result = {
                   base: null,
                   "int": null,
                   spi: null,
@@ -3431,7 +3533,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   haste: null
                 };
                 rng_seed = Math.round(Math.random() * 100000);
-                _context4.t0 = _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().keys(_this5.ep_result);
+                _context4.t0 = _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().keys(_this6.ep_result);
 
               case 9:
                 if ((_context4.t1 = _context4.t0()).done) {
@@ -3441,13 +3543,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 stat = _context4.t1.value;
                 _context4.next = 13;
-                return _this5.runStat(stat, stat == "base" ? 0 : 10, rng_seed);
+                return _this6.runStat(stat, stat == "base" ? 0 : 10, rng_seed);
 
               case 13:
                 result = _context4.sent;
-                _this5.ep_result[stat] = result.avg_dps;
+                _this6.ep_result[stat] = result.avg_dps;
 
-                if (_this5.is_running_ep) {
+                if (_this6.is_running_ep) {
                   _context4.next = 17;
                   break;
                 }
@@ -3459,7 +3561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 break;
 
               case 19:
-                _this5.is_running_ep = false;
+                _this6.is_running_ep = false;
 
               case 20:
               case "end":
@@ -3470,7 +3572,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     runComparisonFor: function runComparisonFor(item_id) {
-      var _this6 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
         var self;
@@ -3478,9 +3580,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                self = _this6;
+                self = _this7;
 
-                _this6.equip(_this6.active_slot, item_id, false);
+                _this7.equip(_this7.active_slot, item_id, false);
 
                 return _context5.abrupt("return", new Promise(function (resolve, reject) {
                   var sim = new _simulation__WEBPACK_IMPORTED_MODULE_1__.SimulationWorkers(self.config.iterations, function (result) {
@@ -3505,7 +3607,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     runComparison: function runComparison() {
-      var _this7 = this;
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
         var i, old_item_id, result, cmp;
@@ -3513,7 +3615,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                if (!(!_this7.hasComparisons || _this7.is_running)) {
+                if (!(!_this8.hasComparisons || _this8.is_running)) {
                   _context6.next = 2;
                   break;
                 }
@@ -3521,12 +3623,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context6.abrupt("return");
 
               case 2:
-                for (i in _this7.item_comparison) {
-                  _this7.item_comparison[i].dps = null;
+                for (i in _this8.item_comparison) {
+                  _this8.item_comparison[i].dps = null;
                 }
 
-                old_item_id = _this7.equipped[_this7.active_slot];
-                _context6.t0 = _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().keys(_this7.item_comparison);
+                old_item_id = _this8.equipped[_this8.active_slot];
+                _context6.t0 = _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().keys(_this8.item_comparison);
 
               case 5:
                 if ((_context6.t1 = _context6.t0()).done) {
@@ -3535,18 +3637,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
 
                 i = _context6.t1.value;
-                cmp = _this7.item_comparison[i];
+                cmp = _this8.item_comparison[i];
                 _context6.next = 10;
-                return _this7.runComparisonFor(cmp.id);
+                return _this8.runComparisonFor(cmp.id);
 
               case 10:
                 result = _context6.sent;
-                _this7.item_comparison[i].dps = result.avg_dps;
+                _this8.item_comparison[i].dps = result.avg_dps;
                 _context6.next = 5;
                 break;
 
               case 14:
-                _this7.equip(_this7.active_slot, old_item_id);
+                _this8.equip(_this8.active_slot, old_item_id);
 
               case 15:
               case "end":
@@ -3635,7 +3737,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.getEnchant(slot, id);
     },
     activeGems: function activeGems(index) {
-      var _this8 = this;
+      var _this9 = this;
 
       if (this.activeSockets.length < index) return [];
       if (this.activeSockets[index] == "m") var gems = this.items.gems.filter(function (g) {
@@ -3644,10 +3746,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return g.color != "m";
       });
       if (this.phase_filter) gems = gems.filter(function (g) {
-        return _.get(g, "phase", 1) <= _this8.phase_filter;
+        return _.get(g, "phase", 1) <= _this9.phase_filter;
       });
       if (this.search_gem) gems = gems.filter(function (g) {
-        return g.title.toLowerCase().indexOf(_this8.search_gem.toLowerCase()) != -1;
+        return g.title.toLowerCase().indexOf(_this9.search_gem.toLowerCase()) != -1;
       });
       return gems;
     },
@@ -3784,8 +3886,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.isSpecialItem(this.equipped.trinket1)) this.config.trinket1 = this.equipped.trinket1;
       if (this.isSpecialItem(this.equipped.trinket2)) this.config.trinket2 = this.equipped.trinket2;
       if (this.metaGem() && this.isSpecialItem(this.metaGem().id) && this.isMetaGemActive()) this.config.meta_gem = this.metaGem().id;
+      this.config.black_magic = this.enchants.weapon == this.items.ids.BLACK_MAGIC;
+      this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;
+      this.config.darkglow_embroidery = this.enchants.back == this.items.ids.DARKGLOW_EMBROIDERY;
+      this.config.hyperspeed_accelerators = this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
     },
-    finalStats: function finalStats() {
+    simStats: function simStats() {
       var x;
       this.itemStats();
       this.itemConfig();
@@ -3824,25 +3930,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } // Food
 
 
-      if (this.config.food == this.foods.FOOD_SPELL_POWER) stats.spell_power += 46;else if (this.config.food == this.foods.FOOD_HASTE) stats.haste_rating += 40;else if (this.config.food == this.foods.FOOD_HIT) stats.hit_rating += 40;else if (this.config.food == this.foods.FOOD_CRIT) stats.crit_rating += 40; // Debuff: Crit
-
-      if (this.config.debuff_crit || this.config.totem_of_wrath) stats.crit += 3; // Debuff: Spell hit
-
-      if (this.config.debuff_spell_hit) stats.hit += 3; // Buff: Spell power
-
-      if (this.config.demonic_pact || this.config.totem_of_wrath || this.config.flametongue) {
-        x = 0;
-        if (this.config.totem_of_wrath) x = 280;else if (this.config.flametongue) x = 144;
-        if (this.config.demonic_pact && this.config.demonic_pact_bonus > x) x = this.config.demonic_pact_bonus;
-        stats.spell_power += x;
-      } // Buff:: Spell haste
-
-
-      if (this.config.buff_spell_haste) stats.haste = this.multiplyHaste(stats.haste, 5); // Buff:: Haste
-
-      if (this.config.buff_haste) stats.haste = this.multiplyHaste(stats.haste, 3); // Buff:: Spell crit
-
-      if (this.config.buff_spell_crit) stats.crit += 5; // Focus magic
+      if (this.config.food == this.foods.FOOD_SPELL_POWER) stats.spell_power += 46;else if (this.config.food == this.foods.FOOD_HASTE) stats.haste_rating += 40;else if (this.config.food == this.foods.FOOD_HIT) stats.hit_rating += 40;else if (this.config.food == this.foods.FOOD_CRIT) stats.crit_rating += 40; // Focus magic
 
       if (this.config.focus_magic) stats.crit += 3; // Mana Restoration
 
@@ -3880,11 +3968,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.metaGem() && this.metaGem().id == this.items.ids.META_EMBER_SKYFLARE) stats.intellect *= 1.02;
       stats.intellect = Math.round(stats.intellect);
       stats.spirit = Math.round(stats.spirit);
+      if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence) stats.hit += 1;
       if (this.config.talents.mind_mastery) stats.spell_power += Math.round(stats.intellect * this.config.talents.mind_mastery * 0.05);
       stats.crit += this.config.talents.arcane_instability;
       stats.crit += this.config.talents.pyromaniac;
-      stats.hit += this.config.talents.precision;
-      if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence) stats.hit += 1; // Calculate percentages
+      stats.hit += this.config.talents.precision; // Calculate percentages
 
       stats.crit += stats.intellect / 166.6667;
       stats.crit += this.critRatingToChance(stats.crit_rating);
@@ -3892,12 +3980,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.config.stats = stats;
     },
     displayStats: function displayStats() {
+      var x;
+
       var stats = _.cloneDeep(this.config.stats);
 
-      stats.mana = 3268; // Debuff: Spell crit
-      // This is calculated dynamically in sim because it can depend on scorch/winters chill
+      stats.mana = 3268; // Buff: Spell power
 
-      if (this.config.debuff_spell_crit) stats.crit += 5;
+      if (this.config.demonic_pact || this.config.totem_of_wrath || this.config.flametongue) {
+        x = 0;
+        if (this.config.totem_of_wrath) x = 280;else if (this.config.flametongue) x = 144;
+        if (this.config.demonic_pact && this.config.demonic_pact_bonus > x) x = this.config.demonic_pact_bonus;
+        stats.spell_power += x;
+      } // Buff:: Spell haste
+
+
+      if (this.config.buff_spell_haste) stats.haste = this.multiplyHaste(stats.haste, 5); // Buff:: Haste
+
+      if (this.config.buff_haste) stats.haste = this.multiplyHaste(stats.haste, 3); // Buff:: Spell crit
+
+      if (this.config.buff_spell_crit) stats.crit += 5; // Debuff: Spell crit
+
+      if (this.config.debuff_spell_crit) stats.crit += 5; // Debuff: Spell hit
+
+      if (this.config.debuff_spell_hit) stats.hit += 3; // Debuff: Crit
+
+      if (this.config.debuff_crit) stats.crit += 3;
 
       if (this.config.molten_armor) {
         var multi = 0.35;
@@ -3916,7 +4023,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.display_stats = stats;
     },
     calcStats: function calcStats() {
-      this.finalStats();
+      this.simStats();
       this.displayStats();
     },
     openItem: function openItem(item) {
@@ -3928,17 +4035,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     itemUrl: function itemUrl(id) {
       if (_typeof(id) == "object") id = id.id;
       if (id > 99900) return null;
-      if (this.item_source == "tbcdb") return "https://tbcdb.com/?item=" + id;
-      if (this.item_source == "endless") return "https://db.endless.gg/?item=" + id;
-      if (this.item_source == "twinstar") return "https://tbc-twinhead.twinstar.cz/?item=" + id;
-      return "https://tbc.wowhead.com/?item=" + id;
+      if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?item=" + id;
+      if (this.item_source == "evo") return "https://wotlk.evowow.com/?item=" + id;
+      return "https://wotlk.wowhead.com/?item=" + id;
     },
     spellUrl: function spellUrl(id) {
       if (_typeof(id) == "object") id = id.id;
-      if (this.item_source == "tbcdb") return "https://tbcdb.com/?spell=" + id;
-      if (this.item_source == "endless") return "https://db.endless.gg/?spell=" + id;
-      if (this.item_source == "twinstar") return "https://tbc-twinhead.twinstar.cz/?spell=" + id;
-      return "https://tbc.wowhead.com/?spell=" + id;
+      if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?spell=" + id;
+      if (this.item_source == "evo") return "https://wotlk.evowow.com/?spell=" + id;
+      return "https://wotlk.wowhead.com/?spell=" + id;
     },
     critRatingToChance: function critRatingToChance(rating) {
       return rating / 45.91;
@@ -4266,6 +4371,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (cmp2 && cmp2.dps && item.id !== this.items.ids.STAT_WEIGHT_BASE) return cmp && cmp.dps ? "+" + _.round(cmp.dps - cmp2.dps, 2) : null;
       return cmp && cmp.dps ? _.round(cmp.dps, 2) : null;
+    },
+    setSpec: function setSpec(spec) {
+      if (spec == "arcane") {
+        this.config.build = "https://wotlk.evowow.com/?talent#of0Vfu0IzxGuMxebcZMhf0o:NzM0mM";
+        this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM;
+      } else if (spec == "arcane_barrage") {
+        this.config.build = "https://wotlk.evowow.com/?talent#of0Vsu0IzxGuMxedcZMhf0o:NzM0mM";
+        this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM_BARRAGE;
+      } else if (spec == "fire") {
+        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0cZ0Ec0RhIuVubhst:VLi0mc";
+        this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_FIRE;
+      } else if (spec == "frost") {
+        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
+        this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_FROST;
+      }
+
+      this.parseTalents();
     },
     onBuildInput: function onBuildInput() {
       this.parseTalents();
@@ -4694,9 +4816,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (!this.findItem(id)) return id;
       }
     },
-    showLog: function showLog(log) {
-      return this.log_filter[log.type];
-    },
     setTab: function setTab(name) {
       if (this.active_tab == name) this.active_tab = "gear";else this.active_tab = name;
     },
@@ -5017,6 +5136,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Line],
@@ -5035,137 +5179,181 @@ __webpack_require__.r(__webpack_exports__);
   props: ['result'],
   data: function data() {
     return {
-      has_drawn: false,
-      buff_padding: 1.5,
-      buff_start_pos: 2,
       cds: [{
         title: "Bloodlust",
-        color: "rgba(255,70,70,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg"
+        color: "rgba(220,70,70)"
       }, {
         title: "Icy Veins",
-        color: "rgba(85,170,255,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_coldhearted.jpg"
+        color: "rgba(85,170,255)"
+      }, {
+        title: "Berserking",
+        color: "rgba(200,80,80)"
       }, {
         title: "Arcane Power",
-        color: "rgba(221,51,255,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
-      }, {
-        title: "Band of Eternal Sage",
-        color: "rgba(255, 128, 0, 0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_ring_55.jpg"
-      }, {
-        title: "Destruction",
-        color: "rgba(153, 51, 221, 0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_107.jpg"
+        color: "#48f"
       }, {
         title: "Mana Tide",
-        color: "rgba(200, 200, 200, 0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg"
+        color: "#05c"
       }, {
         title: "Power Infusion",
-        color: "rgba(255, 255, 0, 0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg"
+        color: "#dd0"
       }, {
         title: "Drums of Battle",
-        color: "rgba(160,160,60,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_02.jpg"
+        color: "rgba(160,160,60)"
       }, {
         title: "Drums of War",
-        color: "rgba(160,160,60,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_03.jpg"
+        color: "rgba(160,160,60)"
       }, {
         title: "Drums of Restoration",
-        color: "rgba(160,160,60,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_07.jpg"
+        color: "rgba(160,160,60)"
       }, {
         title: "Innervate",
-        color: "rgba(0,0,0,255,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
+        color: "#00d"
       }, {
         title: "Evocation",
-        color: "rgba(105,221,105,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_purge.jpg"
+        color: "#05c"
+      }, {
+        title: "Lightweave",
+        color: "#823978"
+      }, {
+        title: "Black Magic",
+        color: "#89d1d0"
+      }, {
+        title: "Hyperspeed Acceleration",
+        color: "#206f80"
+      }, {
+        title: "Speed",
+        color: "#d82"
+      }, {
+        title: "Wild Magic",
+        color: "#cc6"
       }],
       trinkets: [{
         title: "Fel Infusion",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg"
-      }, {
-        title: "Burst of Knowledge",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_amulet_07.jpg"
-      }, {
-        title: "Silver Crescent",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas06.jpg"
-      }, {
-        title: "Essence of the Martyr",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas01.jpg"
+        color: "#b24"
       }, {
         title: "Serpent Coil",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_arcane_arcanetorrent.jpg"
-      }, {
-        title: "Dark Iron Pipeweed",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_pipe_01.jpg"
-      }, {
-        title: "Recurring Power",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
-      }, {
-        title: "Essence of Sapphiron",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas06.jpg"
-      }, {
-        title: "Spell Haste",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_searinglight.jpg"
-      }, {
-        title: "Unstable Currents",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
-      }, {
-        title: "Spell Power",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
-      }, {
-        title: "Focused Power",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
-      }, {
-        title: "Enlightenment",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_pearl_04.jpg"
-      }, {
-        title: "Arcane Energy",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
-      }, {
-        title: "Crimson Serpent",
-        img: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_pet_windserpent.jpg"
+        color: "#2da"
       }, {
         title: "Mojo Madness",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_head_troll_01.jpg"
-      }, {
-        title: "Aura of the Crusade",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_siphonmana.jpg"
+        color: "#d22"
       }, {
         title: "Insight of the Ashtongue",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_elvencoins.jpg"
-      }, {
-        title: "Call of the Nexus",
-        img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg"
+        color: "#cc8"
       }, {
         title: "Power Circle",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg"
+        color: "#a2a"
       }],
       mana_gains: [{
         title: "Mana Gem",
-        color: "rgba(85,255,85,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_stone_01.jpg"
+        color: "rgba(85,255,85)"
       }, {
         title: "Mana Potion",
-        color: "rgba(255,255,0,0.6)",
-        img: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_137.jpg"
+        color: "#00d"
       }]
     };
   },
+  computed: {
+    times: function times() {
+      var times = [];
+      var steps = [1, 2, 5, 10, 15, 20, 30, 40, 60, 90, 120];
+      var step = 150;
+      var div = this.result.t / 20;
+
+      for (var i = 0; i < steps.length; i++) {
+        if (div < steps[i]) {
+          step = steps[i];
+          break;
+        }
+      }
+
+      for (var i = step; i < this.result.t; i += step) {
+        times.push(i);
+      }
+
+      return times;
+    },
+    events: function events() {
+      var events = [];
+      var event, start, end, uptime; // CDs
+
+      for (var i = 0; i < this.cds.length; i++) {
+        start = _.filter(this.result.log, {
+          text: "Player gained " + this.cds[i].title
+        });
+        end = _.filter(this.result.log, {
+          text: "Player lost " + this.cds[i].title
+        });
+
+        if (start.length) {
+          event = _.clone(this.cds[i]);
+          event.events = [];
+          uptime = 0;
+
+          for (var j = 0; j < start.length; j++) {
+            event.events.push({
+              start: start[j].t,
+              end: end.length > j ? end[j].t : this.result.t
+            });
+            uptime += (end.length > j ? end[j].t : this.result.t) - start[j].t;
+          }
+
+          event.uptime = Math.round(uptime / this.result.t * 100);
+          events.push(event);
+        }
+      } // Trinkets
+
+
+      var delta = 0;
+
+      for (var i = 0; i < this.trinkets.length; i++) {
+        start = _.filter(this.result.log, {
+          text: "Player gained " + this.trinkets[i].title
+        });
+        end = _.filter(this.result.log, {
+          text: "Player lost " + this.trinkets[i].title
+        });
+
+        if (start.length) {
+          event = _.clone(this.trinkets[i]);
+          event.events = [];
+          uptime = 0;
+
+          for (var j = 0; j < start.length; j++) {
+            event.events.push({
+              start: start[j].t,
+              end: end.length > j ? end[j].t : this.result.t
+            });
+            uptime += (end.length > j ? end[j].t : this.result.t) - start[j].t;
+          }
+
+          event.uptime = Math.round(uptime / this.result.t * 100);
+          events.push(event);
+        }
+      }
+
+      return events;
+    }
+  },
   methods: {
-    afterRender: function afterRender() {
-      this.drawImages();
+    timeStyle: function timeStyle(time) {
+      return {
+        left: time / this.result.t * 100 + "%"
+      };
+    },
+    barStyle: function barStyle(item, color) {
+      return {
+        left: item.start / this.result.t * 100 + "%",
+        right: 100 - item.end / this.result.t * 100 + "%",
+        background: color
+      };
+    },
+    formatTime: function formatTime(time) {
+      return time + "s"; // var s = time%s;
+      // var m = time - s;
+      // return (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
     },
     draw: function draw() {
-      this.has_drawn = false;
-      var self = this;
       var data = {
         datasets: []
       };
@@ -5195,18 +5383,26 @@ __webpack_require__.r(__webpack_exports__);
             scaleLabel: {
               display: true,
               labelString: "Time (s)"
+            },
+            gridLines: {
+              color: "rgba(120,140,240,0.1)"
             }
           }],
           yAxes: [{
             type: "linear",
+            ticks: {
+              beginAtZero: true
+            },
             scaleLabel: {
               display: true,
               labelString: "Mana (%)"
+            },
+            gridLines: {
+              color: "rgba(120,140,240,0.4)"
             }
           }, {
             id: "dps",
             type: "linear",
-            position: "right",
             ticks: {
               beginAtZero: true
             },
@@ -5222,13 +5418,6 @@ __webpack_require__.r(__webpack_exports__);
       var mana_smooth = true;
 
       if (mana_smooth) {
-        for (var i = 0; i < this.result.log.length; i++) {
-          if (this.result.log[i].text.indexOf("Vampiric Touch") != -1) d.push({
-            x: this.result.log[i].t,
-            y: this.result.log[i].mana_percent
-          });
-        }
-
         if (!d.length) {
           for (var i = 0; i < this.result.log.length; i++) {
             if (this.result.log[i].text.indexOf("Mana Regen") != -1) d.push({
@@ -5254,7 +5443,7 @@ __webpack_require__.r(__webpack_exports__);
       data.datasets.push({
         data: d,
         borderColor: "#08f",
-        borderWidth: 0.5,
+        borderWidth: 1,
         pointRadius: 0,
         hitRadius: 0,
         label: "Mana"
@@ -5267,7 +5456,7 @@ __webpack_require__.r(__webpack_exports__);
       });
 
       for (var i = 0; i < this.result.log.length; i++) {
-        if (this.result.log[i].type == 1 && this.result.log[i].t) d.push({
+        if (this.result.log[i].type == 3 && this.result.log[i].t) d.push({
           x: this.result.log[i].t,
           y: this.result.log[i].dmg / this.result.log[i].t
         });
@@ -5280,164 +5469,13 @@ __webpack_require__.r(__webpack_exports__);
       data.datasets.push({
         data: d,
         borderColor: "#f00",
-        borderWidth: 0.5,
+        borderWidth: 1,
         pointRadius: 0,
         label: "DPS",
         fill: false,
         yAxisID: "dps"
       });
-      var delta = 0;
-      var start, end;
-      var buff_width = 5; // CDs
-
-      for (var i = 0; i < this.cds.length; i++) {
-        start = _.filter(this.result.log, {
-          text: "Gained " + this.cds[i].title
-        });
-        end = _.filter(this.result.log, {
-          text: "Lost " + this.cds[i].title
-        });
-
-        for (var j = 0; j < start.length; j++) {
-          data.datasets.push({
-            data: [{
-              x: start[j].t,
-              y: delta * this.buff_padding + this.buff_start_pos
-            }, {
-              x: end.length > j ? end[j].t : this.result.t,
-              y: delta * this.buff_padding + this.buff_start_pos
-            }],
-            borderColor: this.cds[i].color,
-            borderWidth: buff_width,
-            pointRadius: 0,
-            hitRadius: 0,
-            // label: j == 0 ? this.cds[i].title : '',
-            label: '',
-            fill: false
-          });
-        }
-
-        if (start.length) delta++;
-      } // Trinkets
-
-
-      var trinket_colors = ["rgba(255,255,255,0.6)", "rgba(160,60,160,0.6)"];
-      var t = 0;
-
-      for (var i = 0; i < this.trinkets.length; i++) {
-        start = _.filter(this.result.log, {
-          text: "Gained " + this.trinkets[i].title
-        });
-        end = _.filter(this.result.log, {
-          text: "Lost " + this.trinkets[i].title
-        });
-
-        for (var j = 0; j < start.length; j++) {
-          data.datasets.push({
-            data: [{
-              x: start[j].t,
-              y: delta * this.buff_padding + this.buff_start_pos
-            }, {
-              x: end.length > j ? end[j].t : this.result.t,
-              y: delta * this.buff_padding + this.buff_start_pos
-            }],
-            borderColor: trinket_colors[t],
-            borderWidth: buff_width,
-            pointRadius: 0,
-            hitRadius: 0,
-            // label: j == 0 ? this.trinkets[i].title : '',
-            label: '',
-            fill: false
-          });
-        }
-
-        if (start.length) {
-          delta++;
-          t++;
-          if (t > 1) break;
-        }
-      } // Mana gained
-
-      /*
-      for (var i=0; i<this.mana_gains.length; i++) {
-          start = _.filter(this.result.log, function(a) { return a.text.indexOf(" mana from "+self.mana_gains[i].title) > 0; });
-          for (var j=0; j<start.length; j++) {
-              data.datasets.push({
-                  data: [
-                      {x: start[j].t, y: delta*this.buff_padding + this.buff_start_pos},
-                      {x: start[j].t+1, y: delta*this.buff_padding + this.buff_start_pos}
-                  ],
-                  borderColor: this.mana_gains[i].color,
-                  borderWidth: buff_width,
-                  pointRadius: 0,
-                  hitRadius: 0,
-                  label: '',
-                  fill: false,
-              });
-          }
-          if (start.length)
-              delta++;
-      }
-      */
-
-
       this.renderChart(data, options);
-    },
-    drawImages: function drawImages() {
-      var self = this;
-      var x, y, start;
-      var delta = 0;
-      var px = 12;
-
-      var buffs = _.concat(this.cds, this.trinkets);
-
-      for (var i = 0; i < buffs.length; i++) {
-        start = _.filter(this.result.log, {
-          text: "Gained " + buffs[i].title
-        });
-
-        if (buffs[i].img) {
-          for (var j = 0; j < start.length; j++) {
-            x = this.$data._chart.scales["x-axis-0"].getPixelForValue(start[j].t) - px;
-            y = this.$data._chart.scales["y-axis-0"].getPixelForValue(delta * this.buff_padding + this.buff_start_pos) - px / 2;
-            var im = new Image();
-
-            im.onload = function (xx, yy, img) {
-              setTimeout(function () {
-                self.$refs.canvas.getContext("2d").drawImage(img, xx, yy, 12, 12);
-              }, 100);
-            }(x, y, im);
-
-            im.src = buffs[i].img;
-          }
-        }
-
-        if (start.length) delta++;
-      }
-
-      for (var i = 0; i < this.mana_gains.length; i++) {
-        start = _.filter(this.result.log, function (a) {
-          return a.text.indexOf(" mana from " + self.mana_gains[i].title) > 0;
-        });
-
-        if (this.mana_gains[i].img) {
-          for (var j = 0; j < start.length; j++) {
-            x = this.$data._chart.scales["x-axis-0"].getPixelForValue(start[j].t) - px;
-            y = this.$data._chart.scales["y-axis-0"].getPixelForValue(delta * this.buff_padding + this.buff_start_pos) - px / 2;
-            var im = new Image();
-
-            im.onload = function (xx, yy, img) {
-              setTimeout(function () {
-                self.$refs.canvas.getContext("2d").drawImage(img, xx, yy, 12, 12);
-              }, 100);
-            }(x, y, im);
-
-            im.src = this.mana_gains[i].img;
-          }
-        }
-
-        if (start.length) delta++;
-      }
     }
   }
 });
@@ -62150,11 +62188,15 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "btn block mt-n",
+              staticClass: "btn large block mt-n",
               class: [_vm.is_running ? "disabled" : ""],
-              on: { click: _vm.runSingle }
+              on: { click: _vm.runMultiple }
             },
-            [_vm._v("Run one time")]
+            [
+              _c("div", [_vm._v("Run")]),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(_vm.config.iterations) + " iterations")])
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -62162,9 +62204,9 @@ var render = function() {
             {
               staticClass: "btn block mt-n",
               class: [_vm.is_running ? "disabled" : ""],
-              on: { click: _vm.runMultiple }
+              on: { click: _vm.runSingle }
             },
-            [_vm._v("Run " + _vm._s(_vm.config.iterations) + " times")]
+            [_c("div", [_vm._v("Single iteration")])]
           ),
           _vm._v(" "),
           _c(
@@ -62176,10 +62218,9 @@ var render = function() {
             },
             [
               !_vm.is_running_ep
-                ? [_vm._v("Run stat weights")]
-                : [_vm._v("Stop")]
-            ],
-            2
+                ? _c("div", [_vm._v("Stat weights")])
+                : _c("div", [_vm._v("Stop")])
+            ]
           )
         ]),
         _vm._v(" "),
@@ -62933,7 +62974,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("table", { staticClass: "mt-2" }, [
+                    _c("table", { staticClass: "large mt-2" }, [
                       _c("thead", [
                         _c("tr", [
                           _c("th", { staticClass: "min" }, [
@@ -63448,7 +63489,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _vm.activeEnchants.length
-                      ? _c("table", { staticClass: "mt-4" }, [
+                      ? _c("table", { staticClass: "large mt-4" }, [
                           _vm._m(2),
                           _vm._v(" "),
                           _c(
@@ -63685,7 +63726,7 @@ var render = function() {
                           { staticClass: "sockets" },
                           _vm._l(_vm.activeSockets, function(socket, index) {
                             return _c("div", { staticClass: "socket" }, [
-                              _c("table", [
+                              _c("table", { staticClass: "large" }, [
                                 _c("thead", [
                                   _c("tr", [
                                     _c("th", { staticClass: "min" }, [
@@ -64160,36 +64201,55 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "form-item mb-2" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.search_log,
+                          expression: "search_log"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Search..." },
+                      domProps: { value: _vm.search_log },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.search_log = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
                   _c("table", [
                     _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.result.log, function(log) {
-                        return _vm.showLog(log)
-                          ? _c("tr", { class: ["type-" + log.type] }, [
-                              _c("td", [_vm._v(_vm._s(_vm.formatTime(log.t)))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(_vm.round(log.mana)) +
-                                    " (" +
-                                    _vm._s(_vm.round(log.mana_percent)) +
-                                    "%)"
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    log.t ? _vm.round(log.dmg / log.t) : "0"
-                                  )
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(log.text))])
-                            ])
-                          : _vm._e()
+                      _vm._l(_vm.activeLog, function(log) {
+                        return _c("tr", { class: ["type-" + log.type] }, [
+                          _c("td", [_vm._v(_vm._s(_vm.formatTime(log.t)))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(_vm.round(log.mana)) +
+                                " (" +
+                                _vm._s(_vm.round(log.mana_percent)) +
+                                "%)"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(log.t ? _vm.round(log.dmg / log.t) : "0")
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(log.text))])
+                        ])
                       }),
                       0
                     )
@@ -64215,13 +64275,15 @@ var render = function() {
           _vm.active_tab == "spells"
             ? _c("div", { staticClass: "spells" }, [
                 _c("div", { staticClass: "spells-wrapper" }, [
-                  _c("table", [
+                  _c("table", { staticClass: "large" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c(
                       "tbody",
                       _vm._l(_vm.result.spells, function(spell) {
                         return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(spell.source))]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(spell.name))]),
                           _vm._v(" "),
                           _c("td", [
@@ -64323,6 +64385,62 @@ var render = function() {
                 _c("div", { staticClass: "fieldsets" }, [
                   _c("fieldset", { staticClass: "config-general" }, [
                     _c("legend", [_vm._v("General")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c("label", [_vm._v("Quick spec")]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "btn secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSpec("arcane")
+                            }
+                          }
+                        },
+                        [_vm._v("Arcane")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "btn secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSpec("arcane_barrage")
+                            }
+                          }
+                        },
+                        [_vm._v("Barrage")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "btn secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSpec("fire")
+                            }
+                          }
+                        },
+                        [_vm._v("Fire")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "btn secondary",
+                          on: {
+                            click: function($event) {
+                              return _vm.setSpec("frost")
+                            }
+                          }
+                        },
+                        [_vm._v("Frost")]
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-item" }, [
                       _c("label", [_vm._v("Race")]),
@@ -64469,70 +64587,161 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-item" }, [
-                      _c("label", [_vm._v("Fight duration (sec)")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.config.duration,
-                            expression: "config.duration",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.config.duration },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                    _c("div", { staticClass: "form-item form-row" }, [
+                      _c("div", { staticClass: "form-item" }, [
+                        _c("label", [_vm._v("Fight duration (sec)")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: _vm.config.duration,
+                              expression: "config.duration",
+                              modifiers: { number: true }
                             }
-                            _vm.$set(
-                              _vm.config,
-                              "duration",
-                              _vm._n($event.target.value)
-                            )
-                          },
-                          blur: function($event) {
-                            return _vm.$forceUpdate()
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.config.duration },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.config,
+                                "duration",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
                           }
-                        }
-                      })
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-item" }, [
+                        _c("label", [_vm._v("Variance +/-")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: _vm.config.duration_variance,
+                              expression: "config.duration_variance",
+                              modifiers: { number: true }
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.config.duration_variance },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.config,
+                                "duration_variance",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
+                          }
+                        })
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-item" }, [
-                      _c("label", [_vm._v("Duration +/- (sec)")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                    _c("div", { staticClass: "form-item form-row" }, [
+                      _c("div", { staticClass: "form-item" }, [
+                        _c("label", [_vm._v("Target level")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
                           {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.config.duration_variance,
-                            expression: "config.duration_variance",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.config.duration_variance },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.config.target_level,
+                                expression: "config.target_level"
+                              }
+                            ],
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.config,
+                                  "target_level",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
                             }
-                            _vm.$set(
-                              _vm.config,
-                              "duration_variance",
-                              _vm._n($event.target.value)
-                            )
                           },
-                          blur: function($event) {
-                            return _vm.$forceUpdate()
+                          [
+                            _c("option", { domProps: { value: 83 } }, [
+                              _vm._v("83")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { domProps: { value: 82 } }, [
+                              _vm._v("82")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { domProps: { value: 81 } }, [
+                              _vm._v("81")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { domProps: { value: 80 } }, [
+                              _vm._v("80")
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-item" }, [
+                        _c("label", [_vm._v("Resistance")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: _vm.config.target_resistance,
+                              expression: "config.target_resistance",
+                              modifiers: { number: true }
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.config.target_resistance },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.config,
+                                "target_resistance",
+                                _vm._n($event.target.value)
+                              )
+                            },
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
                           }
-                        }
-                      })
+                        })
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-item" }, [
@@ -64831,10 +65040,61 @@ var render = function() {
                             "option",
                             {
                               domProps: {
-                                value: _vm.rotations.ROTATION_ST_ARCANE
+                                value: _vm.rotations.ROTATION_ST_FROSTFIRE
+                              }
+                            },
+                            [_vm._v("Frostfire Bolt")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            {
+                              domProps: {
+                                value: _vm.rotations.ROTATION_ST_AB_AM
                               }
                             },
                             [_vm._v("Arcane")]
+                          ),
+                          _vm._v(" "),
+                          _vm.config.talents.arcane_barrage
+                            ? _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value:
+                                      _vm.rotations.ROTATION_ST_AB_AM_BARRAGE
+                                  }
+                                },
+                                [_vm._v("Arcane + Barrage")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            {
+                              domProps: {
+                                value: _vm.rotations.ROTATION_ST_FIRE
+                              }
+                            },
+                            [_vm._v("Fire")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            {
+                              domProps: {
+                                value: _vm.rotations.ROTATION_ST_FROST
+                              }
+                            },
+                            [_vm._v("Frost")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            {
+                              domProps: { value: _vm.rotations.ROTATION_AOE_AE }
+                            },
+                            [_vm._v("Arcane Explosion")]
                           )
                         ]
                       )
@@ -64907,6 +65167,130 @@ var render = function() {
                             ],
                             1
                           )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    [
+                      _vm.rotations.ROTATION_ST_AB_AM,
+                      _vm.rotations.ROTATION_ST_AB_AM_BARRAGE
+                    ].indexOf(_vm.config.rotation) != -1
+                      ? _c("div", { staticClass: "form-item" }, [
+                          _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.config.rot_ab_stacks_three,
+                                  expression: "config.rot_ab_stacks_three"
+                                }
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.config.rot_ab_stacks_three
+                                )
+                                  ? _vm._i(
+                                      _vm.config.rot_ab_stacks_three,
+                                      null
+                                    ) > -1
+                                  : _vm.config.rot_ab_stacks_three
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.config.rot_ab_stacks_three,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "rot_ab_stacks_three",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "rot_ab_stacks_three",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(
+                                      _vm.config,
+                                      "rot_ab_stacks_three",
+                                      $$c
+                                    )
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v("Only stack Arcane Blast to 3")])
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.config.rotation == _vm.rotations.ROTATION_ST_FROST
+                      ? _c("div", { staticClass: "form-item" }, [
+                          _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.config.rot_ice_lance,
+                                  expression: "config.rot_ice_lance"
+                                }
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(_vm.config.rot_ice_lance)
+                                  ? _vm._i(_vm.config.rot_ice_lance, null) > -1
+                                  : _vm.config.rot_ice_lance
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.config.rot_ice_lance,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "rot_ice_lance",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "rot_ice_lance",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.config, "rot_ice_lance", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v("Ice Lance at end of Fingers of Frost")
+                            ])
+                          ])
                         ])
                       : _vm._e()
                   ]),
@@ -65292,7 +65676,7 @@ var render = function() {
                               : _vm.config.mage_armor
                           },
                           on: {
-                            changed: function($event) {
+                            input: function($event) {
                               return _vm.dontStack($event, "molten_armor")
                             },
                             change: function($event) {
@@ -65691,7 +66075,8 @@ var render = function() {
                             },
                             on: {
                               input: function($event) {
-                                return _vm.dontStack($event, "flametongue")
+                                _vm.config.debuff_crit = $event.target.checked
+                                _vm.dontStack($event, "flametongue")
                               },
                               change: function($event) {
                                 var $$a = _vm.config.totem_of_wrath,
@@ -67370,6 +67755,74 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("fieldset", { staticClass: "config-precombat" }, [
+                    _c("legend", [_vm._v("Pre-combat")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c("label", [_vm._v("Potion")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.config.pre_potion,
+                              expression: "config.pre_potion"
+                            }
+                          ],
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.config,
+                                "pre_potion",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            { domProps: { value: _vm.potions.POTION_NONE } },
+                            [_vm._v("None")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { domProps: { value: _vm.potions.POTION_MANA } },
+                            [_vm._v("Mana potion")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            { domProps: { value: _vm.potions.POTION_SPEED } },
+                            [_vm._v("Potion of Speed")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "option",
+                            {
+                              domProps: { value: _vm.potions.POTION_WILD_MAGIC }
+                            },
+                            [_vm._v("Potion of Wild Magic")]
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "fieldset",
                     { staticClass: "config-cooldowns" },
@@ -67734,7 +68187,7 @@ var render = function() {
                               _c(
                                 "label",
                                 [
-                                  _c("span", [_vm._v("Potion timings")]),
+                                  _c("span", [_vm._v("Potion timing")]),
                                   _vm._v(" "),
                                   _c("timing-helper")
                                 ],
@@ -67934,6 +68387,62 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.config.trinket2_t,
+                                          i,
+                                          _vm._n($event.target.value)
+                                        )
+                                      },
+                                      blur: function($event) {
+                                        return _vm.$forceUpdate()
+                                      }
+                                    }
+                                  })
+                                ])
+                              }),
+                              0
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.config.hyperspeed_accelerators
+                        ? [
+                            _c("div", { staticClass: "form-item" }, [
+                              _c(
+                                "label",
+                                [
+                                  _c("span", [_vm._v("Hyperspeed timings")]),
+                                  _vm._v(" "),
+                                  _c("timing-helper")
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-row mt-0" },
+                              _vm._l(_vm.config.hyperspeed_t, function(a, i) {
+                                return _c("div", { staticClass: "form-item" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model.number",
+                                        value: _vm.config.hyperspeed_t[i],
+                                        expression: "config.hyperspeed_t[i]",
+                                        modifiers: { number: true }
+                                      }
+                                    ],
+                                    attrs: { type: "text" },
+                                    domProps: {
+                                      value: _vm.config.hyperspeed_t[i]
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.config.hyperspeed_t,
                                           i,
                                           _vm._n($event.target.value)
                                         )
@@ -68866,6 +69375,11 @@ var render = function() {
       _vm._v(" "),
       _vm.export_profile.open
         ? _c("div", { staticClass: "lightbox" }, [
+            _c("div", {
+              staticClass: "closer",
+              on: { click: _vm.closeExport }
+            }),
+            _vm._v(" "),
             _c("div", { staticClass: "inner" }, [
               _c("div", { staticClass: "title" }, [_vm._v("Export")]),
               _vm._v(" "),
@@ -69019,6 +69533,11 @@ var render = function() {
       _vm._v(" "),
       _vm.import_profile.open
         ? _c("div", { staticClass: "lightbox" }, [
+            _c("div", {
+              staticClass: "closer",
+              on: { click: _vm.closeImport }
+            }),
+            _vm._v(" "),
             _c("div", { staticClass: "inner" }, [
               _c("div", { staticClass: "title" }, [_vm._v("Import")]),
               _vm._v(" "),
@@ -69183,6 +69702,11 @@ var render = function() {
       _vm._v(" "),
       _vm.equiplist_open
         ? _c("div", { staticClass: "lightbox" }, [
+            _c("div", {
+              staticClass: "closer",
+              on: { click: _vm.closeEquiplist }
+            }),
+            _vm._v(" "),
             _c("div", { staticClass: "inner" }, [
               _c("div", { staticClass: "title" }, [_vm._v("Equipped items")]),
               _vm._v(" "),
@@ -69350,6 +69874,11 @@ var render = function() {
       _vm._v(" "),
       _vm.custom_item_open
         ? _c("div", { staticClass: "lightbox small" }, [
+            _c("div", {
+              staticClass: "closer",
+              on: { click: _vm.closeCustomItem }
+            }),
+            _vm._v(" "),
             _c("div", { staticClass: "inner" }, [
               _c("div", { staticClass: "title" }, [_vm._v("Add custom item")]),
               _vm._v(" "),
@@ -69955,6 +70484,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
+      _c("th", [_vm._v("Caster")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Spell")]),
       _vm._v(" "),
       _c("th", [_vm._v("Casts")]),
@@ -70196,8 +70727,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "graph values" }, [
-    _c("canvas", { ref: "canvas" })
+  return _c("div", { staticClass: "timeline" }, [
+    _c("div", { staticClass: "graph" }, [
+      _c("canvas", { ref: "canvas", attrs: { height: "80" } })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "events" }, [
+      _c("div", { staticClass: "timestamps" }, [
+        _c("div", { staticClass: "title" }, [_vm._v("Effect (uptime %)")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "times" },
+          _vm._l(_vm.times, function(time) {
+            return _c(
+              "div",
+              { staticClass: "time", style: _vm.timeStyle(time) },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.formatTime(time)) +
+                    "\n                "
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "items" },
+        _vm._l(_vm.events, function(event) {
+          return _c("div", { staticClass: "item" }, [
+            _c(
+              "div",
+              { staticClass: "title", style: { color: event.color } },
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(event.title) +
+                    "\n                    "
+                ),
+                event.hasOwnProperty("uptime")
+                  ? [
+                      _vm._v(
+                        "\n                        (" +
+                          _vm._s(event.uptime) +
+                          "%)\n                    "
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "times" },
+              _vm._l(event.events, function(item) {
+                return _c("div", {
+                  staticClass: "bar",
+                  style: _vm.barStyle(item, event.color)
+                })
+              }),
+              0
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = []

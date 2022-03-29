@@ -18,9 +18,15 @@ namespace buff
         MISSILE_BARRAGE = 44401,
         HOT_STREAK = 48108,
         FIRESTARTER = 54741,
+        BRAIN_FREEZE = 57761,
+        FINGERS_OF_FROST = 44544,
+        GHOST_FINGERS = 4454411,
         FOCUS_MAGIC = 54648,
         HYPERSPEED_ACCELERATION = 54758,
+        BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
+        SPEED = 53908,
+        WILD_MAGIC = 53909,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -77,11 +83,13 @@ namespace buff
     {
 
     public:
-        ArcanePower()
+        ArcanePower(bool glyph = false)
         {
             id = ARCANE_POWER;
             name = "Arcane Power";
             duration = 15;
+            if (glyph)
+                duration+= 3;
         }
 
     };
@@ -257,6 +265,46 @@ namespace buff
 
     };
 
+    class BrainFreeze : public Buff
+    {
+
+    public:
+        BrainFreeze()
+        {
+            id = BRAIN_FREEZE;
+            name = "Brain Freeze";
+            duration = 15;
+        }
+
+    };
+
+    class FingersOfFrost : public Buff
+    {
+
+    public:
+        FingersOfFrost()
+        {
+            id = FINGERS_OF_FROST;
+            name = "Fingers of Frost";
+            duration = 15;
+        }
+
+    };
+
+    class GhostFingers : public Buff
+    {
+
+    public:
+        GhostFingers()
+        {
+            id = GHOST_FINGERS;
+            name = "Fingers of Frost (Ghost proc)";
+            duration = 0.01;
+            hidden = true;
+        }
+
+    };
+
     class FocusMagic : public Buff
     {
 
@@ -283,6 +331,19 @@ namespace buff
 
     };
 
+    class BlackMagic : public Buff
+    {
+
+    public:
+        BlackMagic()
+        {
+            id = BLACK_MAGIC;
+            name = "Black Magic";
+            duration = 10;
+        }
+
+    };
+
     class Lightweave : public Buff
     {
 
@@ -291,6 +352,32 @@ namespace buff
         {
             id = LIGHTWEAVE;
             name = "Lightweave";
+            duration = 15;
+        }
+
+    };
+
+    class WildMagic : public Buff
+    {
+
+    public:
+        WildMagic()
+        {
+            id = WILD_MAGIC;
+            name = "Wild Magic";
+            duration = 15;
+        }
+
+    };
+
+    class Speed : public Buff
+    {
+
+    public:
+        Speed()
+        {
+            id = SPEED;
+            name = "Speed";
             duration = 15;
         }
 

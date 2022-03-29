@@ -42,6 +42,7 @@ onmessage = function onmessage(event) {
       if (m.MetaGem.values.hasOwnProperty(data.config.meta_gem)) config.meta_gem = m.MetaGem.values[data.config.meta_gem];
       if (m.Drums.values.hasOwnProperty(data.config.drums)) config.drums = m.Drums.values[data.config.drums];
       if (m.Potion.values.hasOwnProperty(data.config.potion)) config.potion = m.Potion.values[data.config.potion];
+      if (m.Potion.values.hasOwnProperty(data.config.pre_potion)) config.pre_potion = m.Potion.values[data.config.pre_potion];
       if (m.Conjured.values.hasOwnProperty(data.config.conjured)) config.conjured = m.Conjured.values[data.config.conjured];
       var player = m.allocPlayer(config);
       if (m.Race.values.hasOwnProperty(data.config.race)) player.race = m.Race.values[data.config.race];

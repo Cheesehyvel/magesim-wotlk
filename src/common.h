@@ -1,7 +1,11 @@
-enum Rotation: int
+enum Rotation : int
 {
-    ROTATION_ST_ARCANE,
-    ROTATION_AOE_AE,
+    ROTATION_ST_FROSTFIRE = 0,
+    ROTATION_ST_AB_AM = 10,
+    ROTATION_ST_AB_AM_BARRAGE = 11,
+    ROTATION_ST_FIRE = 20,
+    ROTATION_ST_FROST = 30,
+    ROTATION_AOE_AE = 100,
 };
 
 enum Race : int
@@ -87,16 +91,20 @@ enum EventType : int
     EVENT_MANA_GAIN,
     EVENT_BUFF_GAIN,
     EVENT_BUFF_EXPIRE,
+    EVENT_BUFF_GAIN_ALL,
     EVENT_DEBUFF_GAIN,
     EVENT_DEBUFF_EXPIRE,
     EVENT_DOT,
     EVENT_CD_GAIN,
     EVENT_CD_EXPIRE,
+    EVENT_UNIT,
+    EVENT_UNIT_DESPAWN,
     EVENT_WAIT
 };
 
 struct SpellStats
 {
+    std::string source;
     std::string name;
     int casts = 0;
     int misses = 0;

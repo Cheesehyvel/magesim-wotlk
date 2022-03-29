@@ -8,7 +8,12 @@ export default {
         RACE_UNDEAD: 5
     },
     rotations: {
-        ROTATION_ST_ARCANE: 0,
+        ROTATION_ST_FROSTFIRE: 0,
+        ROTATION_ST_AB_AM: 10,
+        ROTATION_ST_AB_AM_BARRAGE: 11,
+        ROTATION_ST_FIRE: 20,
+        ROTATION_ST_FROST: 30,
+        ROTATION_AOE_AE: 100,
     },
     foods: {
         FOOD_NONE: 0,

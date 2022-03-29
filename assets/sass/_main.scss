@@ -18,7 +18,7 @@ label {
 }
 
 a {
-    color: #08f;
+    color: $color_primary;
     text-decoration: none;
 
     &:hover {
@@ -42,8 +42,58 @@ a {
     }
 }
 
-.graph.buffs canvas {
-    height: 200px;
+.timeline {
+    .graph {
+        padding-left: 75px;
+    }
+
+    .events {
+        padding-right: 20px;
+        margin-top: $spacer*0.5;
+        line-height: 30px;
+
+        .title {
+            float: left;
+            width: 200px;
+            border-right: 1px solid $color_stroke;
+        }
+
+        .times {
+            float: left;
+            position: relative;
+            width: calc(100% - 201px);
+            height: 30px;
+        }
+
+        .time {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            border-left: 1px solid $color_stroke;
+            padding-left: 3px;
+        }
+
+        .bar {
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .timestamps,
+        .item {
+            @include clearfix();
+        }
+
+        .item {
+            border-top: 1px solid $color_stroke;
+        }
+    }
 }
 
 .sort-link {
@@ -56,24 +106,25 @@ a {
 
     &.active {
         .material-icons {
-            color: #08f;
+            color: $color_primary;
         }
     }
 }
 
 .btn {
     display: inline-block;
-    padding: 5px 12px;
-    background: #08f;
+    padding: 10px 12px;
+    background: $color_primary;
     cursor: pointer;
     user-select: none;
-    font-weight: 700;
+    font-weight: 600;
     white-space: nowrap;
     transition: opacity 0.2s ease, background 0.2s ease;
     text-align: center;
+    line-height: 18px;
 
     &:hover {
-        background: #05b;
+        background: $color_primary_hover;
         color: #fff;
     }
 
@@ -84,6 +135,12 @@ a {
     &.large {
         padding: 10px 20px;
         font-size: 18px;
+        line-height: 1.2;
+
+        div:nth-child(2) {
+            font-size: 14px;
+            font-weight: 400;
+        }
     }
 
     &.danger {
@@ -97,6 +154,16 @@ a {
     &.disabled {
         pointer-events: none;
         opacity: 0.5;
+    }
+
+    &.secondary {
+        background: #234;
+        color: #ccc;
+
+        &:hover {
+            background: $color_primary_hover;
+            color: #fff;
+        }
     }
 }
 
@@ -122,7 +189,7 @@ a {
     display: inline-block;
 
     .material-icons {
-        color: #08f;
+        color: $color_primary;
     }
 }
 
@@ -130,11 +197,11 @@ input[type="text"],
 input[type="number"],
 textarea,
 select {
+    background: rgba(0,0,0,0.5);
     border: 0;
     font-family: inherit;
     font-size: inherit;
-    background: rgba(255,255,255,0.1);
-    padding: 4px 8px;
+    padding: 10px;
     display: block;
     color: #fff;
     width: 100%;
@@ -148,7 +215,15 @@ fieldset {
 
     legend {
         font-weight: 700;
-        color: #08f;
+        color: $color_primary;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        padding: 5px 8px;
+        background: rgba(255,255,255,0.1);
     }
 }
 
@@ -211,7 +286,7 @@ table {
     }
 
     tbody tr {
-        border-top: 1px solid rgba(255,255,255,0.15);
+        border-top: 1px solid $color_stroke;
         cursor: pointer;
 
         &.active {
@@ -222,8 +297,12 @@ table {
     &.simple {
         color: #aaa;
 
-        tbody tr:first-child {
-            border-top: 0;
+        tbody tr {
+            border-color: #333;
+
+            &:first-child {
+                border-top: 0;
+            }
         }
 
         th, td {
@@ -236,6 +315,27 @@ table {
                 padding-right: 0;
                 text-align: right;
             }
+        }
+    }
+
+    &.large {
+        th {
+            background: rgba(0,0,10,0.6);
+            font-weight: 500;
+            color: #ccd4ff;
+        }
+
+        th, td {
+            &:nth-child(n+4) {
+                width: 7%;
+                white-space: nowrap;
+                text-align: center;
+            }
+        }
+
+        tbody tr {
+            border-top: 0;
+            border-bottom: 1px solid rgba(200,210,255,0.2);
         }
     }
 }
@@ -277,10 +377,10 @@ table {
         right: 0;
         bottom: 0;
         margin: 8px;
-        border: 8px solid #08f;
+        border: 8px solid $color_primary;
         border-radius: 50%;
         animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: #08f transparent transparent transparent;
+        border-color: $color_primary transparent transparent transparent;
 
         &:nth-child(1) {
             animation-delay: -0.45s;
@@ -334,7 +434,7 @@ table {
 
                     > div:nth-child(1) {
                         font-weight: 700;
-                        color: #08f;
+                        color: $color_primary;
                     }
                     > div:nth-child(2) {
                         font-weight: 700;
@@ -465,12 +565,6 @@ table {
                         overflow: auto;
                         box-sizing: border-box;
 
-                        select,
-                        input {
-                            padding: 7px 8px;
-                            background: rgba(0,0,0,0.3);
-                        }
-
                         .search-gem {
                             input {
                                 width: 300px;
@@ -541,7 +635,7 @@ table {
                             }
 
                             &.active .help .material-icons {
-                                color: #08f;
+                                color: $color_primary;
                             }
 
                             &.error .help .material-icons {
@@ -575,28 +669,7 @@ table {
                             color: #888;
 
                             &:hover {
-                                color: #08f;
-                            }
-                        }
-
-                        table {
-                            th {
-                                background: rgba(0,0,10,0.6);
-                                font-weight: 500;
-                                color: #ccd4ff;
-                            }
-
-                            th, td {
-                                &:nth-child(n+4) {
-                                    width: 7%;
-                                    white-space: nowrap;
-                                    text-align: center;
-                                }
-                            }
-
-                            tbody tr {
-                                border-top: 0;
-                                border-bottom: 1px solid rgba(200,210,255,0.2);
+                                color: $color_primary;
                             }
                         }
                     }
@@ -618,7 +691,13 @@ table {
             .config-rotation {
                 grid-row: 1;
             }
+            .config-precombat {
+                grid-row: 2;
+            }
 
+            .config-consumes {
+                grid-row: 1;
+            }
             .config-debuffs {
                 grid-row: 2;
             }
@@ -649,7 +728,7 @@ table {
                 transition: color 0.2s ease;
 
                 &:hover {
-                    color: #08f;
+                    color: $color_primary;
                 }
             }
 
@@ -671,7 +750,7 @@ table {
             }
 
             .save {
-                color: #08f;
+                color: $color_primary;
             }
 
             .delete {
@@ -712,7 +791,7 @@ table {
                     color: #ccc;
                 }
                 &:nth-child(2) {
-                    color: #08f;
+                    color: $color_primary;
                 }
             }
 
@@ -742,14 +821,21 @@ table {
         z-index: 200;
         animation: fade 0.4s ease forwards;
 
+        > .closer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
         > .inner {
             position: absolute;
             left: 10%;
             top: 10%;
             right: 10%;
-            bottom: 10%;
             width: 80vw;
-            background: #161620;
+            background: rgba(8,13,28,0.8);
             padding: $spacer*0.5;
             box-sizing: border-box;
             overflow: auto;

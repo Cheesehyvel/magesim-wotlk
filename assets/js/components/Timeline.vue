@@ -1,6 +1,31 @@
 <template>
-    <div class="graph values">
-        <canvas ref="canvas"></canvas>
+    <div class="timeline">
+        <div class="graph">
+            <canvas ref="canvas" height="80"></canvas>
+        </div>
+        <div class="events">
+            <div class="timestamps">
+                <div class="title">Effect (uptime %)</div>
+                <div class="times">
+                    <div class="time" v-for="time in times" :style="timeStyle(time)">
+                        {{ formatTime(time) }}
+                    </div>
+                </div>
+            </div>
+            <div class="items">
+                <div class="item" v-for="event in events">
+                    <div class="title" :style="{color: event.color}">
+                        {{ event.title }}
+                        <template v-if="event.hasOwnProperty('uptime')">
+                            ({{ event.uptime }}%)
+                        </template>
+                    </div>
+                    <div class="times">
+                        <div class="bar" v-for="item in event.events" :style="barStyle(item, event.color)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -28,61 +53,132 @@
 
         data() {
             return {
-                has_drawn: false,
-                buff_padding: 1.5,
-                buff_start_pos: 2,
                 cds: [
-                    { title: "Bloodlust", color: "rgba(255,70,70,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg" },
-                    { title: "Icy Veins", color: "rgba(85,170,255,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_coldhearted.jpg" },
-                    { title: "Arcane Power", color: "rgba(221,51,255,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg" },
-                    { title: "Band of Eternal Sage", color: "rgba(255, 128, 0, 0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_ring_55.jpg" },
-                    { title: "Destruction", color: "rgba(153, 51, 221, 0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_107.jpg" },
-                    { title: "Mana Tide", color: "rgba(200, 200, 200, 0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg" },
-                    { title: "Power Infusion", color: "rgba(255, 255, 0, 0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg" },
-                    { title: "Drums of Battle", color: "rgba(160,160,60,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_02.jpg" },
-                    { title: "Drums of War", color: "rgba(160,160,60,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_03.jpg" },
-                    { title: "Drums of Restoration", color: "rgba(160,160,60,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_drum_07.jpg" },
-                    { title: "Innervate", color: "rgba(0,0,0,255,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg" },
-                    { title: "Evocation", color: "rgba(105,221,105,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_purge.jpg" },
+                    { title: "Bloodlust", color: "rgba(220,70,70)" },
+                    { title: "Icy Veins", color: "rgba(85,170,255)" },
+                    { title: "Berserking", color: "rgba(200,80,80)" },
+                    { title: "Arcane Power", color: "#48f" },
+                    { title: "Mana Tide", color: "#05c" },
+                    { title: "Power Infusion", color: "#dd0" },
+                    { title: "Drums of Battle", color: "rgba(160,160,60)" },
+                    { title: "Drums of War", color: "rgba(160,160,60)" },
+                    { title: "Drums of Restoration", color: "rgba(160,160,60)" },
+                    { title: "Innervate", color: "#00d" },
+                    { title: "Evocation", color: "#05c" },
+                    { title: "Lightweave", color: "#823978" },
+                    { title: "Black Magic", color: "#89d1d0" },
+                    { title: "Hyperspeed Acceleration", color: "#206f80" },
+                    { title: "Speed", color: "#d82" },
+                    { title: "Wild Magic", color: "#cc6" },
                 ],
                 trinkets: [
-                    { title: "Fel Infusion", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg" },
-                    { title: "Burst of Knowledge", img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_amulet_07.jpg" },
-                    { title: "Silver Crescent", img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas06.jpg" },
-                    { title: "Essence of the Martyr", img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas01.jpg" },
-                    { title: "Serpent Coil", img: "https://wow.zamimg.com/images/wow/icons/large/spell_arcane_arcanetorrent.jpg" },
-                    { title: "Dark Iron Pipeweed", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_pipe_01.jpg" },
-                    { title: "Recurring Power", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Essence of Sapphiron", img: "https://wow.zamimg.com/images/wow/icons/large/inv_trinket_naxxramas06.jpg" },
-                    { title: "Spell Haste", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_searinglight.jpg" },
-                    { title: "Unstable Currents", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Spell Power", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Focused Power", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Enlightenment", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_pearl_04.jpg" },
-                    { title: "Arcane Energy", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Crimson Serpent", img: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_pet_windserpent.jpg" },
-                    { title: "Mojo Madness", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_head_troll_01.jpg" },
-                    { title: "Aura of the Crusade", img: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_siphonmana.jpg" },
-                    { title: "Insight of the Ashtongue", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_elvencoins.jpg" },
-                    { title: "Call of the Nexus", img: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_mindvision.jpg" },
-                    { title: "Power Circle", img: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg" },
+                    { title: "Fel Infusion", color: "#b24" },
+                    { title: "Serpent Coil", color: "#2da" },
+                    { title: "Mojo Madness", color: "#d22" },
+                    { title: "Insight of the Ashtongue", color: "#cc8" },
+                    { title: "Power Circle", color: "#a2a" },
                 ],
                 mana_gains: [
-                    { title: "Mana Gem", color: "rgba(85,255,85,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_stone_01.jpg" },
-                    { title: "Mana Potion", color: "rgba(255,255,0,0.6)", img: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_137.jpg" },
+                    { title: "Mana Gem", color: "rgba(85,255,85)" },
+                    { title: "Mana Potion", color: "#00d" },
                 ]
             }
         },
 
+        computed: {
+            times() {
+                var times = [];
+                var steps = [1,2,5,10,15,20,30,40,60,90,120];
+                var step = 150;
+                var div = this.result.t / 20;
+
+                for (var i=0; i<steps.length; i++) {
+                    if (div < steps[i]) {
+                        step = steps[i];
+                        break;
+                    }
+                }
+
+                for (var i=step; i<this.result.t; i+= step) {
+                    times.push(i);
+                }
+
+                return times;
+            },
+
+            events() {
+                var events = [];
+                var event, start, end, uptime;
+
+                // CDs
+                for (var i=0; i<this.cds.length; i++) {
+                    start = _.filter(this.result.log, {text: "Player gained "+this.cds[i].title});
+                    end = _.filter(this.result.log, {text: "Player lost "+this.cds[i].title});
+                    if (start.length) {
+                        event = _.clone(this.cds[i]);
+                        event.events = [];
+                        uptime = 0;
+                        for (var j=0; j<start.length; j++) {
+                            event.events.push({
+                                start: start[j].t,
+                                end: end.length > j ? end[j].t : this.result.t,
+                            });
+                            uptime+= (end.length > j ? end[j].t : this.result.t) - start[j].t;
+                        }
+                        event.uptime = Math.round(uptime / this.result.t * 100);
+                        events.push(event);
+                    }
+                }
+
+                // Trinkets
+                var delta = 0;
+                for (var i=0; i<this.trinkets.length; i++) {
+                    start = _.filter(this.result.log, {text: "Player gained "+this.trinkets[i].title});
+                    end = _.filter(this.result.log, {text: "Player lost "+this.trinkets[i].title});
+                    if (start.length) {
+                        event = _.clone(this.trinkets[i]);
+                        event.events = [];
+                        uptime = 0;
+                        for (var j=0; j<start.length; j++) {
+                            event.events.push({
+                                start: start[j].t,
+                                end: end.length > j ? end[j].t : this.result.t,
+                            });
+                            uptime+= (end.length > j ? end[j].t : this.result.t) - start[j].t;
+                        }
+                        event.uptime = Math.round(uptime / this.result.t * 100);
+                        events.push(event);
+                    }
+                }
+
+                return events;
+            },
+        },
+
         methods: {
-            afterRender() {
-                this.drawImages();
+            timeStyle(time) {
+                return {
+                    left: (time / this.result.t * 100) + "%",
+                }
+            },
+
+            barStyle(item, color) {
+                return {
+                    left: (item.start / this.result.t * 100) + "%",
+                    right: (100 - (item.end / this.result.t * 100)) + "%",
+                    background: color,
+                };
+            },
+
+            formatTime(time) {
+                return time+"s";
+
+                // var s = time%s;
+                // var m = time - s;
+                // return (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
             },
 
             draw() {
-                this.has_drawn = false;
-                var self = this;
-
                 var data = {
                     datasets: [],
                 };
@@ -113,18 +209,26 @@
                             scaleLabel: {
                                 display: true,
                                 labelString: "Time (s)",
+                            },
+                            gridLines: {
+                                color: "rgba(120,140,240,0.1)",
                             }
                         }],
                         yAxes: [{
                             type: "linear",
+                            ticks: {
+                                beginAtZero: true,
+                            },
                             scaleLabel: {
                                 display: true,
                                 labelString: "Mana (%)",
+                            },
+                            gridLines: {
+                                color: "rgba(120,140,240,0.4)",
                             }
                         }, {
                             id: "dps",
                             type: "linear",
-                            position: "right",
                             ticks: {
                                 beginAtZero: true,
                             },
@@ -140,10 +244,6 @@
                 var d = [];
                 var mana_smooth = true;
                 if (mana_smooth) {
-                    for (var i=0; i<this.result.log.length; i++) {
-                        if (this.result.log[i].text.indexOf("Vampiric Touch") != -1)
-                            d.push({x: this.result.log[i].t, y: this.result.log[i].mana_percent});
-                    }
                     if (!d.length) {
                         for (var i=0; i<this.result.log.length; i++) {
                             if (this.result.log[i].text.indexOf("Mana Regen") != -1)
@@ -159,155 +259,31 @@
                 data.datasets.push({
                     data: d,
                     borderColor: "#08f",
-                    borderWidth: 0.5,
+                    borderWidth: 1,
                     pointRadius: 0,
                     hitRadius: 0,
                     label: "Mana",
                 });
 
-
                 // DPS
                 d = [];
                 d.push({x: 0, y: 0});
                 for (var i=0; i<this.result.log.length; i++) {
-                    if (this.result.log[i].type == 1 && this.result.log[i].t)
+                    if (this.result.log[i].type == 3 && this.result.log[i].t)
                         d.push({x: this.result.log[i].t, y: this.result.log[i].dmg / this.result.log[i].t});
                 }
                 d.push({x: this.result.t, y: this.result.dps});
                 data.datasets.push({
                     data: d,
                     borderColor: "#f00",
-                    borderWidth: 0.5,
+                    borderWidth: 1,
                     pointRadius: 0,
                     label: "DPS",
                     fill: false,
                     yAxisID: "dps",
                 });
 
-                var delta = 0;
-                var start, end;
-                var buff_width = 5;
-
-                // CDs
-                for (var i=0; i<this.cds.length; i++) {
-                    start = _.filter(this.result.log, {text: "Gained "+this.cds[i].title});
-                    end = _.filter(this.result.log, {text: "Lost "+this.cds[i].title});
-                    for (var j=0; j<start.length; j++) {
-                        data.datasets.push({
-                            data: [
-                                {x: start[j].t, y: delta*this.buff_padding + this.buff_start_pos},
-                                {x: end.length > j ? end[j].t : this.result.t, y: delta*this.buff_padding + this.buff_start_pos}
-                            ],
-                            borderColor: this.cds[i].color,
-                            borderWidth: buff_width,
-                            pointRadius: 0,
-                            hitRadius: 0,
-                            // label: j == 0 ? this.cds[i].title : '',
-                            label: '',
-                            fill: false,
-                        });
-                    }
-                    if (start.length)
-                        delta++;
-                }
-
-                // Trinkets
-                var trinket_colors = ["rgba(255,255,255,0.6)", "rgba(160,60,160,0.6)"];
-
-                var t = 0;
-                for (var i=0; i<this.trinkets.length; i++) {
-                    start = _.filter(this.result.log, {text: "Gained "+this.trinkets[i].title});
-                    end = _.filter(this.result.log, {text: "Lost "+this.trinkets[i].title});
-                    for (var j=0; j<start.length; j++) {
-                        data.datasets.push({
-                            data: [
-                                {x: start[j].t, y: delta*this.buff_padding + this.buff_start_pos},
-                                {x: end.length > j ? end[j].t : this.result.t, y: delta*this.buff_padding + this.buff_start_pos}
-                            ],
-                            borderColor: trinket_colors[t],
-                            borderWidth: buff_width,
-                            pointRadius: 0,
-                            hitRadius: 0,
-                            // label: j == 0 ? this.trinkets[i].title : '',
-                            label: '',
-                            fill: false,
-                        });
-                    }
-                    if (start.length) {
-                        delta++;
-                        t++;
-                        if (t > 1)
-                            break;
-                    }
-                }
-
-                // Mana gained
-                /*
-                for (var i=0; i<this.mana_gains.length; i++) {
-                    start = _.filter(this.result.log, function(a) { return a.text.indexOf(" mana from "+self.mana_gains[i].title) > 0; });
-                    for (var j=0; j<start.length; j++) {
-                        data.datasets.push({
-                            data: [
-                                {x: start[j].t, y: delta*this.buff_padding + this.buff_start_pos},
-                                {x: start[j].t+1, y: delta*this.buff_padding + this.buff_start_pos}
-                            ],
-                            borderColor: this.mana_gains[i].color,
-                            borderWidth: buff_width,
-                            pointRadius: 0,
-                            hitRadius: 0,
-                            label: '',
-                            fill: false,
-                        });
-                    }
-                    if (start.length)
-                        delta++;
-                }
-                */
-
                 this.renderChart(data, options);
-            },
-
-            drawImages() {
-                var self = this;
-
-                var x, y, start;
-                var delta = 0;
-                var px = 12;
-
-                var buffs = _.concat(this.cds, this.trinkets);
-                for (var i=0; i<buffs.length; i++) {
-                    start = _.filter(this.result.log, {text: "Gained "+buffs[i].title});
-                    if (buffs[i].img) {
-                        for (var j=0; j<start.length; j++) {
-                            x = this.$data._chart.scales["x-axis-0"].getPixelForValue(start[j].t) - px;
-                            y = this.$data._chart.scales["y-axis-0"].getPixelForValue(delta*this.buff_padding + this.buff_start_pos) - px/2;
-                            var im = new Image;
-                            im.onload = (function(xx, yy, img) {
-                                setTimeout(function() { self.$refs.canvas.getContext("2d").drawImage(img, xx, yy, 12, 12) }, 100);
-                            }(x, y, im));
-                            im.src = buffs[i].img;
-                        }
-                    }
-                    if (start.length)
-                        delta++;
-                }
-
-                for (var i=0; i<this.mana_gains.length; i++) {
-                    start = _.filter(this.result.log, function(a) { return a.text.indexOf(" mana from "+self.mana_gains[i].title) > 0; });
-                    if (this.mana_gains[i].img) {
-                        for (var j=0; j<start.length; j++) {
-                            x = this.$data._chart.scales["x-axis-0"].getPixelForValue(start[j].t) - px;
-                            y = this.$data._chart.scales["y-axis-0"].getPixelForValue(delta*this.buff_padding + this.buff_start_pos) - px/2;
-                            var im = new Image;
-                            im.onload = (function(xx, yy, img) {
-                                setTimeout(function() { self.$refs.canvas.getContext("2d").drawImage(img, xx, yy, 12, 12) }, 100);
-                            }(x, y, im));
-                            im.src = this.mana_gains[i].img;
-                        }
-                    }
-                    if (start.length)
-                        delta++;
-                }
             },
         }
     }

@@ -12,6 +12,7 @@ public:
 
     map<spell::ID, SpellStats> spells;
     map<debuff::ID, shared_ptr<debuff::Debuff>> debuffs;
+    list<shared_ptr<unit::Unit>> units;
 
     shared_ptr<Config> config;
 
@@ -32,6 +33,12 @@ public:
         evocated_at = -1;
         spells.clear();
         debuffs.clear();
+        units.clear();
+    }
+
+    bool inCombat()
+    {
+        return t >= 0;
     }
 
     double dps()
@@ -67,6 +74,41 @@ public:
     void removeDebuff(debuff::ID id)
     {
         debuffs.erase(id);
+    }
+
+    bool hasUnit(int id)
+    {
+        for (auto itr = units.begin(); itr != units.end(); itr++) {
+            if ((*itr)->id == id)
+                return true;
+        }
+
+        return false;
+    }
+
+    void addUnit(shared_ptr<unit::Unit> unit)
+    {
+        units.push_back(unit);
+    }
+
+    void removeUnit(shared_ptr<unit::Unit> unit)
+    {
+        for (auto itr = units.begin(); itr != units.end(); itr++) {
+            if ((*itr) == unit) {
+                units.erase(itr);
+                break;
+            }
+        }
+    }
+
+    void removeUnit(int id)
+    {
+        for (auto itr = units.begin(); itr != units.end(); itr++) {
+            if ((*itr)->id == id) {
+                units.erase(itr);
+                break;
+            }
+        }
     }
 
     double timeRemain()

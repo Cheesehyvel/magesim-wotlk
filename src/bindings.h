@@ -34,7 +34,11 @@ EMSCRIPTEN_BINDINGS(my_module) {
     emscripten::register_vector<double>("VectorDouble");
 
     emscripten::enum_<Rotation>("Rotation")
-        .value("ROTATION_ST_ARCANE", ROTATION_ST_ARCANE)
+        .value("ROTATION_ST_FROSTFIRE", ROTATION_ST_FROSTFIRE)
+        .value("ROTATION_ST_AB_AM", ROTATION_ST_AB_AM)
+        .value("ROTATION_ST_AB_AM_BARRAGE", ROTATION_ST_AB_AM_BARRAGE)
+        .value("ROTATION_ST_FIRE", ROTATION_ST_FIRE)
+        .value("ROTATION_ST_FROST", ROTATION_ST_FROST)
         .value("ROTATION_AOE_AE", ROTATION_AOE_AE)
         ;
 
@@ -94,7 +98,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("LOG_DEBUG", LOG_DEBUG)
         .value("LOG_WAIT", LOG_WAIT)
         .value("LOG_GCD_CAP", LOG_GCD_CAP)
-    ;
+        .value("LOG_UNIT", LOG_UNIT)
+        ;
 
     emscripten::class_<Config>("Config")
         .smart_ptr<std::shared_ptr<Config>>("Config")
@@ -104,30 +109,51 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("avg_spell_dmg", &Config::avg_spell_dmg)
         .property("additional_data", &Config::additional_data)
         .property("targets", &Config::targets)
+        .property("target_resistance", &Config::target_resistance)
+        .property("target_level", &Config::target_level)
+        .property("spell_travel_time", &Config::spell_travel_time)
 
         .property("debuff_spell_crit", &Config::debuff_spell_crit)
         .property("debuff_spell_dmg", &Config::debuff_spell_dmg)
+        .property("debuff_spell_hit", &Config::debuff_spell_hit)
+        .property("debuff_crit", &Config::debuff_crit)
+        .property("buff_spell_crit", &Config::buff_spell_crit)
+        .property("buff_spell_haste", &Config::buff_spell_haste)
+        .property("buff_haste", &Config::buff_haste)
         .property("buff_dmg", &Config::buff_dmg)
+        .property("totem_of_wrath", &Config::totem_of_wrath)
+        .property("flametongue", &Config::flametongue)
+        .property("demonic_pact", &Config::demonic_pact)
+        .property("demonic_pact_bonus", &Config::demonic_pact_bonus)
         .property("mana_replenishment", &Config::mana_replenishment)
+        .property("judgement_of_wisdom", &Config::judgement_of_wisdom)
         .property("mage_armor", &Config::mage_armor)
         .property("molten_armor", &Config::molten_armor)
         .property("drums_friend", &Config::drums_friend)
 
+        .property("black_magic", &Config::black_magic)
+        .property("lightweave_embroidery", &Config::lightweave_embroidery)
+        .property("darkglow_embroidery", &Config::darkglow_embroidery)
+        .property("hyperspeed_accelerators", &Config::hyperspeed_accelerators)
+
         .property("drums", &Config::drums)
         .property("potion", &Config::potion)
+        .property("pre_potion", &Config::pre_potion)
         .property("conjured", &Config::conjured)
 
         .property("trinket1", &Config::trinket1)
         .property("trinket2", &Config::trinket2)
         .property("meta_gem", &Config::meta_gem)
 
+        .property("rotation", &Config::rotation)
+        .property("rot_ab_stacks_three", &Config::rot_ab_stacks_three)
+        .property("rot_ice_lance", &Config::rot_ice_lance)
+
         .property("innervate", &Config::innervate)
         .property("evo_ticks", &Config::evo_ticks)
         .property("mana_tide", &Config::mana_tide)
         .property("bloodlust", &Config::bloodlust)
         .property("power_infusion", &Config::power_infusion)
-
-        .property("rotation", &Config::rotation)
 
         .property("trinket1_t", &Config::trinket1_t)
         .property("trinket2_t", &Config::trinket2_t)
@@ -144,6 +170,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("innervate_t", &Config::innervate_t)
         .property("potion_t", &Config::potion_t)
         .property("conjured_t", &Config::conjured_t)
+        .property("hyperspeed_t", &Config::hyperspeed_t)
 
         .property("evocation_at", &Config::evocation_at)
         ;

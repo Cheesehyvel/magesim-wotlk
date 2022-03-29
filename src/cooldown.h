@@ -8,8 +8,11 @@ namespace cooldown
         CONJURED = 2,
         TRINKET1 = 3,
         TRINKET2 = 4,
+        TRINKET_SHARED = 5,
         EVOCATION = 12051,
         COLD_SNAP = 11958,
+        WATER_ELEMENTAL = 31687,
+        DEEP_FREEZE = 44572,
         BERSERKING = 20554,
         ICY_VEINS = 12472,
         FIRE_BLAST = 42873,
@@ -20,8 +23,13 @@ namespace cooldown
         COMBUSTION = 29977,
         ARCANE_POWER = 12042,
         PRESENCE_OF_MIND = 12043,
+        MIRROR_IMAGE = 55342,
         POWER_INFUSION = 10060,
         DRUMS = 35476,
+        BLACK_MAGIC = 59626,
+        LIGHTWEAVE = 55637,
+        DARKGLOW = 55767,
+        HYPERSPEED_ACCELERATION = 54758,
     };
 
 
@@ -42,14 +50,26 @@ namespace cooldown
 
     };
 
+    class TrinketShared : public Cooldown
+    {
+
+    public:
+        TrinketShared(double _duration = 20)
+        {
+            id = TRINKET_SHARED;
+            duration = _duration;
+        }
+
+    };
+
     class Potion : public Cooldown
     {
 
     public:
-        Potion()
+        Potion(bool in_combat)
         {
             id = POTION;
-            duration = 120;
+            duration = in_combat ? 100000 : 120;
         }
 
     };
@@ -85,7 +105,7 @@ namespace cooldown
         ArcanePower()
         {
             id = ARCANE_POWER;
-            duration = 180;
+            duration = 120;
         }
 
     };
@@ -97,6 +117,18 @@ namespace cooldown
         PresenceOfMind()
         {
             id = PRESENCE_OF_MIND;
+            duration = 180;
+        }
+
+    };
+
+    class MirrorImage : public Cooldown
+    {
+
+    public:
+        MirrorImage()
+        {
+            id = MIRROR_IMAGE;
             duration = 180;
         }
 
@@ -198,6 +230,30 @@ namespace cooldown
 
     };
 
+    class WaterElemental : public Cooldown
+    {
+
+    public:
+        WaterElemental()
+        {
+            id = WATER_ELEMENTAL;
+            duration = 180;
+        }
+
+    };
+
+    class DeepFreeze : public Cooldown
+    {
+
+    public:
+        DeepFreeze()
+        {
+            id = DEEP_FREEZE;
+            duration = 30;
+        }
+
+    };
+
     class Evocation : public Cooldown
     {
 
@@ -230,6 +286,54 @@ namespace cooldown
         {
             id = DRUMS;
             duration = 120;
+        }
+
+    };
+
+    class BlackMagic : public Cooldown
+    {
+
+    public:
+        BlackMagic()
+        {
+            id = BLACK_MAGIC;
+            duration = 35;
+        }
+
+    };
+
+    class Lightweave : public Cooldown
+    {
+
+    public:
+        Lightweave()
+        {
+            id = LIGHTWEAVE;
+            duration = 45;
+        }
+
+    };
+
+    class Darkglow : public Cooldown
+    {
+
+    public:
+        Darkglow()
+        {
+            id = DARKGLOW;
+            duration = 45;
+        }
+
+    };
+
+    class HyperspeedAcceleration : public Cooldown
+    {
+
+    public:
+        HyperspeedAcceleration()
+        {
+            id = HYPERSPEED_ACCELERATION;
+            duration = 60;
         }
 
     };

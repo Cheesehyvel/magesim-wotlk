@@ -37,6 +37,8 @@ onmessage = (event) => {
                 config.drums = m.Drums.values[data.config.drums];
             if (m.Potion.values.hasOwnProperty(data.config.potion))
                 config.potion = m.Potion.values[data.config.potion];
+            if (m.Potion.values.hasOwnProperty(data.config.pre_potion))
+                config.pre_potion = m.Potion.values[data.config.pre_potion];
             if (m.Conjured.values.hasOwnProperty(data.config.conjured))
                 config.conjured = m.Conjured.values[data.config.conjured];
 

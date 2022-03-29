@@ -1,3 +1,7 @@
+namespace unit {
+    class Unit;
+}
+
 namespace action
 {
 
@@ -9,9 +13,12 @@ namespace action
         TYPE_BUFF_EXPIRE,
         TYPE_DEBUFF,
         TYPE_COOLDOWN,
+        TYPE_COOLDOWN_EXPIRE,
         TYPE_POTION,
         TYPE_CONJURED,
+        TYPE_TRINKET,
         TYPE_MANA,
+        TYPE_UNIT,
     };
 
     class Action
@@ -26,11 +33,13 @@ namespace action
 
         Potion potion;
         Conjured conjured;
+        Trinket trinket;
 
         shared_ptr<spell::Spell> spell;
         shared_ptr<buff::Buff> buff;
         shared_ptr<debuff::Debuff> debuff;
         shared_ptr<cooldown::Cooldown> cooldown;
+        shared_ptr<unit::Unit> unit;
 
         Action(Type _type)
         {

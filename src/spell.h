@@ -26,7 +26,16 @@ namespace spell
         DRAGONS_BREATH = 42950,
         ICE_LANCE = 42914,
         CONE_OF_COLD = 42931,
+        DEEP_FREEZE = 44572,
+        COLD_SNAP = 11958,
         IGNITE = 12848,
+
+        MIRROR_IMAGE = 55342,
+        MIRROR_FIRE_BLAST = 59637,
+        MIRROR_FROSTBOLT = 59638,
+
+        WATER_ELEMENTAL = 31687,
+        WATERBOLT = 31707,
     };
 
     enum Result : int
@@ -58,6 +67,7 @@ namespace spell
         bool has_travel_time = false;
         bool fixed_dmg = false;
         bool active_use = true;
+        bool is_trigger = false;
         int ticks = 0;
         int t_interval = 1;
         School school;
@@ -66,13 +76,14 @@ namespace spell
         int tick = 0;
         bool done = false;
 
-        int misses = 0;
-        int hits = 0;
-        int crits = 0;
-
         double avgDmg()
         {
             return (min_dmg + max_dmg)/2.0;
+        }
+
+        shared_ptr<Spell> clone() const
+        {
+            return make_shared<Spell>(*this);
         }
 
     };
@@ -306,6 +317,25 @@ namespace spell
 
     };
 
+    class IceLance : public Spell
+    {
+
+    public:
+        IceLance()
+        {
+            id = ICE_LANCE;
+            name = "Ice Lance";
+            cost = 6;
+            min_dmg = 221;
+            max_dmg = 255;
+            cast_time = 0;
+            coeff = 1.5/3.5/3.0;
+            has_travel_time = true;
+            school = SCHOOL_FROST;
+        }
+
+    };
+
     class Pyroblast : public Spell
     {
 
@@ -331,7 +361,7 @@ namespace spell
     public:
         PyroblastDot()
         {
-            id = PYROBLAST;
+            id = PYROBLAST_DOT;
             name = "Pyroblast";
             dot = true;
             active_use = false;
@@ -353,6 +383,7 @@ namespace spell
         {
             id = FLAMESTRIKE;
             name = "Flamestrike";
+            aoe = true;
             cost = 30;
             min_dmg = 873;
             max_dmg = 1067;
@@ -371,50 +402,14 @@ namespace spell
         {
             id = FLAMESTRIKE_DOT;
             name = "Flamestrike";
+            aoe = true;
             dot = true;
             active_use = false;
             t_interval = 2;
             ticks = 4;
             min_dmg = 195;
             max_dmg = 195;
-            aoe = true;
             coeff = 0.122;
-            school = SCHOOL_FIRE;
-        }
-
-    };
-
-    class BlastWave : public Spell
-    {
-
-    public:
-        BlastWave()
-        {
-            id = BLAST_WAVE;
-            name = "Blast Wave";
-            cost = 7;
-            min_dmg = 1047;
-            max_dmg = 1233;
-            cast_time = 0;
-            coeff = 0.1936;
-            school = SCHOOL_FIRE;
-        }
-
-    };
-
-    class DragonsBreath : public Spell
-    {
-
-    public:
-        DragonsBreath()
-        {
-            id = PYROBLAST;
-            name = "Dragon's Breath";
-            cost = 7;
-            min_dmg = 1101;
-            max_dmg = 1279;
-            cast_time = 0;
-            coeff = 0.1936;
             school = SCHOOL_FIRE;
         }
 
@@ -448,12 +443,103 @@ namespace spell
         {
             id = LIVING_BOMB_EXPLOSION;
             name = "Living Bomb";
+            aoe = true;
             active_use = false;
             min_dmg = 690;
             max_dmg = 690;
             coeff = 0.4286;
-            aoe = true;
             school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class BlastWave : public Spell
+    {
+
+    public:
+        BlastWave()
+        {
+            id = BLAST_WAVE;
+            name = "Blast Wave";
+            aoe = true;
+            cost = 7;
+            min_dmg = 1047;
+            max_dmg = 1233;
+            cast_time = 0;
+            coeff = 0.1936;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class DragonsBreath : public Spell
+    {
+
+    public:
+        DragonsBreath()
+        {
+            id = DRAGONS_BREATH;
+            name = "Dragon's Breath";
+            aoe = true;
+            cost = 7;
+            min_dmg = 1101;
+            max_dmg = 1279;
+            cast_time = 0;
+            coeff = 0.1936;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class ConeOfCold : public Spell
+    {
+
+    public:
+        ConeOfCold()
+        {
+            id = CONE_OF_COLD;
+            name = "Cone of Cold";
+            aoe = true;
+            cost = 25;
+            min_dmg = 707;
+            max_dmg = 773;
+            cast_time = 0;
+            coeff = 0.214;
+            school = SCHOOL_FROST;
+        }
+
+    };
+
+    class DeepFreeze : public Spell
+    {
+
+    public:
+        DeepFreeze()
+        {
+            id = DEEP_FREEZE;
+            name = "Deep Freeze";
+            cost = 9;
+            min_dmg = 1469;
+            max_dmg = 1741;
+            cast_time = 0;
+            coeff = 7.5/3.5;
+            school = SCHOOL_FROST;
+        }
+
+    };
+
+    class ColdSnap : public Spell
+    {
+
+    public:
+        ColdSnap()
+        {
+            id = COLD_SNAP;
+            name = "Cold Snap";
+            cost = 0;
+            is_trigger = true;
+            gcd = 0;
+            school = SCHOOL_FROST;
         }
 
     };
@@ -479,6 +565,94 @@ namespace spell
             stackable = true;
             fixed_dmg = true;
             school = SCHOOL_FIRE;
+        }
+
+    };
+
+
+    class MirrorImage : public Spell
+    {
+
+    public:
+        MirrorImage()
+        {
+            id = MIRROR_IMAGE;
+            name = "Mirror Image";
+            cost = 10;
+            is_trigger = true;
+            school = SCHOOL_ARCANE;
+        }
+
+    };
+
+    class MirrorFrostbolt : public Spell
+    {
+
+    public:
+        MirrorFrostbolt()
+        {
+            id = MIRROR_FROSTBOLT;
+            name = "Frostbolt";
+            cost = 0;
+            min_dmg = 163;
+            max_dmg = 169;
+            cast_time = 3;
+            coeff = 0.3;
+            school = SCHOOL_FROST;
+            binary = true;
+            has_travel_time = true;
+        }
+
+    };
+
+    class MirrorFireBlast : public Spell
+    {
+
+    public:
+        MirrorFireBlast()
+        {
+            id = MIRROR_FIRE_BLAST;
+            name = "Fire Blast";
+            cost = 0;
+            min_dmg = 88;
+            max_dmg = 98;
+            cast_time = 0;
+            coeff = 0.15;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+
+    class WaterElemental : public Spell
+    {
+
+    public:
+        WaterElemental()
+        {
+            id = WATER_ELEMENTAL;
+            name = "Water Elemental";
+            cost = 16;
+            is_trigger = true;
+            school = SCHOOL_FROST;
+        }
+
+    };
+
+    class Waterbolt : public Spell
+    {
+
+    public:
+        Waterbolt()
+        {
+            id = WATERBOLT;
+            name = "Waterbolt";
+            cost = 1;
+            min_dmg = 256;
+            max_dmg = 328;
+            cast_time = 2.5;
+            coeff = 2.5/3.0;
+            school = SCHOOL_FROST;
         }
 
     };

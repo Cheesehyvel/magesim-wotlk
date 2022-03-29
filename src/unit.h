@@ -1,5 +1,7 @@
 using namespace std;
 
+class State;
+
 namespace unit
 {
 
@@ -14,8 +16,10 @@ namespace unit
         double mana;
         double t_gcd;
         double t_gcd_capped = 0;
-        int mana_sapphire;
-        int mana_emerald;
+        double duration = 0;
+        bool unique = true;
+        bool get_raid_buffs = true;
+        int id;
 
         map<cooldown::ID, shared_ptr<cooldown::Cooldown>> cooldowns;
         map<buff::ID, shared_ptr<buff::Buff>> buffs;
@@ -26,18 +30,25 @@ namespace unit
             config = _config;
         }
 
-        void reset()
+        virtual void reset()
         {
             mana = maxMana();
             t_gcd = 0;
             t_gcd_capped = 0;
 
-            mana_sapphire = 0;
-            mana_emerald = 0;
-
             buffs.clear();
             debuffs.clear();
             cooldowns.clear();
+        }
+
+        virtual Stats getStats()
+        {
+            return stats;
+        }
+
+        virtual void setStats(Stats _stats)
+        {
+            stats = _stats;
         }
 
         bool hasCooldown(cooldown::ID id)
@@ -164,20 +175,6 @@ namespace unit
             return t;
         }
 
-        virtual double manaGem()
-        {
-            if (mana_sapphire > 0) {
-                mana_sapphire--;
-                return round(random<double>(3330, 3500));
-            }
-            else if (mana_emerald > 0) {
-                mana_emerald--;
-                mana = round(random<double>(2340, 2460));
-            }
-
-            return 0;
-        }
-
         virtual double baseCastTime(shared_ptr<spell::Spell> spell)
         {
             return spell->cast_time;
@@ -201,6 +198,8 @@ namespace unit
                 rating+= 145;
             if (hasBuff(buff::DRUMS_OF_BATTLE))
                 rating+= 80;
+            if (hasBuff(buff::BLACK_MAGIC))
+                rating+= 250;
 
             if (rating)
                 haste+= hasteRatingToHaste(rating) / 100.0;
@@ -217,6 +216,13 @@ namespace unit
             else if (hasBuff(buff::BERSERKING))
                 haste*= 1.2;
 
+            if (get_raid_buffs) {
+                if (config->buff_haste)
+                    haste*= 1.03;
+                if (config->buff_spell_haste)
+                    haste*= 1.03;
+            }
+
             return 1.0 / haste;
         }
 
@@ -227,7 +233,14 @@ namespace unit
 
         virtual double critChance(shared_ptr<spell::Spell> spell)
         {
-            return stats.crit;
+            double crit = stats.crit;
+
+            if (get_raid_buffs) {
+                if (config->buff_spell_crit)
+                    crit+= 5;
+            }
+
+            return crit;
         }
 
         virtual bool canMiss(shared_ptr<spell::Spell> spell)
@@ -262,7 +275,14 @@ namespace unit
 
         virtual double buffDmgMultiplier(shared_ptr<spell::Spell> spell, shared_ptr<State> state)
         {
-            return 1;
+            double multi = 1;
+
+            if (get_raid_buffs) {
+                if (config->buff_dmg)
+                    multi*= 1.03;
+            }
+
+            return multi;
         }
 
         virtual double baseManaCost(shared_ptr<spell::Spell> spell)
@@ -312,32 +332,45 @@ namespace unit
 
         virtual double getIntellect()
         {
-            return stats.intellect * intellectMultiplier();
+            return stats.intellect;
         }
 
         virtual double getSpirit()
         {
-            return stats.spirit * spiritMultiplier();
+            return stats.spirit;
         }
 
-        virtual double getSpellPower()
+        virtual double getSpellPower(School school = SCHOOL_NONE)
         {
-            return stats.spell_power * spellPowerMultiplier();
-        }
+            double sp = stats.spell_power;
 
-        virtual double intellectMultiplier()
-        {
-            return 1;
-        }
+            if (hasBuff(buff::FLAME_CAP) && (school == SCHOOL_FIRE || school == SCHOOL_FROSTFIRE))
+                sp+= 80.0;
+            if (hasBuff(buff::SERPENT_COIL))
+                sp+= 225.0;
+            if (hasBuff(buff::SHRUNKEN_HEAD))
+                sp+= 211.0;
+            if (hasBuff(buff::NAARU_SLIVER))
+                sp+= 320.0;
+            if (hasBuff(buff::DRUMS_OF_WAR))
+                sp+= 30.0;
+            if (hasBuff(buff::LIGHTWEAVE))
+                sp+= 295.0;
 
-        virtual double spiritMultiplier()
-        {
-            return 1;
-        }
+            if (get_raid_buffs) {
+                if (config->demonic_pact || config->totem_of_wrath || config->flametongue) {
+                    double x = 0;
+                    if (config->totem_of_wrath)
+                        x = 280;
+                    else if (config->flametongue)
+                        x = 144;
+                    if (config->demonic_pact && config->demonic_pact_bonus > x)
+                        x = config->demonic_pact_bonus;
+                    sp+= x;
+                }
+            }
 
-        virtual double spellPowerMultiplier()
-        {
-            return 1;
+            return sp;
         }
 
         virtual double cooldownMod(shared_ptr<cooldown::Cooldown> cooldown)
@@ -353,6 +386,27 @@ namespace unit
         }
 
         virtual list<shared_ptr<action::Action>> onSpellImpactProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
+        virtual list<shared_ptr<action::Action>> usePotion(Potion potion, bool in_combat)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
+        virtual list<shared_ptr<action::Action>> useConjured(Conjured conjured)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
+        virtual list<shared_ptr<action::Action>> useTrinket(Trinket trinket, shared_ptr<cooldown::Cooldown> cooldown)
         {
             list<shared_ptr<action::Action>> actions;
 
@@ -390,11 +444,17 @@ namespace unit
             return action;
         }
 
+        virtual shared_ptr<action::Action> cooldownExpireAction(shared_ptr<cooldown::Cooldown> cooldown)
+        {
+            shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_COOLDOWN_EXPIRE);
+            action->cooldown = cooldown;
+            return action;
+        }
+
         virtual shared_ptr<action::Action> spellAction(shared_ptr<spell::Spell> spell)
         {
             shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_SPELL);
             action->spell = spell;
-            action->primary_action = spell->active_use;
             return action;
         }
 

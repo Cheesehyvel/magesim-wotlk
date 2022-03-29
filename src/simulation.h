@@ -122,7 +122,7 @@ public:
     {
         reset();
 
-        pushManaRegen(player);
+        onManaRegen(player);
 
         if (config->innervate) {
             for (int i=0; i<config->innervate_t.size() && i<config->innervate; i++)
@@ -130,7 +130,7 @@ public:
         }
         if (config->bloodlust) {
             for (int i=0; i<config->bloodlust_t.size(); i++)
-                pushBuffGain(player, make_shared<buff::Bloodlust>(), config->bloodlust_t.at(i));
+                pushBuffGainAll(make_shared<buff::Bloodlust>(), config->bloodlust_t.at(i));
         }
         if (config->power_infusion) {
             for (int i=0; i<config->power_infusion_t.size(); i++)
@@ -154,8 +154,8 @@ public:
                 pushBuffGain(player, getDrumsBuff(), t);
         }
 
+        workCurrent();
         nextAction(player);
-
         work();
 
         SimulationResult result;
@@ -170,6 +170,19 @@ public:
         }
 
         return result;
+    }
+
+    void workCurrent()
+    {
+        shared_ptr<Event> event;
+
+        while (true) {
+            event = queue.front();
+            if (event->t != state->t)
+                return;
+            queue.pop_front();
+            tick(event);
+        }
     }
 
     void work()
@@ -209,6 +222,8 @@ public:
             onBuffGain(event->unit, event->buff);
         else if (event->type == EVENT_BUFF_EXPIRE)
             onBuffExpire(event->unit, event->buff);
+        else if (event->type == EVENT_BUFF_GAIN_ALL)
+            onBuffGainAll(event->buff);
         else if (event->type == EVENT_DEBUFF_GAIN)
             onDebuffGain(event->debuff);
         else if (event->type == EVENT_DEBUFF_EXPIRE)
@@ -217,6 +232,10 @@ public:
             onCooldownGain(event->unit, event->cooldown);
         else if (event->type == EVENT_CD_EXPIRE)
             onCooldownExpire(event->unit, event->cooldown);
+        else if (event->type == EVENT_UNIT)
+            onUnitSpawn(event->unit);
+        else if (event->type == EVENT_UNIT_DESPAWN)
+            onUnitDespawn(event->unit);
         else if (event->type == EVENT_WAIT)
             onWait(event->unit);
     }
@@ -338,6 +357,16 @@ public:
         push(event);
     }
 
+    void pushBuffGainAll(shared_ptr<buff::Buff> buff, double t)
+    {
+        shared_ptr<Event> event(new Event());
+        event->type = EVENT_BUFF_GAIN_ALL;
+        event->t = t;
+        event->buff = buff;
+
+        push(event);
+    }
+
     void pushBuffExpire(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff, double t = 0)
     {
         shared_ptr<Event> event(new Event());
@@ -391,6 +420,16 @@ public:
         push(event);
     }
 
+    void pushUnitDespawn(shared_ptr<unit::Unit> unit, double t)
+    {
+        shared_ptr<Event> event(new Event());
+        event->type = EVENT_UNIT_DESPAWN;
+        event->t = t;
+        event->unit = unit;
+
+        push(event);
+    }
+
     void pushWait(shared_ptr<unit::Unit> unit, double t, std::string str = "")
     {
         shared_ptr<Event> event(new Event());
@@ -400,38 +439,33 @@ public:
 
         push(event);
 
-        ostringstream s;
-        s << std::fixed << std::setprecision(2);
-        if (str.length())
-            s << str << ", waiting ";
-        else
-            s << "Waiting ";
-        s << t << " seconds...";
-
-        addLog(unit, LOG_WAIT, s.str());
+        if (str.length()) {
+            ostringstream s;
+            s << std::fixed << std::setprecision(2);
+            s << str << ", waiting " << t << " seconds...";
+            addLog(unit, LOG_WAIT, s.str());
+        }
     }
 
     void onAction(shared_ptr<unit::Unit> unit, shared_ptr<action::Action> action)
     {
-        bool go_next = false;
-
         if (action->type == action::TYPE_WAIT) {
             pushWait(unit, action->value);
         }
         else if (action->type == action::TYPE_SPELL) {
             cast(unit, action->spell);
+            if (action->cooldown)
+                onCooldownGain(unit, action->cooldown);
         }
         else if (action->type == action::TYPE_BUFF) {
             onBuffGain(unit, action->buff);
             if (action->cooldown)
                 onCooldownGain(unit, action->cooldown);
-            go_next = action->primary_action;
         }
         else if (action->type == action::TYPE_BUFF_EXPIRE) {
             onBuffExpire(unit, action->buff);
             if (action->cooldown)
                 onCooldownGain(unit, action->cooldown);
-            go_next = action->primary_action;
         }
         else if (action->type == action::TYPE_DEBUFF) {
             onDebuffGain(action->debuff);
@@ -441,19 +475,26 @@ public:
         else if (action->type == action::TYPE_COOLDOWN) {
             onCooldownGain(unit, action->cooldown);
         }
+        else if (action->type == action::TYPE_COOLDOWN_EXPIRE) {
+            onCooldownExpire(unit, action->cooldown);
+        }
         else if (action->type == action::TYPE_POTION) {
             usePotion(unit, action->potion);
-            go_next = true;
         }
         else if (action->type == action::TYPE_CONJURED) {
             useConjured(unit, action->conjured);
-            go_next = true;
+        }
+        else if (action->type == action::TYPE_TRINKET) {
+            useTrinket(unit, action->trinket, action->cooldown);
         }
         else if (action->type == action::TYPE_MANA) {
             onManaGain(unit, action->value, action->str);
         }
+        else if (action->type == action::TYPE_UNIT) {
+            onUnitSpawn(action->unit);
+        }
 
-        if (go_next)
+        if (action->primary_action)
             nextAction(unit);
     }
 
@@ -473,7 +514,7 @@ public:
     {
         if (canCast(unit, spell)) {
             if (spell->active_use && unit->t_gcd > state->t)
-                pushWait(unit, unit->t_gcd - state->t, "GCD");
+                pushWait(unit, unit->t_gcd - state->t);
             else
                 onCastStart(unit, spell);
         }
@@ -505,6 +546,8 @@ public:
 
     void onCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
+        bool success = !spell->tick && spell->active_use;
+
         if (!spell->tick) {
             spell->actual_cost = manaCost(unit, spell);
             unit->mana-= spell->actual_cost;
@@ -513,34 +556,41 @@ public:
 
         if (spell->channeling && !spell->tick) {
             double cast_time = castTime(unit, spell);
-            for (int i=1; i<=spell->ticks; i++)
-                pushCastFinish(unit, spell, cast_time / spell->ticks * i);
-
-            spell->tick++;
+            shared_ptr<spell::Spell> part;
+            for (int i=1; i<=spell->ticks; i++) {
+                part = spell->clone();
+                part->tick = i;
+                pushCastFinish(unit, part, cast_time / spell->ticks * i);
+            }
         }
         else if (spell->dot) {
             dotApply(unit, spell);
         }
-        else {
+        else if (!spell->is_trigger) {
             pushSpellImpact(unit, spell, travelTime(unit, spell));
         }
 
-        if (!spell->tick && spell->active_use) {
-            if (unit->hasBuff(buff::CLEARCAST))
-                unit->removeBuff(buff::CLEARCAST);
+        if (success) {
+            if (!spell->is_trigger && unit->hasBuff(buff::CLEARCAST))
+                onBuffExpire(unit, make_shared<buff::Clearcast>());
             onCastSuccessProc(unit, spell);
         }
 
-        if (spell->channeling) {
+        if (spell->channeling)
             spell->done = spell->tick == spell->ticks;
-            spell->tick++;
-        }
-        else {
+        else
             spell->done = true;
-        }
 
-        if (spell->done && spell->active_use)
-            nextAction(unit);
+        if (spell->done && spell->active_use) {
+            if (unit->t_gcd <= state->t)
+                nextAction(unit);
+            else
+                pushWait(unit, unit->t_gcd - state->t);
+
+            // Log spell use
+            initSpellStats(unit, spell);
+            state->spells[spell->id].casts++;
+        }
     }
 
     void onSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
@@ -548,6 +598,22 @@ public:
         state->dmg+= instance->dmg;
         logSpellImpact(unit, instance);
         onSpellImpactProc(unit, instance);
+
+        // Log spell use
+        if (state->spells.find(instance->spell->id) != state->spells.end()) {
+            if (instance->result == spell::MISS)
+                state->spells[instance->spell->id].misses++;
+            else if (instance->result == spell::CRIT)
+                state->spells[instance->spell->id].crits++;
+            else
+                state->spells[instance->spell->id].hits++;
+
+            state->spells[instance->spell->id].dmg+= instance->dmg;
+            if (instance->dmg > state->spells[instance->spell->id].max_dmg)
+                state->spells[instance->spell->id].max_dmg = instance->dmg;
+            if (instance->dmg < state->spells[instance->spell->id].min_dmg || state->spells[instance->spell->id].min_dmg == 0)
+                state->spells[instance->spell->id].min_dmg = instance->dmg;
+        }
     }
 
     void dotApply(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -593,6 +659,38 @@ public:
         processActions(unit, actions);
     }
 
+    void onUnitSpawn(shared_ptr<unit::Unit> unit)
+    {
+        if (unit->unique)
+            despawnDuplicate(unit);
+
+        unit->reset();
+        logUnitSpawn(unit);
+        state->addUnit(unit);
+
+        if (unit->duration)
+            pushUnitDespawn(unit, unit->duration);
+
+        pushWait(unit, 0.5);
+    }
+
+    void onUnitDespawn(shared_ptr<unit::Unit> unit)
+    {
+        logUnitDespawn(unit);
+        removeUnitEvents(unit);
+        state->removeUnit(unit);
+    }
+
+    void despawnDuplicate(shared_ptr<unit::Unit> unit)
+    {
+        for (auto itr = state->units.begin(); itr != state->units.end(); itr++) {
+            if ((*itr)->id == unit->id) {
+                onUnitDespawn(*itr);
+                break;
+            }
+        }
+    }
+
     void onManaRegen(shared_ptr<unit::Unit> unit)
     {
         onManaGain(unit, unit->manaPerTick(), "Mana Regen");
@@ -627,6 +725,11 @@ public:
                 pushManaGain(unit, t, unit->maxMana() * 0.06, "Mana Tide");
         }
 
+        if (buff->id == buff::INNERVATE) {
+            for (double t=1; t<=10; t+= 1)
+                pushManaGain(unit, t, 3496 * .225, "Innervate");
+        }
+
         if (buff->id == buff::DRUMS_OF_RESTORATION) {
             for (double t = 3; t<=15; t+= 3)
                 pushManaGain(unit, t, 120, "Drums of Restoration");
@@ -641,6 +744,14 @@ public:
         removeBuffExpiration(unit, buff);
         logBuffExpire(unit, buff);
         unit->removeBuff(buff->id);
+    }
+
+    void onBuffGainAll(shared_ptr<buff::Buff> buff)
+    {
+        onBuffGain(player, buff);
+
+        for (auto itr = state->units.begin(); itr != state->units.end(); itr++)
+            onBuffGain(*itr, buff);
     }
 
     void onDebuffGain(shared_ptr<debuff::Debuff> debuff)
@@ -675,6 +786,24 @@ public:
         unit->removeCooldown(cooldown->id);
     }
 
+    void usePotion(shared_ptr<unit::Unit> unit, Potion potion)
+    {
+        std::list<shared_ptr<action::Action>> actions = unit->usePotion(potion, state->inCombat());
+        processActions(unit, actions);
+    }
+
+    void useConjured(shared_ptr<unit::Unit> unit, Conjured conjured)
+    {
+        std::list<shared_ptr<action::Action>> actions = unit->useConjured(conjured);
+        processActions(unit, actions);
+    }
+
+    void useTrinket(shared_ptr<unit::Unit> unit, Trinket trinket, shared_ptr<cooldown::Cooldown> cooldown)
+    {
+        std::list<shared_ptr<action::Action>> actions = unit->useTrinket(trinket, cooldown);
+        processActions(unit, actions);
+    }
+
     shared_ptr<buff::Buff> getDrumsBuff()
     {
         if (config->drums == DRUMS_OF_BATTLE)
@@ -685,61 +814,6 @@ public:
             return make_shared<buff::DrumsOfRestoration>();
 
         return NULL;
-    }
-
-    void usePotion(shared_ptr<unit::Unit> unit, Potion potion)
-    {
-        if (potion == POTION_MANA) {
-            double mana = round(random<double>(4200, 4400));
-
-            if (hasTrinket(TRINKET_MERCURIAL_ALCHEMIST_STONE))
-                mana*= 1.4;
-
-            onManaGain(unit, mana, "Mana Potion");
-        }
-        else if (potion == POTION_SPEED) {
-
-        }
-        else if (potion == POTION_WILD_MAGIC) {
-
-        }
-        else {
-            return;
-        }
-
-        onCooldownGain(unit, make_shared<cooldown::Potion>());
-    }
-
-    void useConjured(shared_ptr<unit::Unit> unit, Conjured conjured)
-    {
-        double cd = 120;
-
-        if (conjured == CONJURED_FLAME_CAP) {
-            cd = 180;
-            onBuffGain(unit, make_shared<buff::FlameCap>());
-        }
-        else if (conjured == CONJURED_MANA_GEM) {
-            double mana = unit->manaGem();
-
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                mana*= 1.25;
-
-            onManaGain(unit, mana, "Mana Gem");
-
-            // TODO: Check for t7 bonus
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                onBuffGain(unit, make_shared<buff::SerpentCoil>());
-        }
-        else {
-            return;
-        }
-
-        onCooldownGain(unit, make_shared<cooldown::Conjured>(cd));
-    }
-
-    bool hasTrinket(Trinket trinket)
-    {
-        return config->trinket1 == trinket || config->trinket2 == trinket;
     }
 
     bool hasDot(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -773,7 +847,7 @@ public:
 
     void removeSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        for (auto itr = queue.begin(); itr != queue.end();) {
+        for (auto itr = queue.begin(); itr != queue.end(); itr++) {
             if ((*itr)->type == EVENT_SPELL_IMPACT && (*itr)->instance->spell->id == spell->id && (*itr)->unit == unit) {
                 queue.erase(itr);
                 return;
@@ -841,6 +915,16 @@ public:
         return 0;
     }
 
+    void removeUnitEvents(shared_ptr<unit::Unit> unit)
+    {
+        for (auto itr = queue.begin(); itr != queue.end();) {
+            if ((*itr)->unit == unit && (*itr)->type != EVENT_SPELL_IMPACT)
+                itr = queue.erase(itr);
+            else
+                itr++;
+        }
+    }
+
     bool canCast(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         return unit->mana >= manaCost(unit, spell);
@@ -881,18 +965,25 @@ public:
 
     double hitChance(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        int dlevel = 3;
-        if (config->targets > 1)
-            dlevel = 2;
+        int dlevel = config->target_level - 80;
 
         double hit = 96.0 - dlevel;
 
         if (dlevel > 2)
-            hit-= 10.0;
+            hit-= (dlevel - 2) * 10.0;
 
         hit+= unit->hitChance(spell);
 
-        return min(hit, 99.0);
+        if (config->debuff_spell_hit)
+            hit+= 3.0;
+
+        // Binary spells get reduced chance to hit from resistance
+        // This is instead of partial resists
+        // https://wowwiki-archive.fandom.com/wiki/Spell_hit#Effect_of_resistance
+        if (spell->binary)
+            hit*= 1.0 - avgResist(unit);
+
+        return min(hit, 100.0);
     }
 
     double critChance(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -900,6 +991,8 @@ public:
         double crit = unit->critChance(spell);
 
         if (config->debuff_spell_crit || state->hasDebuff(debuff::IMPROVED_SCORCH))
+            crit+= 5.0;
+        if (config->debuff_crit)
             crit+= 5.0;
         else if (state->hasDebuff(debuff::WINTERS_CHILL))
             crit+= state->debuffStacks(debuff::WINTERS_CHILL);
@@ -925,9 +1018,6 @@ public:
     double buffDmgMultiplier(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         double multi = 1;
-
-        if (config->buff_dmg)
-            multi*= 1.03;
 
         multi*= unit->buffDmgMultiplier(spell, state);
 
@@ -957,19 +1047,8 @@ public:
             return dmg;
 
         if (spell->coeff) {
-            double sp = unit->getSpellPower();
+            double sp = unit->getSpellPower(spell->school);
             double coeff = spell->coeff;
-
-            if (unit->hasBuff(buff::FLAME_CAP) && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
-                sp+= 80.0;
-            if (unit->hasBuff(buff::SERPENT_COIL))
-                sp+= 225.0;
-            if (unit->hasBuff(buff::SHRUNKEN_HEAD))
-                sp+= 211.0;
-            if (unit->hasBuff(buff::NAARU_SLIVER))
-                sp+= 320.0;
-            if (unit->hasBuff(buff::DRUMS_OF_WAR))
-                sp+= 30.0;
 
             coeff+= unit->spellCoeffMod(spell);
 
@@ -989,26 +1068,37 @@ public:
         return dmg;
     }
 
+    double avgResist(shared_ptr<unit::Unit> unit)
+    {
+        double resistance = (double) config->target_resistance;
+        double target_constant = 5 * config->target_level;
+
+        if (config->target_level == 83)
+            target_constant = 510;
+
+        return resistance / (target_constant + resistance);
+    }
+
     double spellDmgResist(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
         if (instance->spell->binary)
             return 0.0;
 
-        // No confirmed formulas or resistance tables can be found
-        // This resistance table is based on data from Karazhan in TBC Beta uploaded to WCL
-        // It results in about 6% mitigation
-
-        int resist[4] = {83, 11, 5, 1};
-        int roll = random<int>(0, 99);
+        // Partial resist based on an old elitist jerks article
+        // https://web.archive.org/web/20110210195704/http://elitistjerks.com/f15/t44675-resistance_mechanics_wotlk/
 
         double resistance_multiplier = 0.0;
-        for (int i=0; i<4; i++) {
-            if (roll < resist[i]) {
-                resistance_multiplier = ((float) i) * 0.25;
+        double roll = random<double>(0, 1);
+        double avg_resist = avgResist(unit);
+        double resist_chance, x;
+
+        for (double i=0.1; i<1.0; i+= 0.1) {
+            resist_chance = max(0.0, 0.5 - 2.5 * abs(i - avg_resist));
+            if (roll < resist_chance) {
+                resistance_multiplier = i;
                 break;
             }
-
-            roll-= resist[i];
+            roll-= resist_chance;
         }
 
         if (!resistance_multiplier)
@@ -1165,6 +1255,30 @@ public:
         addLog(unit, LOG_MANA, s.str());
     }
 
+    void logUnitSpawn(shared_ptr<unit::Unit> unit)
+    {
+        if (!logging)
+            return;
+
+        ostringstream s;
+
+        s << unit->name << " spawned";
+
+        addLog(unit, LOG_UNIT, s.str());
+    }
+
+    void logUnitDespawn(shared_ptr<unit::Unit> unit)
+    {
+        if (!logging)
+            return;
+
+        ostringstream s;
+
+        s << unit->name << " despawned";
+
+        addLog(unit, LOG_UNIT, s.str());
+    }
+
     string jsonLog()
     {
         ostringstream s;
@@ -1175,7 +1289,10 @@ public:
             if (i > 0)
                 s << ",";
             s << "{";
-            s << "\"unit\":\"" << log[i]->unit->name << "\"";
+            if (log[i]->unit)
+                s << "\"unit\":\"" << log[i]->unit->name << "\"";
+            else
+                s << "\"unit\":\"Unknown\"";
             s << ",\"text\":\"" << log[i]->text << "\"";
             s << ",\"t\":" << log[i]->t;
             s << ",\"type\":" << log[i]->type;
@@ -1212,6 +1329,14 @@ public:
         log.clear();
     }
 
+    void initSpellStats(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
+    {
+        if (state->spells.find(spell->id) == state->spells.end()) {
+            state->spells[spell->id].name = spell->name;
+            state->spells[spell->id].source = unit->name;
+        }
+    }
+
     string spellStats()
     {
         ostringstream s;
@@ -1224,6 +1349,7 @@ public:
             s << "{";
             s << "\"id\":" << itr->first << ",";
             s << "\"name\":\"" << itr->second.name << "\",";
+            s << "\"source\":\"" << itr->second.source << "\",";
             s << "\"casts\":" << itr->second.casts << ",";
             s << "\"misses\":" << itr->second.misses << ",";
             s << "\"hits\":" << itr->second.hits << ",";
