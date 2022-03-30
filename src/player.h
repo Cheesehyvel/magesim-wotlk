@@ -19,6 +19,23 @@ namespace unit
         int mana_sapphire;
         int mana_emerald;
 
+        int trinket1_p;
+        int trinket2_p;
+        int presence_of_mind_p;
+        int arcane_power_p;
+        int icy_veins_p;
+        int cold_snap_p;
+        int combustion_p;
+        int berserking_p;
+        int mana_tide_p;
+        int bloodlust_p;
+        int power_infusion_p;
+        int drums_p;
+        int innervate_p;
+        int potion_p;
+        int conjured_p;
+        int hyperspeed_p;
+
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
             base_mana = 3268;
@@ -35,6 +52,23 @@ namespace unit
             t_living_bomb = -20;
             mana_sapphire = 3;
             mana_emerald = 3;
+
+            trinket1_p = 0;
+            trinket2_p = 0;
+            presence_of_mind_p = 0;
+            arcane_power_p = 0;
+            icy_veins_p = 0;
+            cold_snap_p = 0;
+            combustion_p = 0;
+            berserking_p = 0;
+            mana_tide_p = 0;
+            bloodlust_p = 0;
+            power_infusion_p = 0;
+            drums_p = 0;
+            innervate_p = 0;
+            potion_p = 0;
+            conjured_p = 0;
+            hyperspeed_p = 0;
         }
 
         Stats getStats()
@@ -886,6 +920,22 @@ namespace unit
             return true;
         }
 
+        bool isTimerReady(double t, std::vector<double>& v, int pos)
+        {
+            if (v.size() <= pos)
+                return true;
+
+            return v.at(pos) <= t;
+        }
+
+        bool isTimerReadyExplicit(double t, std::vector<double>& v, int pos)
+        {
+            if (v.size() <= pos)
+                return false;
+
+            return v.at(pos) <= t;
+        }
+
         list<shared_ptr<action::Action>> useTrinket(Trinket trinket, shared_ptr<cooldown::Cooldown> cooldown)
         {
             list<shared_ptr<action::Action>> actions = Unit::useTrinket(trinket, cooldown);
@@ -921,54 +971,65 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (isTimerReady(config->arcane_power_t, state->t) && !hasCooldown(cooldown::ARCANE_POWER) && talents.arcane_power) {
+            if (isTimerReady(state->t, config->arcane_power_t, arcane_power_p) && !hasCooldown(cooldown::ARCANE_POWER) && talents.arcane_power) {
                 action = buffAction(make_shared<buff::ArcanePower>(glyphs.arcane_power));
                 action->cooldown = make_shared<cooldown::ArcanePower>();
+                arcane_power_p++;
             }
-            else if (isTimerReady(config->combustion_t, state->t) && !hasCooldown(cooldown::COMBUSTION) && !hasBuff(buff::COMBUSTION) && talents.combustion) {
+            else if (isTimerReady(state->t, config->combustion_t, combustion_p) && !hasCooldown(cooldown::COMBUSTION) && !hasBuff(buff::COMBUSTION) && talents.combustion) {
                 action = buffAction(make_shared<buff::Combustion>());
+                combustion_p++;
             }
-            else if (isTimerReady(config->presence_of_mind_t, state->t) && !hasCooldown(cooldown::PRESENCE_OF_MIND) && talents.presence_of_mind) {
+            else if (isTimerReady(state->t, config->presence_of_mind_t, presence_of_mind_p) && !hasCooldown(cooldown::PRESENCE_OF_MIND) && talents.presence_of_mind) {
                 action = buffAction(make_shared<buff::PresenceOfMind>());
                 action->cooldown = make_shared<cooldown::PresenceOfMind>();
+                presence_of_mind_p++;
             }
-            else if (isTimerReady(config->icy_veins_t, state->t) && !hasCooldown(cooldown::ICY_VEINS) && talents.icy_veins) {
+            else if (isTimerReady(state->t, config->icy_veins_t, icy_veins_p) && !hasCooldown(cooldown::ICY_VEINS) && talents.icy_veins) {
                 action = buffAction(make_shared<buff::IcyVeins>());
                 action->cooldown = make_shared<cooldown::IcyVeins>();
+                icy_veins_p++;
             }
-            else if (isTimerReady(config->cold_snap_t, state->t) && !hasCooldown(cooldown::COLD_SNAP) && talents.cold_snap) {
+            else if (isTimerReady(state->t, config->cold_snap_t, cold_snap_p) && !hasCooldown(cooldown::COLD_SNAP) && talents.cold_snap) {
                 action = spellAction(make_shared<spell::ColdSnap>());
                 action->cooldown = make_shared<cooldown::ColdSnap>();
+                cold_snap_p++;
             }
-            else if (isTimerReady(config->berserking_t, state->t) && !hasCooldown(cooldown::BERSERKING) && race == RACE_TROLL) {
+            else if (isTimerReady(state->t, config->berserking_t, berserking_p) && !hasCooldown(cooldown::BERSERKING) && race == RACE_TROLL) {
                 action = buffAction(make_shared<buff::Berserking>());
                 action->cooldown = make_shared<cooldown::Berserking>();
+                berserking_p++;
             }
-            else if (isTimerReady(config->hyperspeed_t, state->t) && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && config->hyperspeed_accelerators) {
+            else if (isTimerReady(state->t, config->hyperspeed_t, hyperspeed_p) && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && config->hyperspeed_accelerators) {
                 action = buffAction(make_shared<buff::HyperspeedAcceleration>());
                 action->cooldown = make_shared<cooldown::HyperspeedAcceleration>();
+                hyperspeed_p++;
             }
-            else if (!hasCooldown(cooldown::POTION) && config->potion != POTION_NONE && config->potion != POTION_MANA && isTimerReady(config->potion_t, state->t)) {
+            else if (!hasCooldown(cooldown::POTION) && config->potion != POTION_NONE && config->potion != POTION_MANA && isTimerReady(state->t, config->potion_t, potion_p)) {
                 action = make_shared<action::Action>(action::TYPE_POTION);
                 action->potion = config->potion;
+                potion_p++;
             }
             else if (
                 !hasCooldown(cooldown::CONJURED) && config->conjured != CONJURED_NONE && (
-                    config->conjured == CONJURED_MANA_GEM && isTimerReadyExplicit(config->conjured_t, state->t) ||
-                    config->conjured != CONJURED_MANA_GEM && isTimerReady(config->conjured_t, state->t)))
+                    config->conjured == CONJURED_MANA_GEM && isTimerReadyExplicit(state->t, config->conjured_t, conjured_p) ||
+                    config->conjured != CONJURED_MANA_GEM && isTimerReady(state->t, config->conjured_t, conjured_p)))
             {
                 action = make_shared<action::Action>(action::TYPE_CONJURED);
                 action->conjured = config->conjured;
+                conjured_p++;
             }
-            else if (isUseTrinket(config->trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config->trinket1) && isTimerReady(config->trinket1_t, state->t)) {
+            else if (isUseTrinket(config->trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config->trinket1) && isTimerReady(state->t, config->trinket1_t, trinket1_p)) {
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET1);
                 action->trinket = config->trinket1;
+                trinket1_p++;
             }
-            else if (isUseTrinket(config->trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config->trinket2) && isTimerReady(config->trinket2_t, state->t)) {
+            else if (isUseTrinket(config->trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config->trinket2) && isTimerReady(state->t, config->trinket2_t, trinket2_p)) {
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
                 action->trinket = config->trinket2;
+                trinket2_p++;
             }
 
             if (action != NULL)
@@ -980,6 +1041,22 @@ namespace unit
         shared_ptr<action::Action> preCombat(shared_ptr<State> state)
         {
             shared_ptr<action::Action> action = NULL;
+
+            if (config->pre_potion && !hasCooldown(cooldown::POTION) && state->t >= -2.0) {
+                action = make_shared<action::Action>(action::TYPE_POTION);
+                action->potion = config->pre_potion;
+            }
+            else if (talents.water_elemental && config->pre_water_elemental && !state->hasUnit(unit::WATER_ELEMENTAL)) {
+                action = spellAction(make_shared<spell::WaterElemental>());
+                action->cooldown = make_shared<cooldown::WaterElemental>();
+            }
+            else if (config->pre_mirror_image && !hasCooldown(cooldown::MIRROR_IMAGE)) {
+                action = spellAction(make_shared<spell::MirrorImage>());
+                action->cooldown = make_shared<cooldown::MirrorImage>();
+            }
+
+            if (action != NULL)
+                action->primary_action = false;
 
             return action;
         }
@@ -1016,7 +1093,7 @@ namespace unit
                 return action;
             }
             // TODO: TESTING ONLY
-            if (!hasCooldown(cooldown::WATER_ELEMENTAL) && !state->hasUnit(unit::WATER_ELEMENTAL)) {
+            if (talents.water_elemental && !hasCooldown(cooldown::WATER_ELEMENTAL) && !state->hasUnit(unit::WATER_ELEMENTAL)) {
                 action = spellAction(make_shared<spell::WaterElemental>());
                 action->cooldown = make_shared<cooldown::WaterElemental>();
                 return action;

@@ -122,6 +122,8 @@ public:
     {
         reset();
 
+        runPrecombat();
+
         onManaRegen(player);
 
         if (config->innervate) {
@@ -170,6 +172,31 @@ public:
         }
 
         return result;
+    }
+
+    void runPrecombat()
+    {
+        double t = -1.5;
+
+        if (player->talents.water_elemental && config->pre_water_elemental && config->pre_mirror_image)
+            t-= 1.5;
+
+        state->t = player->t_gcd = t;
+        int i = 0;
+        while (nextAction(player)) {
+            workCurrent();
+            if (player->t_gcd != state->t) {
+                // Extra mana tick
+                if (state->t < -2.0) {
+                    state->t = -2.0;
+                    onManaRegen(player, false);
+                }
+                state->t = player->t_gcd;
+            }
+            workCurrent();
+        }
+
+        state->t = player->t_gcd = 0;
     }
 
     void workCurrent()
@@ -498,9 +525,14 @@ public:
             nextAction(unit);
     }
 
-    void nextAction(shared_ptr<unit::Unit> unit)
+    bool nextAction(shared_ptr<unit::Unit> unit)
     {
-        onAction(unit, unit->nextAction(state));
+        shared_ptr<action::Action> action = unit->nextAction(state);
+        if (action == NULL)
+            return false;
+
+        onAction(unit, action);
+        return true;
     }
 
     void processActions(shared_ptr<unit::Unit> unit, std::list<shared_ptr<action::Action>> actions)
@@ -582,10 +614,12 @@ public:
             spell->done = true;
 
         if (spell->done && spell->active_use) {
-            if (unit->t_gcd <= state->t)
-                nextAction(unit);
-            else
-                pushWait(unit, unit->t_gcd - state->t);
+            if (state->inCombat()) {
+                if (unit->t_gcd <= state->t)
+                    nextAction(unit);
+                else
+                    pushWait(unit, unit->t_gcd - state->t);
+            }
 
             // Log spell use
             initSpellStats(unit, spell);
@@ -671,7 +705,10 @@ public:
         if (unit->duration)
             pushUnitDespawn(unit, unit->duration);
 
-        pushWait(unit, 0.5);
+        if (state->inCombat())
+            pushWait(unit, 0.5);
+        else
+            pushWait(unit, -state->t);
     }
 
     void onUnitDespawn(shared_ptr<unit::Unit> unit)
@@ -691,10 +728,11 @@ public:
         }
     }
 
-    void onManaRegen(shared_ptr<unit::Unit> unit)
+    void onManaRegen(shared_ptr<unit::Unit> unit, bool next = true)
     {
         onManaGain(unit, unit->manaPerTick(), "Mana Regen");
-        pushManaRegen(unit);
+        if (next)
+            pushManaRegen(unit);
     }
 
     void onManaGain(shared_ptr<unit::Unit> unit, double mana, string source = "")

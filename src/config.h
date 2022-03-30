@@ -28,13 +28,16 @@ struct Config
     bool judgement_of_wisdom = false;
     bool mage_armor = true;
     bool molten_armor = false;
-    bool drums_friend = false;
 
     // Enchants / procs
     bool black_magic = false;
     bool lightweave_embroidery = false;
     bool darkglow_embroidery = false;
     bool hyperspeed_accelerators = false;
+
+    bool drums_friend = false;
+    bool pre_mirror_image = false;
+    bool pre_water_elemental = false;
 
     Drums drums;
     Potion potion;

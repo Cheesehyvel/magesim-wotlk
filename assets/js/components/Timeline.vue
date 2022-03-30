@@ -246,6 +246,8 @@
                 if (mana_smooth) {
                     if (!d.length) {
                         for (var i=0; i<this.result.log.length; i++) {
+                            if (this.result.log[i].t < 0)
+                                continue;
                             if (this.result.log[i].text.indexOf("Mana Regen") != -1)
                                 d.push({x: this.result.log[i].t, y: this.result.log[i].mana_percent});
                         }
@@ -253,8 +255,11 @@
                     d.push({x: this.result.t, y: _.last(this.result.log).mana_percent});
                 }
                 else {
-                    for (var i=0; i<this.result.log.length; i++)
+                    for (var i=0; i<this.result.log.length; i++) {
+                        if (this.result.log[i].t < 0)
+                            continue;
                         d.push({x: this.result.log[i].t, y: this.result.log[i].mana_percent});
+                    }
                 }
                 data.datasets.push({
                     data: d,

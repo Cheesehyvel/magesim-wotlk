@@ -928,6 +928,16 @@
                                         <option :value="potions.POTION_WILD_MAGIC">Potion of Wild Magic</option>
                                     </select>
                                 </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.pre_mirror_image">
+                                        <span>Mirror Image</span>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.talents.water_elemental">
+                                    <label><input type="checkbox" v-model="config.pre_water_elemental">
+                                        <span>Water Elemental</span>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-cooldowns">
                                 <legend>Cooldowns</legend>
@@ -1486,7 +1496,6 @@
                 battle_elixir: 0,
                 guardian_elixir: 0,
                 weapon_oil: 0,
-                drums_friend: false,
 
                 black_magic: false,
                 lightweave_embroidery: false,
@@ -1497,6 +1506,10 @@
                 potion: constants.potions.POTION_MANA,
                 pre_potion: constants.potions.POTION_SPEED,
                 conjured: constants.conjureds.CONJURED_MANA_GEM,
+
+                drums_friend: false,
+                pre_mirror_image: false,
+                pre_water_elemental: false,
 
                 wrist_socket: false,
                 hands_socket: false,
@@ -3191,6 +3204,8 @@
             },
 
             formatTime(s) {
+                var sign = s < 0 ? "-" : "";
+                s = Math.abs(s);
                 var dec = Math.round((s%1) * 100);
                 var sec = Math.floor(s);
                 if (dec == 100) {
@@ -3198,7 +3213,7 @@
                     sec++;
                 }
 
-                return (sec < 10 ? "0"+sec : sec)+"."+(dec < 10 ? "0"+dec : dec);
+                return sign+(sec < 10 ? "0"+sec : sec)+"."+(dec < 10 ? "0"+dec : dec);
             },
 
             round(num) {

@@ -2802,6 +2802,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2864,7 +2874,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       battle_elixir: 0,
       guardian_elixir: 0,
       weapon_oil: 0,
-      drums_friend: false,
       black_magic: false,
       lightweave_embroidery: false,
       darkglow_embroidery: false,
@@ -2873,6 +2882,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
       pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
       conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_MANA_GEM,
+      drums_friend: false,
+      pre_mirror_image: false,
+      pre_water_elemental: false,
       wrist_socket: false,
       hands_socket: false,
       meta_gem: 0,
@@ -4489,6 +4501,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return item.sockets.join(" / ");
     },
     formatTime: function formatTime(s) {
+      var sign = s < 0 ? "-" : "";
+      s = Math.abs(s);
       var dec = Math.round(s % 1 * 100);
       var sec = Math.floor(s);
 
@@ -4497,7 +4511,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sec++;
       }
 
-      return (sec < 10 ? "0" + sec : sec) + "." + (dec < 10 ? "0" + dec : dec);
+      return sign + (sec < 10 ? "0" + sec : sec) + "." + (dec < 10 ? "0" + dec : dec);
     },
     round: function round(num) {
       return Math.round(num);
@@ -5420,6 +5434,7 @@ __webpack_require__.r(__webpack_exports__);
       if (mana_smooth) {
         if (!d.length) {
           for (var i = 0; i < this.result.log.length; i++) {
+            if (this.result.log[i].t < 0) continue;
             if (this.result.log[i].text.indexOf("Mana Regen") != -1) d.push({
               x: this.result.log[i].t,
               y: this.result.log[i].mana_percent
@@ -5433,6 +5448,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         for (var i = 0; i < this.result.log.length; i++) {
+          if (this.result.log[i].t < 0) continue;
           d.push({
             x: this.result.log[i].t,
             y: this.result.log[i].mana_percent
@@ -67820,7 +67836,124 @@ var render = function() {
                           )
                         ]
                       )
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.config.pre_mirror_image,
+                              expression: "config.pre_mirror_image"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(_vm.config.pre_mirror_image)
+                              ? _vm._i(_vm.config.pre_mirror_image, null) > -1
+                              : _vm.config.pre_mirror_image
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.config.pre_mirror_image,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.config,
+                                      "pre_mirror_image",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.config,
+                                      "pre_mirror_image",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.config, "pre_mirror_image", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Mirror Image")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.config.talents.water_elemental
+                      ? _c("div", { staticClass: "form-item" }, [
+                          _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.config.pre_water_elemental,
+                                  expression: "config.pre_water_elemental"
+                                }
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.config.pre_water_elemental
+                                )
+                                  ? _vm._i(
+                                      _vm.config.pre_water_elemental,
+                                      null
+                                    ) > -1
+                                  : _vm.config.pre_water_elemental
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.config.pre_water_elemental,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "pre_water_elemental",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "pre_water_elemental",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(
+                                      _vm.config,
+                                      "pre_water_elemental",
+                                      $$c
+                                    )
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v("Water Elemental")])
+                          ])
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c(

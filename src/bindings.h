@@ -129,12 +129,15 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("judgement_of_wisdom", &Config::judgement_of_wisdom)
         .property("mage_armor", &Config::mage_armor)
         .property("molten_armor", &Config::molten_armor)
-        .property("drums_friend", &Config::drums_friend)
 
         .property("black_magic", &Config::black_magic)
         .property("lightweave_embroidery", &Config::lightweave_embroidery)
         .property("darkglow_embroidery", &Config::darkglow_embroidery)
         .property("hyperspeed_accelerators", &Config::hyperspeed_accelerators)
+
+        .property("drums_friend", &Config::drums_friend)
+        .property("pre_mirror_image", &Config::pre_mirror_image)
+        .property("pre_water_elemental", &Config::pre_water_elemental)
 
         .property("drums", &Config::drums)
         .property("potion", &Config::potion)

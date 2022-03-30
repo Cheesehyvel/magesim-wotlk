@@ -150,32 +150,6 @@ double hasteRatingToHaste(double rating)
     return rating / 32.79;
 }
 
-bool isTimerReady(std::vector<double>& v, double t)
-{
-    for (int i=0; i<v.size(); i++) {
-        if (v.at(i) > t)
-            return false;
-        // We give it a 20 second window to pop, otherwise it's an old timer
-        if (v.at(i) <= t && v.at(i) + 20 > t)
-            return true;
-    }
-
-    return true;
-}
-
-bool isTimerReadyExplicit(std::vector<double>& v, double t)
-{
-    for (int i=0; i<v.size(); i++) {
-        if (v.at(i) > t)
-            return false;
-        // We give it a 20 second window to pop, otherwise it's an old timer
-        if (v.at(i) <= t && v.at(i) + 20 > t)
-            return true;
-    }
-
-    return false;
-}
-
 // Global rng generator
 thread_local static std::mt19937 g_rng(std::random_device{}());
 
