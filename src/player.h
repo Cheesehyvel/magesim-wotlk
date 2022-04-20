@@ -123,6 +123,8 @@ namespace unit
                 while_casting+= 0.5;
                 if (glyphs.mage_armor)
                     while_casting+= 0.2;
+                if (config->t9_2set)
+                    while_casting+= 0.1;
             }
 
             mps+= min(1.0, while_casting) * spi;
@@ -175,6 +177,9 @@ namespace unit
             if (talents.netherwind_presence)
                 haste*= 1 + talents.netherwind_presence*0.02;
 
+            if (hasBuff(buff::PUSHING_THE_LIMIT))
+                haste*= 1.12;
+
             return 1.0 / haste;
         }
 
@@ -196,6 +201,8 @@ namespace unit
                 double multi = 0.35;
                 if (glyphs.molten_armor)
                     multi+= 0.2;
+                if (config->t9_2set)
+                    multi+= 0.15;
                 crit+= critRatingToChance(round(getSpirit() * multi));
             }
 
@@ -259,6 +266,17 @@ namespace unit
                     crit-= 1;
             }
 
+            if (config->t9_4set) {
+                if (spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::ARCANE_MISSILES ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT)
+                {
+                    crit+= 5.0;
+                }
+            }
+
             return crit;
         }
 
@@ -288,6 +306,8 @@ namespace unit
                 multi+= talents.spell_power*0.25;
             if (talents.burnout)
                 multi+= talents.spell_power*0.1;
+            if (config->t7_4set)
+                multi+= 0.05;
 
             if (spell->id == spell::ARCANE_MISSILES && glyphs.arcane_missiles)
                 multi+= 0.25;
@@ -355,6 +375,10 @@ namespace unit
                 multi*= 1.2;
             if (spell->id == spell::CONE_OF_COLD && talents.imp_cone_of_cold)
                 multi*= 1.05 + talents.imp_cone_of_cold * 0.1;
+            if (config->t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
+                multi*= 1.05;
+            if (hasBuff(buff::QUAD_CORE))
+                multi*= 1.18;
 
             if (talents.torment_of_the_weak) {
                 if (spell->id == spell::FROSTBOLT ||
@@ -498,6 +522,12 @@ namespace unit
             list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
             shared_ptr<action::Action> action = NULL;
 
+            if (spell->id == spell::EVOCATION && spell->tick)
+                actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
+
+            if (spell->tick)
+                return actions;
+
             if (spell->actual_cost)
                 t_mana_spent = state->t;
 
@@ -521,6 +551,10 @@ namespace unit
                 actions.push_back(cooldownAction(make_shared<cooldown::MirrorImage>()));
             if (spell->id == spell::WATER_ELEMENTAL)
                 actions.push_back(cooldownAction(make_shared<cooldown::WaterElemental>()));
+            if (spell->id == spell::EVOCATION) {
+                actions.push_back(cooldownAction(make_shared<cooldown::Evocation>()));
+                actions.push_back(buffAction(make_shared<buff::Evocation>(castHaste(), evocationTicks())));
+            }
             if (spell->id == spell::COLD_SNAP) {
                 actions.push_back(cooldownAction(make_shared<cooldown::ColdSnap>()));
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::IcyVeins>()));
@@ -537,13 +571,28 @@ namespace unit
             else if (hasBuff(buff::ARCANE_BLAST) && spell->school == SCHOOL_ARCANE)
                 actions.push_back(buffExpireAction(make_shared<buff::ArcaneBlast>()));
 
-            if (hasBuff(buff::BRAIN_FREEZE) && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL))
-                actions.push_back(buffExpireAction(make_shared<buff::BrainFreeze>()));
+            if (hasBuff(buff::BRAIN_FREEZE) && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
+                // 10% chance - UNCONFIRMED
+                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                    actions.push_back(buffExpireAction(make_shared<buff::BrainFreeze>()));
+                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                }
+            }
 
-            if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE))
-                actions.push_back(buffExpireAction(make_shared<buff::MissileBarrage>()));
-            if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK))
-                actions.push_back(buffExpireAction(make_shared<buff::HotStreak>()));
+            if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE)) {
+                // 10% chance - UNCONFIRMED
+                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                    actions.push_back(buffExpireAction(make_shared<buff::MissileBarrage>()));
+                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                }
+            }
+            if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
+                // 10% chance - UNCONFIRMED
+                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                    actions.push_back(buffExpireAction(make_shared<buff::HotStreak>()));
+                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                }
+            }
 
             if (talents.firestarter && (spell->id == spell::BLAST_WAVE || spell->id == spell::DRAGONS_BREATH))
                 actions.push_back(buffAction(make_shared<buff::Firestarter>()));
@@ -598,6 +647,8 @@ namespace unit
                     action->unit->setStats(stats);
                     actions.push_back(action);
                 }
+                if (config->t10_4set)
+                    actions.push_back(buffAction(make_shared<buff::QuadCore>()));
             }
 
             if (spell->id == spell::WATER_ELEMENTAL) {
@@ -609,6 +660,20 @@ namespace unit
                 else if (talents.enduring_winter)
                     action->unit->duration+= talents.enduring_winter * 5.0;
                 actions.push_back(action);
+            }
+
+            if (config->t8_2set && !hasCooldown(cooldown::PRAXIS)) {
+                if (spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT)
+                {
+                    if (random<int>(0, 3) == 0) {
+                        action = buffAction(make_shared<buff::Praxis>());
+                        action->cooldown = make_shared<cooldown::Praxis>();
+                        actions.push_back(action);
+                    }
+                }
             }
 
             return actions;
@@ -725,6 +790,26 @@ namespace unit
             return mana_sapphire > 0 || mana_emerald > 0;
         }
 
+        double manaGemMax()
+        {
+            double max = 0;
+            if (mana_sapphire > 0)
+                max = 3500;
+            else if (mana_emerald > 0)
+                max = 2460;
+            else
+                return 0;
+
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                max*= 1.25;
+            if (config->t7_2set)
+                max*= 1.25;
+            if (glyphs.mana_gem)
+                max*= 1.4;
+
+            return max;
+        }
+
         bool shouldUseManaGem(shared_ptr<State> state)
         {
             if (hasCooldown(cooldown::MANA_GEM))
@@ -741,18 +826,7 @@ namespace unit
                     return false;
             }
 
-            double max = 0;
-            if (mana_sapphire > 0)
-                max = 3500;
-            else if (mana_emerald > 0)
-                max = 2460;
-            else
-                return false;
-
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                max*= 1.25;
-            if (glyphs.mana_gem)
-                max*= 1.4;
+            double max = manaGemMax();
 
             // If tide is running, add a tick as buffer
             if (hasBuff(buff::MANA_TIDE))
@@ -792,17 +866,42 @@ namespace unit
             if (!hasCooldown(cooldown::MANA_GEM) && hasManaGem()) {
                 bool gem_soon = false;
                 shared_ptr<Timing> timing = getNextTiming("mana_gem");
-                if (timing != NULL && timing->t - state->t < 10) {
-                    double gem = 3500;
-                    if (hasTrinket(TRINKET_SERPENT_COIL))
-                        gem*= 1.25;
-                    if (glyphs.mana_gem)
-                        gem*= 1.4;
-                    max+= gem;
-                }
+                if (timing != NULL && timing->t - state->t < 10)
+                    max+= manaGemMax();
             }
 
             return maxMana() - mana >= max;
+        }
+
+        bool shouldEvocate(shared_ptr<State> state)
+        {
+            if (hasCooldown(cooldown::EVOCATION))
+                return false;
+
+            // Check for planned evocation timings
+            shared_ptr<Timing> timing = getNextTiming("evocation");
+            if (timing) {
+                if (isTimingReady(timing, state)) {
+                    useTiming(timing);
+                    return true;
+                }
+                if (timing->t < state->t + 480)
+                    return false;
+            }
+
+            if (hasBuff(buff::INNERVATE) || hasBuff(buff::MANA_TIDE))
+                return false;
+
+            if (manaPercent() > 20.0)
+                return false;
+
+            if (hasBuff(buff::BLOODLUST) && manaPercent() > 10.0)
+                return false;
+
+            if (state->duration - state->t < 12)
+                return false;
+
+            return true;
         }
 
         list<shared_ptr<action::Action>> useManaGem()
@@ -822,6 +921,8 @@ namespace unit
 
             if (hasTrinket(TRINKET_SERPENT_COIL))
                 mana*= 1.25;
+            if (config->t7_2set)
+                mana*= 1.25;
             if (glyphs.mana_gem)
                 mana*= 1.4;
 
@@ -829,6 +930,8 @@ namespace unit
 
             if (hasTrinket(TRINKET_SERPENT_COIL))
                 actions.push_back(buffAction(make_shared<buff::SerpentCoil>()));
+            if (config->t7_2set)
+                actions.push_back(buffAction(make_shared<buff::ImprovedManaGem>()));
 
             actions.push_back(cooldownAction(make_shared<cooldown::ManaGem>()));
 
@@ -982,6 +1085,16 @@ namespace unit
             return actions;
         }
 
+        int evocationTicks()
+        {
+            int ticks = 4;
+
+            if (config->t6_2set)
+                ticks++;
+
+            return ticks;
+        }
+
         shared_ptr<action::Action> useCooldown(shared_ptr<State> state)
         {
             shared_ptr<action::Action> action = NULL;
@@ -1031,8 +1144,11 @@ namespace unit
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
                 action->trinket = config->trinket2;
             }
+            else if (!hasCooldown(cooldown::EVOCATION) && useTimingIfPossible("evocation", state, true)) {
+                action = spellAction(make_shared<spell::Evocation>(evocationTicks()));
+            }
 
-            if (action != NULL)
+            if (action != NULL && action->type != action::TYPE_SPELL)
                 action->primary_action = true;
 
             return action;
@@ -1074,14 +1190,16 @@ namespace unit
 
             // Mana consumes
             if (shouldUseManaGem(state)) {
-                action = spellAction(make_shared<spell::ManaGem>());
-                return action;
+                return spellAction(make_shared<spell::ManaGem>());
             }
             else if (shouldUseManaPotion(state)) {
                 action = make_shared<action::Action>(action::TYPE_POTION);
                 action->potion = config->potion;
                 action->primary_action = true;
                 return action;
+            }
+            else if (shouldEvocate(state)) {
+                return spellAction(make_shared<spell::Evocation>(evocationTicks()));
             }
 
             // TODO: TESTING ONLY

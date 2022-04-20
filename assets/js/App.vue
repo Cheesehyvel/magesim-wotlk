@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="notice" v-if="donation_open" @click="donation_open = false">
+        <div class="notice notice-alt" v-if="donation_open" @click="donation_open = false">
             <div class="inner">
                 <div class="title">Thank you!</div>
                 <div class="text mt-2">
@@ -598,7 +598,7 @@
                                     <label>Spell travel time (ms)</label>
                                     <input type="text" v-model.number="config.spell_travel_time">
                                 </div>
-                                <div class="form-item">
+                                <div class="form-item" v-if="false">
                                     <label>
                                         <span>Reaction time (ms)</span>
                                         <help>Affects cooldown usage when waiting for procs</help>
@@ -1049,6 +1049,15 @@
                 </div>
             </div>
 
+            <div class="lightbox small warning" v-if="beta_warning_open">
+                <div class="closer" @click="closeBetaWarning"></div>
+                <div class="inner">
+                    <div class="title">BETA</div>
+                    <div class="text">This sim is under construction. Results are not accurate.</div>
+                    <div class="btn mt-2" @click="closeBetaWarning">I understand</div>
+                </div>
+            </div>
+
             <div class="lightbox" v-if="export_profile.open">
                 <div class="closer" @click="closeExport"></div>
                 <div class="inner">
@@ -1250,6 +1259,7 @@
             this.calcStats();
 
             this.checkDonation();
+            this.betaWarning();
         },
 
         data() {
@@ -1267,6 +1277,7 @@
                 target_resistance: 0,
                 target_level: 83,
                 spell_travel_time: 500,
+                reaction_time: 300,
 
                 // Debuffs
                 debuff_crit: false,
@@ -1311,11 +1322,16 @@
                 lightweave_embroidery: false,
                 darkglow_embroidery: false,
                 hyperspeed_accelerators: false,
-
-                drums: constants.drums.DRUMS_NONE,
-                potion: constants.potions.POTION_MANA,
-                pre_potion: constants.potions.POTION_SPEED,
-                conjured: constants.conjureds.CONJURED_NONE,
+                t6_2set: false,
+                t6_4set: false,
+                t7_2set: false,
+                t7_4set: false,
+                t8_2set: false,
+                t8_4set: false,
+                t9_2set: false,
+                t9_4set: false,
+                t10_2set: false,
+                t10_4set: false,
 
                 drums_friend: false,
                 pre_mirror_image: false,
@@ -1323,6 +1339,11 @@
 
                 wrist_socket: false,
                 hands_socket: false,
+
+                drums: constants.drums.DRUMS_NONE,
+                potion: constants.potions.POTION_MANA,
+                pre_potion: constants.potions.POTION_SPEED,
+                conjured: constants.conjureds.CONJURED_NONE,
 
                 meta_gem: 0,
                 trinket1: 0,
@@ -1332,15 +1353,7 @@
                 rot_ab_stacks_three: false,
                 rot_ice_lance: false,
 
-                innervate: 0,
-                mana_tide: false,
-                bloodlust: false,
-                power_infusion: false,
-
                 timings: Array(),
-
-                evocation_at: 0,
-                evo_ticks: 0,
 
                 build: "",
 
@@ -1449,6 +1462,7 @@
             var data = {
                 ...constants,
                 donation_open: false,
+                beta_warning_open: false,
                 items: items,
                 equipped: {},
                 enchants: {},
@@ -1770,6 +1784,11 @@
                     icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg",
                 });
                 timings.push({
+                    name: "evocation",
+                    title: "Evocation",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_purge.jpg",
+                });
+                timings.push({
                     name: "berserking",
                     title: "Berserking",
                     icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg",
@@ -1828,20 +1847,74 @@
                     });
                 }
 
+                var trinkets = [
+                    {
+                        id: this.items.ids.NAARU_SLIVER,
+                        title: "Shifting Naaru Sliver",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_15.jpg",
+                    },
+                    {
+                        id: this.items.ids.SKULL_GULDAN,
+                        title: "Skull of Gul'dan",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg",
+                    },
+                    {
+                        id: this.items.ids.SHRUNKEN_HEAD,
+                        title: "Hex Shrunken Head",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_head_troll_01.jpg",
+                    },
+                    {
+                        id: this.items.ids.MQG,
+                        title: "Mind Quickening Gem",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_wispheal.jpg",
+                    },
+                ];
+
+                var slots = ["trinket1", "trinket2"];
+                var timing;
+                for (var i=0; i<trinkets.length; i++) {
+                    for (var j=0; j<slots.length; j++) {
+                        if (this.equipped[slots[j]] == trinkets[i].id) {
+                            timing = _.clone(trinkets[i]);
+                            delete timing.id;
+                            timing.name = slots[j];
+                            timings.push(timing);
+                            slots.splice(j, 1);
+                            j--;
+                        }
+                    }
+                }
+
                 return timings;
             },
 
             waitBuffs() {
-                return [
-                    { id: constants.buffs.MISSILE_BARRAGE, name: "Missile Barrage" },
-                    { id: constants.buffs.HOT_STREAK, name: "Hot Streak" },
-                    { id: constants.buffs.FIRESTARTER, name: "Firestarter" },
-                    { id: constants.buffs.BLACK_MAGIC, name: "Black Magic" },
-                    { id: constants.buffs.LIGHTWEAVE, name: "Lightweave Embroidery" },
-                    { id: constants.buffs.BRAIN_FREEZE, name: "Brain Freeze" },
-                    { id: constants.buffs.FINGERS_OF_FROST, name: "Fingers of Frost" },
-                    { id: constants.buffs.INNERVATE, name: "Innervate" },
-                ];
+                var buffs = [];
+
+                if (this.config.talents.missile_barrage)
+                    buffs.push({id: constants.buffs.MISSILE_BARRAGE, name: "Missile Barrage"});
+                if (this.config.talents.fingers_of_frost)
+                    buffs.push({id: constants.buffs.FINGERS_OF_FROST, name: "Fingers of Frost"});
+                if (this.config.talents.brain_freeze)
+                    buffs.push({id: constants.buffs.BRAIN_FREEZE, name: "Brain Freeze"});
+                if (this.config.talents.hot_streak)
+                    buffs.push({id: constants.buffs.HOT_STREAK, name: "Hot Streak"});
+                if (this.config.talents.firestarter)
+                    buffs.push({id: constants.buffs.FIRESTARTER, name: "Firestarter"});
+
+                if (this.enchants.weapon == this.items.ids.BLACK_MAGIC)
+                    buffs.push({id: constants.buffs.BLACK_MAGIC, name: "Black Magic"});
+                if (this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY)
+                    buffs.push({id: constants.buffs.LIGHTWEAVE, name: "Lightweave Embroidery"});
+
+                if (this.numEquippedSet(this.items.ids.T8_SET) > 1)
+                    buffs.push({id: constants.buffs.PRAXIS, name: "Praxis (t8 2set)"});
+                if (this.numEquippedSet(this.items.ids.T10_SET) > 1)
+                    buffs.push({id: constants.buffs.PUSHING_THE_LIMIT, name: "Pushing the Limit (t10 2set)"});
+
+                buffs = _.sortBy(buffs, "name");
+
+                return buffs;
             }
         },
 
@@ -1881,7 +1954,11 @@
             },
 
             timingEnabled(name) {
-                var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem"];
+                var always = [
+                    "bloodlust", "mana_tide", "power_infusion",
+                    "innervate", "mana_gem", "evocation",
+                    "trinket1", "trinket2",
+                ];
                 if (always.indexOf(name) != -1)
                     return true;
 
@@ -1982,6 +2059,17 @@
                     window.location.hash = "";
                     this.donation_open = true;
                 }
+            },
+
+            betaWarning() {
+                if (!localStorage.getItem("beta_warning")) {
+                    this.beta_warning_open = true;
+                }
+            },
+
+            closeBetaWarning() {
+                localStorage.setItem("beta_warning", 1);
+                this.beta_warning_open = false;
             },
 
             runMultiple() {
@@ -2431,6 +2519,26 @@
                 if (this.metaGem() && this.isSpecialItem(this.metaGem().id) && this.isMetaGemActive())
                     this.config.meta_gem = this.metaGem().id;
 
+                var num = this.numEquippedSet(this.items.ids.T10_SET);
+                this.config.t10_2set = num > 1;
+                this.config.t10_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.T9_SET);
+                this.config.t9_2set = num > 1;
+                this.config.t9_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.T8_SET);
+                this.config.t8_2set = num > 1;
+                this.config.t8_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.T7_SET);
+                this.config.t7_2set = num > 1;
+                this.config.t7_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.T6_SET);
+                this.config.t6_2set = num > 1;
+                this.config.t6_4set = num > 3;
+
                 this.config.black_magic = this.enchants.weapon == this.items.ids.BLACK_MAGIC;
                 this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;
                 this.config.darkglow_embroidery = this.enchants.back == this.items.ids.DARKGLOW_EMBROIDERY;
@@ -2524,6 +2632,13 @@
                     stats.mp5+= x;
                 }
 
+                // Item sets
+                var num = this.numEquippedSet(this.items.ids.GLADIATOR_SET);
+                if (num > 1)
+                    stats.spell_power+= 29;
+                if (num > 3)
+                    stats.spell_power+= 88;
+
                 // Attribute multipliers
                 if (this.config.talents.student_of_the_mind) {
                     if (x == 1) stats.spirit*= 1.04;
@@ -2610,6 +2725,8 @@
                     var multi = 0.35;
                     if (this.config.glyphs.molten_armor)
                         multi+= 0.2;
+                    if (this.numEquippedSet(this.items.ids.T9_SET) > 1)
+                        multi+= 0.15;
                     var rating = Math.round(stats.spirit * multi);
                     stats.crit_rating+= rating;
                     stats.crit+= this.critRatingToChance(rating);

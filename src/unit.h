@@ -349,7 +349,15 @@ namespace unit
 
             if (hasBuff(buff::FLAME_CAP) && (school == SCHOOL_FIRE || school == SCHOOL_FROSTFIRE))
                 sp+= 80.0;
+            if (hasBuff(buff::PRAXIS))
+                sp+= 350.0;
+            if (hasBuff(buff::LIGHTWEAVE))
+                sp+= 295.0;
+
+            // TBC stuff
             if (hasBuff(buff::SERPENT_COIL))
+                sp+= 225.0;
+            if (hasBuff(buff::IMPROVED_MANA_GEM))
                 sp+= 225.0;
             if (hasBuff(buff::SHRUNKEN_HEAD))
                 sp+= 211.0;
@@ -357,8 +365,6 @@ namespace unit
                 sp+= 320.0;
             if (hasBuff(buff::DRUMS_OF_WAR))
                 sp+= 30.0;
-            if (hasBuff(buff::LIGHTWEAVE))
-                sp+= 295.0;
 
             if (get_raid_buffs) {
                 if (config->demonic_pact || config->totem_of_wrath || config->flametongue) {

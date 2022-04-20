@@ -66,5 +66,7 @@ export default {
         BRAIN_FREEZE: 57761,
         FINGERS_OF_FROST: 44544,
         INNERVATE: 29166,
+        PRAXIS: 64867,
+        PUSHING_THE_LIMIT: 70753,
     }
 };

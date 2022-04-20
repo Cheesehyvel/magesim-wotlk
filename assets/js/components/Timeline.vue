@@ -54,22 +54,24 @@
         data() {
             return {
                 cds: [
+                    { title: "Mana Tide", color: "#05c" },
+                    { title: "Innervate", color: "#05c" },
+                    { title: "Evocation", color: "#05c" },
+                    { title: "Drums of Battle", color: "rgba(160,160,60)" },
+                    { title: "Drums of War", color: "rgba(160,160,60)" },
+                    { title: "Drums of Restoration", color: "rgba(160,160,60)" },
                     { title: "Bloodlust", color: "rgba(220,70,70)" },
                     { title: "Icy Veins", color: "rgba(85,170,255)" },
                     { title: "Berserking", color: "rgba(200,80,80)" },
                     { title: "Arcane Power", color: "#48f" },
-                    { title: "Mana Tide", color: "#05c" },
                     { title: "Power Infusion", color: "#dd0" },
-                    { title: "Drums of Battle", color: "rgba(160,160,60)" },
-                    { title: "Drums of War", color: "rgba(160,160,60)" },
-                    { title: "Drums of Restoration", color: "rgba(160,160,60)" },
-                    { title: "Innervate", color: "#00d" },
-                    { title: "Evocation", color: "#05c" },
                     { title: "Lightweave", color: "#823978" },
                     { title: "Black Magic", color: "#89d1d0" },
                     { title: "Hyperspeed Acceleration", color: "#206f80" },
                     { title: "Speed", color: "#d82" },
                     { title: "Wild Magic", color: "#cc6" },
+                    { title: "Praxis", color: "#690042" },
+                    { title: "Pushing the Limit", color: "#fcd3e1" },
                 ],
                 trinkets: [
                     { title: "Fel Infusion", color: "#b24" },
@@ -270,7 +272,7 @@
                                 d.push({x: this.result.log[i].t, y: this.result.log[i].mana_percent});
                         }
                     }
-                    d.push({x: this.result.t, y: _.last(this.result.log).mana_percent});
+                    d.push({x: this.result.t, y: _.last(this.result.log.filter(l => l.unit == "Player")).mana_percent});
                 }
                 else {
                     for (var i=0; i<this.result.log.length; i++) {

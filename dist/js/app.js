@@ -160,7 +160,9 @@ __webpack_require__.r(__webpack_exports__);
     LIGHTWEAVE: 55637,
     BRAIN_FREEZE: 57761,
     FINGERS_OF_FROST: 44544,
-    INNERVATE: 29166
+    INNERVATE: 29166,
+    PRAXIS: 64867,
+    PUSHING_THE_LIMIT: 70753
   }
 });
 
@@ -370,11 +372,18 @@ var ids = {
   HYPERSPEED_ACCELERATORS: 54999,
   LIGHTWEAVE_EMBROIDERY: 55642,
   DARKGLOW_EMBROIDERY: 55769,
+  // Item sets
+  T10_SET: 883,
+  T9_SET: 844,
+  T8_SET: 836,
+  T7_SET: 803,
+  T6_SET: 671,
+  GLADIATOR_SET: 779,
   // Metas
   META_CHAOTIC_SKYFLARE: 41285,
   META_EMBER_SKYFLARE: 41333,
   META_BEAMING_EARTHSIEGE: 41389,
-  META_INSIGHTFUL_EARTHSIEGE: 41389,
+  META_INSIGHTFUL_EARTHSIEGE: 41401,
   // TBC items
   SERPENT_COIL: 30720,
   MQG: 19339,
@@ -423,33 +432,183 @@ var equip = {
     }
   }],
   head: [{
+    id: 51281,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Hood",
+    "int": 139,
+    sp: 186,
+    crit: 122,
+    haste: 98,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 51158,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Hood",
+    "int": 123,
+    sp: 162,
+    crit: 108,
+    haste: 84,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 50276,
+    itemset: ids.T10_SET,
+    title: "Bloodmage Hood",
+    "int": 109,
+    sp: 140,
+    crit: 96,
+    haste: 72,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 47764,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Hood of Triumph",
+    "int": 116,
+    sp: 151,
+    hit: 86,
+    haste: 94,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 47771,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Hood of Triumph",
+    "int": 103,
+    sp: 131,
+    hit: 74,
+    haste: 82,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 47774,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Hood of Conquest",
+    "int": 92,
+    sp: 113,
+    hit: 64,
+    haste: 72,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    }
+  }, {
+    id: 46129,
+    itemset: ids.T8_SET,
+    title: "Conqueror's Kirin Tor Hood",
+    "int": 87,
+    spi: 66,
+    sp: 113,
+    hit: 69,
+    sockets: ["m", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 2
+  }, {
+    id: 45365,
+    itemset: ids.T8_SET,
+    title: "Valorous Kirin Tor Hood",
+    "int": 81,
+    spi: 61,
+    sp: 105,
+    hit: 64,
+    sockets: ["m", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 2
+  }, {
+    id: 40416,
+    itemset: ids.T7_SET,
+    title: "Valorous Frostfire Circlet",
+    "int": 77,
+    spi: 66,
+    sp: 98,
+    crit: 51,
+    sockets: ["m", "r"],
+    bonus: {
+      crit: 8
+    }
+  }, {
+    id: 39491,
+    itemset: ids.T7_SET,
+    title: "Heroes' Frostfire Circlet",
+    "int": 64,
+    spi: 60,
+    sp: 87,
+    crit: 43,
+    sockets: ["m", "r"],
+    bonus: {
+      crit: 8
+    }
+  }, {
+    id: 51465,
+    itemset: ids.GLADIATOR_SET,
+    title: "Wrathful Gladiator's Silk Cowl",
+    "int": 87,
+    sp: 182,
+    crit: 98,
+    sockets: ["m", "r"]
+  }, {
+    id: 41947,
+    itemset: ids.GLADIATOR_SET,
+    title: "Relentless Gladiator's Silk Cowl",
+    "int": 73,
+    sp: 149,
+    crit: 80,
+    sockets: ["m", "r"]
+  }, {
+    id: 41946,
+    itemset: ids.GLADIATOR_SET,
+    title: "Furious Gladiator's Silk Cowl",
+    "int": 60,
+    sp: 123,
+    crit: 64,
+    sockets: ["m", "r"]
+  }, {
+    id: 41945,
+    itemset: ids.GLADIATOR_SET,
+    title: "Deadly Gladiator's Silk Cowl",
+    "int": 50,
+    sp: 91,
+    crit: 51,
+    sockets: ["m", "r"]
+  }, {
+    id: 41944,
+    itemset: ids.GLADIATOR_SET,
+    title: "Hateful Gladiator's Silk Cowl",
+    "int": 45,
+    sp: 87,
+    crit: 44,
+    sockets: ["m", "r"]
+  }, {
+    id: 41943,
+    itemset: ids.GLADIATOR_SET,
+    title: "Savage Gladiator's Silk Cowl",
+    "int": 39,
+    sp: 73,
+    crit: 36,
+    sockets: ["m", "r"],
+    q: "rare"
+  }, {
     id: 34340,
     title: "Dark Conjuror's Collar",
     "int": 42,
     sp: 75,
     crit: 38,
     haste: 30,
-    sockets: ["m", "b"],
-    bonus: {
-      sp: 5
-    }
-  }, {
-    id: 34847,
-    title: "Annihilator Holo-Gogs",
-    "int": 37,
-    sp: 81,
-    crit: 42,
-    sockets: ["m", "b"],
-    bonus: {
-      sp: 5
-    }
-  }, {
-    id: 32525,
-    title: "Cowl of the Illidari High Lord",
-    "int": 31,
-    sp: 64,
-    crit: 47,
-    hit: 21,
     sockets: ["m", "b"],
     bonus: {
       sp: 5
@@ -465,6 +624,16 @@ var equip = {
     bonus: {
       sp: 5
     }
+  }, {
+    id: 31056,
+    itemset: ids.T6_SET,
+    title: "Cowl of the Tempest",
+    "int": 40,
+    spi: 28,
+    sp: 62,
+    crit: 29,
+    hit: 13,
+    sockets: ["m", "y"]
   }],
   neck: [{
     id: 34359,
@@ -486,6 +655,177 @@ var equip = {
     haste: 32
   }],
   shoulder: [{
+    id: 51284,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Shoulderpads",
+    "int": 103,
+    sp: 150,
+    crit: 90,
+    haste: 82,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 51155,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Shoulderpads",
+    "int": 92,
+    sp: 132,
+    crit: 80,
+    haste: 72,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 50279,
+    itemset: ids.T10_SET,
+    title: "Bloodmage Shoulderpads",
+    "int": 81,
+    sp: 116,
+    crit: 71,
+    haste: 63,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 47767,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Shoulderpads of Triumph",
+    "int": 86,
+    sp: 124,
+    crit: 68,
+    haste: 76,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 47768,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Shoulderpads of Triumph",
+    "int": 77,
+    sp: 109,
+    crit: 59,
+    haste: 67,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 47777,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Shoulderpads of Conquest",
+    "int": 68,
+    sp: 96,
+    crit: 52,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 46134,
+    itemset: ids.T8_SET,
+    title: "Conqueror's Kirin Tor Shoulderpads",
+    "int": 65,
+    spi: 33,
+    sp: 98,
+    haste: 62,
+    sockets: ["y"],
+    bonus: {
+      "int": 4
+    },
+    phase: 2
+  }, {
+    id: 45369,
+    itemset: ids.T8_SET,
+    title: "Valorous Kirin Tor Shoulderpads",
+    "int": 60,
+    spi: 30,
+    sp: 91,
+    haste: 57,
+    sockets: ["y"],
+    bonus: {
+      "int": 4
+    },
+    phase: 2
+  }, {
+    id: 40419,
+    itemset: ids.T7_SET,
+    title: "Valorous Frostfire Shoulderpads",
+    "int": 57,
+    sp: 78,
+    crit: 53,
+    haste: 35,
+    sockets: ["y"],
+    bonus: {
+      haste: 4
+    }
+  }, {
+    id: 39494,
+    itemset: ids.T7_SET,
+    title: "Heroes' Frostfire Shoulderpads",
+    "int": 50,
+    sp: 68,
+    crit: 48,
+    haste: 30,
+    sockets: ["y"],
+    bonus: {
+      haste: 4
+    }
+  }, {
+    id: 51467,
+    itemset: ids.GLADIATOR_SET,
+    title: "Wrathful Gladiator's Silk Amice",
+    "int": 64,
+    sp: 140,
+    crit: 77,
+    sockets: ["y"]
+  }, {
+    id: 41966,
+    itemset: ids.GLADIATOR_SET,
+    title: "Relentless Gladiator's Silk Amice",
+    "int": 54,
+    sp: 116,
+    crit: 63,
+    sockets: ["y"]
+  }, {
+    id: 41965,
+    itemset: ids.GLADIATOR_SET,
+    title: "Furious Gladiator's Silk Amice",
+    "int": 45,
+    sp: 96,
+    crit: 51,
+    sockets: ["y"]
+  }, {
+    id: 41964,
+    itemset: ids.GLADIATOR_SET,
+    title: "Deadly Gladiator's Silk Amice",
+    "int": 37,
+    sp: 76,
+    crit: 42,
+    sockets: ["y"]
+  }, {
+    id: 41963,
+    itemset: ids.GLADIATOR_SET,
+    title: "Hateful Gladiator's Silk Amice",
+    "int": 33,
+    sp: 68,
+    crit: 36,
+    sockets: ["y"]
+  }, {
+    id: 41962,
+    itemset: ids.GLADIATOR_SET,
+    title: "Savage Gladiator's Silk Amice",
+    "int": 28,
+    sp: 59,
+    crit: 31,
+    sockets: ["y"],
+    q: "rare"
+  }, {
     id: 34210,
     title: "Amice of the Convoker",
     "int": 28,
@@ -507,6 +847,18 @@ var equip = {
     bonus: {
       sp: 4
     }
+  }, {
+    id: 31059,
+    itemset: ids.T6_SET,
+    title: "Mantle of the Tempest",
+    "int": 27,
+    spi: 21,
+    sp: 46,
+    crit: 21,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 4
+    }
   }],
   back: [{
     id: 34242,
@@ -520,6 +872,177 @@ var equip = {
     }
   }],
   chest: [{
+    id: 51283,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Robe",
+    "int": 139,
+    sp: 195,
+    crit: 106,
+    haste: 122,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 51156,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Robe",
+    "int": 123,
+    sp: 171,
+    crit: 92,
+    haste: 108,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 50278,
+    itemset: ids.T10_SET,
+    title: "Bloodmage Robe",
+    "int": 109,
+    sp: 149,
+    crit: 80,
+    haste: 96,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47766,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Robe of Triumph",
+    "int": 116,
+    spi: 102,
+    sp: 160,
+    hit: 86,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47769,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Robe of Triumph",
+    "int": 103,
+    spi: 90,
+    sp: 140,
+    hit: 74,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47776,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Robe of Conquest",
+    "int": 92,
+    spi: 80,
+    sp: 122,
+    hit: 64,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 46130,
+    itemset: ids.T8_SET,
+    title: "Conqueror's Kirin Tor Tunic",
+    "int": 81,
+    spi: 50,
+    sp: 132,
+    crit: 82,
+    sockets: ["b", "y"],
+    bonus: {
+      crit: 6
+    },
+    phase: 2
+  }, {
+    id: 45368,
+    itemset: ids.T8_SET,
+    title: "Valorous Kirin Tor Tunic",
+    "int": 76,
+    spi: 46,
+    sp: 124,
+    crit: 76,
+    sockets: ["b", "y"],
+    bonus: {
+      crit: 6
+    },
+    phase: 2
+  }, {
+    id: 40418,
+    itemset: ids.T7_SET,
+    title: "Valorous Frostfire Robe",
+    "int": 77,
+    spi: 66,
+    sp: 99,
+    crit: 61,
+    sockets: ["r", "y"],
+    bonus: {
+      hit: 6
+    }
+  }, {
+    id: 39492,
+    itemset: ids.T7_SET,
+    title: "Heroes' Frostfire Robe",
+    "int": 60,
+    spi: 60,
+    sp: 87,
+    crit: 51,
+    sockets: ["r", "y"],
+    bonus: {
+      hit: 6
+    }
+  }, {
+    id: 51463,
+    itemset: ids.GLADIATOR_SET,
+    title: "Wrathful Gladiator's Silk Raiment",
+    "int": 87,
+    sp: 182,
+    crit: 98,
+    sockets: ["r", "y"]
+  }, {
+    id: 41954,
+    itemset: ids.GLADIATOR_SET,
+    title: "Relentless Gladiator's Silk Raiment",
+    "int": 73,
+    sp: 149,
+    crit: 80,
+    sockets: ["r", "y"]
+  }, {
+    id: 41953,
+    itemset: ids.GLADIATOR_SET,
+    title: "Furious Gladiator's Silk Raiment",
+    "int": 60,
+    sp: 123,
+    crit: 64,
+    sockets: ["r", "y"]
+  }, {
+    id: 41951,
+    itemset: ids.GLADIATOR_SET,
+    title: "Deadly Gladiator's Silk Raiment",
+    "int": 50,
+    sp: 98,
+    crit: 51,
+    sockets: ["r", "y"]
+  }, {
+    id: 41950,
+    itemset: ids.GLADIATOR_SET,
+    title: "Hateful Gladiator's Silk Raiment",
+    "int": 45,
+    sp: 87,
+    crit: 44,
+    sockets: ["r", "y"]
+  }, {
+    id: 41949,
+    itemset: ids.GLADIATOR_SET,
+    title: "Savage Gladiator's Silk Raiment",
+    "int": 39,
+    sp: 73,
+    crit: 36,
+    sockets: ["r", "y"],
+    q: "rare"
+  }, {
     id: 34364,
     title: "Sunfire Robe",
     "int": 34,
@@ -553,9 +1076,23 @@ var equip = {
     bonus: {
       sp: 5
     }
+  }, {
+    id: 31057,
+    itemset: ids.T6_SET,
+    title: "Robes of the Tempest",
+    "int": 39,
+    spi: 31,
+    sp: 62,
+    crit: 23,
+    hit: 13,
+    sockets: ["y", "y", "b"],
+    bonus: {
+      sp: 5
+    }
   }],
   wrist: [{
     id: 34447,
+    itemset: ids.T6_SET,
     title: "Bracers of the Tempest",
     "int": 17,
     spi: 14,
@@ -568,6 +1105,195 @@ var equip = {
     }
   }],
   hands: [{
+    id: 51280,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Gloves",
+    "int": 103,
+    sp: 150,
+    crit: 90,
+    hit: 82,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 51159,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Gloves",
+    "int": 92,
+    sp: 132,
+    crit: 80,
+    hit: 72,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 50275,
+    itemset: ids.T10_SET,
+    title: "Bloodmage Gloves",
+    "int": 81,
+    sp: 116,
+    crit: 71,
+    hit: 63,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 47763,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Gauntlets of Triumph",
+    "int": 86,
+    sp: 124,
+    crit: 76,
+    haste: 68,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    }
+  }, {
+    id: 47772,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Gauntlets of Triumph",
+    "int": 77,
+    sp: 109,
+    crit: 67,
+    haste: 59,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    }
+  }, {
+    id: 47773,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Gauntlets of Conquest",
+    "int": 68,
+    sp: 96,
+    crit: 60,
+    haste: 52,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    }
+  }, {
+    id: 46132,
+    itemset: ids.T8_SET,
+    title: "Conqueror's Kirin Tor Gauntlets",
+    "int": 62,
+    sp: 100,
+    hit: 60,
+    haste: 47,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 2
+  }, {
+    id: 46131,
+    itemset: ids.T8_SET,
+    title: "Valorous Kirin Tor Gauntlets",
+    "int": 57,
+    sp: 93,
+    hit: 55,
+    haste: 44,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 2
+  }, {
+    id: 40415,
+    itemset: ids.T7_SET,
+    title: "Valorous Frostfire Gloves",
+    "int": 57,
+    sp: 69,
+    crit: 53,
+    hit: 38,
+    sockets: ["r"],
+    bonus: {
+      "int": 4
+    }
+  }, {
+    id: 39495,
+    itemset: ids.T7_SET,
+    title: "Heroes' Frostfire Gloves",
+    "int": 51,
+    sp: 59,
+    crit: 48,
+    hit: 33,
+    sockets: ["r"],
+    bonus: {
+      "int": 4
+    }
+  }, {
+    id: 51464,
+    itemset: ids.GLADIATOR_SET,
+    title: "Wrathful Gladiator's Silk Handguards",
+    "int": 64,
+    sp: 140,
+    crit: 77,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 41972,
+    itemset: ids.GLADIATOR_SET,
+    title: "Relentless Gladiator's Silk Handguards",
+    "int": 54,
+    sp: 116,
+    crit: 63,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 41971,
+    itemset: ids.GLADIATOR_SET,
+    title: "Furious Gladiator's Silk Handguards",
+    "int": 45,
+    sp: 96,
+    crit: 39,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 41970,
+    itemset: ids.GLADIATOR_SET,
+    title: "Deadly Gladiator's Silk Handguards",
+    "int": 37,
+    sp: 78,
+    crit: 32,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 41969,
+    itemset: ids.GLADIATOR_SET,
+    title: "Hateful Gladiator's Silk Handguards",
+    "int": 33,
+    sp: 68,
+    crit: 27,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
+    id: 41968,
+    itemset: ids.GLADIATOR_SET,
+    title: "Savage Gladiator's Silk Handguards",
+    "int": 28,
+    sp: 59,
+    crit: 22,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    q: "rare"
+  }, {
     id: 34344,
     title: "Handguards of Defiled Worlds",
     "int": 32,
@@ -599,9 +1325,23 @@ var equip = {
     bonus: {
       sp: 4
     }
+  }, {
+    id: 31055,
+    itemset: ids.T6_SET,
+    title: "Gloves of the Tempest",
+    "int": 26,
+    spi: 21,
+    sp: 46,
+    crit: 19,
+    hit: 20,
+    sockets: ["y"],
+    bonus: {
+      sp: 2
+    }
   }],
   waist: [{
     id: 34557,
+    itemset: ids.T6_SET,
     title: "Belt of the Tempest",
     "int": 29,
     spi: 20,
@@ -615,6 +1355,195 @@ var equip = {
     }
   }],
   legs: [{
+    id: 51282,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Leggings",
+    "int": 139,
+    sp: 195,
+    crit: 122,
+    hit: 106,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 51157,
+    itemset: ids.T10_SET,
+    title: "Sanctified Bloodmage Leggings",
+    "int": 123,
+    sp: 171,
+    crit: 108,
+    hit: 92,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 50277,
+    itemset: ids.T10_SET,
+    title: "Bloodmage Leggings",
+    "int": 109,
+    sp: 149,
+    crit: 96,
+    hit: 80,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47765,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Leggings of Triumph",
+    "int": 116,
+    spi: 86,
+    sp: 160,
+    crit: 102,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47770,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Leggings of Triumph",
+    "int": 103,
+    spi: 74,
+    sp: 140,
+    crit: 90,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 47775,
+    itemset: ids.T9_SET,
+    title: "Sunstrider's Leggings of Conquest",
+    "int": 92,
+    spi: 64,
+    sp: 122,
+    crit: 80,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 46133,
+    itemset: ids.T8_SET,
+    title: "Conqueror's Kirin Tor Leggings",
+    "int": 82,
+    sp: 123,
+    crit: 74,
+    hit: 66,
+    sockets: ["r", "b"],
+    bonus: {
+      crit: 6
+    },
+    phase: 2
+  }, {
+    id: 45367,
+    itemset: ids.T8_SET,
+    title: "Valorous Kirin Tor Leggings",
+    "int": 76,
+    sp: 115,
+    crit: 68,
+    hit: 62,
+    sockets: ["r", "b"],
+    bonus: {
+      crit: 6
+    },
+    phase: 2
+  }, {
+    id: 40417,
+    itemset: ids.T7_SET,
+    title: "Valorous Frostfire Leggings",
+    "int": 77,
+    sp: 99,
+    hit: 43,
+    haste: 67,
+    sockets: ["r", "y"],
+    bonus: {
+      haste: 6
+    }
+  }, {
+    id: 39493,
+    itemset: ids.T7_SET,
+    title: "Heroes' Frostfire Leggings",
+    "int": 68,
+    sp: 87,
+    hit: 36,
+    haste: 64,
+    sockets: ["r", "y"],
+    bonus: {
+      haste: 6
+    }
+  }, {
+    id: 51466,
+    itemset: ids.GLADIATOR_SET,
+    title: "Wrathful Gladiator's Silk Trousers",
+    "int": 87,
+    sp: 182,
+    crit: 98,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 41960,
+    itemset: ids.GLADIATOR_SET,
+    title: "Relentless Gladiator's Silk Trousers",
+    "int": 73,
+    sp: 149,
+    crit: 80,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 41959,
+    itemset: ids.GLADIATOR_SET,
+    title: "Furious Gladiator's Silk Trousers",
+    "int": 60,
+    sp: 123,
+    crit: 64,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 41958,
+    itemset: ids.GLADIATOR_SET,
+    title: "Deadly Gladiator's Silk Trousers",
+    "int": 50,
+    sp: 99,
+    crit: 51,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 41957,
+    itemset: ids.GLADIATOR_SET,
+    title: "Hateful Gladiator's Silk Trousers",
+    "int": 45,
+    sp: 87,
+    crit: 44,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    }
+  }, {
+    id: 41956,
+    itemset: ids.GLADIATOR_SET,
+    title: "Savage Gladiator's Silk Trousers",
+    "int": 39,
+    sp: 73,
+    crit: 36,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    q: "rare"
+  }, {
     id: 34181,
     title: "Leggings of Calamity",
     "int": 41,
@@ -637,20 +1566,22 @@ var equip = {
       sp: 5
     }
   }, {
-    id: 30916,
-    title: "Leggings of Channeled Elements",
-    "int": 28,
-    spi: 28,
-    sp: 59,
-    crit: 34,
-    hit: 18,
-    sockets: ["y", "y", "b"],
+    id: 31058,
+    itemset: ids.T6_SET,
+    title: "Leggings of the Tempest",
+    "int": 47,
+    spi: 29,
+    sp: 62,
+    crit: 29,
+    hit: 20,
+    sockets: ["b"],
     bonus: {
-      sp: 5
+      sp: 2
     }
   }],
   feet: [{
     id: 34574,
+    itemset: ids.T6_SET,
     title: "Boots of the Tempest",
     "int": 29,
     spi: 20,
@@ -2632,6 +3563,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2643,6 +3583,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadProfiles();
     this.calcStats();
     this.checkDonation();
+    this.betaWarning();
   },
   data: function data() {
     var default_config = {
@@ -2658,6 +3599,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       target_resistance: 0,
       target_level: 83,
       spell_travel_time: 500,
+      reaction_time: 300,
       // Debuffs
       debuff_crit: false,
       debuff_spell_crit: false,
@@ -2698,28 +3640,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       lightweave_embroidery: false,
       darkglow_embroidery: false,
       hyperspeed_accelerators: false,
-      drums: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE,
-      potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
-      pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
-      conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE,
+      t6_2set: false,
+      t6_4set: false,
+      t7_2set: false,
+      t7_4set: false,
+      t8_2set: false,
+      t8_4set: false,
+      t9_2set: false,
+      t9_4set: false,
+      t10_2set: false,
+      t10_4set: false,
       drums_friend: false,
       pre_mirror_image: false,
       pre_water_elemental: false,
       wrist_socket: false,
       hands_socket: false,
+      drums: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE,
+      potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
+      pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
+      conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE,
       meta_gem: 0,
       trinket1: 0,
       trinket2: 0,
       rotation: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM,
       rot_ab_stacks_three: false,
       rot_ice_lance: false,
-      innervate: 0,
-      mana_tide: false,
-      bloodlust: false,
-      power_infusion: false,
       timings: Array(),
-      evocation_at: 0,
-      evo_ticks: 0,
       build: "",
       stats: {
         intellect: 0,
@@ -2820,6 +3766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     var data = _objectSpread(_objectSpread({}, _constants__WEBPACK_IMPORTED_MODULE_4__["default"]), {}, {
       donation_open: false,
+      beta_warning_open: false,
       items: _items__WEBPACK_IMPORTED_MODULE_2__["default"],
       equipped: {},
       enchants: {},
@@ -3099,6 +4046,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg"
       });
       timings.push({
+        name: "evocation",
+        title: "Evocation",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_purge.jpg"
+      });
+      timings.push({
         name: "berserking",
         title: "Berserking",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg"
@@ -3159,34 +4111,81 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
 
+      var trinkets = [{
+        id: this.items.ids.NAARU_SLIVER,
+        title: "Shifting Naaru Sliver",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_15.jpg"
+      }, {
+        id: this.items.ids.SKULL_GULDAN,
+        title: "Skull of Gul'dan",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg"
+      }, {
+        id: this.items.ids.SHRUNKEN_HEAD,
+        title: "Hex Shrunken Head",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_head_troll_01.jpg"
+      }, {
+        id: this.items.ids.MQG,
+        title: "Mind Quickening Gem",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_wispheal.jpg"
+      }];
+      var slots = ["trinket1", "trinket2"];
+      var timing;
+
+      for (var i = 0; i < trinkets.length; i++) {
+        for (var j = 0; j < slots.length; j++) {
+          if (this.equipped[slots[j]] == trinkets[i].id) {
+            timing = _.clone(trinkets[i]);
+            delete timing.id;
+            timing.name = slots[j];
+            timings.push(timing);
+            slots.splice(j, 1);
+            j--;
+          }
+        }
+      }
+
       return timings;
     },
     waitBuffs: function waitBuffs() {
-      return [{
+      var buffs = [];
+      if (this.config.talents.missile_barrage) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.MISSILE_BARRAGE,
         name: "Missile Barrage"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.HOT_STREAK,
-        name: "Hot Streak"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FIRESTARTER,
-        name: "Firestarter"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BLACK_MAGIC,
-        name: "Black Magic"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.LIGHTWEAVE,
-        name: "Lightweave Embroidery"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BRAIN_FREEZE,
-        name: "Brain Freeze"
-      }, {
+      });
+      if (this.config.talents.fingers_of_frost) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FINGERS_OF_FROST,
         name: "Fingers of Frost"
-      }, {
-        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.INNERVATE,
-        name: "Innervate"
-      }];
+      });
+      if (this.config.talents.brain_freeze) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BRAIN_FREEZE,
+        name: "Brain Freeze"
+      });
+      if (this.config.talents.hot_streak) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.HOT_STREAK,
+        name: "Hot Streak"
+      });
+      if (this.config.talents.firestarter) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FIRESTARTER,
+        name: "Firestarter"
+      });
+      if (this.enchants.weapon == this.items.ids.BLACK_MAGIC) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BLACK_MAGIC,
+        name: "Black Magic"
+      });
+      if (this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.LIGHTWEAVE,
+        name: "Lightweave Embroidery"
+      });
+      if (this.numEquippedSet(this.items.ids.T8_SET) > 1) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.PRAXIS,
+        name: "Praxis (t8 2set)"
+      });
+      if (this.numEquippedSet(this.items.ids.T10_SET) > 1) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.PUSHING_THE_LIMIT,
+        name: "Pushing the Limit (t10 2set)"
+      });
+      buffs = _.sortBy(buffs, "name");
+      return buffs;
     }
   },
   methods: {
@@ -3227,7 +4226,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _.get(timing, key, def);
     },
     timingEnabled: function timingEnabled(name) {
-      var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem"];
+      var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem", "evocation", "trinket1", "trinket2"];
       if (always.indexOf(name) != -1) return true;
       if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
       if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
@@ -3323,6 +4322,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         window.location.hash = "";
         this.donation_open = true;
       }
+    },
+    betaWarning: function betaWarning() {
+      if (!localStorage.getItem("beta_warning")) {
+        this.beta_warning_open = true;
+      }
+    },
+    closeBetaWarning: function closeBetaWarning() {
+      localStorage.setItem("beta_warning", 1);
+      this.beta_warning_open = false;
     },
     runMultiple: function runMultiple() {
       var self = this;
@@ -3882,6 +4890,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.isSpecialItem(this.equipped.trinket1)) this.config.trinket1 = this.equipped.trinket1;
       if (this.isSpecialItem(this.equipped.trinket2)) this.config.trinket2 = this.equipped.trinket2;
       if (this.metaGem() && this.isSpecialItem(this.metaGem().id) && this.isMetaGemActive()) this.config.meta_gem = this.metaGem().id;
+      var num = this.numEquippedSet(this.items.ids.T10_SET);
+      this.config.t10_2set = num > 1;
+      this.config.t10_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T9_SET);
+      this.config.t9_2set = num > 1;
+      this.config.t9_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T8_SET);
+      this.config.t8_2set = num > 1;
+      this.config.t8_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T7_SET);
+      this.config.t7_2set = num > 1;
+      this.config.t7_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T6_SET);
+      this.config.t6_2set = num > 1;
+      this.config.t6_4set = num > 3;
       this.config.black_magic = this.enchants.weapon == this.items.ids.BLACK_MAGIC;
       this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;
       this.config.darkglow_embroidery = this.enchants.back == this.items.ids.DARKGLOW_EMBROIDERY;
@@ -3938,8 +4961,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         x = 91;
         if (this.config.imp_blessing_of_wisdom) x = 109;
         stats.mp5 += x;
-      } // Attribute multipliers
+      } // Item sets
 
+
+      var num = this.numEquippedSet(this.items.ids.GLADIATOR_SET);
+      if (num > 1) stats.spell_power += 29;
+      if (num > 3) stats.spell_power += 88; // Attribute multipliers
 
       if (this.config.talents.student_of_the_mind) {
         if (x == 1) stats.spirit *= 1.04;
@@ -4005,6 +5032,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.config.molten_armor) {
         var multi = 0.35;
         if (this.config.glyphs.molten_armor) multi += 0.2;
+        if (this.numEquippedSet(this.items.ids.T9_SET) > 1) multi += 0.15;
         var rating = Math.round(stats.spirit * multi);
         stats.crit_rating += rating;
         stats.crit += this.critRatingToChance(rating);
@@ -5178,6 +6206,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cds: [{
+        title: "Mana Tide",
+        color: "#05c"
+      }, {
+        title: "Innervate",
+        color: "#05c"
+      }, {
+        title: "Evocation",
+        color: "#05c"
+      }, {
+        title: "Drums of Battle",
+        color: "rgba(160,160,60)"
+      }, {
+        title: "Drums of War",
+        color: "rgba(160,160,60)"
+      }, {
+        title: "Drums of Restoration",
+        color: "rgba(160,160,60)"
+      }, {
         title: "Bloodlust",
         color: "rgba(220,70,70)"
       }, {
@@ -5190,26 +6236,8 @@ __webpack_require__.r(__webpack_exports__);
         title: "Arcane Power",
         color: "#48f"
       }, {
-        title: "Mana Tide",
-        color: "#05c"
-      }, {
         title: "Power Infusion",
         color: "#dd0"
-      }, {
-        title: "Drums of Battle",
-        color: "rgba(160,160,60)"
-      }, {
-        title: "Drums of War",
-        color: "rgba(160,160,60)"
-      }, {
-        title: "Drums of Restoration",
-        color: "rgba(160,160,60)"
-      }, {
-        title: "Innervate",
-        color: "#00d"
-      }, {
-        title: "Evocation",
-        color: "#05c"
       }, {
         title: "Lightweave",
         color: "#823978"
@@ -5225,6 +6253,12 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Wild Magic",
         color: "#cc6"
+      }, {
+        title: "Praxis",
+        color: "#690042"
+      }, {
+        title: "Pushing the Limit",
+        color: "#fcd3e1"
       }],
       trinkets: [{
         title: "Fel Infusion",
@@ -5452,7 +6486,9 @@ __webpack_require__.r(__webpack_exports__);
 
         d.push({
           x: this.result.t,
-          y: _.last(this.result.log).mana_percent
+          y: _.last(this.result.log.filter(function (l) {
+            return l.unit == "Player";
+          })).mana_percent
         });
       } else {
         for (var i = 0; i < this.result.log.length; i++) {
@@ -62149,7 +63185,7 @@ var render = function() {
       ? _c(
           "div",
           {
-            staticClass: "notice",
+            staticClass: "notice notice-alt",
             on: {
               click: function($event) {
                 _vm.donation_open = false
@@ -64842,50 +65878,9 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-item" }, [
-                      _c(
-                        "label",
-                        [
-                          _c("span", [_vm._v("Reaction time (ms)")]),
-                          _vm._v(" "),
-                          _c("help", [
-                            _vm._v(
-                              "Affects cooldown usage when waiting for procs"
-                            )
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.config.reaction_time,
-                            expression: "config.reaction_time",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.config.reaction_time },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.config,
-                              "reaction_time",
-                              _vm._n($event.target.value)
-                            )
-                          },
-                          blur: function($event) {
-                            return _vm.$forceUpdate()
-                          }
-                        }
-                      })
-                    ]),
+                     false
+                      ? 0
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-item" }, [
                       _c(
@@ -68526,6 +69521,34 @@ var render = function() {
             : _vm._e()
         ])
       ]),
+      _vm._v(" "),
+      _vm.beta_warning_open
+        ? _c("div", { staticClass: "lightbox small warning" }, [
+            _c("div", {
+              staticClass: "closer",
+              on: { click: _vm.closeBetaWarning }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "inner" }, [
+              _c("div", { staticClass: "title" }, [_vm._v("BETA")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text" }, [
+                _vm._v(
+                  "This sim is under construction. Results are not accurate."
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "btn mt-2",
+                  on: { click: _vm.closeBetaWarning }
+                },
+                [_vm._v("I understand")]
+              )
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _vm.export_profile.open
         ? _c("div", { staticClass: "lightbox" }, [

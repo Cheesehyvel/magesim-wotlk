@@ -1265,13 +1265,14 @@ table.large tbody tr {
   line-height: 24px;
 }
 #app .config .fieldsets .timings .add-timing .menu {
-  display: none;
   position: absolute;
   top: 0;
   left: 34px;
   right: 0;
-  -webkit-animation: fade 0.2s ease;
-          animation: fade 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  transition-delay: 0.3s;
 }
 #app .config .fieldsets .timings .add-timing .menu:after {
   content: "";
@@ -1288,7 +1289,10 @@ table.large tbody tr {
   max-width: 100%;
 }
 #app .config .fieldsets .timings .add-timing:hover .menu {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.2s ease;
+  transition-delay: 0s;
 }
 #app .profiles .profile {
   background: rgba(40, 40, 60, 0.7);
@@ -1422,6 +1426,18 @@ table.large tbody tr {
   width: 500px;
   margin: 10vh auto;
 }
+#app .lightbox.warning > .inner {
+  margin: 20vh auto;
+  text-align: center;
+}
+#app .lightbox.warning > .inner > .title {
+  font-size: 24px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+#app .lightbox.warning > .inner > .text {
+  font-size: 16px;
+}
 #app .lightbox .close {
   position: absolute;
   top: 0;
@@ -1442,6 +1458,11 @@ table.large tbody tr {
   background: rgba(0, 0, 0, 0.5);
   -webkit-animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
           animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
+  cursor: pointer;
+}
+.notice.notice-alt {
+  right: 50%;
+  margin-right: -175px;
 }
 .notice > .inner {
   background: #161620;

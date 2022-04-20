@@ -30,6 +30,7 @@ namespace spell
         COLD_SNAP = 11958,
         IGNITE = 12848,
         MANA_GEM = 42987,
+        EVOCATION = 12051,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -581,6 +582,23 @@ namespace spell
             is_trigger = true;
             gcd = 0;
             school = SCHOOL_ARCANE;
+        }
+
+    };
+
+    class Evocation : public Spell
+    {
+
+    public:
+        Evocation(int _ticks = 4)
+        {
+            id = EVOCATION;
+            name = "Evocation";
+            is_trigger = true;
+            school = SCHOOL_ARCANE;
+            channeling = true;
+            ticks = _ticks;
+            cast_time = _ticks*2;
         }
 
     };

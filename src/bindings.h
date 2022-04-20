@@ -143,6 +143,16 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("lightweave_embroidery", &Config::lightweave_embroidery)
         .property("darkglow_embroidery", &Config::darkglow_embroidery)
         .property("hyperspeed_accelerators", &Config::hyperspeed_accelerators)
+        .property("t6_2set", &Config::t6_2set)
+        .property("t6_4set", &Config::t6_4set)
+        .property("t7_2set", &Config::t7_2set)
+        .property("t7_4set", &Config::t7_4set)
+        .property("t8_2set", &Config::t8_2set)
+        .property("t8_4set", &Config::t8_4set)
+        .property("t9_2set", &Config::t9_2set)
+        .property("t9_4set", &Config::t9_4set)
+        .property("t10_2set", &Config::t10_2set)
+        .property("t10_4set", &Config::t10_4set)
 
         .property("drums_friend", &Config::drums_friend)
         .property("pre_mirror_image", &Config::pre_mirror_image)
@@ -160,14 +170,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("rotation", &Config::rotation)
         .property("rot_ab_stacks_three", &Config::rot_ab_stacks_three)
         .property("rot_ice_lance", &Config::rot_ice_lance)
-
-        .property("innervate", &Config::innervate)
-        .property("evo_ticks", &Config::evo_ticks)
-        .property("mana_tide", &Config::mana_tide)
-        .property("bloodlust", &Config::bloodlust)
-        .property("power_infusion", &Config::power_infusion)
-
-        .property("evocation_at", &Config::evocation_at)
         ;
 
     emscripten::function("allocConfig", &allocConfig);

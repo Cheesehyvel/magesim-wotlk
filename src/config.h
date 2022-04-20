@@ -35,6 +35,16 @@ struct Config
     bool lightweave_embroidery = false;
     bool darkglow_embroidery = false;
     bool hyperspeed_accelerators = false;
+    bool t6_2set = false;
+    bool t6_4set = false;
+    bool t7_2set = false;
+    bool t7_4set = false;
+    bool t8_2set = false;
+    bool t8_4set = false;
+    bool t9_2set = false;
+    bool t9_4set = false;
+    bool t10_2set = false;
+    bool t10_4set = false;
 
     bool drums_friend = false;
     bool pre_mirror_image = false;
@@ -54,33 +64,7 @@ struct Config
     bool rot_ab_stacks_three = false;
     bool rot_ice_lance = false;
 
-    int innervate = 0;
-    int evo_ticks = 0;
-    bool mana_tide = true;
-    bool bloodlust = true;
-    bool power_infusion = false;
-
-    std::vector<double> trinket1_t;
-    std::vector<double> trinket2_t;
-    std::vector<double> presence_of_mind_t;
-    std::vector<double> arcane_power_t;
-    std::vector<double> icy_veins_t;
-    std::vector<double> cold_snap_t;
-    std::vector<double> combustion_t;
-    std::vector<double> berserking_t;
-    std::vector<double> mana_tide_t;
-    std::vector<double> bloodlust_t;
-    std::vector<double> power_infusion_t;
-    std::vector<double> drums_t;
-    std::vector<double> innervate_t;
-    std::vector<double> potion_t;
-    std::vector<double> conjured_t;
-    std::vector<double> mana_gem_t;
-    std::vector<double> hyperspeed_t;
-
     std::vector<std::shared_ptr<Timing>> timings;
     std::vector<std::shared_ptr<Interruption>> interruptions;
-
-    double evocation_at = 0;
 
 };

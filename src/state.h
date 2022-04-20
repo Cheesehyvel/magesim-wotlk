@@ -6,7 +6,6 @@ class State
 public:
     double t;
     unsigned long long dmg;
-    int innervates;
     double duration;
     double evocated_at = -1;
 
@@ -26,7 +25,6 @@ public:
     {
         t = 0;
         dmg = 0;
-        innervates = config->innervate;
         duration = config->duration;
         duration+= -config->duration_variance + random<double>(0, config->duration_variance*2);
 

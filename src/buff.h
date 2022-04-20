@@ -27,6 +27,10 @@ namespace buff
         LIGHTWEAVE = 55637,
         SPEED = 53908,
         WILD_MAGIC = 53909,
+        IMPROVED_MANA_GEM = 61062,
+        PRAXIS = 64867,
+        QUAD_CORE = 70747,
+        PUSHING_THE_LIMIT = 70753,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -366,6 +370,58 @@ namespace buff
             id = WILD_MAGIC;
             name = "Wild Magic";
             duration = 15;
+        }
+
+    };
+
+    class ImprovedManaGem : public Buff
+    {
+
+    public:
+        ImprovedManaGem()
+        {
+            id = IMPROVED_MANA_GEM;
+            name = "Improved Mana Gem";
+            duration = 15;
+        }
+
+    };
+
+    class Praxis : public Buff
+    {
+
+    public:
+        Praxis()
+        {
+            id = PRAXIS;
+            name = "Praxis";
+            duration = 15;
+        }
+
+    };
+
+    class QuadCore : public Buff
+    {
+
+    public:
+        QuadCore()
+        {
+            id = QUAD_CORE;
+            name = "Quad Core";
+            duration = 30;
+        }
+
+    };
+
+    class PushingTheLimit : public Buff
+    {
+
+    public:
+        PushingTheLimit()
+        {
+            id = PUSHING_THE_LIMIT;
+            name = "Pushing the Limit";
+            duration = 5;
         }
 
     };

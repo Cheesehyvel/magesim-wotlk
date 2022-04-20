@@ -775,12 +775,14 @@ table {
 
                     .menu {
                         @include clearfix();
-                        display: none;
                         position: absolute;
                         top: 0;
                         left: 34px;
                         right: 0;
-                        animation: fade 0.2s ease;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all 0.2s ease;
+                        transition-delay: 0.3s;
 
                         > div {
                             float: left;
@@ -795,7 +797,10 @@ table {
                     }
 
                     &:hover .menu {
-                        display: block;
+                        opacity: 1;
+                        visibility: visible;
+                        transition: all 0.2s ease;
+                        transition-delay: 0s;
                     }
                 }
             }
@@ -961,6 +966,23 @@ table {
             margin: 10vh auto;
         }
 
+        &.warning {
+            > .inner {
+                margin: 20vh auto;
+                text-align: center;
+
+                > .title {
+                    font-size: 24px;
+                    letter-spacing: 4px;
+                    text-transform: uppercase;;
+                }
+
+                > .text {
+                    font-size: 16px;
+                }
+            }
+        }
+
         .close {
             position: absolute;
             top: 0;
@@ -982,6 +1004,12 @@ table {
     z-index: 1000;
     background: rgba(0,0,0,0.5);
     animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
+    cursor: pointer;
+
+    &.notice-alt {
+        right: 50%;
+        margin-right: -175px;
+    }
 
     > .inner {
         background: #161620;

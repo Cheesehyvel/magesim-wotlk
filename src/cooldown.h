@@ -31,6 +31,7 @@ namespace cooldown
         DARKGLOW = 55767,
         HYPERSPEED_ACCELERATION = 54758,
         MANA_GEM = 42987,
+        PRAXIS = 64867,
     };
 
 
@@ -347,6 +348,18 @@ namespace cooldown
         {
             id = MANA_GEM;
             duration = 120;
+        }
+
+    };
+
+    class Praxis : public Cooldown
+    {
+
+    public:
+        Praxis()
+        {
+            id = PRAXIS;
+            duration = 45;
         }
 
     };

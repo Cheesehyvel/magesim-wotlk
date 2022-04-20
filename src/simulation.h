@@ -582,8 +582,6 @@ public:
 
     void onCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        bool success = !spell->tick && spell->active_use;
-
         if (!spell->tick) {
             spell->actual_cost = manaCost(unit, spell);
             unit->mana-= spell->actual_cost;
@@ -606,8 +604,8 @@ public:
             pushSpellImpact(unit, spell, travelTime(unit, spell));
         }
 
-        if (success) {
-            if (!spell->is_trigger && unit->hasBuff(buff::CLEARCAST))
+        if (spell->active_use) {
+            if (!spell->is_trigger && unit->hasBuff(buff::CLEARCAST) && !spell->tick)
                 onBuffExpire(unit, make_shared<buff::Clearcast>());
             onCastSuccessProc(unit, spell);
         }
@@ -1201,7 +1199,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " finished casting " << spell->name;
+        s << unit->name << " successfully cast " << spell->name;
 
         addLog(unit, LOG_CAST_SUCCESS, s.str());
     }
