@@ -31,6 +31,7 @@ namespace spell
         IGNITE = 12848,
         MANA_GEM = 42987,
         EVOCATION = 12051,
+        DRUMS = 29529,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -601,6 +602,19 @@ namespace spell
             cast_time = _ticks*2;
         }
 
+    };
+
+    class Drums : public Spell
+    {
+
+    public:
+        Drums()
+        {
+            id = DRUMS;
+            name = "Drums";
+            is_trigger = true;
+            school = SCHOOL_NONE;
+        }
     };
 
 

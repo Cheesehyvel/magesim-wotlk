@@ -1823,6 +1823,11 @@
                     title: "Hyperspeed Accelerators",
                     icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
                 });
+                timings.push({
+                    name: "drums",
+                    title: "Drums",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_drum_02.jpg",
+                });
 
                 var potion = {
                     name: "potion",
@@ -1966,6 +1971,8 @@
                     return this.config.potion != constants.potions.POTION_NONE;
                 if (name == "conjured")
                     return this.config.conjured != constants.conjureds.CONJURED_NONE;
+                if (name == "drums")
+                    return this.config.drums != constants.drums.DRUMS_NONE;
                 if (name == "hyperspeed_accelerators")
                     return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
                 if (name == "presence_of_mind")
@@ -1984,7 +1991,13 @@
 
             timingCanWait(name) {
                 var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
-                return nowait.indexOf(name) == -1;
+                if (nowait.indexOf(name) != -1)
+                    return false;
+
+                if (name == "drums")
+                    return !this.config.drums_friend;
+
+                return true;
             },
 
             sort(items, sorting) {

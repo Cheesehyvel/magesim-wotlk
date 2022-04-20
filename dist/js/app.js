@@ -4085,6 +4085,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: "Hyperspeed Accelerators",
         icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg"
       });
+      timings.push({
+        name: "drums",
+        title: "Drums",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_drum_02.jpg"
+      });
       var potion = {
         name: "potion",
         title: "Runic Mana Potion",
@@ -4230,6 +4235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (always.indexOf(name) != -1) return true;
       if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
       if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
+      if (name == "drums") return this.config.drums != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE;
       if (name == "hyperspeed_accelerators") return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
       if (name == "presence_of_mind") return this.config.talents.presence_of_mind > 0;
       if (name == "arcane_power") return this.config.talents.arcane_power > 0;
@@ -4240,7 +4246,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     timingCanWait: function timingCanWait(name) {
       var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
-      return nowait.indexOf(name) == -1;
+      if (nowait.indexOf(name) != -1) return false;
+      if (name == "drums") return !this.config.drums_friend;
+      return true;
     },
     sort: function sort(items, sorting) {
       if (!sorting || !sorting.name) return items;
