@@ -10,6 +10,7 @@ struct Config
     int target_resistance = 0;
     int target_level = 83;
     int spell_travel_time = 500;
+    int reaction_time = 300;
 
     // Buffs / debuffs
     bool debuff_spell_crit = false;
@@ -74,7 +75,11 @@ struct Config
     std::vector<double> innervate_t;
     std::vector<double> potion_t;
     std::vector<double> conjured_t;
+    std::vector<double> mana_gem_t;
     std::vector<double> hyperspeed_t;
+
+    std::vector<std::shared_ptr<Timing>> timings;
+    std::vector<std::shared_ptr<Interruption>> interruptions;
 
     double evocation_at = 0;
 

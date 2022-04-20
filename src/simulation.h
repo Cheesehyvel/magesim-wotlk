@@ -40,6 +40,9 @@ public:
         clearLog();
         state->reset();
         player->reset();
+
+        for (int i=0; i<config->timings.size(); i++)
+            config->timings[i]->used = false;
     }
 
     SimulationsResult runMultiple(int iterations)
@@ -126,34 +129,32 @@ public:
 
         onManaRegen(player);
 
-        if (config->innervate) {
-            for (int i=0; i<config->innervate_t.size() && i<config->innervate; i++)
-                pushBuffGain(player, make_shared<buff::Innervate>(), config->innervate_t.at(i));
+        for (int i=0; i<config->timings.size(); i++) {
+            if (config->timings[i]->name == "bloodlust")
+                pushBuffGainAll(make_shared<buff::Bloodlust>(), config->timings[i]->t);
+            else if (config->timings[i]->name == "innervate")
+                pushBuffGain(player, make_shared<buff::Innervate>(), config->timings[i]->t);
+            else if (config->timings[i]->name == "power_infusion")
+                pushBuffGain(player, make_shared<buff::PowerInfusion>(), config->timings[i]->t);
+            else if (config->timings[i]->name == "mana_tide")
+                pushBuffGain(player, make_shared<buff::ManaTide>(), config->timings[i]->t);
         }
-        if (config->bloodlust) {
-            for (int i=0; i<config->bloodlust_t.size(); i++)
-                pushBuffGainAll(make_shared<buff::Bloodlust>(), config->bloodlust_t.at(i));
-        }
-        if (config->power_infusion) {
-            for (int i=0; i<config->power_infusion_t.size(); i++)
-                pushBuffGain(player, make_shared<buff::PowerInfusion>(), config->power_infusion_t.at(i));
-        }
-        if (config->mana_tide) {
-            for (int i=0; i<config->mana_tide_t.size(); i++)
-                pushBuffGain(player, make_shared<buff::ManaTide>(), config->mana_tide_t.at(i));
-        }
-        if (player->talents.focus_magic) {
-            pushBuffGain(player, make_shared<buff::FocusMagic>(), 5.0);
-        }
+
         if (config->drums && config->drums_friend) {
             double t = 0;
-            for (int i=0; i<config->drums_t.size(); i++) {
-                if (config->drums_t.at(i) >= t)
-                    t = config->drums_t.at(i);
-                pushBuffGain(player, getDrumsBuff(), t);
+            for (int i=0; i<config->timings.size(); i++) {
+                if (config->timings[i]->name == "drums") {
+                    if (config->timings[i]->t >= t)
+                        t = config->timings[i]->t;
+                    pushBuffGain(player, getDrumsBuff(), t);
+                }
             }
             for (t+= 120; t<state->duration; t+= 120)
                 pushBuffGain(player, getDrumsBuff(), t);
+        }
+
+        if (player->talents.focus_magic) {
+            pushBuffGain(player, make_shared<buff::FocusMagic>(), 5.0);
         }
 
         workCurrent();
@@ -194,6 +195,9 @@ public:
                 state->t = player->t_gcd;
             }
             workCurrent();
+
+            if (state->t >= 0)
+                break;
         }
 
         state->t = player->t_gcd = 0;
@@ -730,7 +734,7 @@ public:
 
     void onManaRegen(shared_ptr<unit::Unit> unit, bool next = true)
     {
-        onManaGain(unit, unit->manaPerTick(), "Mana Regen");
+        onManaGain(unit, unit->manaPerTick(state), "Mana Regen");
         if (next)
             pushManaRegen(unit);
     }

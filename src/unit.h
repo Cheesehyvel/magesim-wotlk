@@ -142,7 +142,7 @@ namespace unit
             return mps;
         }
 
-        virtual double manaPerSecond()
+        virtual double manaPerSecond(shared_ptr<State>)
         {
             return staticManaPerSecond();
         }
@@ -158,13 +158,16 @@ namespace unit
             return mana / maxMana() * 100.0;
         }
 
-        double manaPerTick()
+        double manaPerTick(shared_ptr<State> state)
         {
-            return manaPerSecond() * 2;
+            return manaPerSecond(state) * 2;
         }
 
         double gcd(double t = 1.5)
         {
+            if (t == 0)
+                return 0;
+
             double cap = 1.0;
 
             t*= castHaste();

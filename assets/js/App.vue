@@ -217,7 +217,9 @@
                                                 <option :value="0">- Filter by content phase -</option>
                                                 <option :value="1">Phase 1 - Naxxramas</option>
                                                 <option :value="2">Phase 2 - Ulduar</option>
-                                                <option :value="3">Phase 3 - ICC idk</option>
+                                                <option :value="3">Phase 3 - TotC, Onyxia</option>
+                                                <option :value="4">Phase 4 - ICC</option>
+                                                <option :value="5">Phase 5 - Ruby Sanctum</option>
                                             </select>
                                         </div>
                                         <div class="form-item">
@@ -598,6 +600,13 @@
                                 </div>
                                 <div class="form-item">
                                     <label>
+                                        <span>Reaction time (ms)</span>
+                                        <help>Affects cooldown usage when waiting for procs</help>
+                                    </label>
+                                    <input type="text" v-model.number="config.reaction_time">
+                                </div>
+                                <div class="form-item">
+                                    <label>
                                         <span>RNG seed</span>
                                         <help>
                                             A number above 0 will give all runs the same random seed.<br>
@@ -912,7 +921,6 @@
                                     <label>Conjured</label>
                                     <select v-model="config.conjured">
                                         <option :value="conjureds.CONJURED_NONE">None</option>
-                                        <option :value="conjureds.CONJURED_MANA_GEM">Mana Sapphire</option>
                                         <option :value="conjureds.CONJURED_FLAME_CAP">Flame Cap</option>
                                     </select>
                                 </div>
@@ -941,252 +949,54 @@
                             </fieldset>
                             <fieldset class="config-cooldowns">
                                 <legend>Cooldowns</legend>
-                                <template v-if="config.talents.presence_of_mind">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Presence of Mind timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.presence_of_mind_t">
-                                            <input type="text" v-model.number="config.presence_of_mind_t[i]">
+                                <div class="timings">
+                                    <table class="items">
+                                        <thead>
+                                            <tr>
+                                                <th class="icon">CD</th>
+                                                <th class="t">Pop at</th>
+                                                <th class="wait-for-buff">Wait for</th>
+                                                <th class="wait-t">Wait max</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="timing in config.timings" :key="timing.id">
+                                                <td class="icon">
+                                                    <span>
+                                                        <img :src="getTiming(timing.name, 'icon')">
+                                                        <tooltip>{{ getTiming(timing.name, 'title') }}</tooltip>
+                                                    </span>
+                                                    <div class="remove" @click="removeTiming(timing.id)">
+                                                        <span class="material-icons">&#xe5cd;</span>
+                                                    </div>
+                                                </td>
+                                                <td class="t">
+                                                    <input type="text" v-model.number="timing.t">
+                                                </td>
+                                                <td class="wait-for-buff">
+                                                    <select v-model="timing.wait_for_buff" v-if="timingCanWait(timing.name)">
+                                                        <option :value="0">Nothing</option>
+                                                        <option v-for="buff in waitBuffs" :value="buff.id" :key="buff.id">{{ buff.name }}</option>
+                                                    </select>
+                                                </td>
+                                                <td class="wait-t">
+                                                    <input type="text" v-model.number="timing.wait_t" v-if="timingCanWait(timing.name)">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="add-timing">
+                                        <div class="plus">
+                                            <span class="material-icons">&#xe145;</span>
                                         </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.talents.arcane_power">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Arcane Power timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.arcane_power_t">
-                                            <input type="text" v-model.number="config.arcane_power_t[i]">
+                                        <div class="menu">
+                                            <div v-for="timing in timings" v-if="timingEnabled(timing.name)" @click="addTiming(timing.name)">
+                                                <img :src="timing.icon">
+                                                <tooltip>{{ timing.title }}</tooltip>
+                                            </div>
                                         </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.talents.icy_veins">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Icy Veins timings</span>
-                                            <timing-helper>Haste component does not stack with Bloodlust, Power Infusion or Berserking</timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.icy_veins_t">
-                                            <input type="text" v-model.number="config.icy_veins_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.talents.cold_snap">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Cold Snap timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.cold_snap_t">
-                                            <input type="text" v-model.number="config.cold_snap_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.talents.combustion">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Combustion timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.combustion_t">
-                                            <input type="text" v-model.number="config.combustion_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.race == races.RACE_TROLL">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Berserking timings</span>
-                                            <timing-helper>Haste component does not stack with Bloodlust, Icy Veins or Power Infusion</timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.berserking_t">
-                                            <input type="text" v-model.number="config.berserking_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.potion && config.potion != potions.POTION_MANA && config.potion != potions.POTION_FEL_MANA">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Potion timing</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.potion_t">
-                                            <input type="text" v-model.number="config.potion_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.conjured">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Conjured timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.conjured_t">
-                                            <input type="text" v-model.number="config.conjured_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="hasUseTrinket(1)">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Trinket #1 timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.trinket1_t">
-                                            <input type="text" v-model.number="config.trinket1_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="hasUseTrinket(2)">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Trinket #2 timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.trinket2_t">
-                                            <input type="text" v-model.number="config.trinket2_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.hyperspeed_accelerators">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Hyperspeed timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.hyperspeed_t">
-                                            <input type="text" v-model.number="config.hyperspeed_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template v-if="config.drums">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Drums timings</span>
-                                            <timing-helper></timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.drums_t">
-                                            <input type="text" v-model.number="config.drums_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template>
-                                    <div class="form-item">
-                                        <label>
-                                            <input type="checkbox" v-model="config.bloodlust">
-                                            <span>
-                                                Bloodlust
-                                                <span v-if="config.bloodlust">
-                                                    timings
-                                                    <timing-helper :nocd="true">Haste component does not stack with Power Infusion, Icy Veins or Berserking</timing-helper>
-                                                </span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0" v-if="config.bloodlust">
-                                        <div class="form-item" v-for="(a, i) in config.bloodlust_t">
-                                            <input type="text" v-model.number="config.bloodlust_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template>
-                                    <div class="form-item">
-                                        <label>
-                                            <input type="checkbox" v-model="config.power_infusion">
-                                            <span>
-                                                Power Infusion
-                                                <span v-if="config.power_infusion">
-                                                    timings
-                                                    <timing-helper :nocd="true">Haste component does not stack with Bloodlust, Icy Veins or Berserking</timing-helper>
-                                                </span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0" v-if="config.power_infusion">
-                                        <div class="form-item" v-for="(a, i) in config.power_infusion_t">
-                                            <input type="text" v-model.number="config.power_infusion_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <template>
-                                    <div class="form-item">
-                                        <label>
-                                            <input type="checkbox" v-model="config.mana_tide">
-                                            <span>
-                                                Mana Tide
-                                                <template v-if="config.mana_tide">
-                                                    timings
-                                                    <timing-helper :nocd="true"></timing-helper>
-                                                </template>
-                                            </span>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0" v-if="config.mana_tide">
-                                        <div class="form-item" v-for="(a, i) in config.mana_tide_t">
-                                            <input type="text" v-model.number="config.mana_tide_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
-                                <div class="form-row">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Evocation at</span>
-                                            <help>Setting this to 0 will evocate when mana is low</help>
-                                        </label>
-                                        <input type="text" v-model.number="config.evocation_at">
-                                    </div>
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Cancel after n ticks</span>
-                                            <help>Setting this to 0 will not cancel evocation.</help>
-                                        </label>
-                                        <input type="text" v-model.number="config.evo_ticks">
                                     </div>
                                 </div>
-                                <div class="form-item">
-                                    <label>Number of innervates</label>
-                                    <input type="text" v-model.number="config.innervate">
-                                </div>
-                                <template v-if="config.innervate > 0">
-                                    <div class="form-item">
-                                        <label>
-                                            <span>Innervate timings</span>
-                                            <timing-helper :nocd="true">Leaving empty will innervate when mana is low.</timing-helper>
-                                        </label>
-                                    </div>
-                                    <div class="form-row mt-0">
-                                        <div class="form-item" v-for="(a, i) in config.innervate_t" v-if="i < config.innervate">
-                                            <input type="text" v-model.number="config.innervate_t[i]">
-                                        </div>
-                                    </div>
-                                </template>
                             </fieldset>
                             <fieldset class="config-profiles">
                                 <legend>Profiles</legend>
@@ -1505,7 +1315,7 @@
                 drums: constants.drums.DRUMS_NONE,
                 potion: constants.potions.POTION_MANA,
                 pre_potion: constants.potions.POTION_SPEED,
-                conjured: constants.conjureds.CONJURED_MANA_GEM,
+                conjured: constants.conjureds.CONJURED_NONE,
 
                 drums_friend: false,
                 pre_mirror_image: false,
@@ -1527,22 +1337,7 @@
                 bloodlust: false,
                 power_infusion: false,
 
-                trinket1_t: Array(4),
-                trinket2_t: Array(4),
-                arcane_power_t: Array(4),
-                presence_of_mind_t: Array(4),
-                icy_veins_t: Array(4),
-                cold_snap_t: Array(4),
-                combustion_t: Array(4),
-                berserking_t: Array(4),
-                mana_tide_t: Array(4),
-                bloodlust_t: Array(4),
-                power_infusion_t: Array(4),
-                drums_t: Array(4),
-                innervate_t: Array(4),
-                potion_t: Array(1),
-                conjured_t: Array(4),
-                hyperspeed_t: Array(4),
+                timings: Array(),
 
                 evocation_at: 0,
                 evo_ticks: 0,
@@ -1944,10 +1739,177 @@
                 }
 
                 return ep;
+            },
+
+            timings() {
+                var timings = [];
+
+                timings.push({
+                    name: "bloodlust",
+                    title: "Bloodlust",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg",
+                });
+                timings.push({
+                    name: "power_infusion",
+                    title: "Power Infusion",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg",
+                });
+                timings.push({
+                    name: "mana_tide",
+                    title: "Mana Tide",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg",
+                });
+                timings.push({
+                    name: "innervate",
+                    title: "Innervate",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg",
+                });
+                timings.push({
+                    name: "mana_gem",
+                    title: "Mana Gem",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg",
+                });
+                timings.push({
+                    name: "berserking",
+                    title: "Berserking",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg",
+                });
+                timings.push({
+                    name: "presence_of_mind",
+                    title: "Presence of Mind",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_enchantarmor.jpg",
+                });
+                timings.push({
+                    name: "arcane_power",
+                    title: "Arcane Power",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg",
+                });
+                timings.push({
+                    name: "combustion",
+                    title: "Combustion",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_fire_sealoffire.jpg",
+                });
+                timings.push({
+                    name: "icy_veins",
+                    title: "Icy Veins",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_coldhearted.jpg",
+                });
+                timings.push({
+                    name: "cold_snap",
+                    title: "Cold Snap",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_wizardmark.jpg",
+                });
+                timings.push({
+                    name: "hyperspeed_accelerators",
+                    title: "Hyperspeed Accelerators",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
+                });
+
+                var potion = {
+                    name: "potion",
+                    title: "Runic Mana Potion",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg",
+                };
+                if (this.config.potion == constants.POTION_SPEED) {
+                    potion.title = "Potion of Speed";
+                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
+                }
+                if (this.config.potion == constants.POTION_WILD_MAGIC) {
+                    potion.title = "Potion of Wild Magic";
+                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
+                }
+                timings.push(potion);
+
+                if (this.config.potion == constants.POTION_WILD_MAGIC) {
+                    timings.push({
+                        name: "conjured",
+                        title: "Flame Cap",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg",
+                    });
+                }
+
+                return timings;
+            },
+
+            waitBuffs() {
+                return [
+                    { id: constants.buffs.MISSILE_BARRAGE, name: "Missile Barrage" },
+                    { id: constants.buffs.HOT_STREAK, name: "Hot Streak" },
+                    { id: constants.buffs.FIRESTARTER, name: "Firestarter" },
+                    { id: constants.buffs.BLACK_MAGIC, name: "Black Magic" },
+                    { id: constants.buffs.LIGHTWEAVE, name: "Lightweave Embroidery" },
+                    { id: constants.buffs.BRAIN_FREEZE, name: "Brain Freeze" },
+                    { id: constants.buffs.FINGERS_OF_FROST, name: "Fingers of Frost" },
+                    { id: constants.buffs.INNERVATE, name: "Innervate" },
+                ];
             }
         },
 
         methods: {
+            newTimingId() {
+                var id = 0;
+                for (var i=0; i<this.config.timings.length; i++)
+                    id = Math.max(id, this.config.timings[i].id);
+                return id+1;
+            },
+
+            addTiming(name) {
+                this.config.timings.push({
+                    id: this.newTimingId(),
+                    name: name,
+                    t: 0,
+                    wait_t: 0,
+                    wait_for_buff: 0,
+                });
+
+                this.config.timings = _.sortBy(this.config.timings, "name");
+            },
+
+            removeTiming(id) {
+                var index = _.findIndex(this.config.timings, {id: id});
+                if (index != -1)
+                    this.config.timings.splice(index, 1);
+            },
+
+            getTiming(name, key, def) {
+                if (typeof(def) == "undefined")
+                    def = null;
+                var timing = _.find(this.timings, {name: name});
+                if (!timing)
+                    return def;
+                return _.get(timing, key, def);
+            },
+
+            timingEnabled(name) {
+                var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem"];
+                if (always.indexOf(name) != -1)
+                    return true;
+
+                if (name == "potion")
+                    return this.config.potion != constants.potions.POTION_NONE;
+                if (name == "conjured")
+                    return this.config.conjured != constants.conjureds.CONJURED_NONE;
+                if (name == "hyperspeed_accelerators")
+                    return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
+                if (name == "presence_of_mind")
+                    return this.config.talents.presence_of_mind > 0;
+                if (name == "arcane_power")
+                    return this.config.talents.arcane_power > 0;
+                if (name == "combustion")
+                    return this.config.talents.combustion > 0;
+                if (name == "icy_veins")
+                    return this.config.talents.icy_veins > 0;
+                if (name == "cold_snap")
+                    return this.config.talents.cold_snap > 0;
+
+                return false;
+            },
+
+            timingCanWait(name) {
+                var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
+                return nowait.indexOf(name) == -1;
+            },
+
             sort(items, sorting) {
                 if (!sorting || !sorting.name)
                     return items;
@@ -2216,6 +2178,7 @@
 
             prepare() {
                 this.fillEmptyFields();
+                this.sortTimings();
                 this.saveCurrentProfile();
                 this.itemStats();
                 this.itemConfig();
@@ -2326,6 +2289,16 @@
                     if (this.config[key] === "" || this.config[key] === null)
                         this.config[key] = this.default_config.hasOwnProperty(key) ? this.default_config[key] : 0;
                 }
+            },
+
+            sortTimings() {
+                var fn = function(a, b) {
+                    if (a.name == b.name)
+                        return a.t - b.t;
+                    return a.name.localeCompare(b.name);
+                };
+
+                this.config.timings.sort(fn);
             },
 
             baseStats() {

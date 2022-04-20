@@ -57,4 +57,14 @@ export default {
         CONJURED_MANA_GEM: 33312,
         CONJURED_FLAME_CAP: 22788,
     },
+    buffs: {
+        MISSILE_BARRAGE: 44401,
+        HOT_STREAK: 48108,
+        FIRESTARTER: 54741,
+        BLACK_MAGIC: 59626,
+        LIGHTWEAVE: 55637,
+        BRAIN_FREEZE: 57761,
+        FINGERS_OF_FROST: 44544,
+        INNERVATE: 29166,
+    }
 };

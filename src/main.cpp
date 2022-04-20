@@ -12,6 +12,8 @@
 #include <iomanip>
 
 #include "common.h"
+#include "timing.h"
+#include "interruption.h"
 #include "config.h"
 #include "stats.h"
 #include "talents.h"

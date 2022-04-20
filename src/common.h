@@ -78,7 +78,6 @@ enum Potion : int
 enum Conjured : int
 {
     CONJURED_NONE = 0,
-    CONJURED_MANA_GEM = 33312,
     CONJURED_FLAME_CAP = 22788,
 };
 

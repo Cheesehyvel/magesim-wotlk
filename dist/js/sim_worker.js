@@ -23,17 +23,8 @@ onmessage = function onmessage(event) {
       var config = m.allocConfig();
 
       for (var key in data.config) {
-        if (key.indexOf("_t") && Array.isArray(data.config[key])) {
-          var v = new m["VectorDouble"]();
-
-          for (var i = 0; i < data.config[key].length; i++) {
-            if (typeof data.config[key][i] == "number") v.push_back(data.config[key][i]);else break;
-          }
-
-          config[key] = v;
-        } else if (typeof config[key] != "undefined") {
-          config[key] = data.config[key];
-        }
+        if (key == "timings") continue;
+        if (typeof config[key] != "undefined") config[key] = data.config[key];
       }
 
       if (m.Rotation.values.hasOwnProperty(data.config.rotation)) config.rotation = m.Rotation.values[data.config.rotation];
@@ -44,6 +35,11 @@ onmessage = function onmessage(event) {
       if (m.Potion.values.hasOwnProperty(data.config.potion)) config.potion = m.Potion.values[data.config.potion];
       if (m.Potion.values.hasOwnProperty(data.config.pre_potion)) config.pre_potion = m.Potion.values[data.config.pre_potion];
       if (m.Conjured.values.hasOwnProperty(data.config.conjured)) config.conjured = m.Conjured.values[data.config.conjured];
+
+      for (var i = 0; i < data.config.timings.length; i++) {
+        m.addTiming(config, data.config.timings[i].name, data.config.timings[i].t, data.config.timings[i].wait_for_buff, data.config.timings[i].wait_t);
+      }
+
       var player = m.allocPlayer(config);
       if (m.Race.values.hasOwnProperty(data.config.race)) player.race = m.Race.values[data.config.race];
       var stats = JSON.parse(JSON.stringify(player.getStats()));

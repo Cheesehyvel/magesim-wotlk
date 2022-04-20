@@ -107,6 +107,7 @@
             },
 
             events() {
+                var self = this;
                 var events = [];
                 var event, start, end, uptime;
 
@@ -147,6 +148,23 @@
                             uptime+= (end.length > j ? end[j].t : this.result.t) - start[j].t;
                         }
                         event.uptime = Math.round(uptime / this.result.t * 100);
+                        events.push(event);
+                    }
+                }
+
+                // Mana gains
+                var delta = 0;
+                for (var i=0; i<this.mana_gains.length; i++) {
+                    start = _.filter(this.result.log, function(a) { return a.text.indexOf(" mana from "+self.mana_gains[i].title) > 0; });
+                    if (start.length) {
+                        event = _.clone(this.mana_gains[i]);
+                        event.events = [];
+                        for (var j=0; j<start.length; j++) {
+                            event.events.push({
+                                start: start[j].t,
+                                end: start[j].t+0.5,
+                            });
+                        }
                         events.push(event);
                     }
                 }

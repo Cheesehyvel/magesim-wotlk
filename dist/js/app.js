@@ -151,6 +151,16 @@ __webpack_require__.r(__webpack_exports__);
     CONJURED_NONE: 0,
     CONJURED_MANA_GEM: 33312,
     CONJURED_FLAME_CAP: 22788
+  },
+  buffs: {
+    MISSILE_BARRAGE: 44401,
+    HOT_STREAK: 48108,
+    FIRESTARTER: 54741,
+    BLACK_MAGIC: 59626,
+    LIGHTWEAVE: 55637,
+    BRAIN_FREEZE: 57761,
+    FINGERS_OF_FROST: 44544,
+    INNERVATE: 29166
   }
 });
 
@@ -2622,196 +2632,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2881,7 +2701,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       drums: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE,
       potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
       pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
-      conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_MANA_GEM,
+      conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE,
       drums_friend: false,
       pre_mirror_image: false,
       pre_water_elemental: false,
@@ -2897,22 +2717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       mana_tide: false,
       bloodlust: false,
       power_infusion: false,
-      trinket1_t: Array(4),
-      trinket2_t: Array(4),
-      arcane_power_t: Array(4),
-      presence_of_mind_t: Array(4),
-      icy_veins_t: Array(4),
-      cold_snap_t: Array(4),
-      combustion_t: Array(4),
-      berserking_t: Array(4),
-      mana_tide_t: Array(4),
-      bloodlust_t: Array(4),
-      power_infusion_t: Array(4),
-      drums_t: Array(4),
-      innervate_t: Array(4),
-      potion_t: Array(1),
-      conjured_t: Array(4),
-      hyperspeed_t: Array(4),
+      timings: Array(),
       evocation_at: 0,
       evo_ticks: 0,
       build: "",
@@ -3265,9 +3070,179 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return ep;
+    },
+    timings: function timings() {
+      var timings = [];
+      timings.push({
+        name: "bloodlust",
+        title: "Bloodlust",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg"
+      });
+      timings.push({
+        name: "power_infusion",
+        title: "Power Infusion",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg"
+      });
+      timings.push({
+        name: "mana_tide",
+        title: "Mana Tide",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg"
+      });
+      timings.push({
+        name: "innervate",
+        title: "Innervate",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg"
+      });
+      timings.push({
+        name: "mana_gem",
+        title: "Mana Gem",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg"
+      });
+      timings.push({
+        name: "berserking",
+        title: "Berserking",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg"
+      });
+      timings.push({
+        name: "presence_of_mind",
+        title: "Presence of Mind",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_enchantarmor.jpg"
+      });
+      timings.push({
+        name: "arcane_power",
+        title: "Arcane Power",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg"
+      });
+      timings.push({
+        name: "combustion",
+        title: "Combustion",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_fire_sealoffire.jpg"
+      });
+      timings.push({
+        name: "icy_veins",
+        title: "Icy Veins",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_coldhearted.jpg"
+      });
+      timings.push({
+        name: "cold_snap",
+        title: "Cold Snap",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_wizardmark.jpg"
+      });
+      timings.push({
+        name: "hyperspeed_accelerators",
+        title: "Hyperspeed Accelerators",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg"
+      });
+      var potion = {
+        name: "potion",
+        title: "Runic Mana Potion",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg"
+      };
+
+      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_SPEED) {
+        potion.title = "Potion of Speed";
+        potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
+      }
+
+      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_WILD_MAGIC) {
+        potion.title = "Potion of Wild Magic";
+        potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
+      }
+
+      timings.push(potion);
+
+      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_WILD_MAGIC) {
+        timings.push({
+          name: "conjured",
+          title: "Flame Cap",
+          icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg"
+        });
+      }
+
+      return timings;
+    },
+    waitBuffs: function waitBuffs() {
+      return [{
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.MISSILE_BARRAGE,
+        name: "Missile Barrage"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.HOT_STREAK,
+        name: "Hot Streak"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FIRESTARTER,
+        name: "Firestarter"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BLACK_MAGIC,
+        name: "Black Magic"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.LIGHTWEAVE,
+        name: "Lightweave Embroidery"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.BRAIN_FREEZE,
+        name: "Brain Freeze"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FINGERS_OF_FROST,
+        name: "Fingers of Frost"
+      }, {
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.INNERVATE,
+        name: "Innervate"
+      }];
     }
   },
   methods: {
+    newTimingId: function newTimingId() {
+      var id = 0;
+
+      for (var i = 0; i < this.config.timings.length; i++) {
+        id = Math.max(id, this.config.timings[i].id);
+      }
+
+      return id + 1;
+    },
+    addTiming: function addTiming(name) {
+      this.config.timings.push({
+        id: this.newTimingId(),
+        name: name,
+        t: 0,
+        wait_t: 0,
+        wait_for_buff: 0
+      });
+      this.config.timings = _.sortBy(this.config.timings, "name");
+    },
+    removeTiming: function removeTiming(id) {
+      var index = _.findIndex(this.config.timings, {
+        id: id
+      });
+
+      if (index != -1) this.config.timings.splice(index, 1);
+    },
+    getTiming: function getTiming(name, key, def) {
+      if (typeof def == "undefined") def = null;
+
+      var timing = _.find(this.timings, {
+        name: name
+      });
+
+      if (!timing) return def;
+      return _.get(timing, key, def);
+    },
+    timingEnabled: function timingEnabled(name) {
+      var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem"];
+      if (always.indexOf(name) != -1) return true;
+      if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
+      if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
+      if (name == "hyperspeed_accelerators") return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
+      if (name == "presence_of_mind") return this.config.talents.presence_of_mind > 0;
+      if (name == "arcane_power") return this.config.talents.arcane_power > 0;
+      if (name == "combustion") return this.config.talents.combustion > 0;
+      if (name == "icy_veins") return this.config.talents.icy_veins > 0;
+      if (name == "cold_snap") return this.config.talents.cold_snap > 0;
+      return false;
+    },
+    timingCanWait: function timingCanWait(name) {
+      var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
+      return nowait.indexOf(name) == -1;
+    },
     sort: function sort(items, sorting) {
       if (!sorting || !sorting.name) return items;
       var type = null;
@@ -3672,6 +3647,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     prepare: function prepare() {
       this.fillEmptyFields();
+      this.sortTimings();
       this.saveCurrentProfile();
       this.itemStats();
       this.itemConfig();
@@ -3769,6 +3745,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       for (var key in this.config) {
         if (this.config[key] === "" || this.config[key] === null) this.config[key] = this.default_config.hasOwnProperty(key) ? this.default_config[key] : 0;
       }
+    },
+    sortTimings: function sortTimings() {
+      var fn = function fn(a, b) {
+        if (a.name == b.name) return a.t - b.t;
+        return a.name.localeCompare(b.name);
+      };
+
+      this.config.timings.sort(fn);
     },
     baseStats: function baseStats() {
       // Undead default
@@ -5288,6 +5272,7 @@ __webpack_require__.r(__webpack_exports__);
       return times;
     },
     events: function events() {
+      var self = this;
       var events = [];
       var event, start, end, uptime; // CDs
 
@@ -5342,6 +5327,29 @@ __webpack_require__.r(__webpack_exports__);
           }
 
           event.uptime = Math.round(uptime / this.result.t * 100);
+          events.push(event);
+        }
+      } // Mana gains
+
+
+      var delta = 0;
+
+      for (var i = 0; i < this.mana_gains.length; i++) {
+        start = _.filter(this.result.log, function (a) {
+          return a.text.indexOf(" mana from " + self.mana_gains[i].title) > 0;
+        });
+
+        if (start.length) {
+          event = _.clone(this.mana_gains[i]);
+          event.events = [];
+
+          for (var j = 0; j < start.length; j++) {
+            event.events.push({
+              start: start[j].t,
+              end: start[j].t + 0.5
+            });
+          }
+
           events.push(event);
         }
       }
@@ -62913,7 +62921,15 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 3 } }, [
-                                _vm._v("Phase 3 - ICC idk")
+                                _vm._v("Phase 3 - TotC, Onyxia")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { domProps: { value: 4 } }, [
+                                _vm._v("Phase 4 - ICC")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { domProps: { value: 5 } }, [
+                                _vm._v("Phase 5 - Ruby Sanctum")
                               ])
                             ]
                           )
@@ -64816,6 +64832,51 @@ var render = function() {
                             _vm.$set(
                               _vm.config,
                               "spell_travel_time",
+                              _vm._n($event.target.value)
+                            )
+                          },
+                          blur: function($event) {
+                            return _vm.$forceUpdate()
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c("span", [_vm._v("Reaction time (ms)")]),
+                          _vm._v(" "),
+                          _c("help", [
+                            _vm._v(
+                              "Affects cooldown usage when waiting for procs"
+                            )
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model.number",
+                            value: _vm.config.reaction_time,
+                            expression: "config.reaction_time",
+                            modifiers: { number: true }
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.config.reaction_time },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.config,
+                              "reaction_time",
                               _vm._n($event.target.value)
                             )
                           },
@@ -67751,16 +67812,6 @@ var render = function() {
                             "option",
                             {
                               domProps: {
-                                value: _vm.conjureds.CONJURED_MANA_GEM
-                              }
-                            },
-                            [_vm._v("Mana Sapphire")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            {
-                              domProps: {
                                 value: _vm.conjureds.CONJURED_FLAME_CAP
                               }
                             },
@@ -67956,1252 +68007,222 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "fieldset",
-                    { staticClass: "config-cooldowns" },
-                    [
-                      _c("legend", [_vm._v("Cooldowns")]),
-                      _vm._v(" "),
-                      _vm.config.talents.presence_of_mind
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [
-                                    _vm._v("Presence of Mind timings")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.presence_of_mind_t, function(
-                                a,
-                                i
-                              ) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.presence_of_mind_t[i],
-                                        expression:
-                                          "config.presence_of_mind_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.presence_of_mind_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.presence_of_mind_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.talents.arcane_power
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Arcane Power timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.arcane_power_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.arcane_power_t[i],
-                                        expression: "config.arcane_power_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.arcane_power_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.arcane_power_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.talents.icy_veins
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Icy Veins timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper", [
-                                    _vm._v(
-                                      "Haste component does not stack with Bloodlust, Power Infusion or Berserking"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.icy_veins_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.icy_veins_t[i],
-                                        expression: "config.icy_veins_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.icy_veins_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.icy_veins_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.talents.cold_snap
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Cold Snap timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.cold_snap_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.cold_snap_t[i],
-                                        expression: "config.cold_snap_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.cold_snap_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.cold_snap_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.talents.combustion
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Combustion timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.combustion_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.combustion_t[i],
-                                        expression: "config.combustion_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.combustion_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.combustion_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.race == _vm.races.RACE_TROLL
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Berserking timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper", [
-                                    _vm._v(
-                                      "Haste component does not stack with Bloodlust, Icy Veins or Power Infusion"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.berserking_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.berserking_t[i],
-                                        expression: "config.berserking_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.berserking_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.berserking_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.potion &&
-                      _vm.config.potion != _vm.potions.POTION_MANA &&
-                      _vm.config.potion != _vm.potions.POTION_FEL_MANA
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Potion timing")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.potion_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.potion_t[i],
-                                        expression: "config.potion_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: { value: _vm.config.potion_t[i] },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.potion_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.conjured
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Conjured timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.conjured_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.conjured_t[i],
-                                        expression: "config.conjured_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.conjured_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.conjured_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.hasUseTrinket(1)
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Trinket #1 timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.trinket1_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.trinket1_t[i],
-                                        expression: "config.trinket1_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.trinket1_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.trinket1_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.hasUseTrinket(2)
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Trinket #2 timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.trinket2_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.trinket2_t[i],
-                                        expression: "config.trinket2_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.trinket2_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.trinket2_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.hyperspeed_accelerators
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Hyperspeed timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.hyperspeed_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.hyperspeed_t[i],
-                                        expression: "config.hyperspeed_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.hyperspeed_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.hyperspeed_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.config.drums
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Drums timings")]),
-                                  _vm._v(" "),
-                                  _c("timing-helper")
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.drums_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.drums_t[i],
-                                        expression: "config.drums_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: { value: _vm.config.drums_t[i] },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.drums_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e(),
-                      _vm._v(" "),
-                      [
-                        _c("div", { staticClass: "form-item" }, [
-                          _c("label", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.config.bloodlust,
-                                  expression: "config.bloodlust"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                checked: Array.isArray(_vm.config.bloodlust)
-                                  ? _vm._i(_vm.config.bloodlust, null) > -1
-                                  : _vm.config.bloodlust
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.config.bloodlust,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "bloodlust",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "bloodlust",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.config, "bloodlust", $$c)
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v(
-                                "\n                                            Bloodlust\n                                            "
-                              ),
-                              _vm.config.bloodlust
-                                ? _c(
-                                    "span",
-                                    [
-                                      _vm._v(
-                                        "\n                                                timings\n                                                "
-                                      ),
-                                      _c(
-                                        "timing-helper",
-                                        { attrs: { nocd: true } },
-                                        [
-                                          _vm._v(
-                                            "Haste component does not stack with Power Infusion, Icy Veins or Berserking"
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ])
-                          ])
-                        ]),
+                  _c("fieldset", { staticClass: "config-cooldowns" }, [
+                    _c("legend", [_vm._v("Cooldowns")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "timings" }, [
+                      _c("table", { staticClass: "items" }, [
+                        _vm._m(5),
                         _vm._v(" "),
-                        _vm.config.bloodlust
-                          ? _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.bloodlust_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.bloodlust_t[i],
-                                        expression: "config.bloodlust_t[i]",
-                                        modifiers: { number: true }
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.config.timings, function(timing) {
+                            return _c("tr", { key: timing.id }, [
+                              _c("td", { staticClass: "icon" }, [
+                                _c(
+                                  "span",
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: _vm.getTiming(timing.name, "icon")
                                       }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.bloodlust_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.bloodlust_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          : _vm._e()
-                      ],
-                      _vm._v(" "),
-                      [
-                        _c("div", { staticClass: "form-item" }, [
-                          _c("label", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.config.power_infusion,
-                                  expression: "config.power_infusion"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                checked: Array.isArray(
-                                  _vm.config.power_infusion
-                                )
-                                  ? _vm._i(_vm.config.power_infusion, null) > -1
-                                  : _vm.config.power_infusion
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.config.power_infusion,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "power_infusion",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "power_infusion",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.config, "power_infusion", $$c)
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v(
-                                "\n                                            Power Infusion\n                                            "
-                              ),
-                              _vm.config.power_infusion
-                                ? _c(
-                                    "span",
-                                    [
+                                    }),
+                                    _vm._v(" "),
+                                    _c("tooltip", [
                                       _vm._v(
-                                        "\n                                                timings\n                                                "
-                                      ),
-                                      _c(
-                                        "timing-helper",
-                                        { attrs: { nocd: true } },
-                                        [
-                                          _vm._v(
-                                            "Haste component does not stack with Bloodlust, Icy Veins or Berserking"
-                                          )
-                                        ]
+                                        _vm._s(
+                                          _vm.getTiming(timing.name, "title")
+                                        )
                                       )
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm.config.power_infusion
-                          ? _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.power_infusion_t, function(
-                                a,
-                                i
-                              ) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.power_infusion_t[i],
-                                        expression:
-                                          "config.power_infusion_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.power_infusion_t[i]
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.power_infusion_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
-                                      }
-                                    }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          : _vm._e()
-                      ],
-                      _vm._v(" "),
-                      [
-                        _c("div", { staticClass: "form-item" }, [
-                          _c("label", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.config.mana_tide,
-                                  expression: "config.mana_tide"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                checked: Array.isArray(_vm.config.mana_tide)
-                                  ? _vm._i(_vm.config.mana_tide, null) > -1
-                                  : _vm.config.mana_tide
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.config.mana_tide,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "mana_tide",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "mana_tide",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.config, "mana_tide", $$c)
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              [
-                                _vm._v(
-                                  "\n                                            Mana Tide\n                                            "
+                                    ])
+                                  ],
+                                  1
                                 ),
-                                _vm.config.mana_tide
-                                  ? [
-                                      _vm._v(
-                                        "\n                                                timings\n                                                "
-                                      ),
-                                      _c("timing-helper", {
-                                        attrs: { nocd: true }
-                                      })
-                                    ]
-                                  : _vm._e()
-                              ],
-                              2
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm.config.mana_tide
-                          ? _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.mana_tide_t, function(a, i) {
-                                return _c("div", { staticClass: "form-item" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model.number",
-                                        value: _vm.config.mana_tide_t[i],
-                                        expression: "config.mana_tide_t[i]",
-                                        modifiers: { number: true }
-                                      }
-                                    ],
-                                    attrs: { type: "text" },
-                                    domProps: {
-                                      value: _vm.config.mana_tide_t[i]
-                                    },
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "remove",
                                     on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.config.mana_tide_t,
-                                          i,
-                                          _vm._n($event.target.value)
-                                        )
-                                      },
-                                      blur: function($event) {
-                                        return _vm.$forceUpdate()
+                                      click: function($event) {
+                                        return _vm.removeTiming(timing.id)
                                       }
                                     }
-                                  })
-                                ])
-                              }),
-                              0
-                            )
-                          : _vm._e()
-                      ],
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-row" }, [
-                        _c("div", { staticClass: "form-item" }, [
-                          _c(
-                            "label",
-                            [
-                              _c("span", [_vm._v("Evocation at")]),
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "material-icons" },
+                                      [_vm._v("")]
+                                    )
+                                  ]
+                                )
+                              ]),
                               _vm._v(" "),
-                              _c("help", [
-                                _vm._v(
-                                  "Setting this to 0 will evocate when mana is low"
-                                )
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model.number",
-                                value: _vm.config.evocation_at,
-                                expression: "config.evocation_at",
-                                modifiers: { number: true }
-                              }
-                            ],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.config.evocation_at },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.config,
-                                  "evocation_at",
-                                  _vm._n($event.target.value)
-                                )
-                              },
-                              blur: function($event) {
-                                return _vm.$forceUpdate()
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-item" }, [
-                          _c(
-                            "label",
-                            [
-                              _c("span", [_vm._v("Cancel after n ticks")]),
-                              _vm._v(" "),
-                              _c("help", [
-                                _vm._v(
-                                  "Setting this to 0 will not cancel evocation."
-                                )
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model.number",
-                                value: _vm.config.evo_ticks,
-                                expression: "config.evo_ticks",
-                                modifiers: { number: true }
-                              }
-                            ],
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.config.evo_ticks },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.config,
-                                  "evo_ticks",
-                                  _vm._n($event.target.value)
-                                )
-                              },
-                              blur: function($event) {
-                                return _vm.$forceUpdate()
-                              }
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-item" }, [
-                        _c("label", [_vm._v("Number of innervates")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model.number",
-                              value: _vm.config.innervate,
-                              expression: "config.innervate",
-                              modifiers: { number: true }
-                            }
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.config.innervate },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.config,
-                                "innervate",
-                                _vm._n($event.target.value)
-                              )
-                            },
-                            blur: function($event) {
-                              return _vm.$forceUpdate()
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _vm.config.innervate > 0
-                        ? [
-                            _c("div", { staticClass: "form-item" }, [
-                              _c(
-                                "label",
-                                [
-                                  _c("span", [_vm._v("Innervate timings")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "timing-helper",
-                                    { attrs: { nocd: true } },
-                                    [
-                                      _vm._v(
-                                        "Leaving empty will innervate when mana is low."
+                              _c("td", { staticClass: "t" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model.number",
+                                      value: timing.t,
+                                      expression: "timing.t",
+                                      modifiers: { number: true }
+                                    }
+                                  ],
+                                  attrs: { type: "text" },
+                                  domProps: { value: timing.t },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        timing,
+                                        "t",
+                                        _vm._n($event.target.value)
                                       )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "form-row mt-0" },
-                              _vm._l(_vm.config.innervate_t, function(a, i) {
-                                return i < _vm.config.innervate
-                                  ? _c("div", { staticClass: "form-item" }, [
-                                      _c("input", {
+                                    },
+                                    blur: function($event) {
+                                      return _vm.$forceUpdate()
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "wait-for-buff" }, [
+                                _vm.timingCanWait(timing.name)
+                                  ? _c(
+                                      "select",
+                                      {
                                         directives: [
                                           {
                                             name: "model",
-                                            rawName: "v-model.number",
-                                            value: _vm.config.innervate_t[i],
-                                            expression: "config.innervate_t[i]",
-                                            modifiers: { number: true }
+                                            rawName: "v-model",
+                                            value: timing.wait_for_buff,
+                                            expression: "timing.wait_for_buff"
                                           }
                                         ],
-                                        attrs: { type: "text" },
-                                        domProps: {
-                                          value: _vm.config.innervate_t[i]
-                                        },
                                         on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
                                             _vm.$set(
-                                              _vm.config.innervate_t,
-                                              i,
-                                              _vm._n($event.target.value)
+                                              timing,
+                                              "wait_for_buff",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
                                             )
-                                          },
-                                          blur: function($event) {
-                                            return _vm.$forceUpdate()
                                           }
                                         }
-                                      })
-                                    ])
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { domProps: { value: 0 } },
+                                          [_vm._v("Nothing")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.waitBuffs, function(buff) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: buff.id,
+                                              domProps: { value: buff.id }
+                                            },
+                                            [_vm._v(_vm._s(buff.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
                                   : _vm._e()
-                              }),
-                              0
-                            )
-                          ]
-                        : _vm._e()
-                    ],
-                    2
-                  ),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "wait-t" }, [
+                                _vm.timingCanWait(timing.name)
+                                  ? _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model.number",
+                                          value: timing.wait_t,
+                                          expression: "timing.wait_t",
+                                          modifiers: { number: true }
+                                        }
+                                      ],
+                                      attrs: { type: "text" },
+                                      domProps: { value: timing.wait_t },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            timing,
+                                            "wait_t",
+                                            _vm._n($event.target.value)
+                                          )
+                                        },
+                                        blur: function($event) {
+                                          return _vm.$forceUpdate()
+                                        }
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "add-timing" }, [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "menu" },
+                          _vm._l(_vm.timings, function(timing) {
+                            return _vm.timingEnabled(timing.name)
+                              ? _c(
+                                  "div",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addTiming(timing.name)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("img", { attrs: { src: timing.icon } }),
+                                    _vm._v(" "),
+                                    _c("tooltip", [
+                                      _vm._v(_vm._s(timing.title))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          }),
+                          0
+                        )
+                      ])
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("fieldset", { staticClass: "config-profiles" }, [
                     _c("legend", [_vm._v("Profiles")]),
@@ -69844,7 +68865,7 @@ var render = function() {
               _c("div", { staticClass: "title" }, [_vm._v("Equipped items")]),
               _vm._v(" "),
               _c("table", [
-                _vm._m(5),
+                _vm._m(7),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -70636,6 +69657,30 @@ var staticRenderFns = [
       _c("th", [_vm._v("Avg dmg")]),
       _vm._v(" "),
       _c("th", [_vm._v("Max dmg")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "icon" }, [_vm._v("CD")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "t" }, [_vm._v("Pop at")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "wait-for-buff" }, [_vm._v("Wait for")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "wait-t" }, [_vm._v("Wait max")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "plus" }, [
+      _c("span", { staticClass: "material-icons" }, [_vm._v("")])
     ])
   },
   function() {

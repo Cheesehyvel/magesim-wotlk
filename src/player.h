@@ -16,25 +16,9 @@ namespace unit
         int fingers_of_frost;
         bool on_hot_streak;
         double t_living_bomb;
+        double t_mana_spent;
         int mana_sapphire;
         int mana_emerald;
-
-        int trinket1_p;
-        int trinket2_p;
-        int presence_of_mind_p;
-        int arcane_power_p;
-        int icy_veins_p;
-        int cold_snap_p;
-        int combustion_p;
-        int berserking_p;
-        int mana_tide_p;
-        int bloodlust_p;
-        int power_infusion_p;
-        int drums_p;
-        int innervate_p;
-        int potion_p;
-        int conjured_p;
-        int hyperspeed_p;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -50,25 +34,9 @@ namespace unit
             fingers_of_frost = 0;
             on_hot_streak = false;
             t_living_bomb = -20;
+            t_mana_spent = 0;
             mana_sapphire = 3;
             mana_emerald = 3;
-
-            trinket1_p = 0;
-            trinket2_p = 0;
-            presence_of_mind_p = 0;
-            arcane_power_p = 0;
-            icy_veins_p = 0;
-            cold_snap_p = 0;
-            combustion_p = 0;
-            berserking_p = 0;
-            mana_tide_p = 0;
-            bloodlust_p = 0;
-            power_infusion_p = 0;
-            drums_p = 0;
-            innervate_p = 0;
-            potion_p = 0;
-            conjured_p = 0;
-            hyperspeed_p = 0;
         }
 
         Stats getStats()
@@ -123,7 +91,7 @@ namespace unit
             return config->trinket1 == trinket || config->trinket2 == trinket;
         }
 
-        double manaPerSecond()
+        double manaPerSecond(shared_ptr<State> state)
         {
             double mps = staticManaPerSecond();
             double spi = spiritManaPerSecond();
@@ -132,6 +100,9 @@ namespace unit
                 mps+= maxMana() * 0.01 / 5.0;
 
             double while_casting = 0;
+            if (t_mana_spent + 5 <= state->t) {
+                while_casting = 1;
+            }
             if (talents.arcane_meditation) {
                 if (talents.arcane_meditation == 1)
                     while_casting+= 0.17;
@@ -154,7 +125,7 @@ namespace unit
                     while_casting+= 0.2;
             }
 
-            mps+= while_casting * spi;
+            mps+= min(1.0, while_casting) * spi;
 
             return mps;
         }
@@ -522,10 +493,16 @@ namespace unit
             return false;
         }
 
-        std::list<shared_ptr<action::Action>> onCastSuccessProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell)
+        list<shared_ptr<action::Action>> onCastSuccessProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell)
         {
-            std::list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
+            list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
             shared_ptr<action::Action> action = NULL;
+
+            if (spell->actual_cost)
+                t_mana_spent = state->t;
+
+            if (spell->id == spell::MANA_GEM)
+                return useManaGem();
 
             // Cooldowns
             if (spell->id == spell::FIRE_BLAST)
@@ -637,9 +614,9 @@ namespace unit
             return actions;
         }
 
-        std::list<shared_ptr<action::Action>> onSpellImpactProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        list<shared_ptr<action::Action>> onSpellImpactProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
         {
-            std::list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
+            list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
 
             if (instance->result != spell::MISS) {
                 if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
@@ -750,15 +727,17 @@ namespace unit
 
         bool shouldUseManaGem(shared_ptr<State> state)
         {
-            if (config->conjured != CONJURED_MANA_GEM)
-                return false;
-
-            if (hasCooldown(cooldown::CONJURED))
+            if (hasCooldown(cooldown::MANA_GEM))
                 return false;
 
             // Check for planned mana gem timings
-            for (int i=0; i<config->conjured_t.size(); i++) {
-                if (state->t - config->conjured_t.at(i) < 10)
+            shared_ptr<Timing> timing = getNextTiming("mana_gem");
+            if (timing) {
+                if (isTimingReady(timing, state)) {
+                    useTiming(timing);
+                    return true;
+                }
+                if (timing->t < state->t + 120)
                     return false;
             }
 
@@ -784,13 +763,20 @@ namespace unit
 
         bool shouldUseManaPotion(shared_ptr<State> state)
         {
-            if (config->potion != POTION_MANA)
+            if (config->potion != POTION_MANA || hasCooldown(cooldown::POTION))
                 return false;
 
-            if (hasCooldown(cooldown::POTION) || hasBuff(buff::INNERVATE))
+            // Check for planned potions timings
+            shared_ptr<Timing> timing = getNextTiming("potion");
+            if (timing) {
+                if (isTimingReady(timing, state)) {
+                    useTiming(timing);
+                    return true;
+                }
                 return false;
+            }
 
-            if (!hasCooldown(cooldown::CONJURED) && config->conjured == CONJURED_MANA_GEM && config->conjured_t.size() > 0 && hasManaGem())
+            if (hasBuff(buff::INNERVATE))
                 return false;
 
             double max = 4400;
@@ -802,18 +788,11 @@ namespace unit
             if (hasBuff(buff::MANA_TIDE))
                 max+= maxMana() * 0.06;
 
-                // If gem is configured to be used within 15 sec, count with the mana gain to avoid overcapping
-            if (!hasCooldown(cooldown::CONJURED) && config->conjured == CONJURED_MANA_GEM) {
+            // If gem is configured to be used within 10 sec, count with the mana gain to avoid overcapping
+            if (!hasCooldown(cooldown::MANA_GEM) && hasManaGem()) {
                 bool gem_soon = false;
-                for (int i=0; i<config->conjured_t.size(); i++) {
-                    // 10 second margin for when it was supposed to be used
-                    if (state->t - config->conjured_t.at(i) < 10 && config->conjured_t.at(i) - state->t < 15) {
-                        gem_soon = true;
-                        break;
-                    }
-                }
-
-                if (gem_soon) {
+                shared_ptr<Timing> timing = getNextTiming("mana_gem");
+                if (timing != NULL && timing->t - state->t < 10) {
                     double gem = 3500;
                     if (hasTrinket(TRINKET_SERPENT_COIL))
                         gem*= 1.25;
@@ -826,35 +805,43 @@ namespace unit
             return maxMana() - mana >= max;
         }
 
+        list<shared_ptr<action::Action>> useManaGem()
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            double mana = 0;
+
+            if (mana_sapphire > 0) {
+                mana_sapphire--;
+                mana = random<int>(3330, 3500);
+            }
+            else if (mana_emerald > 0) {
+                mana_emerald--;
+                mana = random<int>(2340, 2460);
+            }
+
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                mana*= 1.25;
+            if (glyphs.mana_gem)
+                mana*= 1.4;
+
+            actions.push_back(manaAction(mana, "Mana Gem"));
+
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                actions.push_back(buffAction(make_shared<buff::SerpentCoil>()));
+
+            actions.push_back(cooldownAction(make_shared<cooldown::ManaGem>()));
+
+            return actions;
+        }
+
         list<shared_ptr<action::Action>> useConjured(Conjured conjured)
         {
             list<shared_ptr<action::Action>> actions = Unit::useConjured(conjured);
 
             double cd = 120;
 
-            if (conjured == CONJURED_MANA_GEM) {
-                double mana = 0;
-
-                if (mana_sapphire > 0) {
-                    mana_sapphire--;
-                    mana = random<int>(3330, 3500);
-                }
-                else if (mana_emerald > 0) {
-                    mana_emerald--;
-                    mana = random<int>(2340, 2460);
-                }
-
-                if (hasTrinket(TRINKET_SERPENT_COIL))
-                    mana*= 1.25;
-                if (glyphs.mana_gem)
-                    mana*= 1.4;
-
-                actions.push_back(manaAction(mana, "Mana Gem"));
-
-                if (hasTrinket(TRINKET_SERPENT_COIL))
-                    actions.push_back(buffAction(make_shared<buff::SerpentCoil>()));
-            }
-            else if (conjured == CONJURED_FLAME_CAP) {
+            if (conjured == CONJURED_FLAME_CAP) {
                 cd = 180;
                 actions.push_back(buffAction(make_shared<buff::FlameCap>()));
             }
@@ -908,6 +895,8 @@ namespace unit
 
         bool isUseTrinket(Trinket trinket)
         {
+            if (trinket == TRINKET_NONE)
+                return false;
             if (trinket == TRINKET_MERCURIAL_ALCHEMIST_STONE)
                 return false;
 
@@ -920,20 +909,46 @@ namespace unit
             return true;
         }
 
-        bool isTimerReady(double t, std::vector<double>& v, int pos)
+        shared_ptr<Timing> getNextTiming(string name)
         {
-            if (v.size() <= pos)
-                return true;
+            for (int i=0; i<config->timings.size(); i++) {
+                if (!config->timings[i]->used && config->timings[i]->name == name)
+                    return config->timings[i];
+            }
 
-            return v.at(pos) <= t;
+            return NULL;
         }
 
-        bool isTimerReadyExplicit(double t, std::vector<double>& v, int pos)
+        bool isTimingReady(shared_ptr<Timing> timing, shared_ptr<State> state)
         {
-            if (v.size() <= pos)
+            if (timing->used || timing->t > state->t)
                 return false;
 
-            return v.at(pos) <= t;
+            if (timing->wait_for_buff != 0 && timing->wait_t + timing->t > state->t) {
+                auto buff_id = static_cast<buff::ID>(timing->wait_for_buff);
+                if (!hasBuff(buff_id))
+                    return false;
+            }
+
+            return true;
+        }
+
+        void useTiming(shared_ptr<Timing> timing = NULL)
+        {
+            if (timing != NULL)
+                timing->used = true;
+        }
+
+        bool useTimingIfPossible(string name, shared_ptr<State> state, bool expl = false)
+        {
+            shared_ptr<Timing> timing = getNextTiming(name);
+
+            if (timing == NULL && !expl || timing != NULL && isTimingReady(timing, state)) {
+                useTiming(timing);
+                return true;
+            }
+
+            return false;
         }
 
         list<shared_ptr<action::Action>> useTrinket(Trinket trinket, shared_ptr<cooldown::Cooldown> cooldown)
@@ -971,65 +986,50 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (isTimerReady(state->t, config->arcane_power_t, arcane_power_p) && !hasCooldown(cooldown::ARCANE_POWER) && talents.arcane_power) {
+            if (talents.arcane_power && !hasCooldown(cooldown::ARCANE_POWER) && useTimingIfPossible("arcane_power", state)) {
                 action = buffAction(make_shared<buff::ArcanePower>(glyphs.arcane_power));
                 action->cooldown = make_shared<cooldown::ArcanePower>();
-                arcane_power_p++;
             }
-            else if (isTimerReady(state->t, config->combustion_t, combustion_p) && !hasCooldown(cooldown::COMBUSTION) && !hasBuff(buff::COMBUSTION) && talents.combustion) {
+            else if (talents.combustion && !hasCooldown(cooldown::COMBUSTION) && !hasBuff(buff::COMBUSTION) && useTimingIfPossible("combustion", state)) {
                 action = buffAction(make_shared<buff::Combustion>());
-                combustion_p++;
             }
-            else if (isTimerReady(state->t, config->presence_of_mind_t, presence_of_mind_p) && !hasCooldown(cooldown::PRESENCE_OF_MIND) && talents.presence_of_mind) {
+            else if (talents.presence_of_mind && !hasCooldown(cooldown::PRESENCE_OF_MIND) && useTimingIfPossible("presence_of_mind", state)) {
                 action = buffAction(make_shared<buff::PresenceOfMind>());
                 action->cooldown = make_shared<cooldown::PresenceOfMind>();
-                presence_of_mind_p++;
             }
-            else if (isTimerReady(state->t, config->icy_veins_t, icy_veins_p) && !hasCooldown(cooldown::ICY_VEINS) && talents.icy_veins) {
+            else if (talents.icy_veins && !hasCooldown(cooldown::ICY_VEINS) && useTimingIfPossible("icy_veins", state)) {
                 action = buffAction(make_shared<buff::IcyVeins>());
                 action->cooldown = make_shared<cooldown::IcyVeins>();
-                icy_veins_p++;
             }
-            else if (isTimerReady(state->t, config->cold_snap_t, cold_snap_p) && !hasCooldown(cooldown::COLD_SNAP) && talents.cold_snap) {
+            else if (talents.cold_snap && !hasCooldown(cooldown::COLD_SNAP) && useTimingIfPossible("cold_snap", state, true)) {
                 action = spellAction(make_shared<spell::ColdSnap>());
                 action->cooldown = make_shared<cooldown::ColdSnap>();
-                cold_snap_p++;
             }
-            else if (isTimerReady(state->t, config->berserking_t, berserking_p) && !hasCooldown(cooldown::BERSERKING) && race == RACE_TROLL) {
+            else if (race == RACE_TROLL && !hasCooldown(cooldown::BERSERKING) && useTimingIfPossible("berserking", state)) {
                 action = buffAction(make_shared<buff::Berserking>());
                 action->cooldown = make_shared<cooldown::Berserking>();
-                berserking_p++;
             }
-            else if (isTimerReady(state->t, config->hyperspeed_t, hyperspeed_p) && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && config->hyperspeed_accelerators) {
+            else if (config->hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && useTimingIfPossible("hyperspeed_accelerators", state)) {
                 action = buffAction(make_shared<buff::HyperspeedAcceleration>());
                 action->cooldown = make_shared<cooldown::HyperspeedAcceleration>();
-                hyperspeed_p++;
             }
-            else if (!hasCooldown(cooldown::POTION) && config->potion != POTION_NONE && config->potion != POTION_MANA && isTimerReady(state->t, config->potion_t, potion_p)) {
+            else if (config->potion != POTION_NONE && config->potion != POTION_MANA && !hasCooldown(cooldown::POTION) && useTimingIfPossible("potion", state)) {
                 action = make_shared<action::Action>(action::TYPE_POTION);
                 action->potion = config->potion;
-                potion_p++;
             }
-            else if (
-                !hasCooldown(cooldown::CONJURED) && config->conjured != CONJURED_NONE && (
-                    config->conjured == CONJURED_MANA_GEM && isTimerReadyExplicit(state->t, config->conjured_t, conjured_p) ||
-                    config->conjured != CONJURED_MANA_GEM && isTimerReady(state->t, config->conjured_t, conjured_p)))
-            {
+            else if (config->conjured != CONJURED_NONE && !hasCooldown(cooldown::CONJURED) && useTimingIfPossible("conjured", state)) {
                 action = make_shared<action::Action>(action::TYPE_CONJURED);
                 action->conjured = config->conjured;
-                conjured_p++;
             }
-            else if (isUseTrinket(config->trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config->trinket1) && isTimerReady(state->t, config->trinket1_t, trinket1_p)) {
+            else if (isUseTrinket(config->trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config->trinket1) && useTimingIfPossible("trinket1", state)) {
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET1);
                 action->trinket = config->trinket1;
-                trinket1_p++;
             }
-            else if (isUseTrinket(config->trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config->trinket2) && isTimerReady(state->t, config->trinket2_t, trinket2_p)) {
+            else if (isUseTrinket(config->trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config->trinket2) && useTimingIfPossible("trinket2", state)) {
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
                 action->trinket = config->trinket2;
-                trinket2_p++;
             }
 
             if (action != NULL)
@@ -1074,9 +1074,7 @@ namespace unit
 
             // Mana consumes
             if (shouldUseManaGem(state)) {
-                action = make_shared<action::Action>(action::TYPE_CONJURED);
-                action->conjured = config->conjured;
-                action->primary_action = true;
+                action = spellAction(make_shared<spell::ManaGem>());
                 return action;
             }
             else if (shouldUseManaPotion(state)) {

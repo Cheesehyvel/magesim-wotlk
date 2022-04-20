@@ -30,6 +30,7 @@ namespace cooldown
         LIGHTWEAVE = 55637,
         DARKGLOW = 55767,
         HYPERSPEED_ACCELERATION = 54758,
+        MANA_GEM = 42987,
     };
 
 
@@ -334,6 +335,18 @@ namespace cooldown
         {
             id = HYPERSPEED_ACCELERATION;
             duration = 60;
+        }
+
+    };
+
+    class ManaGem : public Cooldown
+    {
+
+    public:
+        ManaGem()
+        {
+            id = MANA_GEM;
+            duration = 120;
         }
 
     };

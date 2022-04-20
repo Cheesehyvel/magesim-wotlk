@@ -4,6 +4,16 @@
 #include <emscripten/bind.h>
 
 
+void addTiming(std::shared_ptr<Config> config, std::string name, double t, int wait_for_buff = 0, int wait_t = 0)
+{
+    std::shared_ptr<Timing> timing = std::make_shared<Timing>();
+    timing->name = name;
+    timing->t = t;
+    timing->wait_for_buff = wait_for_buff;
+    timing->wait_t = wait_t;
+    config->timings.push_back(timing);
+}
+
 std::shared_ptr<Config> allocConfig()
 {
     return std::make_shared<Config>();
@@ -84,7 +94,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
 
     emscripten::enum_<Conjured>("Conjured")
         .value("CONJURED_NONE", CONJURED_NONE)
-        .value("CONJURED_MANA_GEM", CONJURED_MANA_GEM)
         .value("CONJURED_FLAME_CAP", CONJURED_FLAME_CAP);
 
     emscripten::enum_<LogType>("LogType")
@@ -158,27 +167,12 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("bloodlust", &Config::bloodlust)
         .property("power_infusion", &Config::power_infusion)
 
-        .property("trinket1_t", &Config::trinket1_t)
-        .property("trinket2_t", &Config::trinket2_t)
-        .property("presence_of_mind_t", &Config::presence_of_mind_t)
-        .property("arcane_power_t", &Config::arcane_power_t)
-        .property("icy_veins_t", &Config::icy_veins_t)
-        .property("cold_snap_t", &Config::cold_snap_t)
-        .property("combustion_t", &Config::combustion_t)
-        .property("berserking_t", &Config::berserking_t)
-        .property("mana_tide_t", &Config::mana_tide_t)
-        .property("bloodlust_t", &Config::bloodlust_t)
-        .property("power_infusion_t", &Config::power_infusion_t)
-        .property("drums_t", &Config::drums_t)
-        .property("innervate_t", &Config::innervate_t)
-        .property("potion_t", &Config::potion_t)
-        .property("conjured_t", &Config::conjured_t)
-        .property("hyperspeed_t", &Config::hyperspeed_t)
-
         .property("evocation_at", &Config::evocation_at)
         ;
 
     emscripten::function("allocConfig", &allocConfig);
+
+    emscripten::function("addTiming", &addTiming);
 
     emscripten::value_object<Stats>("Stats")
         .field("intellect", &Stats::intellect)

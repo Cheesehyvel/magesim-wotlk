@@ -29,6 +29,7 @@ namespace spell
         DEEP_FREEZE = 44572,
         COLD_SNAP = 11958,
         IGNITE = 12848,
+        MANA_GEM = 42987,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -565,6 +566,21 @@ namespace spell
             stackable = true;
             fixed_dmg = true;
             school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class ManaGem : public Spell
+    {
+
+    public:
+        ManaGem()
+        {
+            id = MANA_GEM;
+            name = "Mana Gem";
+            is_trigger = true;
+            gcd = 0;
+            school = SCHOOL_ARCANE;
         }
 
     };
