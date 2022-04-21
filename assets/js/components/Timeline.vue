@@ -75,7 +75,7 @@
                 ],
                 trinkets: [
                     { title: "Fel Infusion", color: "#b24" },
-                    { title: "Serpent Coil", color: "#2da" },
+                    { title: "Improved Mana Gem", color: "#2da" },
                     { title: "Mojo Madness", color: "#d22" },
                     { title: "Insight of the Ashtongue", color: "#cc8" },
                     { title: "Power Circle", color: "#a2a" },

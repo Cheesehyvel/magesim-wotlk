@@ -36,7 +36,6 @@ namespace buff
         DRUMS_OF_WAR = 35475,
         DRUMS_OF_RESTORATION = 35478,
         FLAME_CAP = 28714,
-        SERPENT_COIL = 30720,
         SKULL_GULDAN = 40396,
         SHRUNKEN_HEAD = 43712,
         NAARU_SLIVER = 45042,
@@ -525,19 +524,6 @@ namespace buff
         {
             id = NAARU_SLIVER;
             name = "Power Circle";
-            duration = 15;
-        }
-
-    };
-
-    class SerpentCoil : public Buff
-    {
-
-    public:
-        SerpentCoil()
-        {
-            id = SERPENT_COIL;
-            name = "Serpent Coil";
             duration = 15;
         }
 

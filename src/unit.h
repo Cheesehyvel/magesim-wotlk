@@ -353,12 +353,10 @@ namespace unit
                 sp+= 350.0;
             if (hasBuff(buff::LIGHTWEAVE))
                 sp+= 295.0;
-
-            // TBC stuff
-            if (hasBuff(buff::SERPENT_COIL))
-                sp+= 225.0;
             if (hasBuff(buff::IMPROVED_MANA_GEM))
                 sp+= 225.0;
+
+            // TBC stuff
             if (hasBuff(buff::SHRUNKEN_HEAD))
                 sp+= 211.0;
             if (hasBuff(buff::NAARU_SLIVER))

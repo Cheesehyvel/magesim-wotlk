@@ -816,9 +816,7 @@ namespace unit
             else
                 return 0;
 
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                max*= 1.25;
-            if (config->t7_2set)
+            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
                 max*= 1.25;
             if (glyphs.mana_gem)
                 max*= 1.4;
@@ -935,18 +933,14 @@ namespace unit
                 mana = random<int>(2340, 2460);
             }
 
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                mana*= 1.25;
-            if (config->t7_2set)
+            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
                 mana*= 1.25;
             if (glyphs.mana_gem)
                 mana*= 1.4;
 
             actions.push_back(manaAction(mana, "Mana Gem"));
 
-            if (hasTrinket(TRINKET_SERPENT_COIL))
-                actions.push_back(buffAction(make_shared<buff::SerpentCoil>()));
-            if (config->t7_2set)
+            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
                 actions.push_back(buffAction(make_shared<buff::ImprovedManaGem>()));
 
             actions.push_back(cooldownAction(make_shared<cooldown::ManaGem>()));

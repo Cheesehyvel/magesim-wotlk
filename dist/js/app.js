@@ -6272,7 +6272,7 @@ __webpack_require__.r(__webpack_exports__);
         title: "Fel Infusion",
         color: "#b24"
       }, {
-        title: "Serpent Coil",
+        title: "Improved Mana Gem",
         color: "#2da"
       }, {
         title: "Mojo Madness",
