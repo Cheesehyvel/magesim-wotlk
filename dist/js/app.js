@@ -5000,7 +5000,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       stats.intellect = Math.round(stats.intellect);
       stats.spirit = Math.round(stats.spirit);
       if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence) stats.hit += 1;
-      if (this.config.talents.mind_mastery) stats.spell_power += Math.round(stats.intellect * this.config.talents.mind_mastery * 0.05);
+      if (this.config.talents.mind_mastery) stats.spell_power += Math.round(stats.intellect * this.config.talents.mind_mastery * 0.03);
       stats.crit += this.config.talents.arcane_instability;
       stats.crit += this.config.talents.pyromaniac;
       stats.hit += this.config.talents.precision; // Calculate percentages
