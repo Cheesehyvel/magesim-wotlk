@@ -2533,6 +2533,9 @@
                     }
                 }
 
+                if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET))
+                    item_stats.sp+= 18;
+
                 stats.intellect+= item_stats.int;
                 stats.spirit+= item_stats.spi;
                 stats.mp5+= item_stats.mp5;

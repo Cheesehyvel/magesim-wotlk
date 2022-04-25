@@ -389,6 +389,7 @@ var ids = {
   T7_SET: 803,
   T6_SET: 671,
   GLADIATOR_SET: 779,
+  DUSKWEAVE_SET: 764,
   // Metas
   META_CHAOTIC_SKYFLARE: 41285,
   META_EMBER_SKYFLARE: 41333,
@@ -1402,6 +1403,14 @@ var equip = {
     haste: 42,
     mp5: 33
   }, {
+    id: 41554,
+    itemset: ids.DUSKWEAVE_SET,
+    title: "Black Duskweave Robe",
+    "int": 46,
+    sp: 80,
+    haste: 70,
+    q: "rare"
+  }, {
     id: 37222,
     title: "Egg Sac Robes",
     "int": 61,
@@ -1509,6 +1518,14 @@ var equip = {
     "int": 38,
     sp: 59,
     crit: 50
+  }, {
+    id: 41555,
+    itemset: ids.DUSKWEAVE_SET,
+    title: "Black Duskweave Wristwraps",
+    "int": 27,
+    sp: 46,
+    haste: 38,
+    q: "rare"
   }, {
     id: 37370,
     title: "Cuffs of the Trussed Hall",
@@ -2201,6 +2218,14 @@ var equip = {
     bonus: {
       crit: 4
     },
+    q: "rare"
+  }, {
+    id: 41553,
+    itemset: ids.DUSKWEAVE_SET,
+    title: "Black Duskweave Leggings",
+    "int": 50,
+    sp: 81,
+    haste: 69,
     q: "rare"
   }, {
     id: 37189,
@@ -5813,6 +5838,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
+      if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET)) item_stats.sp += 18;
       stats.intellect += item_stats["int"];
       stats.spirit += item_stats.spi;
       stats.mp5 += item_stats.mp5;

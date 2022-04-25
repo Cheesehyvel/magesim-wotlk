@@ -20,6 +20,7 @@ var ids = {
     T7_SET: 803,
     T6_SET: 671,
     GLADIATOR_SET: 779,
+    DUSKWEAVE_SET: 764,
     // Metas
     META_CHAOTIC_SKYFLARE: 41285,
     META_EMBER_SKYFLARE: 41333,
@@ -156,6 +157,7 @@ var equip = {
         { id: 42101, title: "Ebonweave Robe", int: 89, sp: 105, hit: 68 },
         { id: 42100, title: "Moonshroud Robe", int: 68, spi: 89, sp: 105 },
         { id: 44180, title: "Robes of Crackling Flame", int: 73, sp: 104, haste: 42, mp5: 33 },
+        { id: 41554, itemset: ids.DUSKWEAVE_SET, title: "Black Duskweave Robe", int: 46, sp: 80, haste: 70, q: "rare" },
         { id: 37222, title: "Egg Sac Robes", int: 61, sp: 73, haste: 62, sockets: ["r", "y"], bonus: {int: 6}, q: "rare" },
         { id: 37258, title: "Drakewing Raiments", int: 69, sp: 73, haste: 59, sockets: ["y", "r"], bonus: {int: 6}, q: "rare" },
         { id: 37641, title: "Arcane Flame Altar-Garb", int: 77, sp: 91, crit: 60, q: "rare" },
@@ -169,6 +171,7 @@ var equip = {
     wrist: [
         { id: 37361, title: "Cuffs of Winged Levitation", int: 38, spi: 32, sp: 59, haste: 33 },
         { id: 37884, title: "Azure Cloth Bindings", int: 38, sp: 59, crit: 50 },
+        { id: 41555, itemset: ids.DUSKWEAVE_SET, title: "Black Duskweave Wristwraps", int: 27, sp: 46, haste: 38, q: "rare" },
         { id: 37370, title: "Cuffs of the Trussed Hall", int: 31, spi: 43, sp: 50, q: "rare" },
         { id: 37613, title: "Flame Sphere Bindings", int: 45, sp: 51, mp5: 15, q: "rare" },
         { id: 37725, title: "Savage Wound Wrap", int: 32, sp: 51, haste: 43, q: "rare" },
@@ -244,6 +247,7 @@ var equip = {
         { id: 37854, title: "Woven Bracae Leggings", int: 68, sp: 105, crit: 89 },
         { id: 37622, title: "Skirt of the Old Kingdom", int: 68, sp: 104, mp5: 45 },
         { id: 37369, title: "Sorrowgrave's Breeches", int: 71, sp: 82, crit: 59, sockets: ["r"], bonus: {crit: 4}, q: "rare" },
+        { id: 41553, itemset: ids.DUSKWEAVE_SET, title: "Black Duskweave Leggings", int: 50, sp: 81, haste: 69, q: "rare" },
         { id: 37189, title: "Breeches of the Caller", int: 74, spi: 52, sp: 73, sockets: ["r", "b"], bonus: {haste: 6}, q: "rare" },
         { id: 37876, title: "Cyanigosa's Leggings", int: 59, spi: 78, sp: 91, q: "rare" },
         { id: 43313, title: "Leggings of the Ruins Dweller", int: 45, sp: 73, mp5: 31, sockets: ["b", "b"], bonus: {sp: 7}, q: "rare" },
