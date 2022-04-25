@@ -2533,7 +2533,7 @@
                     }
                 }
 
-                if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET))
+                if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET) > 1)
                     item_stats.sp+= 18;
 
                 stats.intellect+= item_stats.int;
