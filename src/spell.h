@@ -32,6 +32,8 @@ namespace spell
         MANA_GEM = 42987,
         EVOCATION = 12051,
         DRUMS = 29529,
+        PENDULUM_TELLURIC_CURRENTS = 60483,
+        DARKMOON_DEATH = 60203,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -614,6 +616,42 @@ namespace spell
             name = "Drums";
             is_trigger = true;
             school = SCHOOL_NONE;
+        }
+    };
+
+    class PendulumTelluricCurrents : public Spell
+    {
+
+    public:
+        PendulumTelluricCurrents()
+        {
+            id = PENDULUM_TELLURIC_CURRENTS;
+            name = "Pendulum of Telluric Currents";
+            school = SCHOOL_SHADOW;
+            proc = true;
+            min_dmg = 1168;
+            max_dmg = 1752;
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+        }
+    };
+
+    class DarkmoonDeath : public Spell
+    {
+
+    public:
+        DarkmoonDeath()
+        {
+            id = DARKMOON_DEATH;
+            name = "Darkmoon Card: Death";
+            school = SCHOOL_SHADOW;
+            proc = true;
+            min_dmg = 1750;
+            max_dmg = 2250;
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
         }
     };
 

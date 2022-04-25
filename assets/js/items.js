@@ -1,4 +1,14 @@
 var ids = {
+    // Trinkets
+    TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
+    TRINKET_TWILIGHT_SERPENT: 42395,
+    TRINKET_TOME_ARCANE_PHENOMENA: 36972,
+    TRINKET_CANNONEERS_FUSELIGHTER: 44013,
+    TRINKET_MARK_WAR_PRISONER: 37873,
+    TRINKET_FORGE_EMBER: 37660,
+    TRINKET_PENDULUM_TELLURIC_CURRENTS: 37264,
+    TRINKET_DARKMOON_DEATH: 42990,
+    // Enchants
     BLACK_MAGIC: 59625,
     HYPERSPEED_ACCELERATORS: 54999,
     LIGHTWEAVE_EMBROIDERY: 55642,
@@ -16,12 +26,12 @@ var ids = {
     META_BEAMING_EARTHSIEGE: 41389,
     META_INSIGHTFUL_EARTHSIEGE: 41401,
     // TBC items
-    SERPENT_COIL: 30720,
-    MQG: 19339,
-    SKULL_GULDAN: 32483,
-    SHRUNKEN_HEAD: 33829,
-    NAARU_SLIVER: 34429,
-    ASHTONGUE_TALISMAN: 32488,
+    TRINKET_SERPENT_COIL: 30720,
+    TRINKET_MQG: 19339,
+    TRINKET_SKULL_GULDAN: 32483,
+    TRINKET_SHRUNKEN_HEAD: 33829,
+    TRINKET_NAARU_SLIVER: 34429,
+    TRINKET_ASHTONGUE_TALISMAN: 32488,
 };
 
 var equip = {
@@ -273,13 +283,22 @@ var equip = {
         { id: 34230, title: "Ring of Omnipotence", int: 14, sp: 40, crit: 22, haste: 31 },
     ],
     trinket: [
+        { id: ids.TRINKET_DARKMOON_DEATH, title: "Darkmoon Card: Death", crit: 85 },
+        { id: 42988, title: "Darkmoon Card: Illusion", sp: 100 },
+        { id: ids.TRINKET_FORGE_EMBER, title: "Forge Ember", crit: 73, q: "rare" },
+        { id: ids.TRINKET_PENDULUM_TELLURIC_CURRENTS, title: "Pendulum of Telluric Currents", haste: 74, q: "rare" },
+        { id: ids.TRINKET_MERCURIAL_ALCHEMIST_STONE, title: "Mercurial Alchemist Stone", sp: 59, haste: 50, q: "rare" },
+        { id: ids.TRINKET_MARK_WAR_PRISONER, title: "Mark of the War Prisoner", hit: 73, use: true, q: "rare" },
+        { id: ids.TRINKET_CANNONEERS_FUSELIGHTER, title: "Cannoneer's Fuselighter", crit: 54, use: true, q: "rare" },
+        { id: ids.TRINKET_TOME_ARCANE_PHENOMENA, title: "Tome of Arcane Phenomena", sp: 68, use: true, q: "rare" },
+        { id: ids.TRINKET_TWILIGHT_SERPENT, title: "Figurine - Twilight Serpent", hit: 42, sockets: ["r", "b"], bonus: {sp: 7}, use: true, q: "rare" },
         // TBC trinkets
-        { id: ids.NAARU_SLIVER, title: "Shifting Naaru Sliver", haste: 54, use: true },
-        { id: ids.SKULL_GULDAN, title: "The Skull of Gul'dan", sp: 55, hit: 25, use: true },
-        { id: ids.ASHTONGUE_TALISMAN, title: "Ashtongue Talisman" },
-        { id: ids.SERPENT_COIL, title: "Serpent-Coil Braid", crit: 30, hit: 12 },
-        { id: ids.SHRUNKEN_HEAD, title: "Hex Shrunken Head", sp: 53, use: true },
-        { id: ids.MQG, title: "Mind Quickening Gem", use: true },
+        { id: ids.TRINKET_NAARU_SLIVER, title: "Shifting Naaru Sliver", haste: 54, use: true },
+        { id: ids.TRINKET_SKULL_GULDAN, title: "The Skull of Gul'dan", sp: 55, hit: 25, use: true },
+        { id: ids.TRINKET_ASHTONGUE_TALISMAN, title: "Ashtongue Talisman" },
+        { id: ids.TRINKET_SERPENT_COIL, title: "Serpent-Coil Braid", crit: 30, hit: 12 },
+        { id: ids.TRINKET_SHRUNKEN_HEAD, title: "Hex Shrunken Head", sp: 53, use: true },
+        { id: ids.TRINKET_MQG, title: "Mind Quickening Gem", use: true },
     ],
 };
 

@@ -32,6 +32,9 @@ namespace cooldown
         HYPERSPEED_ACCELERATION = 54758,
         MANA_GEM = 42987,
         PRAXIS = 64867,
+        FORGE_EMBER = 60479,
+        PENDULUM_TELLURIC_CURRENTS = 60483,
+        DARKMOON_DEATH = 60203,
     };
 
 
@@ -359,6 +362,42 @@ namespace cooldown
         Praxis()
         {
             id = PRAXIS;
+            duration = 45;
+        }
+
+    };
+
+    class ForgeEmber : public Cooldown
+    {
+
+    public:
+        ForgeEmber()
+        {
+            id = FORGE_EMBER;
+            duration = 45;
+        }
+
+    };
+
+    class PendulumTelluricCurrents : public Cooldown
+    {
+
+    public:
+        PendulumTelluricCurrents()
+        {
+            id = PENDULUM_TELLURIC_CURRENTS;
+            duration = 45;
+        }
+
+    };
+
+    class DarkmoonDeath : public Cooldown
+    {
+
+    public:
+        DarkmoonDeath()
+        {
+            id = DARKMOON_DEATH;
             duration = 45;
         }
 

@@ -960,7 +960,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="timing in config.timings" :key="timing.id">
+                                            <tr v-for="timing in config.timings" :key="timing.id" v-if="timingEnabled(timing.name)">
                                                 <td class="icon">
                                                     <span>
                                                         <img :src="getTiming(timing.name, 'icon')">
@@ -1264,7 +1264,7 @@
 
         data() {
             var default_config = {
-                iterations: 30000,
+                iterations: 20000,
                 race: 5,
                 shatt_faction: 0,
 
@@ -1854,22 +1854,42 @@
 
                 var trinkets = [
                     {
-                        id: this.items.ids.NAARU_SLIVER,
+                        id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
+                        title: "Figurine - Twilight Serpent",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_TOME_ARCANE_PHENOMENA,
+                        title: "Tome of Arcane Phenomena",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_book_07.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_CANNONEERS_FUSELIGHTER,
+                        title: "Cannoneer's Fuselighter",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_MARK_WAR_PRISONER,
+                        title: "Mark of the War Prisoner",
+                        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_13.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_NAARU_SLIVER,
                         title: "Shifting Naaru Sliver",
                         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_15.jpg",
                     },
                     {
-                        id: this.items.ids.SKULL_GULDAN,
+                        id: this.items.ids.TRINKET_SKULL_GULDAN,
                         title: "Skull of Gul'dan",
                         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg",
                     },
                     {
-                        id: this.items.ids.SHRUNKEN_HEAD,
+                        id: this.items.ids.TRINKET_SHRUNKEN_HEAD,
                         title: "Hex Shrunken Head",
                         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_head_troll_01.jpg",
                     },
                     {
-                        id: this.items.ids.MQG,
+                        id: this.items.ids.TRINKET_MQG,
                         title: "Mind Quickening Gem",
                         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_wispheal.jpg",
                     },
@@ -1962,7 +1982,6 @@
                 var always = [
                     "bloodlust", "mana_tide", "power_infusion",
                     "innervate", "mana_gem", "evocation",
-                    "trinket1", "trinket2",
                 ];
                 if (always.indexOf(name) != -1)
                     return true;
@@ -1985,6 +2004,10 @@
                     return this.config.talents.icy_veins > 0;
                 if (name == "cold_snap")
                     return this.config.talents.cold_snap > 0;
+                if (name == "trinket1")
+                    return this.equipped.trinket1 && _.get(this.equippedItem("trinket1"), "use");
+                if (name == "trinket2")
+                    return this.equipped.trinket2 && _.get(this.equippedItem("trinket2"), "use");
 
                 return false;
             },
@@ -2679,8 +2702,6 @@
 
                 if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence)
                     stats.hit+= 1;
-                if (this.config.talents.mind_mastery)
-                    stats.spell_power+= Math.round(stats.intellect * this.config.talents.mind_mastery * 0.03);
                 stats.crit+= this.config.talents.arcane_instability;
                 stats.crit+= this.config.talents.pyromaniac;
                 stats.hit+= this.config.talents.precision;
@@ -2709,6 +2730,10 @@
                         x = this.config.demonic_pact_bonus;
                     stats.spell_power+= x;
                 }
+
+                // Mind mastery
+                if (this.config.talents.mind_mastery)
+                    stats.spell_power+= Math.round(stats.intellect * this.config.talents.mind_mastery * 0.03);
 
                 // Buff:: Spell haste
                 if (this.config.buff_spell_haste)

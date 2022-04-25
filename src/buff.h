@@ -31,6 +31,12 @@ namespace buff
         PRAXIS = 64867,
         QUAD_CORE = 70747,
         PUSHING_THE_LIMIT = 70753,
+        // Trinkets
+        TWILIGHT_SERPENT = 56184,
+        TOME_ARCANE_PHENOMENA = 60471,
+        ARGENT_VALOR = 59657,
+        MARK_WAR_PRISONER = 60480,
+        FORGE_EMBER = 60479,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -55,6 +61,7 @@ namespace buff
         int max_stacks = 1;
         bool hidden = false;
         double cost = 0;
+        Stats stats;
 
         int addStack()
         {
@@ -317,6 +324,7 @@ namespace buff
             id = FOCUS_MAGIC;
             name = "Focus Magic";
             duration = 6000; // This is actually 10 sec but assume it gets refreshed
+            stats.crit = 3;
         }
 
     };
@@ -330,6 +338,7 @@ namespace buff
             id = HYPERSPEED_ACCELERATION;
             name = "Hyperspeed Acceleration";
             duration = 12;
+            stats.haste_rating = 340;
         }
 
     };
@@ -343,6 +352,7 @@ namespace buff
             id = BLACK_MAGIC;
             name = "Black Magic";
             duration = 10;
+            stats.haste_rating = 250;
         }
 
     };
@@ -356,6 +366,21 @@ namespace buff
             id = LIGHTWEAVE;
             name = "Lightweave";
             duration = 15;
+            stats.spell_power = 295;
+        }
+
+    };
+
+    class Speed : public Buff
+    {
+
+    public:
+        Speed()
+        {
+            id = SPEED;
+            name = "Speed";
+            duration = 15;
+            stats.haste_rating = 500;
         }
 
     };
@@ -369,6 +394,8 @@ namespace buff
             id = WILD_MAGIC;
             name = "Wild Magic";
             duration = 15;
+            stats.spell_power = 200;
+            stats.crit = critRatingToChance(200);
         }
 
     };
@@ -382,6 +409,7 @@ namespace buff
             id = IMPROVED_MANA_GEM;
             name = "Improved Mana Gem";
             duration = 15;
+            stats.spell_power = 225;
         }
 
     };
@@ -395,6 +423,7 @@ namespace buff
             id = PRAXIS;
             name = "Praxis";
             duration = 15;
+            stats.spell_power = 350;
         }
 
     };
@@ -425,15 +454,72 @@ namespace buff
 
     };
 
-    class Speed : public Buff
+    class TwilightSerpent : public Buff
     {
 
     public:
-        Speed()
+        TwilightSerpent()
         {
-            id = SPEED;
-            name = "Speed";
-            duration = 15;
+            id = TWILIGHT_SERPENT;
+            name = "Twilight Serpent";
+            duration = 20;
+            stats.spell_power = 292;
+        }
+
+    };
+
+    class TomeArcanePhenomena : public Buff
+    {
+
+    public:
+        TomeArcanePhenomena()
+        {
+            id = TOME_ARCANE_PHENOMENA;
+            name = "Tome of Arcane Phenomena";
+            duration = 20;
+            stats.haste_rating = 256;
+        }
+
+    };
+
+    class ArgentValor : public Buff
+    {
+
+    public:
+        ArgentValor()
+        {
+            id = ARGENT_VALOR;
+            name = "Argent Valor";
+            duration = 20;
+            stats.spell_power = 281;
+        }
+
+    };
+
+    class MarkWarPrisoner : public Buff
+    {
+
+    public:
+        MarkWarPrisoner()
+        {
+            id = MARK_WAR_PRISONER;
+            name = "Mark of the War Prisoner";
+            duration = 20;
+            stats.spell_power = 346;
+        }
+
+    };
+
+    class ForgeEmber : public Buff
+    {
+
+    public:
+        ForgeEmber()
+        {
+            id = FORGE_EMBER;
+            name = "Forge Ember";
+            duration = 10;
+            stats.spell_power = 512;
         }
 
     };
@@ -447,6 +533,7 @@ namespace buff
             id = DRUMS_OF_BATTLE;
             name = "Drums of Battle";
             duration = 30;
+            stats.haste_rating = 80;
         }
 
     };
@@ -460,6 +547,7 @@ namespace buff
             id = DRUMS_OF_WAR;
             name = "Drums of War";
             duration = 30;
+            stats.spell_power = 30;
         }
 
     };
@@ -499,6 +587,7 @@ namespace buff
             id = SKULL_GULDAN;
             name = "Fel Infusion";
             duration = 20;
+            stats.haste_rating = 175;
         }
 
     };
@@ -512,6 +601,7 @@ namespace buff
             id = SHRUNKEN_HEAD;
             name = "Mojo Madness";
             duration = 20;
+            stats.spell_power = 211;
         }
 
     };
@@ -525,6 +615,7 @@ namespace buff
             id = NAARU_SLIVER;
             name = "Power Circle";
             duration = 15;
+            stats.spell_power = 210;
         }
 
     };
@@ -538,6 +629,7 @@ namespace buff
             id = ASHTONGUE_TALISMAN;
             name = "Insight of the Ashtongue";
             duration = 5;
+            stats.haste_rating = 145;
         }
 
     };
@@ -551,6 +643,7 @@ namespace buff
             id = MQG;
             name = "MQG";
             duration = 20;
+            stats.haste_rating = 330;
         }
 
     };

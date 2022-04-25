@@ -368,6 +368,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var ids = {
+  // Trinkets
+  TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
+  TRINKET_TWILIGHT_SERPENT: 42395,
+  TRINKET_TOME_ARCANE_PHENOMENA: 36972,
+  TRINKET_CANNONEERS_FUSELIGHTER: 44013,
+  TRINKET_MARK_WAR_PRISONER: 37873,
+  TRINKET_FORGE_EMBER: 37660,
+  TRINKET_PENDULUM_TELLURIC_CURRENTS: 37264,
+  TRINKET_DARKMOON_DEATH: 42990,
+  // Enchants
   BLACK_MAGIC: 59625,
   HYPERSPEED_ACCELERATORS: 54999,
   LIGHTWEAVE_EMBROIDERY: 55642,
@@ -385,12 +395,12 @@ var ids = {
   META_BEAMING_EARTHSIEGE: 41389,
   META_INSIGHTFUL_EARTHSIEGE: 41401,
   // TBC items
-  SERPENT_COIL: 30720,
-  MQG: 19339,
-  SKULL_GULDAN: 32483,
-  SHRUNKEN_HEAD: 33829,
-  NAARU_SLIVER: 34429,
-  ASHTONGUE_TALISMAN: 32488
+  TRINKET_SERPENT_COIL: 30720,
+  TRINKET_MQG: 19339,
+  TRINKET_SKULL_GULDAN: 32483,
+  TRINKET_SHRUNKEN_HEAD: 33829,
+  TRINKET_NAARU_SLIVER: 34429,
+  TRINKET_ASHTONGUE_TALISMAN: 32488
 };
 var equip = {
   weapon: [{
@@ -2471,33 +2481,85 @@ var equip = {
     crit: 22,
     haste: 31
   }],
-  trinket: [// TBC trinkets
+  trinket: [{
+    id: ids.TRINKET_DARKMOON_DEATH,
+    title: "Darkmoon Card: Death",
+    crit: 85
+  }, {
+    id: 42988,
+    title: "Darkmoon Card: Illusion",
+    sp: 100
+  }, {
+    id: ids.TRINKET_FORGE_EMBER,
+    title: "Forge Ember",
+    crit: 73,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_PENDULUM_TELLURIC_CURRENTS,
+    title: "Pendulum of Telluric Currents",
+    haste: 74,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_MERCURIAL_ALCHEMIST_STONE,
+    title: "Mercurial Alchemist Stone",
+    sp: 59,
+    haste: 50,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_MARK_WAR_PRISONER,
+    title: "Mark of the War Prisoner",
+    hit: 73,
+    use: true,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_CANNONEERS_FUSELIGHTER,
+    title: "Cannoneer's Fuselighter",
+    crit: 54,
+    use: true,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_TOME_ARCANE_PHENOMENA,
+    title: "Tome of Arcane Phenomena",
+    sp: 68,
+    use: true,
+    q: "rare"
+  }, {
+    id: ids.TRINKET_TWILIGHT_SERPENT,
+    title: "Figurine - Twilight Serpent",
+    hit: 42,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    use: true,
+    q: "rare"
+  }, // TBC trinkets
   {
-    id: ids.NAARU_SLIVER,
+    id: ids.TRINKET_NAARU_SLIVER,
     title: "Shifting Naaru Sliver",
     haste: 54,
     use: true
   }, {
-    id: ids.SKULL_GULDAN,
+    id: ids.TRINKET_SKULL_GULDAN,
     title: "The Skull of Gul'dan",
     sp: 55,
     hit: 25,
     use: true
   }, {
-    id: ids.ASHTONGUE_TALISMAN,
+    id: ids.TRINKET_ASHTONGUE_TALISMAN,
     title: "Ashtongue Talisman"
   }, {
-    id: ids.SERPENT_COIL,
+    id: ids.TRINKET_SERPENT_COIL,
     title: "Serpent-Coil Braid",
     crit: 30,
     hit: 12
   }, {
-    id: ids.SHRUNKEN_HEAD,
+    id: ids.TRINKET_SHRUNKEN_HEAD,
     title: "Hex Shrunken Head",
     sp: 53,
     use: true
   }, {
-    id: ids.MQG,
+    id: ids.TRINKET_MQG,
     title: "Mind Quickening Gem",
     use: true
   }]
@@ -4438,7 +4500,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     var default_config = {
-      iterations: 30000,
+      iterations: 20000,
       race: 5,
       shatt_faction: 0,
       duration: 180,
@@ -4968,19 +5030,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var trinkets = [{
-        id: this.items.ids.NAARU_SLIVER,
+        id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
+        title: "Figurine - Twilight Serpent",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg"
+      }, {
+        id: this.items.ids.TRINKET_TOME_ARCANE_PHENOMENA,
+        title: "Tome of Arcane Phenomena",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_book_07.jpg"
+      }, {
+        id: this.items.ids.TRINKET_CANNONEERS_FUSELIGHTER,
+        title: "Cannoneer's Fuselighter",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg"
+      }, {
+        id: this.items.ids.TRINKET_MARK_WAR_PRISONER,
+        title: "Mark of the War Prisoner",
+        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_13.jpg"
+      }, {
+        id: this.items.ids.TRINKET_NAARU_SLIVER,
         title: "Shifting Naaru Sliver",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_15.jpg"
       }, {
-        id: this.items.ids.SKULL_GULDAN,
+        id: this.items.ids.TRINKET_SKULL_GULDAN,
         title: "Skull of Gul'dan",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg"
       }, {
-        id: this.items.ids.SHRUNKEN_HEAD,
+        id: this.items.ids.TRINKET_SHRUNKEN_HEAD,
         title: "Hex Shrunken Head",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_head_troll_01.jpg"
       }, {
-        id: this.items.ids.MQG,
+        id: this.items.ids.TRINKET_MQG,
         title: "Mind Quickening Gem",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_wispheal.jpg"
       }];
@@ -5082,7 +5160,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _.get(timing, key, def);
     },
     timingEnabled: function timingEnabled(name) {
-      var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem", "evocation", "trinket1", "trinket2"];
+      var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem", "evocation"];
       if (always.indexOf(name) != -1) return true;
       if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
       if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
@@ -5093,6 +5171,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (name == "combustion") return this.config.talents.combustion > 0;
       if (name == "icy_veins") return this.config.talents.icy_veins > 0;
       if (name == "cold_snap") return this.config.talents.cold_snap > 0;
+      if (name == "trinket1") return this.equipped.trinket1 && _.get(this.equippedItem("trinket1"), "use");
+      if (name == "trinket2") return this.equipped.trinket2 && _.get(this.equippedItem("trinket2"), "use");
       return false;
     },
     timingCanWait: function timingCanWait(name) {
@@ -5851,7 +5931,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       stats.intellect = Math.round(stats.intellect);
       stats.spirit = Math.round(stats.spirit);
       if (this.config.race == this.races.RACE_DRAENEI || this.faction == "alliance" && this.config.heroic_presence) stats.hit += 1;
-      if (this.config.talents.mind_mastery) stats.spell_power += Math.round(stats.intellect * this.config.talents.mind_mastery * 0.03);
       stats.crit += this.config.talents.arcane_instability;
       stats.crit += this.config.talents.pyromaniac;
       stats.hit += this.config.talents.precision; // Calculate percentages
@@ -5873,8 +5952,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (this.config.totem_of_wrath) x = 280;else if (this.config.flametongue) x = 144;
         if (this.config.demonic_pact && this.config.demonic_pact_bonus > x) x = this.config.demonic_pact_bonus;
         stats.spell_power += x;
-      } // Buff:: Spell haste
+      } // Mind mastery
 
+
+      if (this.config.talents.mind_mastery) stats.spell_power += Math.round(stats.intellect * this.config.talents.mind_mastery * 0.03); // Buff:: Spell haste
 
       if (this.config.buff_spell_haste) stats.haste = this.multiplyHaste(stats.haste, 5); // Buff:: Haste
 
@@ -69871,155 +69952,68 @@ var render = function() {
                         _c(
                           "tbody",
                           _vm._l(_vm.config.timings, function(timing) {
-                            return _c("tr", { key: timing.id }, [
-                              _c("td", { staticClass: "icon" }, [
-                                _c(
-                                  "span",
-                                  [
-                                    _c("img", {
-                                      attrs: {
-                                        src: _vm.getTiming(timing.name, "icon")
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("tooltip", [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.getTiming(timing.name, "title")
-                                        )
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "remove",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.removeTiming(timing.id)
-                                      }
-                                    }
-                                  },
-                                  [
+                            return _vm.timingEnabled(timing.name)
+                              ? _c("tr", { key: timing.id }, [
+                                  _c("td", { staticClass: "icon" }, [
                                     _c(
                                       "span",
-                                      { staticClass: "material-icons" },
-                                      [_vm._v("")]
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "t" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model.number",
-                                      value: timing.t,
-                                      expression: "timing.t",
-                                      modifiers: { number: true }
-                                    }
-                                  ],
-                                  attrs: { type: "text" },
-                                  domProps: { value: timing.t },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        timing,
-                                        "t",
-                                        _vm._n($event.target.value)
-                                      )
-                                    },
-                                    blur: function($event) {
-                                      return _vm.$forceUpdate()
-                                    }
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "wait-for-buff" }, [
-                                _vm.timingCanWait(timing.name)
-                                  ? _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: timing.wait_for_buff,
-                                            expression: "timing.wait_for_buff"
-                                          }
-                                        ],
-                                        on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              timing,
-                                              "wait_for_buff",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
+                                      [
+                                        _c("img", {
+                                          attrs: {
+                                            src: _vm.getTiming(
+                                              timing.name,
+                                              "icon"
                                             )
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("tooltip", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.getTiming(
+                                                timing.name,
+                                                "title"
+                                              )
+                                            )
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "remove",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeTiming(timing.id)
                                           }
                                         }
                                       },
                                       [
                                         _c(
-                                          "option",
-                                          { domProps: { value: 0 } },
-                                          [_vm._v("Nothing")]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.waitBuffs, function(buff) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: buff.id,
-                                              domProps: { value: buff.id }
-                                            },
-                                            [_vm._v(_vm._s(buff.name))]
-                                          )
-                                        })
-                                      ],
-                                      2
+                                          "span",
+                                          { staticClass: "material-icons" },
+                                          [_vm._v("")]
+                                        )
+                                      ]
                                     )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "wait-t" }, [
-                                _vm.timingCanWait(timing.name)
-                                  ? _c("input", {
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "t" }, [
+                                    _c("input", {
                                       directives: [
                                         {
                                           name: "model",
                                           rawName: "v-model.number",
-                                          value: timing.wait_t,
-                                          expression: "timing.wait_t",
+                                          value: timing.t,
+                                          expression: "timing.t",
                                           modifiers: { number: true }
                                         }
                                       ],
                                       attrs: { type: "text" },
-                                      domProps: { value: timing.wait_t },
+                                      domProps: { value: timing.t },
                                       on: {
                                         input: function($event) {
                                           if ($event.target.composing) {
@@ -70027,7 +70021,7 @@ var render = function() {
                                           }
                                           _vm.$set(
                                             timing,
-                                            "wait_t",
+                                            "t",
                                             _vm._n($event.target.value)
                                           )
                                         },
@@ -70036,9 +70030,107 @@ var render = function() {
                                         }
                                       }
                                     })
-                                  : _vm._e()
-                              ])
-                            ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "wait-for-buff" }, [
+                                    _vm.timingCanWait(timing.name)
+                                      ? _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: timing.wait_for_buff,
+                                                expression:
+                                                  "timing.wait_for_buff"
+                                              }
+                                            ],
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  timing,
+                                                  "wait_for_buff",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { domProps: { value: 0 } },
+                                              [_vm._v("Nothing")]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._l(_vm.waitBuffs, function(
+                                              buff
+                                            ) {
+                                              return _c(
+                                                "option",
+                                                {
+                                                  key: buff.id,
+                                                  domProps: { value: buff.id }
+                                                },
+                                                [_vm._v(_vm._s(buff.name))]
+                                              )
+                                            })
+                                          ],
+                                          2
+                                        )
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "wait-t" }, [
+                                    _vm.timingCanWait(timing.name)
+                                      ? _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model.number",
+                                              value: timing.wait_t,
+                                              expression: "timing.wait_t",
+                                              modifiers: { number: true }
+                                            }
+                                          ],
+                                          attrs: { type: "text" },
+                                          domProps: { value: timing.wait_t },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                timing,
+                                                "wait_t",
+                                                _vm._n($event.target.value)
+                                              )
+                                            },
+                                            blur: function($event) {
+                                              return _vm.$forceUpdate()
+                                            }
+                                          }
+                                        })
+                                      : _vm._e()
+                                  ])
+                                ])
+                              : _vm._e()
                           }),
                           0
                         )

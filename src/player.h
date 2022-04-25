@@ -185,7 +185,7 @@ namespace unit
 
         double hitChance(shared_ptr<spell::Spell> spell, double dlevel = 3)
         {
-            double hit = stats.hit;
+            double hit = Unit::hitChance(spell, dlevel);
 
             if (spell->school == SCHOOL_ARCANE && talents.arcane_focus)
                 hit+= talents.arcane_focus*1.0;
@@ -195,7 +195,7 @@ namespace unit
 
         double critChance(shared_ptr<spell::Spell> spell)
         {
-            double crit = stats.crit;
+            double crit = Unit::critChance(spell);
 
             if (config->molten_armor) {
                 double multi = 0.35;
@@ -205,9 +205,6 @@ namespace unit
                     multi+= 0.15;
                 crit+= critRatingToChance(round(getSpirit() * multi));
             }
-
-            if (hasBuff(buff::FOCUS_MAGIC))
-                crit+= 3.0;
 
             if (talents.arcane_potency) {
                 if (hasBuff(buff::CLEARCAST) || hasBuff(buff::PRESENCE_OF_MIND))
@@ -462,10 +459,20 @@ namespace unit
         {
             double sp = Unit::getSpellPower(school);
 
+            if (hasBuff(buff::FLAME_CAP) && (school == SCHOOL_FIRE || school == SCHOOL_FROSTFIRE))
+                sp+= 80.0;
+
             if (talents.mind_mastery)
                 sp+= getIntellect() * talents.mind_mastery * 0.03;
 
             return sp;
+        }
+
+        double getHasteRating()
+        {
+            double rating = Unit::getHasteRating();
+
+            return rating;
         }
 
         double cooldownMod(shared_ptr<cooldown::Cooldown> cooldown)
@@ -692,12 +699,27 @@ namespace unit
                 }
             }
 
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_FORGE_EMBER) && !hasCooldown(cooldown::FORGE_EMBER) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::ForgeEmber>());
+                action->cooldown = make_shared<cooldown::ForgeEmber>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell success ?
+            if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && random<int>(0, 19) < 3) {
+                action = spellAction(make_shared<spell::PendulumTelluricCurrents>());
+                action->cooldown = make_shared<cooldown::PendulumTelluricCurrents>();
+                actions.push_back(action);
+            }
+
             return actions;
         }
 
         list<shared_ptr<action::Action>> onSpellImpactProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
         {
             list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
+            shared_ptr<action::Action> action = NULL;
 
             if (instance->result != spell::MISS) {
                 if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
@@ -796,6 +818,13 @@ namespace unit
                     if (random<int>(0,99) < chance)
                         actions.push_back(buffAction(make_shared<buff::BrainFreeze>()));
                 }
+            }
+
+            // Unconfirmed - on dmg ?
+            if (instance->dmg && hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
+                action = spellAction(make_shared<spell::DarkmoonDeath>());
+                action->cooldown = make_shared<cooldown::DarkmoonDeath>();
+                actions.push_back(action);
             }
 
             return actions;
@@ -1008,18 +1037,26 @@ namespace unit
 
         bool isUseTrinket(Trinket trinket)
         {
-            if (trinket == TRINKET_NONE)
-                return false;
-            if (trinket == TRINKET_MERCURIAL_ALCHEMIST_STONE)
-                return false;
+            if (trinket == TRINKET_MARK_WAR_PRISONER)
+                return true;
+            if (trinket == TRINKET_CANNONEERS_FUSELIGHTER)
+                return true;
+            if (trinket == TRINKET_TOME_ARCANE_PHENOMENA)
+                return true;
+            if (trinket == TRINKET_TWILIGHT_SERPENT)
+                return true;
 
             // TBC
-            if (trinket == TRINKET_ASHTONGUE_TALISMAN)
-                return false;
-            if (trinket == TRINKET_SERPENT_COIL)
-                return false;
+            if (trinket == TRINKET_NAARU_SLIVER)
+                return true;
+            if (trinket == TRINKET_SKULL_GULDAN)
+                return true;
+            if (trinket == TRINKET_SHRUNKEN_HEAD)
+                return true;
+            if (trinket == TRINKET_MQG)
+                return true;
 
-            return true;
+            return false;
         }
 
         shared_ptr<Timing> getNextTiming(string name)
@@ -1071,18 +1108,31 @@ namespace unit
 
             cooldown->duration = 120;
 
-            if (trinket == TRINKET_SKULL_GULDAN)
-               buff = make_shared<buff::SkullGuldan>();
-            if (trinket == TRINKET_SHRUNKEN_HEAD)
-               buff = make_shared<buff::ShrunkenHead>();
-
-            if (trinket == TRINKET_MQG) {
-                buff = make_shared<buff::MindQuickening>();
-                cooldown->duration = 300;
+            if (trinket == TRINKET_TWILIGHT_SERPENT) {
+                buff = make_shared<buff::TwilightSerpent>();
             }
-            if (trinket == TRINKET_NAARU_SLIVER) {
+            else if (trinket == TRINKET_TOME_ARCANE_PHENOMENA) {
+                buff = make_shared<buff::TomeArcanePhenomena>();
+            }
+            else if (trinket == TRINKET_CANNONEERS_FUSELIGHTER) {
+                buff = make_shared<buff::ArgentValor>();
+            }
+            else if (trinket == TRINKET_MARK_WAR_PRISONER) {
+                buff = make_shared<buff::MarkWarPrisoner>();
+            }
+            else if (trinket == TRINKET_NAARU_SLIVER) {
                 buff = make_shared<buff::NaaruSliver>();
                 cooldown->duration = 90;
+            }
+            else if (trinket == TRINKET_SKULL_GULDAN) {
+               buff = make_shared<buff::SkullGuldan>();
+            }
+            else if (trinket == TRINKET_SHRUNKEN_HEAD) {
+               buff = make_shared<buff::ShrunkenHead>();
+            }
+            else if (trinket == TRINKET_MQG) {
+                buff = make_shared<buff::MindQuickening>();
+                cooldown->duration = 300;
             }
 
             if (buff != NULL) {

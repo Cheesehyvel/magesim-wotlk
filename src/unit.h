@@ -11,6 +11,7 @@ namespace unit
     public:
         shared_ptr<Config> config;
         Stats stats;
+        Stats buff_stats;
         string name;
         double base_mana = 2241;
         double mana;
@@ -39,6 +40,15 @@ namespace unit
             buffs.clear();
             debuffs.clear();
             cooldowns.clear();
+
+            buff_stats.intellect = 0;
+            buff_stats.spirit = 0;
+            buff_stats.mp5 = 0;
+            buff_stats.crit = 0;
+            buff_stats.hit = 0;
+            buff_stats.haste = 0;
+            buff_stats.haste_rating = 0;
+            buff_stats.spell_power = 0;
         }
 
         virtual Stats getStats()
@@ -80,6 +90,8 @@ namespace unit
 
         int addBuff(shared_ptr<buff::Buff> buff)
         {
+            addBuffStats(buff->stats);
+
             if (hasBuff(buff->id))
                 return buffs[buff->id]->addStack();
             else
@@ -90,6 +102,9 @@ namespace unit
 
         void removeBuff(buff::ID id)
         {
+            if (hasBuff(id))
+                removeBuffStats(getBuff(id)->stats);
+
             buffs.erase(id);
         }
 
@@ -98,6 +113,30 @@ namespace unit
             if (hasBuff(id))
                 return buffs[id];
             return NULL;
+        }
+
+        void addBuffStats(Stats _stats)
+        {
+            buff_stats.intellect+= _stats.intellect;
+            buff_stats.spirit+= _stats.spirit;
+            buff_stats.mp5+= _stats.mp5;
+            buff_stats.crit+= _stats.crit;
+            buff_stats.hit+= _stats.hit;
+            buff_stats.haste+= _stats.haste;
+            buff_stats.haste_rating+= _stats.haste_rating;
+            buff_stats.spell_power+= _stats.spell_power;
+        }
+
+        void removeBuffStats(Stats _stats)
+        {
+            buff_stats.intellect-= _stats.intellect;
+            buff_stats.spirit-= _stats.spirit;
+            buff_stats.mp5-= _stats.mp5;
+            buff_stats.crit-= _stats.crit;
+            buff_stats.hit-= _stats.hit;
+            buff_stats.haste-= _stats.haste;
+            buff_stats.haste_rating-= _stats.haste_rating;
+            buff_stats.spell_power-= _stats.spell_power;
         }
 
         int debuffStacks(debuff::ID id)
@@ -136,8 +175,7 @@ namespace unit
         {
             double mps = 0.01 * base_mana;
 
-            if (stats.mp5)
-                mps+= stats.mp5/5.0;
+            mps+= getMp5() / 5.0;
 
             return mps;
         }
@@ -191,18 +229,7 @@ namespace unit
         virtual double castHaste()
         {
             double haste = 1;
-            double rating = stats.haste_rating;
-
-            if (hasBuff(buff::SKULL_GULDAN))
-                rating+= 175;
-            if (hasBuff(buff::MQG))
-                rating+= 330;
-            if (hasBuff(buff::ASHTONGUE_TALISMAN))
-                rating+= 145;
-            if (hasBuff(buff::DRUMS_OF_BATTLE))
-                rating+= 80;
-            if (hasBuff(buff::BLACK_MAGIC))
-                rating+= 250;
+            double rating = getHasteRating();
 
             if (rating)
                 haste+= hasteRatingToHaste(rating) / 100.0;
@@ -231,12 +258,12 @@ namespace unit
 
         virtual double hitChance(shared_ptr<spell::Spell> spell, double dlevel = 3)
         {
-            return stats.hit;
+            return stats.hit + buff_stats.hit;
         }
 
         virtual double critChance(shared_ptr<spell::Spell> spell)
         {
-            double crit = stats.crit;
+            double crit = stats.crit + buff_stats.crit;
 
             if (get_raid_buffs) {
                 if (config->buff_spell_crit)
@@ -335,34 +362,17 @@ namespace unit
 
         virtual double getIntellect()
         {
-            return stats.intellect;
+            return stats.intellect + buff_stats.intellect;
         }
 
         virtual double getSpirit()
         {
-            return stats.spirit;
+            return stats.spirit + buff_stats.spirit;
         }
 
         virtual double getSpellPower(School school = SCHOOL_NONE)
         {
-            double sp = stats.spell_power;
-
-            if (hasBuff(buff::FLAME_CAP) && (school == SCHOOL_FIRE || school == SCHOOL_FROSTFIRE))
-                sp+= 80.0;
-            if (hasBuff(buff::PRAXIS))
-                sp+= 350.0;
-            if (hasBuff(buff::LIGHTWEAVE))
-                sp+= 295.0;
-            if (hasBuff(buff::IMPROVED_MANA_GEM))
-                sp+= 225.0;
-
-            // TBC stuff
-            if (hasBuff(buff::SHRUNKEN_HEAD))
-                sp+= 211.0;
-            if (hasBuff(buff::NAARU_SLIVER))
-                sp+= 320.0;
-            if (hasBuff(buff::DRUMS_OF_WAR))
-                sp+= 30.0;
+            double sp = stats.spell_power + buff_stats.spell_power;
 
             if (get_raid_buffs) {
                 if (config->demonic_pact || config->totem_of_wrath || config->flametongue) {
@@ -378,6 +388,16 @@ namespace unit
             }
 
             return sp;
+        }
+
+        virtual double getHasteRating()
+        {
+            return stats.haste_rating + buff_stats.haste_rating;
+        }
+
+        virtual double getMp5()
+        {
+            return stats.mp5 + buff_stats.mp5;
         }
 
         virtual double cooldownMod(shared_ptr<cooldown::Cooldown> cooldown)
