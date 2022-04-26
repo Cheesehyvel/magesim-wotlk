@@ -94,12 +94,16 @@ def getItem(item_id):
                 stats["bonus"] = {"mp5": int(m.group(1))}
 
     # Two hand
-
-    # Quality
     p = re.compile("\<inventorySlot id=\"([0-9]+)\"")
     m = p.search(xml)
     if m and m.group(1) == "17":
         stats["twohand"] = True
+
+    # Quality
+    p = re.compile("\<quality id=\"([0-9]+)\"")
+    m = p.search(xml)
+    if m and m.group(1) == "3":
+        stats["q"] = "rare"
 
     # Convert to item string
     output = json.dumps(stats)
