@@ -68,5 +68,8 @@ export default {
         INNERVATE: 29166,
         PRAXIS: 64867,
         PUSHING_THE_LIMIT: 70753,
+        FORGE_EMBER: 60479,
+        EMBRACE_SPIDER: 60492,
+        DYING_CURSE: 60494,
     }
 };

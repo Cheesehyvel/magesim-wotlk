@@ -1789,6 +1789,16 @@
                     icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_purge.jpg",
                 });
                 timings.push({
+                    name: "mirror_image",
+                    title: "Mirror Image",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg",
+                });
+                timings.push({
+                    name: "water_elemental",
+                    title: "Water Elemental",
+                    icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_summonwaterelemental_2.jpg",
+                });
+                timings.push({
                     name: "berserking",
                     title: "Berserking",
                     icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg",
@@ -1937,6 +1947,13 @@
                 if (this.numEquippedSet(this.items.ids.T10_SET) > 1)
                     buffs.push({id: constants.buffs.PUSHING_THE_LIMIT, name: "Pushing the Limit (t10 2set)"});
 
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_FORGE_EMBER))
+                    buffs.push({id: constants.buffs.FORGE_EMBER, name: "Forge Ember"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER))
+                    buffs.push({id: constants.buffs.EMBRACE_SPIDER, name: "Embrace of the Spider"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_DYING_CURSE))
+                    buffs.push({id: constants.buffs.DYING_CURSE, name: "Dying Curse"});
+
                 buffs = _.sortBy(buffs, "name");
 
                 return buffs;
@@ -1981,7 +1998,7 @@
             timingEnabled(name) {
                 var always = [
                     "bloodlust", "mana_tide", "power_infusion",
-                    "innervate", "mana_gem", "evocation",
+                    "innervate", "mana_gem", "evocation", "mirror_image",
                 ];
                 if (always.indexOf(name) != -1)
                     return true;
@@ -2004,6 +2021,8 @@
                     return this.config.talents.icy_veins > 0;
                 if (name == "cold_snap")
                     return this.config.talents.cold_snap > 0;
+                if (name == "water_elemental")
+                    return this.config.talents.water_elemental > 0;
                 if (name == "trinket1")
                     return this.equipped.trinket1 && _.get(this.equippedItem("trinket1"), "use");
                 if (name == "trinket2")

@@ -35,6 +35,10 @@ namespace cooldown
         FORGE_EMBER = 60479,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
+        EMBRACE_SPIDER = 60492,
+        DYING_CURSE = 60494,
+        EXTRACT_NECROMANTIC_POWER = 60488,
+        SOUL_DEAD = 60538,
     };
 
 
@@ -398,6 +402,54 @@ namespace cooldown
         DarkmoonDeath()
         {
             id = DARKMOON_DEATH;
+            duration = 45;
+        }
+
+    };
+
+    class EmbraceSpider : public Cooldown
+    {
+
+    public:
+        EmbraceSpider()
+        {
+            id = EMBRACE_SPIDER;
+            duration = 45;
+        }
+
+    };
+
+    class DyingCurse : public Cooldown
+    {
+
+    public:
+        DyingCurse()
+        {
+            id = DYING_CURSE;
+            duration = 45;
+        }
+
+    };
+
+    class ExtractNecromanticPower : public Cooldown
+    {
+
+    public:
+        ExtractNecromanticPower()
+        {
+            id = EXTRACT_NECROMANTIC_POWER;
+            duration = 15;
+        }
+
+    };
+
+    class SoulDead : public Cooldown
+    {
+
+    public:
+        SoulDead()
+        {
+            id = SOUL_DEAD;
             duration = 45;
         }
 

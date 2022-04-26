@@ -713,6 +713,34 @@ namespace unit
                 actions.push_back(action);
             }
 
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_EMBRACE_SPIDER) && !hasCooldown(cooldown::EMBRACE_SPIDER) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::EmbraceSpider>());
+                action->cooldown = make_shared<cooldown::EmbraceSpider>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_DYING_CURSE) && !hasCooldown(cooldown::DYING_CURSE) && random<int>(0, 19) < 3) {
+                action = buffAction(make_shared<buff::DyingCurse>());
+                action->cooldown = make_shared<cooldown::DyingCurse>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell success ?
+            if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
+                action = spellAction(make_shared<spell::ExtractNecromanticPower>());
+                action->cooldown = make_shared<cooldown::ExtractNecromanticPower>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell success ?
+            if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
+                action = manaAction(900, "Soul of the Dead");
+                action->cooldown = make_shared<cooldown::SoulDead>();
+                actions.push_back(action);
+            }
+
             return actions;
         }
 
@@ -1210,6 +1238,15 @@ namespace unit
             else if (!hasCooldown(cooldown::EVOCATION) && useTimingIfPossible("evocation", state, true)) {
                 action = spellAction(make_shared<spell::Evocation>(evocationTicks()));
             }
+            else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state)) {
+                action = spellAction(make_shared<spell::MirrorImage>());
+                action->cooldown = make_shared<cooldown::MirrorImage>();
+            }
+            else if (talents.water_elemental && !hasCooldown(cooldown::WATER_ELEMENTAL) && !state->hasUnit(unit::WATER_ELEMENTAL) && useTimingIfPossible("water_elemental", state)) {
+                action = spellAction(make_shared<spell::WaterElemental>());
+                action->cooldown = make_shared<cooldown::WaterElemental>();
+            }
+
 
             if (action != NULL && action->type != action::TYPE_SPELL)
                 action->primary_action = true;
@@ -1263,19 +1300,6 @@ namespace unit
             }
             else if (shouldEvocate(state)) {
                 return spellAction(make_shared<spell::Evocation>(evocationTicks()));
-            }
-
-            // TODO: TESTING ONLY
-            if (!hasCooldown(cooldown::MIRROR_IMAGE)) {
-                action = spellAction(make_shared<spell::MirrorImage>());
-                action->cooldown = make_shared<cooldown::MirrorImage>();
-                return action;
-            }
-            // TODO: TESTING ONLY
-            if (talents.water_elemental && !hasCooldown(cooldown::WATER_ELEMENTAL) && !state->hasUnit(unit::WATER_ELEMENTAL)) {
-                action = spellAction(make_shared<spell::WaterElemental>());
-                action->cooldown = make_shared<cooldown::WaterElemental>();
-                return action;
             }
 
             // Frostfire bolt

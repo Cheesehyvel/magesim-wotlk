@@ -37,6 +37,8 @@ namespace buff
         ARGENT_VALOR = 59657,
         MARK_WAR_PRISONER = 60480,
         FORGE_EMBER = 60479,
+        EMBRACE_SPIDER = 60492,
+        DYING_CURSE = 60494,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -520,6 +522,34 @@ namespace buff
             name = "Forge Ember";
             duration = 10;
             stats.spell_power = 512;
+        }
+
+    };
+
+    class EmbraceSpider : public Buff
+    {
+
+    public:
+        EmbraceSpider()
+        {
+            id = EMBRACE_SPIDER;
+            name = "Embrace of the Spider";
+            duration = 10;
+            stats.haste_rating = 505;
+        }
+
+    };
+
+    class DyingCurse : public Buff
+    {
+
+    public:
+        DyingCurse()
+        {
+            id = DYING_CURSE;
+            name = "Dying Curse";
+            duration = 10;
+            stats.spell_power = 765;
         }
 
     };

@@ -34,6 +34,7 @@ namespace spell
         DRUMS = 29529,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
+        EXTRACT_NECROMANTIC_POWER = 60488,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -649,6 +650,24 @@ namespace spell
             proc = true;
             min_dmg = 1750;
             max_dmg = 2250;
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+        }
+    };
+
+    class ExtractNecromanticPower : public Spell
+    {
+
+    public:
+        ExtractNecromanticPower()
+        {
+            id = EXTRACT_NECROMANTIC_POWER;
+            name = "Darkmoon Card: Death";
+            school = SCHOOL_SHADOW;
+            proc = true;
+            min_dmg = 788;
+            max_dmg = 1312;
             coeff = 0;
             gcd = 0;
             active_use = false;

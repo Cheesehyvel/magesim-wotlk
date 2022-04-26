@@ -520,6 +520,8 @@ public:
         }
         else if (action->type == action::TYPE_MANA) {
             onManaGain(unit, action->value, action->str);
+            if (action->cooldown)
+                onCooldownGain(unit, action->cooldown);
         }
         else if (action->type == action::TYPE_UNIT) {
             onUnitSpawn(action->unit);
