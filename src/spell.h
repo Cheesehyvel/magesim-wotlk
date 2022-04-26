@@ -653,6 +653,7 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
+            has_travel_time = true;
         }
     };
 
@@ -663,7 +664,7 @@ namespace spell
         ExtractNecromanticPower()
         {
             id = EXTRACT_NECROMANTIC_POWER;
-            name = "Darkmoon Card: Death";
+            name = "Extract of Necromatic Power";
             school = SCHOOL_SHADOW;
             proc = true;
             min_dmg = 788;
@@ -671,6 +672,7 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
+            has_travel_time = true;
         }
     };
 

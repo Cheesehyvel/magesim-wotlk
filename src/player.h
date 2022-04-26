@@ -727,20 +727,6 @@ namespace unit
                 actions.push_back(action);
             }
 
-            // Unconfirmed - on spell success ?
-            if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
-                action = spellAction(make_shared<spell::ExtractNecromanticPower>());
-                action->cooldown = make_shared<cooldown::ExtractNecromanticPower>();
-                actions.push_back(action);
-            }
-
-            // Unconfirmed - on spell success ?
-            if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
-                action = manaAction(900, "Soul of the Dead");
-                action->cooldown = make_shared<cooldown::SoulDead>();
-                actions.push_back(action);
-            }
-
             return actions;
         }
 
@@ -788,11 +774,30 @@ namespace unit
                         }
                     }
                 }
+
+                if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
+                    action = spellAction(make_shared<spell::DarkmoonDeath>());
+                    action->cooldown = make_shared<cooldown::DarkmoonDeath>();
+                    actions.push_back(action);
+                }
+
+                if (instance->spell->dot && hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
+                    action = spellAction(make_shared<spell::ExtractNecromanticPower>());
+                    action->cooldown = make_shared<cooldown::ExtractNecromanticPower>();
+                    actions.push_back(action);
+                }
             }
 
             if (instance->result == spell::CRIT) {
                 if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
                     actions.push_back(buffAction(make_shared<buff::AshtongueTalisman>()));
+
+                // Unconfirmed - on spell success ?
+                if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
+                    action = manaAction(900, "Soul of the Dead");
+                    action->cooldown = make_shared<cooldown::SoulDead>();
+                    actions.push_back(action);
+                }
 
                 if (talents.master_of_elements)
                     actions.push_back(manaAction(baseManaCost(instance->spell) * 0.1 * talents.master_of_elements, "Master of Elements"));
@@ -846,13 +851,6 @@ namespace unit
                     if (random<int>(0,99) < chance)
                         actions.push_back(buffAction(make_shared<buff::BrainFreeze>()));
                 }
-            }
-
-            // Unconfirmed - on dmg ?
-            if (instance->dmg && hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
-                action = spellAction(make_shared<spell::DarkmoonDeath>());
-                action->cooldown = make_shared<cooldown::DarkmoonDeath>();
-                actions.push_back(action);
             }
 
             return actions;
