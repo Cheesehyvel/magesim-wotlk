@@ -39,6 +39,7 @@ namespace buff
         FORGE_EMBER = 60479,
         EMBRACE_SPIDER = 60492,
         DYING_CURSE = 60494,
+        ILLUSTRATION_DRAGON_SOUL = 60486,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -550,6 +551,21 @@ namespace buff
             name = "Dying Curse";
             duration = 10;
             stats.spell_power = 765;
+        }
+
+    };
+
+    class IllustrationDragonSoul : public Buff
+    {
+
+    public:
+        IllustrationDragonSoul()
+        {
+            id = ILLUSTRATION_DRAGON_SOUL;
+            name = "Illustration of the Dragon Soul";
+            duration = 10;
+            stats.spell_power = 20;
+            max_stacks = 10;
         }
 
     };

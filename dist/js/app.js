@@ -370,7 +370,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var ids = {
+var _ids;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var ids = (_ids = {
   // Trinkets
   TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
   TRINKET_TWILIGHT_SERPENT: 42395,
@@ -384,34 +388,38 @@ var ids = {
   TRINKET_DYING_CURSE: 40255,
   TRINKET_EXTRACT_NECROMANTIC_POWER: 40373,
   TRINKET_SOUL_DEAD: 40382,
+  TRINKET_ILLUSTRATION_DRAGON_SOUL: 40432,
   // Enchants
   BLACK_MAGIC: 59625,
   HYPERSPEED_ACCELERATORS: 54999,
   LIGHTWEAVE_EMBROIDERY: 55642,
   DARKGLOW_EMBROIDERY: 55769,
   // Item sets
-  T10_SET: 883,
-  T9_SET: 844,
-  T8_SET: 836,
-  T7_SET: 803,
-  T6_SET: 671,
-  GLADIATOR_SET: 779,
-  DUSKWEAVE_SET: 764,
-  // Metas
-  META_CHAOTIC_SKYFLARE: 41285,
-  META_EMBER_SKYFLARE: 41333,
-  META_BEAMING_EARTHSIEGE: 41389,
-  META_INSIGHTFUL_EARTHSIEGE: 41401,
-  // TBC items
-  TRINKET_SERPENT_COIL: 30720,
-  TRINKET_MQG: 19339,
-  TRINKET_SKULL_GULDAN: 32483,
-  TRINKET_SHRUNKEN_HEAD: 33829,
-  TRINKET_NAARU_SLIVER: 34429,
-  TRINKET_ASHTONGUE_TALISMAN: 32488
-};
+  T10_SET: 8,
+  phase: 483,
+  T9_SET: 8
+}, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
 var equip = {
-  weapon: [{
+  weapon: [// eoe
+  {
+    id: 40489,
+    title: "Greatstaff of the Nexus",
+    "int": 77,
+    sp: 461,
+    hit: 95,
+    haste: 104,
+    twohand: true
+  }, // os
+  {
+    id: 40455,
+    title: "Staff of Restraint",
+    "int": 108,
+    spi: 84,
+    sp: 461,
+    crit: 68,
+    twohand: true
+  }, // naxx
+  {
     id: 40408,
     title: "Haunting Call",
     "int": 41,
@@ -493,7 +501,8 @@ var equip = {
     sp: 408,
     haste: 88,
     twohand: true
-  }, {
+  }, // prebis
+  {
     id: 45085,
     title: "Titansteel Spellblade",
     sp: 408,
@@ -567,7 +576,8 @@ var equip = {
     hit: 44,
     twohand: true,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34182,
     title: "Grand Magister's Staff of Torrents",
     "int": 52,
@@ -587,7 +597,8 @@ var equip = {
     crit: 30,
     haste: 23
   }],
-  off_hand: [{
+  off_hand: [// naxx
+  {
     id: 40192,
     title: "Accursed Spine",
     "int": 41,
@@ -629,14 +640,16 @@ var equip = {
     sp: 59,
     crit: 38,
     mp5: 16
-  }, {
+  }, // tbc
+  {
     id: 34179,
     title: "Heart of the Pit",
     "int": 21,
     sp: 39,
     haste: 32
   }],
-  ranged: [{
+  ranged: [// naxx
+  {
     id: 39712,
     title: "Gemmed Wand of the Nerubians",
     "int": 22,
@@ -678,7 +691,8 @@ var equip = {
     sp: 33,
     crit: 15,
     mp5: 10
-  }, {
+  }, // prebis
+  {
     id: 37238,
     title: "Rod of the Fallen Monarch",
     "int": 21,
@@ -690,7 +704,8 @@ var equip = {
     "int": 20,
     spi: 27,
     sp: 33
-  }, {
+  }, // prebis
+  {
     id: 37177,
     title: "Wand of the San'layn",
     sp: 21,
@@ -727,7 +742,8 @@ var equip = {
       sp: 2
     }
   }],
-  head: [{
+  head: [// icc
+  _defineProperty({
     id: 51281,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
@@ -738,8 +754,9 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 4
+  }, "phase", 4), _defineProperty({
     id: 51158,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
@@ -750,8 +767,9 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 4
+  }, "phase", 4), _defineProperty({
     id: 50276,
     itemset: ids.T10_SET,
     title: "Bloodmage Hood",
@@ -762,8 +780,10 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 4
+  }, "phase", 4), // totc
+  _defineProperty({
     id: 47764,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
@@ -774,8 +794,9 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 3
+  }, "phase", 3), _defineProperty({
     id: 47771,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
@@ -786,8 +807,9 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 3
+  }, "phase", 3), _defineProperty({
     id: 47774,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Conquest",
@@ -798,8 +820,10 @@ var equip = {
     sockets: ["m", "b"],
     bonus: {
       sp: 9
-    }
-  }, {
+    },
+    phase: 3
+  }, "phase", 3), // ulduar
+  {
     id: 46129,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Hood",
@@ -825,7 +849,17 @@ var equip = {
       sp: 9
     },
     phase: 2
-  }, {
+  }, // eoe
+  {
+    id: 40562,
+    title: "Hood of Rationality",
+    "int": 63,
+    spi: 81,
+    sp: 120,
+    crit: 50,
+    sockets: ["m", "b"]
+  }, // naxx
+  {
     id: 40416,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Circlet",
@@ -907,14 +941,16 @@ var equip = {
     bonus: {
       sp: 9
     }
-  }, {
+  }, // pvp
+  {
     id: 51465,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Cowl",
     "int": 87,
     sp: 182,
     crit: 98,
-    sockets: ["m", "r"]
+    sockets: ["m", "r"],
+    phase: 4
   }, {
     id: 41947,
     itemset: ids.GLADIATOR_SET,
@@ -922,7 +958,8 @@ var equip = {
     "int": 73,
     sp: 149,
     crit: 80,
-    sockets: ["m", "r"]
+    sockets: ["m", "r"],
+    phase: 3
   }, {
     id: 41946,
     itemset: ids.GLADIATOR_SET,
@@ -930,7 +967,8 @@ var equip = {
     "int": 60,
     sp: 123,
     crit: 64,
-    sockets: ["m", "r"]
+    sockets: ["m", "r"],
+    phase: 2
   }, {
     id: 41945,
     itemset: ids.GLADIATOR_SET,
@@ -956,7 +994,8 @@ var equip = {
     crit: 36,
     sockets: ["m", "r"],
     q: "rare"
-  }, {
+  }, // prebis
+  {
     id: 42553,
     title: "Visage Liquification Goggles",
     "int": 60,
@@ -1013,7 +1052,8 @@ var equip = {
       "int": 8
     },
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34340,
     title: "Dark Conjuror's Collar",
     "int": 42,
@@ -1046,7 +1086,24 @@ var equip = {
     hit: 13,
     sockets: ["m", "y"]
   }],
-  neck: [{
+  neck: [// eoe
+  {
+    id: 40486,
+    title: "Necklace of the Glittering Chamber",
+    "int": 34,
+    spi: 38,
+    sp: 69,
+    crit: 37
+  }, // os
+  {
+    id: 40427,
+    title: "Circle of Arcane Streams",
+    "int": 37,
+    sp: 53,
+    crit: 35,
+    hit: 31
+  }, // naxx
+  {
     id: 40064,
     title: "Thunderstorm Amulet",
     "int": 43,
@@ -1102,7 +1159,8 @@ var equip = {
     sp: 57,
     haste: 36,
     mp5: 15
-  }, {
+  }, // prebis
+  {
     id: 42647,
     title: "Titanium Spellshock Necklace",
     "int": 36,
@@ -1154,7 +1212,8 @@ var equip = {
     spi: 29,
     sp: 50,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34359,
     title: "Pendant of Sunfire",
     "int": 19,
@@ -1173,7 +1232,8 @@ var equip = {
     hit: 15,
     haste: 32
   }],
-  shoulder: [{
+  shoulder: [// icc
+  {
     id: 51284,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Shoulderpads",
@@ -1184,7 +1244,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 4
   }, {
     id: 51155,
     itemset: ids.T10_SET,
@@ -1196,7 +1257,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 4
   }, {
     id: 50279,
     itemset: ids.T10_SET,
@@ -1208,8 +1270,10 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
-  }, {
+    },
+    phase: 4
+  }, // totc
+  {
     id: 47767,
     itemset: ids.T9_SET,
     title: "Sunstrider's Shoulderpads of Triumph",
@@ -1220,7 +1284,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47768,
     itemset: ids.T9_SET,
@@ -1232,7 +1297,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47777,
     itemset: ids.T9_SET,
@@ -1244,8 +1310,10 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
-  }, {
+    },
+    phase: 3
+  }, // ulduar
+  {
     id: 46134,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Shoulderpads",
@@ -1271,7 +1339,16 @@ var equip = {
       "int": 4
     },
     phase: 2
-  }, {
+  }, // eoe
+  {
+    id: 40555,
+    title: "Mantle of Dissemination",
+    "int": 59,
+    spi: 52,
+    sp: 98,
+    crit: 60
+  }, // naxx
+  {
     id: 40419,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Shoulderpads",
@@ -1345,14 +1422,16 @@ var equip = {
     spi: 43,
     sp: 77,
     crit: 45
-  }, {
+  }, // pvp
+  {
     id: 51467,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Amice",
     "int": 64,
     sp: 140,
     crit: 77,
-    sockets: ["y"]
+    sockets: ["y"],
+    phase: 4
   }, {
     id: 41966,
     itemset: ids.GLADIATOR_SET,
@@ -1360,7 +1439,8 @@ var equip = {
     "int": 54,
     sp: 116,
     crit: 63,
-    sockets: ["y"]
+    sockets: ["y"],
+    phase: 3
   }, {
     id: 41965,
     itemset: ids.GLADIATOR_SET,
@@ -1368,7 +1448,8 @@ var equip = {
     "int": 45,
     sp: 96,
     crit: 51,
-    sockets: ["y"]
+    sockets: ["y"],
+    phase: 2
   }, {
     id: 41964,
     itemset: ids.GLADIATOR_SET,
@@ -1394,7 +1475,8 @@ var equip = {
     crit: 31,
     sockets: ["y"],
     q: "rare"
-  }, {
+  }, // prebis
+  {
     id: 37196,
     title: "Runecaster's Mantle",
     "int": 47,
@@ -1430,7 +1512,8 @@ var equip = {
     spi: 42,
     sp: 68,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34210,
     title: "Amice of the Convoker",
     "int": 28,
@@ -1465,7 +1548,8 @@ var equip = {
       sp: 4
     }
   }],
-  back: [{
+  back: [// naxx
+  {
     id: 40405,
     title: "Cape of the Unworthy Wizard",
     "int": 42,
@@ -1521,7 +1605,8 @@ var equip = {
     sp: 59,
     haste: 25,
     mp5: 18
-  }, {
+  }, // prebis
+  {
     id: 41610,
     title: "Deathchill Cloak",
     sp: 59,
@@ -1579,7 +1664,8 @@ var equip = {
     sp: 46,
     haste: 38,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34242,
     title: "Tattered Cape of Antonidas",
     "int": 26,
@@ -1590,7 +1676,8 @@ var equip = {
       sp: 2
     }
   }],
-  chest: [{
+  chest: [// icc
+  {
     id: 51283,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Robe",
@@ -1601,7 +1688,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 4
   }, {
     id: 51156,
     itemset: ids.T10_SET,
@@ -1613,7 +1701,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 4
   }, {
     id: 50278,
     itemset: ids.T10_SET,
@@ -1625,8 +1714,10 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
-  }, {
+    },
+    phase: 4
+  }, // totc
+  {
     id: 47766,
     itemset: ids.T9_SET,
     title: "Sunstrider's Robe of Triumph",
@@ -1637,7 +1728,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47769,
     itemset: ids.T9_SET,
@@ -1649,7 +1741,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47776,
     itemset: ids.T9_SET,
@@ -1661,8 +1754,10 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
-  }, {
+    },
+    phase: 3
+  }, // ulduar
+  {
     id: 46130,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Tunic",
@@ -1688,7 +1783,31 @@ var equip = {
       crit: 6
     },
     phase: 2
+  }, // eoe
+  {
+    id: 40194,
+    title: "Blanketing Robes of Snow",
+    "int": 71,
+    spi: 66,
+    sp: 132,
+    mp5: 16,
+    sockets: ["b"],
+    bonus: {
+      haste: 4
+    }
   }, {
+    id: 40526,
+    title: "Gown of the Spell-Weaver",
+    "int": 70,
+    sp: 110,
+    crit: 50,
+    hit: 72,
+    sockets: ["y"],
+    bonus: {
+      crit: 3
+    }
+  }, // naxx
+  {
     id: 40418,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Robe",
@@ -1766,14 +1885,16 @@ var equip = {
     sp: 104,
     haste: 42,
     mp5: 33
-  }, {
+  }, // pvp
+  {
     id: 51463,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Raiment",
     "int": 87,
     sp: 182,
     crit: 98,
-    sockets: ["r", "y"]
+    sockets: ["r", "y"],
+    phase: 4
   }, {
     id: 41954,
     itemset: ids.GLADIATOR_SET,
@@ -1781,7 +1902,8 @@ var equip = {
     "int": 73,
     sp: 149,
     crit: 80,
-    sockets: ["r", "y"]
+    sockets: ["r", "y"],
+    phase: 3
   }, {
     id: 41953,
     itemset: ids.GLADIATOR_SET,
@@ -1789,7 +1911,8 @@ var equip = {
     "int": 60,
     sp: 123,
     crit: 64,
-    sockets: ["r", "y"]
+    sockets: ["r", "y"],
+    phase: 2
   }, {
     id: 41951,
     itemset: ids.GLADIATOR_SET,
@@ -1815,7 +1938,8 @@ var equip = {
     crit: 36,
     sockets: ["r", "y"],
     q: "rare"
-  }, {
+  }, // prebis
+  {
     id: 42102,
     title: "Spellweave Robe",
     "int": 64,
@@ -1896,7 +2020,8 @@ var equip = {
       hit: 6
     },
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34364,
     title: "Sunfire Robe",
     "int": 34,
@@ -1944,7 +2069,8 @@ var equip = {
       sp: 5
     }
   }],
-  wrist: [{
+  wrist: [// naxx
+  {
     id: 40198,
     title: "Bands of Impurity",
     "int": 39,
@@ -1990,7 +2116,8 @@ var equip = {
     spi: 38,
     sp: 59,
     haste: 33
-  }, {
+  }, // prebis
+  {
     id: 37361,
     title: "Cuffs of Winged Levitation",
     "int": 38,
@@ -2043,7 +2170,8 @@ var equip = {
       "int": 4
     },
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34447,
     itemset: ids.T6_SET,
     title: "Bracers of the Tempest",
@@ -2057,7 +2185,8 @@ var equip = {
       crit: 2
     }
   }],
-  hands: [{
+  hands: [// icc
+  {
     id: 51280,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Gloves",
@@ -2068,7 +2197,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 4
   }, {
     id: 51159,
     itemset: ids.T10_SET,
@@ -2080,7 +2210,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 4
   }, {
     id: 50275,
     itemset: ids.T10_SET,
@@ -2092,8 +2223,10 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
-  }, {
+    },
+    phase: 4
+  }, // totc
+  {
     id: 47763,
     itemset: ids.T9_SET,
     title: "Sunstrider's Gauntlets of Triumph",
@@ -2104,7 +2237,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47772,
     itemset: ids.T9_SET,
@@ -2116,7 +2250,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47773,
     itemset: ids.T9_SET,
@@ -2128,8 +2263,10 @@ var equip = {
     sockets: ["r"],
     bonus: {
       crit: 4
-    }
-  }, {
+    },
+    phase: 3
+  }, // ulduar
+  {
     id: 46132,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Gauntlets",
@@ -2155,7 +2292,8 @@ var equip = {
       hit: 4
     },
     phase: 2
-  }, {
+  }, // os
+  {
     id: 40415,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Gloves",
@@ -2179,7 +2317,8 @@ var equip = {
     bonus: {
       "int": 4
     }
-  }, {
+  }, // naxx
+  {
     id: 40380,
     title: "Gloves of Grandeur",
     "int": 57,
@@ -2226,7 +2365,8 @@ var equip = {
     haste: 44,
     mp5: 18,
     sockets: ["y"]
-  }, {
+  }, // pvp
+  {
     id: 51464,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Handguards",
@@ -2236,7 +2376,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 4
   }, {
     id: 41972,
     itemset: ids.GLADIATOR_SET,
@@ -2247,7 +2388,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 41971,
     itemset: ids.GLADIATOR_SET,
@@ -2258,7 +2400,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 2
   }, {
     id: 41970,
     itemset: ids.GLADIATOR_SET,
@@ -2293,7 +2436,8 @@ var equip = {
       sp: 5
     },
     q: "rare"
-  }, {
+  }, // prebis
+  {
     id: 42113,
     title: "Spellweave Gloves",
     "int": 48,
@@ -2394,7 +2538,8 @@ var equip = {
     spi: 52,
     sp: 59,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34344,
     title: "Handguards of Defiled Worlds",
     "int": 32,
@@ -2440,7 +2585,16 @@ var equip = {
       sp: 2
     }
   }],
-  waist: [{
+  waist: [// eoe
+  {
+    id: 40561,
+    title: "Leash of Heedless Magic",
+    "int": 60,
+    spi: 48,
+    sp: 103,
+    haste: 62
+  }, // naxx
+  {
     id: 39735,
     title: "Belt of False Dignity",
     "int": 57,
@@ -2505,7 +2659,8 @@ var equip = {
     "int": 52,
     sp: 76,
     crit: 64
-  }, {
+  }, // prebis
+  {
     id: 44309,
     title: "Sash of Jordan",
     "int": 55,
@@ -2570,7 +2725,8 @@ var equip = {
     sp: 61,
     crit: 36,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34557,
     itemset: ids.T6_SET,
     title: "Belt of the Tempest",
@@ -2585,7 +2741,8 @@ var equip = {
       sp: 2
     }
   }],
-  legs: [{
+  legs: [// icc
+  {
     id: 51282,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Leggings",
@@ -2596,7 +2753,8 @@ var equip = {
     sockets: ["b", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 4
   }, {
     id: 51157,
     itemset: ids.T10_SET,
@@ -2608,7 +2766,8 @@ var equip = {
     sockets: ["b", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 4
   }, {
     id: 50277,
     itemset: ids.T10_SET,
@@ -2620,8 +2779,10 @@ var equip = {
     sockets: ["b", "y"],
     bonus: {
       sp: 7
-    }
-  }, {
+    },
+    phase: 4
+  }, // totc
+  {
     id: 47765,
     itemset: ids.T9_SET,
     title: "Sunstrider's Leggings of Triumph",
@@ -2632,7 +2793,8 @@ var equip = {
     sockets: ["y", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47770,
     itemset: ids.T9_SET,
@@ -2644,7 +2806,8 @@ var equip = {
     sockets: ["y", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47775,
     itemset: ids.T9_SET,
@@ -2656,8 +2819,10 @@ var equip = {
     sockets: ["y", "y"],
     bonus: {
       sp: 7
-    }
-  }, {
+    },
+    phase: 3
+  }, // ulduar
+  {
     id: 46133,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Leggings",
@@ -2683,7 +2848,16 @@ var equip = {
       crit: 6
     },
     phase: 2
-  }, {
+  }, // eoe
+  {
+    id: 40560,
+    title: "Leggings of the Wanton Spellcaster",
+    "int": 92,
+    sp: 132,
+    hit: 82,
+    haste: 66
+  }, // naxx
+  {
     id: 40417,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Leggings",
@@ -2765,7 +2939,8 @@ var equip = {
     bonus: {
       crit: 6
     }
-  }, {
+  }, // pvp
+  {
     id: 51466,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Trousers",
@@ -2775,7 +2950,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 4
   }, {
     id: 41960,
     itemset: ids.GLADIATOR_SET,
@@ -2786,7 +2962,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 41959,
     itemset: ids.GLADIATOR_SET,
@@ -2797,7 +2974,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 2
   }, {
     id: 41958,
     itemset: ids.GLADIATOR_SET,
@@ -2832,7 +3010,8 @@ var equip = {
       sp: 7
     },
     q: "rare"
-  }, {
+  }, // prebis
+  {
     id: 37854,
     title: "Woven Bracae Leggings",
     "int": 68,
@@ -2906,7 +3085,8 @@ var equip = {
     spi: 68,
     sp: 61,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34181,
     title: "Leggings of Calamity",
     "int": 41,
@@ -2942,7 +3122,16 @@ var equip = {
       sp: 2
     }
   }],
-  feet: [{
+  feet: [// eoe
+  {
+    id: 40558,
+    title: "Arcanic Tramplers",
+    "int": 52,
+    spi: 62,
+    sp: 99,
+    haste: 46
+  }, // naxx
+  {
     id: 40326,
     title: "Boots of Forlorn Wishes",
     "int": 50,
@@ -2992,7 +3181,8 @@ var equip = {
     spi: 38,
     sp: 76,
     crit: 48
-  }, {
+  }, // prebis
+  {
     id: 44202,
     title: "Sandals of Crimson Fury",
     "int": 50,
@@ -3049,7 +3239,8 @@ var equip = {
     spi: 51,
     sp: 60,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34574,
     itemset: ids.T6_SET,
     title: "Boots of the Tempest",
@@ -3075,7 +3266,16 @@ var equip = {
       sp: 2
     }
   }],
-  finger: [{
+  finger: [// os
+  {
+    id: 40433,
+    title: "Wyrmrest Band",
+    "int": 40,
+    sp: 67,
+    haste: 32,
+    mp5: 20
+  }, // naxx
+  {
     id: 40080,
     title: "Lost Jewel",
     "int": 38,
@@ -3171,7 +3371,8 @@ var equip = {
     "int": 34,
     sp: 59,
     haste: 50
-  }, {
+  }, // prebis
+  {
     id: 44283,
     title: "Signet of Hopeful Light",
     "int": 50,
@@ -3247,7 +3448,8 @@ var equip = {
     spi: 52,
     sp: 51,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34362,
     title: "Loop of Forged Power",
     "int": 28,
@@ -3262,7 +3464,12 @@ var equip = {
     crit: 22,
     haste: 31
   }],
-  trinket: [{
+  trinket: [// os
+  {
+    id: ids.TRINKET_ILLUSTRATION_DRAGON_SOUL,
+    title: "Illustration of the Dragon Soul"
+  }, // naxx
+  {
     id: ids.TRINKET_DYING_CURSE,
     title: "Dying Curse",
     hit: 71
@@ -3278,7 +3485,8 @@ var equip = {
     id: ids.TRINKET_EMBRACE_SPIDER,
     title: "Embrace of the Spider",
     sp: 98
-  }, {
+  }, // prebis
+  {
     id: ids.TRINKET_DARKMOON_DEATH,
     title: "Darkmoon Card: Death",
     crit: 85
@@ -3870,7 +4078,20 @@ var enchants = {
     sp: 23
   }]
 };
-var itemsets = [];
+var itemsets = [{
+  id: ids.GLADIATOR_SET,
+  set2: {
+    sp: 29
+  },
+  set4: {
+    sp: 88
+  }
+}, {
+  id: ids.DUSKWEAVE_SET,
+  set2: {
+    sp: 18
+  }
+}];
 var quicksets = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   ids: ids,
@@ -6633,7 +6854,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET) > 1) item_stats.sp += 18;
       stats.intellect += item_stats["int"];
       stats.spirit += item_stats.spi;
       stats.mp5 += item_stats.mp5;
@@ -6721,12 +6941,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         x = 91;
         if (this.config.imp_blessing_of_wisdom) x = 109;
         stats.mp5 += x;
-      } // Item sets
+      } // Attribute multipliers
 
-
-      var num = this.numEquippedSet(this.items.ids.GLADIATOR_SET);
-      if (num > 1) stats.spell_power += 29;
-      if (num > 3) stats.spell_power += 88; // Attribute multipliers
 
       if (this.config.talents.student_of_the_mind) {
         if (x == 1) stats.spirit *= 1.04;

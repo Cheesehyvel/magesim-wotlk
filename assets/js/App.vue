@@ -2552,9 +2552,6 @@
                     }
                 }
 
-                if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET) > 1)
-                    item_stats.sp+= 18;
-
                 stats.intellect+= item_stats.int;
                 stats.spirit+= item_stats.spi;
                 stats.mp5+= item_stats.mp5;
@@ -2689,13 +2686,6 @@
                         x = 109;
                     stats.mp5+= x;
                 }
-
-                // Item sets
-                var num = this.numEquippedSet(this.items.ids.GLADIATOR_SET);
-                if (num > 1)
-                    stats.spell_power+= 29;
-                if (num > 3)
-                    stats.spell_power+= 88;
 
                 // Attribute multipliers
                 if (this.config.talents.student_of_the_mind) {

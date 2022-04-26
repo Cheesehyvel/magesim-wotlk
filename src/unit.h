@@ -90,20 +90,25 @@ namespace unit
 
         int addBuff(shared_ptr<buff::Buff> buff)
         {
-            addBuffStats(buff->stats);
+            int stacks = buffStacks(buff->id);
 
-            if (hasBuff(buff->id))
-                return buffs[buff->id]->addStack();
+            if (stacks < buff->max_stacks)
+                addBuffStats(buff->stats);
+
+            if (stacks)
+                buffs[buff->id]->addStack();
             else
                 buffs[buff->id] = buff;
 
-            return 1;
+            return buffs[buff->id]->stacks;
         }
 
         void removeBuff(buff::ID id)
         {
-            if (hasBuff(id))
-                removeBuffStats(getBuff(id)->stats);
+            if (hasBuff(id)) {
+                auto buff = getBuff(id);
+                removeBuffStats(buff->stats, buff->stacks);
+            }
 
             buffs.erase(id);
         }
@@ -127,16 +132,16 @@ namespace unit
             buff_stats.spell_power+= _stats.spell_power;
         }
 
-        void removeBuffStats(Stats _stats)
+        void removeBuffStats(Stats _stats, int stacks = 1)
         {
-            buff_stats.intellect-= _stats.intellect;
-            buff_stats.spirit-= _stats.spirit;
-            buff_stats.mp5-= _stats.mp5;
-            buff_stats.crit-= _stats.crit;
-            buff_stats.hit-= _stats.hit;
-            buff_stats.haste-= _stats.haste;
-            buff_stats.haste_rating-= _stats.haste_rating;
-            buff_stats.spell_power-= _stats.spell_power;
+            buff_stats.intellect-= _stats.intellect * stacks;
+            buff_stats.spirit-= _stats.spirit * stacks;
+            buff_stats.mp5-= _stats.mp5 * stacks;
+            buff_stats.crit-= _stats.crit * stacks;
+            buff_stats.hit-= _stats.hit * stacks;
+            buff_stats.haste-= _stats.haste * stacks;
+            buff_stats.haste_rating-= _stats.haste_rating * stacks;
+            buff_stats.spell_power-= _stats.spell_power * stacks;
         }
 
         int debuffStacks(debuff::ID id)

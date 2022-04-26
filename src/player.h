@@ -727,6 +727,12 @@ namespace unit
                 actions.push_back(action);
             }
 
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL)) {
+                action = buffAction(make_shared<buff::IllustrationDragonSoul>());
+                actions.push_back(action);
+            }
+
             return actions;
         }
 
