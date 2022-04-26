@@ -705,6 +705,11 @@ select {
   box-sizing: border-box;
 }
 
+option {
+  color: #fff;
+  background: #000;
+}
+
 fieldset {
   padding: 5px 20px 20px;
   border: 0;

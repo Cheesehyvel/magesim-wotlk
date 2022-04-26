@@ -65734,7 +65734,9 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 1 } }, [
-                                _vm._v("Phase 1 - Naxxramas")
+                                _vm._v(
+                                  "Phase 1 - Naxxramas, Eye of Eternity, Obsidian Sanctum"
+                                )
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 2 } }, [
@@ -65742,11 +65744,13 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 3 } }, [
-                                _vm._v("Phase 3 - TotC, Onyxia")
+                                _vm._v(
+                                  "Phase 3 - Trial of the Crusader, Onyxia"
+                                )
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 4 } }, [
-                                _vm._v("Phase 4 - ICC")
+                                _vm._v("Phase 4 - Icecrown Citadel")
                               ]),
                               _vm._v(" "),
                               _c("option", { domProps: { value: 5 } }, [

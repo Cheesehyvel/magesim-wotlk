@@ -215,10 +215,10 @@
                                         <div class="form-item">
                                             <select v-model="phase_filter">
                                                 <option :value="0">- Filter by content phase -</option>
-                                                <option :value="1">Phase 1 - Naxxramas</option>
+                                                <option :value="1">Phase 1 - Naxxramas, Eye of Eternity, Obsidian Sanctum</option>
                                                 <option :value="2">Phase 2 - Ulduar</option>
-                                                <option :value="3">Phase 3 - TotC, Onyxia</option>
-                                                <option :value="4">Phase 4 - ICC</option>
+                                                <option :value="3">Phase 3 - Trial of the Crusader, Onyxia</option>
+                                                <option :value="4">Phase 4 - Icecrown Citadel</option>
                                                 <option :value="5">Phase 5 - Ruby Sanctum</option>
                                             </select>
                                         </div>
