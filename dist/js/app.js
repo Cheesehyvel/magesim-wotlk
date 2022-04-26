@@ -5838,7 +5838,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET)) item_stats.sp += 18;
+      if (this.numEquippedSet(this.items.ids.DUSKWEAVE_SET) > 1) item_stats.sp += 18;
       stats.intellect += item_stats["int"];
       stats.spirit += item_stats.spi;
       stats.mp5 += item_stats.mp5;
