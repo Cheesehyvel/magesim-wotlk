@@ -414,6 +414,19 @@ namespace unit
             return multi;
         }
 
+        double baseManaCost(shared_ptr<spell::Spell> spell)
+        {
+            double cost = Unit::baseManaCost(spell);
+
+            if (hasTrinket(TRINKET_SPARK_HOPE)) {
+                cost-= 42;
+                if (cost < 0)
+                    cost = 0;
+            }
+
+            return cost;
+        }
+
         double manaCostMod(shared_ptr<spell::Spell> spell)
         {
             double base_cost = baseManaCost(spell);
@@ -730,6 +743,33 @@ namespace unit
             // Unconfirmed - on spell cast ?
             if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL)) {
                 action = buffAction(make_shared<buff::IllustrationDragonSoul>());
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_ELEMENTAL_FOCUS_STONE) && !hasCooldown(cooldown::ALACRITY_ELEMENTS) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::AlacrityElements>());
+                action->cooldown = make_shared<cooldown::AlacrityElements>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
+                action = buffAction(make_shared<buff::EyeBroodmother>());
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_SIFS_REMEMBERANCE) && !hasCooldown(cooldown::MEMORIES_LOVE) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::MemoriesLove>());
+                action->cooldown = make_shared<cooldown::MemoriesLove>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_SHOW_FAITH) && !hasCooldown(cooldown::SHOW_FAITH) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::ShowFaith>());
+                action->cooldown = make_shared<cooldown::ShowFaith>();
                 actions.push_back(action);
             }
 
@@ -1069,6 +1109,8 @@ namespace unit
 
         bool isUseTrinket(Trinket trinket)
         {
+            if (trinket == TRINKET_SCALE_FATES)
+                return true;
             if (trinket == TRINKET_MARK_WAR_PRISONER)
                 return true;
             if (trinket == TRINKET_CANNONEERS_FUSELIGHTER)
@@ -1142,6 +1184,9 @@ namespace unit
 
             if (trinket == TRINKET_TWILIGHT_SERPENT) {
                 buff = make_shared<buff::TwilightSerpent>();
+            }
+            else if (trinket == TRINKET_SCALE_FATES) {
+                buff = make_shared<buff::ScaleFates>();
             }
             else if (trinket == TRINKET_TOME_ARCANE_PHENOMENA) {
                 buff = make_shared<buff::TomeArcanePhenomena>();

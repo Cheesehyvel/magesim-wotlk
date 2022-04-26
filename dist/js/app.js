@@ -163,9 +163,11 @@ __webpack_require__.r(__webpack_exports__);
     INNERVATE: 29166,
     PRAXIS: 64867,
     PUSHING_THE_LIMIT: 70753,
+    // Trinkets
     FORGE_EMBER: 60479,
     EMBRACE_SPIDER: 60492,
-    DYING_CURSE: 60494
+    DYING_CURSE: 60494,
+    ALACRITY_ELEMENTS: 65004
   }
 });
 
@@ -389,6 +391,12 @@ var ids = (_ids = {
   TRINKET_EXTRACT_NECROMANTIC_POWER: 40373,
   TRINKET_SOUL_DEAD: 40382,
   TRINKET_ILLUSTRATION_DRAGON_SOUL: 40432,
+  TRINKET_ELEMENTAL_FOCUS_STONE: 45866,
+  TRINKET_EYE_BROODMOTHER: 45308,
+  TRINKET_SIFS_REMEMBERANCE: 45929,
+  TRINKET_SPARK_HOPE: 45703,
+  TRINKET_SCALE_FATES: 45466,
+  TRINKET_SHOW_FAITH: 45535,
   // Enchants
   BLACK_MAGIC: 59625,
   HYPERSPEED_ACCELERATORS: 54999,
@@ -400,7 +408,135 @@ var ids = (_ids = {
   T9_SET: 8
 }, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
 var equip = {
-  weapon: [// eoe
+  weapon: [// ulduar
+  {
+    id: 45620,
+    title: "Starshard Edge",
+    "int": 55,
+    spi: 43,
+    sp: 587,
+    hit: 39,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45527,
+    title: "Soulscribe",
+    "int": 49,
+    sp: 550,
+    crit: 28,
+    haste: 48,
+    phase: 2
+  }, {
+    id: 45437,
+    title: "Runescribed Blade",
+    "int": 51,
+    spi: 37,
+    sp: 550,
+    crit: 52,
+    phase: 2
+  }, {
+    id: 45171,
+    title: "Intensity",
+    "int": 121,
+    spi: 86,
+    sp: 550,
+    hit: 120,
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45234,
+    title: "Rapture",
+    "int": 119,
+    spi: 121,
+    sp: 550,
+    crit: 81,
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45457,
+    title: "Staff of Endless Winter",
+    "int": 128,
+    spi: 84,
+    sp: 587,
+    crit: 104,
+    sockets: ["b", "b"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45479,
+    title: "The Lifebinder",
+    "int": 121,
+    spi: 80,
+    sp: 550,
+    haste: 120,
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45287,
+    title: "Firesoul",
+    "int": 46,
+    sp: 487,
+    hit: 34,
+    haste: 26,
+    phase: 2
+  }, {
+    id: 45990,
+    title: "Fusion Blade",
+    "int": 36,
+    sp: 550,
+    crit: 37,
+    hit: 52,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 2
+  }, {
+    id: 45685,
+    title: "Plasma Foil",
+    "int": 45,
+    spi: 46,
+    sp: 487,
+    crit: 35,
+    phase: 2
+  }, {
+    id: 46025,
+    title: "Devotion",
+    "int": 81,
+    spi: 106,
+    sp: 487,
+    haste: 87,
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45886,
+    title: "Icecore Staff",
+    "int": 112,
+    spi: 84,
+    sp: 550,
+    haste: 93,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 2
+  }, {
+    id: 45934,
+    title: "Unraveling Reach",
+    "int": 76,
+    spi: 93,
+    sp: 487,
+    hit: 114,
+    twohand: true,
+    phase: 2
+  }, // eoe
   {
     id: 40489,
     title: "Greatstaff of the Nexus",
@@ -597,7 +733,40 @@ var equip = {
     crit: 30,
     haste: 23
   }],
-  off_hand: [// naxx
+  off_hand: [// ulduar
+  {
+    id: 45617,
+    title: "Cosmos",
+    "int": 55,
+    sp: 84,
+    crit: 41,
+    hit: 51,
+    phase: 2
+  }, {
+    id: 45271,
+    title: "Ironmender",
+    "int": 47,
+    spi: 45,
+    sp: 74,
+    haste: 36,
+    phase: 2
+  }, {
+    id: 45115,
+    title: "Leviathan Fueling Manual",
+    "int": 46,
+    spi: 42,
+    sp: 75,
+    hit: 41,
+    phase: 2
+  }, {
+    id: 45314,
+    title: "Igniter Rod",
+    "int": 45,
+    spi: 36,
+    sp: 64,
+    crit: 47,
+    phase: 2
+  }, // naxx
   {
     id: 40192,
     title: "Accursed Spine",
@@ -648,7 +817,52 @@ var equip = {
     sp: 39,
     haste: 32
   }],
-  ranged: [// naxx
+  ranged: [// ulduar
+  {
+    id: 45257,
+    title: "Quartz Crystal Wand",
+    "int": 25,
+    spi: 24,
+    sp: 44,
+    hit: 27,
+    phase: 2
+  }, {
+    id: 45170,
+    title: "Scepter of Creation",
+    "int": 26,
+    spi: 25,
+    sp: 44,
+    crit: 24,
+    phase: 2
+  }, {
+    id: 45511,
+    title: "Scepter of Lost Souls",
+    "int": 26,
+    sp: 44,
+    crit: 18,
+    haste: 29,
+    phase: 2
+  }, {
+    id: 45713,
+    title: "Nurturing Touch",
+    "int": 26,
+    spi: 24,
+    sp: 39,
+    crit: 20,
+    phase: 2
+  }, {
+    id: 45294,
+    title: "Petrified Ivy Sprig",
+    "int": 19,
+    spi: 22,
+    sp: 45,
+    hit: 29,
+    sockets: ["y"],
+    bonus: {
+      spi: 4
+    },
+    phase: 2
+  }, // naxx
   {
     id: 39712,
     title: "Gemmed Wand of the Nerubians",
@@ -847,6 +1061,74 @@ var equip = {
     sockets: ["m", "r"],
     bonus: {
       sp: 9
+    },
+    phase: 2
+  }, {
+    id: 45150,
+    title: "Collar of the Wyrmhunter",
+    "int": 87,
+    sp: 114,
+    hit: 51,
+    haste: 68,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 2
+  }, {
+    id: 45532,
+    title: "Cowl of Dark Whispers",
+    "int": 66,
+    spi: 80,
+    sp: 115,
+    crit: 59,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 2
+  }, {
+    id: 45435,
+    title: "Cowl of the Absolute",
+    "int": 91,
+    spi: 57,
+    sp: 133,
+    hit: 86,
+    phase: 2
+  }, {
+    id: 45497,
+    title: "Crown of Luminescence",
+    "int": 92,
+    spi: 70,
+    sp: 131,
+    crit: 69,
+    sockets: ["m", "r"],
+    bonus: {
+      spi: 8
+    },
+    phase: 2
+  }, {
+    id: 45464,
+    title: "Cowl of Icy Breaths",
+    "int": 74,
+    spi: 48,
+    sp: 115,
+    hit: 60,
+    sockets: ["m", "y"],
+    bonus: {
+      hit: 8
+    },
+    phase: 2
+  }, {
+    id: 45289,
+    title: "Lifespark Visage",
+    "int": 73,
+    spi: 45,
+    sp: 105,
+    haste: 63,
+    sockets: ["m", "b"],
+    bonus: {
+      spi: 8
     },
     phase: 2
   }, // eoe
@@ -1086,7 +1368,112 @@ var equip = {
     hit: 13,
     sockets: ["m", "y"]
   }],
-  neck: [// eoe
+  neck: [// ulduar
+  {
+    id: 45133,
+    title: "Pendant of Fiery Havoc",
+    "int": 51,
+    sp: 75,
+    hit: 46,
+    haste: 41,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45243,
+    title: "Sapphire Amulet of Renewal",
+    "int": 48,
+    spi: 47,
+    sp: 75,
+    haste: 35,
+    sockets: ["r"],
+    bonus: {
+      spi: 4
+    },
+    phase: 2
+  }, {
+    id: 45236,
+    title: "Unblinking Eye",
+    "int": 43,
+    spi: 41,
+    sp: 74,
+    crit: 49,
+    phase: 2
+  }, {
+    id: 45116,
+    title: "Freya's Choker of Warding",
+    "int": 46,
+    sp: 74,
+    haste: 39,
+    mp5: 23,
+    phase: 2
+  }, {
+    id: 45443,
+    title: "Charm of Meticulous Timing",
+    "int": 51,
+    sp: 75,
+    haste: 40,
+    mp5: 24,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45933,
+    title: "Pendant of the Shallow Grave",
+    "int": 43,
+    sp: 74,
+    crit: 41,
+    haste: 31,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
+    phase: 2
+  }, {
+    id: 45699,
+    title: "Pendant of the Piercing Glare",
+    "int": 45,
+    sp: 69,
+    hit: 46,
+    haste: 29,
+    phase: 2
+  }, {
+    id: 46015,
+    title: "Pendant of Endless Despair",
+    "int": 40,
+    sp: 70,
+    crit: 29,
+    mp5: 23,
+    phase: 2
+  }, {
+    id: 46047,
+    title: "Pendant of the Somber Witness",
+    "int": 46,
+    sp: 66,
+    crit: 36,
+    mp5: 19,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45447,
+    title: "Watchful Eye of Fate",
+    "int": 36,
+    spi: 37,
+    sp: 74,
+    haste: 40,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
+    phase: 2
+  }, // eoe
   {
     id: 40486,
     title: "Necklace of the Glittering Chamber",
@@ -1339,6 +1726,70 @@ var equip = {
       "int": 4
     },
     phase: 2
+  }, {
+    id: 45514,
+    title: "Mantle of the Unknowing",
+    "int": 56,
+    spi: 62,
+    sp: 90,
+    crit: 41,
+    sockets: ["y"],
+    bonus: {
+      "int": 4
+    },
+    phase: 2
+  }, {
+    id: 45253,
+    title: "Mantle of Wavering Calm",
+    "int": 56,
+    spi: 62,
+    sp: 99,
+    haste: 49,
+    phase: 2
+  }, {
+    id: 45186,
+    title: "Soot-Covered Mantle",
+    "int": 65,
+    spi: 49,
+    sp: 90,
+    hit: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 46068,
+    title: "Amice of Inconceivable Horror",
+    "int": 49,
+    spi: 42,
+    sp: 100,
+    haste: 62,
+    sockets: ["r", "y"],
+    bonus: {
+      spi: 6
+    },
+    phase: 2
+  }, {
+    id: 45832,
+    title: "Mantle of the Preserver",
+    "int": 56,
+    spi: 46,
+    sp: 91,
+    crit: 57,
+    phase: 2
+  }, {
+    id: 46013,
+    title: "Underworld Mantle",
+    "int": 60,
+    spi: 46,
+    sp: 92,
+    haste: 40,
+    sockets: ["y"],
+    bonus: {
+      spi: 4
+    },
+    phase: 2
   }, // eoe
   {
     id: 40555,
@@ -1548,7 +1999,68 @@ var equip = {
       sp: 4
     }
   }],
-  back: [// naxx
+  back: [// ulduar
+  {
+    id: 45493,
+    title: "Asimov's Drape",
+    "int": 42,
+    spi: 42,
+    sp: 74,
+    crit: 49,
+    phase: 2
+  }, {
+    id: 45242,
+    title: "Drape of Mortal Downfall",
+    "int": 51,
+    sp: 75,
+    crit: 43,
+    hit: 41,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45486,
+    title: "Drape of the Sullen Goddess",
+    "int": 51,
+    sp: 75,
+    crit: 40,
+    mp5: 24,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45529,
+    title: "Shawl of Haunted Memories",
+    "int": 46,
+    spi: 49,
+    sp: 74,
+    crit: 36,
+    phase: 2
+  }, {
+    id: 46042,
+    title: "Drape of the Messenger",
+    "int": 36,
+    sp: 74,
+    crit: 49,
+    hit: 31,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45317,
+    title: "Shawl of the Caretaker",
+    "int": 35,
+    sp: 74,
+    haste: 39,
+    mp5: 15,
+    phase: 2
+  }, // naxx
   {
     id: 40405,
     title: "Cape of the Unworthy Wizard",
@@ -1782,6 +2294,50 @@ var equip = {
     bonus: {
       crit: 6
     },
+    phase: 2
+  }, {
+    id: 45272,
+    title: "Robes of the Umbral Brute",
+    "int": 86,
+    sp: 123,
+    crit: 58,
+    haste: 82,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45240,
+    title: "Raiments of the Iron Council",
+    "int": 81,
+    spi: 57,
+    sp: 115,
+    haste: 70,
+    sockets: ["b", "r"],
+    bonus: {
+      haste: 6
+    },
+    phase: 2
+  }, {
+    id: 45865,
+    title: "Raiments of the Corrupted",
+    "int": 62,
+    sp: 117,
+    crit: 61,
+    hit: 76,
+    sockets: ["b"],
+    bonus: {
+      hit: 4
+    },
+    phase: 2
+  }, {
+    id: 46012,
+    title: "Vestments of the Piercing Light",
+    "int": 81,
+    spi: 76,
+    sp: 124,
+    crit: 62,
     phase: 2
   }, // eoe
   {
@@ -2069,7 +2625,52 @@ var equip = {
       sp: 5
     }
   }],
-  wrist: [// naxx
+  wrist: [// ulduar
+  {
+    id: 45275,
+    title: "Bracers of Unleashed Magic",
+    "int": 46,
+    sp: 74,
+    hit: 36,
+    haste: 42,
+    phase: 2
+  }, {
+    id: 45446,
+    title: "Grasps of Reason",
+    "int": 52,
+    spi: 48,
+    sp: 75,
+    haste: 39,
+    sockets: ["r"],
+    bonus: {
+      spi: 4
+    },
+    phase: 2
+  }, {
+    id: 45146,
+    title: "Shackles of the Odalisque",
+    "int": 42,
+    spi: 49,
+    sp: 74,
+    crit: 42,
+    phase: 2
+  }, {
+    id: 45291,
+    title: "Combustion Bracers",
+    "int": 41,
+    spi: 44,
+    sp: 70,
+    hit: 32,
+    phase: 2
+  }, {
+    id: 45423,
+    title: "Runetouch Wristwraps",
+    "int": 42,
+    spi: 29,
+    sp: 69,
+    crit: 46,
+    phase: 2
+  }, // naxx
   {
     id: 40198,
     title: "Bands of Impurity",
@@ -2291,6 +2892,74 @@ var equip = {
     bonus: {
       hit: 4
     },
+    phase: 2
+  }, {
+    id: 45117,
+    title: "Constructor's Handwraps",
+    "int": 62,
+    spi: 53,
+    sp: 99,
+    crit: 58,
+    phase: 2
+  }, {
+    id: 45273,
+    title: "Handwraps of Plentiful Recovery",
+    "int": 62,
+    spi: 56,
+    sp: 99,
+    haste: 56,
+    phase: 2
+  }, {
+    id: 45520,
+    title: "Handwraps of the Vigilant",
+    "int": 72,
+    spi: 51,
+    sp: 92,
+    crit: 59,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45665,
+    title: "Pharos Gloves",
+    "int": 72,
+    sp: 92,
+    crit: 64,
+    haste: 74,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45927,
+    title: "Handwraps of Resonance",
+    "int": 60,
+    spi: 53,
+    sp: 99,
+    crit: 52,
+    phase: 2
+  }, {
+    id: 46045,
+    title: "Pulsar Gloves",
+    "int": 47,
+    sp: 100,
+    hit: 50,
+    haste: 46,
+    sockets: ["r", "r"],
+    bonus: {
+      hit: 6
+    },
+    phase: 2
+  }, {
+    id: 45976,
+    title: "Static Charge Handwraps",
+    "int": 56,
+    spi: 39,
+    sp: 92,
+    hit: 60,
     phase: 2
   }, // os
   {
@@ -2585,7 +3254,56 @@ var equip = {
       sp: 2
     }
   }],
-  waist: [// eoe
+  waist: [// ulduar
+  {
+    id: 45508,
+    title: "Belt of the Darkspeaker",
+    "int": 63,
+    spi: 49,
+    sp: 90,
+    hit: 56,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45119,
+    title: "Embrace of the Leviathan",
+    "int": 64,
+    spi: 62,
+    sp: 99,
+    haste: 49,
+    phase: 2
+  }, {
+    id: 45619,
+    title: "Starwatcher's Binding",
+    "int": 69,
+    spi: 64,
+    sp: 92,
+    crit: 47,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45306,
+    title: "Binding of the Dragon Matriarch",
+    "int": 46,
+    spi: 58,
+    sp: 91,
+    crit: 57,
+    phase: 2
+  }, {
+    id: 45694,
+    title: "Conductive Cord",
+    "int": 54,
+    spi: 60,
+    sp: 93,
+    crit: 41,
+    phase: 2
+  }, // eoe
   {
     id: 40561,
     title: "Leash of Heedless Magic",
@@ -2847,6 +3565,58 @@ var equip = {
     bonus: {
       crit: 6
     },
+    phase: 2
+  }, {
+    id: 45468,
+    title: "Leggings of Lost Love",
+    "int": 81,
+    spi: 86,
+    sp: 115,
+    haste: 41,
+    sockets: ["r", "b"],
+    bonus: {
+      spi: 6
+    },
+    phase: 2
+  }, {
+    id: 45488,
+    title: "Leggings of the Enslaved Idol",
+    "int": 98,
+    sp: 122,
+    crit: 77,
+    hit: 70,
+    sockets: ["r", "y", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 2
+  }, {
+    id: 45238,
+    title: "Overload Legwraps",
+    "int": 86,
+    sp: 132,
+    hit: 81,
+    haste: 66,
+    phase: 2
+  }, {
+    id: 46034,
+    title: "Leggings of Profound Darkness",
+    "int": 82,
+    spi: 66,
+    sp: 132,
+    crit: 60,
+    sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45894,
+    title: "Leggings of Unstable Discharge",
+    "int": 81,
+    spi: 53,
+    sp: 124,
+    crit: 70,
     phase: 2
   }, // eoe
   {
@@ -3122,7 +3892,80 @@ var equip = {
       sp: 2
     }
   }],
-  feet: [// eoe
+  feet: [// ulduar
+  {
+    id: 45135,
+    title: "Boots of Fiery Resolution",
+    "int": 72,
+    spi: 64,
+    sp: 102,
+    haste: 55,
+    sockets: ["r", "y"],
+    bonus: {
+      haste: 6
+    },
+    phase: 2
+  }, {
+    id: 45483,
+    title: "Boots of the Servant",
+    "int": 56,
+    spi: 48,
+    sp: 90,
+    haste: 62,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45258,
+    title: "Sandals of Rash Temperament",
+    "int": 60,
+    sp: 99,
+    crit: 56,
+    hit: 57,
+    phase: 2
+  }, {
+    id: 45441,
+    title: "Sandals of the Ancient Keeper",
+    "int": 64,
+    spi: 62,
+    sp: 99,
+    crit: 49,
+    phase: 2
+  }, {
+    id: 45537,
+    title: "Treads of the False Oracle",
+    "int": 69,
+    sp: 92,
+    crit: 61,
+    haste: 47,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 46050,
+    title: "Starlight Treads",
+    "int": 65,
+    spi: 45,
+    sp: 94,
+    crit: 57,
+    sockets: ["b", "y"],
+    bonus: {
+      spi: 6
+    },
+    phase: 2
+  }, {
+    id: 46030,
+    title: "Treads of the Dragon Council",
+    "int": 57,
+    spi: 42,
+    sp: 93,
+    crit: 59,
+    phase: 2
+  }, // eoe
   {
     id: 40558,
     title: "Arcanic Tramplers",
@@ -3266,7 +4109,137 @@ var equip = {
       sp: 2
     }
   }],
-  finger: [// os
+  finger: [// ulduar
+  {
+    id: 45495,
+    title: "Conductive Seal",
+    "int": 48,
+    spi: 39,
+    sp: 75,
+    haste: 55,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45451,
+    title: "Frozen Loop",
+    "int": 46,
+    sp: 74,
+    hit: 46,
+    haste: 36,
+    phase: 2
+  }, {
+    id: 45113,
+    title: "Glowing Ring of Reclamation",
+    "int": 49,
+    spi: 44,
+    sp: 74,
+    crit: 39,
+    phase: 2
+  }, {
+    id: 45168,
+    title: "Pyrelight Circle",
+    "int": 42,
+    sp: 74,
+    crit: 46,
+    haste: 36,
+    phase: 2
+  }, {
+    id: 45235,
+    title: "Radiant Seal",
+    "int": 42,
+    sp: 74,
+    haste: 46,
+    mp5: 18,
+    phase: 2
+  }, {
+    id: 45438,
+    title: "Ring of the Faithful Servant",
+    "int": 42,
+    sp: 74,
+    crit: 36,
+    mp5: 23,
+    phase: 2
+  }, {
+    id: 45515,
+    title: "Ring of the Vacant Eye",
+    "int": 46,
+    spi: 42,
+    sp: 74,
+    hit: 42,
+    phase: 2
+  }, {
+    id: 45530,
+    title: "Sanity's Bond",
+    "int": 42,
+    sp: 74,
+    haste: 31,
+    mp5: 25,
+    phase: 2
+  }, {
+    id: 45702,
+    title: "Emerald Signet Ring",
+    "int": 48,
+    spi: 43,
+    sp: 70,
+    hit: 34,
+    phase: 2
+  }, {
+    id: 46046,
+    title: "Nebula Band",
+    "int": 36,
+    sp: 74,
+    crit: 46,
+    haste: 36,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
+    phase: 2
+  }, {
+    id: 45418,
+    title: "Lady Maye's Sapphire Ring",
+    "int": 43,
+    spi: 44,
+    sp: 71,
+    haste: 32,
+    phase: 2
+  }, {
+    id: 45946,
+    title: "Fire Orchid Signet",
+    "int": 49,
+    sp: 74,
+    haste: 30,
+    mp5: 19,
+    sockets: ["y"],
+    phase: 2
+  }, {
+    id: 45297,
+    title: "Shimmering Seal",
+    "int": 42,
+    spi: 22,
+    sp: 74,
+    hit: 42,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 46096,
+    title: "Signet of Soft Lament",
+    "int": 46,
+    spi: 36,
+    sp: 74,
+    crit: 32,
+    sockets: ["b"],
+    bonus: {
+      spi: 4
+    },
+    phase: 2
+  }, // os
   {
     id: 40433,
     title: "Wyrmrest Band",
@@ -3464,7 +4437,35 @@ var equip = {
     crit: 22,
     haste: 31
   }],
-  trinket: [// os
+  trinket: [// ulduar
+  {
+    id: ids.TRINKET_SCALE_FATES,
+    title: "Scale of Fates",
+    sp: 125,
+    use: true,
+    phase: 2
+  }, {
+    id: ids.TRINKET_SHOW_FAITH,
+    title: "Show of Faith",
+    sp: 140,
+    phase: 2
+  }, {
+    id: ids.TRINKET_ELEMENTAL_FOCUS_STONE,
+    title: "Elemental Focus Stone",
+    hit: 108
+  }, {
+    id: ids.TRINKET_EYE_BROODMOTHER,
+    title: "Eye of the Broodmother",
+    crit: 87
+  }, {
+    id: ids.TRINKET_SIFS_REMEMBERANCE,
+    title: "Sif's Remembrance",
+    sp: 110
+  }, {
+    id: ids.TRINKET_SPARK_HOPE,
+    title: "Spark of Hope",
+    spi: 100
+  }, // os
   {
     id: ids.TRINKET_ILLUSTRATION_DRAGON_SOUL,
     title: "Illustration of the Dragon Soul"
@@ -6058,6 +7059,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var trinkets = [{
+        id: this.items.ids.TRINKET_SCALE_FATES,
+        title: "Scale of Fates",
+        icon: "https://wotlkdb.com/static/images/wow/icons/large/inv_spiritshard_02.jpg"
+      }, {
         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
         title: "Figurine - Twilight Serpent",
         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg"
@@ -6157,6 +7162,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.isEquipped("trinket", this.items.ids.TRINKET_DYING_CURSE)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.DYING_CURSE,
         name: "Dying Curse"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_ELEMENTAL_FOCUS_STONE)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.ALACRITY_ELEMENTS,
+        name: "Elemental Focus Stone"
       });
       buffs = _.sortBy(buffs, "name");
       return buffs;
@@ -8241,6 +9250,18 @@ __webpack_require__.r(__webpack_exports__);
         color: "#ddd"
       }],
       trinkets: [{
+        title: "Scale of Fates",
+        color: "#ddd"
+      }, {
+        title: "Show of Faith",
+        color: "#ddd"
+      }, {
+        title: "Memories of Love",
+        color: "#55d"
+      }, {
+        title: "Alacrity of the Elements",
+        color: "#ddd"
+      }, {
         title: "Dying Curse",
         color: "#5b5"
       }, {

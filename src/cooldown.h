@@ -32,6 +32,7 @@ namespace cooldown
         HYPERSPEED_ACCELERATION = 54758,
         MANA_GEM = 42987,
         PRAXIS = 64867,
+        // Trinkets
         FORGE_EMBER = 60479,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
@@ -39,6 +40,9 @@ namespace cooldown
         DYING_CURSE = 60494,
         EXTRACT_NECROMANTIC_POWER = 60488,
         SOUL_DEAD = 60538,
+        ALACRITY_ELEMENTS = 65004,
+        MEMORIES_LOVE = 65003,
+        SHOW_FAITH = 64739,
     };
 
 
@@ -450,6 +454,42 @@ namespace cooldown
         SoulDead()
         {
             id = SOUL_DEAD;
+            duration = 45;
+        }
+
+    };
+
+    class AlacrityElements : public Cooldown
+    {
+
+    public:
+        AlacrityElements()
+        {
+            id = ALACRITY_ELEMENTS;
+            duration = 45;
+        }
+
+    };
+
+    class MemoriesLove : public Cooldown
+    {
+
+    public:
+        MemoriesLove()
+        {
+            id = MEMORIES_LOVE;
+            duration = 45;
+        }
+
+    };
+
+    class ShowFaith : public Cooldown
+    {
+
+    public:
+        ShowFaith()
+        {
+            id = SHOW_FAITH;
             duration = 45;
         }
 

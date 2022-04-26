@@ -75,6 +75,10 @@
                     { title: "Quad Core", color: "#ddd" },
                 ],
                 trinkets: [
+                    { title: "Scale of Fates", color: "#ddd" },
+                    { title: "Show of Faith", color: "#ddd" },
+                    { title: "Memories of Love", color: "#55d" },
+                    { title: "Alacrity of the Elements", color: "#ddd" },
                     { title: "Dying Curse", color: "#5b5" },
                     { title: "Embrace of the Spider", color: "#777" },
                     { title: "Twilight Serpent", color: "#ddd" },

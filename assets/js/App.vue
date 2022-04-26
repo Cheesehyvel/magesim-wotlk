@@ -1864,6 +1864,11 @@
 
                 var trinkets = [
                     {
+                        id: this.items.ids.TRINKET_SCALE_FATES,
+                        title: "Scale of Fates",
+                        icon: "https://wotlkdb.com/static/images/wow/icons/large/inv_spiritshard_02.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
                         title: "Figurine - Twilight Serpent",
                         icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg",
@@ -1953,6 +1958,8 @@
                     buffs.push({id: constants.buffs.EMBRACE_SPIDER, name: "Embrace of the Spider"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_DYING_CURSE))
                     buffs.push({id: constants.buffs.DYING_CURSE, name: "Dying Curse"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_ELEMENTAL_FOCUS_STONE))
+                    buffs.push({id: constants.buffs.ALACRITY_ELEMENTS, name: "Elemental Focus Stone"});
 
                 buffs = _.sortBy(buffs, "name");
 

@@ -40,6 +40,11 @@ namespace buff
         EMBRACE_SPIDER = 60492,
         DYING_CURSE = 60494,
         ILLUSTRATION_DRAGON_SOUL = 60486,
+        ALACRITY_ELEMENTS = 65004,
+        EYE_BROODMOTHER = 65006,
+        MEMORIES_LOVE = 65003,
+        SCALE_FATES = 64707,
+        SHOW_FAITH = 64739,
         // TBC Stuff
         DRUMS_OF_BATTLE = 35476,
         DRUMS_OF_WAR = 35475,
@@ -566,6 +571,77 @@ namespace buff
             duration = 10;
             stats.spell_power = 20;
             max_stacks = 10;
+        }
+
+    };
+
+    class AlacrityElements : public Buff
+    {
+
+    public:
+        AlacrityElements()
+        {
+            id = ALACRITY_ELEMENTS;
+            name = "Alacrity of the Elements";
+            duration = 10;
+            stats.haste_rating = 522;
+        }
+
+    };
+
+    class EyeBroodmother : public Buff
+    {
+
+    public:
+        EyeBroodmother()
+        {
+            id = EYE_BROODMOTHER;
+            name = "Eye of the Broodmother";
+            duration = 10;
+            max_stacks = 5;
+            stats.spell_power = 25;
+        }
+
+    };
+
+    class MemoriesLove : public Buff
+    {
+
+    public:
+        MemoriesLove()
+        {
+            id = MEMORIES_LOVE;
+            name = "Memories of Love";
+            duration = 15;
+            stats.mp5 = 195;
+        }
+
+    };
+
+    class ScaleFates : public Buff
+    {
+
+    public:
+        ScaleFates()
+        {
+            id = SCALE_FATES;
+            name = "Scale of Fates";
+            duration = 20;
+            stats.haste_rating = 432;
+        }
+
+    };
+
+    class ShowFaith : public Buff
+    {
+
+    public:
+        ShowFaith()
+        {
+            id = SHOW_FAITH;
+            name = "Show of Faith";
+            duration = 15;
+            stats.mp5 = 241;
         }
 
     };
