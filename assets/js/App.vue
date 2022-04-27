@@ -1317,6 +1317,10 @@
                 t9_4set: false,
                 t10_2set: false,
                 t10_4set: false,
+                udc_2set: false,
+                udc_3set: false,
+                udc_4set: false,
+                cudc_3set: false,
 
                 drums_friend: false,
                 pre_mirror_image: false,
@@ -2603,6 +2607,14 @@
                 var num = this.numEquippedSet(this.items.ids.T6_SET);
                 this.config.t6_2set = num > 1;
                 this.config.t6_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.UDC_SET);
+                this.config.udc_2set = num > 1;
+                this.config.udc_3set = num > 2;
+                this.config.udc_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.CUDC_SET);
+                this.config.cudc_3set = num > 2;
 
                 this.config.black_magic = this.enchants.weapon == this.items.ids.BLACK_MAGIC;
                 this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;

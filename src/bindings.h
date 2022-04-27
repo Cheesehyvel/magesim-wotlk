@@ -173,6 +173,10 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("t9_4set", &Config::t9_4set)
         .property("t10_2set", &Config::t10_2set)
         .property("t10_4set", &Config::t10_4set)
+        .property("udc_2set", &Config::udc_2set)
+        .property("udc_3set", &Config::udc_3set)
+        .property("udc_4set", &Config::udc_4set)
+        .property("cudc_3set", &Config::cudc_3set)
 
         .property("drums_friend", &Config::drums_friend)
         .property("pre_mirror_image", &Config::pre_mirror_image)

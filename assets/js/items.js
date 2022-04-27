@@ -33,6 +33,8 @@ var ids = {
     T6_SET: 671,
     GLADIATOR_SET: 779,
     DUSKWEAVE_SET: 764,
+    UDC_SET: 781,
+    CUDC_SET: 536,
     // Metas
     META_CHAOTIC_SKYFLARE: 41285,
     META_EMBER_SKYFLARE: 41333,
@@ -242,6 +244,7 @@ var equip = {
         // naxx
         { id: 40419, itemset: ids.T7_SET, title: "Valorous Frostfire Shoulderpads", int: 57, sp: 78, crit: 53, haste: 35, sockets: ["y"], bonus: {haste: 4} },
         { id: 39494, itemset: ids.T7_SET, title: "Heroes' Frostfire Shoulderpads", int: 50, sp: 68, crit: 48, haste: 30, sockets: ["y"], bonus: {haste: 4} },
+        { id: 43074, itemset: ids.UDC_SET, title: "Blessed Mantle of Undead Cleansing", int: 22, spi: 18, sp: 32, haste: 22 },
         { id: 40286, title: "Mantle of the Corrupted", int: 50, sp: 88, hit: 37, haste: 57 },
         { id: 40351, title: "Mantle of the Fatigued Sage", int: 55, spi: 57, sp: 78, hit: 35, sockets: ["b"], bonus: {sp: 5} },
         { id: 39719, title: "Mantle of the Locusts", int: 39, spi: 67, sp: 78, haste: 39, sockets: ["r"], bonus: {int: 4} },
@@ -320,6 +323,7 @@ var equip = {
         // naxx
         { id: 40418, itemset: ids.T7_SET, title: "Valorous Frostfire Robe", int: 77, spi: 66, sp: 99, crit: 61, sockets: ["r", "y"], bonus: {hit: 6} },
         { id: 39492, itemset: ids.T7_SET, title: "Heroes' Frostfire Robe", int: 60, spi: 60, sp: 87, crit: 51, sockets: ["r", "y"], bonus: {hit: 6} },
+        { id: 43072, itemset: ids.UDC_SET, title: "Blessed Robe of Undead Cleansing", int: 29, spi: 24, sp: 44, haste: 31 },
         { id: 40062, title: "Digested Silken Robes", int: 69, spi: 63, sp: 118, crit: 77 },
         { id: 40234, title: "Heigan's Putrid Vestments", int: 77, sp: 99, hit: 49, haste: 51, sockets: ["b", "y"], bonus: {sp: 7} },
         { id: 40602, title: "Robes of Mutation", int: 77, spi: 71, sp: 99, crit: 42, sockets: ["r", "y"], bonus: {spi: 6} },
@@ -349,6 +353,7 @@ var equip = {
         { id: 34399, title: "Robes of Ghostly Hatred", int: 40, spi: 32, sp: 71, crit: 26, haste: 27, sockets: ["r", "r", "y"], bonus: { sp: 5 } },
         { id: 34232, title: "Fel Conquerer Raiments", int: 41, sp: 71, crit: 24, haste: 33, sockets: ["r", "y", "y"], bonus: { sp: 5 } },
         { id: 31057, itemset: ids.T6_SET, title: "Robes of the Tempest", int: 39, spi: 31, sp: 62, crit: 23, hit: 13, sockets: ["y", "y", "b"], bonus: { sp: 5 } },
+        { id: 23085, itemset: ids.CUDC_SET, title: "Robe of Undead Cleansing", int: 13, q: "rare" },
     ],
     wrist: [
         // ulduar
@@ -376,6 +381,7 @@ var equip = {
         { id: 44200, title: "Ancestral Sinew Wristguards", int: 33, spi: 27, sp: 50, sockets: ["b"], bonus: {int: 4}, q: "rare" },
         // tbc
         { id: 34447, itemset: ids.T6_SET, title: "Bracers of the Tempest", int: 17, spi: 14, sp: 39, crit: 11, haste: 26, sockets: ["r"], bonus: { crit: 2 } },
+        { id: 23091, itemset: ids.CUDC_SET, title: "Bracers of Undead Cleansing", int: 7, q: "rare" },
     ],
     hands: [
         // icc
@@ -400,6 +406,7 @@ var equip = {
         { id: 40415, itemset: ids.T7_SET, title: "Valorous Frostfire Gloves", int: 57, sp: 69, crit: 53, hit: 38, sockets: ["r"], bonus: {int: 4} },
         { id: 39495, itemset: ids.T7_SET, title: "Heroes' Frostfire Gloves", int: 51, sp: 59, crit: 48, hit: 33, sockets: ["r"], bonus: {int: 4} },
         // naxx
+        { id: 43073, itemset: ids.UDC_SET, title: "Blessed Gloves of Undead Cleansing", int: 32, spi: 22, sp: 43, haste: 30 },
         { id: 40380, title: "Gloves of Grandeur", int: 57, sp: 88, crit: 43, hit: 38 },
         { id: 40197, title: "Gloves of the Fallen Wizard", int: 50, spi: 74, sp: 88, hit: 25 },
         { id: 39733, title: "Gloves of Token Respect", int: 57, spi: 53, sp: 88, haste: 43 },
@@ -432,6 +439,7 @@ var equip = {
         { id: 34406, title: "Gloves of Tyri's Power", int: 32, spi: 27, sp: 47, haste: 36, sockets: ["r", "y"], bonus: { sp: 4 } },
         { id: 34366, title: "Sunfire Handwraps", int: 30, sp: 53, crit: 37, sockets: ["r", "r"], bonus: { sp: 4 } },
         { id: 31055, itemset: ids.T6_SET, title: "Gloves of the Tempest", int: 26, spi: 21, sp: 46, crit: 19, hit: 20, sockets: ["y"], bonus: { sp: 2 } },
+        { id: 23084, itemset: ids.CUDC_SET, title: "Gloves of Undead Cleansing", int: 10, q: "rare" },
     ],
     waist: [
         // ulduar
@@ -486,6 +494,7 @@ var equip = {
         // naxx
         { id: 40417, itemset: ids.T7_SET, title: "Valorous Frostfire Leggings", int: 77, sp: 99, hit: 43, haste: 67, sockets: ["r", "y"], bonus: {haste: 6} },
         { id: 39493, itemset: ids.T7_SET, title: "Heroes' Frostfire Leggings", int: 68, sp: 87, hit: 36, haste: 64, sockets: ["r", "y"], bonus: {haste: 6} },
+        { id: 43075, itemset: ids.UDC_SET, title: "Blessed Trousers of Undead Cleansing", int: 25, spi: 29, sp: 44, haste: 30 },
         { id: 39720, title: "Leggings of Atrophy", int: 78, sp: 118, crit: 76, hit: 50 },
         { id: 40398, title: "Leggings of Mortal Arrogance", int: 85, spi: 71, sp: 115, crit: 57, sockets: ["r", "b"], bonus: {crit: 6} },
         { id: 40376, title: "Legwraps of the Defeated Dragon", int: 77, spi: 56, sp: 99, hit: 50, sockets: ["r", "b"], bonus: {hit: 6} },

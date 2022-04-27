@@ -45,6 +45,10 @@ struct Config
     bool t9_4set = false;
     bool t10_2set = false;
     bool t10_4set = false;
+    bool udc_2set = false;
+    bool udc_3set = false;
+    bool udc_4set = false;
+    bool cudc_3set = false;
 
     bool drums_friend = false;
     bool pre_mirror_image = false;

@@ -376,6 +376,14 @@ namespace unit
                 multi*= 1.05;
             if (hasBuff(buff::QUAD_CORE))
                 multi*= 1.18;
+            if (config->udc_2set)
+                multi*= 1.01;
+            if (config->udc_3set)
+                multi*= 1.02;
+            if (config->udc_4set)
+                multi*= 1.03;
+            if (config->cudc_3set)
+                multi*= 1.02;
 
             if (talents.torment_of_the_weak) {
                 if (spell->id == spell::FROSTBOLT ||

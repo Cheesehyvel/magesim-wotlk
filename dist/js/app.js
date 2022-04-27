@@ -408,7 +408,7 @@ var ids = (_ids = {
   T10_SET: 8,
   phase: 483,
   T9_SET: 8
-}, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
+}, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "UDC_SET", 781), _defineProperty(_ids, "CUDC_SET", 536), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
 var equip = {
   weapon: [// ulduar
   {
@@ -1837,6 +1837,14 @@ var equip = {
       haste: 4
     }
   }, {
+    id: 43074,
+    itemset: ids.UDC_SET,
+    title: "Blessed Mantle of Undead Cleansing",
+    "int": 22,
+    spi: 18,
+    sp: 32,
+    haste: 22
+  }, {
     id: 40286,
     title: "Mantle of the Corrupted",
     "int": 50,
@@ -2425,6 +2433,14 @@ var equip = {
       hit: 6
     }
   }, {
+    id: 43072,
+    itemset: ids.UDC_SET,
+    title: "Blessed Robe of Undead Cleansing",
+    "int": 29,
+    spi: 24,
+    sp: 44,
+    haste: 31
+  }, {
     id: 40062,
     title: "Digested Silken Robes",
     "int": 69,
@@ -2661,6 +2677,12 @@ var equip = {
     bonus: {
       sp: 5
     }
+  }, {
+    id: 23085,
+    itemset: ids.CUDC_SET,
+    title: "Robe of Undead Cleansing",
+    "int": 13,
+    q: "rare"
   }],
   wrist: [// ulduar
   {
@@ -2834,6 +2856,12 @@ var equip = {
     bonus: {
       crit: 2
     }
+  }, {
+    id: 23091,
+    itemset: ids.CUDC_SET,
+    title: "Bracers of Undead Cleansing",
+    "int": 7,
+    q: "rare"
   }],
   hands: [// icc
   {
@@ -3037,6 +3065,14 @@ var equip = {
     }
   }, // naxx
   {
+    id: 43073,
+    itemset: ids.UDC_SET,
+    title: "Blessed Gloves of Undead Cleansing",
+    "int": 32,
+    spi: 22,
+    sp: 43,
+    haste: 30
+  }, {
     id: 40380,
     title: "Gloves of Grandeur",
     "int": 57,
@@ -3302,6 +3338,12 @@ var equip = {
     bonus: {
       sp: 2
     }
+  }, {
+    id: 23084,
+    itemset: ids.CUDC_SET,
+    title: "Gloves of Undead Cleansing",
+    "int": 10,
+    q: "rare"
   }],
   waist: [// ulduar
   {
@@ -3700,6 +3742,14 @@ var equip = {
     bonus: {
       haste: 6
     }
+  }, {
+    id: 43075,
+    itemset: ids.UDC_SET,
+    title: "Blessed Trousers of Undead Cleansing",
+    "int": 25,
+    spi: 29,
+    sp: 44,
+    haste: 30
   }, {
     id: 39720,
     title: "Leggings of Atrophy",
@@ -6632,6 +6682,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       t9_4set: false,
       t10_2set: false,
       t10_4set: false,
+      udc_2set: false,
+      udc_3set: false,
+      udc_4set: false,
+      cudc_3set: false,
       drums_friend: false,
       pre_mirror_image: false,
       pre_water_elemental: false,
@@ -7960,6 +8014,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var num = this.numEquippedSet(this.items.ids.T6_SET);
       this.config.t6_2set = num > 1;
       this.config.t6_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.UDC_SET);
+      this.config.udc_2set = num > 1;
+      this.config.udc_3set = num > 2;
+      this.config.udc_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.CUDC_SET);
+      this.config.cudc_3set = num > 2;
       this.config.black_magic = this.enchants.weapon == this.items.ids.BLACK_MAGIC;
       this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;
       this.config.darkglow_embroidery = this.enchants.back == this.items.ids.DARKGLOW_EMBROIDERY;
