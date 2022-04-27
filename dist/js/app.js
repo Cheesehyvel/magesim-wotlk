@@ -8728,6 +8728,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (profile.config && (!only || only == "config")) {
+        this.config.timings = [];
+
         _.merge(this.config, _.pick(profile.config, _.keys(this.config)));
 
         this.onLoadConfig(profile.config);
