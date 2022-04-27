@@ -1508,6 +1508,13 @@ table.large tbody tr {
 .design-2 #app .wrapper .main .tabs {
   background: #333 linear-gradient(90deg, rgba(98, 0, 255, 0.2) 0%, rgba(151, 5, 199, 0.2) 100%);
 }
+.design-2 #app .wrapper .main .tabs .tab {
+  background: #150032;
+  opacity: 0.6;
+}
+.design-2 #app .wrapper .main .tabs .tab.active {
+  opacity: 1;
+}
 .design-2 #app .wrapper .main .body {
   background: #000 linear-gradient(30deg, rgba(151, 5, 199, 0.2) 0%, rgba(98, 0, 255, 0.2) 50%, rgba(151, 5, 199, 0.2) 100%);
 }

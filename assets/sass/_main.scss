@@ -1069,6 +1069,15 @@ table {
             .main {
                 .tabs {
                     background: #333 linear-gradient(90deg, rgba(98,0,255,0.2) 0%, rgba(151,5,199,0.2) 100%);
+
+                    .tab {
+                        background: #150032;
+                        opacity: 0.6;
+
+                        &.active {
+                            opacity: 1;
+                        }
+                    }
                 }
                 .body {
                     background: #000 linear-gradient(30deg, rgba(151,5,199,0.2) 0%, rgba(98,0,255,0.2) 50%, rgba(151,5,199,0.2) 100%);
