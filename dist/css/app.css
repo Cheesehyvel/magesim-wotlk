@@ -628,7 +628,7 @@ a:hover {
           user-select: none;
   font-weight: 600;
   white-space: nowrap;
-  transition: opacity 0.2s ease, background 0.2s ease;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
   text-align: center;
   line-height: 18px;
 }
@@ -1506,6 +1506,9 @@ table.large tbody tr {
   color: #f00;
 }
 
+.design-2 a {
+  color: #9235ee;
+}
 .design-2 #app .wrapper .sidebar {
   background: #140f17;
 }
@@ -1542,8 +1545,12 @@ table.large tbody tr {
   padding: 10px 20px;
 }
 .design-2 .btn.secondary {
-  padding: 10px 12px;
+  padding: 10px 15px;
   border-radius: 0;
+  background: #1a0042;
+}
+.design-2 .btn.secondary:hover {
+  background: #36008a;
 }
 .design-2 .btn.large {
   padding: 15px 20px;
