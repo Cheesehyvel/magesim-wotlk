@@ -6483,32 +6483,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    var design = localStorage.getItem("design");
+    if (design) document.documentElement.classList.add("design-" + design);
+  },
   mounted: function mounted() {
     this.loadCustomItems();
     this.loadCurrentProfile();
@@ -7172,6 +7155,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
+    setDesign: function setDesign(design) {
+      var old = localStorage.getItem("design");
+      if (old) document.documentElement.classList.remove("design-" + old);
+
+      if (design < 2) {
+        localStorage.removeItem("design");
+      } else {
+        localStorage.setItem("design", design);
+        document.documentElement.classList.add("design-" + design);
+      }
+    },
     newTimingId: function newTimingId() {
       var id = 0;
 
@@ -72728,18 +72722,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "btn mt-2", on: { click: _vm.closeExport } },
+                {
+                  staticClass: "btn mt-2 wide",
+                  on: { click: _vm.closeExport }
+                },
                 [_vm._v("Close")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "close", on: { click: _vm.closeExport } },
-                [
-                  _c("span", { staticClass: "material-icons" }, [
-                    _vm._v("\n                        \n                    ")
-                  ])
-                ]
               )
             ])
           ])
@@ -72894,21 +72881,11 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "btn mt-2",
+                  staticClass: "btn mt-2 wide",
                   class: [_vm.import_profile.string ? "" : "disabled"],
                   on: { click: _vm.doImport }
                 },
                 [_vm._v("Import")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "close", on: { click: _vm.closeImport } },
-                [
-                  _c("span", { staticClass: "material-icons" }, [
-                    _vm._v("\n                        \n                    ")
-                  ])
-                ]
               )
             ])
           ])
@@ -73062,26 +73039,10 @@ var render = function() {
               _c("div", { staticClass: "mt-2" }, [
                 _c(
                   "div",
-                  { staticClass: "btn", on: { click: _vm.copyEquiplist } },
+                  { staticClass: "btn wide", on: { click: _vm.copyEquiplist } },
                   [_vm._v("Copy")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "btn", on: { click: _vm.closeEquiplist } },
-                  [_vm._v("Close")]
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "close", on: { click: _vm.closeEquiplist } },
-                [
-                  _c("span", { staticClass: "material-icons" }, [
-                    _vm._v("\n                        \n                    ")
-                  ])
-                ]
-              )
+              ])
             ])
           ])
         : _vm._e(),
@@ -73606,20 +73567,13 @@ var render = function() {
               _c("div", { staticClass: "mt-2" }, [
                 _c(
                   "div",
-                  { staticClass: "btn", on: { click: _vm.addCustomItem } },
+                  {
+                    staticClass: "btn block",
+                    on: { click: _vm.addCustomItem }
+                  },
                   [_vm._v("Save")]
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "close", on: { click: _vm.closeCustomItem } },
-                [
-                  _c("span", { staticClass: "material-icons" }, [
-                    _vm._v("\n                        \n                    ")
-                  ])
-                ]
-              )
+              ])
             ])
           ])
         : _vm._e()

@@ -143,6 +143,10 @@ a {
         }
     }
 
+    &.wide {
+        padding: 10px 25px;
+    }
+
     &.danger {
         background: #800;
 
@@ -1050,6 +1054,32 @@ table {
         }
         &.unchecked .material-icons {
             color: #f00;
+        }
+    }
+}
+
+
+.design-2 {
+    #app {
+        .wrapper {
+            .sidebar {
+                background: rgba(20, 15, 23, 0.99);
+            }
+
+            .main {
+                .tabs {
+                    background: #333 linear-gradient(90deg, rgba(98,0,255,0.2) 0%, rgba(151,5,199,0.2) 100%);
+                }
+                .body {
+                    background: #000 linear-gradient(30deg, rgba(151,5,199,0.2) 0%, rgba(98,0,255,0.2) 50%, rgba(151,5,199,0.2) 100%);
+                }
+            }
+        }
+
+        .lightbox {
+            > .inner {
+                background: #000 linear-gradient(30deg, rgba(151,5,199,0.2) 0%, rgba(98,0,255,0.2) 50%, rgba(151,5,199,0.2) 100%);
+            }
         }
     }
 }

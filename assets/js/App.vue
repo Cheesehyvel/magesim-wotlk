@@ -1069,12 +1069,7 @@
                         <label><input type="checkbox" v-model="export_profile.items" @input="updateExport"> <span>Include items</span></label>
                         <label><input type="checkbox" v-model="export_profile.config" @input="updateExport"> <span>Include config</span></label>
                     </div>
-                    <div class="btn mt-2" @click="closeExport">Close</div>
-                    <div class="close" @click="closeExport">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
+                    <div class="btn mt-2 wide" @click="closeExport">Close</div>
                 </div>
             </div>
 
@@ -1089,12 +1084,7 @@
                         <label><input type="checkbox" v-model="import_profile.items" :disabled="!import_status.items"> <span>Include items</span></label>
                         <label><input type="checkbox" v-model="import_profile.config" :disabled="!import_status.config"> <span>Include config</span></label>
                     </div>
-                    <div class="btn mt-2" :class="[import_profile.string ? '' : 'disabled']" @click="doImport">Import</div>
-                    <div class="close" @click="closeImport">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
+                    <div class="btn mt-2 wide" :class="[import_profile.string ? '' : 'disabled']" @click="doImport">Import</div>
                 </div>
             </div>
 
@@ -1144,13 +1134,7 @@
                         </tbody>
                     </table>
                     <div class="mt-2">
-                        <div class="btn" @click="copyEquiplist">Copy</div>
-                        <div class="btn" @click="closeEquiplist">Close</div>
-                    </div>
-                    <div class="close" @click="closeEquiplist">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
+                        <div class="btn wide" @click="copyEquiplist">Copy</div>
                     </div>
                 </div>
             </div>
@@ -1231,12 +1215,7 @@
                         {{ custom_item_error }}
                     </div>
                     <div class="mt-2">
-                        <div class="btn" @click="addCustomItem">Save</div>
-                    </div>
-                    <div class="close" @click="closeCustomItem">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
+                        <div class="btn block" @click="addCustomItem">Save</div>
                     </div>
                 </div>
             </div>
@@ -1252,6 +1231,12 @@
     import constants from "./constants";
 
     export default {
+        created() {
+            var design = localStorage.getItem("design");
+            if (design)
+                document.documentElement.classList.add("design-"+design);
+        },
+
         mounted() {
             this.loadCustomItems();
             this.loadCurrentProfile();
@@ -1968,6 +1953,20 @@
         },
 
         methods: {
+            setDesign(design) {
+                var old = localStorage.getItem("design");
+                if (old)
+                    document.documentElement.classList.remove("design-"+old);
+
+                if (design < 2) {
+                    localStorage.removeItem("design");
+                }
+                else {
+                    localStorage.setItem("design", design);
+                    document.documentElement.classList.add("design-"+design);
+                }
+            },
+
             newTimingId() {
                 var id = 0;
                 for (var i=0; i<this.config.timings.length; i++)

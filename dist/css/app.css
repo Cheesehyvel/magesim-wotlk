@@ -648,6 +648,9 @@ a:hover {
   font-size: 14px;
   font-weight: 400;
 }
+.btn.wide {
+  padding: 10px 25px;
+}
 .btn.danger {
   background: #800;
 }
@@ -1497,4 +1500,17 @@ table.large tbody tr {
 }
 .checklist .check-item.unchecked .material-icons {
   color: #f00;
+}
+
+.design-2 #app .wrapper .sidebar {
+  background: rgba(20, 15, 23, 0.99);
+}
+.design-2 #app .wrapper .main .tabs {
+  background: #333 linear-gradient(90deg, rgba(98, 0, 255, 0.2) 0%, rgba(151, 5, 199, 0.2) 100%);
+}
+.design-2 #app .wrapper .main .body {
+  background: #000 linear-gradient(30deg, rgba(151, 5, 199, 0.2) 0%, rgba(98, 0, 255, 0.2) 50%, rgba(151, 5, 199, 0.2) 100%);
+}
+.design-2 #app .lightbox > .inner {
+  background: #000 linear-gradient(30deg, rgba(151, 5, 199, 0.2) 0%, rgba(98, 0, 255, 0.2) 50%, rgba(151, 5, 199, 0.2) 100%);
 }
