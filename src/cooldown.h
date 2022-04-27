@@ -36,6 +36,7 @@ namespace cooldown
         FORGE_EMBER = 60479,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
+        NOW_IS_THE_TIME = 60064,
         EMBRACE_SPIDER = 60492,
         DYING_CURSE = 60494,
         EXTRACT_NECROMANTIC_POWER = 60488,
@@ -406,6 +407,18 @@ namespace cooldown
         DarkmoonDeath()
         {
             id = DARKMOON_DEATH;
+            duration = 45;
+        }
+
+    };
+
+    class NowIsTheTime : public Cooldown
+    {
+
+    public:
+        NowIsTheTime()
+        {
+            id = NOW_IS_THE_TIME;
             duration = 45;
         }
 

@@ -8,6 +8,7 @@ var ids = {
     TRINKET_FORGE_EMBER: 37660,
     TRINKET_PENDULUM_TELLURIC_CURRENTS: 37264,
     TRINKET_DARKMOON_DEATH: 42990,
+    TRINKET_SUNDIAL_EXILED: 40682,
     TRINKET_EMBRACE_SPIDER: 39229,
     TRINKET_DYING_CURSE: 40255,
     TRINKET_EXTRACT_NECROMANTIC_POWER: 40373,
@@ -193,6 +194,7 @@ var equip = {
         { id: 46047, title: "Pendant of the Somber Witness", int: 46, sp: 66, crit: 36, mp5: 19, sockets: ["r"], bonus: {sp: 5}, phase: 2 },
         { id: 45447, title: "Watchful Eye of Fate", int: 36, spi: 37, sp: 74, haste: 40, sockets: ["y"], bonus: {crit: 4}, phase: 2 },
         // eoe
+        { id: 44661, title: "Wyrmrest Necklace of Power", int: 48, sp: 64, hit: 33, haste: 43, sockets: ["b"], bonus: {sp: 5} },
         { id: 40486, title: "Necklace of the Glittering Chamber", int: 34, spi: 38, sp: 69, crit: 37 },
         // os
         { id: 40427, title: "Circle of Arcane Streams", int: 37, sp: 53, crit: 35, hit: 31 },
@@ -271,6 +273,8 @@ var equip = {
         { id: 45529, title: "Shawl of Haunted Memories", int: 46, spi: 49, sp: 74, crit: 36, phase: 2 },
         { id: 46042, title: "Drape of the Messenger", int: 36, sp: 74, crit: 49, hit: 31, sockets: ["y"], bonus: {sp: 5}, phase: 2 },
         { id: 45317, title: "Shawl of the Caretaker", int: 35, sp: 74, haste: 39, mp5: 15, phase: 2 },
+        // os
+        { id: 44005, title: "Pennant Cloak", int: 46, sp: 64, crit: 34, haste: 42, sockets: ["b"], bonus: {sp: 5} },
         // naxx
         { id: 40405, title: "Cape of the Unworthy Wizard", int: 42, spi: 49, sp: 74, crit: 42 },
         { id: 40254, title: "Cloak of Averted Crisis", int: 41, sp: 66, crit: 38, mp5: 19 },
@@ -311,6 +315,8 @@ var equip = {
         // eoe
         { id: 40194, title: "Blanketing Robes of Snow", int: 71, spi: 66, sp: 132, mp5: 16, sockets: ["b"], bonus: {haste: 4} },
         { id: 40526, title: "Gown of the Spell-Weaver", int: 70, sp: 110, crit: 50, hit: 72, sockets: ["y"], bonus: {crit: 3} },
+        // os
+        { id: 44002, title: "The Sanctum's Flowing Vestments", int: 77, spi: 51, sp: 99, haste: 66, sockets: ["r", "b"], bonus: {haste: 6} },
         // naxx
         { id: 40418, itemset: ids.T7_SET, title: "Valorous Frostfire Robe", int: 77, spi: 66, sp: 99, crit: 61, sockets: ["r", "y"], bonus: {hit: 6} },
         { id: 39492, itemset: ids.T7_SET, title: "Heroes' Frostfire Robe", int: 60, spi: 60, sp: 87, crit: 51, sockets: ["r", "y"], bonus: {hit: 6} },
@@ -351,6 +357,8 @@ var equip = {
         { id: 45146, title: "Shackles of the Odalisque", int: 42, spi: 49, sp: 74, crit: 42, phase: 2 },
         { id: 45291, title: "Combustion Bracers", int: 41, spi: 44, sp: 70, hit: 32, phase: 2 },
         { id: 45423, title: "Runetouch Wristwraps", int: 42, spi: 29, sp: 69, crit: 46, phase: 2 },
+        // os
+        { id: 44008, title: "Unsullied Cuffs", int: 46, spi: 42, sp: 64, haste: 34, sockets: ["r"], bonus: {spi: 4} },
         // naxx
         { id: 40198, title: "Bands of Impurity", int: 39, spi: 37, sp: 56, crit: 34, sockets: ["r"], bonus: {spi: 4} },
         { id: 40325, title: "Bindings of the Expansive Mind", int: 38, sp: 65, crit: 43, hit: 28 },
@@ -600,6 +608,7 @@ var equip = {
         { id: ids.TRINKET_SOUL_DEAD, title: "Soul of the Dead", crit: 95 },
         { id: ids.TRINKET_EMBRACE_SPIDER, title: "Embrace of the Spider", sp: 98 },
         // prebis
+        { id: ids.TRINKET_SUNDIAL_EXILED, title: "Sundial of the Exiled", crit: 84 },
         { id: ids.TRINKET_DARKMOON_DEATH, title: "Darkmoon Card: Death", crit: 85 },
         { id: 42988, title: "Darkmoon Card: Illusion", sp: 100 },
         { id: ids.TRINKET_FORGE_EMBER, title: "Forge Ember", crit: 73, q: "rare" },
@@ -698,6 +707,8 @@ var enchants = {
         { id: 59960, title: "Arcanum of Blissful Mending", sp: 30, mp5: 10 },
     ],
     shoulder: [
+        { id: 61120, title: "Master's Inscription of the Storm ", sp: 70, crit: 15 },
+        { id: 61118, title: "Master's Inscription of the Crag", sp: 70, mp5: 8 },
         { id: 59937, title: "Greater Inscription of the Storm ", sp: 24, crit: 15 },
         { id: 59936, title: "Greater Inscription of the Crag", sp: 24, mp5: 8 },
     ],
@@ -728,6 +739,7 @@ var enchants = {
         { id: 55632, title: "Azure Spellthread", sp: 35 },
     ],
     feet: [
+        { id: 55016, title: "Nitro Boosts", crit: 24 },
         { id: 47901, title: "Tuskarr's Vitality" },
         { id: 44508, title: "Greater Spirit", spi: 18 },
         { id: 44584, title: "Greater Vitality", mp5: 7 },

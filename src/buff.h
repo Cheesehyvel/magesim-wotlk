@@ -37,6 +37,7 @@ namespace buff
         ARGENT_VALOR = 59657,
         MARK_WAR_PRISONER = 60480,
         FORGE_EMBER = 60479,
+        NOW_IS_THE_TIME = 60064,
         EMBRACE_SPIDER = 60492,
         DYING_CURSE = 60494,
         ILLUSTRATION_DRAGON_SOUL = 60486,
@@ -528,6 +529,20 @@ namespace buff
             name = "Forge Ember";
             duration = 10;
             stats.spell_power = 512;
+        }
+
+    };
+
+    class NowIsTheTime : public Buff
+    {
+
+    public:
+        NowIsTheTime()
+        {
+            id = NOW_IS_THE_TIME;
+            name = "Now is the Time!";
+            duration = 10;
+            stats.spell_power = 590;
         }
 
     };

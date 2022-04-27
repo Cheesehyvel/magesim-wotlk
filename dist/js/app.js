@@ -165,6 +165,7 @@ __webpack_require__.r(__webpack_exports__);
     PUSHING_THE_LIMIT: 70753,
     // Trinkets
     FORGE_EMBER: 60479,
+    NOW_IS_THE_TIME: 60064,
     EMBRACE_SPIDER: 60492,
     DYING_CURSE: 60494,
     ALACRITY_ELEMENTS: 65004
@@ -386,6 +387,7 @@ var ids = (_ids = {
   TRINKET_FORGE_EMBER: 37660,
   TRINKET_PENDULUM_TELLURIC_CURRENTS: 37264,
   TRINKET_DARKMOON_DEATH: 42990,
+  TRINKET_SUNDIAL_EXILED: 40682,
   TRINKET_EMBRACE_SPIDER: 39229,
   TRINKET_DYING_CURSE: 40255,
   TRINKET_EXTRACT_NECROMANTIC_POWER: 40373,
@@ -1475,6 +1477,17 @@ var equip = {
     phase: 2
   }, // eoe
   {
+    id: 44661,
+    title: "Wyrmrest Necklace of Power",
+    "int": 48,
+    sp: 64,
+    hit: 33,
+    haste: 43,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
+  }, {
     id: 40486,
     title: "Necklace of the Glittering Chamber",
     "int": 34,
@@ -2060,6 +2073,18 @@ var equip = {
     haste: 39,
     mp5: 15,
     phase: 2
+  }, // os
+  {
+    id: 44005,
+    title: "Pennant Cloak",
+    "int": 46,
+    sp: 64,
+    crit: 34,
+    haste: 42,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    }
   }, // naxx
   {
     id: 40405,
@@ -2361,6 +2386,18 @@ var equip = {
     sockets: ["y"],
     bonus: {
       crit: 3
+    }
+  }, // os
+  {
+    id: 44002,
+    title: "The Sanctum's Flowing Vestments",
+    "int": 77,
+    spi: 51,
+    sp: 99,
+    haste: 66,
+    sockets: ["r", "b"],
+    bonus: {
+      haste: 6
     }
   }, // naxx
   {
@@ -2670,6 +2707,18 @@ var equip = {
     sp: 69,
     crit: 46,
     phase: 2
+  }, // os
+  {
+    id: 44008,
+    title: "Unsullied Cuffs",
+    "int": 46,
+    spi: 42,
+    sp: 64,
+    haste: 34,
+    sockets: ["r"],
+    bonus: {
+      spi: 4
+    }
   }, // naxx
   {
     id: 40198,
@@ -4488,6 +4537,10 @@ var equip = {
     sp: 98
   }, // prebis
   {
+    id: ids.TRINKET_SUNDIAL_EXILED,
+    title: "Sundial of the Exiled",
+    crit: 84
+  }, {
     id: ids.TRINKET_DARKMOON_DEATH,
     title: "Darkmoon Card: Death",
     crit: 85
@@ -4977,6 +5030,16 @@ var enchants = {
     mp5: 10
   }],
   shoulder: [{
+    id: 61120,
+    title: "Master's Inscription of the Storm ",
+    sp: 70,
+    crit: 15
+  }, {
+    id: 61118,
+    title: "Master's Inscription of the Crag",
+    sp: 70,
+    mp5: 8
+  }, {
     id: 59937,
     title: "Greater Inscription of the Storm ",
     sp: 24,
@@ -5057,6 +5120,10 @@ var enchants = {
     sp: 35
   }],
   feet: [{
+    id: 55016,
+    title: "Nitro Boosts",
+    crit: 24
+  }, {
     id: 47901,
     title: "Tuskarr's Vitality"
   }, {
@@ -7021,19 +7088,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         icon: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg"
       };
 
-      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_SPEED) {
+      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED) {
         potion.title = "Potion of Speed";
         potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
       }
 
-      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_WILD_MAGIC) {
+      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_WILD_MAGIC) {
         potion.title = "Potion of Wild Magic";
         potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
       }
 
       timings.push(potion);
 
-      if (this.config.potion == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].POTION_WILD_MAGIC) {
+      if (this.config.conjured == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_FLAME_CAP) {
         timings.push({
           name: "conjured",
           title: "Flame Cap",
@@ -7137,6 +7204,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.isEquipped("trinket", this.items.ids.TRINKET_FORGE_EMBER)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.FORGE_EMBER,
         name: "Forge Ember"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_SUNDIAL_EXILED)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.NOW_IS_THE_TIME,
+        name: "Sundial of the Exiled"
       });
       if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].buffs.EMBRACE_SPIDER,
@@ -9195,6 +9266,9 @@ __webpack_require__.r(__webpack_exports__);
         title: "Evocation",
         color: "#05c"
       }, {
+        title: "Flame Cap",
+        color: "rgba(200,120,70)"
+      }, {
         title: "Drums of Battle",
         color: "rgba(160,160,60)"
       }, {
@@ -9259,6 +9333,9 @@ __webpack_require__.r(__webpack_exports__);
         title: "Dying Curse",
         color: "#5b5"
       }, {
+        title: "Now is the Time!",
+        color: "#ddd"
+      }, {
         title: "Embrace of the Spider",
         color: "#777"
       }, {
@@ -9322,29 +9399,35 @@ __webpack_require__.r(__webpack_exports__);
       return times;
     },
     events: function events() {
+      var _this = this;
+
       var self = this;
       var events = [];
-      var event, start, end, uptime; // CDs
+      var event, start, end, uptime;
+      var logs; // CDs
 
       for (var i = 0; i < this.cds.length; i++) {
-        start = _.filter(this.result.log, {
-          text: "Player gained " + this.cds[i].title
-        });
-        end = _.filter(this.result.log, {
-          text: "Player lost " + this.cds[i].title
+        logs = _.filter(this.result.log, function (l) {
+          return l.text.indexOf(_this.cds[i].title) > 0;
         });
 
-        if (start.length) {
+        if (logs.length) {
+          uptime = 0;
           event = _.clone(this.cds[i]);
           event.events = [];
-          uptime = 0;
 
-          for (var j = 0; j < start.length; j++) {
+          while (logs.length) {
+            start = logs.shift();
+
+            for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift()) {
+              ;
+            }
+
             event.events.push({
-              start: start[j].t,
-              end: end.length > j ? end[j].t : this.result.t
+              start: start.t,
+              end: end ? end.t : this.result.t
             });
-            uptime += (end.length > j ? end[j].t : this.result.t) - start[j].t;
+            uptime += (end ? end.t : this.result.t) - start.t;
           }
 
           event.uptime = Math.round(uptime / this.result.t * 100);
@@ -9356,24 +9439,27 @@ __webpack_require__.r(__webpack_exports__);
       var delta = 0;
 
       for (var i = 0; i < this.trinkets.length; i++) {
-        start = _.filter(this.result.log, {
-          text: "Player gained " + this.trinkets[i].title
-        });
-        end = _.filter(this.result.log, {
-          text: "Player lost " + this.trinkets[i].title
+        logs = _.filter(this.result.log, function (l) {
+          return l.text.indexOf(_this.trinkets[i].title) > 0;
         });
 
-        if (start.length) {
+        if (logs.length) {
+          uptime = 0;
           event = _.clone(this.trinkets[i]);
           event.events = [];
-          uptime = 0;
 
-          for (var j = 0; j < start.length; j++) {
+          while (logs.length) {
+            start = logs.shift();
+
+            for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift()) {
+              ;
+            }
+
             event.events.push({
-              start: start[j].t,
-              end: end.length > j ? end[j].t : this.result.t
+              start: start.t,
+              end: end ? end.t : this.result.t
             });
-            uptime += (end.length > j ? end[j].t : this.result.t) - start[j].t;
+            uptime += (end ? end.t : this.result.t) - start.t;
           }
 
           event.uptime = Math.round(uptime / this.result.t * 100);

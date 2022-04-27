@@ -57,6 +57,7 @@
                     { title: "Mana Tide", color: "#05c" },
                     { title: "Innervate", color: "#05c" },
                     { title: "Evocation", color: "#05c" },
+                    { title: "Flame Cap", color: "rgba(200,120,70)" },
                     { title: "Drums of Battle", color: "rgba(160,160,60)" },
                     { title: "Drums of War", color: "rgba(160,160,60)" },
                     { title: "Drums of Restoration", color: "rgba(160,160,60)" },
@@ -80,6 +81,7 @@
                     { title: "Memories of Love", color: "#55d" },
                     { title: "Alacrity of the Elements", color: "#ddd" },
                     { title: "Dying Curse", color: "#5b5" },
+                    { title: "Now is the Time!", color: "#ddd" },
                     { title: "Embrace of the Spider", color: "#777" },
                     { title: "Twilight Serpent", color: "#ddd" },
                     { title: "Tome of Arcane Phenomena", color: "#ddd" },
@@ -124,21 +126,23 @@
                 var self = this;
                 var events = [];
                 var event, start, end, uptime;
+                var logs;
 
                 // CDs
                 for (var i=0; i<this.cds.length; i++) {
-                    start = _.filter(this.result.log, {text: "Player gained "+this.cds[i].title});
-                    end = _.filter(this.result.log, {text: "Player lost "+this.cds[i].title});
-                    if (start.length) {
+                    logs = _.filter(this.result.log, l => l.text.indexOf(this.cds[i].title) > 0);
+                    if (logs.length) {
+                        uptime = 0;
                         event = _.clone(this.cds[i]);
                         event.events = [];
-                        uptime = 0;
-                        for (var j=0; j<start.length; j++) {
+                        while (logs.length) {
+                            start = logs.shift();
+                            for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift());
                             event.events.push({
-                                start: start[j].t,
-                                end: end.length > j ? end[j].t : this.result.t,
+                                start: start.t,
+                                end: end ? end.t : this.result.t,
                             });
-                            uptime+= (end.length > j ? end[j].t : this.result.t) - start[j].t;
+                            uptime+= (end ? end.t : this.result.t) - start.t;
                         }
                         event.uptime = Math.round(uptime / this.result.t * 100);
                         events.push(event);
@@ -148,18 +152,19 @@
                 // Trinkets
                 var delta = 0;
                 for (var i=0; i<this.trinkets.length; i++) {
-                    start = _.filter(this.result.log, {text: "Player gained "+this.trinkets[i].title});
-                    end = _.filter(this.result.log, {text: "Player lost "+this.trinkets[i].title});
-                    if (start.length) {
+                    logs = _.filter(this.result.log, l => l.text.indexOf(this.trinkets[i].title) > 0);
+                    if (logs.length) {
+                        uptime = 0;
                         event = _.clone(this.trinkets[i]);
                         event.events = [];
-                        uptime = 0;
-                        for (var j=0; j<start.length; j++) {
+                        while (logs.length) {
+                            start = logs.shift();
+                            for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift());
                             event.events.push({
-                                start: start[j].t,
-                                end: end.length > j ? end[j].t : this.result.t,
+                                start: start.t,
+                                end: end ? end.t : this.result.t,
                             });
-                            uptime+= (end.length > j ? end[j].t : this.result.t) - start[j].t;
+                            uptime+= (end ? end.t : this.result.t) - start.t;
                         }
                         event.uptime = Math.round(uptime / this.result.t * 100);
                         events.push(event);

@@ -734,6 +734,13 @@ namespace unit
             }
 
             // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::NowIsTheTime>());
+                action->cooldown = make_shared<cooldown::NowIsTheTime>();
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
             if (hasTrinket(TRINKET_DYING_CURSE) && !hasCooldown(cooldown::DYING_CURSE) && random<int>(0, 19) < 3) {
                 action = buffAction(make_shared<buff::DyingCurse>());
                 action->cooldown = make_shared<cooldown::DyingCurse>();
