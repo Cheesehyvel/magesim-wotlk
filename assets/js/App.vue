@@ -3284,7 +3284,7 @@
                         i++;
                         break;
                     }
-                    else if (ch == "Z") {
+                    else if (ch == "Z" || talent >= this.talent_map[tree].length) {
                         talent = 0;
                         if (++tree == 3)
                             break;
