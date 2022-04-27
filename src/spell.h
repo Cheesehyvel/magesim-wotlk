@@ -73,6 +73,7 @@ namespace spell
         bool has_travel_time = false;
         bool fixed_dmg = false;
         bool active_use = true;
+        bool off_gcd = false;
         bool is_trigger = false;
         int ticks = 0;
         int t_interval = 1;
@@ -687,6 +688,8 @@ namespace spell
             name = "Mirror Image";
             cost = 10;
             is_trigger = true;
+            off_gcd = true;
+            gcd = 0;
             school = SCHOOL_ARCANE;
         }
 

@@ -2011,6 +2011,8 @@
                 if (always.indexOf(name) != -1)
                     return true;
 
+                if (name == "berserking")
+                    return this.config.race == constants.races.RACE_TROLL;
                 if (name == "potion")
                     return this.config.potion != constants.potions.POTION_NONE;
                 if (name == "conjured")

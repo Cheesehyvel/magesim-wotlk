@@ -246,9 +246,9 @@ namespace unit
                 haste*= 1.3;
             else if (hasBuff(buff::POWER_INFUSION))
                 haste*= 1.2;
-            else if (hasBuff(buff::ICY_VEINS))
+            if (hasBuff(buff::ICY_VEINS))
                 haste*= 1.2;
-            else if (hasBuff(buff::BERSERKING))
+            if (hasBuff(buff::BERSERKING))
                 haste*= 1.2;
 
             if (get_raid_buffs) {

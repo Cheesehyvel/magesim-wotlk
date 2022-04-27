@@ -461,12 +461,13 @@ public:
         push(event);
     }
 
-    void pushWait(shared_ptr<unit::Unit> unit, double t, std::string str = "")
+    void pushWait(shared_ptr<unit::Unit> unit, double t, std::string str = "", shared_ptr<spell::Spell> spell = NULL)
     {
         shared_ptr<Event> event(new Event());
         event->type = EVENT_WAIT;
         event->unit = unit;
         event->t = t;
+        event->spell = spell;
 
         push(event);
 
@@ -551,13 +552,13 @@ public:
     void cast(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         if (canCast(unit, spell)) {
-            if (spell->active_use && unit->t_gcd > state->t)
-                pushWait(unit, unit->t_gcd - state->t);
+            if (spell->active_use && !spell->off_gcd && unit->t_gcd > state->t)
+                pushWait(unit, unit->t_gcd - state->t, "", spell);
             else
                 onCastStart(unit, spell);
         }
         else {
-            pushWait(unit, 0.5, "Out of mana");
+            pushWait(unit, 0.5, "Out of mana", spell);
         }
     }
 
@@ -618,12 +619,8 @@ public:
             spell->done = true;
 
         if (spell->done && spell->active_use) {
-            if (state->inCombat()) {
-                if (unit->t_gcd <= state->t)
-                    nextAction(unit);
-                else
-                    pushWait(unit, unit->t_gcd - state->t);
-            }
+            if (state->inCombat())
+                nextAction(unit);
 
             // Log spell use
             initSpellStats(unit, spell);

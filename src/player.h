@@ -681,6 +681,7 @@ namespace unit
                     action = make_shared<action::Action>(action::TYPE_UNIT);
                     action->unit = make_shared<unit::MirrorImage>(config);
                     action->unit->setStats(stats);
+                    action->unit->name+= " #"+to_string(i+1);
                     actions.push_back(action);
                 }
                 if (config->t10_4set)
@@ -1294,13 +1295,13 @@ namespace unit
             else if (!hasCooldown(cooldown::EVOCATION) && useTimingIfPossible("evocation", state, true)) {
                 action = spellAction(make_shared<spell::Evocation>(evocationTicks()));
             }
-            else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state)) {
-                action = spellAction(make_shared<spell::MirrorImage>());
-                action->cooldown = make_shared<cooldown::MirrorImage>();
-            }
             else if (talents.water_elemental && !hasCooldown(cooldown::WATER_ELEMENTAL) && !state->hasUnit(unit::WATER_ELEMENTAL) && useTimingIfPossible("water_elemental", state)) {
                 action = spellAction(make_shared<spell::WaterElemental>());
                 action->cooldown = make_shared<cooldown::WaterElemental>();
+            }
+            else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state)) {
+                action = spellAction(make_shared<spell::MirrorImage>());
+                action->cooldown = make_shared<cooldown::MirrorImage>();
             }
 
 

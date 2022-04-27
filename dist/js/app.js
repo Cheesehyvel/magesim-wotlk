@@ -7276,6 +7276,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     timingEnabled: function timingEnabled(name) {
       var always = ["bloodlust", "mana_tide", "power_infusion", "innervate", "mana_gem", "evocation", "mirror_image"];
       if (always.indexOf(name) != -1) return true;
+      if (name == "berserking") return this.config.race == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].races.RACE_TROLL;
       if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
       if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
       if (name == "drums") return this.config.drums != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE;
