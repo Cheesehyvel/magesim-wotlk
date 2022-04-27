@@ -422,6 +422,7 @@ table {
             position: relative;
             background: rgba(0,0,0,0.8);
             padding: $spacer*0.5 $spacer*0.5 360px;
+            transition: background 0.2s ease;
 
             .display-stats {
                 position: absolute;
@@ -489,6 +490,7 @@ table {
             .tabs {
                 padding: 10px 10px 0;
                 user-select: none;
+                transition: background 0.2s ease;
 
                 .tab {
                     display: inline-block;
@@ -497,6 +499,7 @@ table {
                     text-transform: uppercase;
                     letter-spacing: 3px;
                     background: rgba(10,20,30,0.9);
+                    transition: background 0.2s ease;
                     padding: 0 30px;
                     margin-right: 5px;
                     opacity: 0.7;
@@ -513,6 +516,7 @@ table {
                 background: rgba(10,20,30,0.9);
                 height: calc(100vh - 60px);
                 overflow: auto;
+                transition: background 0.2s ease;
 
                 > .close {
                     position: absolute;
@@ -1063,7 +1067,24 @@ table {
     #app {
         .wrapper {
             .sidebar {
-                background: rgba(20, 15, 23, 0.99);
+                background: rgba(20, 15, 23, 1);
+
+                .actions {
+                    .btn.large {
+                        margin-bottom: 20px;
+                    }
+
+                    .btn.large ~ .btn {
+                        background: none;
+                        font-size: 13px;
+                        padding: 5px;
+                        opacity: 0.6;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
             }
 
             .main {
@@ -1088,6 +1109,26 @@ table {
         .lightbox {
             > .inner {
                 background: #000 linear-gradient(30deg, rgba(151,5,199,0.2) 0%, rgba(98,0,255,0.2) 50%, rgba(151,5,199,0.2) 100%);
+            }
+        }
+    }
+
+    .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+
+        &.secondary {
+            padding: 10px 12px;
+            border-radius: 0;
+        }
+
+        &.large {
+            padding: 15px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+
+            div:nth-child(n+2) {
+                display: none;
             }
         }
     }

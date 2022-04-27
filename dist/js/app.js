@@ -7074,57 +7074,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       timings.push({
         name: "innervate",
         title: "Innervate",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_lightning.jpg"
       });
       timings.push({
         name: "mana_gem",
         title: "Mana Gem",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg"
       });
       timings.push({
         name: "evocation",
         title: "Evocation",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_purge.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_purge.jpg"
       });
       timings.push({
         name: "mirror_image",
         title: "Mirror Image",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg"
       });
       timings.push({
         name: "water_elemental",
         title: "Water Elemental",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_summonwaterelemental_2.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_summonwaterelemental_2.jpg"
       });
       timings.push({
         name: "berserking",
         title: "Berserking",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/racial_troll_berserk.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/racial_troll_berserk.jpg"
       });
       timings.push({
         name: "presence_of_mind",
         title: "Presence of Mind",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_enchantarmor.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_enchantarmor.jpg"
       });
       timings.push({
         name: "arcane_power",
         title: "Arcane Power",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_lightning.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_lightning.jpg"
       });
       timings.push({
         name: "combustion",
         title: "Combustion",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_fire_sealoffire.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_fire_sealoffire.jpg"
       });
       timings.push({
         name: "icy_veins",
         title: "Icy Veins",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_coldhearted.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_coldhearted.jpg"
       });
       timings.push({
         name: "cold_snap",
         title: "Cold Snap",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_frost_wizardmark.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_wizardmark.jpg"
       });
       timings.push({
         name: "hyperspeed_accelerators",
@@ -7134,7 +7134,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       timings.push({
         name: "drums",
         title: "Drums",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_drum_02.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_drum_02.jpg"
       });
       var potion = {
         name: "potion",
@@ -7169,35 +7169,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
         title: "Figurine - Twilight Serpent",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg"
       }, {
         id: this.items.ids.TRINKET_TOME_ARCANE_PHENOMENA,
         title: "Tome of Arcane Phenomena",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_book_07.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_book_07.jpg"
       }, {
         id: this.items.ids.TRINKET_CANNONEERS_FUSELIGHTER,
         title: "Cannoneer's Fuselighter",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg"
       }, {
         id: this.items.ids.TRINKET_MARK_WAR_PRISONER,
         title: "Mark of the War Prisoner",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_13.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_13.jpg"
       }, {
         id: this.items.ids.TRINKET_NAARU_SLIVER,
         title: "Shifting Naaru Sliver",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_jewelry_talisman_15.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg"
       }, {
         id: this.items.ids.TRINKET_SKULL_GULDAN,
         title: "Skull of Gul'dan",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg"
       }, {
         id: this.items.ids.TRINKET_SHRUNKEN_HEAD,
         title: "Hex Shrunken Head",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/inv_misc_head_troll_01.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_head_troll_01.jpg"
       }, {
         id: this.items.ids.TRINKET_MQG,
         title: "Mind Quickening Gem",
-        icon: "https://wotlk.evowow.com/static/images/wow/icons/large/spell_nature_wispheal.jpg"
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_wispheal.jpg"
       }];
       var slots = ["trinket1", "trinket2"];
       var timing;
@@ -8172,13 +8172,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (_typeof(id) == "object") id = id.id;
       if (id > 99900) return null;
       if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?item=" + id;
-      if (this.item_source == "evo") return "https://wotlk.evowow.com/?item=" + id;
+      if (this.item_source == "evo") return "https://www.wotlkdb.com/?item=" + id;
       return "https://wotlk.wowhead.com/?item=" + id;
     },
     spellUrl: function spellUrl(id) {
       if (_typeof(id) == "object") id = id.id;
       if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?spell=" + id;
-      if (this.item_source == "evo") return "https://wotlk.evowow.com/?spell=" + id;
+      if (this.item_source == "evo") return "https://www.wotlkdb.com/?spell=" + id;
       return "https://wotlk.wowhead.com/?spell=" + id;
     },
     critRatingToChance: function critRatingToChance(rating) {
@@ -8510,16 +8510,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     setSpec: function setSpec(spec) {
       if (spec == "arcane") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vfu0IzxGuMxebcZMhf0o:NzM0mM";
+        this.config.build = "https://www.wotlkdb.com/?talent#of0Vfu0IzxGuMxebcZMhf0o:NzM0mM";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM;
       } else if (spec == "arcane_barrage") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vsu0IzxGuMxedcZMhf0o:NzM0mM";
+        this.config.build = "https://www.wotlkdb.com/?talent#of0Vsu0IzxGuMxedcZMhf0o:NzM0mM";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM_BARRAGE;
       } else if (spec == "fire") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0cZ0Ec0RhIuVubhst:VLi0mc";
+        this.config.build = "https://www.wotlkdb.com/?talent#of0Vck0cZ0Ec0RhIuVubhst:VLi0mc";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_FIRE;
       } else if (spec == "frost") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
+        this.config.build = "https://www.wotlkdb.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_FROST;
       }
 
