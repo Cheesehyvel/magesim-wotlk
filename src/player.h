@@ -611,7 +611,8 @@ namespace unit
                 // 10% chance - UNCONFIRMED
                 if (!config->t8_4set || random<int>(0, 9) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::BrainFreeze>()));
-                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                    if (config->t10_2set)
+                        actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
                 }
             }
 
@@ -619,14 +620,16 @@ namespace unit
                 // 10% chance - UNCONFIRMED
                 if (!config->t8_4set || random<int>(0, 9) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::MissileBarrage>()));
-                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                    if (config->t10_2set)
+                        actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
                 }
             }
             if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
                 // 10% chance - UNCONFIRMED
                 if (!config->t8_4set || random<int>(0, 9) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::HotStreak>()));
-                    actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
+                    if (config->t10_2set)
+                        actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
                 }
             }
 
