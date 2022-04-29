@@ -864,8 +864,12 @@ namespace unit
                     actions.push_back(action);
                 }
 
-                if (talents.master_of_elements)
-                    actions.push_back(manaAction(baseManaCost(instance->spell) * 0.1 * talents.master_of_elements, "Master of Elements"));
+                if (talents.master_of_elements) {
+                    double mana = baseManaCost(instance->spell) * 0.1 * talents.master_of_elements;
+                    if (instance->spell->channeling && instance->spell->ticks)
+                        mana = mana / instance->spell->ticks;
+                    actions.push_back(manaAction(mana, "Master of Elements"));
+                }
 
                 // Ignite
                 if (talents.ignite && (instance->spell->school == SCHOOL_FIRE || instance->spell->school == SCHOOL_FROSTFIRE) && !instance->spell->dot) {

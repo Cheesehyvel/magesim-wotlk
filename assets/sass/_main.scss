@@ -1064,10 +1064,6 @@ table {
 
 
 .design-2 {
-    a {
-        color: #9235ee;
-    }
-
     #app {
         .wrapper {
             .sidebar {
@@ -1107,6 +1103,10 @@ table {
                 .body {
                     background: #000 linear-gradient(30deg, rgba(151,5,199,0.2) 0%, rgba(98,0,255,0.2) 50%, rgba(151,5,199,0.2) 100%);
                 }
+            }
+
+            .donate a {
+                color: #9235ee;
             }
         }
 

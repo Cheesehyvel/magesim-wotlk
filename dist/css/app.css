@@ -1506,9 +1506,6 @@ table.large tbody tr {
   color: #f00;
 }
 
-.design-2 a {
-  color: #9235ee;
-}
 .design-2 #app .wrapper .sidebar {
   background: #140f17;
 }
@@ -1536,6 +1533,9 @@ table.large tbody tr {
 }
 .design-2 #app .wrapper .main .body {
   background: #000 linear-gradient(30deg, rgba(151, 5, 199, 0.2) 0%, rgba(98, 0, 255, 0.2) 50%, rgba(151, 5, 199, 0.2) 100%);
+}
+.design-2 #app .wrapper .donate a {
+  color: #9235ee;
 }
 .design-2 #app .lightbox > .inner {
   background: #000 linear-gradient(30deg, rgba(151, 5, 199, 0.2) 0%, rgba(98, 0, 255, 0.2) 50%, rgba(151, 5, 199, 0.2) 100%);

@@ -617,6 +617,14 @@
                                     <input type="text" v-model.number="config.rng_seed">
                                 </div>
                                 <div class="form-item">
+                                    <label>Design</label>
+                                    <select @input="onDesignInput($event)">
+                                        <option :value="0">- Choose -</option>
+                                        <option :value="1">Wotlk</option>
+                                        <option :value="2">Alternative</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
                                     <label><input type="checkbox" v-model="config.avg_spell_dmg">
                                         <span>Use average spell damage</span>
                                         <help>
@@ -1971,6 +1979,10 @@
                     localStorage.setItem("design", design);
                     document.documentElement.classList.add("design-"+design);
                 }
+            },
+
+            onDesignInput(e) {
+                this.setDesign(e.target.value);
             },
 
             newTimingId() {

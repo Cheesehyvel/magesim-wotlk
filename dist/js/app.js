@@ -6600,6 +6600,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7290,6 +7298,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         localStorage.setItem("design", design);
         document.documentElement.classList.add("design-" + design);
       }
+    },
+    onDesignInput: function onDesignInput(e) {
+      this.setDesign(e.target.value);
     },
     newTimingId: function newTimingId() {
       var id = 0;
@@ -69102,6 +69113,34 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c("label", [_vm._v("Design")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          on: {
+                            input: function($event) {
+                              return _vm.onDesignInput($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: 0 } }, [
+                            _vm._v("- Choose -")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: 1 } }, [
+                            _vm._v("Wotlk")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: 2 } }, [
+                            _vm._v("Alternative")
+                          ])
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-item" }, [
