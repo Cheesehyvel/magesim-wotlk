@@ -50,11 +50,9 @@ struct Config
     bool udc_4set = false;
     bool cudc_3set = false;
 
-    bool drums_friend = false;
     bool pre_mirror_image = false;
     bool pre_water_elemental = false;
 
-    Drums drums;
     Potion potion;
     Potion pre_potion;
     Conjured conjured;

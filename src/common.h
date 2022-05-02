@@ -78,15 +78,6 @@ enum Trinket : int
     TRINKET_SHOW_FAITH = 45535,
 };
 
-enum Drums : int
-{
-    DRUMS_NONE = 0,
-    DRUMS_OF_WAR = 29528,
-    DRUMS_OF_RESTORATION = 29531,
-    DRUMS_OF_BATTLE = 29529,
-    DRUMS_OF_FORGOTTEN_KINGS = 49633,
-};
-
 enum Potion : int
 {
     POTION_NONE = 0,

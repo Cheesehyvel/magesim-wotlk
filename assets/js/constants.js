@@ -40,12 +40,6 @@ export default {
         ELIXIR_MIGHTY_MAGEBLOOD: 40109,
         ELIXIR_MIGHTY_THOUGHTS: 44332,
     },
-    drums: {
-        DRUMS_NONE: 0,
-        DRUMS_OF_WAR: 29528,
-        DRUMS_OF_RESTORATION: 29531,
-        DRUMS_OF_BATTLE: 29529,
-    },
     potions: {
         POTION_NONE: 0,
         POTION_MANA: 33448,

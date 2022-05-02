@@ -902,21 +902,6 @@
                                     </select>
                                 </div>
                                 <div class="form-item">
-                                    <label>Drums</label>
-                                    <select v-model="config.drums">
-                                        <option :value="drums.DRUMS_NONE">None</option>
-                                        <option :value="drums.DRUMS_OF_BATTLE">Drums of Battle (80 haste)</option>
-                                        <option :value="drums.DRUMS_OF_WAR">Drums of War (30 sp)</option>
-                                        <option :value="drums.DRUMS_OF_RESTORATION">Drums of Restoration (600 mana)</option>
-                                    </select>
-                                </div>
-                                <div class="form-item" v-if="config.drums">
-                                    <label><input type="checkbox" v-model="config.drums_friend">
-                                        <span>Drumming friend</span>
-                                        <help>Someone else in your raid uses drums</help>
-                                    </label>
-                                </div>
-                                <div class="form-item">
                                     <label>Potion</label>
                                     <select v-model="config.potion">
                                         <option :value="potions.POTION_NONE">None</option>
@@ -1330,14 +1315,12 @@
                 udc_4set: false,
                 cudc_3set: false,
 
-                drums_friend: false,
                 pre_mirror_image: false,
                 pre_water_elemental: false,
 
                 wrist_socket: false,
                 hands_socket: false,
 
-                drums: constants.drums.DRUMS_NONE,
                 potion: constants.potions.POTION_MANA,
                 pre_potion: constants.potions.POTION_SPEED,
                 conjured: constants.conjureds.CONJURED_NONE,
@@ -1830,11 +1813,6 @@
                     title: "Hyperspeed Accelerators",
                     icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
                 });
-                timings.push({
-                    name: "drums",
-                    title: "Drums",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_drum_02.jpg",
-                });
 
                 var potion = {
                     name: "potion",
@@ -2033,8 +2011,6 @@
                     return this.config.potion != constants.potions.POTION_NONE;
                 if (name == "conjured")
                     return this.config.conjured != constants.conjureds.CONJURED_NONE;
-                if (name == "drums")
-                    return this.config.drums != constants.drums.DRUMS_NONE;
                 if (name == "hyperspeed_accelerators")
                     return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
                 if (name == "presence_of_mind")
@@ -2061,9 +2037,6 @@
                 var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
                 if (nowait.indexOf(name) != -1)
                     return false;
-
-                if (name == "drums")
-                    return !this.config.drums_friend;
 
                 return true;
             },

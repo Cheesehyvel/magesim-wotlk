@@ -99,13 +99,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("META_INSIGHTFUL_EARTHSIEGE", META_INSIGHTFUL_EARTHSIEGE)
         ;
 
-    emscripten::enum_<Drums>("Drums")
-        .value("DRUMS_NONE", DRUMS_NONE)
-        .value("DRUMS_OF_WAR", DRUMS_OF_WAR)
-        .value("DRUMS_OF_RESTORATION", DRUMS_OF_RESTORATION)
-        .value("DRUMS_OF_BATTLE", DRUMS_OF_BATTLE)
-    ;
-
     emscripten::enum_<Potion>("Potion")
         .value("POTION_NONE", POTION_NONE)
         .value("POTION_MANA", POTION_MANA)
@@ -178,11 +171,9 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("udc_4set", &Config::udc_4set)
         .property("cudc_3set", &Config::cudc_3set)
 
-        .property("drums_friend", &Config::drums_friend)
         .property("pre_mirror_image", &Config::pre_mirror_image)
         .property("pre_water_elemental", &Config::pre_water_elemental)
 
-        .property("drums", &Config::drums)
         .property("potion", &Config::potion)
         .property("pre_potion", &Config::pre_potion)
         .property("conjured", &Config::conjured)

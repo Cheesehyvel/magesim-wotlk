@@ -47,9 +47,6 @@ namespace buff
         SCALE_FATES = 64707,
         SHOW_FAITH = 64739,
         // TBC Stuff
-        DRUMS_OF_BATTLE = 35476,
-        DRUMS_OF_WAR = 35475,
-        DRUMS_OF_RESTORATION = 35478,
         FLAME_CAP = 28714,
         SKULL_GULDAN = 40396,
         SHRUNKEN_HEAD = 43712,
@@ -657,47 +654,6 @@ namespace buff
             name = "Show of Faith";
             duration = 15;
             stats.mp5 = 241;
-        }
-
-    };
-
-    class DrumsOfBattle : public Buff
-    {
-
-    public:
-        DrumsOfBattle()
-        {
-            id = DRUMS_OF_BATTLE;
-            name = "Drums of Battle";
-            duration = 30;
-            stats.haste_rating = 80;
-        }
-
-    };
-
-    class DrumsOfWar : public Buff
-    {
-
-    public:
-        DrumsOfWar()
-        {
-            id = DRUMS_OF_WAR;
-            name = "Drums of War";
-            duration = 30;
-            stats.spell_power = 30;
-        }
-
-    };
-
-    class DrumsOfRestoration : public Buff
-    {
-
-    public:
-        DrumsOfRestoration()
-        {
-            id = DRUMS_OF_RESTORATION;
-            name = "Drums of Restoration";
-            duration = 30;
         }
 
     };

@@ -31,7 +31,6 @@ namespace spell
         IGNITE = 12848,
         MANA_GEM = 42987,
         EVOCATION = 12051,
-        DRUMS = 29529,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
         EXTRACT_NECROMANTIC_POWER = 60488,
@@ -606,19 +605,6 @@ namespace spell
             cast_time = _ticks*2;
         }
 
-    };
-
-    class Drums : public Spell
-    {
-
-    public:
-        Drums()
-        {
-            id = DRUMS;
-            name = "Drums";
-            is_trigger = true;
-            school = SCHOOL_NONE;
-        }
     };
 
     class PendulumTelluricCurrents : public Spell

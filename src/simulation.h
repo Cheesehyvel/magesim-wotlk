@@ -140,19 +140,6 @@ public:
                 pushBuffGain(player, make_shared<buff::ManaTide>(), config->timings[i]->t);
         }
 
-        if (config->drums && config->drums_friend) {
-            double t = 0;
-            for (int i=0; i<config->timings.size(); i++) {
-                if (config->timings[i]->name == "drums") {
-                    if (config->timings[i]->t >= t)
-                        t = config->timings[i]->t;
-                    pushBuffGain(player, getDrumsBuff(), t);
-                }
-            }
-            for (t+= 120; t<state->duration; t+= 120)
-                pushBuffGain(player, getDrumsBuff(), t);
-        }
-
         if (player->talents.focus_magic) {
             pushBuffGain(player, make_shared<buff::FocusMagic>(), 5.0);
         }
@@ -769,11 +756,6 @@ public:
                 pushManaGain(unit, t, 3496 * .225, "Innervate");
         }
 
-        if (buff->id == buff::DRUMS_OF_RESTORATION) {
-            for (double t = 3; t<=15; t+= 3)
-                pushManaGain(unit, t, 120, "Drums of Restoration");
-        }
-
         if (stacks)
             logBuffGain(unit, buff, stacks);
     }
@@ -841,18 +823,6 @@ public:
     {
         std::list<shared_ptr<action::Action>> actions = unit->useTrinket(trinket, cooldown);
         processActions(unit, actions);
-    }
-
-    shared_ptr<buff::Buff> getDrumsBuff()
-    {
-        if (config->drums == DRUMS_OF_BATTLE)
-            return make_shared<buff::DrumsOfBattle>();
-        else if (config->drums == DRUMS_OF_WAR)
-            return make_shared<buff::DrumsOfWar>();
-        else if (config->drums == DRUMS_OF_RESTORATION)
-            return make_shared<buff::DrumsOfRestoration>();
-
-        return NULL;
     }
 
     bool hasDot(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)

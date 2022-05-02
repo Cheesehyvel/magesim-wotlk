@@ -25,7 +25,6 @@ namespace cooldown
         PRESENCE_OF_MIND = 12043,
         MIRROR_IMAGE = 55342,
         POWER_INFUSION = 10060,
-        DRUMS = 35476,
         BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
         DARKGLOW = 55767,
@@ -288,18 +287,6 @@ namespace cooldown
         {
             id = POWER_INFUSION;
             duration = 180;
-        }
-
-    };
-
-    class Drums : public Cooldown
-    {
-
-    public:
-        Drums()
-        {
-            id = DRUMS;
-            duration = 120;
         }
 
     };

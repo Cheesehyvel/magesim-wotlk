@@ -135,12 +135,6 @@ __webpack_require__.r(__webpack_exports__);
     ELIXIR_MIGHTY_MAGEBLOOD: 40109,
     ELIXIR_MIGHTY_THOUGHTS: 44332
   },
-  drums: {
-    DRUMS_NONE: 0,
-    DRUMS_OF_WAR: 29528,
-    DRUMS_OF_RESTORATION: 29531,
-    DRUMS_OF_BATTLE: 29529
-  },
   potions: {
     POTION_NONE: 0,
     POTION_MANA: 33448,
@@ -6593,21 +6587,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6694,12 +6673,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       udc_3set: false,
       udc_4set: false,
       cudc_3set: false,
-      drums_friend: false,
       pre_mirror_image: false,
       pre_water_elemental: false,
       wrist_socket: false,
       hands_socket: false,
-      drums: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE,
       potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
       pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
       conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE,
@@ -7139,11 +7116,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: "Hyperspeed Accelerators",
         icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg"
       });
-      timings.push({
-        name: "drums",
-        title: "Drums",
-        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_drum_02.jpg"
-      });
       var potion = {
         name: "potion",
         title: "Runic Mana Potion",
@@ -7344,7 +7316,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (name == "berserking") return this.config.race == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].races.RACE_TROLL;
       if (name == "potion") return this.config.potion != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_NONE;
       if (name == "conjured") return this.config.conjured != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE;
-      if (name == "drums") return this.config.drums != _constants__WEBPACK_IMPORTED_MODULE_4__["default"].drums.DRUMS_NONE;
       if (name == "hyperspeed_accelerators") return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
       if (name == "presence_of_mind") return this.config.talents.presence_of_mind > 0;
       if (name == "arcane_power") return this.config.talents.arcane_power > 0;
@@ -7359,7 +7330,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     timingCanWait: function timingCanWait(name) {
       var nowait = ["bloodlust", "mana_tide", "power_infusion", "innervate"];
       if (nowait.indexOf(name) != -1) return false;
-      if (name == "drums") return !this.config.drums_friend;
       return true;
     },
     sort: function sort(items, sorting) {
@@ -9342,15 +9312,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Flame Cap",
         color: "rgba(200,120,70)"
-      }, {
-        title: "Drums of Battle",
-        color: "rgba(160,160,60)"
-      }, {
-        title: "Drums of War",
-        color: "rgba(160,160,60)"
-      }, {
-        title: "Drums of Restoration",
-        color: "rgba(160,160,60)"
       }, {
         title: "Bloodlust",
         color: "rgba(220,70,70)"
@@ -71772,137 +71733,6 @@ var render = function() {
                         ]
                       )
                     ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-item" }, [
-                      _c("label", [_vm._v("Drums")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.config.drums,
-                              expression: "config.drums"
-                            }
-                          ],
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.config,
-                                "drums",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "option",
-                            { domProps: { value: _vm.drums.DRUMS_NONE } },
-                            [_vm._v("None")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            { domProps: { value: _vm.drums.DRUMS_OF_BATTLE } },
-                            [_vm._v("Drums of Battle (80 haste)")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            { domProps: { value: _vm.drums.DRUMS_OF_WAR } },
-                            [_vm._v("Drums of War (30 sp)")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "option",
-                            {
-                              domProps: {
-                                value: _vm.drums.DRUMS_OF_RESTORATION
-                              }
-                            },
-                            [_vm._v("Drums of Restoration (600 mana)")]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm.config.drums
-                      ? _c("div", { staticClass: "form-item" }, [
-                          _c(
-                            "label",
-                            [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.config.drums_friend,
-                                    expression: "config.drums_friend"
-                                  }
-                                ],
-                                attrs: { type: "checkbox" },
-                                domProps: {
-                                  checked: Array.isArray(
-                                    _vm.config.drums_friend
-                                  )
-                                    ? _vm._i(_vm.config.drums_friend, null) > -1
-                                    : _vm.config.drums_friend
-                                },
-                                on: {
-                                  change: function($event) {
-                                    var $$a = _vm.config.drums_friend,
-                                      $$el = $event.target,
-                                      $$c = $$el.checked ? true : false
-                                    if (Array.isArray($$a)) {
-                                      var $$v = null,
-                                        $$i = _vm._i($$a, $$v)
-                                      if ($$el.checked) {
-                                        $$i < 0 &&
-                                          _vm.$set(
-                                            _vm.config,
-                                            "drums_friend",
-                                            $$a.concat([$$v])
-                                          )
-                                      } else {
-                                        $$i > -1 &&
-                                          _vm.$set(
-                                            _vm.config,
-                                            "drums_friend",
-                                            $$a
-                                              .slice(0, $$i)
-                                              .concat($$a.slice($$i + 1))
-                                          )
-                                      }
-                                    } else {
-                                      _vm.$set(_vm.config, "drums_friend", $$c)
-                                    }
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("span", [_vm._v("Drumming friend")]),
-                              _vm._v(" "),
-                              _c("help", [
-                                _vm._v("Someone else in your raid uses drums")
-                              ])
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-item" }, [
                       _c("label", [_vm._v("Potion")]),

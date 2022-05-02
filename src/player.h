@@ -545,18 +545,6 @@ namespace unit
             return false;
         }
 
-        shared_ptr<buff::Buff> getDrumsBuff()
-        {
-            if (config->drums == DRUMS_OF_BATTLE)
-                return make_shared<buff::DrumsOfBattle>();
-            else if (config->drums == DRUMS_OF_WAR)
-                return make_shared<buff::DrumsOfWar>();
-            else if (config->drums == DRUMS_OF_RESTORATION)
-                return make_shared<buff::DrumsOfRestoration>();
-
-            return NULL;
-        }
-
         list<shared_ptr<action::Action>> onCastSuccessProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell)
         {
             list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
@@ -601,10 +589,6 @@ namespace unit
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::WaterElemental>()));
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::ConeOfCold>()));
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::DeepFreeze>()));
-            }
-            if (spell->id == spell::DRUMS) {
-                actions.push_back(buffAction(getDrumsBuff()));
-                actions.push_back(cooldownAction(make_shared<cooldown::Drums>()));
             }
 
             if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
@@ -1303,9 +1287,6 @@ namespace unit
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
                 action->cooldown = make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
                 action->trinket = config->trinket2;
-            }
-            else if (config->drums != DRUMS_NONE && !config->drums_friend && !hasCooldown(cooldown::DRUMS) && useTimingIfPossible("drums", state)) {
-                action = spellAction(make_shared<spell::Drums>());
             }
             else if (!hasCooldown(cooldown::EVOCATION) && useTimingIfPossible("evocation", state, true)) {
                 action = spellAction(make_shared<spell::Evocation>(evocationTicks()));

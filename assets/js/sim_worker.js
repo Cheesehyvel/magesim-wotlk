@@ -24,8 +24,6 @@ onmessage = (event) => {
                 config.trinket2 = m.Trinket.values[data.config.trinket2];
             if (m.MetaGem.values.hasOwnProperty(data.config.meta_gem))
                 config.meta_gem = m.MetaGem.values[data.config.meta_gem];
-            if (m.Drums.values.hasOwnProperty(data.config.drums))
-                config.drums = m.Drums.values[data.config.drums];
             if (m.Potion.values.hasOwnProperty(data.config.potion))
                 config.potion = m.Potion.values[data.config.potion];
             if (m.Potion.values.hasOwnProperty(data.config.pre_potion))
