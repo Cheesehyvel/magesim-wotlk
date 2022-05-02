@@ -6598,7 +6598,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -6696,7 +6695,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       trinket1: 0,
       trinket2: 0,
       rotation: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].rotations.ROTATION_ST_AB_AM,
-      rot_ab_stacks_three: false,
+      rot_ab3_mana: 0,
       rot_ice_lance: false,
       timings: Array(),
       build: "",
@@ -69435,64 +69434,37 @@ var render = function() {
                     ].indexOf(_vm.config.rotation) != -1
                       ? _c("div", { staticClass: "form-item" }, [
                           _c("label", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.config.rot_ab_stacks_three,
-                                  expression: "config.rot_ab_stacks_three"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                checked: Array.isArray(
-                                  _vm.config.rot_ab_stacks_three
-                                )
-                                  ? _vm._i(
-                                      _vm.config.rot_ab_stacks_three,
-                                      null
-                                    ) > -1
-                                  : _vm.config.rot_ab_stacks_three
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.config.rot_ab_stacks_three,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "rot_ab_stacks_three",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.config,
-                                          "rot_ab_stacks_three",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(
-                                      _vm.config,
-                                      "rot_ab_stacks_three",
-                                      $$c
-                                    )
-                                  }
-                                }
+                            _vm._v("Stack Arcane Blast to 3 below mana %")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model.number",
+                                value: _vm.config.rot_ab3_mana,
+                                expression: "config.rot_ab3_mana",
+                                modifiers: { number: true }
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("span", [_vm._v("Only stack Arcane Blast to 3")])
-                          ])
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.config.rot_ab3_mana },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.config,
+                                  "rot_ab3_mana",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              blur: function($event) {
+                                return _vm.$forceUpdate()
+                              }
+                            }
+                          })
                         ])
                       : _vm._e(),
                     _vm._v(" "),

@@ -183,7 +183,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("meta_gem", &Config::meta_gem)
 
         .property("rotation", &Config::rotation)
-        .property("rot_ab_stacks_three", &Config::rot_ab_stacks_three)
+        .property("rot_ab3_mana", &Config::rot_ab3_mana)
         .property("rot_ice_lance", &Config::rot_ice_lance)
         ;
 

@@ -63,7 +63,7 @@ struct Config
 
     // Rotation
     Rotation rotation = ROTATION_ST_AB_AM;
-    bool rot_ab_stacks_three = false;
+    double rot_ab3_mana = 0;
     bool rot_ice_lance = false;
 
     std::vector<std::shared_ptr<Timing>> timings;

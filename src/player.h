@@ -1362,7 +1362,10 @@ namespace unit
 
             // AB -> AM rotation
             else if (config->rotation == ROTATION_ST_AB_AM) {
-                int ab_stacks = config->rot_ab_stacks_three ? 3 : 4;
+                int ab_stacks = 4;
+                if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
+                    ab_stacks = 3;
+
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks)
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
                 else
@@ -1371,7 +1374,10 @@ namespace unit
 
             // AB -> AM + Barrage rotation
             else if (config->rotation == ROTATION_ST_AB_AM_BARRAGE) {
-                int ab_stacks = config->rot_ab_stacks_three ? 3 : 4;
+                int ab_stacks = 4;
+                if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
+                    ab_stacks = 3;
+
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
                     if (hasBuff(buff::MISSILE_BARRAGE))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
