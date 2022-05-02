@@ -1656,15 +1656,7 @@
             },
 
             activeSockets() {
-                var item = this.equippedItem(this.active_slot);
-                var sockets = [];
-                if (item && item.sockets)
-                    sockets = _.clone(item.sockets);
-                if (this.active_slot == "wrist" && this.config.wrist_socket)
-                    sockets.push("a");
-                if (this.active_slot == "hands" && this.config.hands_socket)
-                    sockets.push("a");
-                return sockets;
+                return this.slotSockets(this.active_slot);
             },
 
             activeLog() {
@@ -2409,6 +2401,20 @@
                 return this.getEnchant(slot, id);
             },
 
+            slotSockets(slot) {
+                var item = this.equippedItem(slot);
+                var sockets = [];
+                if (item && item.sockets)
+                    sockets = _.clone(item.sockets);
+                if (slot == "wrist" && this.config.wrist_socket)
+                    sockets.push("a");
+                if (slot == "hands" && this.config.hands_socket)
+                    sockets.push("a");
+                if (slot == "waist" && _.get(this.enchants, "waist") == this.items.ids.BELT_BUCKLE)
+                    sockets.push("a");
+                return sockets;
+            },
+
             activeGems(index) {
                 if (this.activeSockets.length < index)
                     return [];
@@ -2502,7 +2508,7 @@
                     }
                 };
 
-                var slot, item, has_bonus, get_bonus, enchant, gem, gem_id, set, setbonus;
+                var slot, item, has_bonus, get_bonus, enchant, gem, gem_id, set, setbonus, sockets;
                 var sets = {};
 
                 for (var key in this.equipped) {
@@ -2520,13 +2526,14 @@
                                 addStats(enchant);
                         }
 
-                        if (item.sockets) {
-                            for (var i=0; i<item.sockets.length; i++) {
+                        sockets = this.slotSockets(key);
+                        if (sockets) {
+                            for (var i=0; i<sockets.length; i++) {
                                 gem_id = this.gems[key][i];
                                 gem = gem_id ? _.find(this.items.gems, {id: gem_id}) : null;
                                 if (gem && (gem.color != "m" || this.isMetaGemActive()))
                                     addStats(gem);
-                                if (has_bonus && (!gem || !this.matchSocketColor(item.sockets[i], gem.color)))
+                                if (has_bonus && (!gem || !this.matchSocketColor(sockets[i], gem.color)))
                                     get_bonus = false;
                             }
 

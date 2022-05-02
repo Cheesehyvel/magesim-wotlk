@@ -25,6 +25,7 @@ var ids = {
     HYPERSPEED_ACCELERATORS: 54999,
     LIGHTWEAVE_EMBROIDERY: 55642,
     DARKGLOW_EMBROIDERY: 55769,
+    BELT_BUCKLE: 55655,
     // Item sets
     T10_SET: 8, phase: 483,
     T9_SET: 8, phase: 344,
@@ -587,6 +588,7 @@ var equip = {
         { id: 37192, title: "Annhylde's Ring", int: 33, sp: 59, haste: 49 },
         { id: 37694, title: "Band of Guile", int: 34, sp: 59, haste: 50 },
         // prebis
+        { id: 40719, title: "Band of Channeled Magic", int: 41, spi: 32, sp: 65, haste: 43 },
         { id: 44283, title: "Signet of Hopeful Light", int: 50, sp: 58, haste: 36 },
         { id: 42644, title: "Titanium Spellshock Ring", int: 33, sp: 49, crit: 42, sockets: ["r"], bonus: {sp: 5} },
         { id: 37195, title: "Band of Enchanted Growth", int: 31, sp: 50, mp5: 21, q: "rare" },
@@ -740,6 +742,9 @@ var enchants = {
         { id: ids.HYPERSPEED_ACCELERATORS, title: "Hyperspeed Accelerators" },
         { id: 44592, title: "Exceptional Spellpower", sp: 28 },
         { id: 44488, title: "Precision", hit: 20 },
+    ],
+    waist: [
+        { id: ids.BELT_BUCKLE, title: "Eternal Belt Buckle" },
     ],
     legs: [
         { id: 55631, title: "Brilliant Spellthread", sp: 50, spi: 20 },

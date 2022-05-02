@@ -398,6 +398,7 @@ var ids = (_ids = {
   HYPERSPEED_ACCELERATORS: 54999,
   LIGHTWEAVE_EMBROIDERY: 55642,
   DARKGLOW_EMBROIDERY: 55769,
+  BELT_BUCKLE: 55655,
   // Item sets
   T10_SET: 8,
   phase: 483,
@@ -4439,6 +4440,13 @@ var equip = {
     haste: 50
   }, // prebis
   {
+    id: 40719,
+    title: "Band of Channeled Magic",
+    "int": 41,
+    spi: 32,
+    sp: 65,
+    haste: 43
+  }, {
     id: 44283,
     title: "Signet of Hopeful Light",
     "int": 50,
@@ -5143,6 +5151,10 @@ var enchants = {
     id: 44488,
     title: "Precision",
     hit: 20
+  }],
+  waist: [{
+    id: ids.BELT_BUCKLE,
+    title: "Eternal Belt Buckle"
   }],
   legs: [{
     id: 55631,
@@ -6980,12 +6992,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.items.enchants[slot];
     },
     activeSockets: function activeSockets() {
-      var item = this.equippedItem(this.active_slot);
-      var sockets = [];
-      if (item && item.sockets) sockets = _.clone(item.sockets);
-      if (this.active_slot == "wrist" && this.config.wrist_socket) sockets.push("a");
-      if (this.active_slot == "hands" && this.config.hands_socket) sockets.push("a");
-      return sockets;
+      return this.slotSockets(this.active_slot);
     },
     activeLog: function activeLog() {
       var _this2 = this;
@@ -7822,6 +7829,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!id) return null;
       return this.getEnchant(slot, id);
     },
+    slotSockets: function slotSockets(slot) {
+      var item = this.equippedItem(slot);
+      var sockets = [];
+      if (item && item.sockets) sockets = _.clone(item.sockets);
+      if (slot == "wrist" && this.config.wrist_socket) sockets.push("a");
+      if (slot == "hands" && this.config.hands_socket) sockets.push("a");
+      if (slot == "waist" && _.get(this.enchants, "waist") == this.items.ids.BELT_BUCKLE) sockets.push("a");
+      return sockets;
+    },
     activeGems: function activeGems(index) {
       var _this9 = this;
 
@@ -7912,7 +7928,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       };
 
-      var slot, item, has_bonus, get_bonus, enchant, gem, gem_id, set, setbonus;
+      var slot, item, has_bonus, get_bonus, enchant, gem, gem_id, set, setbonus, sockets;
       var sets = {};
 
       for (var key in this.equipped) {
@@ -7933,14 +7949,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (enchant) addStats(enchant);
           }
 
-          if (item.sockets) {
-            for (var i = 0; i < item.sockets.length; i++) {
+          sockets = this.slotSockets(key);
+
+          if (sockets) {
+            for (var i = 0; i < sockets.length; i++) {
               gem_id = this.gems[key][i];
               gem = gem_id ? _.find(this.items.gems, {
                 id: gem_id
               }) : null;
               if (gem && (gem.color != "m" || this.isMetaGemActive())) addStats(gem);
-              if (has_bonus && (!gem || !this.matchSocketColor(item.sockets[i], gem.color))) get_bonus = false;
+              if (has_bonus && (!gem || !this.matchSocketColor(sockets[i], gem.color))) get_bonus = false;
             }
 
             if (has_bonus && get_bonus) addStats(item.bonus);
