@@ -610,8 +610,10 @@ public:
                 nextAction(unit);
 
             // Log spell use
-            initSpellStats(unit, spell);
-            state->spells[spell->id].casts++;
+            if (spell->min_dmg) {
+                initSpellStats(unit, spell);
+                state->spells[spell->id].casts++;
+            }
         }
     }
 

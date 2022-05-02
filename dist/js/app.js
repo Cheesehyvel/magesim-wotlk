@@ -68532,7 +68532,11 @@ var render = function() {
                                 " (" +
                                 _vm._s(
                                   _vm.$round(
-                                    (spell.misses / spell.casts) * 100,
+                                    (spell.misses /
+                                      (spell.hits +
+                                        spell.crits +
+                                        spell.misses)) *
+                                      100,
                                     2
                                   )
                                 ) +
@@ -68548,7 +68552,11 @@ var render = function() {
                                 " (" +
                                 _vm._s(
                                   _vm.$round(
-                                    (spell.crits / spell.casts) * 100,
+                                    (spell.crits /
+                                      (spell.hits +
+                                        spell.crits +
+                                        spell.misses)) *
+                                      100,
                                     2
                                   )
                                 ) +
@@ -68578,7 +68586,7 @@ var render = function() {
                             _vm._v(
                               _vm._s(
                                 _vm.$round(
-                                  spell.dmg / (spell.casts - spell.misses),
+                                  spell.dmg / (spell.hits + spell.crits),
                                   0
                                 )
                               )

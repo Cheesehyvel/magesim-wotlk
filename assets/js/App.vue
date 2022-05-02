@@ -518,12 +518,12 @@
                                         <td>{{ spell.source }}</td>
                                         <td>{{ spell.name }}</td>
                                         <td>{{ spell.casts }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
-                                        <td>{{ spell.misses }} ({{ $round(spell.misses/spell.casts*100, 2) }}%)</td>
+                                        <td>{{ spell.misses }} ({{ $round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
                                         <td>{{ spell.hits }}</td>
-                                        <td>{{ spell.crits }} ({{ $round(spell.crits/spell.casts*100, 2) }}%)</td>
+                                        <td>{{ spell.crits }} ({{ $round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
                                         <td>{{ $round(spell.dmg, 0) }} ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</td>
                                         <td>{{ $round(spell.min_dmg, 0) }}</td>
-                                        <td>{{ $round(spell.dmg / (spell.casts - spell.misses), 0) }}</td>
+                                        <td>{{ $round(spell.dmg / (spell.hits + spell.crits), 0) }}</td>
                                         <td>{{ $round(spell.max_dmg, 0) }}</td>
                                     </tr>
                                 </tbody>
