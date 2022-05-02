@@ -151,6 +151,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("judgement_of_wisdom", &Config::judgement_of_wisdom)
         .property("mage_armor", &Config::mage_armor)
         .property("molten_armor", &Config::molten_armor)
+        .property("prof_engineer", &Config::prof_engineer)
 
         .property("black_magic", &Config::black_magic)
         .property("lightweave_embroidery", &Config::lightweave_embroidery)

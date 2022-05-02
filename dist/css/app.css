@@ -958,7 +958,10 @@ table.large tbody tr {
 #app .wrapper .sidebar .result .dps-result > div.faded {
   color: #aaa;
 }
-#app .wrapper .sidebar .result .meta-warning .material-icons {
+#app .wrapper .sidebar .result .warnings .warning {
+  display: inline-block;
+}
+#app .wrapper .sidebar .result .warnings .warning .material-icons {
   color: #fa0;
   cursor: pointer;
   font-size: 20px;

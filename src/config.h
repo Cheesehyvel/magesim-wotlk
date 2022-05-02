@@ -29,6 +29,7 @@ struct Config
     bool judgement_of_wisdom = false;
     bool mage_armor = true;
     bool molten_armor = false;
+    bool prof_engineer = false;
 
     // Enchants / procs
     bool black_magic = false;

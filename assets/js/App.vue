@@ -169,14 +169,21 @@
                             <help>Time spent gcd capped</help>
                         </div>
                     </template>
-                    <template v-if="!isMetaGemActive()">
-                        <div class="meta-warning mt-2">
-                            <span>
-                                <span class="material-icons">&#xe002;</span>
-                                <tooltip position="right">Meta gem requirements have not been met.</tooltip>
-                            </span>
+
+                    <div class="warnings mt-2">
+                        <div class="warning" v-if="!isMetaGemActive()">
+                            <span class="material-icons">&#xe002;</span>
+                            <tooltip position="right">Meta gem requirements have not been met.</tooltip>
                         </div>
-                    </template>
+                        <div class="warning" v-if="numProfs() > 2">
+                            <span class="material-icons">&#xe002;</span>
+                            <tooltip position="right">You have selected bonuses from {{ numProfs() }} professions</tooltip>
+                        </div>
+                        <div class="warning" v-if="numDragonsEye() > 3">
+                            <span class="material-icons">&#xe002;</span>
+                            <tooltip position="right">You have selected more than 3 Dragon's Eye gems</tooltip>
+                        </div>
+                    </div>
                 </div>
                 <a class="github" href="https://github.com/Cheesehyvel/magesim-wotlk" target="_blank"></a>
                 <div class="donate">
@@ -393,6 +400,12 @@
                                         <input type="checkbox" v-model="config.hands_socket" v-if="active_slot == 'hands'">
                                         <input type="checkbox" v-model="config.wrist_socket" v-if="active_slot == 'wrist'">
                                         <span>Extra socket from blacksmithing</span>
+                                    </label>
+                                </div>
+                                <div class="extra-socket mb-2" v-if="active_slot == 'waist'">
+                                    <label>
+                                        <input type="checkbox" v-model="config.waist_socket">
+                                        <span>Extra socket from <a :href="itemUrl(41611)" target="_blank">Eternal Belt Buckle</a></span>
                                     </label>
                                 </div>
 
@@ -859,6 +872,35 @@
                                         <help>1% hit from Draenei Racial.<br>This is automatically applied if your race is Draenei</help>
                                     </label>
                                 </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.prof_skinning">
+                                        <span>Master of Anatomy (Skinning)</span>
+                                        <help>40 crit rating</help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.prof_alchemy">
+                                        <span>Mixology (Alchemy)</span>
+                                        <help>
+                                            Bonuses to flask and elixirs.<br>
+                                            Flask of the Frostwyrm: +47sp<br>
+                                            Spellpower Elixir: +23sp<br>
+                                            Guru's Elixir: +8 stats<br>
+                                            Elixir of Accuracy: +20 hit rating<br>
+                                            Elixir of Deadly Strikes: +20 crit rating<br>
+                                            Elixir of Lightning Speed: +20 haste rating<br>
+                                            Elixir of Spirit: +20 spirit<br>
+                                            Elixir of Mighty Mageblood: +10 mp5<br>
+                                            Elixir of Mighty Thoughts: +20 int
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.prof_engineer">
+                                        <span>Mana Injectors (Engineering)</span>
+                                        <help>25% extra from mana potions</help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-consumes">
                                 <legend>Consumes</legend>
@@ -1287,6 +1329,9 @@
                 mana_replenishment: false,
                 focus_magic: false,
                 heroic_presence: false,
+                prof_skinning: false,
+                prof_alchemy: false,
+                prof_engineer: false,
 
                 // Consumes
                 food: 0,
@@ -1319,6 +1364,7 @@
 
                 wrist_socket: false,
                 hands_socket: false,
+                waist_socket: false,
 
                 potion: constants.potions.POTION_MANA,
                 pre_potion: constants.potions.POTION_SPEED,
@@ -2409,7 +2455,7 @@
                     sockets.push("a");
                 if (slot == "hands" && this.config.hands_socket)
                     sockets.push("a");
-                if (slot == "waist" && _.get(this.enchants, "waist") == this.items.ids.BELT_BUCKLE)
+                if (slot == "waist" && this.config.waist_socket)
                     sockets.push("a");
                 return sockets;
             },
@@ -2672,6 +2718,39 @@
                     }
                 }
 
+                // Prof: Alchemy
+                if (this.config.prof_alchemy) {
+                    if (this.config.flask) {
+                        if (this.config.flask == constants.flasks.FLASK_FROSTWYRM)
+                            stats.spell_power+= 47;
+                    }
+                    else {
+                        if (this.config.battle_elixir == constants.elixirs.ELIXIR_SPELLPOWER) {
+                            stats.spell_power+= 23;
+                        }
+                        else if (this.config.battle_elixir == constants.elixirs.ELIXIR_ACCURACY) {
+                            stats.hit_rating+= 20;
+                        }
+                        else if (this.config.battle_elixir == constants.elixirs.ELIXIR_DEADLY_STRIKES) {
+                            stats.crit_rating+= 20;
+                        }
+                        else if (this.config.battle_elixir == constants.elixirs.ELIXIR_LIGHTNING_SPEED) {
+                            stats.haste_rating+= 20;
+                        }
+                        else if (this.config.battle_elixir == constants.elixirs.ELIXIR_GURU) {
+                            stats.intellect+= 8;
+                            stats.spirit+= 8;
+                        }
+
+                        if (this.config.guardian_elixir == constants.elixirs.ELIXIR_SPIRIT)
+                            stats.spirit+= 20;
+                        else if (this.config.guardian_elixir == constants.elixirs.ELIXIR_MIGHTY_THOUGHTS)
+                            stats.intellect+= 20;
+                        else if (this.config.guardian_elixir == constants.elixirs.ELIXIR_MIGHTY_MAGEBLOOD)
+                            stats.mp5+= 10;
+                    }
+                }
+
                 // Food
                 if (this.config.food == this.foods.FOOD_SPELL_POWER)
                     stats.spell_power+= 46;
@@ -2685,6 +2764,10 @@
                 // Focus magic
                 if (this.config.focus_magic)
                     stats.crit+= 3;
+
+                // Prof: Skinning
+                if (this.config.prof_skinning)
+                    stats.crit_rating+= 40;
 
                 // Mana Restoration
                 if (this.config.blessing_of_wisdom) {
@@ -3167,6 +3250,45 @@
                 if (color == "m")
                     return this.items.ids.META_CHAOTIC_SKYFLARE;
                 return 1;
+            },
+
+            numDragonsEye() {
+                var num = 0;
+                var sockets, gem_id, gem;
+
+                for (var key in this.gems) {
+                    sockets = this.slotSockets(key);
+                    if (sockets) {
+                        for (var i=0; i<sockets.length; i++) {
+                            gem_id = this.gems[key][i];
+                            gem = gem_id ? _.find(this.items.gems, {id: gem_id}) : null;
+                            if (gem && gem.title.indexOf("Dragon's Eye") != -1)
+                                num++;
+                        }
+                    }
+                }
+
+                return num;
+            },
+
+            numProfs() {
+                var num = 0;
+                if (this.config.prof_engineer || _.get(this.enchants, "hands") == this.items.ids.HYPERSPEED_ACCELERATORS || _.get(this.enchants, "back") == 63765 || _.get(this.enchants, "feet") == 55016)
+                    num++;
+                if (this.config.prof_skinning)
+                    num++;
+                if (this.config.prof_alchemy)
+                    num++;
+                if (this.config.wrist_socket || this.config.hands_socket)
+                    num++;
+                if (_.get(this.enchants, "shoulder") == 61120 || _.get(this.enchants, "shoulder") == 61118)
+                    num++;
+                if (_.get(this.enchants, "back") == this.items.ids.LIGHTWEAVE_EMBROIDERY || _.get(this.enchants, "back") == this.items.ids.DARKGLOW_EMBROIDERY)
+                    num++;
+                if (this.numDragonsEye())
+                    num++;
+
+                return num;
             },
 
             hasUseTrinket(nr) {

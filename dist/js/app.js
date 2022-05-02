@@ -398,7 +398,6 @@ var ids = (_ids = {
   HYPERSPEED_ACCELERATORS: 54999,
   LIGHTWEAVE_EMBROIDERY: 55642,
   DARKGLOW_EMBROIDERY: 55769,
-  BELT_BUCKLE: 55655,
   // Item sets
   T10_SET: 8,
   phase: 483,
@@ -4718,8 +4717,7 @@ var gems = [{
   id: 42144,
   title: "Runed Dragon's Eye",
   color: "r",
-  sp: 39,
-  unique: true
+  sp: 39
 }, {
   id: 40113,
   title: "Runed Cardinal Ruby",
@@ -4787,26 +4785,22 @@ var gems = [{
   id: 42148,
   title: "Brilliant Dragon's Eye",
   color: "y",
-  "int": 34,
-  unique: true
+  "int": 34
 }, {
   id: 42149,
   title: "Smooth Dragon's Eye",
   color: "y",
-  crit: 34,
-  unique: true
+  crit: 34
 }, {
   id: 42156,
   title: "Rigid Dragon's Eye",
   color: "y",
-  hit: 34,
-  unique: true
+  hit: 34
 }, {
   id: 42150,
   title: "Quick Dragon's Eye",
   color: "y",
-  haste: 34,
-  unique: true
+  haste: 34
 }, {
   id: 40123,
   title: "Brilliant King's Amber",
@@ -5021,14 +5015,12 @@ var gems = [{
   id: 42145,
   title: "Sparkling Dragon's Eye",
   color: "b",
-  spi: 34,
-  unique: true
+  spi: 34
 }, {
   id: 42146,
   title: "Lustrous Dragon's Eye",
   color: "b",
-  mp5: 17,
-  unique: true
+  mp5: 17
 }, {
   id: 40120,
   title: "Sparkling Majestic Zircon",
@@ -5109,6 +5101,10 @@ var enchants = {
     id: ids.DARKGLOW_EMBROIDERY,
     title: "Darkglow Embroidery"
   }, {
+    id: 63765,
+    title: "Springy Arachnoweave",
+    sp: 27
+  }, {
     id: 47898,
     title: "Greater Speed",
     haste: 23
@@ -5128,6 +5124,10 @@ var enchants = {
     mp5: 10
   }],
   wrist: [{
+    id: 57691,
+    title: "Fur Lining - Spell Power",
+    sp: 76
+  }, {
     id: 60767,
     title: "Superior Spellpower",
     sp: 30
@@ -5152,10 +5152,7 @@ var enchants = {
     title: "Precision",
     hit: 20
   }],
-  waist: [{
-    id: ids.BELT_BUCKLE,
-    title: "Eternal Belt Buckle"
-  }],
+  waist: [],
   legs: [{
     id: 55631,
     title: "Brilliant Spellthread",
@@ -6598,6 +6595,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6660,6 +6699,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       mana_replenishment: false,
       focus_magic: false,
       heroic_presence: false,
+      prof_skinning: false,
+      prof_alchemy: false,
+      prof_engineer: false,
       // Consumes
       food: 0,
       flask: 0,
@@ -6688,6 +6730,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       pre_water_elemental: false,
       wrist_socket: false,
       hands_socket: false,
+      waist_socket: false,
       potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_MANA,
       pre_potion: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].potions.POTION_SPEED,
       conjured: _constants__WEBPACK_IMPORTED_MODULE_4__["default"].conjureds.CONJURED_NONE,
@@ -7834,7 +7877,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (item && item.sockets) sockets = _.clone(item.sockets);
       if (slot == "wrist" && this.config.wrist_socket) sockets.push("a");
       if (slot == "hands" && this.config.hands_socket) sockets.push("a");
-      if (slot == "waist" && _.get(this.enchants, "waist") == this.items.ids.BELT_BUCKLE) sockets.push("a");
+      if (slot == "waist" && this.config.waist_socket) sockets.push("a");
       return sockets;
     },
     activeGems: function activeGems(index) {
@@ -8059,12 +8102,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           stats.intellect += 20;
           stats.spirit += 20;
         }
+      } // Prof: Alchemy
+
+
+      if (this.config.prof_alchemy) {
+        if (this.config.flask) {
+          if (this.config.flask == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].flasks.FLASK_FROSTWYRM) stats.spell_power += 47;
+        } else {
+          if (this.config.battle_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_SPELLPOWER) {
+            stats.spell_power += 23;
+          } else if (this.config.battle_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_ACCURACY) {
+            stats.hit_rating += 20;
+          } else if (this.config.battle_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_DEADLY_STRIKES) {
+            stats.crit_rating += 20;
+          } else if (this.config.battle_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_LIGHTNING_SPEED) {
+            stats.haste_rating += 20;
+          } else if (this.config.battle_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_GURU) {
+            stats.intellect += 8;
+            stats.spirit += 8;
+          }
+
+          if (this.config.guardian_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_SPIRIT) stats.spirit += 20;else if (this.config.guardian_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_MIGHTY_THOUGHTS) stats.intellect += 20;else if (this.config.guardian_elixir == _constants__WEBPACK_IMPORTED_MODULE_4__["default"].elixirs.ELIXIR_MIGHTY_MAGEBLOOD) stats.mp5 += 10;
+        }
       } // Food
 
 
       if (this.config.food == this.foods.FOOD_SPELL_POWER) stats.spell_power += 46;else if (this.config.food == this.foods.FOOD_HASTE) stats.haste_rating += 40;else if (this.config.food == this.foods.FOOD_HIT) stats.hit_rating += 40;else if (this.config.food == this.foods.FOOD_CRIT) stats.crit_rating += 40; // Focus magic
 
-      if (this.config.focus_magic) stats.crit += 3; // Mana Restoration
+      if (this.config.focus_magic) stats.crit += 3; // Prof: Skinning
+
+      if (this.config.prof_skinning) stats.crit_rating += 40; // Mana Restoration
 
       if (this.config.blessing_of_wisdom) {
         x = 92;
@@ -8450,6 +8517,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     defaultGem: function defaultGem(color) {
       if (color == "m") return this.items.ids.META_CHAOTIC_SKYFLARE;
       return 1;
+    },
+    numDragonsEye: function numDragonsEye() {
+      var num = 0;
+      var sockets, gem_id, gem;
+
+      for (var key in this.gems) {
+        sockets = this.slotSockets(key);
+
+        if (sockets) {
+          for (var i = 0; i < sockets.length; i++) {
+            gem_id = this.gems[key][i];
+            gem = gem_id ? _.find(this.items.gems, {
+              id: gem_id
+            }) : null;
+            if (gem && gem.title.indexOf("Dragon's Eye") != -1) num++;
+          }
+        }
+      }
+
+      return num;
+    },
+    numProfs: function numProfs() {
+      var num = 0;
+      if (this.config.prof_engineer || _.get(this.enchants, "hands") == this.items.ids.HYPERSPEED_ACCELERATORS || _.get(this.enchants, "back") == 63765 || _.get(this.enchants, "feet") == 55016) num++;
+      if (this.config.prof_skinning) num++;
+      if (this.config.prof_alchemy) num++;
+      if (this.config.wrist_socket || this.config.hands_socket) num++;
+      if (_.get(this.enchants, "shoulder") == 61120 || _.get(this.enchants, "shoulder") == 61118) num++;
+      if (_.get(this.enchants, "back") == this.items.ids.LIGHTWEAVE_EMBROIDERY || _.get(this.enchants, "back") == this.items.ids.DARKGLOW_EMBROIDERY) num++;
+      if (this.numDragonsEye()) num++;
+      return num;
     },
     hasUseTrinket: function hasUseTrinket(nr) {
       var slot = "trinket" + nr;
@@ -66905,25 +67003,64 @@ var render = function() {
                         : _vm._e()
                     ],
                 _vm._v(" "),
-                !_vm.isMetaGemActive()
-                  ? [
-                      _c("div", { staticClass: "meta-warning mt-2" }, [
-                        _c(
-                          "span",
-                          [
-                            _c("span", { staticClass: "material-icons" }, [
-                              _vm._v("")
-                            ]),
-                            _vm._v(" "),
-                            _c("tooltip", { attrs: { position: "right" } }, [
-                              _vm._v("Meta gem requirements have not been met.")
-                            ])
-                          ],
-                          1
-                        )
-                      ])
-                    ]
-                  : _vm._e()
+                _c("div", { staticClass: "warnings mt-2" }, [
+                  !_vm.isMetaGemActive()
+                    ? _c(
+                        "div",
+                        { staticClass: "warning" },
+                        [
+                          _c("span", { staticClass: "material-icons" }, [
+                            _vm._v("")
+                          ]),
+                          _vm._v(" "),
+                          _c("tooltip", { attrs: { position: "right" } }, [
+                            _vm._v("Meta gem requirements have not been met.")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.numProfs() > 2
+                    ? _c(
+                        "div",
+                        { staticClass: "warning" },
+                        [
+                          _c("span", { staticClass: "material-icons" }, [
+                            _vm._v("")
+                          ]),
+                          _vm._v(" "),
+                          _c("tooltip", { attrs: { position: "right" } }, [
+                            _vm._v(
+                              "You have selected bonuses from " +
+                                _vm._s(_vm.numProfs()) +
+                                " professions"
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.numDragonsEye() > 3
+                    ? _c(
+                        "div",
+                        { staticClass: "warning" },
+                        [
+                          _c("span", { staticClass: "material-icons" }, [
+                            _vm._v("")
+                          ]),
+                          _vm._v(" "),
+                          _c("tooltip", { attrs: { position: "right" } }, [
+                            _vm._v(
+                              "You have selected more than 3 Dragon's Eye gems"
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ])
               ],
               2
             )
@@ -67916,6 +68053,73 @@ var render = function() {
                             _vm._v(" "),
                             _c("span", [
                               _vm._v("Extra socket from blacksmithing")
+                            ])
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.active_slot == "waist"
+                      ? _c("div", { staticClass: "extra-socket mb-2" }, [
+                          _c("label", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.config.waist_socket,
+                                  expression: "config.waist_socket"
+                                }
+                              ],
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                checked: Array.isArray(_vm.config.waist_socket)
+                                  ? _vm._i(_vm.config.waist_socket, null) > -1
+                                  : _vm.config.waist_socket
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.config.waist_socket,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "waist_socket",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.config,
+                                          "waist_socket",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.config, "waist_socket", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v("Extra socket from "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.itemUrl(41611),
+                                    target: "_blank"
+                                  }
+                                },
+                                [_vm._v("Eternal Belt Buckle")]
+                              )
                             ])
                           ])
                         ])
@@ -71417,7 +71621,224 @@ var render = function() {
                             1
                           )
                         ])
-                      : _vm._e()
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.config.prof_skinning,
+                                expression: "config.prof_skinning"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(_vm.config.prof_skinning)
+                                ? _vm._i(_vm.config.prof_skinning, null) > -1
+                                : _vm.config.prof_skinning
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.config.prof_skinning,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_skinning",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_skinning",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.config, "prof_skinning", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Master of Anatomy (Skinning)")]),
+                          _vm._v(" "),
+                          _c("help", [_vm._v("40 crit rating")])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.config.prof_alchemy,
+                                expression: "config.prof_alchemy"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(_vm.config.prof_alchemy)
+                                ? _vm._i(_vm.config.prof_alchemy, null) > -1
+                                : _vm.config.prof_alchemy
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.config.prof_alchemy,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_alchemy",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_alchemy",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.config, "prof_alchemy", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Mixology (Alchemy)")]),
+                          _vm._v(" "),
+                          _c("help", [
+                            _vm._v(
+                              "\n                                        Bonuses to flask and elixirs."
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Flask of the Frostwyrm: +47sp"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Spellpower Elixir: +23sp"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Guru's Elixir: +8 stats"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Accuracy: +20 hit rating"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Deadly Strikes: +20 crit rating"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Lightning Speed: +20 haste rating"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Spirit: +20 spirit"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Mighty Mageblood: +10 mp5"
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                                        Elixir of Mighty Thoughts: +20 int\n                                    "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-item" }, [
+                      _c(
+                        "label",
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.config.prof_engineer,
+                                expression: "config.prof_engineer"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(_vm.config.prof_engineer)
+                                ? _vm._i(_vm.config.prof_engineer, null) > -1
+                                : _vm.config.prof_engineer
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.config.prof_engineer,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_engineer",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.config,
+                                        "prof_engineer",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.config, "prof_engineer", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Mana Injectors (Engineering)")]),
+                          _vm._v(" "),
+                          _c("help", [_vm._v("25% extra from mana potions")])
+                        ],
+                        1
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("fieldset", { staticClass: "config-consumes" }, [

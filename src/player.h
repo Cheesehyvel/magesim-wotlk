@@ -979,6 +979,8 @@ namespace unit
 
             if (hasTrinket(TRINKET_MERCURIAL_ALCHEMIST_STONE))
                 mana*= 1.4;
+            if (config->prof_engineer)
+                mana*= 1.25;
 
             // If tide is running, add a tick as buffer
             if (hasBuff(buff::MANA_TIDE))
@@ -1084,6 +1086,8 @@ namespace unit
 
                 if (hasTrinket(TRINKET_MERCURIAL_ALCHEMIST_STONE))
                     mana*= 1.4;
+                if (config->prof_engineer)
+                    mana*= 1.25;
 
                 actions.push_back(manaAction(mana, "Mana Potion"));
             }

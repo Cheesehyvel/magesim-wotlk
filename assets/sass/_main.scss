@@ -455,11 +455,15 @@ table {
                     }
                 }
 
-                .meta-warning {
-                    .material-icons {
-                        color: #fa0;
-                        cursor: pointer;
-                        font-size: 20px;
+                .warnings {
+                    .warning {
+                        display: inline-block;
+
+                        .material-icons {
+                            color: #fa0;
+                            cursor: pointer;
+                            font-size: 20px;
+                        }
                     }
                 }
             }
