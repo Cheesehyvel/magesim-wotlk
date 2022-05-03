@@ -8547,6 +8547,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (_.get(this.enchants, "shoulder") == 61120 || _.get(this.enchants, "shoulder") == 61118) num++;
       if (_.get(this.enchants, "back") == this.items.ids.LIGHTWEAVE_EMBROIDERY || _.get(this.enchants, "back") == this.items.ids.DARKGLOW_EMBROIDERY) num++;
       if (this.numDragonsEye()) num++;
+      if (_.get(this.enchants, "finger1") || _.get(this.enchants, "finger2")) num++;
       return num;
     },
     hasUseTrinket: function hasUseTrinket(nr) {

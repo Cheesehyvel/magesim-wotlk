@@ -3287,6 +3287,8 @@
                     num++;
                 if (this.numDragonsEye())
                     num++;
+                if (_.get(this.enchants, "finger1") || _.get(this.enchants, "finger2"))
+                    num++;
 
                 return num;
             },
