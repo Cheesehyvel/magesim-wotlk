@@ -302,7 +302,7 @@ namespace unit
             if (talents.spell_power)
                 multi+= talents.spell_power*0.25;
             if (talents.burnout)
-                multi+= talents.spell_power*0.1;
+                multi+= talents.burnout*0.1;
             if (config->t7_4set)
                 multi+= 0.05;
 
