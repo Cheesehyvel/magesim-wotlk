@@ -1361,7 +1361,16 @@ namespace unit
 
             // Frostfire bolt
             if (config->rotation == ROTATION_ST_FROSTFIRE) {
-                action = spellAction(make_shared<spell::FrostfireBolt>());
+                if (hasBuff(buff::HOT_STREAK)) {
+                    action = spellAction(make_shared<spell::Pyroblast>());
+                }
+                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
+                    action = spellAction(make_shared<spell::LivingBomb>());
+                    t_living_bomb = state->t + 12;
+                }
+                else {
+                    action = spellAction(make_shared<spell::FrostfireBolt>());
+                }
             }
 
             // AB -> AM rotation
@@ -1398,7 +1407,7 @@ namespace unit
                 if (hasBuff(buff::HOT_STREAK)) {
                     action = spellAction(make_shared<spell::Pyroblast>());
                 }
-                else if (t_living_bomb+12.0 <= state->t) {
+                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
                     action = spellAction(make_shared<spell::LivingBomb>());
                     t_living_bomb = state->t + 12;
                 }
