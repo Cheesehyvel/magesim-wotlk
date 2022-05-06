@@ -3399,12 +3399,7 @@
                         i++;
                         break;
                     }
-                    else if (ch == "Z" || talent >= this.talent_map[tree].length) {
-                        talent = 0;
-                        if (++tree == 3)
-                            break;
-                    }
-                    else {
+                    else if (ch != "Z") {
                         n = encoding.indexOf(ch);
                         if (n < 0)
                             continue;
@@ -3420,6 +3415,12 @@
                             if (++talent >= trees[tree].length)
                                 break;
                         }
+                    }
+
+                    if (talent >= trees[tree].length || ch == "Z") {
+                        talent = 0;
+                        if (++tree >= trees.length)
+                            break;
                     }
                 }
 

@@ -8655,10 +8655,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           has_glyphs = true;
           i++;
           break;
-        } else if (ch == "Z" || talent >= this.talent_map[tree].length) {
-          talent = 0;
-          if (++tree == 3) break;
-        } else {
+        } else if (ch != "Z") {
           n = encoding.indexOf(ch);
           if (n < 0) continue;
           values[1] = n % 6;
@@ -8669,6 +8666,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (this.talent_map[tree][talent]) this.config.talents[this.talent_map[tree][talent]] = n;
             if (++talent >= trees[tree].length) break;
           }
+        }
+
+        if (talent >= trees[tree].length || ch == "Z") {
+          talent = 0;
+          if (++tree >= trees.length) break;
         }
       }
 
