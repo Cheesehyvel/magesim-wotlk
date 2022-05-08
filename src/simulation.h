@@ -610,7 +610,7 @@ public:
                 nextAction(unit);
 
             // Log spell use
-            if (spell->min_dmg) {
+            if (logging && spell->min_dmg) {
                 initSpellStats(unit, spell);
                 state->spells[spell->id].casts++;
             }
@@ -629,7 +629,7 @@ public:
         onSpellImpactProc(unit, instance);
 
         // Log spell use
-        if (state->spells.find(instance->spell->id) != state->spells.end()) {
+        if (logging && state->spells.find(instance->spell->id) != state->spells.end()) {
             if (instance->result == spell::MISS)
                 state->spells[instance->spell->id].misses++;
             else if (instance->result == spell::CRIT)
