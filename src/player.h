@@ -590,6 +590,8 @@ namespace unit
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::ConeOfCold>()));
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::DeepFreeze>()));
             }
+            if (spell->id == spell::LIVING_BOMB)
+                t_living_bomb = state->t;
 
             if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
                 actions.push_back(buffExpireAction(make_shared<buff::PresenceOfMind>()));
@@ -1410,7 +1412,6 @@ namespace unit
                 }
                 else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
                     action = spellAction(make_shared<spell::LivingBomb>());
-                    t_living_bomb = state->t + 12;
                 }
                 else {
                     action = spellAction(make_shared<spell::Fireball>());
