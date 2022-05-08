@@ -841,7 +841,6 @@ namespace unit
                 if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
                     actions.push_back(buffAction(make_shared<buff::AshtongueTalisman>()));
 
-                // Unconfirmed - on spell success ?
                 if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
                     action = manaAction(900, "Soul of the Dead");
                     action->cooldown = make_shared<cooldown::SoulDead>();
@@ -850,20 +849,20 @@ namespace unit
 
                 if (talents.master_of_elements) {
                     double mana = baseManaCost(instance->spell) * 0.1 * talents.master_of_elements;
-                    if (instance->spell->channeling && instance->spell->ticks)
+                    if ((instance->spell->channeling || instance->spell->dot) && instance->spell->ticks)
                         mana = mana / instance->spell->ticks;
                     actions.push_back(manaAction(mana, "Master of Elements"));
                 }
 
                 // Ignite
-                if (talents.ignite && (instance->spell->school == SCHOOL_FIRE || instance->spell->school == SCHOOL_FROSTFIRE) && !instance->spell->dot) {
+                if (talents.ignite && (instance->spell->school == SCHOOL_FIRE || instance->spell->school == SCHOOL_FROSTFIRE)) {
                     shared_ptr<action::Action> ignite = make_shared<action::Action>(action::TYPE_SPELL);
-                    // 40% over for ticks = 10%
-                    ignite->spell = make_shared<spell::Ignite>(round(instance->dmg * 0.1));
+                    // 40% over 2 ticks = 20%
+                    ignite->spell = make_shared<spell::Ignite>(round(instance->dmg * 0.2));
                     actions.push_back(ignite);
                 }
 
-                if (talents.burnout)
+                if (talents.burnout && instance->spell->actual_cost)
                     actions.push_back(manaAction(instance->spell->actual_cost * -0.01 * talents.burnout, "Burnout"));
             }
 
@@ -1379,7 +1378,7 @@ namespace unit
                 if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
                     ab_stacks = 3;
 
-                if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks)
+                if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (hasBuff(buff::MISSILE_BARRAGE) || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
                 else
                     action = spellAction(make_shared<spell::ArcaneBlast>());
@@ -1394,8 +1393,10 @@ namespace unit
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
                     if (hasBuff(buff::MISSILE_BARRAGE))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
-                    else
+                    else if (config->rot_ab_no_mb_mana >= manaPercent())
                         action = spellAction(make_shared<spell::ArcaneBarrage>());
+                    else
+                        action = spellAction(make_shared<spell::ArcaneBlast>());
                 }
                 else {
                     action = spellAction(make_shared<spell::ArcaneBlast>());

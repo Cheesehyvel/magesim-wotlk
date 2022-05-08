@@ -178,11 +178,7 @@ namespace unit
 
         virtual double staticManaPerSecond()
         {
-            double mps = 0.01 * base_mana;
-
-            mps+= getMp5() / 5.0;
-
-            return mps;
+            return getMp5() / 5.0;
         }
 
         virtual double manaPerSecond(shared_ptr<State>)

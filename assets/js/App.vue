@@ -675,10 +675,16 @@
                                         <help>Imp. Scorch from you</help>
                                     </label>
                                 </div>
-                                <div class="form-item" v-if="[rotations.ROTATION_ST_AB_AM, rotations.ROTATION_ST_AB_AM_BARRAGE].indexOf(config.rotation) != -1">
-                                    <label>Stack Arcane Blast to 3 below mana %</label>
-                                    <input type="text" v-model.number="config.rot_ab3_mana">
-                                </div>
+                                <template v-if="[rotations.ROTATION_ST_AB_AM, rotations.ROTATION_ST_AB_AM_BARRAGE].indexOf(config.rotation) != -1">
+                                    <div class="form-item">
+                                        <label>Stack Arcane Blast to 3 below mana %</label>
+                                        <input type="text" v-model.number="config.rot_ab3_mana">
+                                    </div>
+                                    <div class="form-item">
+                                        <label>AB without Missile Barrage above mana %</label>
+                                        <input type="text" v-model.number="config.rot_ab_no_mb_mana">
+                                    </div>
+                                </template>
                                 <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
                                     <label><input type="checkbox" v-model="config.rot_ice_lance">
                                         <span>Ice Lance at end of Fingers of Frost</span>
@@ -1376,6 +1382,7 @@
 
                 rotation: constants.rotations.ROTATION_ST_AB_AM,
                 rot_ab3_mana: 0,
+                rot_ab_no_mb_mana: 100,
                 rot_ice_lance: false,
 
                 timings: Array(),

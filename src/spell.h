@@ -564,8 +564,8 @@ namespace spell
             name = "Ignite";
             dot = true;
             active_use = false;
-            t_interval = 1;
-            ticks = 4;
+            t_interval = 2;
+            ticks = 2;
             coeff = 0;
             min_dmg = max_dmg = _dmg;
             stackable = true;

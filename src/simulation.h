@@ -619,6 +619,11 @@ public:
 
     void onSpellImpact(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
+        if (instance->spell->dot) {
+            instance->resist = spellDmgResist(unit, instance);
+            instance->dmg-= instance->resist;
+        }
+
         state->dmg+= instance->dmg;
         logSpellImpact(unit, instance);
         onSpellImpactProc(unit, instance);
