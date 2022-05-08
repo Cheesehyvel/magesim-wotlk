@@ -127,7 +127,7 @@
 
                 // CDs
                 for (var i=0; i<this.cds.length; i++) {
-                    logs = _.filter(this.result.log, l => l.text.indexOf(this.cds[i].title) > 0);
+                    logs = _.filter(this.result.log, l => l.type == 5 && l.text.indexOf(this.cds[i].title) > 0);
                     if (logs.length) {
                         uptime = 0;
                         event = _.clone(this.cds[i]);
