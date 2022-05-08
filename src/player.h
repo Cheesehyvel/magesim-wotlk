@@ -234,6 +234,15 @@ namespace unit
                 }
             }
 
+            if (talents.imp_scorch) {
+                if (spell->id == spell::SCORCH ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FROSTFIRE_BOLT)
+                {
+                    crit+= talents.imp_scorch*1.0;
+                }
+            }
+
             if ((spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE) && talents.critical_mass)
                 crit+= talents.critical_mass*2.0;
 

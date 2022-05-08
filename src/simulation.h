@@ -1008,10 +1008,10 @@ public:
 
         if (config->debuff_spell_crit || state->hasDebuff(debuff::IMPROVED_SCORCH))
             crit+= 5.0;
-        if (config->debuff_crit)
-            crit+= 5.0;
         else if (state->hasDebuff(debuff::WINTERS_CHILL))
             crit+= state->debuffStacks(debuff::WINTERS_CHILL);
+        if (config->debuff_crit)
+            crit+= 3.0;
 
         return crit;
     }
