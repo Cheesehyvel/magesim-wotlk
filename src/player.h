@@ -1262,6 +1262,7 @@ namespace unit
                 action->cooldown = make_shared<cooldown::ArcanePower>();
             }
             else if (talents.combustion && !hasCooldown(cooldown::COMBUSTION) && !hasBuff(buff::COMBUSTION) && useTimingIfPossible("combustion", state)) {
+                combustion = 0;
                 action = buffAction(make_shared<buff::Combustion>());
             }
             else if (talents.presence_of_mind && !hasCooldown(cooldown::PRESENCE_OF_MIND) && useTimingIfPossible("presence_of_mind", state)) {
