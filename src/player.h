@@ -211,20 +211,6 @@ namespace unit
                     crit+= talents.arcane_potency*15.0;
             }
 
-            if (talents.spell_impact) {
-                if (spell->id == spell::ARCANE_BLAST ||
-                    spell->id == spell::ARCANE_EXPLOSION ||
-                    spell->id == spell::BLAST_WAVE ||
-                    spell->id == spell::CONE_OF_COLD ||
-                    spell->id == spell::FIREBALL ||
-                    spell->id == spell::FIRE_BLAST ||
-                    spell->id == spell::ICE_LANCE ||
-                    spell->id == spell::SCORCH)
-                {
-                    crit+= talents.spell_impact*2.0;
-                }
-            }
-
             if (talents.incineration) {
                 if (spell->id == spell::ARCANE_BLAST ||
                     spell->id == spell::CONE_OF_COLD ||
@@ -395,6 +381,20 @@ namespace unit
                     spell->id == spell::ARCANE_BARRAGE)
                 {
                     multi*= 1 + (0.04 * talents.torment_of_the_weak);
+                }
+            }
+
+            if (talents.spell_impact) {
+                if (spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::ARCANE_EXPLOSION ||
+                    spell->id == spell::BLAST_WAVE ||
+                    spell->id == spell::CONE_OF_COLD ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FIRE_BLAST ||
+                    spell->id == spell::ICE_LANCE ||
+                    spell->id == spell::SCORCH)
+                {
+                    multi*= 1 + talents.spell_impact*0.02;
                 }
             }
 
