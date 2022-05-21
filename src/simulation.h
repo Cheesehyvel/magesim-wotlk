@@ -232,6 +232,8 @@ public:
             onCastFinish(event->unit, event->spell);
         else if (event->type == EVENT_SPELL_IMPACT)
             onSpellImpact(event->unit, event->instance);
+        else if (event->type == EVENT_SPELL_TICK)
+            onSpellTick(event->unit, event->instance);
         else if (event->type == EVENT_MANA_REGEN)
             onManaRegen(event->unit);
         else if (event->type == EVENT_MANA_GAIN)
@@ -255,7 +257,7 @@ public:
         else if (event->type == EVENT_UNIT_DESPAWN)
             onUnitDespawn(event->unit);
         else if (event->type == EVENT_WAIT)
-            onWait(event->unit);
+            onWait(event->unit, event->spell);
     }
 
     void push(shared_ptr<Event> event)
@@ -311,6 +313,20 @@ public:
     {
         shared_ptr<Event> event(new Event());
         event->type = EVENT_SPELL_IMPACT;
+        event->instance = instance;
+        event->unit = unit;
+        event->t = t;
+
+        push(event);
+    }
+
+    void pushChannelingTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t, int tick)
+    {
+        shared_ptr<spell::SpellInstance> instance = getSpellInstance(unit, spell);
+        instance->tick = tick;
+
+        shared_ptr<Event> event(new Event());
+        event->type = EVENT_SPELL_TICK;
         event->instance = instance;
         event->unit = unit;
         event->t = t;
@@ -461,7 +477,7 @@ public:
         if (str.length()) {
             ostringstream s;
             s << std::fixed << std::setprecision(2);
-            s << str << ", waiting " << t << " seconds...";
+            s << str << ", " << unit->name << " waiting " << t << " seconds...";
             addLog(unit, LOG_WAIT, s.str());
         }
     }
@@ -540,7 +556,7 @@ public:
     {
         if (canCast(unit, spell)) {
             if (spell->active_use && !spell->off_gcd && unit->t_gcd > state->t)
-                pushWait(unit, unit->t_gcd - state->t, "", spell);
+                pushWait(unit, unit->t_gcd - state->t, "GCD", spell);
             else
                 onCastStart(unit, spell);
         }
@@ -572,20 +588,16 @@ public:
 
     void onCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (!spell->tick) {
-            spell->actual_cost = manaCost(unit, spell);
-            unit->mana-= spell->actual_cost;
-            logCastSuccess(unit, spell);
-        }
+        double duration = 0;
+
+        spell->actual_cost = manaCost(unit, spell);
+        unit->mana-= spell->actual_cost;
+        logCastSuccess(unit, spell);
 
         if (spell->channeling && !spell->tick) {
-            double cast_time = castTime(unit, spell);
-            shared_ptr<spell::Spell> part;
-            for (int i=1; i<=spell->ticks; i++) {
-                part = spell->clone();
-                part->tick = i;
-                pushCastFinish(unit, part, cast_time / spell->ticks * i);
-            }
+            duration = castTime(unit, spell);
+            for (int i=1; i<=spell->ticks; i++)
+                pushChannelingTick(unit, spell, duration / spell->ticks * i, i);
         }
         else if (spell->dot) {
             dotApply(unit, spell);
@@ -600,14 +612,13 @@ public:
             onCastSuccessProc(unit, spell);
         }
 
-        if (spell->channeling)
-            spell->done = spell->tick == spell->ticks;
-        else
-            spell->done = true;
-
-        if (spell->done && spell->active_use) {
-            if (state->inCombat())
-                nextAction(unit);
+        if (spell->active_use) {
+            if (state->inCombat()) {
+                if (duration > 0)
+                    pushWait(unit, duration);
+                else
+                    nextAction(unit);
+            }
 
             // Log spell use
             if (logging && spell->min_dmg) {
@@ -643,6 +654,14 @@ public:
             if (instance->dmg < state->spells[instance->spell->id].min_dmg || state->spells[instance->spell->id].min_dmg == 0)
                 state->spells[instance->spell->id].min_dmg = instance->dmg;
         }
+    }
+
+    void onSpellTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
+    {
+        onSpellTickProc(unit, instance);
+
+        if (!instance->spell->is_trigger)
+            pushSpellImpact(unit, instance, travelTime(unit, instance->spell));
     }
 
     void dotApply(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -685,6 +704,12 @@ public:
     void onSpellImpactProc(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
         std::list<shared_ptr<action::Action>> actions = unit->onSpellImpactProc(state, instance);
+        processActions(unit, actions);
+    }
+
+    void onSpellTickProc(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
+    {
+        std::list<shared_ptr<action::Action>> actions = unit->onSpellTickProc(state, instance);
         processActions(unit, actions);
     }
 
@@ -736,9 +761,12 @@ public:
         logManaGain(unit, mana, source);
     }
 
-    void onWait(shared_ptr<unit::Unit> unit)
+    void onWait(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell = NULL)
     {
-        nextAction(unit);
+        if (spell != NULL)
+            cast(unit, spell);
+        else
+            nextAction(unit);
     }
 
     void onBuffGain(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff)
@@ -1137,20 +1165,23 @@ public:
     shared_ptr<spell::SpellInstance> getSpellInstance(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         shared_ptr<spell::SpellInstance> instance = make_shared<spell::SpellInstance>(spell);
-        instance->result = getSpellResult(unit, spell);
 
-        if (instance->result != spell::MISS) {
-            instance->dmg = spellDmg(unit, spell);
+        if (spell->max_dmg > 0) {
+            instance->result = getSpellResult(unit, spell);
 
-            if (instance->result == spell::CRIT)
-                instance->dmg*= critMultiplier(unit, spell);
+            if (instance->result != spell::MISS) {
+                instance->dmg = spellDmg(unit, spell);
 
-            if (unit->canResist(spell)) {
-                instance->resist = spellDmgResist(unit, instance);
-                instance->dmg-= instance->resist;
+                if (instance->result == spell::CRIT)
+                    instance->dmg*= critMultiplier(unit, spell);
+
+                if (unit->canResist(spell)) {
+                    instance->resist = spellDmgResist(unit, instance);
+                    instance->dmg-= instance->resist;
+                }
+
+                instance->dmg = round(instance->dmg);
             }
-
-            instance->dmg = round(instance->dmg);
         }
 
         return instance;

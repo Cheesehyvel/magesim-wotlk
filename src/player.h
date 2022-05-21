@@ -559,12 +559,6 @@ namespace unit
             list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
             shared_ptr<action::Action> action = NULL;
 
-            if (spell->id == spell::EVOCATION && spell->tick)
-                actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
-
-            if (spell->tick)
-                return actions;
-
             if (spell->actual_cost)
                 t_mana_spent = state->t;
 
@@ -915,6 +909,16 @@ namespace unit
                         actions.push_back(buffAction(make_shared<buff::BrainFreeze>()));
                 }
             }
+
+            return actions;
+        }
+
+        list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        {
+            list<shared_ptr<action::Action>> actions = Unit::onSpellTickProc(state, instance);
+
+            if (instance->spell->id == spell::EVOCATION)
+                actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
 
             return actions;
         }

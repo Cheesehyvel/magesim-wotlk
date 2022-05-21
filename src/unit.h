@@ -420,6 +420,13 @@ namespace unit
             return actions;
         }
 
+        virtual list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
         virtual list<shared_ptr<action::Action>> usePotion(Potion potion, bool in_combat)
         {
             list<shared_ptr<action::Action>> actions;

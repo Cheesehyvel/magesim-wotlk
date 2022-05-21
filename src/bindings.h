@@ -119,7 +119,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("LOG_DOT", LOG_DOT)
         .value("LOG_DEBUG", LOG_DEBUG)
         .value("LOG_WAIT", LOG_WAIT)
-        .value("LOG_GCD_CAP", LOG_GCD_CAP)
         .value("LOG_UNIT", LOG_UNIT)
         ;
 

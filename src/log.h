@@ -11,7 +11,6 @@ enum LogType : int
     LOG_DOT,
     LOG_DEBUG,
     LOG_WAIT,
-    LOG_GCD_CAP,
     LOG_UNIT,
 };
 

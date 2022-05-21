@@ -482,7 +482,7 @@
                                     <label><input type="checkbox" v-model="log_filter[5]"> <span>Show buffs</span></label>
                                 </div>
                                 <div class="form-item">
-                                    <label><input type="checkbox" v-model="log_filter[9]"> <span>Show GCD cap</span></label>
+                                    <label><input type="checkbox" v-model="log_filter[8]"> <span>Show wait</span></label>
                                 </div>
                             </div>
                             <div class="form-item mb-2">
@@ -1572,9 +1572,8 @@
                     "5": true,
                     "6": true,
                     "7": true,
-                    "8": true,
+                    "8": false,
                     "9": true,
-                    "10": true,
                 },
                 talent_map: [[],[],[]],
                 default_config: default_config,

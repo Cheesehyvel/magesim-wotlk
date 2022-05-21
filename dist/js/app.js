@@ -6926,9 +6926,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "5": true,
         "6": true,
         "7": true,
-        "8": true,
-        "9": true,
-        "10": true
+        "8": false,
+        "9": true
       },
       talent_map: [[], [], []],
       default_config: default_config,
@@ -68594,19 +68593,19 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.log_filter[9],
-                              expression: "log_filter[9]"
+                              value: _vm.log_filter[8],
+                              expression: "log_filter[8]"
                             }
                           ],
                           attrs: { type: "checkbox" },
                           domProps: {
-                            checked: Array.isArray(_vm.log_filter[9])
-                              ? _vm._i(_vm.log_filter[9], null) > -1
-                              : _vm.log_filter[9]
+                            checked: Array.isArray(_vm.log_filter[8])
+                              ? _vm._i(_vm.log_filter[8], null) > -1
+                              : _vm.log_filter[8]
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.log_filter[9],
+                              var $$a = _vm.log_filter[8],
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -68616,27 +68615,27 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.log_filter,
-                                      9,
+                                      8,
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.log_filter,
-                                      9,
+                                      8,
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.log_filter, 9, $$c)
+                                _vm.$set(_vm.log_filter, 8, $$c)
                               }
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _c("span", [_vm._v("Show GCD cap")])
+                        _c("span", [_vm._v("Show wait")])
                       ])
                     ])
                   ]),
