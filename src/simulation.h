@@ -777,6 +777,7 @@ public:
             unit->mana-= manaCost(unit, buff);
         }
 
+        int old_stacks = unit->buffStacks(buff->id);
         int stacks = unit->addBuff(buff);
         removeBuffExpiration(unit, buff);
         pushBuffExpire(unit, buff);
@@ -791,8 +792,11 @@ public:
                 pushManaGain(unit, t, 3496 * .225, "Innervate");
         }
 
-        if (stacks)
+        if (stacks > old_stacks)
             logBuffGain(unit, buff, stacks);
+
+        std::list<shared_ptr<action::Action>> actions = unit->onBuffGain(state, buff);
+        processActions(unit, actions);
     }
 
     void onBuffExpire(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff)
@@ -800,6 +804,9 @@ public:
         removeBuffExpiration(unit, buff);
         logBuffExpire(unit, buff);
         unit->removeBuff(buff->id);
+
+        std::list<shared_ptr<action::Action>> actions = unit->onBuffExpire(state, buff);
+        processActions(unit, actions);
     }
 
     void onBuffGainAll(shared_ptr<buff::Buff> buff)

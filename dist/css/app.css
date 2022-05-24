@@ -1510,7 +1510,7 @@ table.large tbody tr {
 }
 
 .design-2 #app .wrapper .sidebar {
-  background: #140f17;
+  background: rgb(20, 15, 23);
 }
 .design-2 #app .wrapper .sidebar .actions .btn.large {
   margin-bottom: 20px;

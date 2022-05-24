@@ -73,6 +73,8 @@
                     { title: "Quad Core", color: "#ddd" },
                 ],
                 trinkets: [
+                    { title: "Energized", color: "#ddd" },
+                    { title: "Volatility", color: "#ddd" },
                     { title: "Scale of Fates", color: "#ddd" },
                     { title: "Show of Faith", color: "#ddd" },
                     { title: "Memories of Love", color: "#55d" },

@@ -43,6 +43,8 @@ namespace cooldown
         ALACRITY_ELEMENTS = 65004,
         MEMORIES_LOVE = 65003,
         SHOW_FAITH = 64739,
+        REIGN_UNLIVING_HC = 67758,
+        REIGN_UNLIVING_NM = 67712,
     };
 
 
@@ -491,6 +493,30 @@ namespace cooldown
         {
             id = SHOW_FAITH;
             duration = 45;
+        }
+
+    };
+
+    class ReignUnlivingHc : public Cooldown
+    {
+
+    public:
+        ReignUnlivingHc()
+        {
+            id = REIGN_UNLIVING_HC;
+            duration = 2;
+        }
+
+    };
+
+    class ReignUnlivingNm : public Cooldown
+    {
+
+    public:
+        ReignUnlivingNm()
+        {
+            id = REIGN_UNLIVING_NM;
+            duration = 2;
         }
 
     };

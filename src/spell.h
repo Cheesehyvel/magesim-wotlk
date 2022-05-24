@@ -34,6 +34,8 @@ namespace spell
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
         EXTRACT_NECROMANTIC_POWER = 60488,
+        PILLAR_OF_FLAME_HC = 67760,
+        PILLAR_OF_FLAME_NM = 67714,
 
         MIRROR_IMAGE = 55342,
         MIRROR_FIRE_BLAST = 59637,
@@ -656,6 +658,44 @@ namespace spell
             proc = true;
             min_dmg = 788;
             max_dmg = 1312;
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+            has_travel_time = true;
+        }
+    };
+
+    class PillarOfFlameHc : public Spell
+    {
+
+    public:
+        PillarOfFlameHc()
+        {
+            id = PILLAR_OF_FLAME_HC;
+            name = "Pillar of Flame";
+            school = SCHOOL_FIRE;
+            proc = true;
+            min_dmg = 1959;
+            max_dmg = 2275;
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+            has_travel_time = true;
+        }
+    };
+
+    class PillarOfFlameNm : public Spell
+    {
+
+    public:
+        PillarOfFlameNm()
+        {
+            id = PILLAR_OF_FLAME_NM;
+            name = "Pillar of Flame";
+            school = SCHOOL_FIRE;
+            proc = true;
+            min_dmg = 1741;
+            max_dmg = 2023;
             coeff = 0;
             gcd = 0;
             active_use = false;

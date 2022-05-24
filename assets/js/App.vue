@@ -1784,17 +1784,17 @@
                 timings.push({
                     name: "bloodlust",
                     title: "Bloodlust",
-                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_bloodlust.jpg",
                 });
                 timings.push({
                     name: "power_infusion",
                     title: "Power Infusion",
-                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_holy_powerinfusion.jpg",
                 });
                 timings.push({
                     name: "mana_tide",
                     title: "Mana Tide",
-                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg",
                 });
                 timings.push({
                     name: "innervate",
@@ -1854,21 +1854,21 @@
                 timings.push({
                     name: "hyperspeed_accelerators",
                     title: "Hyperspeed Accelerators",
-                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
                 });
 
                 var potion = {
                     name: "potion",
                     title: "Runic Mana Potion",
-                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg",
                 };
                 if (this.config.potion == constants.potions.POTION_SPEED) {
                     potion.title = "Potion of Speed";
-                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
+                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
                 }
                 if (this.config.potion == constants.potions.POTION_WILD_MAGIC) {
                     potion.title = "Potion of Wild Magic";
-                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
+                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
                 }
                 timings.push(potion);
 
@@ -1876,15 +1876,25 @@
                     timings.push({
                         name: "conjured",
                         title: "Flame Cap",
-                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg",
                     });
                 }
 
                 var trinkets = [
                     {
+                        id: this.items.ids.TRINKET_VOLATILE_POWER_HC,
+                        title: "Talisman of Volatile Power",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_VOLATILE_POWER_NM,
+                        title: "Talisman of Volatile Power",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_SCALE_FATES,
                         title: "Scale of Fates",
-                        icon: "https://wotlkdb.com/static/images/wow/icons/large/inv_spiritshard_02.jpg",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_02.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,

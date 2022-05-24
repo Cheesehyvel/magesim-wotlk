@@ -406,6 +406,20 @@ namespace unit
             return 0;
         }
 
+        virtual list<shared_ptr<action::Action>> onBuffGain(shared_ptr<State> state, shared_ptr<buff::Buff> buff)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
+        virtual list<shared_ptr<action::Action>> onBuffExpire(shared_ptr<State> state, shared_ptr<buff::Buff> buff)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            return actions;
+        }
+
         virtual list<shared_ptr<action::Action>> onCastSuccessProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell)
         {
             list<shared_ptr<action::Action>> actions;

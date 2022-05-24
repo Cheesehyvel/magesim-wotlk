@@ -554,6 +554,34 @@ namespace unit
             return false;
         }
 
+        list<shared_ptr<action::Action>> onBuffGain(shared_ptr<State> state, shared_ptr<buff::Buff> buff)
+        {
+            list<shared_ptr<action::Action>> actions = Unit::onBuffGain(state, buff);
+
+            if (buff->id == buff::REIGN_UNLIVING_HC && buffStacks(buff->id) == 3) {
+                actions.push_back(spellAction(make_shared<spell::PillarOfFlameHc>()));
+                actions.push_back(buffExpireAction(make_shared<buff::ReignUnlivingHc>()));
+            }
+            else if (buff->id == buff::REIGN_UNLIVING_NM && buffStacks(buff->id) == 3) {
+                actions.push_back(spellAction(make_shared<spell::PillarOfFlameNm>()));
+                actions.push_back(buffExpireAction(make_shared<buff::ReignUnlivingNm>()));
+            }
+
+            return actions;
+        }
+
+        list<shared_ptr<action::Action>> onBuffExpire(shared_ptr<State> state, shared_ptr<buff::Buff> buff)
+        {
+            list<shared_ptr<action::Action>> actions = Unit::onBuffExpire(state, buff);
+
+            if (buff->id == buff::VOLATILE_POWER_HC)
+                actions.push_back(buffExpireAction(make_shared<buff::VolatilityHc>()));
+            if (buff->id == buff::VOLATILE_POWER_NM)
+                actions.push_back(buffExpireAction(make_shared<buff::VolatilityNm>()));
+
+            return actions;
+        }
+
         list<shared_ptr<action::Action>> onCastSuccessProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell)
         {
             list<shared_ptr<action::Action>> actions = Unit::onCastSuccessProc(state, spell);
@@ -781,6 +809,24 @@ namespace unit
                 actions.push_back(action);
             }
 
+            if (hasTrinket(TRINKET_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC)) {
+                action = buffAction(make_shared<buff::VolatilityHc>());
+                actions.push_back(action);
+            }
+            if (hasTrinket(TRINKET_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM)) {
+                action = buffAction(make_shared<buff::VolatilityNm>());
+                actions.push_back(action);
+            }
+
+            if (hasTrinket(TRINKET_SOLACE_DEFEATED_HC)) {
+                action = buffAction(make_shared<buff::EnergizedHc>());
+                actions.push_back(action);
+            }
+            if (hasTrinket(TRINKET_SOLACE_DEFEATED_NM)) {
+                action = buffAction(make_shared<buff::EnergizedNm>());
+                actions.push_back(action);
+            }
+
             return actions;
         }
 
@@ -869,6 +915,17 @@ namespace unit
 
                 if (talents.burnout && instance->spell->actual_cost)
                     actions.push_back(manaAction(instance->spell->actual_cost * -0.01 * talents.burnout, "Burnout"));
+
+                if (hasTrinket(TRINKET_REIGN_UNLIVING_HC) && !instance->spell->dot && !hasCooldown(cooldown::REIGN_UNLIVING_HC)) {
+                    action = buffAction(make_shared<buff::ReignUnlivingHc>());
+                    action->cooldown = make_shared<cooldown::ReignUnlivingHc>();
+                    actions.push_back(action);
+                }
+                if (hasTrinket(TRINKET_REIGN_UNLIVING_NM) && !instance->spell->dot && !hasCooldown(cooldown::REIGN_UNLIVING_NM)) {
+                    action = buffAction(make_shared<buff::ReignUnlivingNm>());
+                    action->cooldown = make_shared<cooldown::ReignUnlivingNm>();
+                    actions.push_back(action);
+                }
             }
 
             if (talents.hot_streak && !instance->spell->dot) {
@@ -1134,6 +1191,10 @@ namespace unit
 
         bool isUseTrinket(Trinket trinket)
         {
+            if (trinket == TRINKET_VOLATILE_POWER_HC)
+                return true;
+            if (trinket == TRINKET_VOLATILE_POWER_NM)
+                return true;
             if (trinket == TRINKET_SCALE_FATES)
                 return true;
             if (trinket == TRINKET_MARK_WAR_PRISONER)
@@ -1209,6 +1270,12 @@ namespace unit
 
             if (trinket == TRINKET_TWILIGHT_SERPENT) {
                 buff = make_shared<buff::TwilightSerpent>();
+            }
+            else if (trinket == TRINKET_VOLATILE_POWER_HC) {
+                buff = make_shared<buff::VolatilePowerHc>();
+            }
+            else if (trinket == TRINKET_VOLATILE_POWER_NM) {
+                buff = make_shared<buff::VolatilePowerNm>();
             }
             else if (trinket == TRINKET_SCALE_FATES) {
                 buff = make_shared<buff::ScaleFates>();

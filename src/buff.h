@@ -46,6 +46,14 @@ namespace buff
         MEMORIES_LOVE = 65003,
         SCALE_FATES = 64707,
         SHOW_FAITH = 64739,
+        VOLATILE_POWER_HC = 67744,
+        VOLATILE_POWER_NM = 67736,
+        VOLATILITY_HC = 67743,
+        VOLATILITY_NM = 67735,
+        ENERGIZED_HC = 67750,
+        ENERGIZED_NM = 67696,
+        REIGN_UNLIVING_HC = 67759,
+        REIGN_UNLIVING_NM = 67713,
         // TBC Stuff
         FLAME_CAP = 28714,
         SKULL_GULDAN = 40396,
@@ -654,6 +662,120 @@ namespace buff
             name = "Show of Faith";
             duration = 15;
             stats.mp5 = 241;
+        }
+
+    };
+
+    class VolatilePowerHc : public Buff
+    {
+
+    public:
+        VolatilePowerHc()
+        {
+            id = VOLATILE_POWER_HC;
+            name = "Volatile Power";
+            duration = 20;
+        }
+
+    };
+
+    class VolatilePowerNm : public Buff
+    {
+
+    public:
+        VolatilePowerNm()
+        {
+            id = VOLATILE_POWER_NM;
+            name = "Volatile Power";
+            duration = 20;
+        }
+
+    };
+
+    class VolatilityHc : public Buff
+    {
+
+    public:
+        VolatilityHc()
+        {
+            id = VOLATILITY_HC;
+            name = "Volatility";
+            duration = 20;
+            max_stacks = 8;
+            stats.haste_rating = 64;
+        }
+
+    };
+
+    class VolatilityNm : public Buff
+    {
+
+    public:
+        VolatilityNm()
+        {
+            id = VOLATILITY_NM;
+            name = "Volatility";
+            duration = 20;
+            max_stacks = 8;
+            stats.haste_rating = 57;
+        }
+
+    };
+
+    class EnergizedHc : public Buff
+    {
+
+    public:
+        EnergizedHc()
+        {
+            id = ENERGIZED_HC;
+            name = "Energized";
+            duration = 10;
+            max_stacks = 8;
+            stats.mp5 = 18;
+        }
+
+    };
+
+    class EnergizedNm : public Buff
+    {
+
+    public:
+        EnergizedNm()
+        {
+            id = ENERGIZED_NM;
+            name = "Energized";
+            duration = 10;
+            max_stacks = 8;
+            stats.mp5 = 16;
+        }
+
+    };
+
+    class ReignUnlivingHc : public Buff
+    {
+
+    public:
+        ReignUnlivingHc()
+        {
+            id = REIGN_UNLIVING_HC;
+            name = "Shard of Flame";
+            duration = 10000;
+            max_stacks = 3;
+        }
+
+    };
+
+    class ReignUnlivingNm : public Buff
+    {
+
+    public:
+        ReignUnlivingNm()
+        {
+            id = REIGN_UNLIVING_NM;
+            name = "Mote of Flame";
+            duration = 10000;
+            max_stacks = 3;
         }
 
     };
