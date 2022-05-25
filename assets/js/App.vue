@@ -1000,28 +1000,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="timing in config.timings" :key="timing.id" v-if="timingEnabled(timing.name)">
-                                                <td class="icon">
-                                                    <span>
-                                                        <img :src="getTiming(timing.name, 'icon')">
-                                                        <tooltip>{{ getTiming(timing.name, 'title') }}</tooltip>
-                                                    </span>
-                                                    <div class="remove" @click="removeTiming(timing.id)">
-                                                        <span class="material-icons">&#xe5cd;</span>
-                                                    </div>
-                                                </td>
-                                                <td class="t">
-                                                    <input type="text" v-model.number="timing.t">
-                                                </td>
-                                                <td class="wait-for-buff">
-                                                    <select v-model="timing.wait_for_buff" v-if="timingCanWait(timing.name)">
-                                                        <option :value="0">Nothing</option>
-                                                        <option v-for="buff in waitBuffs" :value="buff.id" :key="buff.id">{{ buff.name }}</option>
-                                                    </select>
-                                                </td>
-                                                <td class="wait-t">
-                                                    <input type="text" v-model.number="timing.wait_t" v-if="timingCanWait(timing.name)">
-                                                </td>
+                                            <tr v-for="timing in config.timings" :key="timing.id">
+                                                <template v-if="timingEnabled(timing.name)">
+                                                    <td class="icon">
+                                                        <span>
+                                                            <img :src="getTiming(timing.name, 'icon')">
+                                                            <tooltip>{{ getTiming(timing.name, 'title') }}</tooltip>
+                                                        </span>
+                                                        <div class="remove" @click="removeTiming(timing.id)">
+                                                            <span class="material-icons">&#xe5cd;</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="t">
+                                                        <input type="text" v-model.number="timing.t">
+                                                    </td>
+                                                    <td class="wait-for-buff">
+                                                        <select v-model="timing.wait_for_buff" v-if="timingCanWait(timing.name)">
+                                                            <option :value="0">Nothing</option>
+                                                            <option v-for="buff in waitBuffs" :value="buff.id" :key="buff.id">{{ buff.name }}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="wait-t">
+                                                        <input type="text" v-model.number="timing.wait_t" v-if="timingCanWait(timing.name)">
+                                                    </td>
+                                                </template>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1030,9 +1032,11 @@
                                             <span class="material-icons">&#xe145;</span>
                                         </div>
                                         <div class="menu">
-                                            <div v-for="timing in timings" v-if="timingEnabled(timing.name)" @click="addTiming(timing.name)">
-                                                <img :src="timing.icon">
-                                                <tooltip>{{ timing.title }}</tooltip>
+                                            <div v-for="timing in timings" @click="addTiming(timing.name)">
+                                                <template v-if="timingEnabled(timing.name)">
+                                                    <img :src="timing.icon">
+                                                    <tooltip>{{ timing.title }}</tooltip>
+                                                </template>
                                             </div>
                                         </div>
                                     </div>
@@ -1142,34 +1146,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-                                class="equipped-item"
-                                v-for="(item_id, slot) in equipped"
-                                v-if="item_id"
-                            >
-                                <td>{{ formatKey(slot) }}</td>
-                                <td>
-                                    <a :href="itemUrl(item_id)" target="_blank" :class="['quality-'+$get(getItem(slot, item_id), 'q', 'epic')]">
-                                        {{ getItem(slot, item_id).title }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <template v-if="$get(enchants, slot)">
-                                        <a :href="spellUrl(enchants[slot])" target="_blank" :class="['quality-'+$get(getEnchant(slot, enchants[slot]), 'q', 'uncommon')]">
-                                            {{ getEnchant(slot, enchants[slot]).title }}
+                            <tr class="equipped-item" v-for="(item_id, slot) in equipped">
+                                <template v-if="item_id">
+                                    <td>{{ formatKey(slot) }}</td>
+                                    <td>
+                                        <a :href="itemUrl(item_id)" target="_blank" :class="['quality-'+$get(getItem(slot, item_id), 'q', 'epic')]">
+                                            {{ getItem(slot, item_id).title }}
                                         </a>
-                                    </template>
-                                </td>
-                                <td>
-                                    <template v-if="gems.hasOwnProperty(slot)">
-                                        <template v-for="(gem_id, index) in gems[slot]" v-if="gem_id">
-                                            <span v-if="index > 0">,</span>
-                                            <a :href="itemUrl(gem_id)" target="_blank" :class="['gem-color', 'color-'+getGem(gem_id).color]">
-                                                {{ getGem(gem_id).title }}
+                                    </td>
+                                    <td>
+                                        <template v-if="$get(enchants, slot)">
+                                            <a :href="spellUrl(enchants[slot])" target="_blank" :class="['quality-'+$get(getEnchant(slot, enchants[slot]), 'q', 'uncommon')]">
+                                                {{ getEnchant(slot, enchants[slot]).title }}
                                             </a>
                                         </template>
-                                    </template>
-                                </td>
+                                    </td>
+                                    <td>
+                                        <template v-if="gems.hasOwnProperty(slot)">
+                                            <template v-for="(gem_id, index) in gems[slot]" v-if="gem_id">
+                                                <span v-if="index > 0">,</span>
+                                                <a :href="itemUrl(gem_id)" target="_blank" :class="['gem-color', 'color-'+getGem(gem_id).color]">
+                                                    {{ getGem(gem_id).title }}
+                                                </a>
+                                            </template>
+                                        </template>
+                                    </td>
+                                </template>
                             </tr>
                         </tbody>
                     </table>

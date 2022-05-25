@@ -20,7 +20,7 @@ class SimulationWorker {
     start(config, iterations) {
         this.worker.postMessage({
             type: "start",
-            config: config,
+            config: _.cloneDeep(config),
             iterations: iterations ? iterations : 1,
         });
     }
@@ -75,6 +75,7 @@ class SimulationWorkers {
     }
 
     start(config) {
+        config = _.cloneDeep(config);
         var seed = config.rng_seed;
         for (var i=0; i<this.workers.length; i++) {
             var it = this.iterations/this.threads;
