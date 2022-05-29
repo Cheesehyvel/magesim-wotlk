@@ -84,7 +84,7 @@ namespace cooldown
         Potion(bool in_combat)
         {
             id = POTION;
-            duration = in_combat ? 100000 : 120;
+            duration = in_combat ? 100000 : 60;
         }
 
     };
