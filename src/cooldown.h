@@ -276,7 +276,7 @@ namespace cooldown
         Evocation()
         {
             id = EVOCATION;
-            duration = 480;
+            duration = 240;
         }
 
     };
