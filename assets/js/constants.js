@@ -68,5 +68,9 @@ export default {
         EMBRACE_SPIDER: 60492,
         DYING_CURSE: 60494,
         ALACRITY_ELEMENTS: 65004,
+        DISLODGED_OBJECT_HC: 71644,
+        DISLODGED_OBJECT_NM: 71601,
+        NAMELESS_LICH_HC: 71636,
+        NAMELESS_LICH_NM: 71605,
     }
 };

@@ -54,6 +54,12 @@ namespace buff
         ENERGIZED_NM = 67696,
         REIGN_UNLIVING_HC = 67759,
         REIGN_UNLIVING_NM = 67713,
+        MURADINS_SPYGLASS_HC = 71572,
+        MURADINS_SPYGLASS_NM = 71570,
+        DISLODGED_OBJECT_HC = 71644,
+        DISLODGED_OBJECT_NM = 71601,
+        NAMELESS_LICH_HC = 71636,
+        NAMELESS_LICH_NM = 71605,
         // TBC Stuff
         FLAME_CAP = 28714,
         SKULL_GULDAN = 40396,
@@ -73,6 +79,7 @@ namespace buff
         double duration;
         int stacks = 1;
         int max_stacks = 1;
+        bool stack_refresh = true;
         bool hidden = false;
         double cost = 0;
         Stats stats;
@@ -776,6 +783,96 @@ namespace buff
             name = "Mote of Flame";
             duration = 10000;
             max_stacks = 3;
+        }
+
+    };
+
+    class MuradinsSpyglassHc : public Buff
+    {
+
+    public:
+        MuradinsSpyglassHc()
+        {
+            id = MURADINS_SPYGLASS_HC;
+            name = "Cultivated Power";
+            duration = 10;
+            max_stacks = 10;
+            stats.spell_power = 20;
+        }
+
+    };
+
+    class MuradinsSpyglassNm : public Buff
+    {
+
+    public:
+        MuradinsSpyglassNm()
+        {
+            id = MURADINS_SPYGLASS_NM;
+            name = "Cultivated Power";
+            duration = 10;
+            max_stacks = 10;
+            stats.spell_power = 18;
+        }
+
+    };
+
+    class DislodgedObjectHc : public Buff
+    {
+
+    public:
+        DislodgedObjectHc()
+        {
+            id = DISLODGED_OBJECT_HC;
+            name = "Surge of Power";
+            duration = 20;
+            max_stacks = 10;
+            stack_refresh = false;
+            stats.spell_power = 121;
+        }
+
+    };
+
+    class DislodgedObjectNm : public Buff
+    {
+
+    public:
+        DislodgedObjectNm()
+        {
+            id = DISLODGED_OBJECT_NM;
+            name = "Surge of Power";
+            duration = 20;
+            max_stacks = 10;
+            stack_refresh = false;
+            stats.spell_power = 105;
+        }
+
+    };
+
+    class NamelessLichHc : public Buff
+    {
+
+    public:
+        NamelessLichHc()
+        {
+            id = NAMELESS_LICH_HC;
+            name = "Siphoned Power";
+            duration = 20;
+            stats.spell_power = 1207;
+        }
+
+    };
+
+    class NamelessLichNm : public Buff
+    {
+
+    public:
+        NamelessLichNm()
+        {
+            id = NAMELESS_LICH_NM;
+            name = "Siphoned Power";
+            duration = 20;
+            stats.spell_power = 1074;
         }
 
     };

@@ -5,7 +5,7 @@ import pprint
 import re
 import json
 
-def getItem(item_id):
+def getItem(item_id, phase = 1):
     if item_id[:4] == "http":
         url = item_id + "&xml"
     else:
@@ -105,6 +105,10 @@ def getItem(item_id):
     if m and m.group(1) == "3":
         stats["q"] = "rare"
 
+    # Phase
+    if phase > 1:
+        stats["phase"] = phase;
+
     # Convert to item string
     output = json.dumps(stats)
     p = re.compile("\"([a-z0-9]+)\":")
@@ -116,11 +120,12 @@ def getItem(item_id):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("item_id", help="Item ID(s)")
+parser.add_argument("-p", help="Phase", type=int)
 args = parser.parse_args()
 
 ids = args.item_id.split(",")
 
 for index, item_id in enumerate(ids):
-    item = getItem(item_id)
+    item = getItem(item_id, args.p)
     if item != None:
         print(item+",")

@@ -45,6 +45,10 @@ namespace cooldown
         SHOW_FAITH = 64739,
         REIGN_UNLIVING_HC = 67758,
         REIGN_UNLIVING_NM = 67712,
+        DISLODGED_OBJECT_HC = 71644,
+        DISLODGED_OBJECT_NM = 71601,
+        NAMELESS_LICH_HC = 71636,
+        NAMELESS_LICH_NM = 71605,
     };
 
 
@@ -517,6 +521,54 @@ namespace cooldown
         {
             id = REIGN_UNLIVING_NM;
             duration = 2;
+        }
+
+    };
+
+    class DislodgedObjectHc : public Cooldown
+    {
+
+    public:
+        DislodgedObjectHc()
+        {
+            id = DISLODGED_OBJECT_HC;
+            duration = 45;
+        }
+
+    };
+
+    class DislodgedObjectNm : public Cooldown
+    {
+
+    public:
+        DislodgedObjectNm()
+        {
+            id = DISLODGED_OBJECT_NM;
+            duration = 45;
+        }
+
+    };
+
+    class NamelessLichHc : public Cooldown
+    {
+
+    public:
+        NamelessLichHc()
+        {
+            id = NAMELESS_LICH_HC;
+            duration = 60;
+        }
+
+    };
+
+    class NamelessLichNm : public Cooldown
+    {
+
+    public:
+        NamelessLichNm()
+        {
+            id = NAMELESS_LICH_NM;
+            duration = 60;
         }
 
     };

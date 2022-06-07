@@ -783,6 +783,16 @@ namespace unit
             }
 
             // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_MURADINS_SPYGLASS_HC)) {
+                action = buffAction(make_shared<buff::MuradinsSpyglassHc>());
+                actions.push_back(action);
+            }
+            if (hasTrinket(TRINKET_MURADINS_SPYGLASS_NM)) {
+                action = buffAction(make_shared<buff::MuradinsSpyglassNm>());
+                actions.push_back(action);
+            }
+
+            // Unconfirmed - on spell cast ?
             if (hasTrinket(TRINKET_ELEMENTAL_FOCUS_STONE) && !hasCooldown(cooldown::ALACRITY_ELEMENTS) && random<int>(0, 9) == 0) {
                 action = buffAction(make_shared<buff::AlacrityElements>());
                 action->cooldown = make_shared<cooldown::AlacrityElements>();
@@ -827,6 +837,18 @@ namespace unit
                 actions.push_back(action);
             }
 
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_DISLODGED_OBJECT_HC) && !hasCooldown(cooldown::DISLODGED_OBJECT_HC) && spell->min_dmg && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::DislodgedObjectHc>());
+                action->cooldown = make_shared<cooldown::DislodgedObjectHc>();
+                actions.push_back(action);
+            }
+            if (hasTrinket(TRINKET_DISLODGED_OBJECT_NM) && !hasCooldown(cooldown::DISLODGED_OBJECT_NM) && spell->min_dmg && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::DislodgedObjectNm>());
+                action->cooldown = make_shared<cooldown::DislodgedObjectNm>();
+                actions.push_back(action);
+            }
+
             return actions;
         }
 
@@ -857,7 +879,25 @@ namespace unit
                 if (instance->spell->id == spell::FROSTFIRE_BOLT)
                     actions.push_back(spellAction(make_shared<spell::FrostfireBoltDot>()));
 
-                if (!instance->spell->dot) {
+                if (instance->spell->dot) {
+                    if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
+                        action = spellAction(make_shared<spell::ExtractNecromanticPower>());
+                        action->cooldown = make_shared<cooldown::ExtractNecromanticPower>();
+                        actions.push_back(action);
+                    }
+
+                    if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3) {
+                        action = buffAction(make_shared<buff::NamelessLichHc>());
+                        action->cooldown = make_shared<cooldown::NamelessLichHc>();
+                        actions.push_back(action);
+                    }
+                    if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3) {
+                        action = buffAction(make_shared<buff::NamelessLichNm>());
+                        action->cooldown = make_shared<cooldown::NamelessLichNm>();
+                        actions.push_back(action);
+                    }
+                }
+                else {
                     // 50% chance, no icd ? unconfirmed
                     if (config->judgement_of_wisdom && random<int>(0,1) == 1)
                         actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
@@ -878,12 +918,6 @@ namespace unit
                 if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
                     action = spellAction(make_shared<spell::DarkmoonDeath>());
                     action->cooldown = make_shared<cooldown::DarkmoonDeath>();
-                    actions.push_back(action);
-                }
-
-                if (instance->spell->dot && hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
-                    action = spellAction(make_shared<spell::ExtractNecromanticPower>());
-                    action->cooldown = make_shared<cooldown::ExtractNecromanticPower>();
                     actions.push_back(action);
                 }
             }
@@ -1191,6 +1225,10 @@ namespace unit
 
         bool isUseTrinket(Trinket trinket)
         {
+            if (trinket == TRINKET_SLIVER_PURE_ICE_HC)
+                return true;
+            if (trinket == TRINKET_SLIVER_PURE_ICE_NM)
+                return true;
             if (trinket == TRINKET_VOLATILE_POWER_HC)
                 return true;
             if (trinket == TRINKET_VOLATILE_POWER_NM)
@@ -1271,6 +1309,14 @@ namespace unit
             if (trinket == TRINKET_TWILIGHT_SERPENT) {
                 buff = make_shared<buff::TwilightSerpent>();
             }
+            else if (trinket == TRINKET_SLIVER_PURE_ICE_HC) {
+                actions.push_back(manaAction(1830, "Sliver of Pure Ice"));
+                actions.push_back(cooldownAction(cooldown));
+            }
+            else if (trinket == TRINKET_SLIVER_PURE_ICE_NM) {
+                actions.push_back(manaAction(1625, "Sliver of Pure Ice"));
+                actions.push_back(cooldownAction(cooldown));
+            }
             else if (trinket == TRINKET_VOLATILE_POWER_HC) {
                 buff = make_shared<buff::VolatilePowerHc>();
             }
@@ -1304,8 +1350,10 @@ namespace unit
                 cooldown->duration = 300;
             }
 
-            if (buff != NULL) {
+            if (buff != NULL)
                 actions.push_back(buffAction(buff));
+
+            if (actions.size() > 0) {
                 actions.push_back(cooldownAction(cooldown));
                 if (trinketSharesCD(trinket))
                     actions.push_back(cooldownAction(make_shared<cooldown::TrinketShared>(buff->duration)));

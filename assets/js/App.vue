@@ -1032,12 +1032,12 @@
                                             <span class="material-icons">&#xe145;</span>
                                         </div>
                                         <div class="menu">
-                                            <div v-for="timing in timings" @click="addTiming(timing.name)">
-                                                <template v-if="timingEnabled(timing.name)">
+                                            <template v-for="timing in timings">
+                                                <div v-if="timingEnabled(timing.name)" @click="addTiming(timing.name)">
                                                     <img :src="timing.icon">
                                                     <tooltip>{{ timing.title }}</tooltip>
-                                                </template>
-                                            </div>
+                                                </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
@@ -1690,7 +1690,7 @@
                 if (!items)
                     return [];
 
-                if (this.phase_filter)
+                if (this.phase_filter && this.phase_filter != "0")
                     items = items.filter(item => _.get(item, "phase", 1) <= this.phase_filter);
 
                 if (this.search_item)
@@ -1884,6 +1884,16 @@
 
                 var trinkets = [
                     {
+                        id: this.items.ids.TRINKET_SLIVER_PURE_ICE_HC,
+                        title: "Sliver of Pure Ice",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_SLIVER_PURE_ICE_NM,
+                        title: "Sliver of Pure Ice",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_VOLATILE_POWER_HC,
                         title: "Talisman of Volatile Power",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
@@ -1992,6 +2002,14 @@
                     buffs.push({id: constants.buffs.DYING_CURSE, name: "Dying Curse"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_ELEMENTAL_FOCUS_STONE))
                     buffs.push({id: constants.buffs.ALACRITY_ELEMENTS, name: "Elemental Focus Stone"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_DISLODGED_OBJECT_HC))
+                    buffs.push({id: constants.buffs.DISLODGED_OBJECT_HC, name: "Dislodged Foreign Object"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_DISLODGED_OBJECT_NM))
+                    buffs.push({id: constants.buffs.DISLODGED_OBJECT_NM, name: "Dislodged Foreign Object"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_HC))
+                    buffs.push({id: constants.buffs.NAMELESS_LICH_HC, name: "Phylactery of the Nameless Lich"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_NM))
+                    buffs.push({id: constants.buffs.NAMELESS_LICH_NM, name: "Phylactery of the Nameless Lich"});
 
                 buffs = _.sortBy(buffs, "name");
 
@@ -2487,7 +2505,7 @@
                 else
                     var gems = this.items.gems.filter(g => g.color != "m");
 
-                if (this.phase_filter)
+                if (this.phase_filter && this.phase_filter != "0")
                     gems = gems.filter(g => _.get(g, "phase", 1) <= this.phase_filter);
                 if (this.search_gem)
                     gems = gems.filter(g => g.title.toLowerCase().indexOf(this.search_gem.toLowerCase()) != -1);

@@ -17562,7 +17562,11 @@ __webpack_require__.r(__webpack_exports__);
     NOW_IS_THE_TIME: 60064,
     EMBRACE_SPIDER: 60492,
     DYING_CURSE: 60494,
-    ALACRITY_ELEMENTS: 65004
+    ALACRITY_ELEMENTS: 65004,
+    DISLODGED_OBJECT_HC: 71644,
+    DISLODGED_OBJECT_NM: 71601,
+    NAMELESS_LICH_HC: 71636,
+    NAMELESS_LICH_NM: 71605
   }
 });
 
@@ -17795,6 +17799,14 @@ var ids = (_ids = {
   TRINKET_SOLACE_DEFEATED_NM: 47041,
   TRINKET_REIGN_UNLIVING_HC: 47188,
   TRINKET_REIGN_UNLIVING_NM: 47182,
+  TRINKET_MURADINS_SPYGLASS_HC: 50345,
+  TRINKET_MURADINS_SPYGLASS_NM: 50340,
+  TRINKET_SLIVER_PURE_ICE_HC: 50346,
+  TRINKET_SLIVER_PURE_ICE_NM: 50339,
+  TRINKET_DISLODGED_OBJECT_HC: 50348,
+  TRINKET_DISLODGED_OBJECT_NM: 50353,
+  TRINKET_NAMELESS_LICH_HC: 50365,
+  TRINKET_NAMELESS_LICH_NM: 50360,
   // Enchants
   BLACK_MAGIC: 59625,
   HYPERSPEED_ACCELERATORS: 54999,
@@ -17806,35 +17818,266 @@ var ids = (_ids = {
   T9_SET: 8
 }, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "UDC_SET", 781), _defineProperty(_ids, "CUDC_SET", 536), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
 var equip = {
-  weapon: [// onyxia
+  weapon: [// icc
+  {
+    id: 50704,
+    title: "Rigormortis",
+    "int": 76,
+    sp: 836,
+    hit: 50,
+    haste: 66,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50068,
+    title: "Rigormortis",
+    "int": 67,
+    sp: 741,
+    hit: 59,
+    haste: 59,
+    phase: 4
+  }, {
+    id: 50608,
+    title: "Frozen Bonespike",
+    "int": 75,
+    spi: 66,
+    sp: 836,
+    crit: 50,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49968,
+    title: "Frozen Bonespike",
+    "int": 67,
+    spi: 59,
+    sp: 741,
+    crit: 59,
+    phase: 4
+  }, {
+    id: 50725,
+    title: "Dying Light",
+    "int": 176,
+    spi: 131,
+    sp: 837,
+    haste: 131,
+    sockets: ["y", "b", "r"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 50181,
+    title: "Dying Light",
+    "int": 156,
+    spi: 121,
+    sp: 741,
+    haste: 121,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 50648,
+    title: "Nibelung",
+    "int": 115,
+    sp: 837,
+    sockets: ["r", "b", "y"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 49992,
+    title: "Nibelung",
+    "int": 107,
+    sp: 741,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 51932,
+    title: "Frost Needle",
+    "int": 59,
+    sp: 741,
+    hit: 52,
+    haste: 56,
+    sockets: ["y"],
+    bonus: {
+      haste: 4
+    },
+    phase: 4
+  }, {
+    id: 50771,
+    title: "Frost Needle",
+    "int": 59,
+    sp: 657,
+    hit: 49,
+    haste: 54,
+    phase: 4
+  }, {
+    id: 51815,
+    title: "Bleak Coldarra Carver",
+    "int": 61,
+    sp: 741,
+    crit: 46,
+    hit: 69,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51788,
+    title: "Bleak Coldarra Carver",
+    "int": 61,
+    sp: 657,
+    crit: 47,
+    hit: 61,
+    phase: 4
+  }, {
+    id: 51910,
+    title: "Midnight Sun",
+    "int": 59,
+    sp: 741,
+    haste: 51,
+    mp5: 27,
+    sockets: ["y"],
+    bonus: {
+      haste: 4
+    },
+    phase: 4
+  }, {
+    id: 50793,
+    title: "Midnight Sun",
+    "int": 59,
+    sp: 657,
+    haste: 46,
+    mp5: 28,
+    phase: 4
+  }, {
+    id: 51828,
+    title: "Sister Svalna's Aether Staff",
+    "int": 138,
+    sp: 741,
+    crit: 111,
+    hit: 150,
+    sockets: ["r", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 51582,
+    title: "Sister Svalna's Aether Staff",
+    "int": 128,
+    sp: 657,
+    crit: 101,
+    hit: 136,
+    sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 51898,
+    title: "Mag'hari Chieftain's Staff",
+    "int": 111,
+    spi: 150,
+    sp: 741,
+    haste: 150,
+    sockets: ["b", "b", "b"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 50805,
+    title: "Mag'hari Chieftain's Staff",
+    "int": 101,
+    spi: 136,
+    sp: 657,
+    haste: 136,
+    sockets: ["b", "b"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 51887,
+    title: "Abracadaver",
+    "int": 138,
+    sp: 741,
+    hit: 111,
+    haste: 150,
+    sockets: ["r", "b", "y"],
+    bonus: {
+      haste: 8
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 50966,
+    title: "Abracadaver",
+    "int": 128,
+    sp: 657,
+    hit: 101,
+    haste: 136,
+    sockets: ["r", "b"],
+    bonus: {
+      haste: 6
+    },
+    twohand: true,
+    phase: 4
+  }, // onyxia
   {
     id: 49499,
     title: "Polished Azuresong Mageblade",
     "int": 63,
     sp: 621,
     crit: 51,
-    hit: 44
+    hit: 44,
+    phase: 3
   }, {
     id: 49494,
     title: "Honed Fang of the Mystics",
     "int": 58,
     sp: 621,
     crit: 46,
-    mp5: 29
+    mp5: 29,
+    phase: 3
   }, {
     id: 49298,
     title: "Glinting Azuresong Mageblade",
     "int": 55,
     sp: 550,
     crit: 45,
-    hit: 39
+    hit: 39,
+    phase: 3
   }, {
     id: 49304,
     title: "Sharpened Fang of the Mystics",
     "int": 52,
     sp: 550,
     crit: 40,
-    mp5: 26
+    mp5: 26,
+    phase: 3
   }, // totc
   {
     id: 47517,
@@ -17846,7 +18089,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 46980,
     title: "Blade of Tarasque",
@@ -17857,14 +18101,16 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 46979,
     title: "Blade of Tarasque",
     "int": 58,
     sp: 621,
     hit: 45,
-    haste: 58
+    haste: 58,
+    phase: 3
   }, {
     id: 47524,
     title: "Clemency",
@@ -17876,7 +18122,8 @@ var equip = {
     bonus: {
       sp: 7
     },
-    twohand: true
+    twohand: true,
+    phase: 3
   }, {
     id: 48708,
     title: "Spellstorm Blade",
@@ -17887,7 +18134,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47941,
     title: "Blade of the Silver Disciple",
@@ -17898,7 +18146,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47724,
     title: "Blade of the Silver Disciple",
@@ -17909,7 +18158,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47968,
     title: "Cold Convergence",
@@ -17921,7 +18171,8 @@ var equip = {
     bonus: {
       crit: 6
     },
-    twohand: true
+    twohand: true,
+    phase: 3
   }, {
     id: 47815,
     title: "Cold Convergence",
@@ -17933,7 +18184,8 @@ var equip = {
     bonus: {
       crit: 4
     },
-    twohand: true
+    twohand: true,
+    phase: 3
   }, {
     id: 47960,
     title: "Enlightenment",
@@ -17945,7 +18197,8 @@ var equip = {
     bonus: {
       haste: 8
     },
-    twohand: true
+    twohand: true,
+    phase: 3
   }, {
     id: 47743,
     title: "Enlightenment",
@@ -17957,7 +18210,8 @@ var equip = {
     bonus: {
       haste: 6
     },
-    twohand: true
+    twohand: true,
+    phase: 3
   }, // ulduar
   {
     id: 45620,
@@ -18283,19 +18537,74 @@ var equip = {
     crit: 30,
     haste: 23
   }],
-  off_hand: [// onyxia
+  off_hand: [// icc
+  {
+    id: 50719,
+    title: "Shadow Silk Spindle",
+    "int": 78,
+    sp: 119,
+    crit: 68,
+    haste: 68,
+    phase: 4
+  }, {
+    id: 50173,
+    title: "Shadow Silk Spindle",
+    "int": 69,
+    sp: 106,
+    crit: 60,
+    haste: 60,
+    phase: 4
+  }, {
+    id: 50635,
+    title: "Sundial of Eternal Dusk",
+    "int": 78,
+    spi: 68,
+    sp: 119,
+    haste: 68,
+    phase: 4
+  }, {
+    id: 50423,
+    title: "Sundial of Eternal Dusk",
+    "int": 69,
+    spi: 60,
+    sp: 106,
+    haste: 60,
+    phase: 4
+  }, {
+    id: 51922,
+    title: "Scourgelord's Baton",
+    "int": 69,
+    sp: 97,
+    crit: 45,
+    hit: 65,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50781,
+    title: "Scourgelord's Baton",
+    "int": 61,
+    sp: 94,
+    crit: 47,
+    hit: 57,
+    phase: 4
+  }, // onyxia
   {
     id: 49490,
     title: "Antediluvian Cornerstone Grimoire",
     "int": 66,
     spi: 46,
-    sp: 75
+    sp: 75,
+    phase: 3
   }, {
     id: 49308,
     title: "Antique Cornerstone Grimoire",
     "int": 57,
     spi: 40,
-    sp: 64
+    sp: 64,
+    phase: 3
   }, // totc
   {
     id: 47146,
@@ -18303,28 +18612,32 @@ var equip = {
     "int": 65,
     spi: 57,
     sp: 100,
-    crit: 57
+    crit: 57,
+    phase: 3
   }, {
     id: 47138,
     title: "Chalice of Searing Light",
     "int": 58,
     spi: 50,
     sp: 89,
-    crit: 50
+    crit: 50,
+    phase: 3
   }, {
     id: 47064,
     title: "Symbol of Transgression",
     "int": 65,
     sp: 100,
     crit: 57,
-    hit: 57
+    hit: 57,
+    phase: 3
   }, {
     id: 47053,
     title: "Symbol of Transgression",
     "int": 58,
     sp: 89,
     crit: 50,
-    hit: 50
+    hit: 50,
+    phase: 3
   }, {
     id: 47958,
     title: "Chalice of Benedictus",
@@ -18335,7 +18648,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47742,
     title: "Chalice of Benedictus",
@@ -18346,7 +18660,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 45617,
@@ -18431,21 +18746,104 @@ var equip = {
     sp: 39,
     haste: 32
   }],
-  ranged: [// totc
+  ranged: [// icc
+  {
+    id: 50684,
+    title: "Corpse-Impaling Spike",
+    "int": 44,
+    sp: 58,
+    crit: 38,
+    haste: 30,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50033,
+    title: "Corpse-Impaling Spike",
+    "int": 39,
+    sp: 60,
+    crit: 34,
+    haste: 34,
+    phase: 4
+  }, {
+    id: 50631,
+    title: "Nightmare Ender",
+    "int": 44,
+    spi: 30,
+    sp: 58,
+    crit: 38,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50472,
+    title: "Nightmare Ender",
+    "int": 39,
+    spi: 34,
+    sp: 60,
+    crit: 34,
+    phase: 4
+  }, {
+    id: 51852,
+    title: "Wand of Ruby Claret",
+    "int": 35,
+    sp: 51,
+    hit: 29,
+    haste: 28,
+    sockets: ["y"],
+    bonus: {
+      haste: 4
+    },
+    phase: 4
+  }, {
+    id: 51326,
+    title: "Wand of Ruby Claret",
+    "int": 31,
+    sp: 53,
+    hit: 33,
+    haste: 25,
+    phase: 4
+  }, {
+    id: 51838,
+    title: "Lana'thel's Bloody Nail",
+    "int": 35,
+    spi: 37,
+    sp: 51,
+    crit: 20,
+    sockets: ["b"],
+    bonus: {
+      spi: 4
+    },
+    phase: 4
+  }, {
+    id: 51553,
+    title: "Lana'thel's Bloody Nail",
+    "int": 31,
+    spi: 33,
+    sp: 53,
+    crit: 25,
+    phase: 4
+  }, // totc
   {
     id: 47922,
     title: "Rod of Imprisoned Souls",
     "int": 29,
     sp: 50,
     crit: 31,
-    haste: 24
+    haste: 24,
+    phase: 3
   }, {
     id: 47612,
     title: "Rod of Imprisoned Souls",
     "int": 26,
     sp: 44,
     crit: 28,
-    haste: 21
+    haste: 21,
+    phase: 3
   }, // ulduar
   {
     id: 45257,
@@ -18586,7 +18984,7 @@ var equip = {
     }
   }],
   head: [// icc
-  _defineProperty({
+  {
     id: 51281,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
@@ -18599,7 +18997,7 @@ var equip = {
       sp: 9
     },
     phase: 4
-  }, "phase", 4), _defineProperty({
+  }, {
     id: 51158,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
@@ -18612,7 +19010,7 @@ var equip = {
       sp: 9
     },
     phase: 4
-  }, "phase", 4), _defineProperty({
+  }, {
     id: 50276,
     itemset: ids.T10_SET,
     title: "Bloodmage Hood",
@@ -18625,7 +19023,79 @@ var equip = {
       sp: 9
     },
     phase: 4
-  }, "phase", 4), // onyxia
+  }, {
+    id: 50661,
+    title: "Corp'rethar Ceremonial Crown",
+    "int": 139,
+    spi: 114,
+    sp: 186,
+    crit: 106,
+    sockets: ["m", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51896,
+    title: "Thaumaturge's Crackling Cowl",
+    "int": 123,
+    spi: 100,
+    sp: 171,
+    haste: 84,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50807,
+    title: "Thaumaturge's Crackling Cowl",
+    "int": 109,
+    spi: 88,
+    sp: 149,
+    haste: 72,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51837,
+    title: "Cowl of Malefic Repose",
+    "int": 123,
+    sp: 162,
+    crit: 84,
+    haste: 108,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51554,
+    title: "Cowl of Malefic Repose",
+    "int": 109,
+    sp: 140,
+    crit: 72,
+    haste: 96,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50006,
+    title: "Corp'rethar Ceremonial Crown",
+    "int": 123,
+    spi: 100,
+    sp: 162,
+    crit: 92,
+    sockets: ["m", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, // onyxia
   {
     id: 49481,
     title: "Netherwind Crown",
@@ -18636,7 +19106,8 @@ var equip = {
     sockets: ["m", "y"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, {
     id: 49318,
     title: "Netherwind Hood",
@@ -18647,9 +19118,10 @@ var equip = {
     sockets: ["m", "y"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, // totc
-  _defineProperty({
+  {
     id: 47764,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
@@ -18662,7 +19134,7 @@ var equip = {
       sp: 9
     },
     phase: 3
-  }, "phase", 3), _defineProperty({
+  }, {
     id: 47771,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
@@ -18675,7 +19147,7 @@ var equip = {
       sp: 9
     },
     phase: 3
-  }, "phase", 3), _defineProperty({
+  }, {
     id: 47774,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Conquest",
@@ -18688,7 +19160,7 @@ var equip = {
       sp: 9
     },
     phase: 3
-  }, "phase", 3), // ulduar
+  }, // ulduar
   {
     id: 46129,
     itemset: ids.T8_SET,
@@ -19020,7 +19492,176 @@ var equip = {
     hit: 13,
     sockets: ["m", "y"]
   }],
-  neck: [// totc
+  neck: [// icc
+  {
+    id: 50658,
+    title: "Amulet of the Silent Eulogy",
+    "int": 78,
+    sp: 110,
+    hit: 60,
+    haste: 68,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50005,
+    title: "Amulet of the Silent Eulogy",
+    "int": 69,
+    sp: 97,
+    hit: 52,
+    haste: 60,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50724,
+    title: "Blood Queen's Crimson Choker",
+    "int": 78,
+    sp: 110,
+    crit: 65,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50182,
+    title: "Blood Queen's Crimson Choker",
+    "int": 69,
+    sp: 97,
+    crit: 57,
+    haste: 53,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50609,
+    title: "Bone Sentinel's Amulet",
+    "int": 78,
+    spi: 68,
+    sp: 110,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49975,
+    title: "Bone Sentinel's Amulet",
+    "int": 69,
+    spi: 60,
+    sp: 97,
+    haste: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50700,
+    title: "Holiday's Grace",
+    "int": 78,
+    sp: 110,
+    crit: 60,
+    mp5: 34,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50061,
+    title: "Holiday's Grace",
+    "int": 69,
+    sp: 97,
+    crit: 52,
+    mp5: 30,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51894,
+    title: "Soulcleave Pendant",
+    "int": 69,
+    sp: 97,
+    crit: 62,
+    haste: 49,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50809,
+    title: "Soulcleave Pendant",
+    "int": 61,
+    sp: 85,
+    crit: 55,
+    haste: 43,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51863,
+    title: "Pendant of Split Veins",
+    "int": 68,
+    sp: 97,
+    crit: 60,
+    hit: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51016,
+    title: "Pendant of Split Veins",
+    "int": 60,
+    sp: 85,
+    crit: 53,
+    hit: 45,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51871,
+    title: "Choker of Filthy Diamonds",
+    "int": 68,
+    sp: 97,
+    haste: 60,
+    mp5: 26,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51008,
+    title: "Choker of Filthy Diamonds",
+    "int": 60,
+    sp: 85,
+    haste: 53,
+    mp5: 23,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, // totc
   {
     id: 47144,
     title: "Wail of the Val'kyr",
@@ -19031,14 +19672,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47139,
     title: "Wail of the Val'kyr",
     "int": 58,
     sp: 89,
     crit: 58,
-    haste: 38
+    haste: 38,
+    phase: 3
   }, {
     id: 47957,
     title: "Darkbane Pendant",
@@ -19049,7 +19692,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, {
     id: 47747,
     title: "Darkbane Pendant",
@@ -19060,7 +19704,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, {
     id: 47930,
     title: "Amulet of Binding Elements",
@@ -19071,14 +19716,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, {
     id: 47619,
     title: "Amulet of Binding Elements",
     "int": 50,
     sp: 78,
     crit: 45,
-    mp5: 22
+    mp5: 22,
+    phase: 3
   }, // ulduar
   {
     id: 45133,
@@ -19379,6 +20026,78 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50643,
+    title: "Shoulders of Mercy Killing",
+    "int": 103,
+    sp: 140,
+    hit: 74,
+    haste: 90,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 49991,
+    title: "Shoulders of Mercy Killing",
+    "int": 92,
+    sp: 122,
+    hit: 64,
+    haste: 80,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51859,
+    title: "Shoulders of Ruinous Senility",
+    "int": 92,
+    sp: 122,
+    hit: 64,
+    haste: 80,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51020,
+    title: "Shoulders of Ruinous Senility",
+    "int": 81,
+    sp: 106,
+    hit: 55,
+    haste: 71,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51883,
+    title: "Bloodstained Surgeon's Shoulderguards",
+    "int": 92,
+    spi: 85,
+    sp: 122,
+    crit: 56,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50988,
+    title: "Bloodstained Surgeon's Shoulderguards",
+    "int": 81,
+    spi: 75,
+    sp: 106,
+    crit: 48,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
     },
     phase: 4
   }, // totc
@@ -19729,21 +20448,105 @@ var equip = {
       sp: 4
     }
   }],
-  back: [// onyxia
+  back: [// icc
+  {
+    id: 50628,
+    title: "Frostbinder's Shredded Cape",
+    "int": 78,
+    sp: 110,
+    crit: 68,
+    haste: 60,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50205,
+    title: "Frostbinder's Shredded Cape",
+    "int": 69,
+    sp: 97,
+    crit: 60,
+    haste: 52,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50668,
+    title: "Greatcloak of the Turned Champion",
+    "int": 78,
+    spi: 68,
+    sp: 110,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50014,
+    title: "Greatcloak of the Turned Champion",
+    "int": 69,
+    spi: 60,
+    sp: 97,
+    haste: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51826,
+    title: "Lich Wrappings",
+    "int": 69,
+    sp: 97,
+    hit: 48,
+    haste: 63,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 4
+  }, {
+    id: 51584,
+    title: "Lich Wrappings",
+    "int": 61,
+    sp: 85,
+    hit: 41,
+    haste: 56,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 4
+  }, {
+    id: 51382,
+    title: "Heartsick Mender's Cape",
+    "int": 61,
+    sp: 85,
+    haste: 45,
+    mp5: 27,
+    sockets: ["r"],
+    phase: 4
+  }, // onyxia
   {
     id: 49491,
     title: "Flowing Sapphiron Drape",
     "int": 54,
     sp: 89,
     crit: 50,
-    haste: 35
+    haste: 35,
+    phase: 3
   }, {
     id: 49307,
     title: "Fluttering Sapphiron Drape",
     "int": 48,
     sp: 78,
     crit: 44,
-    haste: 30
+    haste: 30,
+    phase: 3
   }, // totc
   {
     id: 47553,
@@ -19755,7 +20558,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47095,
     title: "Cloak of Displacement",
@@ -19766,14 +20570,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47089,
     title: "Cloak of Displacement",
     "int": 58,
     sp: 89,
     hit: 50,
-    haste: 50
+    haste: 50,
+    phase: 3
   }, {
     id: 47552,
     title: "Jaina's Radiance",
@@ -19784,7 +20590,8 @@ var equip = {
     sockets: ["r"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47238,
     title: "Maiden's Favor",
@@ -19795,14 +20602,16 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47225,
     title: "Maiden's Favor",
     "int": 58,
     sp: 89,
     crit: 50,
-    mp5: 25
+    mp5: 25,
+    phase: 3
   }, {
     id: 46977,
     title: "Shawl of the Refreshing Winds",
@@ -19813,14 +20622,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 46976,
     title: "Shawl of the Refreshing Winds",
     "int": 58,
     spi: 50,
     sp: 89,
-    haste: 50
+    haste: 50,
+    phase: 3
   }, // ulduar
   {
     id: 45493,
@@ -20062,6 +20873,102 @@ var equip = {
       sp: 7
     },
     phase: 4
+  }, {
+    id: 50629,
+    title: "Robe of the Waking Nightmare",
+    "int": 139,
+    sp: 186,
+    crit: 122,
+    hit: 98,
+    sockets: ["r", "b", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50418,
+    title: "Robe of the Waking Nightmare",
+    "int": 123,
+    sp: 162,
+    crit: 108,
+    hit: 84,
+    sockets: ["r", "b", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50717,
+    title: "Sanguine Silk Robes",
+    "int": 139,
+    spi: 122,
+    sp: 186,
+    haste: 98,
+    sockets: ["b", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50172,
+    title: "Sanguine Silk Robes",
+    "int": 123,
+    spi: 108,
+    sp: 162,
+    haste: 84,
+    sockets: ["b", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51813,
+    title: "Robes of Azure Downfall",
+    "int": 115,
+    sp: 162,
+    crit: 87,
+    haste: 108,
+    sockets: ["y", "r", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51790,
+    title: "Robes of Azure Downfall",
+    "int": 101,
+    sp: 140,
+    crit: 76,
+    haste: 95,
+    sockets: ["y", "r", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51851,
+    title: "Bloodsoul Raiment",
+    "int": 123,
+    spi: 90,
+    sp: 162,
+    haste: 102,
+    sockets: ["r", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51379,
+    title: "Bloodsoul Raiment",
+    "int": 109,
+    spi: 78,
+    sp: 140,
+    haste: 90,
+    sockets: ["r", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
   }, // totc
   {
     id: 47766,
@@ -20112,7 +21019,8 @@ var equip = {
     sockets: ["b", "r", "y"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, {
     id: 46992,
     title: "Flowing Vestments of Ascent",
@@ -20123,7 +21031,8 @@ var equip = {
     sockets: ["r", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47129,
     title: "Skyweaver Robes",
@@ -20134,7 +21043,8 @@ var equip = {
     sockets: ["b", "y", "r"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, {
     id: 47126,
     title: "Skyweaver Robes",
@@ -20145,7 +21055,8 @@ var equip = {
     sockets: ["b", "y"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47974,
     title: "Vestments of the Sleepless",
@@ -20156,7 +21067,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47838,
     title: "Vestments of the Sleepless",
@@ -20167,7 +21079,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 46130,
@@ -20551,7 +21464,100 @@ var equip = {
     "int": 13,
     q: "rare"
   }],
-  wrist: [// totc
+  wrist: [// icc
+  {
+    id: 50651,
+    title: "The Lady's Brittle Bracers",
+    "int": 78,
+    sp: 110,
+    crit: 73,
+    hit: 52,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49994,
+    title: "The Lady's Brittle Bracers",
+    "int": 69,
+    sp: 97,
+    crit: 65,
+    hit: 45,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50686,
+    title: "Death Surgeon's Sleeves",
+    "int": 78,
+    spi: 68,
+    sp: 110,
+    crit: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50032,
+    title: "Death Surgeon's Sleeves",
+    "int": 69,
+    spi: 60,
+    sp: 97,
+    crit: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51872,
+    title: "Ether-Soaked Bracers",
+    "int": 69,
+    sp: 97,
+    hit: 38,
+    haste: 69,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51007,
+    title: "Ether-Soaked Bracers",
+    "int": 61,
+    sp: 94,
+    hit: 40,
+    haste: 61,
+    phase: 4
+  }, {
+    id: 51918,
+    title: "Bracers of Dark Blessings",
+    "int": 69,
+    spi: 58,
+    sp: 97,
+    crit: 53,
+    sockets: ["b"],
+    bonus: {
+      spi: 4
+    },
+    phase: 4
+  }, {
+    id: 50785,
+    title: "Bracers of Dark Blessings",
+    "int": 61,
+    spi: 51,
+    sp: 85,
+    crit: 47,
+    sockets: ["b"],
+    bonus: {
+      spi: 4
+    },
+    phase: 4
+  }, // totc
   {
     id: 47208,
     title: "Armbands of the Ashen Saint",
@@ -20562,14 +21568,16 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47203,
     title: "Armbands of the Ashen Saint",
     "int": 58,
     spi: 50,
     sp: 89,
-    haste: 50
+    haste: 50,
+    phase: 3
   }, {
     id: 47143,
     title: "Bindings of Dark Essence",
@@ -20580,14 +21588,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47141,
     title: "Bindings of Dark Essence",
     "int": 58,
     sp: 89,
     crit: 58,
-    hit: 38
+    hit: 38,
+    phase: 3
   }, {
     id: 47927,
     title: "Felspark Bindings",
@@ -20598,14 +21608,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47663,
     title: "Felspark Bindings",
     "int": 51,
     sp: 78,
     hit: 36,
-    haste: 50
+    haste: 50,
+    phase: 3
   }, // ulduar
   {
     id: 45275,
@@ -20825,6 +21837,102 @@ var equip = {
       sp: 5
     },
     phase: 4
+  }, {
+    id: 50663,
+    title: "Gunship Captain's Mittens",
+    "int": 103,
+    sp: 140,
+    hit: 74,
+    haste: 90,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50011,
+    title: "Gunship Captain's Mittens",
+    "int": 92,
+    sp: 122,
+    hit: 64,
+    haste: 80,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50722,
+    title: "San'layn Ritualist Gloves",
+    "int": 103,
+    spi: 74,
+    sp: 140,
+    haste: 90,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50176,
+    title: "San'layn Ritualist Gloves",
+    "int": 92,
+    spi: 64,
+    sp: 122,
+    haste: 80,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51921,
+    title: "Sister's Handshrouds",
+    "int": 92,
+    sp: 122,
+    hit: 80,
+    haste: 64,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50782,
+    title: "Sister's Handshrouds",
+    "int": 81,
+    sp: 106,
+    hit: 71,
+    haste: 55,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51874,
+    title: "Gloves of Broken Fingers",
+    "int": 92,
+    spi: 54,
+    sp: 122,
+    haste: 86,
+    sockets: ["b", "r"],
+    bonus: {
+      spi: 6
+    },
+    phase: 4
+  }, {
+    id: 51005,
+    title: "Gloves of Broken Fingers",
+    "int": 81,
+    spi: 46,
+    sp: 106,
+    haste: 76,
+    sockets: ["b", "r"],
+    bonus: {
+      spi: 6
+    },
+    phase: 4
   }, // totc
   {
     id: 47763,
@@ -20875,7 +21983,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47235,
     title: "Gloves of the Lifeless Touch",
@@ -20886,7 +21995,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47956,
     title: "Gloves of Looming Shadow",
@@ -20897,7 +22007,8 @@ var equip = {
     sockets: ["y", "r"],
     bonus: {
       haste: 6
-    }
+    },
+    phase: 3
   }, {
     id: 47745,
     title: "Gloves of Looming Shadow",
@@ -20908,7 +22019,8 @@ var equip = {
     sockets: ["y", "r"],
     bonus: {
       haste: 6
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 46132,
@@ -21311,7 +22423,104 @@ var equip = {
     "int": 10,
     q: "rare"
   }],
-  waist: [// totc
+  waist: [// icc
+  {
+    id: 50613,
+    title: "Crushing Coldwraith Belt",
+    "int": 103,
+    sp: 140,
+    crit: 74,
+    haste: 90,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 49978,
+    title: "Crushing Coldwraith Belt",
+    "int": 92,
+    sp: 122,
+    crit: 64,
+    haste: 80,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50702,
+    title: "Lingering Illness",
+    "int": 103,
+    spi: 90,
+    sp: 140,
+    crit: 74,
+    sockets: ["y", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50063,
+    title: "Lingering Illness",
+    "int": 92,
+    spi: 80,
+    sp: 122,
+    crit: 64,
+    sockets: ["y", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51862,
+    title: "Cauterized Cord",
+    "int": 92,
+    sp: 122,
+    crit: 86,
+    haste: 54,
+    sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51017,
+    title: "Cauterized Cord",
+    "int": 81,
+    sp: 106,
+    crit: 76,
+    haste: 46,
+    sockets: ["y", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51930,
+    title: "Cord of the Patronizing Practitioner",
+    "int": 92,
+    spi: 62,
+    sp: 122,
+    haste: 78,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50773,
+    title: "Cord of the Patronizing Practitioner",
+    "int": 81,
+    spi: 54,
+    sp: 106,
+    haste: 68,
+    sockets: ["b", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, // totc
   {
     id: 47084,
     title: "Cord of Biting Cold",
@@ -21322,7 +22531,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47081,
     title: "Cord of Biting Cold",
@@ -21333,7 +22543,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 46973,
     title: "Cord of the Tenebrous Mist",
@@ -21344,7 +22555,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 46972,
     title: "Cord of the Tenebrous Mist",
@@ -21355,7 +22567,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47921,
     title: "Icehowl Cinch",
@@ -21366,7 +22579,8 @@ var equip = {
     sockets: ["y", "r"],
     bonus: {
       haste: 6
-    }
+    },
+    phase: 3
   }, {
     id: 47617,
     title: "Icehowl Cinch",
@@ -21377,7 +22591,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       haste: 4
-    }
+    },
+    phase: 3
   }, {
     id: 47977,
     title: "Cinch of the Undying",
@@ -21388,7 +22603,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, {
     id: 47837,
     title: "Cinch of the Undying",
@@ -21399,7 +22615,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 45508,
@@ -21645,6 +22862,78 @@ var equip = {
       sp: 7
     },
     phase: 4
+  }, {
+    id: 50694,
+    title: "Plaguebringer's Stained Pants",
+    "int": 139,
+    sp: 185,
+    hit: 104,
+    haste: 116,
+    sockets: ["r", "b", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50056,
+    title: "Plaguebringer's Stained Pants",
+    "int": 123,
+    sp: 171,
+    hit: 98,
+    haste: 102,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51823,
+    title: "Leggings of the Refracted Mind",
+    "int": 115,
+    spi: 92,
+    sp: 171,
+    crit: 108,
+    sockets: ["y", "r", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51777,
+    title: "Leggings of the Refracted Mind",
+    "int": 101,
+    spi: 80,
+    sp: 149,
+    crit: 96,
+    sockets: ["y", "r", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 51882,
+    title: "Kilt of Untreated Wounds",
+    "int": 123,
+    sp: 162,
+    crit: 96,
+    haste: 96,
+    sockets: ["y", "y", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 50990,
+    title: "Kilt of Untreated Wounds",
+    "int": 109,
+    sp: 140,
+    crit: 84,
+    haste: 84,
+    sockets: ["y", "y", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
   }, // totc
   {
     id: 47765,
@@ -21695,7 +22984,8 @@ var equip = {
     sockets: ["r", "b", "y"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, {
     id: 47187,
     title: "Leggings of the Deepening Void",
@@ -21706,7 +22996,8 @@ var equip = {
     sockets: ["r", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47062,
     title: "Leggings of the Soothing Touch",
@@ -21717,7 +23008,8 @@ var equip = {
     sockets: ["r", "b", "b"],
     bonus: {
       sp: 9
-    }
+    },
+    phase: 3
   }, {
     id: 47051,
     title: "Leggings of the Soothing Touch",
@@ -21728,7 +23020,8 @@ var equip = {
     sockets: ["b", "b"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47931,
     title: "Leggings of the Demonic Messenger",
@@ -21739,7 +23032,8 @@ var equip = {
     sockets: ["y", "r"],
     bonus: {
       spi: 6
-    }
+    },
+    phase: 3
   }, {
     id: 47620,
     title: "Leggings of the Demonic Messenger",
@@ -21750,7 +23044,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       spi: 4
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 46133,
@@ -22112,7 +23407,80 @@ var equip = {
       sp: 2
     }
   }],
-  feet: [// totc
+  feet: [// icc
+  {
+    id: 50699,
+    title: "Plague Scientist's Boots",
+    "int": 103,
+    sp: 140,
+    crit: 74,
+    haste: 90,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50062,
+    title: "Plague Scientist's Boots",
+    "int": 92,
+    sp: 122,
+    crit: 64,
+    haste: 80,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 51850,
+    title: "Pale Corpse Boots",
+    "int": 92,
+    spi: 64,
+    sp: 122,
+    crit: 80,
+    sockets: ["b", "y"],
+    bonus: {
+      spi: 6
+    },
+    phase: 4
+  }, {
+    id: 51380,
+    title: "Pale Corpse Boots",
+    "int": 81,
+    spi: 55,
+    sp: 106,
+    crit: 71,
+    sockets: ["b", "y"],
+    bonus: {
+      spi: 6
+    },
+    phase: 4
+  }, {
+    id: 51899,
+    title: "Icecrown Spire Sandals",
+    "int": 92,
+    sp: 122,
+    crit: 86,
+    hit: 54,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50804,
+    title: "Icecrown Spire Sandals",
+    "int": 81,
+    sp: 106,
+    crit: 76,
+    hit: 46,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, // totc
   {
     id: 47097,
     title: "Boots of the Mourning Widow",
@@ -22123,7 +23491,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47092,
     title: "Boots of the Mourning Widow",
@@ -22134,7 +23503,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47205,
     title: "Footpads of the Icy Floe",
@@ -22145,7 +23515,8 @@ var equip = {
     sockets: ["b", "r"],
     bonus: {
       sp: 7
-    }
+    },
+    phase: 3
   }, {
     id: 47194,
     title: "Footpads of the Icy Floe",
@@ -22156,7 +23527,8 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 49234,
     title: "Boots of the Grieving Soul",
@@ -22167,14 +23539,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       "int": 4
-    }
+    },
+    phase: 3
   }, {
     id: 49231,
     title: "Boots of the Grieving Soul",
     "int": 68,
     spi: 52,
     sp: 105,
-    crit: 64
+    crit: 64,
+    phase: 3
   }, {
     id: 47940,
     title: "Sandals of the Silver Magus",
@@ -22185,7 +23559,8 @@ var equip = {
     sockets: ["y", "r"],
     bonus: {
       crit: 6
-    }
+    },
+    phase: 3
   }, {
     id: 47721,
     title: "Sandals of the Silver Magus",
@@ -22196,7 +23571,8 @@ var equip = {
     sockets: ["y"],
     bonus: {
       crit: 4
-    }
+    },
+    phase: 3
   }, // ulduar
   {
     id: 45135,
@@ -22414,7 +23790,224 @@ var equip = {
       sp: 2
     }
   }],
-  finger: [// totc
+  finger: [// icc
+  {
+    id: 50714,
+    title: "Valanar's Other Signet Ring",
+    "int": 78,
+    sp: 110,
+    hit: 44,
+    haste: 78,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50170,
+    title: "Valanar's Other Signet Ring",
+    "int": 69,
+    sp: 97,
+    hit: 38,
+    haste: 69,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50664,
+    title: "Ring of Rapid Ascent",
+    "int": 78,
+    sp: 110,
+    crit: 68,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50008,
+    title: "Ring of Rapid Ascent",
+    "int": 69,
+    sp: 97,
+    crit: 60,
+    haste: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50644,
+    title: "Ring of Maddening Whispers",
+    "int": 78,
+    spi: 68,
+    sp: 110,
+    crit: 60,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49990,
+    title: "Ring of Maddening Whispers",
+    "int": 69,
+    spi: 60,
+    sp: 97,
+    crit: 52,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50636,
+    title: "Memory of Malygos",
+    "int": 78,
+    spi: 68,
+    sp: 110,
+    haste: 60,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50424,
+    title: "Memory of Malygos",
+    "int": 69,
+    spi: 60,
+    sp: 97,
+    haste: 52,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50610,
+    title: "Marrowgar's Frigid Eye",
+    "int": 78,
+    sp: 110,
+    haste: 68,
+    mp5: 30,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49967,
+    title: "Marrowgar's Frigid Eye",
+    "int": 69,
+    sp: 97,
+    haste: 60,
+    mp5: 26,
+    sockets: ["y"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50614,
+    title: "Loop of the Endless Labyrinth",
+    "int": 78,
+    sp: 110,
+    crit: 73,
+    hit: 52,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 49977,
+    title: "Loop of the Endless Labyrinth",
+    "int": 69,
+    sp: 97,
+    crit: 65,
+    hit: 45,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50720,
+    title: "Incarnadine Band of Mending",
+    "int": 78,
+    sp: 110,
+    crit: 60,
+    mp5: 34,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50174,
+    title: "Incarnadine Band of Mending",
+    "int": 69,
+    sp: 97,
+    crit: 52,
+    mp5: 30,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51849,
+    title: "Cerise Coiled Ring",
+    "int": 70,
+    sp: 97,
+    crit: 67,
+    haste: 41,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51381,
+    title: "Cerise Coiled Ring",
+    "int": 62,
+    sp: 85,
+    crit: 59,
+    haste: 35,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 51884,
+    title: "Signet of Putrefaction",
+    "int": 69,
+    sp: 97,
+    haste: 52,
+    mp5: 30,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50986,
+    title: "Signet of Putrefaction",
+    "int": 61,
+    sp: 85,
+    haste: 45,
+    mp5: 27,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, // totc
   {
     id: 47237,
     title: "Band of Deplorable Violence",
@@ -22425,14 +24018,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47054,
     title: "Band of Deplorable Violence",
     "int": 58,
     spi: 44,
     sp: 89,
-    crit: 54
+    crit: 54,
+    phase: 3
   }, {
     id: 47224,
     title: "Ring of the Darkmender",
@@ -22443,14 +24038,16 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47223,
     title: "Ring of the Darkmender",
     "int": 58,
     sp: 89,
     haste: 50,
-    mp5: 25
+    mp5: 25,
+    phase: 3
   }, {
     id: 47928,
     title: "Firestorm Ring",
@@ -22461,14 +24058,16 @@ var equip = {
     sockets: ["r"],
     bonus: {
       sp: 5
-    }
+    },
+    phase: 3
   }, {
     id: 47618,
     title: "Firestorm Ring",
     "int": 52,
     sp: 78,
     crit: 36,
-    hit: 50
+    hit: 50,
+    phase: 3
   }, // ulduar
   {
     id: 45495,
@@ -22804,33 +24403,82 @@ var equip = {
     crit: 22,
     haste: 31
   }],
-  trinket: [// totc
+  trinket: [// icc
+  {
+    id: ids.TRINKET_DISLODGED_OBJECT_HC,
+    title: "Dislodged Foreign Object",
+    haste: 170,
+    phase: 4
+  }, {
+    id: ids.TRINKET_DISLODGED_OBJECT_NM,
+    title: "Dislodged Foreign Object",
+    haste: 155,
+    phase: 4
+  }, {
+    id: ids.TRINKET_NAMELESS_LICH_HC,
+    title: "Phylactery of the Nameless Lich",
+    crit: 172,
+    phase: 4
+  }, {
+    id: ids.TRINKET_NAMELESS_LICH_NM,
+    title: "Phylactery of the Nameless Lich",
+    crit: 152,
+    phase: 4
+  }, {
+    id: ids.TRINKET_MURADINS_SPYGLASS_HC,
+    title: "Muradin's Spyglass",
+    crit: 152,
+    phase: 4
+  }, {
+    id: ids.TRINKET_MURADINS_SPYGLASS_NM,
+    title: "Muradin's Spyglass",
+    crit: 131,
+    phase: 4
+  }, {
+    id: ids.TRINKET_SLIVER_PURE_ICE_HC,
+    title: "Sliver of Pure Ice",
+    sp: 178,
+    use: true,
+    phase: 4
+  }, {
+    id: ids.TRINKET_SLIVER_PURE_ICE_NM,
+    title: "Sliver of Pure Ice",
+    sp: 158,
+    use: true,
+    phase: 4
+  }, // totc
   {
     id: ids.TRINKET_REIGN_UNLIVING_HC,
     title: "Reign of the Unliving",
-    sp: 168
+    sp: 168,
+    phase: 3
   }, {
     id: ids.TRINKET_REIGN_UNLIVING_NM,
     title: "Reign of the Unliving",
-    sp: 150
+    sp: 150,
+    phase: 3
   }, {
     id: ids.TRINKET_SOLACE_DEFEATED_HC,
     title: "Solace of the Defeated",
-    sp: 168
+    sp: 168,
+    phase: 3
   }, {
     id: ids.TRINKET_SOLACE_DEFEATED_NM,
     title: "Solace of the Defeated",
-    sp: 150
+    sp: 150,
+    phase: 3
   }, {
     id: ids.TRINKET_VOLATILE_POWER_HC,
     title: "Talisman of Volatile Power",
     crit: 126,
-    use: true
+    use: true,
+    phase: 3
   }, {
     id: ids.TRINKET_VOLATILE_POWER_NM,
     title: "Talisman of Volatile Power",
     crit: 114,
-    use: true
+    use: true,
+    phase: 3
   }, // ulduar
   {
     id: ids.TRINKET_SCALE_FATES,
@@ -24053,7 +25701,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var slot = this.equipSlotToItemSlot(this.active_slot);
       var items = this.items.equip[slot];
       if (!items) return [];
-      if (this.phase_filter) items = items.filter(function (item) {
+      if (this.phase_filter && this.phase_filter != "0") items = items.filter(function (item) {
         return _.get(item, "phase", 1) <= _this.phase_filter;
       });
       if (this.search_item) items = items.filter(function (item) {
@@ -24225,6 +25873,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var trinkets = [{
+        id: this.items.ids.TRINKET_SLIVER_PURE_ICE_HC,
+        title: "Sliver of Pure Ice",
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg"
+      }, {
+        id: this.items.ids.TRINKET_SLIVER_PURE_ICE_NM,
+        title: "Sliver of Pure Ice",
+        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg"
+      }, {
         id: this.items.ids.TRINKET_VOLATILE_POWER_HC,
         title: "Talisman of Volatile Power",
         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg"
@@ -24344,6 +26000,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.isEquipped("trinket", this.items.ids.TRINKET_ELEMENTAL_FOCUS_STONE)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.ALACRITY_ELEMENTS,
         name: "Elemental Focus Stone"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_DISLODGED_OBJECT_HC)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.DISLODGED_OBJECT_HC,
+        name: "Dislodged Foreign Object"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_DISLODGED_OBJECT_NM)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.DISLODGED_OBJECT_NM,
+        name: "Dislodged Foreign Object"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_HC)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.NAMELESS_LICH_HC,
+        name: "Phylactery of the Nameless Lich"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_NM)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.NAMELESS_LICH_NM,
+        name: "Phylactery of the Nameless Lich"
       });
       buffs = _.sortBy(buffs, "name");
       return buffs;
@@ -24930,7 +26602,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });else var gems = this.items.gems.filter(function (g) {
         return g.color != "m";
       });
-      if (this.phase_filter) gems = gems.filter(function (g) {
+      if (this.phase_filter && this.phase_filter != "0") gems = gems.filter(function (g) {
         return _.get(g, "phase", 1) <= _this9.phase_filter;
       });
       if (this.search_gem) gems = gems.filter(function (g) {
@@ -26452,6 +28124,15 @@ __webpack_require__.r(__webpack_exports__);
         color: "#ddd"
       }],
       trinkets: [{
+        title: "Surge of Power",
+        color: "#ddd"
+      }, {
+        title: "Siphoned Power",
+        color: "#ddd"
+      }, {
+        title: "Cultivated Power",
+        color: "#ddd"
+      }, {
         title: "Energized",
         color: "#ddd"
       }, {
@@ -26515,6 +28196,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Mana Potion",
         color: "#00d"
+      }, {
+        title: "Sliver of Pure Ice",
+        color: "rgba(85,255,85)"
       }]
     };
   },
@@ -30746,12 +32430,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_507, [_hoisted_508, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_509, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.timings, function (timing) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$options.timingEnabled(timing.name) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: 0,
       onClick: function onClick($event) {
         return $options.addTiming(timing.name);
       }
-    }, [$options.timingEnabled(timing.name) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-      key: 0
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: timing.icon
     }, null, 8
@@ -30767,11 +32450,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
     }, 1024
     /* DYNAMIC_SLOTS */
-    )], 64
-    /* STABLE_FRAGMENT */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8
+    )], 8
     /* PROPS */
-    , _hoisted_510);
+    , _hoisted_510)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    /* STABLE_FRAGMENT */
+    );
   }), 256
   /* UNKEYED_FRAGMENT */
   ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_512, [_hoisted_513, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_514, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.profiles, function (profile, index) {

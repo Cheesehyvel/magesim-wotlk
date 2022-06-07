@@ -73,6 +73,9 @@
                     { title: "Quad Core", color: "#ddd" },
                 ],
                 trinkets: [
+                    { title: "Surge of Power", color: "#ddd" },
+                    { title: "Siphoned Power", color: "#ddd" },
+                    { title: "Cultivated Power", color: "#ddd" },
                     { title: "Energized", color: "#ddd" },
                     { title: "Volatility", color: "#ddd" },
                     { title: "Scale of Fates", color: "#ddd" },
@@ -96,6 +99,7 @@
                 mana_gains: [
                     { title: "Mana Gem", color: "rgba(85,255,85)" },
                     { title: "Mana Potion", color: "#00d" },
+                    { title: "Sliver of Pure Ice", color: "rgba(85,255,85)" },
                 ]
             }
         },
