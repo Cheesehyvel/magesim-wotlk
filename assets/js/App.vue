@@ -1162,9 +1162,9 @@
                                         </template>
                                     </td>
                                     <td>
-                                        <template v-if="gems.hasOwnProperty(slot)">
-                                            <template v-for="(gem_id, index) in gems[slot]" v-if="gem_id">
-                                                <span v-if="index > 0">,</span>
+                                        <template v-for="(gem_id, index) in gems[slot]" v-if="gems.hasOwnProperty(slot)">
+                                            <template v-if="gem_id">
+                                                <span v-if="index > 0">, </span>
                                                 <a :href="itemUrl(gem_id)" target="_blank" :class="['gem-color', 'color-'+getGem(gem_id).color]">
                                                     {{ getGem(gem_id).title }}
                                                 </a>
