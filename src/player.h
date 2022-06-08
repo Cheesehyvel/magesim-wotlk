@@ -1441,6 +1441,30 @@ namespace unit
             return action;
         }
 
+        bool canBlast(shared_ptr<State> state)
+        {
+            // Lets assume we cant blast for 30+ seconds to save computing time
+            if (state->timeRemain() > 30)
+                return false;
+
+            shared_ptr<spell::Spell> ab = make_shared<spell::ArcaneBlast>();
+            double cast_time = castTime(ab);
+            double base_cost = baseManaCost(ab);
+            double cur_mana = mana;
+            double t = state->t;
+            int stacks = buffStacks(buff::ARCANE_BLAST);
+
+            for (t = state->t; t<=state->duration; t+= cast_time) {
+                if (stacks < 4)
+                    stacks++;
+                cur_mana-= base_cost * 1.75 * stacks;
+                if (cur_mana < 0)
+                    return false;
+            }
+
+            return true;
+        }
+
         shared_ptr<action::Action> preCombat(shared_ptr<State> state)
         {
             shared_ptr<action::Action> action = NULL;
@@ -1509,7 +1533,9 @@ namespace unit
                 if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
                     ab_stacks = 3;
 
-                if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (hasBuff(buff::MISSILE_BARRAGE) || config->rot_ab_no_mb_mana >= manaPercent()))
+                if (canBlast(state))
+                    action = spellAction(make_shared<spell::ArcaneBlast>());
+                else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (hasBuff(buff::MISSILE_BARRAGE) || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
                 else
                     action = spellAction(make_shared<spell::ArcaneBlast>());
@@ -1522,7 +1548,9 @@ namespace unit
                     ab_stacks = 3;
 
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
-                    if (hasBuff(buff::MISSILE_BARRAGE))
+                    if (canBlast(state))
+                        action = spellAction(make_shared<spell::ArcaneBlast>());
+                    else if (hasBuff(buff::MISSILE_BARRAGE))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
                     else if (config->rot_ab_no_mb_mana >= manaPercent())
                         action = spellAction(make_shared<spell::ArcaneBarrage>());
