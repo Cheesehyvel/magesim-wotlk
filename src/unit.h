@@ -199,7 +199,7 @@ namespace unit
 
         double manaPerTick(shared_ptr<State> state)
         {
-            return manaPerSecond(state) * 2;
+            return manaPerSecond(state) * MANA_TICK_T;
         }
 
         double gcd(double t = 1.5)

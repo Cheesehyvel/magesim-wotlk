@@ -1,3 +1,5 @@
+#define MANA_TICK_T 1.0
+
 enum Rotation : int
 {
     ROTATION_ST_FROSTFIRE = 0,

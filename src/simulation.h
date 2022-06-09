@@ -364,7 +364,7 @@ public:
         shared_ptr<Event> event(new Event());
         event->type = EVENT_MANA_REGEN;
         event->unit = unit;
-        event->t = 2;
+        event->t = MANA_TICK_T;
         push(event);
     }
 
