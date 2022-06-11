@@ -684,6 +684,11 @@
                                         <label>AB without Missile Barrage above mana %</label>
                                         <input type="text" v-model.number="config.rot_ab_no_mb_mana">
                                     </div>
+                                    <div class="form-item">
+                                        <label><input type="checkbox" v-model="config.rot_ab_ap">
+                                            <span>Always cast AB during Arcane Power</span>
+                                        </label>
+                                    </div>
                                 </template>
                                 <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
                                     <label><input type="checkbox" v-model="config.rot_ice_lance">
@@ -1385,6 +1390,7 @@
                 rotation: constants.rotations.ROTATION_ST_AB_AM,
                 rot_ab3_mana: 0,
                 rot_ab_no_mb_mana: 100,
+                rot_ab_ap: false,
                 rot_ice_lance: false,
 
                 timings: Array(),

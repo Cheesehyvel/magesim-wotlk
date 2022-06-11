@@ -1533,7 +1533,7 @@ namespace unit
                 if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
                     ab_stacks = 3;
 
-                if (canBlast(state))
+                if (canBlast(state) || config->rot_ab_ap && hasBuff(buff::ARCANE_POWER))
                     action = spellAction(make_shared<spell::ArcaneBlast>());
                 else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (hasBuff(buff::MISSILE_BARRAGE) || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
@@ -1548,7 +1548,7 @@ namespace unit
                     ab_stacks = 3;
 
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
-                    if (canBlast(state))
+                    if (canBlast(state) || config->rot_ab_ap && hasBuff(buff::ARCANE_POWER))
                         action = spellAction(make_shared<spell::ArcaneBlast>());
                     else if (hasBuff(buff::MISSILE_BARRAGE))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
