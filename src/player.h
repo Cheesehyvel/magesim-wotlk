@@ -963,14 +963,13 @@ namespace unit
             }
 
             if (talents.hot_streak && !instance->spell->dot) {
-                double hot_streaked = false;
-
                 if (instance->spell->id == spell::FIREBALL ||
                     instance->spell->id == spell::SCORCH ||
                     instance->spell->id == spell::LIVING_BOMB_EXPLOSION ||
                     instance->spell->id == spell::FROSTFIRE_BOLT ||
                     instance->spell->id == spell::FIRE_BLAST)
                 {
+                    double hot_streaked = false;
                     if (instance->result == spell::CRIT) {
                         if (on_hot_streak)
                             actions.push_back(buffAction(make_shared<buff::HotStreak>()));
