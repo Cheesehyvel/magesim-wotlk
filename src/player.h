@@ -968,7 +968,8 @@ namespace unit
                 if (instance->spell->id == spell::FIREBALL ||
                     instance->spell->id == spell::SCORCH ||
                     instance->spell->id == spell::LIVING_BOMB_EXPLOSION ||
-                    instance->spell->id == spell::FROSTFIRE_BOLT)
+                    instance->spell->id == spell::FROSTFIRE_BOLT ||
+                    instance->spell->id == spell::FIRE_BLAST)
                 {
                     if (instance->result == spell::CRIT) {
                         if (on_hot_streak)
@@ -976,9 +977,8 @@ namespace unit
                         else
                             hot_streaked = true;
                     }
+                    on_hot_streak = hot_streaked;
                 }
-
-                on_hot_streak = hot_streaked;
             }
 
             if (talents.fingers_of_frost) {
