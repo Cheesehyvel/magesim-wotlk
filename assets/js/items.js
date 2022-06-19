@@ -40,8 +40,8 @@ var ids = {
     LIGHTWEAVE_EMBROIDERY: 55642,
     DARKGLOW_EMBROIDERY: 55769,
     // Item sets
-    T10_SET: 8, phase: 483,
-    T9_SET: 8, phase: 344,
+    T10_SET: 483,
+    T9_SET: 344,
     T8_SET: 836,
     T7_SET: 803,
     T6_SET: 671,
@@ -874,10 +874,10 @@ var equip = {
         // ulduar
         { id: ids.TRINKET_SCALE_FATES, title: "Scale of Fates", sp: 125, use: true, phase: 2 },
         { id: ids.TRINKET_SHOW_FAITH, title: "Show of Faith", sp: 140, phase: 2 },
-        { id: ids.TRINKET_ELEMENTAL_FOCUS_STONE, title: "Elemental Focus Stone", hit: 108 },
-        { id: ids.TRINKET_EYE_BROODMOTHER, title: "Eye of the Broodmother", crit: 87 },
-        { id: ids.TRINKET_SIFS_REMEMBERANCE, title: "Sif's Remembrance", sp: 110 },
-        { id: ids.TRINKET_SPARK_HOPE, title: "Spark of Hope", spi: 100 },
+        { id: ids.TRINKET_ELEMENTAL_FOCUS_STONE, title: "Elemental Focus Stone", hit: 108, phase: 2 },
+        { id: ids.TRINKET_EYE_BROODMOTHER, title: "Eye of the Broodmother", crit: 87, phase: 2 },
+        { id: ids.TRINKET_SIFS_REMEMBERANCE, title: "Sif's Remembrance", sp: 110, phase: 2 },
+        { id: ids.TRINKET_SPARK_HOPE, title: "Spark of Hope", spi: 100, phase: 2 },
         // os
         { id: ids.TRINKET_ILLUSTRATION_DRAGON_SOUL, title: "Illustration of the Dragon Soul" },
         // naxx

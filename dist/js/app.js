@@ -17767,11 +17767,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var _ids;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var ids = (_ids = {
+var ids = {
   // Trinkets
   TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
   TRINKET_TWILIGHT_SERPENT: 42395,
@@ -17813,10 +17809,28 @@ var ids = (_ids = {
   LIGHTWEAVE_EMBROIDERY: 55642,
   DARKGLOW_EMBROIDERY: 55769,
   // Item sets
-  T10_SET: 8,
-  phase: 483,
-  T9_SET: 8
-}, _defineProperty(_ids, "phase", 344), _defineProperty(_ids, "T8_SET", 836), _defineProperty(_ids, "T7_SET", 803), _defineProperty(_ids, "T6_SET", 671), _defineProperty(_ids, "GLADIATOR_SET", 779), _defineProperty(_ids, "DUSKWEAVE_SET", 764), _defineProperty(_ids, "UDC_SET", 781), _defineProperty(_ids, "CUDC_SET", 536), _defineProperty(_ids, "META_CHAOTIC_SKYFLARE", 41285), _defineProperty(_ids, "META_EMBER_SKYFLARE", 41333), _defineProperty(_ids, "META_BEAMING_EARTHSIEGE", 41389), _defineProperty(_ids, "META_INSIGHTFUL_EARTHSIEGE", 41401), _defineProperty(_ids, "TRINKET_SERPENT_COIL", 30720), _defineProperty(_ids, "TRINKET_MQG", 19339), _defineProperty(_ids, "TRINKET_SKULL_GULDAN", 32483), _defineProperty(_ids, "TRINKET_SHRUNKEN_HEAD", 33829), _defineProperty(_ids, "TRINKET_NAARU_SLIVER", 34429), _defineProperty(_ids, "TRINKET_ASHTONGUE_TALISMAN", 32488), _ids);
+  T10_SET: 483,
+  T9_SET: 344,
+  T8_SET: 836,
+  T7_SET: 803,
+  T6_SET: 671,
+  GLADIATOR_SET: 779,
+  DUSKWEAVE_SET: 764,
+  UDC_SET: 781,
+  CUDC_SET: 536,
+  // Metas
+  META_CHAOTIC_SKYFLARE: 41285,
+  META_EMBER_SKYFLARE: 41333,
+  META_BEAMING_EARTHSIEGE: 41389,
+  META_INSIGHTFUL_EARTHSIEGE: 41401,
+  // TBC items
+  TRINKET_SERPENT_COIL: 30720,
+  TRINKET_MQG: 19339,
+  TRINKET_SKULL_GULDAN: 32483,
+  TRINKET_SHRUNKEN_HEAD: 33829,
+  TRINKET_NAARU_SLIVER: 34429,
+  TRINKET_ASHTONGUE_TALISMAN: 32488
+};
 var equip = {
   weapon: [// icc
   {
@@ -24494,19 +24508,23 @@ var equip = {
   }, {
     id: ids.TRINKET_ELEMENTAL_FOCUS_STONE,
     title: "Elemental Focus Stone",
-    hit: 108
+    hit: 108,
+    phase: 2
   }, {
     id: ids.TRINKET_EYE_BROODMOTHER,
     title: "Eye of the Broodmother",
-    crit: 87
+    crit: 87,
+    phase: 2
   }, {
     id: ids.TRINKET_SIFS_REMEMBERANCE,
     title: "Sif's Remembrance",
-    sp: 110
+    sp: 110,
+    phase: 2
   }, {
     id: ids.TRINKET_SPARK_HOPE,
     title: "Spark of Hope",
-    spi: 100
+    spi: 100,
+    phase: 2
   }, // os
   {
     id: ids.TRINKET_ILLUSTRATION_DRAGON_SOUL,
