@@ -9,6 +9,7 @@ namespace spell
         ARCANE_BLAST = 42897,
         ARCANE_EXPLOSION = 42921,
         ARCANE_MISSILES = 42846,
+        BLIZZARD = 42940,
         FROSTBOLT = 42842,
         FIREBALL = 42833,
         FIREBALL_DOT = 4283300,
@@ -68,9 +69,11 @@ namespace spell
         bool channeling = false;
         bool dot = false;
         bool stackable = false;
+        bool overlap = false;
         bool proc = false;
         bool binary = false;
         bool aoe = false;
+        bool aoe_capped = true;
         bool has_travel_time = false;
         bool fixed_dmg = false;
         bool active_use = true;
@@ -182,11 +185,31 @@ namespace spell
             min_dmg = 360;
             max_dmg = 360;
             cast_time = 5;
-            coeff = 5/3.5;
+            coeff = 5.0/3.5;
             school = SCHOOL_ARCANE;
             channeling = true;
             ticks = 5;
             has_travel_time = true;
+        }
+
+    };
+
+    class Blizzard : public Spell
+    {
+
+    public:
+        Blizzard()
+        {
+            id = BLIZZARD;
+            name = "Blizzard";
+            cost = 74;
+            min_dmg = 426;
+            max_dmg = 426;
+            cast_time = 8;
+            coeff = 4.0/3.5;
+            school = SCHOOL_FROST;
+            channeling = true;
+            ticks = 8;
         }
 
     };
@@ -411,6 +434,8 @@ namespace spell
             id = FLAMESTRIKE_DOT;
             name = "Flamestrike";
             aoe = true;
+            aoe_capped = false;
+            overlap = true;
             dot = true;
             active_use = false;
             t_interval = 2;

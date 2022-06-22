@@ -6,6 +6,7 @@ class Event
 public:
     double t;
     double mana;
+    double tick;
     string source;
     EventType type;
     shared_ptr<unit::Unit> unit;
@@ -233,7 +234,7 @@ public:
         else if (event->type == EVENT_SPELL_IMPACT)
             onSpellImpact(event->unit, event->instance);
         else if (event->type == EVENT_SPELL_TICK)
-            onSpellTick(event->unit, event->instance);
+            onSpellTick(event->unit, event->spell, event->tick);
         else if (event->type == EVENT_MANA_REGEN)
             onManaRegen(event->unit);
         else if (event->type == EVENT_MANA_GAIN)
@@ -322,14 +323,12 @@ public:
 
     void pushChannelingTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t, int tick)
     {
-        shared_ptr<spell::SpellInstance> instance = getSpellInstance(unit, spell);
-        instance->tick = tick;
-
         shared_ptr<Event> event(new Event());
         event->type = EVENT_SPELL_TICK;
-        event->instance = instance;
+        event->spell = spell;
         event->unit = unit;
         event->t = t;
+        event->tick = tick;
 
         push(event);
     }
@@ -589,21 +588,27 @@ public:
     void onCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         double duration = 0;
+        int targets = spell->aoe ? config->targets : 1;
 
         spell->actual_cost = manaCost(unit, spell);
         unit->mana-= spell->actual_cost;
         logCastSuccess(unit, spell);
 
-        if (spell->channeling && !spell->tick) {
-            duration = castTime(unit, spell);
-            for (int i=1; i<=spell->ticks; i++)
-                pushChannelingTick(unit, spell, duration / spell->ticks * i, i);
-        }
-        else if (spell->dot) {
-            dotApply(unit, spell);
-        }
-        else if (!spell->is_trigger) {
-            pushSpellImpact(unit, spell, travelTime(unit, spell));
+        if (spell->channeling && !spell->tick)
+            unit->is_channeling = true;
+
+        for (int t=0; t<targets; t++) {
+            if (spell->channeling && !spell->tick) {
+                duration = castTime(unit, spell);
+                for (int i=1; i<=spell->ticks; i++)
+                    pushChannelingTick(unit, spell, duration / spell->ticks * i, i);
+            }
+            else if (spell->dot) {
+                dotApply(unit, spell);
+            }
+            else if (!spell->is_trigger) {
+                pushSpellImpact(unit, spell, travelTime(unit, spell));
+            }
         }
 
         if (spell->active_use) {
@@ -656,12 +661,15 @@ public:
         }
     }
 
-    void onSpellTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
+    void onSpellTick(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, int tick)
     {
-        onSpellTickProc(unit, instance);
+        if (!spell->is_trigger) {
+            shared_ptr<spell::SpellInstance> instance = getSpellInstance(unit, spell);
+            instance->tick = tick;
+            pushSpellImpact(unit, instance, travelTime(unit, spell));
+        }
 
-        if (!instance->spell->is_trigger)
-            pushSpellImpact(unit, instance, travelTime(unit, instance->spell));
+        onSpellTickProc(unit, spell, tick);
     }
 
     void dotApply(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -682,7 +690,8 @@ public:
             }
         }
         else {
-            removeSpellImpacts(unit, spell);
+            if (!spell->overlap)
+                removeSpellImpacts(unit, spell);
             for (int i=1; i<=spell->ticks; i++)
                 pushDot(unit, spell, i);
 
@@ -707,9 +716,9 @@ public:
         processActions(unit, actions);
     }
 
-    void onSpellTickProc(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
+    void onSpellTickProc(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, int tick)
     {
-        std::list<shared_ptr<action::Action>> actions = unit->onSpellTickProc(state, instance);
+        std::list<shared_ptr<action::Action>> actions = unit->onSpellTickProc(state, spell, tick);
         processActions(unit, actions);
     }
 
@@ -763,6 +772,11 @@ public:
 
     void onWait(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell = NULL)
     {
+        if (unit->is_channeling) {
+            unit->removeSnapshots();
+            unit->is_channeling = false;
+        }
+
         if (spell != NULL)
             cast(unit, spell);
         else
@@ -808,9 +822,13 @@ public:
 
     void onBuffExpire(shared_ptr<unit::Unit> unit, shared_ptr<buff::Buff> buff)
     {
+        bool snapshot = false;
+        if (buff->snapshot && unit->is_channeling && buffDuration(unit, buff->id) > 0)
+            snapshot = true;
+
         removeBuffExpiration(unit, buff);
         logBuffExpire(unit, buff);
-        unit->removeBuff(buff->id);
+        unit->removeBuff(buff->id, snapshot);
 
         std::list<shared_ptr<action::Action>> actions = unit->onBuffExpire(state, buff);
         processActions(unit, actions);
@@ -1118,7 +1136,7 @@ public:
 
         dmg*= buffDmgMultiplier(unit, spell);
 
-        if (spell->aoe && config->targets > 10)
+        if (spell->aoe && spell->aoe_capped && config->targets > 10)
             dmg*= 10 / config->targets;
 
         dmg*= debuffDmgMultiplier(unit, spell);

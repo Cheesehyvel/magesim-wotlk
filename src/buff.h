@@ -81,6 +81,7 @@ namespace buff
         int max_stacks = 1;
         bool stack_refresh = true;
         bool hidden = false;
+        bool snapshot = false;
         double cost = 0;
         Stats stats;
 
@@ -106,6 +107,7 @@ namespace buff
             name = "Arcane Blast";
             duration = 8;
             max_stacks = 4;
+            snapshot = true;
         }
 
     };
@@ -134,6 +136,7 @@ namespace buff
             id = PRESENCE_OF_MIND;
             name = "Presence of Mind";
             duration = 100;
+            snapshot = true;
         }
 
     };
@@ -188,6 +191,7 @@ namespace buff
             id = CLEARCAST;
             name = "Clearcast";
             duration = 15;
+            snapshot = true;
         }
 
     };

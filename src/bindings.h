@@ -50,6 +50,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("ROTATION_ST_FIRE", ROTATION_ST_FIRE)
         .value("ROTATION_ST_FROST", ROTATION_ST_FROST)
         .value("ROTATION_AOE_AE", ROTATION_AOE_AE)
+        .value("ROTATION_AOE_BLIZZ", ROTATION_AOE_BLIZZ)
+        .value("ROTATION_AOE_BLIZZ_FS", ROTATION_AOE_BLIZZ_FS)
         ;
 
     emscripten::enum_<Race>("Race")

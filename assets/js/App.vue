@@ -667,6 +667,8 @@
                                         <option :value="rotations.ROTATION_ST_FIRE">Fire</option>
                                         <option :value="rotations.ROTATION_ST_FROST">Frost</option>
                                         <option :value="rotations.ROTATION_AOE_AE">Arcane Explosion</option>
+                                        <option :value="rotations.ROTATION_AOE_BLIZZ">Blizzard</option>
+                                        <option :value="rotations.ROTATION_AOE_BLIZZ_FS">Flamestrike > Blizzard</option>
                                     </select>
                                 </div>
                                 <div class="form-item" v-if="config.talents.imp_scorch">
@@ -1082,8 +1084,10 @@
                                     <div class="new-profile mt-1">
                                         <input type="text" v-model="new_profile" @keydown.enter="newProfile()">
                                         <div class="btn" :class="[new_profile ? '' : 'disabled']" @click="newProfile()">
-                                            New profile
-                                            <tooltip position="r">Save your items and config</tooltip>
+                                            <span>
+                                                New profile
+                                                <tooltip position="r">Save your items and config</tooltip>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="export-import clearfix mt-2">

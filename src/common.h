@@ -8,6 +8,8 @@ enum Rotation : int
     ROTATION_ST_FIRE = 20,
     ROTATION_ST_FROST = 30,
     ROTATION_AOE_AE = 100,
+    ROTATION_AOE_BLIZZ = 110,
+    ROTATION_AOE_BLIZZ_FS = 111,
 };
 
 enum Race : int

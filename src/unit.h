@@ -20,10 +20,12 @@ namespace unit
         double duration = 0;
         bool unique = true;
         bool get_raid_buffs = true;
+        bool is_channeling = false;
         int id;
 
         map<cooldown::ID, shared_ptr<cooldown::Cooldown>> cooldowns;
         map<buff::ID, shared_ptr<buff::Buff>> buffs;
+        map<buff::ID, shared_ptr<buff::Buff>> snapshot_buffs;
         map<debuff::ID, shared_ptr<debuff::Debuff>> debuffs;
 
         Unit(shared_ptr<Config> _config)
@@ -36,8 +38,10 @@ namespace unit
             mana = maxMana();
             t_gcd = 0;
             t_gcd_capped = 0;
+            is_channeling = false;
 
             buffs.clear();
+            snapshot_buffs.clear();
             debuffs.clear();
             cooldowns.clear();
 
@@ -76,16 +80,24 @@ namespace unit
             cooldowns.erase(id);
         }
 
-        int buffStacks(buff::ID id)
+        int buffStacks(buff::ID id, bool snapshot = false)
         {
             if (hasBuff(id))
                 return buffs[id]->stacks;
+            if (snapshot && hasSnapshot(id))
+                return snapshot_buffs[id]->stacks;
             return 0;
         }
 
-        bool hasBuff(buff::ID id)
+        bool hasBuff(buff::ID id, bool snapshot = false)
         {
-            return buffs.find(id) != buffs.end();
+            if (buffs.find(id) != buffs.end())
+                return true;
+
+            if (snapshot && hasSnapshot(id))
+                return true;
+
+            return false;
         }
 
         int addBuff(shared_ptr<buff::Buff> buff)
@@ -103,11 +115,14 @@ namespace unit
             return buffs[buff->id]->stacks;
         }
 
-        void removeBuff(buff::ID id)
+        void removeBuff(buff::ID id, bool snapshot = false)
         {
             if (hasBuff(id)) {
                 auto buff = getBuff(id);
-                removeBuffStats(buff->stats, buff->stacks);
+                if (snapshot)
+                    snapshot_buffs[buff->id] = buff;
+                else
+                    removeBuffStats(buff->stats, buff->stacks);
             }
 
             buffs.erase(id);
@@ -118,6 +133,35 @@ namespace unit
             if (hasBuff(id))
                 return buffs[id];
             return NULL;
+        }
+
+        bool hasSnapshot(buff::ID id)
+        {
+            return snapshot_buffs.find(id) != snapshot_buffs.end();
+        }
+
+        shared_ptr<buff::Buff> getSnapshot(buff::ID id)
+        {
+            if (hasSnapshot(id))
+                return snapshot_buffs[id];
+            return NULL;
+        }
+
+        void removeSnapshot(buff::ID id)
+        {
+            if (hasSnapshot(id)) {
+                auto buff = getSnapshot(id);
+                removeBuffStats(buff->stats, buff->stacks);
+            }
+
+            snapshot_buffs.erase(id);
+        }
+
+        void removeSnapshots()
+        {
+            for (auto it = snapshot_buffs.begin(); it != snapshot_buffs.end(); it++)
+                removeBuffStats(it->second->stats, it->second->stacks);
+            snapshot_buffs.clear();
         }
 
         void addBuffStats(Stats _stats)
@@ -434,7 +478,7 @@ namespace unit
             return actions;
         }
 
-        virtual list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        virtual list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell, int tick)
         {
             list<shared_ptr<action::Action>> actions;
 

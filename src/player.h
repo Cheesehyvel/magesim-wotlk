@@ -16,6 +16,7 @@ namespace unit
         int fingers_of_frost;
         bool on_hot_streak;
         double t_living_bomb;
+        double t_flamestrike;
         double t_mana_spent;
         int mana_sapphire;
         int mana_emerald;
@@ -34,6 +35,7 @@ namespace unit
             fingers_of_frost = 0;
             on_hot_streak = false;
             t_living_bomb = -20;
+            t_flamestrike = -20;
             t_mana_spent = 0;
             mana_sapphire = 3;
             mana_emerald = 3;
@@ -207,7 +209,7 @@ namespace unit
             }
 
             if (talents.arcane_potency) {
-                if (hasBuff(buff::CLEARCAST) || hasBuff(buff::PRESENCE_OF_MIND))
+                if (hasBuff(buff::CLEARCAST, true) || hasBuff(buff::PRESENCE_OF_MIND, true))
                     crit+= talents.arcane_potency*15.0;
             }
 
@@ -414,11 +416,11 @@ namespace unit
             if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
                 multi*= 1.2;
 
-            if (spell->school == SCHOOL_ARCANE && hasBuff(buff::ARCANE_BLAST)) {
+            if (spell->school == SCHOOL_ARCANE && hasBuff(buff::ARCANE_BLAST, true)) {
                 double ab = 0.15;
                 if (glyphs.arcane_blast)
                     ab+= 0.03;
-                multi*= 1 + ab * buffStacks(buff::ARCANE_BLAST);
+                multi*= 1 + ab * buffStacks(buff::ARCANE_BLAST, true);
             }
 
             if (spell->id == spell::ICE_LANCE && isFrozen()) {
@@ -623,6 +625,10 @@ namespace unit
             }
             if (spell->id == spell::LIVING_BOMB)
                 t_living_bomb = state->t;
+            if (spell->id == spell::FLAMESTRIKE) {
+                t_flamestrike = state->t;
+                actions.push_back(spellAction(make_shared<spell::FlamestrikeDot>()));
+            }
 
             if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
                 actions.push_back(buffExpireAction(make_shared<buff::PresenceOfMind>()));
@@ -1003,11 +1009,11 @@ namespace unit
             return actions;
         }
 
-        list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
+        list<shared_ptr<action::Action>> onSpellTickProc(shared_ptr<State> state, shared_ptr<spell::Spell> spell, int tick)
         {
-            list<shared_ptr<action::Action>> actions = Unit::onSpellTickProc(state, instance);
+            list<shared_ptr<action::Action>> actions = Unit::onSpellTickProc(state, spell, tick);
 
-            if (instance->spell->id == spell::EVOCATION)
+            if (spell->id == spell::EVOCATION)
                 actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
 
             return actions;
@@ -1596,6 +1602,20 @@ namespace unit
             // Arcane Explosion
             else if (config->rotation == ROTATION_AOE_AE) {
                 action = spellAction(make_shared<spell::ArcaneExplosion>());
+            }
+
+            // Blizzard
+            else if (config->rotation == ROTATION_AOE_BLIZZ) {
+                action = spellAction(make_shared<spell::Blizzard>());
+            }
+
+            // Blizzard + Flamestrike
+            else if (config->rotation == ROTATION_AOE_BLIZZ_FS) {
+                shared_ptr<spell::Spell> fs = make_shared<spell::Flamestrike>();
+                if (t_flamestrike+8.0 + castTime(fs) <= state->t)
+                    action = spellAction(fs);
+                else
+                    action = spellAction(make_shared<spell::Blizzard>());
             }
 
             // Undefined rotation
