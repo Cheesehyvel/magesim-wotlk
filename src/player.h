@@ -19,7 +19,6 @@ namespace unit
         double t_flamestrike;
         double t_mana_spent;
         int mana_sapphire;
-        int mana_emerald;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -38,7 +37,6 @@ namespace unit
             t_flamestrike = -20;
             t_mana_spent = 0;
             mana_sapphire = 3;
-            mana_emerald = 3;
         }
 
         Stats getStats()
@@ -1021,7 +1019,7 @@ namespace unit
 
         bool hasManaGem()
         {
-            return mana_sapphire > 0 || mana_emerald > 0;
+            return mana_sapphire > 0;
         }
 
         double manaGemMax()
@@ -1029,8 +1027,6 @@ namespace unit
             double max = 0;
             if (mana_sapphire > 0)
                 max = 3500;
-            else if (mana_emerald > 0)
-                max = 2460;
             else
                 return 0;
 
@@ -1044,7 +1040,7 @@ namespace unit
 
         bool shouldUseManaGem(shared_ptr<State> state)
         {
-            if (hasCooldown(cooldown::MANA_GEM))
+            if (hasCooldown(cooldown::MANA_GEM) || !hasManaGem())
                 return false;
 
             // Check for planned mana gem timings
@@ -1147,10 +1143,6 @@ namespace unit
             if (mana_sapphire > 0) {
                 mana_sapphire--;
                 mana = random<int>(3330, 3500);
-            }
-            else if (mana_emerald > 0) {
-                mana_emerald--;
-                mana = random<int>(2340, 2460);
             }
 
             if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
