@@ -17591,143 +17591,178 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
-  id: 42734,
+  itemId: 42734,
+  spellId: 56360,
   name: "Glyph of Arcane Explosion",
   type: 1
 }, {
-  id: 42735,
+  itemId: 42735,
+  spellId: 56363,
   name: "Glyph of Arcane Missiles",
   type: 1
 }, {
-  id: 42753,
+  itemId: 42753,
+  spellId: 56364,
   name: "Glyph of Remove Curse",
   type: 1
 }, {
-  id: 42737,
+  itemId: 42737,
+  spellId: 56365,
   name: "Glyph of Blink",
   type: 1
 }, {
-  id: 42748,
+  itemId: 42748,
+  spellId: 56366,
   name: "Glyph of Invisibility",
   type: 1
 }, {
-  id: 42750,
+  itemId: 42750,
+  spellId: 56367,
   name: "Glyph of Mana Gem",
   type: 1
 }, {
-  id: 42739,
+  itemId: 42739,
+  spellId: 56368,
   name: "Glyph of Fireball",
   type: 1
 }, {
-  id: 42740,
+  itemId: 42740,
+  spellId: 56369,
   name: "Glyph of Fire Blast",
   type: 1
 }, {
-  id: 42742,
+  itemId: 42742,
+  spellId: 56370,
   name: "Glyph of Frostbolt",
   type: 1
 }, {
-  id: 42747,
+  itemId: 42747,
+  spellId: 56371,
   name: "Glyph of Scorch",
   type: 1
 }, {
-  id: 42744,
+  itemId: 42744,
+  spellId: 56372,
   name: "Glyph of Ice Block",
   type: 1
 }, {
-  id: 42754,
+  itemId: 42754,
+  spellId: 56373,
   name: "Glyph of Water Elemental",
   type: 1
 }, {
-  id: 42746,
+  itemId: 42746,
+  spellId: 56374,
   name: "Glyph of Icy Veins",
   type: 1
 }, {
-  id: 42752,
+  itemId: 42752,
+  spellId: 56375,
   name: "Glyph of Polymorph",
   type: 1
 }, {
-  id: 42741,
+  itemId: 42741,
+  spellId: 56376,
   name: "Glyph of Frost Nova",
   type: 1
 }, {
-  id: 42745,
+  itemId: 42745,
+  spellId: 56377,
   name: "Glyph of Ice Lance",
   type: 1
 }, {
-  id: 42738,
+  itemId: 42738,
+  spellId: 56380,
   name: "Glyph of Evocation",
   type: 1
 }, {
-  id: 42736,
+  itemId: 42736,
+  spellId: 56381,
   name: "Glyph of Arcane Power",
   type: 1
 }, {
-  id: 42751,
+  itemId: 42751,
+  spellId: 56382,
   name: "Glyph of Molten Armor",
   type: 1
 }, {
-  id: 42749,
+  itemId: 42749,
+  spellId: 56383,
   name: "Glyph of Mage Armor",
   type: 1
 }, {
-  id: 42743,
+  itemId: 42743,
+  spellId: 56384,
   name: "Glyph of Ice Armor",
   type: 1
 }, {
-  id: 43339,
+  itemId: 43339,
+  spellId: 57924,
   name: "Glyph of Arcane Intellect",
   type: 2
 }, {
-  id: 43364,
+  itemId: 43364,
+  spellId: 57925,
   name: "Glyph of Slow Fall",
   type: 2
 }, {
-  id: 43357,
+  itemId: 43357,
+  spellId: 57926,
   name: "Glyph of Fire Ward",
   type: 2
 }, {
-  id: 43360,
+  itemId: 43360,
+  spellId: 57927,
   name: "Glyph of Frost Ward",
   type: 2
 }, {
-  id: 43359,
+  itemId: 43359,
+  spellId: 57928,
   name: "Glyph of Frost Armor",
   type: 2
 }, {
-  id: 44684,
+  itemId: 44684,
+  spellId: 61205,
   name: "Glyph of Frostfire",
   type: 1
 }, {
-  id: 44920,
+  itemId: 44920,
+  spellId: 62126,
   name: "Glyph of Blast Wave",
   type: 2
 }, {
-  id: 44955,
+  itemId: 44955,
+  spellId: 62210,
   name: "Glyph of Arcane Blast",
   type: 1
 }, {
-  id: 45736,
+  itemId: 45736,
+  spellId: 63090,
   name: "Glyph of Deep Freeze",
   type: 1
 }, {
-  id: 45737,
+  itemId: 45737,
+  spellId: 63091,
   name: "Glyph of Living Bomb",
   type: 1
 }, {
-  id: 45738,
+  itemId: 45738,
+  spellId: 63092,
   name: "Glyph of Arcane Barrage",
   type: 1
 }, {
-  id: 45739,
+  itemId: 45739,
+  spellId: 63093,
   name: "Glyph of Mirror Image",
   type: 1
 }, {
-  id: 45740,
+  itemId: 45740,
+  spellId: 63095,
   name: "Glyph of Ice Barrier",
   type: 1
 }, {
-  id: 50045,
+  itemId: 50045,
+  spellId: 70937,
   name: "Glyph of Eternal Water",
   type: 1
 }]);
@@ -27376,7 +27411,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     parseTalents: function parseTalents() {
       this.resetTalents();
       var m;
-      if (m = this.config.build.match(/talent\#o(.*)/i)) this.parseEvoTalents(m[1]);
+      if (m = this.config.build.match(/talent\#o(.*)/i)) this.parseEvoTalents(m[1]);else if (m = this.config.build.match(/talent-calc\/mage\/(.*)/i)) this.parseWowheadTalents(m[1]);else alert("Unknown talent calculator");
+    },
+    parseWowheadTalents: function parseWowheadTalents(build) {
+      var encoding = "0123456789abcdefghjkmnpqrstvwxyz";
+      var arr = build.split("_");
+      var has_glyphs = arr.length > 1;
+      var t = arr[0];
+      var ch, value;
+      var tree = 0,
+          talent = 0; // Reset current talents
+
+      for (var key in this.config.talents) {
+        this.config.talents[key] = 0;
+      }
+
+      for (var i = 0; i < t.length; i++) {
+        ch = t.charAt(i);
+
+        if (ch == "-") {
+          tree++;
+          talent = 0;
+        } else {
+          if (this.talent_map[tree][talent]) {
+            value = parseInt(ch);
+            this.config.talents[this.talent_map[tree][talent]] = value;
+          }
+
+          talent++;
+        }
+      }
+
+      if (has_glyphs) {
+        var g = arr[1];
+        var id, key, glyph;
+
+        for (var i = 1; i < g.length; i += 5) {
+          id = encoding.indexOf(g[i + 1]) << 15 | encoding.indexOf(g[i + 2]) << 10 | encoding.indexOf(g[i + 3]) << 5 | encoding.indexOf(g[i + 4]) << 0;
+          glyph = _.find(_glyphs__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            spellId: id
+          });
+
+          if (glyph) {
+            key = glyph.name.replace("Glyph of ", "").replace(/ /g, "_").toLowerCase();
+            if (this.config.glyphs.hasOwnProperty(key)) this.config.glyphs[key] = true;
+          }
+        }
+      }
     },
     parseEvoTalents: function parseEvoTalents(build) {
       var encoding = "0zMcmVokRsaqbdrfwihuGINALpTjnyxtgevElBCDFHJKOPQSUWXYZ123456789";

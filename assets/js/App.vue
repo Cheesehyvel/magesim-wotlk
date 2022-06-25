@@ -3422,6 +3422,52 @@
                 var m;
                 if (m = this.config.build.match(/talent\#o(.*)/i))
                     this.parseEvoTalents(m[1]);
+                else if (m = this.config.build.match(/talent-calc\/mage\/(.*)/i))
+                    this.parseWowheadTalents(m[1]);
+                else
+                    alert("Unknown talent calculator");
+            },
+
+            parseWowheadTalents(build) {
+                var encoding = "0123456789abcdefghjkmnpqrstvwxyz";
+                var arr = build.split("_");
+                var has_glyphs = arr.length > 1;
+                var t = arr[0];
+                var ch, value;
+                var tree = 0, talent = 0;
+
+                // Reset current talents
+                for (var key in this.config.talents)
+                    this.config.talents[key] = 0;
+
+                for (var i=0; i<t.length; i++) {
+                    ch = t.charAt(i);
+                    if (ch == "-") {
+                        tree++;
+                        talent = 0;
+                    }
+                    else {
+                        if (this.talent_map[tree][talent]) {
+                            value = parseInt(ch);
+                            this.config.talents[this.talent_map[tree][talent]] = value;
+                        }
+                        talent++;
+                    }
+                }
+
+                if (has_glyphs) {
+                    var g = arr[1];
+                    var id, key, glyph;
+                    for (var i=1; i < g.length; i+= 5) {
+                        id = (encoding.indexOf(g[i + 1]) << 15) | (encoding.indexOf(g[i + 2]) << 10) | (encoding.indexOf(g[i + 3]) << 5) | (encoding.indexOf(g[i + 4]) << 0);
+                        glyph = _.find(glyphs, {spellId: id});
+                        if (glyph) {
+                            key = glyph.name.replace("Glyph of ", "").replace(/ /g, "_").toLowerCase();
+                            if (this.config.glyphs.hasOwnProperty(key))
+                                this.config.glyphs[key] = true;
+                        }
+                    }
+                }
             },
 
             parseEvoTalents(build) {
