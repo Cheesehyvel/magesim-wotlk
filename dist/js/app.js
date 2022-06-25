@@ -17856,6 +17856,7 @@ var ids = {
   T8_SET: 836,
   T7_SET: 803,
   T6_SET: 671,
+  T3_SET: 526,
   GLADIATOR_SET: 779,
   DUSKWEAVE_SET: 764,
   UDC_SET: 781,
@@ -19547,6 +19548,14 @@ var equip = {
     crit: 29,
     hit: 13,
     sockets: ["m", "y"]
+  }, // vanilla
+  {
+    id: 22498,
+    itemset: ids.T3_SET,
+    title: "Frostfire Circlet",
+    "int": 23,
+    sp: 35,
+    hit: 8
   }],
   neck: [// icc
   {
@@ -20503,6 +20512,14 @@ var equip = {
     bonus: {
       sp: 4
     }
+  }, // vanilla
+  {
+    id: 22499,
+    itemset: ids.T3_SET,
+    title: "Frostfire Shoulderpads",
+    "int": 18,
+    spi: 9,
+    sp: 36
   }],
   back: [// icc
   {
@@ -21519,6 +21536,14 @@ var equip = {
     title: "Robe of Undead Cleansing",
     "int": 13,
     q: "rare"
+  }, // Vanilla
+  {
+    id: 22496,
+    itemset: ids.T3_SET,
+    title: "Frostfire Robe",
+    "int": 27,
+    sp: 47,
+    hit: 8
   }],
   wrist: [// icc
   {
@@ -21852,6 +21877,13 @@ var equip = {
     title: "Bracers of Undead Cleansing",
     "int": 7,
     q: "rare"
+  }, // vanilla
+  {
+    id: 22503,
+    itemset: ids.T3_SET,
+    title: "Frostfire Bindings",
+    "int": 15,
+    sp: 27
   }],
   hands: [// icc
   {
@@ -22478,6 +22510,14 @@ var equip = {
     title: "Gloves of Undead Cleansing",
     "int": 10,
     q: "rare"
+  }, // vanilla
+  {
+    id: 22501,
+    itemset: ids.T3_SET,
+    title: "Frostfire Gloves",
+    "int": 19,
+    spi: 10,
+    sp: 36
   }],
   waist: [// icc
   {
@@ -22877,6 +22917,15 @@ var equip = {
     bonus: {
       sp: 2
     }
+  }, // vanilla
+  {
+    id: 22502,
+    itemset: ids.T3_SET,
+    title: "Frostfire Belt",
+    "int": 21,
+    spi: 10,
+    sp: 28,
+    hit: 8
   }],
   legs: [// icc
   {
@@ -23462,6 +23511,15 @@ var equip = {
     bonus: {
       sp: 2
     }
+  }, // vanilla
+  {
+    id: 22497,
+    itemset: ids.T3_SET,
+    title: "Frostfire Leggings",
+    "int": 26,
+    spi: 10,
+    sp: 46,
+    hit: 8
   }],
   feet: [// icc
   {
@@ -23845,6 +23903,14 @@ var equip = {
     bonus: {
       sp: 2
     }
+  }, // vanilla
+  {
+    id: 22500,
+    itemset: ids.T3_SET,
+    title: "Frostfire Sandals",
+    "int": 18,
+    spi: 10,
+    sp: 28
   }],
   finger: [// icc
   {
@@ -24458,6 +24524,13 @@ var equip = {
     sp: 40,
     crit: 22,
     haste: 31
+  }, // vanilla
+  {
+    id: 23062,
+    itemset: ids.T3_SET,
+    title: "Frostfire Ring",
+    "int": 10,
+    sp: 30
   }],
   trinket: [// icc
   {
@@ -26829,6 +26902,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var num = this.numEquippedSet(this.items.ids.T6_SET);
       this.config.t6_2set = num > 1;
       this.config.t6_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T3_SET);
+      this.config.t3_2set = num > 1;
       var num = this.numEquippedSet(this.items.ids.UDC_SET);
       this.config.udc_2set = num > 1;
       this.config.udc_3set = num > 2;

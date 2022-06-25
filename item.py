@@ -120,7 +120,7 @@ def getItem(item_id, phase = 1):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("item_id", help="Item ID(s)")
-parser.add_argument("-p", help="Phase", type=int)
+parser.add_argument("-p", help="Phase", type=int, default=1)
 args = parser.parse_args()
 
 ids = args.item_id.split(",")

@@ -36,6 +36,7 @@ struct Config
     bool lightweave_embroidery = false;
     bool darkglow_embroidery = false;
     bool hyperspeed_accelerators = false;
+    bool t3_2set = false;
     bool t6_2set = false;
     bool t6_4set = false;
     bool t7_2set = false;

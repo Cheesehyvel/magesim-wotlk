@@ -535,6 +535,9 @@ namespace unit
                     mod*= 1.0 - talents.cold_as_ice * 0.1;
             }
 
+            if (cooldown->id == cooldown::EVOCATION && config->t3_2set)
+                mod-= 60;
+
             return mod;
         }
 

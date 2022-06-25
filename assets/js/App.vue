@@ -2691,6 +2691,9 @@
                 this.config.t6_2set = num > 1;
                 this.config.t6_4set = num > 3;
 
+                var num = this.numEquippedSet(this.items.ids.T3_SET);
+                this.config.t3_2set = num > 1;
+
                 var num = this.numEquippedSet(this.items.ids.UDC_SET);
                 this.config.udc_2set = num > 1;
                 this.config.udc_3set = num > 2;

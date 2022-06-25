@@ -45,6 +45,7 @@ var ids = {
     T8_SET: 836,
     T7_SET: 803,
     T6_SET: 671,
+    T3_SET: 526,
     GLADIATOR_SET: 779,
     DUSKWEAVE_SET: 764,
     UDC_SET: 781,
@@ -272,6 +273,8 @@ var equip = {
         { id: 34340, title: "Dark Conjuror's Collar", int: 42, sp: 75, crit: 38, haste: 30, sockets: ["m", "b"], bonus: { sp: 5 } },
         { id: 34405, title: "Helm of Arcane Purity", int: 42, spi: 38, sp: 75, crit: 30, sockets: ["m", "r"], bonus: { sp: 5 } },
         { id: 31056, itemset: ids.T6_SET, title: "Cowl of the Tempest", int: 40, spi: 28, sp: 62, crit: 29, hit: 13, sockets: ["m", "y"] },
+        // vanilla
+        { id: 22498, itemset: ids.T3_SET, title: "Frostfire Circlet", int: 23, sp: 35, hit: 8 },
     ],
     neck: [
         // icc
@@ -385,6 +388,8 @@ var equip = {
         { id: 34210, title: "Amice of the Convoker", int: 28, sp: 53, crit: 22, haste: 30, sockets: ["r", "y"], bonus: { sp: 4 } },
         { id: 34393, title: "Shoulderpads of Knowledge's Pursuit", int: 33, spi: 22, sp: 53, crit: 26, sockets: ["r", "y"], bonus: { sp: 4 } },
         { id: 31059, itemset: ids.T6_SET, title: "Mantle of the Tempest", int: 27, spi: 21, sp: 46, crit: 21, sockets: ["y", "b"], bonus: { sp: 4 } },
+        // vanilla
+        { id: 22499, itemset: ids.T3_SET, title: "Frostfire Shoulderpads", int: 18, spi: 9, sp: 36 },
     ],
     back: [
         // icc
@@ -506,6 +511,8 @@ var equip = {
         { id: 34232, title: "Fel Conquerer Raiments", int: 41, sp: 71, crit: 24, haste: 33, sockets: ["r", "y", "y"], bonus: { sp: 5 } },
         { id: 31057, itemset: ids.T6_SET, title: "Robes of the Tempest", int: 39, spi: 31, sp: 62, crit: 23, hit: 13, sockets: ["y", "y", "b"], bonus: { sp: 5 } },
         { id: 23085, itemset: ids.CUDC_SET, title: "Robe of Undead Cleansing", int: 13, q: "rare" },
+        // Vanilla
+        { id: 22496, itemset: ids.T3_SET, title: "Frostfire Robe", int: 27, sp: 47, hit: 8 },
     ],
     wrist: [
         // icc
@@ -550,6 +557,8 @@ var equip = {
         // tbc
         { id: 34447, itemset: ids.T6_SET, title: "Bracers of the Tempest", int: 17, spi: 14, sp: 39, crit: 11, haste: 26, sockets: ["r"], bonus: { crit: 2 } },
         { id: 23091, itemset: ids.CUDC_SET, title: "Bracers of Undead Cleansing", int: 7, q: "rare" },
+        // vanilla
+        { id: 22503, itemset: ids.T3_SET, title: "Frostfire Bindings", int: 15, sp: 27 },
     ],
     hands: [
         // icc
@@ -620,6 +629,8 @@ var equip = {
         { id: 34366, title: "Sunfire Handwraps", int: 30, sp: 53, crit: 37, sockets: ["r", "r"], bonus: { sp: 4 } },
         { id: 31055, itemset: ids.T6_SET, title: "Gloves of the Tempest", int: 26, spi: 21, sp: 46, crit: 19, hit: 20, sockets: ["y"], bonus: { sp: 2 } },
         { id: 23084, itemset: ids.CUDC_SET, title: "Gloves of Undead Cleansing", int: 10, q: "rare" },
+        // vanilla
+        { id: 22501, itemset: ids.T3_SET, title: "Frostfire Gloves", int: 19, spi: 10, sp: 36 },
     ],
     waist: [
         // icc
@@ -669,6 +680,8 @@ var equip = {
         { id: 41986, title: "Deep Frozen Cord", int: 50, sp: 61, crit: 36, q: "rare" },
         // tbc
         { id: 34557, itemset: ids.T6_SET, title: "Belt of the Tempest", int: 29, spi: 20, sp: 50, crit: 17, hit: 14, haste: 29, sockets: ["y"], bonus: { sp: 2 } },
+        // vanilla
+        { id: 22502, itemset: ids.T3_SET, title: "Frostfire Belt", int: 21, spi: 10, sp: 28, hit: 8 },
     ],
     legs: [
         // icc
@@ -732,6 +745,8 @@ var equip = {
         { id: 34181, title: "Leggings of Calamity", int: 41, sp: 71, crit: 33, haste: 32, sockets: ["r", "r", "y"], bonus: { sp: 5 } },
         { id: 34386, title: "Pantaloons of Growing Strife", int: 36, spi: 25, sp: 71, haste: 42, sockets: ["r", "y", "y"], bonus: { sp: 5 } },
         { id: 31058, itemset: ids.T6_SET, title: "Leggings of the Tempest", int: 47, spi: 29, sp: 62, crit: 29, hit: 20, sockets: ["b"], bonus: { sp: 2 } },
+        // vanilla
+        { id: 22497, itemset: ids.T3_SET, title: "Frostfire Leggings", int: 26, spi: 10, sp: 46, hit: 8 },
     ],
     feet: [
         // icc
@@ -778,6 +793,8 @@ var equip = {
         // tbc
         { id: 34574, itemset: ids.T6_SET, title: "Boots of the Tempest", int: 29, spi: 20, sp: 50, crit: 20, hit: 15, haste: 25, sockets: ["y"], bonus: { sp: 2 } },
         { id: 34919, title: "Boots of Incantations", int: 26, spi: 23, sp: 47, hit: 17, sockets: ["y"], bonus: { sp: 2 } },
+        // vanilla
+        { id: 22500, itemset: ids.T3_SET, title: "Frostfire Sandals", int: 18, spi: 10, sp: 28 },
     ],
     finger: [
         // icc
@@ -853,6 +870,8 @@ var equip = {
         // tbc
         { id: 34362, title: "Loop of Forged Power", int: 28, sp: 34, hit: 19, haste: 30 },
         { id: 34230, title: "Ring of Omnipotence", int: 14, sp: 40, crit: 22, haste: 31 },
+        // vanilla
+        { id: 23062, itemset: ids.T3_SET, title: "Frostfire Ring", int: 10, sp: 30 },
     ],
     trinket: [
         // icc
