@@ -62,6 +62,7 @@
                     { title: "Icy Veins", color: "rgba(85,170,255)" },
                     { title: "Berserking", color: "rgba(200,80,80)" },
                     { title: "Arcane Power", color: "#48f" },
+                    { title: "Combustion", color: "#f84" },
                     { title: "Power Infusion", color: "#dd0" },
                     { title: "Lightweave", color: "#823978" },
                     { title: "Black Magic", color: "#89d1d0" },

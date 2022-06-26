@@ -28286,6 +28286,9 @@ __webpack_require__.r(__webpack_exports__);
         title: "Arcane Power",
         color: "#48f"
       }, {
+        title: "Combustion",
+        color: "#f84"
+      }, {
         title: "Power Infusion",
         color: "#dd0"
       }, {
