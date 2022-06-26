@@ -1087,9 +1087,9 @@ namespace unit
             double max = 4400;
 
             if (hasTrinket(TRINKET_MERCURIAL_ALCHEMIST_STONE))
-                mana*= 1.4;
+                max*= 1.4;
             if (config->prof_engineer)
-                mana*= 1.25;
+                max*= 1.25;
 
             // If tide is running, add a tick as buffer
             if (hasBuff(buff::MANA_TIDE))
