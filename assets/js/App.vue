@@ -3514,8 +3514,13 @@
 
                     if (talent >= trees[tree].length || ch == "Z") {
                         talent = 0;
-                        if (++tree >= trees.length)
+                        if (++tree >= trees.length) {
+                            if (build.charAt(i+1) == ":") {
+                                has_glyphs = true;
+                                i+=2;
+                            }
                             break;
+                        }
                     }
                 }
 

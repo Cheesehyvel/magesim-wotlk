@@ -27565,7 +27565,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         if (talent >= trees[tree].length || ch == "Z") {
           talent = 0;
-          if (++tree >= trees.length) break;
+
+          if (++tree >= trees.length) {
+            if (build.charAt(i + 1) == ":") {
+              has_glyphs = true;
+              i += 2;
+            }
+
+            break;
+          }
         }
       }
 
