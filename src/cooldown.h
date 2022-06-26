@@ -136,7 +136,7 @@ namespace cooldown
         PresenceOfMind()
         {
             id = PRESENCE_OF_MIND;
-            duration = 180;
+            duration = 120;
         }
 
     };

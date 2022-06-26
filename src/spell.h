@@ -809,8 +809,8 @@ namespace spell
             id = WATERBOLT;
             name = "Waterbolt";
             cost = 1;
-            min_dmg = 256;
-            max_dmg = 328;
+            min_dmg = 601;
+            max_dmg = 673;
             cast_time = 2.5;
             coeff = 2.5/3.0;
             school = SCHOOL_FROST;
