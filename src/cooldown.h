@@ -220,7 +220,7 @@ namespace cooldown
         Combustion()
         {
             id = COMBUSTION;
-            duration = 180;
+            duration = 120;
         }
 
     };
@@ -292,7 +292,7 @@ namespace cooldown
         PowerInfusion()
         {
             id = POWER_INFUSION;
-            duration = 180;
+            duration = 120;
         }
 
     };
