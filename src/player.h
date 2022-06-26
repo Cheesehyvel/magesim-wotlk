@@ -631,6 +631,9 @@ namespace unit
                 actions.push_back(spellAction(make_shared<spell::FlamestrikeDot>()));
             }
 
+            if (hasBuff(buff::GHOST_FINGERS))
+                actions.push_back(buffExpireAction(make_shared<buff::GhostFingers>()));
+
             if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
                 actions.push_back(buffExpireAction(make_shared<buff::PresenceOfMind>()));
 
