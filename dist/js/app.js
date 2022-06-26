@@ -28432,6 +28432,7 @@ __webpack_require__.r(__webpack_exports__);
 
           while (logs.length) {
             start = logs.shift();
+            if (start.text.indexOf("Player gained ") == -1) continue;
 
             for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift()) {
               ;
@@ -28464,6 +28465,7 @@ __webpack_require__.r(__webpack_exports__);
 
           while (logs.length) {
             start = logs.shift();
+            if (start.text.indexOf("Player gained ") == -1) continue;
 
             for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift()) {
               ;
@@ -28494,6 +28496,7 @@ __webpack_require__.r(__webpack_exports__);
           event.events = [];
 
           for (var j = 0; j < start.length; j++) {
+            if (start[j].text.indexOf("Player gained ") == -1) continue;
             event.events.push({
               start: start[j].t,
               end: start[j].t + 0.5

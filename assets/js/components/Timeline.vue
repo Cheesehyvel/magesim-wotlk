@@ -140,6 +140,8 @@
                         event.events = [];
                         while (logs.length) {
                             start = logs.shift();
+                            if (start.text.indexOf("Player gained ") == -1)
+                                continue;
                             for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift());
                             event.events.push({
                                 start: start.t,
@@ -162,6 +164,8 @@
                         event.events = [];
                         while (logs.length) {
                             start = logs.shift();
+                            if (start.text.indexOf("Player gained ") == -1)
+                                continue;
                             for (end = logs.shift(); end && end.text.indexOf("Player lost ") != 0; end = logs.shift());
                             event.events.push({
                                 start: start.t,
@@ -182,6 +186,8 @@
                         event = _.clone(this.mana_gains[i]);
                         event.events = [];
                         for (var j=0; j<start.length; j++) {
+                            if (start[j].text.indexOf("Player gained ") == -1)
+                                continue;
                             event.events.push({
                                 start: start[j].t,
                                 end: start[j].t+0.5,
