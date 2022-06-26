@@ -316,7 +316,7 @@ namespace cooldown
         Lightweave()
         {
             id = LIGHTWEAVE;
-            duration = 45;
+            duration = 60;
         }
 
     };
@@ -328,7 +328,7 @@ namespace cooldown
         Darkglow()
         {
             id = DARKGLOW;
-            duration = 45;
+            duration = 60;
         }
 
     };
