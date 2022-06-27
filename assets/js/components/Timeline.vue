@@ -65,6 +65,7 @@
                     { title: "Combustion", color: "#f84" },
                     { title: "Power Infusion", color: "#dd0" },
                     { title: "Lightweave", color: "#823978" },
+                    { title: "Incanter's Absorption", color: "#777" },
                     { title: "Black Magic", color: "#89d1d0" },
                     { title: "Hyperspeed Acceleration", color: "#206f80" },
                     { title: "Speed", color: "#d82" },

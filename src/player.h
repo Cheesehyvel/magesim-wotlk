@@ -889,6 +889,9 @@ namespace unit
                     absorb = fire_ward;
                 fire_ward-= absorb;
 
+                if (fire_ward <= 0)
+                    actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
+
                 if (talents.incanters_absorption) {
                     absorb*= talents.incanters_absorption * 0.05;
                     absorb = round(absorb);

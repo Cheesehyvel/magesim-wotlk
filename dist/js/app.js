@@ -28304,6 +28304,9 @@ __webpack_require__.r(__webpack_exports__);
         title: "Lightweave",
         color: "#823978"
       }, {
+        title: "Incanter's Absorption",
+        color: "#777"
+      }, {
         title: "Black Magic",
         color: "#89d1d0"
       }, {
