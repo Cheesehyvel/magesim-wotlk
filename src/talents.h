@@ -13,6 +13,7 @@ struct Talents
     int arcane_potency = 0;
     int arcane_empowerment = 0;
     int arcane_power = 0;
+    int incanters_absorption = 0;
     int arcane_floes = 0;
     int mind_mastery = 0;
     int missile_barrage = 0;

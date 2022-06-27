@@ -23,6 +23,7 @@ namespace cooldown
         COMBUSTION = 29977,
         ARCANE_POWER = 12042,
         PRESENCE_OF_MIND = 12043,
+        FIRE_WARD = 43010,
         MIRROR_IMAGE = 55342,
         POWER_INFUSION = 10060,
         BLACK_MAGIC = 59626,
@@ -31,6 +32,7 @@ namespace cooldown
         HYPERSPEED_ACCELERATION = 54758,
         MANA_GEM = 42987,
         PRAXIS = 64867,
+        SAPPER_CHARGE = 56488,
         // Trinkets
         FORGE_EMBER = 60479,
         PENDULUM_TELLURIC_CURRENTS = 60483,
@@ -137,6 +139,18 @@ namespace cooldown
         {
             id = PRESENCE_OF_MIND;
             duration = 120;
+        }
+
+    };
+
+    class FireWard : public Cooldown
+    {
+
+    public:
+        FireWard()
+        {
+            id = FIRE_WARD;
+            duration = 30;
         }
 
     };
@@ -365,6 +379,18 @@ namespace cooldown
         {
             id = PRAXIS;
             duration = 45;
+        }
+
+    };
+
+    class SapperCharge : public Cooldown
+    {
+
+    public:
+        SapperCharge()
+        {
+            id = SAPPER_CHARGE;
+            duration = 300;
         }
 
     };

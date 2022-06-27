@@ -18,6 +18,7 @@ namespace unit
         double t_living_bomb;
         double t_flamestrike;
         double t_mana_spent;
+        double fire_ward = 0;
         int mana_sapphire;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
@@ -36,6 +37,7 @@ namespace unit
             t_living_bomb = -20;
             t_flamestrike = -20;
             t_mana_spent = 0;
+            fire_ward = 0;
             mana_sapphire = 3;
         }
 
@@ -569,6 +571,9 @@ namespace unit
                 actions.push_back(spellAction(make_shared<spell::PillarOfFlameNm>()));
                 actions.push_back(buffExpireAction(make_shared<buff::ReignUnlivingNm>()));
             }
+            else if (buff->id == buff::FIRE_WARD) {
+                fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE)*0.1;
+            }
 
             return actions;
         }
@@ -581,6 +586,8 @@ namespace unit
                 actions.push_back(buffExpireAction(make_shared<buff::VolatilityHc>()));
             if (buff->id == buff::VOLATILE_POWER_NM)
                 actions.push_back(buffExpireAction(make_shared<buff::VolatilityNm>()));
+            if (buff->id == buff::FIRE_WARD)
+                fire_ward = 0;
 
             return actions;
         }
@@ -595,6 +602,9 @@ namespace unit
 
             if (spell->id == spell::MANA_GEM)
                 return useManaGem();
+
+            if (spell->id == spell::SAPPER_CHARGE)
+                return actions;
 
             // Cooldowns
             if (spell->id == spell::FIRE_BLAST)
@@ -624,6 +634,11 @@ namespace unit
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::ConeOfCold>()));
                 actions.push_back(cooldownExpireAction(make_shared<cooldown::DeepFreeze>()));
             }
+            if (spell->id == spell::FIRE_WARD) {
+                actions.push_back(cooldownAction(make_shared<cooldown::FireWard>()));
+                actions.push_back(buffAction(make_shared<buff::FireWard>()));
+            }
+
             if (spell->id == spell::LIVING_BOMB)
                 t_living_bomb = state->t;
             if (spell->id == spell::FLAMESTRIKE) {
@@ -867,6 +882,22 @@ namespace unit
             list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
             shared_ptr<action::Action> action = NULL;
 
+            // Special case for sapper
+            if (instance->spell->id == spell::SAPPER_CHARGE && hasBuff(buff::FIRE_WARD)) {
+                double absorb = random<double>(2188, 2812);
+                if (absorb > fire_ward)
+                    absorb = fire_ward;
+                fire_ward-= absorb;
+
+                if (talents.incanters_absorption) {
+                    absorb*= talents.incanters_absorption * 0.05;
+                    absorb = round(absorb);
+                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
+                }
+
+                return actions;
+            }
+
             if (instance->result != spell::MISS) {
                 if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
                     actions.push_back(debuffAction(make_shared<debuff::ImprovedScorch>()));
@@ -912,7 +943,7 @@ namespace unit
                     if (config->judgement_of_wisdom && random<int>(0,1) == 1)
                         actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
 
-                    if (hasBuff(buff::COMBUSTION)) {
+                    if (hasBuff(buff::COMBUSTION) && instance->spell->school == SCHOOL_FIRE) {
                         if (instance->result == spell::CRIT)
                             combustion++;
                         if (combustion == 3) {
@@ -1436,7 +1467,10 @@ namespace unit
                 action = spellAction(make_shared<spell::MirrorImage>());
                 action->cooldown = make_shared<cooldown::MirrorImage>();
             }
-
+            else if (talents.incanters_absorption && hasBuff(buff::FIRE_WARD) && !hasCooldown(cooldown::SAPPER_CHARGE) && (useTimingIfPossible("sapper_charge", state, true) || hasBuff(buff::ARCANE_POWER) && getNextTiming("sapper_charge") == NULL)) {
+                action = spellAction(make_shared<spell::SapperCharge>());
+                action->cooldown = make_shared<cooldown::SapperCharge>();
+            }
 
             if (action != NULL && action->type != action::TYPE_SPELL)
                 action->primary_action = true;
@@ -1472,7 +1506,10 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (config->pre_potion && !hasCooldown(cooldown::POTION) && state->t >= -2.0) {
+            if (talents.incanters_absorption && config->pre_incanters_absorption && !hasCooldown(cooldown::FIRE_WARD)) {
+                action = spellAction(make_shared<spell::FireWard>());
+            }
+            else if (config->pre_potion && !hasCooldown(cooldown::POTION) && state->t >= -2.0) {
                 action = make_shared<action::Action>(action::TYPE_POTION);
                 action->potion = config->pre_potion;
             }

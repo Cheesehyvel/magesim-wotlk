@@ -54,6 +54,7 @@ struct Config
 
     bool pre_mirror_image = false;
     bool pre_water_elemental = false;
+    bool pre_incanters_absorption = false;
 
     Potion potion;
     Potion pre_potion;

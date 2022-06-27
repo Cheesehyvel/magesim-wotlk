@@ -29,9 +29,11 @@ namespace spell
         CONE_OF_COLD = 42931,
         DEEP_FREEZE = 44572,
         COLD_SNAP = 11958,
+        FIRE_WARD = 43010,
         IGNITE = 12848,
         MANA_GEM = 42987,
         EVOCATION = 12051,
+        SAPPER_CHARGE = 56488,
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
         EXTRACT_NECROMANTIC_POWER = 60488,
@@ -577,6 +579,22 @@ namespace spell
 
     };
 
+    class FireWard : public Spell
+    {
+
+    public:
+        FireWard()
+        {
+            id = FIRE_WARD;
+            name = "Fire Ward";
+            cost = 16;
+            is_trigger = true;
+            gcd = 0;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
     class Ignite : public Spell
     {
 
@@ -630,6 +648,24 @@ namespace spell
             channeling = true;
             ticks = _ticks;
             cast_time = _ticks*2;
+        }
+
+    };
+
+    class SapperCharge : public Spell
+    {
+
+    public:
+        SapperCharge()
+        {
+            id = SAPPER_CHARGE;
+            name = "Global Thermal Sapper Charge";
+            school = SCHOOL_FIRE;
+            min_dmg = 2188;
+            max_dmg = 2812;
+            coeff = 0;
+            gcd = 0;
+            off_gcd = true;
         }
 
     };

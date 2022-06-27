@@ -165,9 +165,13 @@ public:
 
     void runPrecombat()
     {
-        double t = -1.5;
+        double t = 0;
 
-        if (player->talents.water_elemental && config->pre_water_elemental && config->pre_mirror_image)
+        if (config->pre_mirror_image)
+            t-= 1.5;
+        if (player->talents.water_elemental && config->pre_water_elemental)
+            t-= 1.5;
+        if (player->talents.incanters_absorption && config->pre_incanters_absorption)
             t-= 1.5;
 
         state->t = player->t_gcd = t;

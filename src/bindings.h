@@ -190,6 +190,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
 
         .property("pre_mirror_image", &Config::pre_mirror_image)
         .property("pre_water_elemental", &Config::pre_water_elemental)
+        .property("pre_incanters_absorption", &Config::pre_incanters_absorption)
 
         .property("potion", &Config::potion)
         .property("pre_potion", &Config::pre_potion)
@@ -235,6 +236,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("arcane_potency", &Talents::arcane_potency)
         .field("arcane_empowerment", &Talents::arcane_empowerment)
         .field("arcane_power", &Talents::arcane_power)
+        .field("incanters_absorption", &Talents::incanters_absorption)
         .field("arcane_floes", &Talents::arcane_floes)
         .field("mind_mastery", &Talents::mind_mastery)
         .field("missile_barrage", &Talents::missile_barrage)

@@ -993,6 +993,12 @@
                                         <span>Water Elemental</span>
                                     </label>
                                 </div>
+                                <div class="form-item" v-if="config.talents.incanters_absorption">
+                                    <label><input type="checkbox" v-model="config.pre_incanters_absorption">
+                                        <span>Fire Ward + Sapper</span>
+                                        <help>Sapper will be popped with Arcane Power if no timing is specified.</help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-cooldowns">
                                 <legend>Cooldowns</legend>
@@ -1378,6 +1384,7 @@
 
                 pre_mirror_image: false,
                 pre_water_elemental: false,
+                pre_incanters_absorption: false,
 
                 wrist_socket: false,
                 hands_socket: false,
@@ -1428,6 +1435,7 @@
                     arcane_potency: 0,
                     arcane_empowerment: 0,
                     arcane_power: 0,
+                    incanters_absorption: 0,
                     arcane_floes: 0,
                     mind_mastery: 0,
                     missile_barrage: 0,
@@ -1626,6 +1634,7 @@
             data.talent_map[0][19] = "arcane_potency";
             data.talent_map[0][20] = "arcane_empowerment";
             data.talent_map[0][21] = "arcane_power";
+            data.talent_map[0][22] = "incanters_absorption";
             data.talent_map[0][23] = "arcane_floes";
             data.talent_map[0][24] = "mind_mastery";
             data.talent_map[0][26] = "missile_barrage";
@@ -1868,6 +1877,11 @@
                     title: "Hyperspeed Accelerators",
                     icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
                 });
+                timings.push({
+                    name: "sapper_charge",
+                    title: "Sapper Charge",
+                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_gizmo_supersappercharge.jpg",
+                });
 
                 var potion = {
                     name: "potion",
@@ -2096,6 +2110,8 @@
                     return this.config.conjured != constants.conjureds.CONJURED_NONE;
                 if (name == "hyperspeed_accelerators")
                     return this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
+                if (name == "sapper_charge")
+                    return this.config.talents.incanters_absorption && this.config.pre_incanters_absorption;
                 if (name == "presence_of_mind")
                     return this.config.talents.presence_of_mind > 0;
                 if (name == "arcane_power")

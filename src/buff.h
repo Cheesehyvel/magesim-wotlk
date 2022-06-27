@@ -22,6 +22,8 @@ namespace buff
         FINGERS_OF_FROST = 44544,
         GHOST_FINGERS = 4454411,
         FOCUS_MAGIC = 54648,
+        FIRE_WARD = 43010,
+        INCANTERS_ABSORPTION = 44413,
         HYPERSPEED_ACCELERATION = 54758,
         BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
@@ -350,6 +352,37 @@ namespace buff
             name = "Focus Magic";
             duration = 6000; // This is actually 10 sec but assume it gets refreshed
             stats.crit = 3;
+        }
+
+    };
+
+    class FireWard : public Buff
+    {
+
+    public:
+        FireWard()
+        {
+            id = FIRE_WARD;
+            name = "Fire Ward";
+            duration = 30;
+        }
+
+    };
+
+    class IncantersAbsorption : public Buff
+    {
+
+    public:
+        IncantersAbsorption(double sp)
+        {
+            id = INCANTERS_ABSORPTION;
+            duration = 10;
+            stats.spell_power = sp;
+
+            std::ostringstream s;
+            s << std::fixed << std::setprecision(0);
+            s << "Incanter's Absorption (" << sp << ")";
+            name = s.str();
         }
 
     };
