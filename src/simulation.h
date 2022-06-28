@@ -173,6 +173,8 @@ public:
             t-= 1.5;
         if (player->talents.incanters_absorption && config->pre_incanters_absorption)
             t-= 1.5;
+        if (t >= 0)
+            t-= 1.5;
 
         state->t = player->t_gcd = t;
         int i = 0;
