@@ -180,14 +180,8 @@ public:
         int i = 0;
         while (nextAction(player)) {
             workCurrent();
-            if (player->t_gcd != state->t) {
-                // Extra mana tick
-                if (state->t < -2.0) {
-                    state->t = -2.0;
-                    onManaRegen(player, false);
-                }
+            if (player->t_gcd != state->t)
                 state->t = player->t_gcd;
-            }
             workCurrent();
 
             if (state->t >= 0)

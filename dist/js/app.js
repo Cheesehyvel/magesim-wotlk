@@ -28204,7 +28204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    value: {
+    modelValue: {
       "default": null
     },
     name: {
@@ -28217,10 +28217,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     active: function active() {
-      return this.name == _.get(this.value, "name");
+      return this.name == _.get(this.modelValue, "name");
     },
     desc: function desc() {
-      return this.active && _.get(this.value, "order", this.order) == "desc";
+      return this.active && _.get(this.modelValue, "order", this.order) == "desc";
     }
   },
   methods: {
@@ -28229,8 +28229,8 @@ __webpack_require__.r(__webpack_exports__);
         name: this.name,
         order: this.order
       };
-      if (_.get(this.value, "name") == this.name) value.order = this.flipOrder(_.get(this.value, "order", this.order));
-      this.$emit("input", value);
+      if (_.get(this.modelValue, "name") == this.name) value.order = this.flipOrder(_.get(this.modelValue, "order", this.order));
+      this.$emit("update:modelValue", value);
     },
     flipOrder: function flipOrder(order) {
       return order == "asc" ? "desc" : "asc";

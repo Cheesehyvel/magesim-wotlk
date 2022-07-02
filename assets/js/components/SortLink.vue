@@ -8,7 +8,7 @@
 <script>
     export default {
         props: {
-            value: {
+            modelValue: {
                 default: null,
             },
             name: {
@@ -22,11 +22,11 @@
 
         computed: {
             active() {
-                return this.name == _.get(this.value, "name");
+                return this.name == _.get(this.modelValue, "name");
             },
 
             desc() {
-                return this.active && _.get(this.value, "order", this.order) == "desc";
+                return this.active && _.get(this.modelValue, "order", this.order) == "desc";
             }
         },
 
@@ -37,10 +37,10 @@
                     order: this.order
                 };
 
-                if (_.get(this.value, "name") == this.name)
-                    value.order = this.flipOrder(_.get(this.value, "order", this.order));
+                if (_.get(this.modelValue, "name") == this.name)
+                    value.order = this.flipOrder(_.get(this.modelValue, "order", this.order));
 
-                this.$emit("input", value);
+                this.$emit("update:modelValue", value);
             },
 
             flipOrder(order) {
