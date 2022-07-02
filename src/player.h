@@ -1413,7 +1413,7 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (talents.arcane_power && !hasCooldown(cooldown::ARCANE_POWER) && useTimingIfPossible("arcane_power", state)) {
+            if (talents.arcane_power && !hasCooldown(cooldown::ARCANE_POWER) && !hasBuff(buff::PRESENCE_OF_MIND) && useTimingIfPossible("arcane_power", state)) {
                 action = buffAction(make_shared<buff::ArcanePower>(glyphs.arcane_power));
                 action->cooldown = make_shared<cooldown::ArcanePower>();
             }
@@ -1421,7 +1421,7 @@ namespace unit
                 combustion = 0;
                 action = buffAction(make_shared<buff::Combustion>());
             }
-            else if (talents.presence_of_mind && !hasCooldown(cooldown::PRESENCE_OF_MIND) && useTimingIfPossible("presence_of_mind", state)) {
+            else if (talents.presence_of_mind && !hasCooldown(cooldown::PRESENCE_OF_MIND) && !hasBuff(buff::ARCANE_POWER) && useTimingIfPossible("presence_of_mind", state)) {
                 action = buffAction(make_shared<buff::PresenceOfMind>());
                 action->cooldown = make_shared<cooldown::PresenceOfMind>();
             }
