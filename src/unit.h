@@ -295,7 +295,7 @@ namespace unit
                 if (config->buff_haste)
                     haste*= 1.03;
                 if (config->buff_spell_haste)
-                    haste*= 1.03;
+                    haste*= 1.05;
             }
 
             return 1.0 / haste;
