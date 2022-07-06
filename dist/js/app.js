@@ -27173,16 +27173,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.equipped[slot] = item.id;
+      this.gems[slot] = [null, null, null];
 
-      if (this.item_gems.hasOwnProperty(item.id)) {
-        this.gems[slot] = this.item_gems[item.id];
-      } else {
-        this.gems[slot] = [null, null, null];
+      if (item.sockets) {
+        this.gems[slot] = this.defaultGems(item);
 
-        if (item.sockets) {
-          this.gems[slot] = this.defaultGems(item);
-          this.item_gems[item.id] = this.gems[slot];
+        if (this.item_gems.hasOwnProperty(item.id)) {
+          var n = this.slotSockets(slot).length;
+
+          for (var i = 0; i < n; i++) {
+            if (i < this.item_gems[item.id].length) this.gems[slot][i] = this.item_gems[item.id][i];
+          }
         }
+
+        this.item_gems[item.id] = this.gems[slot];
       }
 
       this.calcStats();
@@ -27375,6 +27379,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     defaultGem: function defaultGem(color) {
       if (color == "m") return this.items.ids.META_CHAOTIC_SKYFLARE;
       return 1;
+    },
+    confirmGems: function confirmGems() {
+      for (var slot in this.gems) {
+        var n = this.slotSockets(slot).length;
+
+        for (var i = n; i < 3; i++) {
+          this.gems[slot][i] = null;
+        }
+      }
     },
     numDragonsEye: function numDragonsEye() {
       var num = 0;
@@ -27796,6 +27809,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
 
         _.merge(this.gems, profile.gems);
+
+        this.confirmGems();
       }
 
       if (profile.config && (!only || only == "config")) {

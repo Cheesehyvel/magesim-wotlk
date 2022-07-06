@@ -3087,15 +3087,17 @@
 
                 this.equipped[slot] = item.id;
 
-                if (this.item_gems.hasOwnProperty(item.id)) {
-                    this.gems[slot] = this.item_gems[item.id];
-                }
-                else {
-                    this.gems[slot] = [null, null, null];
-                    if (item.sockets) {
-                        this.gems[slot] = this.defaultGems(item);
-                        this.item_gems[item.id] = this.gems[slot];
+                this.gems[slot] = [null, null, null];
+                if (item.sockets) {
+                    this.gems[slot] = this.defaultGems(item);
+                    if (this.item_gems.hasOwnProperty(item.id)) {
+                        var n = this.slotSockets(slot).length;
+                        for (var i=0; i<n; i++) {
+                            if (i < this.item_gems[item.id].length)
+                                this.gems[slot][i] = this.item_gems[item.id][i];
+                        }
                     }
+                    this.item_gems[item.id] = this.gems[slot];
                 }
 
                 this.calcStats();
@@ -3315,6 +3317,15 @@
                 if (color == "m")
                     return this.items.ids.META_CHAOTIC_SKYFLARE;
                 return 1;
+            },
+
+            confirmGems() {
+                for (var slot in this.gems) {
+                    var n = this.slotSockets(slot).length;
+                    for (var i=n; i<3; i++) {
+                        this.gems[slot][i] = null;
+                    }
+                }
             },
 
             numDragonsEye() {
@@ -3789,6 +3800,7 @@
                         }
                     }
                     _.merge(this.gems, profile.gems);
+                    this.confirmGems();
                 }
 
                 if (profile.config && (!only || only == "config")) {
