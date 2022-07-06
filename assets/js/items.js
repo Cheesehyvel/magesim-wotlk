@@ -134,6 +134,15 @@ var equip = {
         { id: 39394, title: "Charmed Cierge", int: 68, spi: 90, sp: 408, haste: 89, twohand: true },
         { id: 39256, title: "Sulfur Stave", int: 90, spi: 89, sp: 408, hit: 59, twohand: true },
         { id: 37360, title: "Staff of Draconic Combat", int: 90, spi: 69, sp: 408, haste: 88, twohand: true },
+        // pvp
+        { id: 42346, title: "Deadly Gladiator's Spellblade", int: 36, sp: 461, crit: 36 },
+        { id: 42362, title: "Deadly Gladiator's Battle Staff", int: 64, sp: 461, crit: 85, twohand: true },
+        { id: 44420, title: "Deadly Gladiator's Focus Staff", int: 64, sp: 461, hit: 85, twohand: true },
+        { id: 44419, title: "Deadly Gladiator's War Staff", int: 64, sp: 461, haste: 85, twohand: true },
+        { id: 42345, title: "Hateful Gladiator's Spellblade", int: 32, sp: 408, crit: 32 },
+        { id: 42359, title: "Hateful Gladiator's Battle Staff", int: 57, sp: 408, crit: 75, twohand: true },
+        { id: 44418, title: "Hateful Gladiator's Focus Staff", int: 57, sp: 408, hit: 75, twohand: true },
+        { id: 44417, title: "Hateful Gladiator's War Staff", int: 57, sp: 408, haste: 75, twohand: true },
         // prebis
         { id: 45085, title: "Titansteel Spellblade", sp: 408, crit: 53, hit: 30 },
         { id: 44173, title: "Flameheart Spell Scalpel", int: 33, sp: 355, crit: 25, hit: 34, q: "rare" },
@@ -178,6 +187,20 @@ var equip = {
         { id: 40350, title: "Urn of Lost Memories", int: 32, sp: 66, crit: 41, mp5: 21 },
         { id: 39199, title: "Watchful Eye", int: 38, spi: 36, sp: 59, hit: 28 },
         { id: 39311, title: "Scepter of Murmuring Spirits", int: 34, sp: 59, crit: 38, mp5: 16 },
+        // pvp
+        { id: 42525, title: "Deadly Gladiator's Endgame", int: 29, sp: 66, crit: 38 },
+        { id: 42531, title: "Deadly Gladiator's Reprieve", int: 29, spi: 38, sp: 66 },
+        { id: 42537, title: "Deadly Gladiator's Grimoire", int: 29, sp: 66 },
+        // prebis
+        { id: 40698, title: "Ward of the Violet Citadel", int: 34, sp: 59, crit: 25, hit: 38 },
+        { id: 44210, title: "Faces of Doom", int: 42, spi: 42, sp: 49, crit: 42 },
+        { id: 38322, title: "Iron-bound Tome", sp: 74, crit: 33 },
+        { id: 40699, title: "Handbook of Obscure Remedies", int: 36, spi: 38, sp: 59, haste: 25 },
+        { id: 37134, title: "Telestra's Journal", int: 43, sp: 50, hit: 39, q: "rare" },
+        { id: 37718, title: "Temple Crystal Fragment", int: 31, sp: 51, haste: 42, q: "rare" },
+        { id: 37051, title: "Seal of Valgarde", int: 35, sp: 44, haste: 38, q: "rare" },
+        { id: 37086, title: "Tome of Salramm", int: 21, spi: 19, sp: 46, crit: 38, q: "rare" },
+        { id: 37889, title: "Prison Manifest", int: 42, spi: 34, sp: 51, q: "rare" },
         // tbc
         { id: 34179, title: "Heart of the Pit", int: 21, sp: 39, haste: 32 },
     ],
@@ -246,6 +269,8 @@ var equip = {
         { id: 45289, title: "Lifespark Visage", int: 73, spi: 45, sp: 105, haste: 63, sockets: ["m", "b"], bonus: {spi: 8}, phase: 2 },
         // eoe
         { id: 40562, title: "Hood of Rationality", int: 63, spi: 81, sp: 120, crit: 50, sockets: ["m", "b"] },
+        // os
+        { id: 43995, title: "Enamored Cowl", int: 63, spi: 79, sp: 99, crit: 40, sockets: ["m", "y"], bonus: {sp: 9} },
         // naxx
         { id: 40416, itemset: ids.T7_SET, title: "Valorous Frostfire Circlet", int: 77, spi: 66, sp: 98, crit: 51, sockets: ["m", "r"], bonus: {crit: 8} },
         { id: 39491, itemset: ids.T7_SET, title: "Heroes' Frostfire Circlet", int: 64, spi: 60, sp: 87, crit: 43, sockets: ["m", "r"], bonus: {crit: 8} },
@@ -312,6 +337,9 @@ var equip = {
         { id: 45447, title: "Watchful Eye of Fate", int: 36, spi: 37, sp: 74, haste: 40, sockets: ["y"], bonus: {crit: 4}, phase: 2 },
         // eoe
         { id: 44661, title: "Wyrmrest Necklace of Power", int: 48, sp: 64, hit: 33, haste: 43, sockets: ["b"], bonus: {sp: 5} },
+        { id: 44662, title: "Life-Binder's Locket", int: 48, sp: 64, crit: 35, mp5: 20, sockets: ["y"], bonus: {sp: 5} },
+        { id: 44658, title: "Chain of the Ancient Wyrm", int: 43, sp: 56, hit: 30, haste: 37, sockets: ["b"], bonus: {sp: 5} },
+        { id: 44657, title: "Torque of the Red Dragonflight", int: 43, sp: 56, crit: 30, mp5: 19, sockets: ["y"], bonus: {sp: 5} },
         { id: 40486, title: "Necklace of the Glittering Chamber", int: 34, spi: 38, sp: 69, crit: 37 },
         // os
         { id: 40427, title: "Circle of Arcane Streams", int: 37, sp: 53, crit: 35, hit: 31 },
@@ -324,7 +352,17 @@ var equip = {
         { id: 39282, title: "Bone-Linked Amulet", int: 33, spi: 25, sp: 57, crit: 50 },
         { id: 39392, title: "Veiled Amulet of Life", int: 38, spi: 34, sp: 59, haste: 33 },
         { id: 39232, title: "Pendant of Lost Vocations", int: 41, sp: 57, haste: 36, mp5: 15 },
+        // pvp
+        { id: 42029, title: "Deadly Gladiator's Pendant of Dominance", int: 29, sp: 66, crit: 38 },
+        { id: 42030, title: "Deadly Gladiator's Pendant of Ascendancy", int: 29, sp: 66, hit: 38 },
+        { id: 42031, title: "Deadly Gladiator's Pendant of Subjugation", int: 29, sp: 66, haste: 38 },
+        { id: 42022, title: "Hateful Gladiator's Pendant of Dominance", int: 24, sp: 59, crit: 34 },
+        { id: 42023, title: "Hateful Gladiator's Pendant of Subjugation", int: 24, sp: 59, haste: 34 },
+        { id: 42024, title: "Hateful Gladiator's Pendant of Ascendancy", int: 24, sp: 59, hit: 34 },
         // prebis
+        { id: 39472, title: "Chain of Latent Energies", int: 33, sp: 59, hit: 34, haste: 36 },
+        { id: 40680, title: "Encircling Burnished Gold Chains", int: 38, spi: 34, sp: 59, hit: 25 },
+        { id: 40681, title: "Lattice Choker of Light", int: 38, sp: 59, crit: 34, mp5: 16 },
         { id: 42647, title: "Titanium Spellshock Necklace", int: 36, sp: 49, crit: 41, sockets: ["r"], bonus: {int: 4} },
         { id: 43285, title: "Amulet of the Spell Flinger", int: 31, sp: 50, crit: 42, q: "rare" },
         { id: 37595, title: "Necklace of Taldaram", int: 28, sp: 50, hit: 43, q: "rare" },
@@ -430,7 +468,16 @@ var equip = {
         { id: 39415, title: "Shroud of the Citadel", int: 36, sp: 58, crit: 38, haste: 25 },
         { id: 39425, title: "Cloak of the Dying", int: 43, sp: 66, crit: 38, mp5: 19 },
         { id: 39272, title: "Drape of Surgery", int: 38, sp: 59, haste: 25, mp5: 18 },
+        // pvp
+        { id: 42062, title: "Deadly Gladiator's Cloak of Dominance", int: 29, sp: 66, crit: 38 },
+        { id: 42063, title: "Deadly Gladiator's Cloak of Subjugation", int: 29, sp: 66, haste: 38 },
+        { id: 42064, title: "Deadly Gladiator's Cloak of Ascendancy", int: 29, sp: 66, hit: 38 },
+        { id: 42055, title: "Hateful Gladiator's Cloak of Dominance", int: 24, sp: 59, crit: 34 },
+        { id: 42056, title: "Hateful Gladiator's Cloak of Subjugation", int: 24, sp: 59, haste: 34 },
+        { id: 42057, title: "Hateful Gladiator's Cloak of Ascendancy", int: 24, sp: 59, hit: 34 },
         // prebis
+        { id: 40723, title: "Disguise of the Kumiho", int: 38, spi: 37, sp: 65, haste: 41 },
+        { id: 40724, title: "Cloak of Kea Feathers", int: 43, sp: 66, haste: 28, mp5: 21 },
         { id: 41610, title: "Deathchill Cloak", sp: 59, crit: 43, haste: 53 },
         { id: 41609, title: "Wispcloak", int: 36, sp: 59, mp5: 25 },
         { id: 37291, title: "Ancient Dragon Spirit Cape", int: 29, sp: 51, haste: 42, q: "rare" },
@@ -546,7 +593,14 @@ var equip = {
         { id: 39731, title: "Punctilious Bindings", int: 43, spi: 39, sp: 66, haste: 37 },
         { id: 39252, title: "Preceptor's Bindings", int: 38, spi: 34, sp: 59, hit: 33 },
         { id: 39390, title: "Resurgent Phantom Bindings", int: 32, spi: 38, sp: 59, haste: 33 },
+        // pvp
+        { id: 41908, title: "Deadly Gladiator's Cuffs of Dominance", int: 29, sp: 66, crit: 38 },
+        { id: 41892, title: "Deadly Gladiator's Cuffs of Salvation", int: 29, spi: 38, sp: 66 },
+        { id: 41907, title: "Hateful Gladiator's Cuffs of Dominance", int: 24, sp: 59, crit: 34 },
+        { id: 41878, title: "Hateful Gladiator's Cuffs of Salvation", int: 24, spi: 34, sp: 59 },
         // prebis
+        { id: 40740, title: "Wraps of the Astral Traveler", int: 41, spi: 43, sp: 65, hit: 28 },
+        { id: 40741, title: "Cuffs of the Shadow Ascendant", int: 43, sp: 66, haste: 38, mp5: 19 },
         { id: 37361, title: "Cuffs of Winged Levitation", int: 38, spi: 32, sp: 59, haste: 33 },
         { id: 37884, title: "Azure Cloth Bindings", int: 38, sp: 59, crit: 50 },
         { id: 41555, itemset: ids.DUSKWEAVE_SET, title: "Black Duskweave Wristwraps", int: 27, sp: 46, haste: 38, q: "rare" },
@@ -626,6 +680,7 @@ var equip = {
         // tbc
         { id: 34344, title: "Handguards of Defiled Worlds", int: 32, sp: 47, hit: 27, haste: 36, sockets: ["y", "r"], bonus: { sp: 4 } },
         { id: 34406, title: "Gloves of Tyri's Power", int: 32, spi: 27, sp: 47, haste: 36, sockets: ["r", "y"], bonus: { sp: 4 } },
+        { id: 34342, title: "Handguards of the Dawn", int: 32, spi: 36, sp: 47, haste: 27, sockets: ["r", "b"], bonus: {mp5: 1} },
         { id: 34366, title: "Sunfire Handwraps", int: 30, sp: 53, crit: 37, sockets: ["r", "r"], bonus: { sp: 4 } },
         { id: 31055, itemset: ids.T6_SET, title: "Gloves of the Tempest", int: 26, spi: 21, sp: 46, crit: 19, hit: 20, sockets: ["y"], bonus: { sp: 2 } },
         { id: 23084, itemset: ids.CUDC_SET, title: "Gloves of Undead Cleansing", int: 10, q: "rare" },
@@ -667,9 +722,15 @@ var equip = {
         { id: 39190, title: "Agonal Sash", int: 52, spi: 48, sp: 76, haste: 38 },
         { id: 39216, title: "Sash of Mortal Desire", int: 51, spi: 38, sp: 76, crit: 48 },
         { id: 44302, title: "Belt of Dark Mending", int: 50, sp: 77, haste: 55 },
-        { id: 37408, title: "Girdle of Bane", int: 51, spi: 38, sp: 77, hit: 48 },
         { id: 37242, title: "Sash of the Servant", int: 52, sp: 76, crit: 64 },
+        // pvp
+        { id: 41897, title: "Deadly Gladiator's Cord of Dominance", int: 37, sp: 78, crit: 42, sockets: ["b"], bonus: {sp: 5} },
+        { id: 41880, title: "Deadly Gladiator's Cord of Salvation", int: 37, spi: 42, sp: 78, sockets: ["b"], bonus: {sp: 5} },
+        { id: 41896, title: "Hateful Gladiator's Cord of Dominance", int: 33, sp: 68, crit: 36, sockets: ["b"], bonus: {sp: 5} },
+        { id: 41877, title: "Hateful Gladiator's Cord of Salvation", int: 33, spi: 36, sp: 68, sockets: ["b"], bonus: {sp: 5} },
         // prebis
+        { id: 37408, title: "Girdle of Bane", int: 51, spi: 38, sp: 77, hit: 48 },
+        { id: 40696, title: "Plush Sash of Guzbah", int: 52, sp: 68, hit: 33, haste: 42, sockets: ["y"], bonus: {hit: 4} },
         { id: 44309, title: "Sash of Jordan", int: 55, spi: 55, sp: 66, sockets: ["r"], bonus: {sp: 5} },
         { id: 37680, title: "Belt of Unified Souls", int: 51, sp: 68, hit: 42, q: "rare" },
         { id: 37637, title: "Living Mojo Belt", int: 54, sp: 59, crit: 42, sockets: ["r"], bonus: {crit: 4}, q: "rare" },
@@ -782,10 +843,20 @@ var equip = {
         { id: 40236, title: "Serene Echoes", int: 57, sp: 88, crit: 49, mp5: 25 },
         { id: 39254, title: "Saltarello Shoes", int: 51, spi: 51, sp: 77, haste: 33 },
         { id: 39273, title: "Sullen Cloth Boots", int: 50, spi: 38, sp: 76, crit: 48 },
+        // pvp
+        { id: 41902, title: "Deadly Gladiator's Treads of Dominance", int: 37, sp: 78, crit: 42, sockets: ["y"] },
+        { id: 41884, title: "Deadly Gladiator's Treads of Salvation", int: 37, spi: 42, sp: 78, sockets: ["y"] },
+        { id: 41901, title: "Hateful Gladiator's Slippers of Dominance", int: 33, sp: 68, crit: 36, sockets: ["y"] },
+        { id: 41879, title: "Hateful Gladiator's Slippers of Salvation", int: 33, spi: 36, sp: 68, sockets: ["y"] },
+        { id: 44899, title: "Titan-Forged Slippers of Dominance", int: 33, sp: 68, hit: 36, sockets: ["y"] },
+        { id: 44900, title: "Titan-Forged Slippers of Salvation", int: 33, sp: 68, haste: 36, sockets: ["y"] },
         // prebis
+        { id: 40750, title: "Xintor's Expeditionary Boots", int: 57, spi: 55, sp: 88, hit: 43 },
+        { id: 40751, title: "Slippers of the Holy Light", int: 55, spi: 57, sp: 88, haste: 37 },
         { id: 44202, title: "Sandals of Crimson Fury", int: 50, sp: 77, haste: 51, sockets: ["b"], bonus: {int: 4} },
         { id: 37218, title: "Stone-Worn Footwraps", int: 52, sp: 68, crit: 57, q: "rare" },
         { id: 37629, title: "Slithering Slippers", int: 44, sp: 68, crit: 57, q: "rare" },
+        { id: 36954, title: "The Conjurer's Slippers", int: 40, sp: 60, haste: 54, q: "rare" },
         { id: 37730, title: "Cleric's Linen Shoes", int: 44, sp: 59, haste: 57, sockets: ["r"], q: "rare" },
         { id: 37867, title: "Footwraps of Teleportation", int: 57, spi: 39, sp: 59, sockets: ["y"], bonus: {sp: 5}, q: "rare" },
         { id: 41985, title: "Silky Iceshard Boots", sp: 60, crit: 37, haste: 29, q: "rare" },
@@ -851,12 +922,18 @@ var equip = {
         { id: 39244, title: "Ring of the Fated", int: 37, sp: 42, crit: 50, haste: 28 },
         { id: 39389, title: "Signet of the Malevolent", int: 34, sp: 46, hit: 49, haste: 33 },
         { id: 39231, title: "Timeworn Silken Band", int: 38, spi: 28, sp: 59, crit: 36 },
+        // pvp
+        { id: 42114, title: "Deadly Gladiator's Band of Ascendancy", int: 29, sp: 66, hit: 38 },
+        { id: 42115, title: "Deadly Gladiator's Band of Victory", hit: 38 },
+        { id: 42110, title: "Hateful Gladiator's Band of Dominance", int: 24, sp: 59, crit: 34 },
+        { id: 42112, title: "Hateful Gladiator's Band of Triumph", crit: 34 },
+        // prebis
+        { id: 40719, title: "Band of Channeled Magic", int: 41, spi: 32, sp: 65, haste: 43 },
+        { id: 40720, title: "Renewal of Life", int: 41, sp: 66, crit: 28, mp5: 21 },
         { id: 40585, title: "Signet of the Kirin Tor", int: 34, sp: 59, crit: 36, haste: 28 },
         { id: 44934, title: "Loop of the Kirin Tor", int: 34, spi: 36, sp: 59, mp5: 14 },
         { id: 37192, title: "Annhylde's Ring", int: 33, sp: 59, haste: 49 },
         { id: 37694, title: "Band of Guile", int: 34, sp: 59, haste: 50 },
-        // prebis
-        { id: 40719, title: "Band of Channeled Magic", int: 41, spi: 32, sp: 65, haste: 43 },
         { id: 44283, title: "Signet of Hopeful Light", int: 50, sp: 58, haste: 36 },
         { id: 42644, title: "Titanium Spellshock Ring", int: 33, sp: 49, crit: 42, sockets: ["r"], bonus: {sp: 5} },
         { id: 37195, title: "Band of Enchanted Growth", int: 31, sp: 50, mp5: 21, q: "rare" },
@@ -904,6 +981,11 @@ var equip = {
         { id: ids.TRINKET_EXTRACT_NECROMANTIC_POWER, title: "Extract of Necromantic Power", crit: 95 },
         { id: ids.TRINKET_SOUL_DEAD, title: "Soul of the Dead", crit: 95 },
         { id: ids.TRINKET_EMBRACE_SPIDER, title: "Embrace of the Spider", sp: 98 },
+        // pvp
+        { id: 42132, title: "Battlemaster's Bravery", sp: 111 },
+        { id: 42130, title: "Battlemaster's Avidity", haste: 95 },
+        { id: 42129, title: "Battlemaster's Accuracy", hit: 95 },
+        { id: 42128, title: "Battlemaster's Hostility", crit: 95 },
         // prebis
         { id: ids.TRINKET_SUNDIAL_EXILED, title: "Sundial of the Exiled", crit: 84 },
         { id: ids.TRINKET_DARKMOON_DEATH, title: "Darkmoon Card: Death", crit: 85 },
