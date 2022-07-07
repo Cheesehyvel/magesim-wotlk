@@ -208,10 +208,8 @@ namespace unit
                 crit+= critRatingToChance(round(getSpirit() * multi));
             }
 
-            if (talents.arcane_potency) {
-                if (hasBuff(buff::CLEARCAST, true) || hasBuff(buff::PRESENCE_OF_MIND, true))
-                    crit+= talents.arcane_potency*15.0;
-            }
+            if (talents.arcane_potency && hasBuff(buff::ARCANE_POTENCY))
+                crit+= talents.arcane_potency*15.0;
 
             if (talents.incineration) {
                 if (spell->id == spell::ARCANE_BLAST ||
@@ -574,6 +572,9 @@ namespace unit
             else if (buff->id == buff::FIRE_WARD) {
                 fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE)*0.1;
             }
+            else if (buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) {
+                actions.push_back(buffAction(make_shared<buff::ArcanePotency>()));
+            }
 
             return actions;
         }
@@ -901,6 +902,12 @@ namespace unit
                 return actions;
             }
 
+            if (hasBuff(buff::ARCANE_POTENCY) && !instance->spell->dot) {
+                // Special case for blizzard
+                if (instance->spell->id != spell::BLIZZARD || instance->tick == instance->spell->ticks)
+                    actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
+            }
+
             if (instance->result != spell::MISS) {
                 if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
                     actions.push_back(debuffAction(make_shared<debuff::ImprovedScorch>()));
@@ -913,8 +920,14 @@ namespace unit
                         actions.push_back(manaAction(base_mana * 0.02, "Ignite"));
                 }
 
-                if (random<int>(0, 99) < talents.clearcast * 2)
-                    actions.push_back(buffAction(make_shared<buff::Clearcast>()));
+                if (talents.clearcast && !instance->spell->dot) {
+                    double chance = talents.clearcast * 2.0;
+                    // Less chance per tick for channelled spells
+                    if (instance->spell->ticks)
+                        chance/= instance->spell->ticks;
+                    if (random<double>(0, 100) < chance)
+                        actions.push_back(buffAction(make_shared<buff::Clearcast>()));
+                }
 
                 if (instance->spell->id == spell::FIREBALL && !glyphs.fireball)
                     actions.push_back(spellAction(make_shared<spell::FireballDot>()));

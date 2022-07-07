@@ -6,6 +6,7 @@ namespace buff
         ARCANE_BLAST = 30451,
         ARCANE_POWER = 12042,
         PRESENCE_OF_MIND = 12043,
+        ARCANE_POTENCY = 57531,
         ICY_VEINS = 12472,
         COMBUSTION = 29977,
         EVOCATION = 12051,
@@ -139,6 +140,19 @@ namespace buff
             name = "Presence of Mind";
             duration = 100;
             snapshot = true;
+        }
+
+    };
+
+    class ArcanePotency : public Buff
+    {
+
+    public:
+        ArcanePotency()
+        {
+            id = ARCANE_POTENCY;
+            name = "Arcane Potency";
+            duration = 1000; // unlimited
         }
 
     };
