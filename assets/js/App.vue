@@ -142,8 +142,27 @@
                     <template v-if="result.iterations">
                         <div class="dps-result">
                             <div>DPS</div>
-                            <div>{{ $round(result.avg_dps, 2) }}</div>
                             <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
+                            <div>{{ $round(result.avg_dps, 2) }}</div>
+                            <div class="pinned" v-if="pin_dps">
+                                <span class="update" @click="updatePin">
+                                    <span class="material-icons">&#xe5d5;</span>
+                                    <tooltip position="r">Update reference</tooltip>
+                                </span>
+                                <span class="diff" :class="[pin_dps > result.avg_dps ? 'lt' : 'gt']">
+                                    <template v-if="pin_dps <= result.avg_dps">+</template>{{ $roundFixed(result.avg_dps - pin_dps, 2) }}
+                                </span>
+                                <span class="remove" @click="removePin">
+                                    <span class="material-icons">&#xe5cd;</span>
+                                    <tooltip position="r">Remove reference</tooltip>
+                                </span>
+                            </div>
+                            <div class="pin" v-else>
+                                <span>
+                                    <span class="material-icons" @click="updatePin">&#xf10d;</span>
+                                    <tooltip position="r">Set reference</tooltip>
+                                </span>
+                            </div>
                         </div>
                         <div class="faded" v-if="result.stats.evocated.n">
                             Evocated: {{ $round(result.stats.evocated.t, 1) }}s
@@ -153,14 +172,14 @@
                             Wasted haste: {{ $round(result.stats.t_gcd_capped, 2) }}s
                             <help>Time spent gcd capped</help>
                         </div>
-                        <div class="btn mt-1" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
+                        <div class="btn mt-2" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
                         <div class="btn mt-1" v-if="result.all_results" @click="allResults">Simulation data</div>
                     </template>
                     <template v-else>
                         <div class="dps-result">
                             <div>DPS</div>
-                            <div>{{ $round(result.dps, 2) }}</div>
                             <div>Damage: {{ result.dmg }}</div>
+                            <div>{{ $round(result.dps, 2) }}</div>
                         </div>
                         <div class="mt-1"></div>
                         <div class="faded" v-if="result.evocated_at > 0">Evocated at: {{ $round(result.evocated_at, 1) }}</div>
@@ -1286,12 +1305,14 @@
     import items from "./items";
     import glyphs from "./glyphs";
     import constants from "./constants";
+    const DEFAULT_DESIGN = 2;
 
     export default {
         created() {
             var design = localStorage.getItem("design");
-            if (design)
-                document.documentElement.classList.add("design-"+design);
+            if (!design)
+                design = DEFAULT_DESIGN;
+            document.documentElement.classList.add("design-"+design);
         },
 
         mounted() {
@@ -1573,6 +1594,7 @@
                 equiplist_string: null,
                 display_stats: null,
                 result: null,
+                pin_dps: null,
                 ep_result: null,
                 ep_weight: "dps",
                 is_running: false,
@@ -2043,17 +2065,9 @@
 
         methods: {
             setDesign(design) {
-                var old = localStorage.getItem("design");
-                if (old)
-                    document.documentElement.classList.remove("design-"+old);
-
-                if (design < 2) {
-                    localStorage.removeItem("design");
-                }
-                else {
-                    localStorage.setItem("design", design);
-                    document.documentElement.classList.add("design-"+design);
-                }
+                document.documentElement.className = document.documentElement.className.replace(/design-[0-9]+/);
+                localStorage.setItem("design", design);
+                document.documentElement.classList.add("design-"+design);
             },
 
             onDesignInput(e) {
@@ -3377,6 +3391,15 @@
                     return true;
 
                 return false;
+            },
+
+            updatePin() {
+                if (this.result && this.result.avg_dps)
+                    this.pin_dps = this.result.avg_dps;
+            },
+
+            removePin() {
+                this.pin_dps = null;
             },
 
             isComparing(item) {

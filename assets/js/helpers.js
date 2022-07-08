@@ -19,3 +19,16 @@ window.app.config.globalProperties.$nullRound = function(value, dec) {
         return "-";
     return _.round(value, dec);
 };
+
+window.app.config.globalProperties.$roundFixed = function(value, dec) {
+    value = _.round(value, dec);
+    value = value.toString();
+    if (dec == 0)
+        return value;
+    if (value.indexOf(".") == -1)
+        value+= ".0";
+    var index = value.indexOf(".");
+    while (value.length - index <= dec)
+        value+= "0";
+    return value;
+};
