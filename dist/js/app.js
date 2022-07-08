@@ -19165,7 +19165,8 @@ var equip = {
     sp: 26,
     mp5: 10,
     q: "rare"
-  }, {
+  }, // tbc
+  {
     id: 34347,
     title: "Wand of the Demonsoul",
     "int": 10,
@@ -19174,6 +19175,17 @@ var equip = {
     sockets: ["y"],
     bonus: {
       sp: 2
+    }
+  }, {
+    id: 34348,
+    title: "Wand of Cleansing Light",
+    "int": 8,
+    spi: 18,
+    sp: 22,
+    haste: 8,
+    sockets: ["r"],
+    bonus: {
+      spi: 2
     }
   }],
   head: [// icc

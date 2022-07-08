@@ -238,7 +238,9 @@ var equip = {
         { id: 37626, title: "Wand of Sseratus", int: 18, spi: 24, sp: 28, q: "rare" },
         { id: 44108, title: "Shinygem Rod", sp: 26, crit: 16, q: "rare" },
         { id: 44214, title: "Purifying Torch", sp: 26, mp5: 10, q: "rare" },
+        // tbc
         { id: 34347, title: "Wand of the Demonsoul", int: 10, sp: 22, haste: 18, sockets: ["y"], bonus: { sp: 2 } },
+        { id: 34348, title: "Wand of Cleansing Light", int: 8, spi: 18, sp: 22, haste: 8, sockets: ["r"], bonus: {spi: 2} },
     ],
     head: [
         // icc
