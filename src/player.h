@@ -905,12 +905,6 @@ namespace unit
                 return actions;
             }
 
-            if (hasBuff(buff::ARCANE_POTENCY) && !instance->spell->dot) {
-                // Special case for blizzard
-                if (instance->spell->id != spell::BLIZZARD || instance->tick == instance->spell->ticks)
-                    actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
-            }
-
             if (instance->result != spell::MISS) {
                 if (talents.imp_scorch && instance->spell->id == spell::SCORCH)
                     actions.push_back(debuffAction(make_shared<debuff::ImprovedScorch>()));
@@ -949,6 +943,12 @@ namespace unit
                     }
                 }
                 else {
+                    if (hasBuff(buff::ARCANE_POTENCY)) {
+                        // Special case for blizzard
+                        if (instance->spell->id != spell::BLIZZARD || instance->tick == instance->spell->ticks)
+                            actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
+                    }
+
                     if (talents.clearcast) {
                         double chance = talents.clearcast * 2.0;
                         // Less chance per tick for channelled spells
