@@ -290,6 +290,7 @@ namespace spell
             coeff = 3/3.5;
             school = SCHOOL_FROSTFIRE;
             has_travel_time = true;
+            binary = true;
         }
 
     };
