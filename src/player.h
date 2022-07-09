@@ -923,15 +923,6 @@ namespace unit
                         actions.push_back(manaAction(base_mana * 0.02, "Ignite"));
                 }
 
-                if (talents.clearcast && !instance->spell->dot) {
-                    double chance = talents.clearcast * 2.0;
-                    // Less chance per tick for channelled spells
-                    if (instance->spell->ticks)
-                        chance/= instance->spell->ticks;
-                    if (random<double>(0, 100) < chance)
-                        actions.push_back(buffAction(make_shared<buff::Clearcast>()));
-                }
-
                 if (instance->spell->id == spell::FIREBALL && !glyphs.fireball)
                     actions.push_back(spellAction(make_shared<spell::FireballDot>()));
                 if (instance->spell->id == spell::PYROBLAST)
@@ -958,6 +949,15 @@ namespace unit
                     }
                 }
                 else {
+                    if (talents.clearcast) {
+                        double chance = talents.clearcast * 2.0;
+                        // Less chance per tick for channelled spells
+                        if (instance->spell->ticks)
+                            chance/= instance->spell->ticks;
+                        if (random<double>(0, 100) < chance)
+                            actions.push_back(buffAction(make_shared<buff::Clearcast>()));
+                    }
+
                     // 50% chance, no icd ? unconfirmed
                     if (config->judgement_of_wisdom && random<int>(0,1) == 1)
                         actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
@@ -983,22 +983,6 @@ namespace unit
             }
 
             if (instance->result == spell::CRIT) {
-                if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
-                    actions.push_back(buffAction(make_shared<buff::AshtongueTalisman>()));
-
-                if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
-                    action = manaAction(900, "Soul of the Dead");
-                    action->cooldown = make_shared<cooldown::SoulDead>();
-                    actions.push_back(action);
-                }
-
-                if (talents.master_of_elements) {
-                    double mana = baseManaCost(instance->spell) * 0.1 * talents.master_of_elements;
-                    if ((instance->spell->channeling || instance->spell->dot) && instance->spell->ticks)
-                        mana = mana / instance->spell->ticks;
-                    actions.push_back(manaAction(mana, "Master of Elements"));
-                }
-
                 // Ignite
                 if (talents.ignite && (instance->spell->school == SCHOOL_FIRE || instance->spell->school == SCHOOL_FROSTFIRE)) {
                     shared_ptr<action::Action> ignite = make_shared<action::Action>(action::TYPE_SPELL);
@@ -1007,18 +991,36 @@ namespace unit
                     actions.push_back(ignite);
                 }
 
-                if (talents.burnout && instance->spell->actual_cost)
-                    actions.push_back(manaAction(instance->spell->actual_cost * -0.01 * talents.burnout, "Burnout"));
+                if (!instance->spell->dot) {
+                    if (talents.master_of_elements) {
+                        double mana = baseManaCost(instance->spell) * 0.1 * talents.master_of_elements;
+                        if ((instance->spell->channeling || instance->spell->dot) && instance->spell->ticks)
+                            mana = mana / instance->spell->ticks;
+                        actions.push_back(manaAction(mana, "Master of Elements"));
+                    }
 
-                if (hasTrinket(TRINKET_REIGN_UNLIVING_HC) && !instance->spell->dot && !hasCooldown(cooldown::REIGN_UNLIVING_HC)) {
-                    action = buffAction(make_shared<buff::ReignUnlivingHc>());
-                    action->cooldown = make_shared<cooldown::ReignUnlivingHc>();
-                    actions.push_back(action);
-                }
-                if (hasTrinket(TRINKET_REIGN_UNLIVING_NM) && !instance->spell->dot && !hasCooldown(cooldown::REIGN_UNLIVING_NM)) {
-                    action = buffAction(make_shared<buff::ReignUnlivingNm>());
-                    action->cooldown = make_shared<cooldown::ReignUnlivingNm>();
-                    actions.push_back(action);
+                    if (talents.burnout && instance->spell->actual_cost)
+                        actions.push_back(manaAction(instance->spell->actual_cost * -0.01 * talents.burnout, "Burnout"));
+
+                    if (hasTrinket(TRINKET_SOUL_DEAD) && !hasCooldown(cooldown::SOUL_DEAD) && random<int>(0, 3) == 0) {
+                        action = manaAction(900, "Soul of the Dead");
+                        action->cooldown = make_shared<cooldown::SoulDead>();
+                        actions.push_back(action);
+                    }
+
+                    if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
+                        actions.push_back(buffAction(make_shared<buff::AshtongueTalisman>()));
+
+                    if (hasTrinket(TRINKET_REIGN_UNLIVING_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC)) {
+                        action = buffAction(make_shared<buff::ReignUnlivingHc>());
+                        action->cooldown = make_shared<cooldown::ReignUnlivingHc>();
+                        actions.push_back(action);
+                    }
+                    if (hasTrinket(TRINKET_REIGN_UNLIVING_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM)) {
+                        action = buffAction(make_shared<buff::ReignUnlivingNm>());
+                        action->cooldown = make_shared<cooldown::ReignUnlivingNm>();
+                        actions.push_back(action);
+                    }
                 }
             }
 
