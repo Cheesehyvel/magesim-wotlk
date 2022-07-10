@@ -31120,7 +31120,7 @@ var _hoisted_556 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 
 var _hoisted_557 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text"
-}, "This sim is under construction. Results are not accurate.", -1
+}, "This sim is under construction. Results may not be accurate as we discover more things in the Wotlk Beta.", -1
 /* HOISTED */
 );
 

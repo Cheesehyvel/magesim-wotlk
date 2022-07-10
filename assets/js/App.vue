@@ -1131,7 +1131,7 @@
                 <div class="closer" @click="closeBetaWarning"></div>
                 <div class="inner">
                     <div class="title">BETA</div>
-                    <div class="text">This sim is under construction. Results are not accurate.</div>
+                    <div class="text">This sim is under construction. Results may not be accurate as we discover more things in the Wotlk Beta.</div>
                     <div class="btn mt-2" @click="closeBetaWarning">I understand</div>
                 </div>
             </div>
