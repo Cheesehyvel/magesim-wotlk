@@ -574,9 +574,9 @@
                                 <div class="form-item">
                                     <label>Quick spec</label>
                                     <span class="btn secondary" @click="setSpec('arcane')">Arcane</span>
-                                    <span class="btn secondary" @click="setSpec('arcane_barrage')">Barrage</span>
                                     <span class="btn secondary" @click="setSpec('fire')">Fire</span>
                                     <span class="btn secondary" @click="setSpec('frost')">Frost</span>
+                                    <span class="btn secondary" @click="setSpec('ffb')">FFB</span>
                                 </div>
                                 <div class="form-item">
                                     <label>Race</label>
@@ -3454,6 +3454,10 @@
                 else if (spec == "frost") {
                     this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
                     this.config.rotation = constants.rotations.ROTATION_ST_FROST;
+                }
+                else if (spec == "ffb") {
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/-2305030012303331053120311351-023303031002_001vrn11xkk21q1y31rj441rj551rj6";
+                    this.config.rotation = constants.rotations.ROTATION_ST_FROSTFIRE;
                 }
 
                 this.parseTalents();

@@ -28019,6 +28019,9 @@ var DEFAULT_DESIGN = 2;
       } else if (spec == "frost") {
         this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_FROST;
+      } else if (spec == "ffb") {
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/-2305030012303331053120311351-023303031002_001vrn11xkk21q1y31rj441rj551rj6";
+        this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_FROSTFIRE;
       }
 
       this.parseTalents();
@@ -32348,19 +32351,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "Arcane"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
     onClick: _cache[56] || (_cache[56] = function ($event) {
-      return $options.setSpec('arcane_barrage');
-    })
-  }, "Barrage"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "btn secondary",
-    onClick: _cache[57] || (_cache[57] = function ($event) {
       return $options.setSpec('fire');
     })
   }, "Fire"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
-    onClick: _cache[58] || (_cache[58] = function ($event) {
+    onClick: _cache[57] || (_cache[57] = function ($event) {
       return $options.setSpec('frost');
     })
-  }, "Frost")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_204, [_hoisted_205, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, "Frost"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "btn secondary",
+    onClick: _cache[58] || (_cache[58] = function ($event) {
+      return $options.setSpec('ffb');
+    })
+  }, "FFB")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_204, [_hoisted_205, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[59] || (_cache[59] = function ($event) {
       return _ctx.config.race = $event;
     })
