@@ -2864,6 +2864,7 @@
 
                 // Attribute multipliers
                 if (this.config.talents.student_of_the_mind) {
+                    var x = this.config.talents.student_of_the_mind;
                     if (x == 1) stats.spirit*= 1.04;
                     if (x == 2) stats.spirit*= 1.07;
                     if (x == 3) stats.spirit*= 1.1;
@@ -3582,7 +3583,7 @@
                     var slot = 0;
                     var glyph, key;
                     var g = [[],[],[]];
-                    var fnSort = function(a, b) { return a.id - b.id };
+                    var fnSort = function(a, b) { return a.itemId - b.itemId };
                     g[1] = glyphs.filter(a => a.type == 1).sort(fnSort);
                     g[2] = glyphs.filter(a => a.type == 2).sort(fnSort);
                     for (i; i<build.length; i++) {

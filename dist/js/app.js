@@ -27527,6 +27527,7 @@ var DEFAULT_DESIGN = 2;
 
 
       if (this.config.talents.student_of_the_mind) {
+        var x = this.config.talents.student_of_the_mind;
         if (x == 1) stats.spirit *= 1.04;
         if (x == 2) stats.spirit *= 1.07;
         if (x == 3) stats.spirit *= 1.1;
@@ -28138,7 +28139,7 @@ var DEFAULT_DESIGN = 2;
         var g = [[], [], []];
 
         var fnSort = function fnSort(a, b) {
-          return a.id - b.id;
+          return a.itemId - b.itemId;
         };
 
         g[1] = _glyphs__WEBPACK_IMPORTED_MODULE_2__["default"].filter(function (a) {
