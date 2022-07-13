@@ -2334,7 +2334,7 @@
                     config.stats.spell_power+= stats.sp;
                     config.stats.crit+= self.critRatingToChance(stats.crit);
                     config.stats.hit+= self.hitRatingToChance(stats.hit);
-                    config.stats.haste+= self.hasteRatingToHaste(stats.haste);
+                    config.stats.haste_rating+= stats.haste;
                 };
 
                 return new Promise((resolve, reject) => {
