@@ -17824,6 +17824,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+var _ref, _ref2, _ref3, _ref4;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var ids = {
   // Trinkets
   TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
@@ -17894,6 +17898,7 @@ var equip = {
   {
     id: 50704,
     title: "Rigormortis",
+    ilvl: 277,
     "int": 76,
     sp: 836,
     hit: 50,
@@ -17906,6 +17911,7 @@ var equip = {
   }, {
     id: 50068,
     title: "Rigormortis",
+    ilvl: 264,
     "int": 67,
     sp: 741,
     hit: 59,
@@ -17914,6 +17920,7 @@ var equip = {
   }, {
     id: 50608,
     title: "Frozen Bonespike",
+    ilvl: 277,
     "int": 75,
     spi: 66,
     sp: 836,
@@ -17926,6 +17933,7 @@ var equip = {
   }, {
     id: 49968,
     title: "Frozen Bonespike",
+    ilvl: 264,
     "int": 67,
     spi: 59,
     sp: 741,
@@ -17934,6 +17942,7 @@ var equip = {
   }, {
     id: 50725,
     title: "Dying Light",
+    ilvl: 277,
     "int": 176,
     spi: 131,
     sp: 837,
@@ -17947,6 +17956,7 @@ var equip = {
   }, {
     id: 50181,
     title: "Dying Light",
+    ilvl: 264,
     "int": 156,
     spi: 121,
     sp: 741,
@@ -17960,6 +17970,7 @@ var equip = {
   }, {
     id: 50648,
     title: "Nibelung",
+    ilvl: 277,
     "int": 115,
     sp: 837,
     sockets: ["r", "b", "y"],
@@ -17971,6 +17982,7 @@ var equip = {
   }, {
     id: 49992,
     title: "Nibelung",
+    ilvl: 264,
     "int": 107,
     sp: 741,
     sockets: ["r", "b"],
@@ -17982,6 +17994,7 @@ var equip = {
   }, {
     id: 51932,
     title: "Frost Needle",
+    ilvl: 264,
     "int": 59,
     sp: 741,
     hit: 52,
@@ -17994,6 +18007,7 @@ var equip = {
   }, {
     id: 50771,
     title: "Frost Needle",
+    ilvl: 251,
     "int": 59,
     sp: 657,
     hit: 49,
@@ -18002,6 +18016,7 @@ var equip = {
   }, {
     id: 51815,
     title: "Bleak Coldarra Carver",
+    ilvl: 264,
     "int": 61,
     sp: 741,
     crit: 46,
@@ -18014,6 +18029,7 @@ var equip = {
   }, {
     id: 51788,
     title: "Bleak Coldarra Carver",
+    ilvl: 251,
     "int": 61,
     sp: 657,
     crit: 47,
@@ -18022,6 +18038,7 @@ var equip = {
   }, {
     id: 51910,
     title: "Midnight Sun",
+    ilvl: 264,
     "int": 59,
     sp: 741,
     haste: 51,
@@ -18034,6 +18051,7 @@ var equip = {
   }, {
     id: 50793,
     title: "Midnight Sun",
+    ilvl: 251,
     "int": 59,
     sp: 657,
     haste: 46,
@@ -18042,6 +18060,7 @@ var equip = {
   }, {
     id: 51828,
     title: "Sister Svalna's Aether Staff",
+    ilvl: 264,
     "int": 138,
     sp: 741,
     crit: 111,
@@ -18055,6 +18074,7 @@ var equip = {
   }, {
     id: 51582,
     title: "Sister Svalna's Aether Staff",
+    ilvl: 251,
     "int": 128,
     sp: 657,
     crit: 101,
@@ -18068,6 +18088,7 @@ var equip = {
   }, {
     id: 51898,
     title: "Mag'hari Chieftain's Staff",
+    ilvl: 264,
     "int": 111,
     spi: 150,
     sp: 741,
@@ -18081,6 +18102,7 @@ var equip = {
   }, {
     id: 50805,
     title: "Mag'hari Chieftain's Staff",
+    ilvl: 251,
     "int": 101,
     spi: 136,
     sp: 657,
@@ -18094,6 +18116,7 @@ var equip = {
   }, {
     id: 51887,
     title: "Abracadaver",
+    ilvl: 264,
     "int": 138,
     sp: 741,
     hit: 111,
@@ -18107,6 +18130,7 @@ var equip = {
   }, {
     id: 50966,
     title: "Abracadaver",
+    ilvl: 251,
     "int": 128,
     sp: 657,
     hit: 101,
@@ -18121,6 +18145,7 @@ var equip = {
   {
     id: 49499,
     title: "Polished Azuresong Mageblade",
+    ilvl: 245,
     "int": 63,
     sp: 621,
     crit: 51,
@@ -18129,6 +18154,7 @@ var equip = {
   }, {
     id: 49494,
     title: "Honed Fang of the Mystics",
+    ilvl: 245,
     "int": 58,
     sp: 621,
     crit: 46,
@@ -18137,6 +18163,7 @@ var equip = {
   }, {
     id: 49298,
     title: "Glinting Azuresong Mageblade",
+    ilvl: 232,
     "int": 55,
     sp: 550,
     crit: 45,
@@ -18145,6 +18172,7 @@ var equip = {
   }, {
     id: 49304,
     title: "Sharpened Fang of the Mystics",
+    ilvl: 232,
     "int": 52,
     sp: 550,
     crit: 40,
@@ -18154,6 +18182,7 @@ var equip = {
   {
     id: 47517,
     title: "Blade of the Unbroken Covenant",
+    ilvl: 258,
     "int": 66,
     sp: 701,
     crit: 58,
@@ -18166,6 +18195,7 @@ var equip = {
   }, {
     id: 46980,
     title: "Blade of Tarasque",
+    ilvl: 258,
     "int": 65,
     sp: 692,
     hit: 51,
@@ -18178,6 +18208,7 @@ var equip = {
   }, {
     id: 46979,
     title: "Blade of Tarasque",
+    ilvl: 245,
     "int": 58,
     sp: 621,
     hit: 45,
@@ -18186,6 +18217,7 @@ var equip = {
   }, {
     id: 47524,
     title: "Clemency",
+    ilvl: 258,
     "int": 153,
     spi: 86,
     sp: 701,
@@ -18199,6 +18231,7 @@ var equip = {
   }, {
     id: 48708,
     title: "Spellstorm Blade",
+    ilvl: 245,
     "int": 58,
     sp: 621,
     hit: 32,
@@ -18211,6 +18244,7 @@ var equip = {
   }, {
     id: 47941,
     title: "Blade of the Silver Disciple",
+    ilvl: 245,
     "int": 49,
     sp: 621,
     crit: 37,
@@ -18223,6 +18257,7 @@ var equip = {
   }, {
     id: 47724,
     title: "Blade of the Silver Disciple",
+    ilvl: 232,
     "int": 43,
     sp: 550,
     crit: 32,
@@ -18235,6 +18270,7 @@ var equip = {
   }, {
     id: 47968,
     title: "Cold Convergence",
+    ilvl: 245,
     "int": 120,
     sp: 621,
     crit: 95,
@@ -18248,6 +18284,7 @@ var equip = {
   }, {
     id: 47815,
     title: "Cold Convergence",
+    ilvl: 232,
     "int": 112,
     sp: 550,
     crit: 88,
@@ -18261,6 +18298,7 @@ var equip = {
   }, {
     id: 47960,
     title: "Enlightenment",
+    ilvl: 245,
     "int": 103,
     sp: 621,
     crit: 122,
@@ -18274,6 +18312,7 @@ var equip = {
   }, {
     id: 47743,
     title: "Enlightenment",
+    ilvl: 232,
     "int": 92,
     sp: 550,
     crit: 113,
@@ -18288,6 +18327,7 @@ var equip = {
   {
     id: 45620,
     title: "Starshard Edge",
+    ilvl: 239,
     "int": 55,
     spi: 43,
     sp: 587,
@@ -18300,6 +18340,7 @@ var equip = {
   }, {
     id: 45527,
     title: "Soulscribe",
+    ilvl: 232,
     "int": 49,
     sp: 550,
     crit: 28,
@@ -18308,6 +18349,7 @@ var equip = {
   }, {
     id: 45437,
     title: "Runescribed Blade",
+    ilvl: 232,
     "int": 51,
     spi: 37,
     sp: 550,
@@ -18316,6 +18358,7 @@ var equip = {
   }, {
     id: 45171,
     title: "Intensity",
+    ilvl: 232,
     "int": 121,
     spi: 86,
     sp: 550,
@@ -18325,6 +18368,7 @@ var equip = {
   }, {
     id: 45234,
     title: "Rapture",
+    ilvl: 232,
     "int": 119,
     spi: 121,
     sp: 550,
@@ -18334,6 +18378,7 @@ var equip = {
   }, {
     id: 45457,
     title: "Staff of Endless Winter",
+    ilvl: 239,
     "int": 128,
     spi: 84,
     sp: 587,
@@ -18347,6 +18392,7 @@ var equip = {
   }, {
     id: 45479,
     title: "The Lifebinder",
+    ilvl: 232,
     "int": 121,
     spi: 80,
     sp: 550,
@@ -18356,6 +18402,7 @@ var equip = {
   }, {
     id: 45287,
     title: "Firesoul",
+    ilvl: 219,
     "int": 46,
     sp: 487,
     hit: 34,
@@ -18364,6 +18411,7 @@ var equip = {
   }, {
     id: 45990,
     title: "Fusion Blade",
+    ilvl: 232,
     "int": 36,
     sp: 550,
     crit: 37,
@@ -18376,6 +18424,7 @@ var equip = {
   }, {
     id: 45685,
     title: "Plasma Foil",
+    ilvl: 219,
     "int": 45,
     spi: 46,
     sp: 487,
@@ -18384,6 +18433,7 @@ var equip = {
   }, {
     id: 46025,
     title: "Devotion",
+    ilvl: 219,
     "int": 81,
     spi: 106,
     sp: 487,
@@ -18393,6 +18443,7 @@ var equip = {
   }, {
     id: 45886,
     title: "Icecore Staff",
+    ilvl: 232,
     "int": 112,
     spi: 84,
     sp: 550,
@@ -18406,6 +18457,7 @@ var equip = {
   }, {
     id: 45934,
     title: "Unraveling Reach",
+    ilvl: 219,
     "int": 76,
     spi: 93,
     sp: 487,
@@ -18416,6 +18468,7 @@ var equip = {
   {
     id: 40489,
     title: "Greatstaff of the Nexus",
+    ilvl: 213,
     "int": 77,
     sp: 461,
     hit: 95,
@@ -18425,6 +18478,7 @@ var equip = {
   {
     id: 40455,
     title: "Staff of Restraint",
+    ilvl: 213,
     "int": 108,
     spi: 84,
     sp: 461,
@@ -18434,6 +18488,7 @@ var equip = {
   {
     id: 40408,
     title: "Haunting Call",
+    ilvl: 213,
     "int": 41,
     spi: 23,
     sp: 461,
@@ -18441,6 +18496,7 @@ var equip = {
   }, {
     id: 40336,
     title: "Life and Death",
+    ilvl: 213,
     "int": 44,
     sp: 461,
     crit: 42,
@@ -18448,6 +18504,7 @@ var equip = {
   }, {
     id: 40396,
     title: "The Turning Tide",
+    ilvl: 226,
     "int": 50,
     sp: 520,
     crit: 37,
@@ -18455,6 +18512,7 @@ var equip = {
   }, {
     id: 39271,
     title: "Blade of Dormant Memories",
+    ilvl: 200,
     "int": 38,
     sp: 408,
     crit: 40,
@@ -18462,6 +18520,7 @@ var equip = {
   }, {
     id: 40348,
     title: "Damnation",
+    ilvl: 213,
     "int": 86,
     spi: 85,
     sp: 461,
@@ -18470,6 +18529,7 @@ var equip = {
   }, {
     id: 40300,
     title: "Spire of Sunset",
+    ilvl: 213,
     "int": 101,
     sp: 461,
     haste: 99,
@@ -18478,6 +18538,7 @@ var equip = {
   }, {
     id: 39200,
     title: "Grieving Spellblade",
+    ilvl: 200,
     "int": 40,
     sp: 408,
     crit: 37,
@@ -18485,6 +18546,7 @@ var equip = {
   }, {
     id: 39424,
     title: "The Soulblade",
+    ilvl: 213,
     "int": 44,
     spi: 42,
     sp: 461,
@@ -18492,6 +18554,7 @@ var equip = {
   }, {
     id: 39394,
     title: "Charmed Cierge",
+    ilvl: 200,
     "int": 68,
     spi: 90,
     sp: 408,
@@ -18500,6 +18563,7 @@ var equip = {
   }, {
     id: 39256,
     title: "Sulfur Stave",
+    ilvl: 200,
     "int": 90,
     spi: 89,
     sp: 408,
@@ -18508,6 +18572,7 @@ var equip = {
   }, {
     id: 37360,
     title: "Staff of Draconic Combat",
+    ilvl: 200,
     "int": 90,
     spi: 69,
     sp: 408,
@@ -18517,12 +18582,14 @@ var equip = {
   {
     id: 42346,
     title: "Deadly Gladiator's Spellblade",
+    ilvl: 213,
     "int": 36,
     sp: 461,
     crit: 36
   }, {
     id: 42362,
     title: "Deadly Gladiator's Battle Staff",
+    ilvl: 213,
     "int": 64,
     sp: 461,
     crit: 85,
@@ -18530,6 +18597,7 @@ var equip = {
   }, {
     id: 44420,
     title: "Deadly Gladiator's Focus Staff",
+    ilvl: 213,
     "int": 64,
     sp: 461,
     hit: 85,
@@ -18537,6 +18605,7 @@ var equip = {
   }, {
     id: 44419,
     title: "Deadly Gladiator's War Staff",
+    ilvl: 213,
     "int": 64,
     sp: 461,
     haste: 85,
@@ -18544,12 +18613,14 @@ var equip = {
   }, {
     id: 42345,
     title: "Hateful Gladiator's Spellblade",
+    ilvl: 200,
     "int": 32,
     sp: 408,
     crit: 32
   }, {
     id: 42359,
     title: "Hateful Gladiator's Battle Staff",
+    ilvl: 200,
     "int": 57,
     sp: 408,
     crit: 75,
@@ -18557,6 +18628,7 @@ var equip = {
   }, {
     id: 44418,
     title: "Hateful Gladiator's Focus Staff",
+    ilvl: 200,
     "int": 57,
     sp: 408,
     hit: 75,
@@ -18564,6 +18636,7 @@ var equip = {
   }, {
     id: 44417,
     title: "Hateful Gladiator's War Staff",
+    ilvl: 200,
     "int": 57,
     sp: 408,
     haste: 75,
@@ -18572,12 +18645,14 @@ var equip = {
   {
     id: 45085,
     title: "Titansteel Spellblade",
+    ilvl: 200,
     sp: 408,
     crit: 53,
     hit: 30
   }, {
     id: 44173,
     title: "Flameheart Spell Scalpel",
+    ilvl: 200,
     "int": 33,
     sp: 355,
     crit: 25,
@@ -18586,6 +18661,7 @@ var equip = {
   }, {
     id: 37377,
     title: "Netherbreath Spellblade",
+    ilvl: 200,
     "int": 32,
     spi: 26,
     sp: 355,
@@ -18594,6 +18670,7 @@ var equip = {
   }, {
     id: 37721,
     title: "Cursed Lich Blade",
+    ilvl: 200,
     "int": 32,
     spi: 24,
     sp: 355,
@@ -18602,6 +18679,7 @@ var equip = {
   }, {
     id: 37060,
     title: "Jeweled Coronation Sword",
+    ilvl: 183,
     "int": 29,
     spi: 23,
     sp: 314,
@@ -18610,6 +18688,7 @@ var equip = {
   }, {
     id: 37384,
     title: "Staff of Wayward Principles",
+    ilvl: 200,
     "int": 77,
     spi: 56,
     sp: 355,
@@ -18619,6 +18698,7 @@ var equip = {
   }, {
     id: 37617,
     title: "Staff of Sinister Claws",
+    ilvl: 200,
     "int": 77,
     spi: 51,
     sp: 355,
@@ -18628,6 +18708,7 @@ var equip = {
   }, {
     id: 41821,
     title: "Chilly Slobberknocker",
+    ilvl: 175,
     "int": 62,
     sp: 281,
     hit: 50,
@@ -18637,6 +18718,7 @@ var equip = {
   }, {
     id: 44748,
     title: "Stave of Youthful Sorrow",
+    ilvl: 174,
     "int": 53,
     sp: 279,
     crit: 67,
@@ -18645,8 +18727,17 @@ var equip = {
     q: "rare"
   }, // tbc
   {
+    id: 34336,
+    title: "Sunflare",
+    ilvl: 164,
+    "int": 20,
+    sp: 292,
+    crit: 30,
+    haste: 23
+  }, {
     id: 34182,
     title: "Grand Magister's Staff of Torrents",
+    ilvl: 154,
     "int": 52,
     sp: 266,
     crit: 49,
@@ -18656,18 +18747,12 @@ var equip = {
     bonus: {
       sp: 5
     }
-  }, {
-    id: 34336,
-    title: "Sunflare",
-    "int": 20,
-    sp: 292,
-    crit: 30,
-    haste: 23
   }],
   off_hand: [// icc
   {
     id: 50719,
     title: "Shadow Silk Spindle",
+    ilvl: 277,
     "int": 78,
     sp: 119,
     crit: 68,
@@ -18676,6 +18761,7 @@ var equip = {
   }, {
     id: 50173,
     title: "Shadow Silk Spindle",
+    ilvl: 264,
     "int": 69,
     sp: 106,
     crit: 60,
@@ -18684,6 +18770,7 @@ var equip = {
   }, {
     id: 50635,
     title: "Sundial of Eternal Dusk",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 119,
@@ -18692,6 +18779,7 @@ var equip = {
   }, {
     id: 50423,
     title: "Sundial of Eternal Dusk",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 106,
@@ -18700,6 +18788,7 @@ var equip = {
   }, {
     id: 51922,
     title: "Scourgelord's Baton",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 45,
@@ -18712,6 +18801,7 @@ var equip = {
   }, {
     id: 50781,
     title: "Scourgelord's Baton",
+    ilvl: 251,
     "int": 61,
     sp: 94,
     crit: 47,
@@ -18721,6 +18811,7 @@ var equip = {
   {
     id: 49490,
     title: "Antediluvian Cornerstone Grimoire",
+    ilvl: 245,
     "int": 66,
     spi: 46,
     sp: 75,
@@ -18728,6 +18819,7 @@ var equip = {
   }, {
     id: 49308,
     title: "Antique Cornerstone Grimoire",
+    ilvl: 232,
     "int": 57,
     spi: 40,
     sp: 64,
@@ -18736,6 +18828,7 @@ var equip = {
   {
     id: 47146,
     title: "Chalice of Searing Light",
+    ilvl: 258,
     "int": 65,
     spi: 57,
     sp: 100,
@@ -18744,6 +18837,7 @@ var equip = {
   }, {
     id: 47138,
     title: "Chalice of Searing Light",
+    ilvl: 245,
     "int": 58,
     spi: 50,
     sp: 89,
@@ -18752,6 +18846,7 @@ var equip = {
   }, {
     id: 47064,
     title: "Symbol of Transgression",
+    ilvl: 258,
     "int": 65,
     sp: 100,
     crit: 57,
@@ -18760,6 +18855,7 @@ var equip = {
   }, {
     id: 47053,
     title: "Symbol of Transgression",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     crit: 50,
@@ -18768,6 +18864,7 @@ var equip = {
   }, {
     id: 47958,
     title: "Chalice of Benedictus",
+    ilvl: 245,
     "int": 55,
     sp: 80,
     hit: 43,
@@ -18780,6 +18877,7 @@ var equip = {
   }, {
     id: 47742,
     title: "Chalice of Benedictus",
+    ilvl: 232,
     "int": 48,
     sp: 69,
     hit: 37,
@@ -18793,6 +18891,7 @@ var equip = {
   {
     id: 45617,
     title: "Cosmos",
+    ilvl: 238,
     "int": 55,
     sp: 84,
     crit: 41,
@@ -18801,6 +18900,7 @@ var equip = {
   }, {
     id: 45271,
     title: "Ironmender",
+    ilvl: 226,
     "int": 47,
     spi: 45,
     sp: 74,
@@ -18809,6 +18909,7 @@ var equip = {
   }, {
     id: 45115,
     title: "Leviathan Fueling Manual",
+    ilvl: 226,
     "int": 46,
     spi: 42,
     sp: 75,
@@ -18817,6 +18918,7 @@ var equip = {
   }, {
     id: 45314,
     title: "Igniter Rod",
+    ilvl: 219,
     "int": 45,
     spi: 36,
     sp: 64,
@@ -18826,6 +18928,7 @@ var equip = {
   {
     id: 40192,
     title: "Accursed Spine",
+    ilvl: 213,
     "int": 41,
     spi: 32,
     sp: 65,
@@ -18833,6 +18936,7 @@ var equip = {
   }, {
     id: 39766,
     title: "Matriarch's Spawn",
+    ilvl: 213,
     "int": 41,
     spi: 43,
     sp: 66,
@@ -18840,6 +18944,7 @@ var equip = {
   }, {
     id: 40273,
     title: "Surplus Limb",
+    ilvl: 213,
     "int": 38,
     sp: 65,
     hit: 32,
@@ -18847,6 +18952,7 @@ var equip = {
   }, {
     id: 40350,
     title: "Urn of Lost Memories",
+    ilvl: 258213,
     "int": 32,
     sp: 66,
     crit: 41,
@@ -18854,6 +18960,7 @@ var equip = {
   }, {
     id: 39199,
     title: "Watchful Eye",
+    ilvl: 200,
     "int": 38,
     spi: 36,
     sp: 59,
@@ -18861,6 +18968,7 @@ var equip = {
   }, {
     id: 39311,
     title: "Scepter of Murmuring Spirits",
+    ilvl: 200,
     "int": 34,
     sp: 59,
     crit: 38,
@@ -18869,24 +18977,28 @@ var equip = {
   {
     id: 42525,
     title: "Deadly Gladiator's Endgame",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     crit: 38
   }, {
     id: 42531,
     title: "Deadly Gladiator's Reprieve",
+    ilvl: 213,
     "int": 29,
     spi: 38,
     sp: 66
   }, {
     id: 42537,
     title: "Deadly Gladiator's Grimoire",
+    ilvl: 213,
     "int": 29,
     sp: 66
   }, // prebis
   {
     id: 40698,
     title: "Ward of the Violet Citadel",
+    ilvl: 200,
     "int": 34,
     sp: 59,
     crit: 25,
@@ -18894,6 +19006,7 @@ var equip = {
   }, {
     id: 44210,
     title: "Faces of Doom",
+    ilvl: 200,
     "int": 42,
     spi: 42,
     sp: 49,
@@ -18901,11 +19014,13 @@ var equip = {
   }, {
     id: 38322,
     title: "Iron-bound Tome",
+    ilvl: 200,
     sp: 74,
     crit: 33
   }, {
     id: 40699,
     title: "Handbook of Obscure Remedies",
+    ilvl: 200,
     "int": 36,
     spi: 38,
     sp: 59,
@@ -18913,6 +19028,7 @@ var equip = {
   }, {
     id: 37134,
     title: "Telestra's Journal",
+    ilvl: 200,
     "int": 43,
     sp: 50,
     hit: 39,
@@ -18920,6 +19036,7 @@ var equip = {
   }, {
     id: 37718,
     title: "Temple Crystal Fragment",
+    ilvl: 200,
     "int": 31,
     sp: 51,
     haste: 42,
@@ -18927,21 +19044,19 @@ var equip = {
   }, {
     id: 37051,
     title: "Seal of Valgarde",
+    ilvl: 187,
     "int": 35,
     sp: 44,
     haste: 38,
     q: "rare"
-  }, {
+  }, (_ref = {
     id: 37086,
     title: "Tome of Salramm",
-    "int": 21,
-    spi: 19,
-    sp: 46,
-    crit: 38,
-    q: "rare"
-  }, {
+    ilvl: 187
+  }, _defineProperty(_ref, "ilvl", 187), _defineProperty(_ref, "int", 21), _defineProperty(_ref, "spi", 19), _defineProperty(_ref, "sp", 46), _defineProperty(_ref, "crit", 38), _defineProperty(_ref, "q", "rare"), _ref), {
     id: 37889,
     title: "Prison Manifest",
+    ilvl: 200,
     "int": 42,
     spi: 34,
     sp: 51,
@@ -18950,6 +19065,7 @@ var equip = {
   {
     id: 34179,
     title: "Heart of the Pit",
+    ilvl: 154,
     "int": 21,
     sp: 39,
     haste: 32
@@ -18958,6 +19074,7 @@ var equip = {
   {
     id: 50684,
     title: "Corpse-Impaling Spike",
+    ilvl: 277,
     "int": 44,
     sp: 58,
     crit: 38,
@@ -18970,6 +19087,7 @@ var equip = {
   }, {
     id: 50033,
     title: "Corpse-Impaling Spike",
+    ilvl: 264,
     "int": 39,
     sp: 60,
     crit: 34,
@@ -18978,6 +19096,7 @@ var equip = {
   }, {
     id: 50631,
     title: "Nightmare Ender",
+    ilvl: 277,
     "int": 44,
     spi: 30,
     sp: 58,
@@ -18990,6 +19109,7 @@ var equip = {
   }, {
     id: 50472,
     title: "Nightmare Ender",
+    ilvl: 264,
     "int": 39,
     spi: 34,
     sp: 60,
@@ -18998,6 +19118,7 @@ var equip = {
   }, {
     id: 51852,
     title: "Wand of Ruby Claret",
+    ilvl: 264,
     "int": 35,
     sp: 51,
     hit: 29,
@@ -19010,6 +19131,7 @@ var equip = {
   }, {
     id: 51326,
     title: "Wand of Ruby Claret",
+    ilvl: 251,
     "int": 31,
     sp: 53,
     hit: 33,
@@ -19018,6 +19140,7 @@ var equip = {
   }, {
     id: 51838,
     title: "Lana'thel's Bloody Nail",
+    ilvl: 264,
     "int": 35,
     spi: 37,
     sp: 51,
@@ -19030,6 +19153,7 @@ var equip = {
   }, {
     id: 51553,
     title: "Lana'thel's Bloody Nail",
+    ilvl: 251,
     "int": 31,
     spi: 33,
     sp: 53,
@@ -19039,6 +19163,7 @@ var equip = {
   {
     id: 47922,
     title: "Rod of Imprisoned Souls",
+    ilvl: 245,
     "int": 29,
     sp: 50,
     crit: 31,
@@ -19047,6 +19172,7 @@ var equip = {
   }, {
     id: 47612,
     title: "Rod of Imprisoned Souls",
+    ilvl: 232,
     "int": 26,
     sp: 44,
     crit: 28,
@@ -19056,6 +19182,7 @@ var equip = {
   {
     id: 45257,
     title: "Quartz Crystal Wand",
+    ilvl: 232,
     "int": 25,
     spi: 24,
     sp: 44,
@@ -19064,6 +19191,7 @@ var equip = {
   }, {
     id: 45170,
     title: "Scepter of Creation",
+    ilvl: 232,
     "int": 26,
     spi: 25,
     sp: 44,
@@ -19072,6 +19200,7 @@ var equip = {
   }, {
     id: 45511,
     title: "Scepter of Lost Souls",
+    ilvl: 232,
     "int": 26,
     sp: 44,
     crit: 18,
@@ -19080,6 +19209,7 @@ var equip = {
   }, {
     id: 45713,
     title: "Nurturing Touch",
+    ilvl: 219,
     "int": 26,
     spi: 24,
     sp: 39,
@@ -19088,6 +19218,7 @@ var equip = {
   }, {
     id: 45294,
     title: "Petrified Ivy Sprig",
+    ilvl: 232,
     "int": 19,
     spi: 22,
     sp: 45,
@@ -19101,6 +19232,7 @@ var equip = {
   {
     id: 39712,
     title: "Gemmed Wand of the Nerubians",
+    ilvl: 213,
     "int": 22,
     sp: 37,
     hit: 18,
@@ -19108,6 +19240,7 @@ var equip = {
   }, {
     id: 40284,
     title: "Plague Igniter",
+    ilvl: 213,
     "int": 21,
     spi: 20,
     sp: 37,
@@ -19115,6 +19248,7 @@ var equip = {
   }, {
     id: 40245,
     title: "Fading Glow",
+    ilvl: 213,
     "int": 25,
     sp: 37,
     haste: 18,
@@ -19122,6 +19256,7 @@ var equip = {
   }, {
     id: 40335,
     title: "Touch of Horror",
+    ilvl: 213,
     "int": 17,
     sp: 37,
     crit: 16,
@@ -19129,6 +19264,7 @@ var equip = {
   }, {
     id: 39426,
     title: "Wand of the Archlich",
+    ilvl: 213,
     "int": 21,
     spi: 24,
     sp: 37,
@@ -19136,6 +19272,7 @@ var equip = {
   }, {
     id: 39473,
     title: "Contortion",
+    ilvl: 200,
     "int": 20,
     sp: 33,
     crit: 15,
@@ -19144,12 +19281,14 @@ var equip = {
   {
     id: 37238,
     title: "Rod of the Fallen Monarch",
+    ilvl: 200,
     "int": 21,
     sp: 33,
     crit: 27
   }, {
     id: 37619,
     title: "Wand of Ahn'kahet",
+    ilvl: 200,
     "int": 20,
     spi: 27,
     sp: 33
@@ -19157,6 +19296,7 @@ var equip = {
   {
     id: 37177,
     title: "Wand of the San'layn",
+    ilvl: 200,
     sp: 21,
     hit: 14,
     haste: 34,
@@ -19164,6 +19304,7 @@ var equip = {
   }, {
     id: 37626,
     title: "Wand of Sseratus",
+    ilvl: 200,
     "int": 18,
     spi: 24,
     sp: 28,
@@ -19171,12 +19312,14 @@ var equip = {
   }, {
     id: 44108,
     title: "Shinygem Rod",
+    ilvl: 187,
     sp: 26,
     crit: 16,
     q: "rare"
   }, {
     id: 44214,
     title: "Purifying Torch",
+    ilvl: 187,
     sp: 26,
     mp5: 10,
     q: "rare"
@@ -19184,6 +19327,7 @@ var equip = {
   {
     id: 34347,
     title: "Wand of the Demonsoul",
+    ilvl: 154,
     "int": 10,
     sp: 22,
     haste: 18,
@@ -19194,6 +19338,7 @@ var equip = {
   }, {
     id: 34348,
     title: "Wand of Cleansing Light",
+    ilvl: 154,
     "int": 8,
     spi: 18,
     sp: 22,
@@ -19208,6 +19353,7 @@ var equip = {
     id: 51281,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
+    ilvl: 277,
     "int": 139,
     sp: 186,
     crit: 122,
@@ -19221,6 +19367,7 @@ var equip = {
     id: 51158,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Hood",
+    ilvl: 264,
     "int": 123,
     sp: 162,
     crit: 108,
@@ -19234,6 +19381,7 @@ var equip = {
     id: 50276,
     itemset: ids.T10_SET,
     title: "Bloodmage Hood",
+    ilvl: 225164,
     "int": 109,
     sp: 140,
     crit: 96,
@@ -19246,6 +19394,7 @@ var equip = {
   }, {
     id: 50661,
     title: "Corp'rethar Ceremonial Crown",
+    ilvl: 277,
     "int": 139,
     spi: 114,
     sp: 186,
@@ -19258,6 +19407,7 @@ var equip = {
   }, {
     id: 51896,
     title: "Thaumaturge's Crackling Cowl",
+    ilvl: 264,
     "int": 123,
     spi: 100,
     sp: 171,
@@ -19270,6 +19420,7 @@ var equip = {
   }, {
     id: 50807,
     title: "Thaumaturge's Crackling Cowl",
+    ilvl: 251,
     "int": 109,
     spi: 88,
     sp: 149,
@@ -19282,6 +19433,7 @@ var equip = {
   }, {
     id: 51837,
     title: "Cowl of Malefic Repose",
+    ilvl: 264,
     "int": 123,
     sp: 162,
     crit: 84,
@@ -19294,6 +19446,7 @@ var equip = {
   }, {
     id: 51554,
     title: "Cowl of Malefic Repose",
+    ilvl: 262514,
     "int": 109,
     sp: 140,
     crit: 72,
@@ -19306,6 +19459,7 @@ var equip = {
   }, {
     id: 50006,
     title: "Corp'rethar Ceremonial Crown",
+    ilvl: 264,
     "int": 123,
     spi: 100,
     sp: 162,
@@ -19319,6 +19473,7 @@ var equip = {
   {
     id: 49481,
     title: "Netherwind Crown",
+    ilvl: 245,
     "int": 92,
     sp: 150,
     crit: 86,
@@ -19331,6 +19486,7 @@ var equip = {
   }, {
     id: 49318,
     title: "Netherwind Hood",
+    ilvl: 232,
     "int": 81,
     sp: 132,
     crit: 74,
@@ -19345,6 +19501,7 @@ var equip = {
     id: 47764,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
+    ilvl: 258,
     "int": 116,
     sp: 151,
     hit: 86,
@@ -19358,6 +19515,7 @@ var equip = {
     id: 47771,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Triumph",
+    ilvl: 245,
     "int": 103,
     sp: 131,
     hit: 74,
@@ -19371,6 +19529,7 @@ var equip = {
     id: 47774,
     itemset: ids.T9_SET,
     title: "Sunstrider's Hood of Conquest",
+    ilvl: 232,
     "int": 92,
     sp: 113,
     hit: 64,
@@ -19383,6 +19542,7 @@ var equip = {
   }, {
     id: 47564,
     title: "Gaze of the Unknown",
+    ilvl: 219,
     "int": 74,
     sp: 115,
     crit: 67,
@@ -19397,6 +19557,7 @@ var equip = {
     id: 46129,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Hood",
+    ilvl: 226,
     "int": 87,
     spi: 66,
     sp: 113,
@@ -19410,6 +19571,7 @@ var equip = {
     id: 45365,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Hood",
+    ilvl: 219,
     "int": 81,
     spi: 61,
     sp: 105,
@@ -19422,6 +19584,7 @@ var equip = {
   }, {
     id: 45150,
     title: "Collar of the Wyrmhunter",
+    ilvl: 226,
     "int": 87,
     sp: 114,
     hit: 51,
@@ -19434,6 +19597,7 @@ var equip = {
   }, {
     id: 45532,
     title: "Cowl of Dark Whispers",
+    ilvl: 226,
     "int": 66,
     spi: 80,
     sp: 115,
@@ -19446,6 +19610,7 @@ var equip = {
   }, {
     id: 45435,
     title: "Cowl of the Absolute",
+    ilvl: 226,
     "int": 91,
     spi: 57,
     sp: 133,
@@ -19454,6 +19619,7 @@ var equip = {
   }, {
     id: 45497,
     title: "Crown of Luminescence",
+    ilvl: 239,
     "int": 92,
     spi: 70,
     sp: 131,
@@ -19466,6 +19632,7 @@ var equip = {
   }, {
     id: 45464,
     title: "Cowl of Icy Breaths",
+    ilvl: 219,
     "int": 74,
     spi: 48,
     sp: 115,
@@ -19478,6 +19645,7 @@ var equip = {
   }, {
     id: 45289,
     title: "Lifespark Visage",
+    ilvl: 219,
     "int": 73,
     spi: 45,
     sp: 105,
@@ -19491,6 +19659,7 @@ var equip = {
   {
     id: 40562,
     title: "Hood of Rationality",
+    ilvl: 226,
     "int": 63,
     spi: 81,
     sp: 120,
@@ -19500,6 +19669,7 @@ var equip = {
   {
     id: 43995,
     title: "Enamored Cowl",
+    ilvl: 213,
     "int": 63,
     spi: 79,
     sp: 99,
@@ -19513,6 +19683,7 @@ var equip = {
     id: 40416,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Circlet",
+    ilvl: 213,
     "int": 77,
     spi: 66,
     sp: 98,
@@ -19525,6 +19696,7 @@ var equip = {
     id: 39491,
     itemset: ids.T7_SET,
     title: "Heroes' Frostfire Circlet",
+    ilvl: 200,
     "int": 64,
     spi: 60,
     sp: 87,
@@ -19536,6 +19708,7 @@ var equip = {
   }, {
     id: 40287,
     title: "Cowl of Vanity",
+    ilvl: 213,
     "int": 79,
     spi: 63,
     sp: 99,
@@ -19547,6 +19720,7 @@ var equip = {
   }, {
     id: 39732,
     title: "Faerlina's Madness",
+    ilvl: 213,
     "int": 77,
     spi: 72,
     sp: 118,
@@ -19554,6 +19728,7 @@ var equip = {
   }, {
     id: 40339,
     title: "Gothik's Cowl",
+    ilvl: 213,
     "int": 72,
     sp: 99,
     crit: 42,
@@ -19565,6 +19740,7 @@ var equip = {
   }, {
     id: 40247,
     title: "Cowl of Innocent Delight",
+    ilvl: 213,
     "int": 77,
     spi: 58,
     sp: 118,
@@ -19572,6 +19748,7 @@ var equip = {
   }, {
     id: 39409,
     title: "Cowl of Winged Fear",
+    ilvl: 200,
     "int": 60,
     spi: 45,
     sp: 87,
@@ -19583,6 +19760,7 @@ var equip = {
   }, {
     id: 39295,
     title: "Cowl of Sheet Lightning",
+    ilvl: 200,
     "int": 68,
     sp: 85,
     haste: 48,
@@ -19595,6 +19773,7 @@ var equip = {
   {
     id: 44910,
     title: "Titan-Forged Hood of Dominance",
+    ilvl: 200,
     "int": 45,
     sp: 87,
     hit: 44,
@@ -19605,6 +19784,7 @@ var equip = {
     id: 51465,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Cowl",
+    ilvl: 270,
     "int": 87,
     sp: 182,
     crit: 98,
@@ -19614,6 +19794,7 @@ var equip = {
     id: 41947,
     itemset: ids.GLADIATOR_SET,
     title: "Relentless Gladiator's Silk Cowl",
+    ilvl: 251,
     "int": 73,
     sp: 149,
     crit: 80,
@@ -19623,6 +19804,7 @@ var equip = {
     id: 41946,
     itemset: ids.GLADIATOR_SET,
     title: "Furious Gladiator's Silk Cowl",
+    ilvl: 232,
     "int": 60,
     sp: 123,
     crit: 64,
@@ -19632,6 +19814,7 @@ var equip = {
     id: 41945,
     itemset: ids.GLADIATOR_SET,
     title: "Deadly Gladiator's Silk Cowl",
+    ilvl: 213,
     "int": 50,
     sp: 91,
     crit: 51,
@@ -19640,6 +19823,7 @@ var equip = {
     id: 41944,
     itemset: ids.GLADIATOR_SET,
     title: "Hateful Gladiator's Silk Cowl",
+    ilvl: 200,
     "int": 45,
     sp: 87,
     crit: 44,
@@ -19648,6 +19832,7 @@ var equip = {
     id: 41943,
     itemset: ids.GLADIATOR_SET,
     title: "Savage Gladiator's Silk Cowl",
+    ilvl: 200,
     "int": 39,
     sp: 73,
     crit: 36,
@@ -19657,6 +19842,7 @@ var equip = {
   {
     id: 49849,
     title: "Tattered Glacial-Woven Hood",
+    ilvl: 219,
     "int": 68,
     spi: 66,
     sp: 105,
@@ -19669,6 +19855,7 @@ var equip = {
   }, {
     id: 47695,
     title: "Hood of Clouded Sight",
+    ilvl: 245,
     "int": 103,
     spi: 90,
     sp: 131,
@@ -19681,6 +19868,7 @@ var equip = {
   }, {
     id: 47694,
     title: "Helm of Clouded Sight",
+    ilvl: 245,
     "int": 103,
     spi: 90,
     sp: 131,
@@ -19693,6 +19881,7 @@ var equip = {
   }, {
     id: 47692,
     title: "Hood of Smoldering Aftermath",
+    ilvl: 245,
     "int": 103,
     sp: 131,
     hit: 74,
@@ -19705,6 +19894,7 @@ var equip = {
   }, {
     id: 47693,
     title: "Hood of Fiery Aftermath",
+    ilvl: 245,
     "int": 103,
     sp: 131,
     hit: 74,
@@ -19717,6 +19907,7 @@ var equip = {
   }, {
     id: 42553,
     title: "Visage Liquification Goggles",
+    ilvl: 200,
     "int": 60,
     sp: 87,
     crit: 73,
@@ -19727,6 +19918,7 @@ var equip = {
   }, {
     id: 37294,
     title: "Crown of Unbridled Magic",
+    ilvl: 200,
     "int": 62,
     spi: 52,
     sp: 81,
@@ -19738,6 +19930,7 @@ var equip = {
   }, {
     id: 37594,
     title: "Elder Headpiece",
+    ilvl: 200,
     "int": 77,
     spi: 55,
     sp: 91,
@@ -19745,6 +19938,7 @@ var equip = {
   }, {
     id: 37684,
     title: "Forgotten Shadow Hood",
+    ilvl: 200,
     "int": 44,
     spi: 66,
     sp: 82,
@@ -19756,6 +19950,7 @@ var equip = {
   }, {
     id: 37715,
     title: "Cowl of the Dire Troll",
+    ilvl: 200,
     "int": 55,
     spi: 78,
     sp: 91,
@@ -19763,6 +19958,7 @@ var equip = {
   }, {
     id: 41984,
     title: "Hat of Wintry Doom",
+    ilvl: 187,
     "int": 46,
     sp: 53,
     hit: 44,
@@ -19775,6 +19971,7 @@ var equip = {
   {
     id: 34340,
     title: "Dark Conjuror's Collar",
+    ilvl: 164,
     "int": 42,
     sp: 75,
     crit: 38,
@@ -19786,6 +19983,7 @@ var equip = {
   }, {
     id: 34405,
     title: "Helm of Arcane Purity",
+    ilvl: 164,
     "int": 42,
     spi: 38,
     sp: 75,
@@ -19798,6 +19996,7 @@ var equip = {
     id: 31056,
     itemset: ids.T6_SET,
     title: "Cowl of the Tempest",
+    ilvl: 146,
     "int": 40,
     spi: 28,
     sp: 62,
@@ -19809,6 +20008,7 @@ var equip = {
     id: 22498,
     itemset: ids.T3_SET,
     title: "Frostfire Circlet",
+    ilvl: 88,
     "int": 23,
     sp: 35,
     hit: 8
@@ -19817,6 +20017,7 @@ var equip = {
   {
     id: 50658,
     title: "Amulet of the Silent Eulogy",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     hit: 60,
@@ -19829,6 +20030,7 @@ var equip = {
   }, {
     id: 50005,
     title: "Amulet of the Silent Eulogy",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     hit: 52,
@@ -19841,6 +20043,7 @@ var equip = {
   }, {
     id: 50724,
     title: "Blood Queen's Crimson Choker",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 65,
@@ -19853,6 +20056,7 @@ var equip = {
   }, {
     id: 50182,
     title: "Blood Queen's Crimson Choker",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 57,
@@ -19865,6 +20069,7 @@ var equip = {
   }, {
     id: 50609,
     title: "Bone Sentinel's Amulet",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 110,
@@ -19877,6 +20082,7 @@ var equip = {
   }, {
     id: 49975,
     title: "Bone Sentinel's Amulet",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 97,
@@ -19889,6 +20095,7 @@ var equip = {
   }, {
     id: 50700,
     title: "Holiday's Grace",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 60,
@@ -19901,6 +20108,7 @@ var equip = {
   }, {
     id: 50061,
     title: "Holiday's Grace",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 52,
@@ -19913,6 +20121,7 @@ var equip = {
   }, {
     id: 51894,
     title: "Soulcleave Pendant",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 62,
@@ -19925,6 +20134,7 @@ var equip = {
   }, {
     id: 50809,
     title: "Soulcleave Pendant",
+    ilvl: 251,
     "int": 61,
     sp: 85,
     crit: 55,
@@ -19937,6 +20147,7 @@ var equip = {
   }, {
     id: 51863,
     title: "Pendant of Split Veins",
+    ilvl: 264,
     "int": 68,
     sp: 97,
     crit: 60,
@@ -19949,6 +20160,7 @@ var equip = {
   }, {
     id: 51016,
     title: "Pendant of Split Veins",
+    ilvl: 251,
     "int": 60,
     sp: 85,
     crit: 53,
@@ -19961,6 +20173,7 @@ var equip = {
   }, {
     id: 51871,
     title: "Choker of Filthy Diamonds",
+    ilvl: 264,
     "int": 68,
     sp: 97,
     haste: 60,
@@ -19973,6 +20186,7 @@ var equip = {
   }, {
     id: 51008,
     title: "Choker of Filthy Diamonds",
+    ilvl: 251,
     "int": 60,
     sp: 85,
     haste: 53,
@@ -19986,6 +20200,7 @@ var equip = {
   {
     id: 47144,
     title: "Wail of the Val'kyr",
+    ilvl: 258,
     "int": 65,
     sp: 91,
     crit: 57,
@@ -19998,6 +20213,7 @@ var equip = {
   }, {
     id: 47139,
     title: "Wail of the Val'kyr",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     crit: 58,
@@ -20006,6 +20222,7 @@ var equip = {
   }, {
     id: 47957,
     title: "Darkbane Pendant",
+    ilvl: 245,
     "int": 58,
     sp: 80,
     crit: 52,
@@ -20018,6 +20235,7 @@ var equip = {
   }, {
     id: 47747,
     title: "Darkbane Pendant",
+    ilvl: 232,
     "int": 51,
     sp: 69,
     crit: 46,
@@ -20030,6 +20248,7 @@ var equip = {
   }, {
     id: 47930,
     title: "Amulet of Binding Elements",
+    ilvl: 245,
     "int": 57,
     sp: 80,
     crit: 50,
@@ -20042,6 +20261,7 @@ var equip = {
   }, {
     id: 47619,
     title: "Amulet of Binding Elements",
+    ilvl: 232,
     "int": 50,
     sp: 78,
     crit: 45,
@@ -20051,6 +20271,7 @@ var equip = {
   {
     id: 45133,
     title: "Pendant of Fiery Havoc",
+    ilvl: 239,
     "int": 51,
     sp: 75,
     hit: 46,
@@ -20063,6 +20284,7 @@ var equip = {
   }, {
     id: 45243,
     title: "Sapphire Amulet of Renewal",
+    ilvl: 239,
     "int": 48,
     spi: 47,
     sp: 75,
@@ -20075,6 +20297,7 @@ var equip = {
   }, {
     id: 45236,
     title: "Unblinking Eye",
+    ilvl: 226,
     "int": 43,
     spi: 41,
     sp: 74,
@@ -20083,6 +20306,7 @@ var equip = {
   }, {
     id: 45116,
     title: "Freya's Choker of Warding",
+    ilvl: 226,
     "int": 46,
     sp: 74,
     haste: 39,
@@ -20091,6 +20315,7 @@ var equip = {
   }, {
     id: 45443,
     title: "Charm of Meticulous Timing",
+    ilvl: 239,
     "int": 51,
     sp: 75,
     haste: 40,
@@ -20103,6 +20328,7 @@ var equip = {
   }, {
     id: 45933,
     title: "Pendant of the Shallow Grave",
+    ilvl: 226,
     "int": 43,
     sp: 74,
     crit: 41,
@@ -20115,6 +20341,7 @@ var equip = {
   }, {
     id: 45699,
     title: "Pendant of the Piercing Glare",
+    ilvl: 219,
     "int": 45,
     sp: 69,
     hit: 46,
@@ -20123,6 +20350,7 @@ var equip = {
   }, {
     id: 46015,
     title: "Pendant of Endless Despair",
+    ilvl: 219,
     "int": 40,
     sp: 70,
     crit: 29,
@@ -20131,6 +20359,7 @@ var equip = {
   }, {
     id: 46047,
     title: "Pendant of the Somber Witness",
+    ilvl: 226,
     "int": 46,
     sp: 66,
     crit: 36,
@@ -20143,6 +20372,7 @@ var equip = {
   }, {
     id: 45447,
     title: "Watchful Eye of Fate",
+    ilvl: 226,
     "int": 36,
     spi: 37,
     sp: 74,
@@ -20156,6 +20386,7 @@ var equip = {
   {
     id: 44661,
     title: "Wyrmrest Necklace of Power",
+    ilvl: 226,
     "int": 48,
     sp: 64,
     hit: 33,
@@ -20167,6 +20398,7 @@ var equip = {
   }, {
     id: 44662,
     title: "Life-Binder's Locket",
+    ilvl: 226,
     "int": 48,
     sp: 64,
     crit: 35,
@@ -20178,6 +20410,7 @@ var equip = {
   }, {
     id: 44658,
     title: "Chain of the Ancient Wyrm",
+    ilvl: 213,
     "int": 43,
     sp: 56,
     hit: 30,
@@ -20189,6 +20422,7 @@ var equip = {
   }, {
     id: 44657,
     title: "Torque of the Red Dragonflight",
+    ilvl: 213,
     "int": 43,
     sp: 56,
     crit: 30,
@@ -20200,6 +20434,7 @@ var equip = {
   }, {
     id: 40486,
     title: "Necklace of the Glittering Chamber",
+    ilvl: 213,
     "int": 34,
     spi: 38,
     sp: 69,
@@ -20208,6 +20443,7 @@ var equip = {
   {
     id: 40427,
     title: "Circle of Arcane Streams",
+    ilvl: 200,
     "int": 37,
     sp: 53,
     crit: 35,
@@ -20216,6 +20452,7 @@ var equip = {
   {
     id: 40064,
     title: "Thunderstorm Amulet",
+    ilvl: 213,
     "int": 43,
     spi: 38,
     sp: 65,
@@ -20223,6 +20460,7 @@ var equip = {
   }, {
     id: 40412,
     title: "Ousted Bead Necklace",
+    ilvl: 213,
     "int": 38,
     spi: 56,
     sp: 50,
@@ -20230,6 +20468,7 @@ var equip = {
   }, {
     id: 40374,
     title: "Cosmic Lights",
+    ilvl: 213,
     "int": 38,
     sp: 65,
     crit: 37,
@@ -20237,6 +20476,7 @@ var equip = {
   }, {
     id: 40071,
     title: "Chains of Adoration",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     haste: 32,
@@ -20244,6 +20484,7 @@ var equip = {
   }, {
     id: 40378,
     title: "Ceaseless Pity",
+    ilvl: 213,
     "int": 41,
     sp: 66,
     crit: 43,
@@ -20251,6 +20492,7 @@ var equip = {
   }, {
     id: 39282,
     title: "Bone-Linked Amulet",
+    ilvl: 200,
     "int": 33,
     spi: 25,
     sp: 57,
@@ -20258,6 +20500,7 @@ var equip = {
   }, {
     id: 39392,
     title: "Veiled Amulet of Life",
+    ilvl: 200,
     "int": 38,
     spi: 34,
     sp: 59,
@@ -20265,6 +20508,7 @@ var equip = {
   }, {
     id: 39232,
     title: "Pendant of Lost Vocations",
+    ilvl: 200,
     "int": 41,
     sp: 57,
     haste: 36,
@@ -20273,36 +20517,42 @@ var equip = {
   {
     id: 42029,
     title: "Deadly Gladiator's Pendant of Dominance",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     crit: 38
   }, {
     id: 42030,
     title: "Deadly Gladiator's Pendant of Ascendancy",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     hit: 38
   }, {
     id: 42031,
     title: "Deadly Gladiator's Pendant of Subjugation",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     haste: 38
   }, {
     id: 42022,
     title: "Hateful Gladiator's Pendant of Dominance",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     crit: 34
   }, {
     id: 42023,
     title: "Hateful Gladiator's Pendant of Subjugation",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     haste: 34
   }, {
     id: 42024,
     title: "Hateful Gladiator's Pendant of Ascendancy",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     hit: 34
@@ -20310,6 +20560,7 @@ var equip = {
   {
     id: 39472,
     title: "Chain of Latent Energies",
+    ilvl: 200,
     "int": 33,
     sp: 59,
     hit: 34,
@@ -20317,6 +20568,7 @@ var equip = {
   }, {
     id: 40680,
     title: "Encircling Burnished Gold Chains",
+    ilvl: 200,
     "int": 38,
     spi: 34,
     sp: 59,
@@ -20324,6 +20576,7 @@ var equip = {
   }, {
     id: 40681,
     title: "Lattice Choker of Light",
+    ilvl: 200,
     "int": 38,
     sp: 59,
     crit: 34,
@@ -20331,6 +20584,7 @@ var equip = {
   }, {
     id: 42647,
     title: "Titanium Spellshock Necklace",
+    ilvl: 200,
     "int": 36,
     sp: 49,
     crit: 41,
@@ -20341,6 +20595,7 @@ var equip = {
   }, {
     id: 43285,
     title: "Amulet of the Spell Flinger",
+    ilvl: 200,
     "int": 31,
     sp: 50,
     crit: 42,
@@ -20348,6 +20603,7 @@ var equip = {
   }, {
     id: 37595,
     title: "Necklace of Taldaram",
+    ilvl: 200,
     "int": 28,
     sp: 50,
     hit: 43,
@@ -20355,6 +20611,7 @@ var equip = {
   }, {
     id: 37141,
     title: "Amulet of Dazzling Light",
+    ilvl: 200,
     "int": 34,
     sp: 50,
     mp5: 18,
@@ -20362,6 +20619,7 @@ var equip = {
   }, {
     id: 37290,
     title: "Dragon Prow Amulet",
+    ilvl: 200,
     "int": 33,
     spi: 43,
     sp: 50,
@@ -20369,6 +20627,7 @@ var equip = {
   }, {
     id: 37683,
     title: "Necromancer's Amulet",
+    ilvl: 200,
     "int": 41,
     spi: 42,
     sp: 50,
@@ -20376,6 +20635,7 @@ var equip = {
   }, {
     id: 43404,
     title: "Zuramat's Necklace",
+    ilvl: 200,
     "int": 28,
     spi: 29,
     sp: 50,
@@ -20384,6 +20644,7 @@ var equip = {
   {
     id: 34359,
     title: "Pendant of Sunfire",
+    ilvl: 159,
     "int": 19,
     sp: 34,
     crit: 25,
@@ -20395,6 +20656,7 @@ var equip = {
   }, {
     id: 34204,
     title: "Amulet of Unfettered Magics",
+    ilvl: 154,
     "int": 17,
     sp: 39,
     hit: 15,
@@ -20405,6 +20667,7 @@ var equip = {
     id: 51284,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Shoulderpads",
+    ilvl: 277,
     "int": 103,
     sp: 150,
     crit: 90,
@@ -20418,6 +20681,7 @@ var equip = {
     id: 51155,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Shoulderpads",
+    ilvl: 264,
     "int": 92,
     sp: 132,
     crit: 80,
@@ -20431,6 +20695,7 @@ var equip = {
     id: 50279,
     itemset: ids.T10_SET,
     title: "Bloodmage Shoulderpads",
+    ilvl: 251,
     "int": 81,
     sp: 116,
     crit: 71,
@@ -20443,6 +20708,7 @@ var equip = {
   }, {
     id: 50449,
     title: "Stiffened Corpse Shoulderpads",
+    ilvl: 264,
     "int": 92,
     spi: 80,
     sp: 122,
@@ -20455,6 +20721,7 @@ var equip = {
   }, {
     id: 50643,
     title: "Shoulders of Mercy Killing",
+    ilvl: 277,
     "int": 103,
     sp: 140,
     hit: 74,
@@ -20467,6 +20734,7 @@ var equip = {
   }, {
     id: 49991,
     title: "Shoulders of Mercy Killing",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     hit: 64,
@@ -20479,6 +20747,7 @@ var equip = {
   }, {
     id: 51859,
     title: "Shoulders of Ruinous Senility",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     hit: 64,
@@ -20491,6 +20760,7 @@ var equip = {
   }, {
     id: 51020,
     title: "Shoulders of Ruinous Senility",
+    ilvl: 251,
     "int": 81,
     sp: 106,
     hit: 55,
@@ -20503,6 +20773,7 @@ var equip = {
   }, {
     id: 51883,
     title: "Bloodstained Surgeon's Shoulderguards",
+    ilvl: 264,
     "int": 92,
     spi: 85,
     sp: 122,
@@ -20515,6 +20786,7 @@ var equip = {
   }, {
     id: 50988,
     title: "Bloodstained Surgeon's Shoulderguards",
+    ilvl: 251,
     "int": 81,
     spi: 75,
     sp: 106,
@@ -20529,6 +20801,7 @@ var equip = {
     id: 47767,
     itemset: ids.T9_SET,
     title: "Sunstrider's Shoulderpads of Triumph",
+    ilvl: 258,
     "int": 86,
     sp: 124,
     crit: 68,
@@ -20542,6 +20815,7 @@ var equip = {
     id: 47768,
     itemset: ids.T9_SET,
     title: "Sunstrider's Shoulderpads of Triumph",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 59,
@@ -20555,6 +20829,7 @@ var equip = {
     id: 47777,
     itemset: ids.T9_SET,
     title: "Sunstrider's Shoulderpads of Conquest",
+    ilvl: 232,
     "int": 68,
     sp: 96,
     crit: 52,
@@ -20569,6 +20844,7 @@ var equip = {
     id: 46134,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Shoulderpads",
+    ilvl: 226,
     "int": 65,
     spi: 33,
     sp: 98,
@@ -20582,6 +20858,7 @@ var equip = {
     id: 45369,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Shoulderpads",
+    ilvl: 219,
     "int": 60,
     spi: 30,
     sp: 91,
@@ -20594,6 +20871,7 @@ var equip = {
   }, {
     id: 46344,
     title: "Iceshear Mantle",
+    ilvl: 219,
     "int": 56,
     spi: 55,
     sp: 92,
@@ -20602,6 +20880,7 @@ var equip = {
   }, {
     id: 45514,
     title: "Mantle of the Unknowing",
+    ilvl: 226,
     "int": 56,
     spi: 62,
     sp: 90,
@@ -20614,6 +20893,7 @@ var equip = {
   }, {
     id: 45253,
     title: "Mantle of Wavering Calm",
+    ilvl: 226,
     "int": 56,
     spi: 62,
     sp: 99,
@@ -20622,6 +20902,7 @@ var equip = {
   }, {
     id: 45186,
     title: "Soot-Covered Mantle",
+    ilvl: 226,
     "int": 65,
     spi: 49,
     sp: 90,
@@ -20634,6 +20915,7 @@ var equip = {
   }, {
     id: 46068,
     title: "Amice of Inconceivable Horror",
+    ilvl: 226,
     "int": 49,
     spi: 42,
     sp: 100,
@@ -20646,6 +20928,7 @@ var equip = {
   }, {
     id: 45832,
     title: "Mantle of the Preserver",
+    ilvl: 219,
     "int": 56,
     spi: 46,
     sp: 91,
@@ -20654,6 +20937,7 @@ var equip = {
   }, {
     id: 46013,
     title: "Underworld Mantle",
+    ilvl: 219,
     "int": 60,
     spi: 46,
     sp: 92,
@@ -20667,6 +20951,7 @@ var equip = {
   {
     id: 40555,
     title: "Mantle of Dissemination",
+    ilvl: 226,
     "int": 59,
     spi: 52,
     sp: 98,
@@ -20676,6 +20961,7 @@ var equip = {
     id: 40419,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Shoulderpads",
+    ilvl: 213,
     "int": 57,
     sp: 78,
     crit: 53,
@@ -20688,6 +20974,7 @@ var equip = {
     id: 39494,
     itemset: ids.T7_SET,
     title: "Heroes' Frostfire Shoulderpads",
+    ilvl: 200,
     "int": 50,
     sp: 68,
     crit: 48,
@@ -20700,6 +20987,7 @@ var equip = {
     id: 43074,
     itemset: ids.UDC_SET,
     title: "Blessed Mantle of Undead Cleansing",
+    ilvl: 115,
     "int": 22,
     spi: 18,
     sp: 32,
@@ -20707,6 +20995,7 @@ var equip = {
   }, {
     id: 40286,
     title: "Mantle of the Corrupted",
+    ilvl: 213,
     "int": 50,
     sp: 88,
     hit: 37,
@@ -20714,6 +21003,7 @@ var equip = {
   }, {
     id: 40351,
     title: "Mantle of the Fatigued Sage",
+    ilvl: 213,
     "int": 55,
     spi: 57,
     sp: 78,
@@ -20725,6 +21015,7 @@ var equip = {
   }, {
     id: 39719,
     title: "Mantle of the Locusts",
+    ilvl: 213,
     "int": 39,
     spi: 67,
     sp: 78,
@@ -20736,6 +21027,7 @@ var equip = {
   }, {
     id: 40289,
     title: "Sympathetic Amice",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     crit: 50,
@@ -20743,6 +21035,7 @@ var equip = {
   }, {
     id: 39310,
     title: "Mantle of the Extensive Mind",
+    ilvl: 200,
     "int": 53,
     sp: 77,
     haste: 44,
@@ -20750,6 +21043,7 @@ var equip = {
   }, {
     id: 39284,
     title: "Miasma Mantle",
+    ilvl: 200,
     "int": 48,
     spi: 43,
     sp: 77,
@@ -20758,6 +21052,7 @@ var equip = {
   {
     id: 51572,
     title: "Titan-Forged Shoulderpads of Salvation",
+    ilvl: 251,
     "int": 54,
     sp: 116,
     haste: 63,
@@ -20768,6 +21063,7 @@ var equip = {
     id: 51467,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Amice",
+    ilvl: 270,
     "int": 64,
     sp: 140,
     crit: 77,
@@ -20777,6 +21073,7 @@ var equip = {
     id: 41966,
     itemset: ids.GLADIATOR_SET,
     title: "Relentless Gladiator's Silk Amice",
+    ilvl: 251,
     "int": 54,
     sp: 116,
     crit: 63,
@@ -20786,6 +21083,7 @@ var equip = {
     id: 41965,
     itemset: ids.GLADIATOR_SET,
     title: "Furious Gladiator's Silk Amice",
+    ilvl: 232,
     "int": 45,
     sp: 96,
     crit: 51,
@@ -20795,6 +21093,7 @@ var equip = {
     id: 41964,
     itemset: ids.GLADIATOR_SET,
     title: "Deadly Gladiator's Silk Amice",
+    ilvl: 213,
     "int": 37,
     sp: 76,
     crit: 42,
@@ -20803,6 +21102,7 @@ var equip = {
     id: 41963,
     itemset: ids.GLADIATOR_SET,
     title: "Hateful Gladiator's Silk Amice",
+    ilvl: 200,
     "int": 33,
     sp: 68,
     crit: 36,
@@ -20811,6 +21111,7 @@ var equip = {
     id: 41962,
     itemset: ids.GLADIATOR_SET,
     title: "Savage Gladiator's Silk Amice",
+    ilvl: 200,
     "int": 28,
     sp: 59,
     crit: 31,
@@ -20820,6 +21121,7 @@ var equip = {
   {
     id: 49854,
     title: "Mantle of Tattered Feathers",
+    ilvl: 219,
     "int": 59,
     spi: 53,
     sp: 92,
@@ -20828,6 +21130,7 @@ var equip = {
   }, {
     id: 50193,
     title: "Very Fashionable Shoulders",
+    ilvl: 232,
     "int": 68,
     sp: 105,
     hit: 62,
@@ -20836,6 +21139,7 @@ var equip = {
   }, {
     id: 49834,
     title: "Frayed Abomination Stitching Shoulders",
+    ilvl: 219,
     "int": 56,
     sp: 92,
     crit: 60,
@@ -20844,6 +21148,7 @@ var equip = {
   }, {
     id: 47716,
     title: "Mantle of Revered Mortality",
+    ilvl: 245,
     "int": 77,
     spi: 67,
     sp: 109,
@@ -20856,6 +21161,7 @@ var equip = {
   }, {
     id: 47715,
     title: "Pauldrons of Revered Mortality",
+    ilvl: 245,
     "int": 77,
     spi: 67,
     sp: 109,
@@ -20868,6 +21174,7 @@ var equip = {
   }, {
     id: 47714,
     title: "Pauldrons of Catastrophic Emanation",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 59,
@@ -20880,6 +21187,7 @@ var equip = {
   }, {
     id: 47713,
     title: "Mantle of Catastrophic Emanation",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 59,
@@ -20892,6 +21200,7 @@ var equip = {
   }, {
     id: 47226,
     title: "Mantle of Inconsolable Fear",
+    ilvl: 200,
     "int": 47,
     sp: 78,
     crit: 37,
@@ -20900,6 +21209,7 @@ var equip = {
   }, {
     id: 37196,
     title: "Runecaster's Mantle",
+    ilvl: 200,
     "int": 47,
     spi: 44,
     sp: 68,
@@ -20911,6 +21221,7 @@ var equip = {
   }, {
     id: 37655,
     title: "Mantle of the Tribunal",
+    ilvl: 200,
     "int": 59,
     sp: 68,
     haste: 42,
@@ -20918,6 +21229,7 @@ var equip = {
   }, {
     id: 37673,
     title: "Dark Runic Mantle",
+    ilvl: 200,
     "int": 44,
     sp: 59,
     haste: 50,
@@ -20929,6 +21241,7 @@ var equip = {
   }, {
     id: 37691,
     title: "Mantle of Deceit",
+    ilvl: 200,
     "int": 54,
     spi: 42,
     sp: 68,
@@ -20937,6 +21250,7 @@ var equip = {
   {
     id: 34210,
     title: "Amice of the Convoker",
+    ilvl: 159,
     "int": 28,
     sp: 53,
     crit: 22,
@@ -20948,6 +21262,7 @@ var equip = {
   }, {
     id: 34393,
     title: "Shoulderpads of Knowledge's Pursuit",
+    ilvl: 159,
     "int": 33,
     spi: 22,
     sp: 53,
@@ -20960,6 +21275,7 @@ var equip = {
     id: 31059,
     itemset: ids.T6_SET,
     title: "Mantle of the Tempest",
+    ilvl: 146,
     "int": 27,
     spi: 21,
     sp: 46,
@@ -20973,6 +21289,7 @@ var equip = {
     id: 22499,
     itemset: ids.T3_SET,
     title: "Frostfire Shoulderpads",
+    ilvl: 86,
     "int": 18,
     spi: 9,
     sp: 36
@@ -20981,6 +21298,7 @@ var equip = {
   {
     id: 50628,
     title: "Frostbinder's Shredded Cape",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 68,
@@ -20993,6 +21311,7 @@ var equip = {
   }, {
     id: 50205,
     title: "Frostbinder's Shredded Cape",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 60,
@@ -21005,6 +21324,7 @@ var equip = {
   }, {
     id: 50668,
     title: "Greatcloak of the Turned Champion",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 110,
@@ -21017,6 +21337,7 @@ var equip = {
   }, {
     id: 50014,
     title: "Greatcloak of the Turned Champion",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 97,
@@ -21029,6 +21350,7 @@ var equip = {
   }, {
     id: 51826,
     title: "Lich Wrappings",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     hit: 48,
@@ -21041,6 +21363,7 @@ var equip = {
   }, {
     id: 51584,
     title: "Lich Wrappings",
+    ilvl: 251,
     "int": 61,
     sp: 85,
     hit: 41,
@@ -21053,6 +21376,7 @@ var equip = {
   }, {
     id: 51382,
     title: "Heartsick Mender's Cape",
+    ilvl: 251,
     "int": 61,
     sp: 85,
     haste: 45,
@@ -21063,6 +21387,7 @@ var equip = {
   {
     id: 49491,
     title: "Flowing Sapphiron Drape",
+    ilvl: 245,
     "int": 54,
     sp: 89,
     crit: 50,
@@ -21071,6 +21396,7 @@ var equip = {
   }, {
     id: 49307,
     title: "Fluttering Sapphiron Drape",
+    ilvl: 232,
     "int": 48,
     sp: 78,
     crit: 44,
@@ -21080,6 +21406,7 @@ var equip = {
   {
     id: 47553,
     title: "Bolvar's Devotion",
+    ilvl: 272,
     "int": 74,
     spi: 65,
     sp: 105,
@@ -21092,6 +21419,7 @@ var equip = {
   }, {
     id: 47095,
     title: "Cloak of Displacement",
+    ilvl: 258,
     "int": 65,
     sp: 91,
     hit: 49,
@@ -21104,6 +21432,7 @@ var equip = {
   }, {
     id: 47089,
     title: "Cloak of Displacement",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     hit: 50,
@@ -21112,6 +21441,7 @@ var equip = {
   }, {
     id: 47552,
     title: "Jaina's Radiance",
+    ilvl: 272,
     "int": 74,
     sp: 105,
     crit: 65,
@@ -21124,6 +21454,7 @@ var equip = {
   }, {
     id: 47238,
     title: "Maiden's Favor",
+    ilvl: 258,
     "int": 65,
     sp: 91,
     crit: 49,
@@ -21136,6 +21467,7 @@ var equip = {
   }, {
     id: 47225,
     title: "Maiden's Favor",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     crit: 50,
@@ -21144,6 +21476,7 @@ var equip = {
   }, {
     id: 46977,
     title: "Shawl of the Refreshing Winds",
+    ilvl: 258,
     "int": 65,
     spi: 57,
     sp: 91,
@@ -21156,6 +21489,7 @@ var equip = {
   }, {
     id: 46976,
     title: "Shawl of the Refreshing Winds",
+    ilvl: 245,
     "int": 58,
     spi: 50,
     sp: 89,
@@ -21165,6 +21499,7 @@ var equip = {
   {
     id: 45493,
     title: "Asimov's Drape",
+    ilvl: 226,
     "int": 42,
     spi: 42,
     sp: 74,
@@ -21173,6 +21508,7 @@ var equip = {
   }, {
     id: 45242,
     title: "Drape of Mortal Downfall",
+    ilvl: 239,
     "int": 51,
     sp: 75,
     crit: 43,
@@ -21185,6 +21521,7 @@ var equip = {
   }, {
     id: 45486,
     title: "Drape of the Sullen Goddess",
+    ilvl: 239,
     "int": 51,
     sp: 75,
     crit: 40,
@@ -21197,6 +21534,7 @@ var equip = {
   }, {
     id: 45529,
     title: "Shawl of Haunted Memories",
+    ilvl: 226,
     "int": 46,
     spi: 49,
     sp: 74,
@@ -21205,6 +21543,7 @@ var equip = {
   }, {
     id: 46042,
     title: "Drape of the Messenger",
+    ilvl: 226,
     "int": 36,
     sp: 74,
     crit: 49,
@@ -21217,6 +21556,7 @@ var equip = {
   }, {
     id: 45317,
     title: "Shawl of the Caretaker",
+    ilvl: 219,
     "int": 35,
     sp: 74,
     haste: 39,
@@ -21226,6 +21566,7 @@ var equip = {
   {
     id: 44005,
     title: "Pennant Cloak",
+    ilvl: 226,
     "int": 46,
     sp: 64,
     crit: 34,
@@ -21238,6 +21579,7 @@ var equip = {
   {
     id: 40405,
     title: "Cape of the Unworthy Wizard",
+    ilvl: 226,
     "int": 42,
     spi: 49,
     sp: 74,
@@ -21245,6 +21587,7 @@ var equip = {
   }, {
     id: 40254,
     title: "Cloak of Averted Crisis",
+    ilvl: 213,
     "int": 41,
     sp: 66,
     crit: 38,
@@ -21252,6 +21595,7 @@ var equip = {
   }, {
     id: 40253,
     title: "Shawl of the Old Maid",
+    ilvl: 213,
     "int": 43,
     spi: 38,
     sp: 66,
@@ -21259,6 +21603,7 @@ var equip = {
   }, {
     id: 40251,
     title: "Shroud of Luminosity",
+    ilvl: 213,
     "int": 43,
     sp: 65,
     crit: 38,
@@ -21266,6 +21611,7 @@ var equip = {
   }, {
     id: 39241,
     title: "Dark Shroud of the Scourge",
+    ilvl: 200,
     "int": 38,
     spi: 36,
     sp: 60,
@@ -21273,6 +21619,7 @@ var equip = {
   }, {
     id: 39415,
     title: "Shroud of the Citadel",
+    ilvl: 200,
     "int": 36,
     sp: 58,
     crit: 38,
@@ -21280,6 +21627,7 @@ var equip = {
   }, {
     id: 39425,
     title: "Cloak of the Dying",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     crit: 38,
@@ -21287,6 +21635,7 @@ var equip = {
   }, {
     id: 39272,
     title: "Drape of Surgery",
+    ilvl: 200,
     "int": 38,
     sp: 59,
     haste: 25,
@@ -21295,36 +21644,42 @@ var equip = {
   {
     id: 42062,
     title: "Deadly Gladiator's Cloak of Dominance",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     crit: 38
   }, {
     id: 42063,
     title: "Deadly Gladiator's Cloak of Subjugation",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     haste: 38
   }, {
     id: 42064,
     title: "Deadly Gladiator's Cloak of Ascendancy",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     hit: 38
   }, {
     id: 42055,
     title: "Hateful Gladiator's Cloak of Dominance",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     crit: 34
   }, {
     id: 42056,
     title: "Hateful Gladiator's Cloak of Subjugation",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     haste: 34
   }, {
     id: 42057,
     title: "Hateful Gladiator's Cloak of Ascendancy",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     hit: 34
@@ -21332,6 +21687,7 @@ var equip = {
   {
     id: 40723,
     title: "Disguise of the Kumiho",
+    ilvl: 213,
     "int": 38,
     spi: 37,
     sp: 65,
@@ -21339,6 +21695,7 @@ var equip = {
   }, {
     id: 40724,
     title: "Cloak of Kea Feathers",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     haste: 28,
@@ -21346,18 +21703,21 @@ var equip = {
   }, {
     id: 41610,
     title: "Deathchill Cloak",
+    ilvl: 200,
     sp: 59,
     crit: 43,
     haste: 53
   }, {
     id: 41609,
     title: "Wispcloak",
+    ilvl: 200,
     "int": 36,
     sp: 59,
     mp5: 25
   }, {
     id: 37291,
     title: "Ancient Dragon Spirit Cape",
+    ilvl: 200,
     "int": 29,
     sp: 51,
     haste: 42,
@@ -21365,6 +21725,7 @@ var equip = {
   }, {
     id: 37630,
     title: "Shroud of Moorabi",
+    ilvl: 200,
     "int": 43,
     spi: 32,
     sp: 51,
@@ -21372,6 +21733,7 @@ var equip = {
   }, {
     id: 37799,
     title: "Reanimator's Cloak",
+    ilvl: 200,
     "int": 31,
     spi: 38,
     sp: 41,
@@ -21383,6 +21745,7 @@ var equip = {
   }, {
     id: 43283,
     title: "Subterranean Waterfall Shroud",
+    ilvl: 200,
     "int": 26,
     spi: 54,
     sp: 43,
@@ -21390,6 +21753,7 @@ var equip = {
   }, {
     id: 44242,
     title: "Dark Soldier Cape",
+    ilvl: 187,
     "int": 38,
     sp: 46,
     hit: 29,
@@ -21397,6 +21761,7 @@ var equip = {
   }, {
     id: 44167,
     title: "Shroud of Dedicated Research",
+    ilvl: 187,
     "int": 29,
     sp: 46,
     haste: 38,
@@ -21405,6 +21770,7 @@ var equip = {
   {
     id: 34242,
     title: "Tattered Cape of Antonidas",
+    ilvl: 164,
     "int": 26,
     sp: 42,
     haste: 32,
@@ -21418,6 +21784,7 @@ var equip = {
     id: 51283,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Robe",
+    ilvl: 277,
     "int": 139,
     sp: 195,
     crit: 106,
@@ -21431,6 +21798,7 @@ var equip = {
     id: 51156,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Robe",
+    ilvl: 264,
     "int": 123,
     sp: 171,
     crit: 92,
@@ -21456,6 +21824,7 @@ var equip = {
   }, {
     id: 50629,
     title: "Robe of the Waking Nightmare",
+    ilvl: 277,
     "int": 139,
     sp: 186,
     crit: 122,
@@ -21468,6 +21837,7 @@ var equip = {
   }, {
     id: 50418,
     title: "Robe of the Waking Nightmare",
+    ilvl: 264,
     "int": 123,
     sp: 162,
     crit: 108,
@@ -21480,6 +21850,7 @@ var equip = {
   }, {
     id: 50717,
     title: "Sanguine Silk Robes",
+    ilvl: 277,
     "int": 139,
     spi: 122,
     sp: 186,
@@ -21492,6 +21863,7 @@ var equip = {
   }, {
     id: 50172,
     title: "Sanguine Silk Robes",
+    ilvl: 264,
     "int": 123,
     spi: 108,
     sp: 162,
@@ -21504,6 +21876,7 @@ var equip = {
   }, {
     id: 51813,
     title: "Robes of Azure Downfall",
+    ilvl: 264,
     "int": 115,
     sp: 162,
     crit: 87,
@@ -21516,6 +21889,7 @@ var equip = {
   }, {
     id: 51790,
     title: "Robes of Azure Downfall",
+    ilvl: 251,
     "int": 101,
     sp: 140,
     crit: 76,
@@ -21528,6 +21902,7 @@ var equip = {
   }, {
     id: 51851,
     title: "Bloodsoul Raiment",
+    ilvl: 264,
     "int": 123,
     spi: 90,
     sp: 162,
@@ -21540,6 +21915,7 @@ var equip = {
   }, {
     id: 51379,
     title: "Bloodsoul Raiment",
+    ilvl: 251,
     "int": 109,
     spi: 78,
     sp: 140,
@@ -21549,37 +21925,24 @@ var equip = {
       sp: 9
     },
     phase: 4
-  }, {
+  }, (_ref2 = {
     id: 50975,
     title: "Ermine Coronation Robes",
-    ilvl: 264,
-    "int": 123,
-    spi: 84,
-    sp: 162,
-    crit: 108,
-    sockets: ["y", "r", "b"],
-    bonus: {
-      sp: 9
-    },
-    phase: 4
-  }, {
+    ilvl: 264
+  }, _defineProperty(_ref2, "ilvl", 264), _defineProperty(_ref2, "int", 123), _defineProperty(_ref2, "spi", 84), _defineProperty(_ref2, "sp", 162), _defineProperty(_ref2, "crit", 108), _defineProperty(_ref2, "sockets", ["y", "r", "b"]), _defineProperty(_ref2, "bonus", {
+    sp: 9
+  }), _defineProperty(_ref2, "phase", 4), _ref2), (_ref3 = {
     id: 50974,
     title: "Meteor Chaser's Raiment",
-    ilvl: 264,
-    "int": 123,
-    sp: 162,
-    crit: 84,
-    haste: 108,
-    sockets: ["r", "y", "b"],
-    bonus: {
-      sp: 9
-    },
-    phase: 4
-  }, // totc
+    ilvl: 264
+  }, _defineProperty(_ref3, "ilvl", 264), _defineProperty(_ref3, "int", 123), _defineProperty(_ref3, "sp", 162), _defineProperty(_ref3, "crit", 84), _defineProperty(_ref3, "haste", 108), _defineProperty(_ref3, "sockets", ["r", "y", "b"]), _defineProperty(_ref3, "bonus", {
+    sp: 9
+  }), _defineProperty(_ref3, "phase", 4), _ref3), // totc
   {
     id: 47766,
     itemset: ids.T9_SET,
     title: "Sunstrider's Robe of Triumph",
+    ilvl: 258,
     "int": 116,
     spi: 102,
     sp: 160,
@@ -21593,6 +21956,7 @@ var equip = {
     id: 47769,
     itemset: ids.T9_SET,
     title: "Sunstrider's Robe of Triumph",
+    ilvl: 245,
     "int": 103,
     spi: 90,
     sp: 140,
@@ -21606,6 +21970,7 @@ var equip = {
     id: 47776,
     itemset: ids.T9_SET,
     title: "Sunstrider's Robe of Conquest",
+    ilvl: 232,
     "int": 92,
     spi: 80,
     sp: 122,
@@ -21618,6 +21983,7 @@ var equip = {
   }, {
     id: 46993,
     title: "Flowing Vestments of Ascent",
+    ilvl: 258,
     "int": 116,
     spi: 94,
     sp: 151,
@@ -21630,6 +21996,7 @@ var equip = {
   }, {
     id: 46992,
     title: "Flowing Vestments of Ascent",
+    ilvl: 245,
     "int": 103,
     spi: 90,
     sp: 140,
@@ -21642,6 +22009,7 @@ var equip = {
   }, {
     id: 47129,
     title: "Skyweaver Robes",
+    ilvl: 258,
     "int": 116,
     sp: 151,
     hit: 86,
@@ -21654,6 +22022,7 @@ var equip = {
   }, {
     id: 47126,
     title: "Skyweaver Robes",
+    ilvl: 245,
     "int": 103,
     sp: 140,
     hit: 82,
@@ -21663,22 +22032,16 @@ var equip = {
       sp: 7
     },
     phase: 3
-  }, {
+  }, (_ref4 = {
     id: 48051,
     title: "Robes of the Sleepless",
-    ilvl: 245,
-    "int": 95,
-    sp: 140,
-    crit: 71,
-    hit: 96,
-    sockets: ["b", "r"],
-    bonus: {
-      sp: 7
-    },
-    phase: 3
-  }, {
+    ilvl: 245
+  }, _defineProperty(_ref4, "ilvl", 245), _defineProperty(_ref4, "int", 95), _defineProperty(_ref4, "sp", 140), _defineProperty(_ref4, "crit", 71), _defineProperty(_ref4, "hit", 96), _defineProperty(_ref4, "sockets", ["b", "r"]), _defineProperty(_ref4, "bonus", {
+    sp: 7
+  }), _defineProperty(_ref4, "phase", 3), _ref4), {
     id: 47974,
     title: "Vestments of the Sleepless",
+    ilvl: 245,
     "int": 95,
     sp: 140,
     crit: 71,
@@ -21704,6 +22067,7 @@ var equip = {
   }, {
     id: 47838,
     title: "Vestments of the Sleepless",
+    ilvl: 232,
     "int": 88,
     sp: 132,
     crit: 65,
@@ -21770,6 +22134,7 @@ var equip = {
     id: 46130,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Tunic",
+    ilvl: 226,
     "int": 81,
     spi: 50,
     sp: 132,
@@ -21783,6 +22148,7 @@ var equip = {
     id: 45368,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Tunic",
+    ilvl: 219,
     "int": 76,
     spi: 46,
     sp: 124,
@@ -21795,6 +22161,7 @@ var equip = {
   }, {
     id: 45272,
     title: "Robes of the Umbral Brute",
+    ilvl: 226,
     "int": 86,
     sp: 123,
     crit: 58,
@@ -21807,6 +22174,7 @@ var equip = {
   }, {
     id: 45240,
     title: "Raiments of the Iron Council",
+    ilvl: 226,
     "int": 81,
     spi: 57,
     sp: 115,
@@ -21819,6 +22187,7 @@ var equip = {
   }, {
     id: 45865,
     title: "Raiments of the Corrupted",
+    ilvl: 219,
     "int": 62,
     sp: 117,
     crit: 61,
@@ -21831,6 +22200,7 @@ var equip = {
   }, {
     id: 46012,
     title: "Vestments of the Piercing Light",
+    ilvl: 219,
     "int": 81,
     spi: 76,
     sp: 124,
@@ -21840,6 +22210,7 @@ var equip = {
   {
     id: 40194,
     title: "Blanketing Robes of Snow",
+    ilvl: 226,
     "int": 71,
     spi: 66,
     sp: 132,
@@ -21851,6 +22222,7 @@ var equip = {
   }, {
     id: 40526,
     title: "Gown of the Spell-Weaver",
+    ilvl: 213,
     "int": 70,
     sp: 110,
     crit: 50,
@@ -21863,6 +22235,7 @@ var equip = {
   {
     id: 44002,
     title: "The Sanctum's Flowing Vestments",
+    ilvl: 213,
     "int": 77,
     spi: 51,
     sp: 99,
@@ -21876,6 +22249,7 @@ var equip = {
     id: 40418,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Robe",
+    ilvl: 213,
     "int": 77,
     spi: 66,
     sp: 99,
@@ -21888,6 +22262,7 @@ var equip = {
     id: 39492,
     itemset: ids.T7_SET,
     title: "Heroes' Frostfire Robe",
+    ilvl: 200,
     "int": 60,
     spi: 60,
     sp: 87,
@@ -21900,6 +22275,7 @@ var equip = {
     id: 43072,
     itemset: ids.UDC_SET,
     title: "Blessed Robe of Undead Cleansing",
+    ilvl: 115,
     "int": 29,
     spi: 24,
     sp: 44,
@@ -21907,6 +22283,7 @@ var equip = {
   }, {
     id: 40062,
     title: "Digested Silken Robes",
+    ilvl: 213,
     "int": 69,
     spi: 63,
     sp: 118,
@@ -21914,6 +22291,7 @@ var equip = {
   }, {
     id: 40234,
     title: "Heigan's Putrid Vestments",
+    ilvl: 213,
     "int": 77,
     sp: 99,
     hit: 49,
@@ -21925,6 +22303,7 @@ var equip = {
   }, {
     id: 40602,
     title: "Robes of Mutation",
+    ilvl: 213,
     "int": 77,
     spi: 71,
     sp: 99,
@@ -21936,6 +22315,7 @@ var equip = {
   }, {
     id: 40381,
     title: "Sympathy",
+    ilvl: 213,
     "int": 77,
     spi: 58,
     sp: 99,
@@ -21947,6 +22327,7 @@ var equip = {
   }, {
     id: 39396,
     title: "Gown of Blaumeux",
+    ilvl: 200,
     "int": 68,
     sp: 105,
     hit: 45,
@@ -21954,6 +22335,7 @@ var equip = {
   }, {
     id: 39242,
     title: "Robes of Hoarse Breaths",
+    ilvl: 200,
     "int": 73,
     sp: 104,
     haste: 42,
@@ -21963,6 +22345,7 @@ var equip = {
     id: 51463,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Raiment",
+    ilvl: 270,
     "int": 87,
     sp: 182,
     crit: 98,
@@ -21972,6 +22355,7 @@ var equip = {
     id: 41954,
     itemset: ids.GLADIATOR_SET,
     title: "Relentless Gladiator's Silk Raiment",
+    ilvl: 251,
     "int": 73,
     sp: 149,
     crit: 80,
@@ -21981,6 +22365,7 @@ var equip = {
     id: 41953,
     itemset: ids.GLADIATOR_SET,
     title: "Furious Gladiator's Silk Raiment",
+    ilvl: 232,
     "int": 60,
     sp: 123,
     crit: 64,
@@ -21990,6 +22375,7 @@ var equip = {
     id: 41951,
     itemset: ids.GLADIATOR_SET,
     title: "Deadly Gladiator's Silk Raiment",
+    ilvl: 213,
     "int": 50,
     sp: 98,
     crit: 51,
@@ -21998,6 +22384,7 @@ var equip = {
     id: 41950,
     itemset: ids.GLADIATOR_SET,
     title: "Hateful Gladiator's Silk Raiment",
+    ilvl: 200,
     "int": 45,
     sp: 87,
     crit: 44,
@@ -22006,6 +22393,7 @@ var equip = {
     id: 41949,
     itemset: ids.GLADIATOR_SET,
     title: "Savage Gladiator's Silk Raiment",
+    ilvl: 200,
     "int": 39,
     sp: 73,
     crit: 36,
@@ -22060,6 +22448,7 @@ var equip = {
   }, {
     id: 42102,
     title: "Spellweave Robe",
+    ilvl: 200,
     "int": 64,
     spi: 52,
     sp: 104,
@@ -22067,18 +22456,21 @@ var equip = {
   }, {
     id: 42101,
     title: "Ebonweave Robe",
+    ilvl: 200,
     "int": 89,
     sp: 105,
     hit: 68
   }, {
     id: 42100,
     title: "Moonshroud Robe",
+    ilvl: 200,
     "int": 68,
     spi: 89,
     sp: 105
   }, {
     id: 44180,
     title: "Robes of Crackling Flame",
+    ilvl: 200,
     "int": 73,
     sp: 104,
     haste: 42,
@@ -22087,6 +22479,7 @@ var equip = {
     id: 41554,
     itemset: ids.DUSKWEAVE_SET,
     title: "Black Duskweave Robe",
+    ilvl: 187,
     "int": 46,
     sp: 80,
     haste: 70,
@@ -22094,6 +22487,7 @@ var equip = {
   }, {
     id: 37222,
     title: "Egg Sac Robes",
+    ilvl: 200,
     "int": 61,
     sp: 73,
     haste: 62,
@@ -22105,6 +22499,7 @@ var equip = {
   }, {
     id: 37258,
     title: "Drakewing Raiments",
+    ilvl: 200,
     "int": 69,
     sp: 73,
     haste: 59,
@@ -22116,6 +22511,7 @@ var equip = {
   }, {
     id: 37641,
     title: "Arcane Flame Altar-Garb",
+    ilvl: 200,
     "int": 77,
     sp: 91,
     crit: 60,
@@ -22123,6 +22519,7 @@ var equip = {
   }, {
     id: 37851,
     title: "Ornate Woolen Stola",
+    ilvl: 200,
     "int": 74,
     sp: 91,
     crit: 60,
@@ -22130,6 +22527,7 @@ var equip = {
   }, {
     id: 43401,
     title: "Water-Drenched Robe",
+    ilvl: 200,
     "int": 60,
     sp: 73,
     hit: 62,
@@ -22142,6 +22540,7 @@ var equip = {
   {
     id: 34364,
     title: "Sunfire Robe",
+    ilvl: 159,
     "int": 34,
     sp: 71,
     crit: 40,
@@ -22153,6 +22552,7 @@ var equip = {
   }, {
     id: 34399,
     title: "Robes of Ghostly Hatred",
+    ilvl: 159,
     "int": 40,
     spi: 32,
     sp: 71,
@@ -22165,6 +22565,7 @@ var equip = {
   }, {
     id: 34232,
     title: "Fel Conquerer Raiments",
+    ilvl: 159,
     "int": 41,
     sp: 71,
     crit: 24,
@@ -22177,6 +22578,7 @@ var equip = {
     id: 31057,
     itemset: ids.T6_SET,
     title: "Robes of the Tempest",
+    ilvl: 146,
     "int": 39,
     spi: 31,
     sp: 62,
@@ -22186,25 +22588,28 @@ var equip = {
     bonus: {
       sp: 5
     }
-  }, {
-    id: 23085,
-    itemset: ids.CUDC_SET,
-    title: "Robe of Undead Cleansing",
-    "int": 13,
-    q: "rare"
   }, // Vanilla
   {
     id: 22496,
     itemset: ids.T3_SET,
     title: "Frostfire Robe",
+    ilvl: 92,
     "int": 27,
     sp: 47,
     hit: 8
+  }, {
+    id: 23085,
+    itemset: ids.CUDC_SET,
+    title: "Robe of Undead Cleansing",
+    ilvl: 63,
+    "int": 13,
+    q: "rare"
   }],
   wrist: [// icc
   {
     id: 50651,
     title: "The Lady's Brittle Bracers",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 73,
@@ -22217,6 +22622,7 @@ var equip = {
   }, {
     id: 49994,
     title: "The Lady's Brittle Bracers",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 65,
@@ -22229,6 +22635,7 @@ var equip = {
   }, {
     id: 50686,
     title: "Death Surgeon's Sleeves",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 110,
@@ -22241,6 +22648,7 @@ var equip = {
   }, {
     id: 50032,
     title: "Death Surgeon's Sleeves",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 97,
@@ -22253,6 +22661,7 @@ var equip = {
   }, {
     id: 51872,
     title: "Ether-Soaked Bracers",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     hit: 38,
@@ -22265,6 +22674,7 @@ var equip = {
   }, {
     id: 51007,
     title: "Ether-Soaked Bracers",
+    ilvl: 251,
     "int": 61,
     sp: 94,
     hit: 40,
@@ -22273,6 +22683,7 @@ var equip = {
   }, {
     id: 51918,
     title: "Bracers of Dark Blessings",
+    ilvl: 264,
     "int": 69,
     spi: 58,
     sp: 97,
@@ -22285,6 +22696,7 @@ var equip = {
   }, {
     id: 50785,
     title: "Bracers of Dark Blessings",
+    ilvl: 251,
     "int": 61,
     spi: 51,
     sp: 85,
@@ -22298,6 +22710,7 @@ var equip = {
   {
     id: 47208,
     title: "Armbands of the Ashen Saint",
+    ilvl: 258,
     "int": 65,
     spi: 57,
     sp: 91,
@@ -22310,6 +22723,7 @@ var equip = {
   }, {
     id: 47203,
     title: "Armbands of the Ashen Saint",
+    ilvl: 245,
     "int": 58,
     spi: 50,
     sp: 89,
@@ -22318,6 +22732,7 @@ var equip = {
   }, {
     id: 47143,
     title: "Bindings of Dark Essence",
+    ilvl: 258,
     "int": 65,
     sp: 91,
     crit: 57,
@@ -22330,6 +22745,7 @@ var equip = {
   }, {
     id: 47141,
     title: "Bindings of Dark Essence",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     crit: 58,
@@ -22338,6 +22754,7 @@ var equip = {
   }, {
     id: 47927,
     title: "Felspark Bindings",
+    ilvl: 245,
     "int": 58,
     sp: 80,
     hit: 33,
@@ -22350,6 +22767,7 @@ var equip = {
   }, {
     id: 47663,
     title: "Felspark Bindings",
+    ilvl: 232,
     "int": 51,
     sp: 78,
     hit: 36,
@@ -22359,6 +22777,7 @@ var equip = {
   {
     id: 45275,
     title: "Bracers of Unleashed Magic",
+    ilvl: 226,
     "int": 46,
     sp: 74,
     hit: 36,
@@ -22367,6 +22786,7 @@ var equip = {
   }, {
     id: 45446,
     title: "Grasps of Reason",
+    ilvl: 239,
     "int": 52,
     spi: 48,
     sp: 75,
@@ -22379,6 +22799,7 @@ var equip = {
   }, {
     id: 45146,
     title: "Shackles of the Odalisque",
+    ilvl: 226,
     "int": 42,
     spi: 49,
     sp: 74,
@@ -22387,6 +22808,7 @@ var equip = {
   }, {
     id: 45291,
     title: "Combustion Bracers",
+    ilvl: 219,
     "int": 41,
     spi: 44,
     sp: 70,
@@ -22395,6 +22817,7 @@ var equip = {
   }, {
     id: 45423,
     title: "Runetouch Wristwraps",
+    ilvl: 219,
     "int": 42,
     spi: 29,
     sp: 69,
@@ -22404,6 +22827,7 @@ var equip = {
   {
     id: 44008,
     title: "Unsullied Cuffs",
+    ilvl: 226,
     "int": 46,
     spi: 42,
     sp: 64,
@@ -22416,6 +22840,7 @@ var equip = {
   {
     id: 40198,
     title: "Bands of Impurity",
+    ilvl: 213,
     "int": 39,
     spi: 37,
     sp: 56,
@@ -22427,6 +22852,7 @@ var equip = {
   }, {
     id: 40325,
     title: "Bindings of the Expansive Mind",
+    ilvl: 213,
     "int": 38,
     sp: 65,
     crit: 43,
@@ -22434,6 +22860,7 @@ var equip = {
   }, {
     id: 40338,
     title: "Bindings of Yearning",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     crit: 41,
@@ -22441,6 +22868,7 @@ var equip = {
   }, {
     id: 39731,
     title: "Punctilious Bindings",
+    ilvl: 213,
     "int": 43,
     spi: 39,
     sp: 66,
@@ -22448,6 +22876,7 @@ var equip = {
   }, {
     id: 39252,
     title: "Preceptor's Bindings",
+    ilvl: 200,
     "int": 38,
     spi: 34,
     sp: 59,
@@ -22455,6 +22884,7 @@ var equip = {
   }, {
     id: 39390,
     title: "Resurgent Phantom Bindings",
+    ilvl: 200,
     "int": 32,
     spi: 38,
     sp: 59,
@@ -22463,24 +22893,28 @@ var equip = {
   {
     id: 41908,
     title: "Deadly Gladiator's Cuffs of Dominance",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     crit: 38
   }, {
     id: 41892,
     title: "Deadly Gladiator's Cuffs of Salvation",
+    ilvl: 213,
     "int": 29,
     spi: 38,
     sp: 66
   }, {
     id: 41907,
     title: "Hateful Gladiator's Cuffs of Dominance",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     crit: 34
   }, {
     id: 41878,
     title: "Hateful Gladiator's Cuffs of Salvation",
+    ilvl: 200,
     "int": 24,
     spi: 34,
     sp: 59
@@ -22488,6 +22922,7 @@ var equip = {
   {
     id: 40740,
     title: "Wraps of the Astral Traveler",
+    ilvl: 213,
     "int": 41,
     spi: 43,
     sp: 65,
@@ -22495,6 +22930,7 @@ var equip = {
   }, {
     id: 40741,
     title: "Cuffs of the Shadow Ascendant",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     haste: 38,
@@ -22502,6 +22938,7 @@ var equip = {
   }, {
     id: 37361,
     title: "Cuffs of Winged Levitation",
+    ilvl: 200,
     "int": 38,
     spi: 32,
     sp: 59,
@@ -22509,6 +22946,7 @@ var equip = {
   }, {
     id: 37884,
     title: "Azure Cloth Bindings",
+    ilvl: 200,
     "int": 38,
     sp: 59,
     crit: 50
@@ -22516,6 +22954,7 @@ var equip = {
     id: 41555,
     itemset: ids.DUSKWEAVE_SET,
     title: "Black Duskweave Wristwraps",
+    ilvl: 187,
     "int": 27,
     sp: 46,
     haste: 38,
@@ -22523,6 +22962,7 @@ var equip = {
   }, {
     id: 37370,
     title: "Cuffs of the Trussed Hall",
+    ilvl: 200,
     "int": 31,
     spi: 43,
     sp: 50,
@@ -22530,6 +22970,7 @@ var equip = {
   }, {
     id: 37613,
     title: "Flame Sphere Bindings",
+    ilvl: 200,
     "int": 45,
     sp: 51,
     mp5: 15,
@@ -22537,6 +22978,7 @@ var equip = {
   }, {
     id: 37725,
     title: "Savage Wound Wrap",
+    ilvl: 200,
     "int": 32,
     sp: 51,
     haste: 43,
@@ -22544,6 +22986,7 @@ var equip = {
   }, {
     id: 44200,
     title: "Ancestral Sinew Wristguards",
+    ilvl: 200,
     "int": 33,
     spi: 27,
     sp: 50,
@@ -22557,6 +23000,7 @@ var equip = {
     id: 34447,
     itemset: ids.T6_SET,
     title: "Bracers of the Tempest",
+    ilvl: 154,
     "int": 17,
     spi: 14,
     sp: 39,
@@ -22566,25 +23010,28 @@ var equip = {
     bonus: {
       crit: 2
     }
-  }, {
-    id: 23091,
-    itemset: ids.CUDC_SET,
-    title: "Bracers of Undead Cleansing",
-    "int": 7,
-    q: "rare"
   }, // vanilla
   {
     id: 22503,
     itemset: ids.T3_SET,
     title: "Frostfire Bindings",
+    ilvl: 88,
     "int": 15,
     sp: 27
+  }, {
+    id: 23091,
+    itemset: ids.CUDC_SET,
+    title: "Bracers of Undead Cleansing",
+    ilvl: 63,
+    "int": 7,
+    q: "rare"
   }],
   hands: [// icc
   {
     id: 51280,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Gloves",
+    ilvl: 277,
     "int": 103,
     sp: 150,
     crit: 90,
@@ -22598,6 +23045,7 @@ var equip = {
     id: 51159,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Gloves",
+    ilvl: 264,
     "int": 92,
     sp: 132,
     crit: 80,
@@ -22611,6 +23059,7 @@ var equip = {
     id: 50275,
     itemset: ids.T10_SET,
     title: "Bloodmage Gloves",
+    ilvl: 251,
     "int": 81,
     sp: 116,
     crit: 71,
@@ -22623,6 +23072,7 @@ var equip = {
   }, {
     id: 50663,
     title: "Gunship Captain's Mittens",
+    ilvl: 277,
     "int": 103,
     sp: 140,
     hit: 74,
@@ -22635,6 +23085,7 @@ var equip = {
   }, {
     id: 50011,
     title: "Gunship Captain's Mittens",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     hit: 64,
@@ -22647,6 +23098,7 @@ var equip = {
   }, {
     id: 50722,
     title: "San'layn Ritualist Gloves",
+    ilvl: 277,
     "int": 103,
     spi: 74,
     sp: 140,
@@ -22659,6 +23111,7 @@ var equip = {
   }, {
     id: 50176,
     title: "San'layn Ritualist Gloves",
+    ilvl: 264,
     "int": 92,
     spi: 64,
     sp: 122,
@@ -22671,6 +23124,7 @@ var equip = {
   }, {
     id: 51921,
     title: "Sister's Handshrouds",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     hit: 80,
@@ -22683,6 +23137,7 @@ var equip = {
   }, {
     id: 50782,
     title: "Sister's Handshrouds",
+    ilvl: 251,
     "int": 81,
     sp: 106,
     hit: 71,
@@ -22695,6 +23150,7 @@ var equip = {
   }, {
     id: 51874,
     title: "Gloves of Broken Fingers",
+    ilvl: 264,
     "int": 92,
     spi: 54,
     sp: 122,
@@ -22707,6 +23163,7 @@ var equip = {
   }, {
     id: 51005,
     title: "Gloves of Broken Fingers",
+    ilvl: 251,
     "int": 81,
     spi: 46,
     sp: 106,
@@ -22721,6 +23178,7 @@ var equip = {
     id: 47763,
     itemset: ids.T9_SET,
     title: "Sunstrider's Gauntlets of Triumph",
+    ilvl: 258,
     "int": 86,
     sp: 124,
     crit: 76,
@@ -22734,6 +23192,7 @@ var equip = {
     id: 47772,
     itemset: ids.T9_SET,
     title: "Sunstrider's Gauntlets of Triumph",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 67,
@@ -22747,6 +23206,7 @@ var equip = {
     id: 47773,
     itemset: ids.T9_SET,
     title: "Sunstrider's Gauntlets of Conquest",
+    ilvl: 232,
     "int": 68,
     sp: 96,
     crit: 60,
@@ -22759,6 +23219,7 @@ var equip = {
   }, {
     id: 47236,
     title: "Gloves of the Lifeless Touch",
+    ilvl: 258,
     "int": 86,
     sp: 114,
     crit: 60,
@@ -22771,6 +23232,7 @@ var equip = {
   }, {
     id: 47235,
     title: "Gloves of the Lifeless Touch",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 59,
@@ -22783,6 +23245,7 @@ var equip = {
   }, {
     id: 47956,
     title: "Gloves of Looming Shadow",
+    ilvl: 245,
     "int": 69,
     sp: 109,
     hit: 51,
@@ -22795,6 +23258,7 @@ var equip = {
   }, {
     id: 47745,
     title: "Gloves of Looming Shadow",
+    ilvl: 232,
     "int": 60,
     sp: 96,
     hit: 44,
@@ -22809,6 +23273,7 @@ var equip = {
     id: 46132,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Gauntlets",
+    ilvl: 226,
     "int": 62,
     sp: 100,
     hit: 60,
@@ -22822,6 +23287,7 @@ var equip = {
     id: 46131,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Gauntlets",
+    ilvl: 219,
     "int": 57,
     sp: 93,
     hit: 55,
@@ -22834,6 +23300,7 @@ var equip = {
   }, {
     id: 45117,
     title: "Constructor's Handwraps",
+    ilvl: 226,
     "int": 62,
     spi: 53,
     sp: 99,
@@ -22842,6 +23309,7 @@ var equip = {
   }, {
     id: 45273,
     title: "Handwraps of Plentiful Recovery",
+    ilvl: 226,
     "int": 62,
     spi: 56,
     sp: 99,
@@ -22850,6 +23318,7 @@ var equip = {
   }, {
     id: 45520,
     title: "Handwraps of the Vigilant",
+    ilvl: 239,
     "int": 72,
     spi: 51,
     sp: 92,
@@ -22862,6 +23331,7 @@ var equip = {
   }, {
     id: 45665,
     title: "Pharos Gloves",
+    ilvl: 239,
     "int": 72,
     sp: 92,
     crit: 64,
@@ -22874,6 +23344,7 @@ var equip = {
   }, {
     id: 45927,
     title: "Handwraps of Resonance",
+    ilvl: 226,
     "int": 60,
     spi: 53,
     sp: 99,
@@ -22882,6 +23353,7 @@ var equip = {
   }, {
     id: 46045,
     title: "Pulsar Gloves",
+    ilvl: 239,
     "int": 47,
     sp: 100,
     hit: 50,
@@ -22894,6 +23366,7 @@ var equip = {
   }, {
     id: 45976,
     title: "Static Charge Handwraps",
+    ilvl: 219,
     "int": 56,
     spi: 39,
     sp: 92,
@@ -22904,6 +23377,7 @@ var equip = {
     id: 40415,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Gloves",
+    ilvl: 213,
     "int": 57,
     sp: 69,
     crit: 53,
@@ -22916,6 +23390,7 @@ var equip = {
     id: 39495,
     itemset: ids.T7_SET,
     title: "Heroes' Frostfire Gloves",
+    ilvl: 200,
     "int": 51,
     sp: 59,
     crit: 48,
@@ -22929,6 +23404,7 @@ var equip = {
     id: 43073,
     itemset: ids.UDC_SET,
     title: "Blessed Gloves of Undead Cleansing",
+    ilvl: 115,
     "int": 32,
     spi: 22,
     sp: 43,
@@ -22936,6 +23412,7 @@ var equip = {
   }, {
     id: 40380,
     title: "Gloves of Grandeur",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     crit: 43,
@@ -22943,6 +23420,7 @@ var equip = {
   }, {
     id: 40197,
     title: "Gloves of the Fallen Wizard",
+    ilvl: 213,
     "int": 50,
     spi: 74,
     sp: 88,
@@ -22950,6 +23428,7 @@ var equip = {
   }, {
     id: 39733,
     title: "Gloves of Token Respect",
+    ilvl: 213,
     "int": 57,
     spi: 53,
     sp: 88,
@@ -22957,6 +23436,7 @@ var equip = {
   }, {
     id: 40303,
     title: "Wraps of the Persecuted",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     crit: 49,
@@ -22964,6 +23444,7 @@ var equip = {
   }, {
     id: 39192,
     title: "Gloves of Dark Gestures",
+    ilvl: 200,
     "int": 52,
     spi: 50,
     sp: 68,
@@ -22975,6 +23456,7 @@ var equip = {
   }, {
     id: 39285,
     title: "Handgrips of Turmoil",
+    ilvl: 213,
     "int": 48,
     sp: 68,
     haste: 44,
@@ -22985,6 +23467,7 @@ var equip = {
     id: 51464,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Handguards",
+    ilvl: 270,
     "int": 64,
     sp: 140,
     crit: 77,
@@ -22997,6 +23480,7 @@ var equip = {
     id: 41972,
     itemset: ids.GLADIATOR_SET,
     title: "Relentless Gladiator's Silk Handguards",
+    ilvl: 251,
     "int": 54,
     sp: 116,
     crit: 63,
@@ -23009,6 +23493,7 @@ var equip = {
     id: 41971,
     itemset: ids.GLADIATOR_SET,
     title: "Furious Gladiator's Silk Handguards",
+    ilvl: 232,
     "int": 45,
     sp: 96,
     crit: 39,
@@ -23021,6 +23506,7 @@ var equip = {
     id: 41970,
     itemset: ids.GLADIATOR_SET,
     title: "Deadly Gladiator's Silk Handguards",
+    ilvl: 213,
     "int": 37,
     sp: 78,
     crit: 32,
@@ -23032,6 +23518,7 @@ var equip = {
     id: 41969,
     itemset: ids.GLADIATOR_SET,
     title: "Hateful Gladiator's Silk Handguards",
+    ilvl: 200,
     "int": 33,
     sp: 68,
     crit: 27,
@@ -23043,6 +23530,7 @@ var equip = {
     id: 41968,
     itemset: ids.GLADIATOR_SET,
     title: "Savage Gladiator's Silk Handguards",
+    ilvl: 200,
     "int": 28,
     sp: 59,
     crit: 22,
@@ -23055,6 +23543,7 @@ var equip = {
   {
     id: 42113,
     title: "Spellweave Gloves",
+    ilvl: 200,
     "int": 48,
     spi: 39,
     sp: 77,
@@ -23062,18 +23551,21 @@ var equip = {
   }, {
     id: 42111,
     title: "Ebonweave Gloves",
+    ilvl: 200,
     "int": 66,
     sp: 77,
     hit: 51
   }, {
     id: 42103,
     title: "Moonshroud Gloves",
+    ilvl: 200,
     "int": 51,
     spi: 67,
     sp: 76
   }, {
     id: 37172,
     title: "Gloves of Glistening Runes",
+    ilvl: 200,
     "int": 51,
     spi: 44,
     sp: 68,
@@ -23085,12 +23577,14 @@ var equip = {
   }, {
     id: 37798,
     title: "Overlook Handguards",
+    ilvl: 200,
     "int": 51,
     spi: 66,
     sp: 77
   }, {
     id: 37687,
     title: "Gloves of Distorted Time",
+    ilvl: 200,
     "int": 44,
     spi: 53,
     sp: 59,
@@ -23099,6 +23593,7 @@ var equip = {
   }, {
     id: 37153,
     title: "Gloves of the Crystal Gardener",
+    ilvl: 200,
     "int": 44,
     spi: 58,
     sp: 68,
@@ -23106,6 +23601,7 @@ var equip = {
   }, {
     id: 37825,
     title: "Traditionally Dyed Handguards",
+    ilvl: 200,
     "int": 53,
     sp: 59,
     haste: 44,
@@ -23117,6 +23613,7 @@ var equip = {
   }, {
     id: 37843,
     title: "Giant-Hair Woven Gloves",
+    ilvl: 200,
     "int": 58,
     sp: 68,
     crit: 44,
@@ -23124,6 +23621,7 @@ var equip = {
   }, {
     id: 43287,
     title: "Silken Bridge Handwraps",
+    ilvl: 200,
     "int": 41,
     sp: 59,
     haste: 50,
@@ -23135,6 +23633,7 @@ var equip = {
   }, {
     id: 44256,
     title: "Sterile Flesh-Handling Gloves",
+    ilvl: 200,
     "int": 58,
     spi: 41,
     sp: 68,
@@ -23142,6 +23641,7 @@ var equip = {
   }, {
     id: 44116,
     title: "Muddied Crimson Gloves",
+    ilvl: 187,
     "int": 40,
     spi: 51,
     sp: 60,
@@ -23149,6 +23649,7 @@ var equip = {
   }, {
     id: 42095,
     title: "Light Blessed Mittens",
+    ilvl: 187,
     "int": 37,
     spi: 52,
     sp: 59,
@@ -23157,6 +23658,7 @@ var equip = {
   {
     id: 34344,
     title: "Handguards of Defiled Worlds",
+    ilvl: 164,
     "int": 32,
     sp: 47,
     hit: 27,
@@ -23168,6 +23670,7 @@ var equip = {
   }, {
     id: 34406,
     title: "Gloves of Tyri's Power",
+    ilvl: 164,
     "int": 32,
     spi: 27,
     sp: 47,
@@ -23179,6 +23682,7 @@ var equip = {
   }, {
     id: 34342,
     title: "Handguards of the Dawn",
+    ilvl: 164,
     "int": 32,
     spi: 36,
     sp: 47,
@@ -23190,6 +23694,7 @@ var equip = {
   }, {
     id: 34366,
     title: "Sunfire Handwraps",
+    ilvl: 159,
     "int": 30,
     sp: 53,
     crit: 37,
@@ -23201,6 +23706,7 @@ var equip = {
     id: 31055,
     itemset: ids.T6_SET,
     title: "Gloves of the Tempest",
+    ilvl: 146,
     "int": 26,
     spi: 21,
     sp: 46,
@@ -23210,25 +23716,28 @@ var equip = {
     bonus: {
       sp: 2
     }
-  }, {
-    id: 23084,
-    itemset: ids.CUDC_SET,
-    title: "Gloves of Undead Cleansing",
-    "int": 10,
-    q: "rare"
   }, // vanilla
   {
     id: 22501,
     itemset: ids.T3_SET,
     title: "Frostfire Gloves",
+    ilvl: 88,
     "int": 19,
     spi: 10,
     sp: 36
+  }, {
+    id: 23084,
+    itemset: ids.CUDC_SET,
+    title: "Gloves of Undead Cleansing",
+    ilvl: 64,
+    "int": 10,
+    q: "rare"
   }],
   waist: [// icc
   {
     id: 50613,
     title: "Crushing Coldwraith Belt",
+    ilvl: 277,
     "int": 103,
     sp: 140,
     crit: 74,
@@ -23241,6 +23750,7 @@ var equip = {
   }, {
     id: 49978,
     title: "Crushing Coldwraith Belt",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     crit: 64,
@@ -23253,6 +23763,7 @@ var equip = {
   }, {
     id: 50702,
     title: "Lingering Illness",
+    ilvl: 277,
     "int": 103,
     spi: 90,
     sp: 140,
@@ -23265,6 +23776,7 @@ var equip = {
   }, {
     id: 50063,
     title: "Lingering Illness",
+    ilvl: 264,
     "int": 92,
     spi: 80,
     sp: 122,
@@ -23277,6 +23789,7 @@ var equip = {
   }, {
     id: 51862,
     title: "Cauterized Cord",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     crit: 86,
@@ -23289,6 +23802,7 @@ var equip = {
   }, {
     id: 51017,
     title: "Cauterized Cord",
+    ilvl: 251,
     "int": 81,
     sp: 106,
     crit: 76,
@@ -23301,6 +23815,7 @@ var equip = {
   }, {
     id: 51930,
     title: "Cord of the Patronizing Practitioner",
+    ilvl: 264,
     "int": 92,
     spi: 62,
     sp: 122,
@@ -23313,6 +23828,7 @@ var equip = {
   }, {
     id: 50773,
     title: "Cord of the Patronizing Practitioner",
+    ilvl: 251,
     "int": 81,
     spi: 54,
     sp: 106,
@@ -23326,6 +23842,7 @@ var equip = {
   {
     id: 47084,
     title: "Cord of Biting Cold",
+    ilvl: 258,
     "int": 86,
     sp: 114,
     crit: 73,
@@ -23338,6 +23855,7 @@ var equip = {
   }, {
     id: 47081,
     title: "Cord of Biting Cold",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     crit: 72,
@@ -23350,6 +23868,7 @@ var equip = {
   }, {
     id: 46973,
     title: "Cord of the Tenebrous Mist",
+    ilvl: 258,
     "int": 86,
     spi: 76,
     sp: 114,
@@ -23362,6 +23881,7 @@ var equip = {
   }, {
     id: 46972,
     title: "Cord of the Tenebrous Mist",
+    ilvl: 245,
     "int": 77,
     spi: 67,
     sp: 109,
@@ -23374,6 +23894,7 @@ var equip = {
   }, {
     id: 47921,
     title: "Icehowl Cinch",
+    ilvl: 245,
     "int": 67,
     sp: 99,
     hit: 61,
@@ -23386,6 +23907,7 @@ var equip = {
   }, {
     id: 47617,
     title: "Icehowl Cinch",
+    ilvl: 232,
     "int": 63,
     sp: 96,
     hit: 57,
@@ -23398,6 +23920,7 @@ var equip = {
   }, {
     id: 47977,
     title: "Cinch of the Undying",
+    ilvl: 245,
     "int": 73,
     spi: 72,
     sp: 118,
@@ -23410,6 +23933,7 @@ var equip = {
   }, {
     id: 47837,
     title: "Cinch of the Undying",
+    ilvl: 232,
     "int": 64,
     spi: 64,
     sp: 105,
@@ -23423,6 +23947,7 @@ var equip = {
   {
     id: 45508,
     title: "Belt of the Darkspeaker",
+    ilvl: 226,
     "int": 63,
     spi: 49,
     sp: 90,
@@ -23435,6 +23960,7 @@ var equip = {
   }, {
     id: 45119,
     title: "Embrace of the Leviathan",
+    ilvl: 226,
     "int": 64,
     spi: 62,
     sp: 99,
@@ -23443,6 +23969,7 @@ var equip = {
   }, {
     id: 45619,
     title: "Starwatcher's Binding",
+    ilvl: 239,
     "int": 69,
     spi: 64,
     sp: 92,
@@ -23455,6 +23982,7 @@ var equip = {
   }, {
     id: 45306,
     title: "Binding of the Dragon Matriarch",
+    ilvl: 219,
     "int": 46,
     spi: 58,
     sp: 91,
@@ -23463,6 +23991,7 @@ var equip = {
   }, {
     id: 45694,
     title: "Conductive Cord",
+    ilvl: 219,
     "int": 54,
     spi: 60,
     sp: 93,
@@ -23472,6 +24001,7 @@ var equip = {
   {
     id: 40561,
     title: "Leash of Heedless Magic",
+    ilvl: 226,
     "int": 60,
     spi: 48,
     sp: 103,
@@ -23480,6 +24010,7 @@ var equip = {
   {
     id: 39735,
     title: "Belt of False Dignity",
+    ilvl: 213,
     "int": 57,
     spi: 55,
     sp: 88,
@@ -23487,6 +24018,7 @@ var equip = {
   }, {
     id: 40301,
     title: "Cincture of Polarity",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     hit: 43,
@@ -23494,6 +24026,7 @@ var equip = {
   }, {
     id: 40271,
     title: "Sash of Solitude",
+    ilvl: 213,
     "int": 58,
     spi: 37,
     sp: 78,
@@ -23505,6 +24038,7 @@ var equip = {
   }, {
     id: 39721,
     title: "Sash of the Parlor",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     crit: 37,
@@ -23512,6 +24046,7 @@ var equip = {
   }, {
     id: 39190,
     title: "Agonal Sash",
+    ilvl: 200,
     "int": 52,
     spi: 48,
     sp: 76,
@@ -23519,6 +24054,7 @@ var equip = {
   }, {
     id: 39216,
     title: "Sash of Mortal Desire",
+    ilvl: 200,
     "int": 51,
     spi: 38,
     sp: 76,
@@ -23526,12 +24062,14 @@ var equip = {
   }, {
     id: 44302,
     title: "Belt of Dark Mending",
+    ilvl: 200,
     "int": 50,
     sp: 77,
     haste: 55
   }, {
     id: 37242,
     title: "Sash of the Servant",
+    ilvl: 200,
     "int": 52,
     sp: 76,
     crit: 64
@@ -23539,6 +24077,7 @@ var equip = {
   {
     id: 41897,
     title: "Deadly Gladiator's Cord of Dominance",
+    ilvl: 213,
     "int": 37,
     sp: 78,
     crit: 42,
@@ -23549,6 +24088,7 @@ var equip = {
   }, {
     id: 41880,
     title: "Deadly Gladiator's Cord of Salvation",
+    ilvl: 213,
     "int": 37,
     spi: 42,
     sp: 78,
@@ -23559,6 +24099,7 @@ var equip = {
   }, {
     id: 41896,
     title: "Hateful Gladiator's Cord of Dominance",
+    ilvl: 200,
     "int": 33,
     sp: 68,
     crit: 36,
@@ -23569,6 +24110,7 @@ var equip = {
   }, {
     id: 41877,
     title: "Hateful Gladiator's Cord of Salvation",
+    ilvl: 200,
     "int": 33,
     spi: 36,
     sp: 68,
@@ -23580,6 +24122,7 @@ var equip = {
   {
     id: 37408,
     title: "Girdle of Bane",
+    ilvl: 200,
     "int": 51,
     spi: 38,
     sp: 77,
@@ -23587,6 +24130,7 @@ var equip = {
   }, {
     id: 40696,
     title: "Plush Sash of Guzbah",
+    ilvl: 200,
     "int": 52,
     sp: 68,
     hit: 33,
@@ -23598,6 +24142,7 @@ var equip = {
   }, {
     id: 44309,
     title: "Sash of Jordan",
+    ilvl: 200,
     "int": 55,
     spi: 55,
     sp: 66,
@@ -23608,6 +24153,7 @@ var equip = {
   }, {
     id: 37680,
     title: "Belt of Unified Souls",
+    ilvl: 200,
     "int": 51,
     sp: 68,
     hit: 42,
@@ -23615,6 +24161,7 @@ var equip = {
   }, {
     id: 37637,
     title: "Living Mojo Belt",
+    ilvl: 200,
     "int": 54,
     sp: 59,
     crit: 42,
@@ -23626,6 +24173,7 @@ var equip = {
   }, {
     id: 37289,
     title: "Sash of Phantasmal Images",
+    ilvl: 200,
     "int": 44,
     spi: 57,
     sp: 68,
@@ -23633,6 +24181,7 @@ var equip = {
   }, {
     id: 37850,
     title: "Flowing Sash of Order",
+    ilvl: 200,
     "int": 44,
     spi: 38,
     sp: 59,
@@ -23642,6 +24191,7 @@ var equip = {
   }, {
     id: 44104,
     title: "Fishy Cinch",
+    ilvl: 187,
     "int": 37,
     spi: 51,
     sp: 60,
@@ -23649,6 +24199,7 @@ var equip = {
   }, {
     id: 44196,
     title: "Sash of the Wizened Wyrm",
+    ilvl: 187,
     "int": 51,
     sp: 60,
     hit: 40,
@@ -23656,6 +24207,7 @@ var equip = {
   }, {
     id: 41986,
     title: "Deep Frozen Cord",
+    ilvl: 187,
     "int": 50,
     sp: 61,
     crit: 36,
@@ -23665,6 +24217,7 @@ var equip = {
     id: 34557,
     itemset: ids.T6_SET,
     title: "Belt of the Tempest",
+    ilvl: 154,
     "int": 29,
     spi: 20,
     sp: 50,
@@ -23680,6 +24233,7 @@ var equip = {
     id: 22502,
     itemset: ids.T3_SET,
     title: "Frostfire Belt",
+    ilvl: 88,
     "int": 21,
     spi: 10,
     sp: 28,
@@ -23690,6 +24244,7 @@ var equip = {
     id: 51282,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Leggings",
+    ilvl: 277,
     "int": 139,
     sp: 195,
     crit: 122,
@@ -23703,6 +24258,7 @@ var equip = {
     id: 51157,
     itemset: ids.T10_SET,
     title: "Sanctified Bloodmage Leggings",
+    ilvl: 264,
     "int": 123,
     sp: 171,
     crit: 108,
@@ -23716,6 +24272,7 @@ var equip = {
     id: 50277,
     itemset: ids.T10_SET,
     title: "Bloodmage Leggings",
+    ilvl: 251,
     "int": 109,
     sp: 149,
     crit: 96,
@@ -23728,6 +24285,7 @@ var equip = {
   }, {
     id: 50694,
     title: "Plaguebringer's Stained Pants",
+    ilvl: 277,
     "int": 139,
     sp: 185,
     hit: 104,
@@ -23752,6 +24310,7 @@ var equip = {
   }, {
     id: 51823,
     title: "Leggings of the Refracted Mind",
+    ilvl: 264,
     "int": 115,
     spi: 92,
     sp: 171,
@@ -23764,6 +24323,7 @@ var equip = {
   }, {
     id: 51777,
     title: "Leggings of the Refracted Mind",
+    ilvl: 251,
     "int": 101,
     spi: 80,
     sp: 149,
@@ -23776,6 +24336,7 @@ var equip = {
   }, {
     id: 51882,
     title: "Kilt of Untreated Wounds",
+    ilvl: 264,
     "int": 123,
     sp: 162,
     crit: 96,
@@ -23788,6 +24349,7 @@ var equip = {
   }, {
     id: 50990,
     title: "Kilt of Untreated Wounds",
+    ilvl: 251,
     "int": 109,
     sp: 140,
     crit: 84,
@@ -23802,6 +24364,7 @@ var equip = {
     id: 47765,
     itemset: ids.T9_SET,
     title: "Sunstrider's Leggings of Triumph",
+    ilvl: 258,
     "int": 116,
     spi: 86,
     sp: 160,
@@ -23815,6 +24378,7 @@ var equip = {
     id: 47770,
     itemset: ids.T9_SET,
     title: "Sunstrider's Leggings of Triumph",
+    ilvl: 245,
     "int": 103,
     spi: 74,
     sp: 140,
@@ -23828,6 +24392,7 @@ var equip = {
     id: 47775,
     itemset: ids.T9_SET,
     title: "Sunstrider's Leggings of Conquest",
+    ilvl: 232,
     "int": 92,
     spi: 64,
     sp: 122,
@@ -23840,6 +24405,7 @@ var equip = {
   }, {
     id: 47189,
     title: "Leggings of the Deepening Void",
+    ilvl: 258,
     "int": 116,
     sp: 151,
     crit: 86,
@@ -23852,6 +24418,7 @@ var equip = {
   }, {
     id: 47187,
     title: "Leggings of the Deepening Void",
+    ilvl: 245,
     "int": 103,
     sp: 140,
     crit: 82,
@@ -23864,6 +24431,7 @@ var equip = {
   }, {
     id: 47062,
     title: "Leggings of the Soothing Touch",
+    ilvl: 258,
     "int": 116,
     spi: 94,
     sp: 151,
@@ -23876,6 +24444,7 @@ var equip = {
   }, {
     id: 47051,
     title: "Leggings of the Soothing Touch",
+    ilvl: 245,
     "int": 103,
     spi: 90,
     sp: 140,
@@ -23888,6 +24457,7 @@ var equip = {
   }, {
     id: 47931,
     title: "Leggings of the Demonic Messenger",
+    ilvl: 245,
     "int": 89,
     spi: 89,
     sp: 150,
@@ -23900,6 +24470,7 @@ var equip = {
   }, {
     id: 47620,
     title: "Leggings of the Demonic Messenger",
+    ilvl: 232,
     "int": 86,
     spi: 86,
     sp: 132,
@@ -23914,6 +24485,7 @@ var equip = {
     id: 46133,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Leggings",
+    ilvl: 226,
     "int": 82,
     sp: 123,
     crit: 74,
@@ -23927,6 +24499,7 @@ var equip = {
     id: 45367,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Leggings",
+    ilvl: 219,
     "int": 76,
     sp: 115,
     crit: 68,
@@ -23939,6 +24512,7 @@ var equip = {
   }, {
     id: 45468,
     title: "Leggings of Lost Love",
+    ilvl: 226,
     "int": 81,
     spi: 86,
     sp: 115,
@@ -23951,6 +24525,7 @@ var equip = {
   }, {
     id: 45488,
     title: "Leggings of the Enslaved Idol",
+    ilvl: 239,
     "int": 98,
     sp: 122,
     crit: 77,
@@ -23963,6 +24538,7 @@ var equip = {
   }, {
     id: 45238,
     title: "Overload Legwraps",
+    ilvl: 226,
     "int": 86,
     sp: 132,
     hit: 81,
@@ -23971,6 +24547,7 @@ var equip = {
   }, {
     id: 46034,
     title: "Leggings of Profound Darkness",
+    ilvl: 226,
     "int": 82,
     spi: 66,
     sp: 132,
@@ -23983,6 +24560,7 @@ var equip = {
   }, {
     id: 45894,
     title: "Leggings of Unstable Discharge",
+    ilvl: 219,
     "int": 81,
     spi: 53,
     sp: 124,
@@ -23992,6 +24570,7 @@ var equip = {
   {
     id: 40560,
     title: "Leggings of the Wanton Spellcaster",
+    ilvl: 226,
     "int": 92,
     sp: 132,
     hit: 82,
@@ -24001,6 +24580,7 @@ var equip = {
     id: 40417,
     itemset: ids.T7_SET,
     title: "Valorous Frostfire Leggings",
+    ilvl: 213,
     "int": 77,
     sp: 99,
     hit: 43,
@@ -24013,6 +24593,7 @@ var equip = {
     id: 39493,
     itemset: ids.T7_SET,
     title: "Heroes' Frostfire Leggings",
+    ilvl: 200,
     "int": 68,
     sp: 87,
     hit: 36,
@@ -24025,6 +24606,7 @@ var equip = {
     id: 43075,
     itemset: ids.UDC_SET,
     title: "Blessed Trousers of Undead Cleansing",
+    ilvl: 115,
     "int": 25,
     spi: 29,
     sp: 44,
@@ -24032,6 +24614,7 @@ var equip = {
   }, {
     id: 39720,
     title: "Leggings of Atrophy",
+    ilvl: 213,
     "int": 78,
     sp: 118,
     crit: 76,
@@ -24039,6 +24622,7 @@ var equip = {
   }, {
     id: 40398,
     title: "Leggings of Mortal Arrogance",
+    ilvl: 226,
     "int": 85,
     spi: 71,
     sp: 115,
@@ -24050,6 +24634,7 @@ var equip = {
   }, {
     id: 40376,
     title: "Legwraps of the Defeated Dragon",
+    ilvl: 213,
     "int": 77,
     spi: 56,
     sp: 99,
@@ -24061,6 +24646,7 @@ var equip = {
   }, {
     id: 40060,
     title: "Distorted Limbs",
+    ilvl: 213,
     "int": 77,
     spi: 72,
     sp: 118,
@@ -24068,6 +24654,7 @@ var equip = {
   }, {
     id: 39408,
     title: "Leggings of Sapphiron",
+    ilvl: 200,
     "int": 60,
     spi: 72,
     sp: 88,
@@ -24079,6 +24666,7 @@ var equip = {
   }, {
     id: 39309,
     title: "Leggings of the Instructor",
+    ilvl: 200,
     "int": 64,
     spi: 52,
     sp: 87,
@@ -24092,6 +24680,7 @@ var equip = {
     id: 51466,
     itemset: ids.GLADIATOR_SET,
     title: "Wrathful Gladiator's Silk Trousers",
+    ilvl: 270,
     "int": 87,
     sp: 182,
     crit: 98,
@@ -24104,6 +24693,7 @@ var equip = {
     id: 41960,
     itemset: ids.GLADIATOR_SET,
     title: "Relentless Gladiator's Silk Trousers",
+    ilvl: 251,
     "int": 73,
     sp: 149,
     crit: 80,
@@ -24116,6 +24706,7 @@ var equip = {
     id: 41959,
     itemset: ids.GLADIATOR_SET,
     title: "Furious Gladiator's Silk Trousers",
+    ilvl: 232,
     "int": 60,
     sp: 123,
     crit: 64,
@@ -24128,6 +24719,7 @@ var equip = {
     id: 41958,
     itemset: ids.GLADIATOR_SET,
     title: "Deadly Gladiator's Silk Trousers",
+    ilvl: 213,
     "int": 50,
     sp: 99,
     crit: 51,
@@ -24139,6 +24731,7 @@ var equip = {
     id: 41957,
     itemset: ids.GLADIATOR_SET,
     title: "Hateful Gladiator's Silk Trousers",
+    ilvl: 200,
     "int": 45,
     sp: 87,
     crit: 44,
@@ -24150,6 +24743,7 @@ var equip = {
     id: 41956,
     itemset: ids.GLADIATOR_SET,
     title: "Savage Gladiator's Silk Trousers",
+    ilvl: 200,
     "int": 39,
     sp: 73,
     crit: 36,
@@ -24162,18 +24756,21 @@ var equip = {
   {
     id: 37854,
     title: "Woven Bracae Leggings",
+    ilvl: 200,
     "int": 68,
     sp: 105,
     crit: 89
   }, {
     id: 37622,
     title: "Skirt of the Old Kingdom",
+    ilvl: 200,
     "int": 68,
     sp: 104,
     mp5: 45
   }, {
     id: 37369,
     title: "Sorrowgrave's Breeches",
+    ilvl: 200,
     "int": 71,
     sp: 82,
     crit: 59,
@@ -24186,6 +24783,7 @@ var equip = {
     id: 41553,
     itemset: ids.DUSKWEAVE_SET,
     title: "Black Duskweave Leggings",
+    ilvl: 187,
     "int": 50,
     sp: 81,
     haste: 69,
@@ -24193,6 +24791,7 @@ var equip = {
   }, {
     id: 37189,
     title: "Breeches of the Caller",
+    ilvl: 200,
     "int": 74,
     spi: 52,
     sp: 73,
@@ -24204,6 +24803,7 @@ var equip = {
   }, {
     id: 37876,
     title: "Cyanigosa's Leggings",
+    ilvl: 200,
     "int": 59,
     spi: 78,
     sp: 91,
@@ -24211,6 +24811,7 @@ var equip = {
   }, {
     id: 43313,
     title: "Leggings of the Ruins Dweller",
+    ilvl: 200,
     "int": 45,
     sp: 73,
     mp5: 31,
@@ -24222,6 +24823,7 @@ var equip = {
   }, {
     id: 37731,
     title: "Opposed Stasis Leggings",
+    ilvl: 200,
     "int": 59,
     spi: 78,
     sp: 91,
@@ -24229,6 +24831,7 @@ var equip = {
   }, {
     id: 42093,
     title: "Frostmoon Pants",
+    ilvl: 187,
     "int": 50,
     spi: 68,
     sp: 61,
@@ -24237,6 +24840,7 @@ var equip = {
   {
     id: 34181,
     title: "Leggings of Calamity",
+    ilvl: 159,
     "int": 41,
     sp: 71,
     crit: 33,
@@ -24248,6 +24852,7 @@ var equip = {
   }, {
     id: 34386,
     title: "Pantaloons of Growing Strife",
+    ilvl: 159,
     "int": 36,
     spi: 25,
     sp: 71,
@@ -24260,6 +24865,7 @@ var equip = {
     id: 31058,
     itemset: ids.T6_SET,
     title: "Leggings of the Tempest",
+    ilvl: 146,
     "int": 47,
     spi: 29,
     sp: 62,
@@ -24274,6 +24880,7 @@ var equip = {
     id: 22497,
     itemset: ids.T3_SET,
     title: "Frostfire Leggings",
+    ilvl: 88,
     "int": 26,
     spi: 10,
     sp: 46,
@@ -24283,6 +24890,7 @@ var equip = {
   {
     id: 50699,
     title: "Plague Scientist's Boots",
+    ilvl: 277,
     "int": 103,
     sp: 140,
     crit: 74,
@@ -24295,6 +24903,7 @@ var equip = {
   }, {
     id: 50062,
     title: "Plague Scientist's Boots",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     crit: 64,
@@ -24307,6 +24916,7 @@ var equip = {
   }, {
     id: 51850,
     title: "Pale Corpse Boots",
+    ilvl: 264,
     "int": 92,
     spi: 64,
     sp: 122,
@@ -24319,6 +24929,7 @@ var equip = {
   }, {
     id: 51380,
     title: "Pale Corpse Boots",
+    ilvl: 251,
     "int": 81,
     spi: 55,
     sp: 106,
@@ -24331,6 +24942,7 @@ var equip = {
   }, {
     id: 51899,
     title: "Icecrown Spire Sandals",
+    ilvl: 264,
     "int": 92,
     sp: 122,
     crit: 86,
@@ -24343,6 +24955,7 @@ var equip = {
   }, {
     id: 50804,
     title: "Icecrown Spire Sandals",
+    ilvl: 251,
     "int": 81,
     sp: 106,
     crit: 76,
@@ -24356,6 +24969,7 @@ var equip = {
   {
     id: 47097,
     title: "Boots of the Mourning Widow",
+    ilvl: 258,
     "int": 86,
     spi: 76,
     sp: 124,
@@ -24368,6 +24982,7 @@ var equip = {
   }, {
     id: 47092,
     title: "Boots of the Mourning Widow",
+    ilvl: 245,
     "int": 77,
     spi: 67,
     sp: 109,
@@ -24380,6 +24995,7 @@ var equip = {
   }, {
     id: 47205,
     title: "Footpads of the Icy Floe",
+    ilvl: 258,
     "int": 86,
     sp: 114,
     hit: 60,
@@ -24392,6 +25008,7 @@ var equip = {
   }, {
     id: 47194,
     title: "Footpads of the Icy Floe",
+    ilvl: 245,
     "int": 77,
     sp: 109,
     hit: 59,
@@ -24404,6 +25021,7 @@ var equip = {
   }, {
     id: 49234,
     title: "Boots of the Grieving Soul",
+    ilvl: 245,
     "int": 77,
     spi: 51,
     sp: 109,
@@ -24416,6 +25034,7 @@ var equip = {
   }, {
     id: 49231,
     title: "Boots of the Grieving Soul",
+    ilvl: 232,
     "int": 68,
     spi: 52,
     sp: 105,
@@ -24424,6 +25043,7 @@ var equip = {
   }, {
     id: 47940,
     title: "Sandals of the Silver Magus",
+    ilvl: 245,
     "int": 70,
     sp: 104,
     crit: 72,
@@ -24436,6 +25056,7 @@ var equip = {
   }, {
     id: 47721,
     title: "Sandals of the Silver Magus",
+    ilvl: 232,
     "int": 69,
     sp: 100,
     crit: 64,
@@ -24449,6 +25070,7 @@ var equip = {
   {
     id: 45135,
     title: "Boots of Fiery Resolution",
+    ilvl: 239,
     "int": 72,
     spi: 64,
     sp: 102,
@@ -24461,6 +25083,7 @@ var equip = {
   }, {
     id: 45483,
     title: "Boots of the Servant",
+    ilvl: 226,
     "int": 56,
     spi: 48,
     sp: 90,
@@ -24473,6 +25096,7 @@ var equip = {
   }, {
     id: 45258,
     title: "Sandals of Rash Temperament",
+    ilvl: 226,
     "int": 60,
     sp: 99,
     crit: 56,
@@ -24481,6 +25105,7 @@ var equip = {
   }, {
     id: 45441,
     title: "Sandals of the Ancient Keeper",
+    ilvl: 226,
     "int": 64,
     spi: 62,
     sp: 99,
@@ -24489,6 +25114,7 @@ var equip = {
   }, {
     id: 45537,
     title: "Treads of the False Oracle",
+    ilvl: 239,
     "int": 69,
     sp: 92,
     crit: 61,
@@ -24501,6 +25127,7 @@ var equip = {
   }, {
     id: 46050,
     title: "Starlight Treads",
+    ilvl: 226,
     "int": 65,
     spi: 45,
     sp: 94,
@@ -24513,6 +25140,7 @@ var equip = {
   }, {
     id: 46030,
     title: "Treads of the Dragon Council",
+    ilvl: 219,
     "int": 57,
     spi: 42,
     sp: 93,
@@ -24522,6 +25150,7 @@ var equip = {
   {
     id: 40558,
     title: "Arcanic Tramplers",
+    ilvl: 226,
     "int": 52,
     spi: 62,
     sp: 99,
@@ -24530,6 +25159,7 @@ var equip = {
   {
     id: 40326,
     title: "Boots of Forlorn Wishes",
+    ilvl: 213,
     "int": 50,
     spi: 66,
     sp: 78,
@@ -24541,6 +25171,7 @@ var equip = {
   }, {
     id: 40246,
     title: "Boots of Impetuous Ideals",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     hit: 37,
@@ -24559,6 +25190,7 @@ var equip = {
   }, {
     id: 40236,
     title: "Serene Echoes",
+    ilvl: 213,
     "int": 57,
     sp: 88,
     crit: 49,
@@ -24566,6 +25198,7 @@ var equip = {
   }, {
     id: 39254,
     title: "Saltarello Shoes",
+    ilvl: 200,
     "int": 51,
     spi: 51,
     sp: 77,
@@ -24573,42 +25206,16 @@ var equip = {
   }, {
     id: 39273,
     title: "Sullen Cloth Boots",
+    ilvl: 200,
     "int": 50,
     spi: 38,
     sp: 76,
     crit: 48
-  }, // pvp
+  }, // wintergrasp
   {
-    id: 41902,
-    title: "Deadly Gladiator's Treads of Dominance",
-    "int": 37,
-    sp: 78,
-    crit: 42,
-    sockets: ["y"]
-  }, {
-    id: 41884,
-    title: "Deadly Gladiator's Treads of Salvation",
-    "int": 37,
-    spi: 42,
-    sp: 78,
-    sockets: ["y"]
-  }, {
-    id: 41901,
-    title: "Hateful Gladiator's Slippers of Dominance",
-    "int": 33,
-    sp: 68,
-    crit: 36,
-    sockets: ["y"]
-  }, {
-    id: 41879,
-    title: "Hateful Gladiator's Slippers of Salvation",
-    "int": 33,
-    spi: 36,
-    sp: 68,
-    sockets: ["y"]
-  }, {
     id: 44899,
     title: "Titan-Forged Slippers of Dominance",
+    ilvl: 200,
     "int": 33,
     sp: 68,
     hit: 36,
@@ -24616,14 +25223,49 @@ var equip = {
   }, {
     id: 44900,
     title: "Titan-Forged Slippers of Salvation",
+    ilvl: 200,
     "int": 33,
     sp: 68,
     haste: 36,
+    sockets: ["y"]
+  }, // pvp
+  {
+    id: 41902,
+    title: "Deadly Gladiator's Treads of Dominance",
+    ilvl: 213,
+    "int": 37,
+    sp: 78,
+    crit: 42,
+    sockets: ["y"]
+  }, {
+    id: 41884,
+    title: "Deadly Gladiator's Treads of Salvation",
+    ilvl: 213,
+    "int": 37,
+    spi: 42,
+    sp: 78,
+    sockets: ["y"]
+  }, {
+    id: 41901,
+    title: "Hateful Gladiator's Slippers of Dominance",
+    ilvl: 200,
+    "int": 33,
+    sp: 68,
+    crit: 36,
+    sockets: ["y"]
+  }, {
+    id: 41879,
+    title: "Hateful Gladiator's Slippers of Salvation",
+    ilvl: 200,
+    "int": 33,
+    spi: 36,
+    sp: 68,
     sockets: ["y"]
   }, // prebis
   {
     id: 40750,
     title: "Xintor's Expeditionary Boots",
+    ilvl: 213,
     "int": 57,
     spi: 55,
     sp: 88,
@@ -24631,6 +25273,7 @@ var equip = {
   }, {
     id: 40751,
     title: "Slippers of the Holy Light",
+    ilvl: 213,
     "int": 55,
     spi: 57,
     sp: 88,
@@ -24638,6 +25281,7 @@ var equip = {
   }, {
     id: 44202,
     title: "Sandals of Crimson Fury",
+    ilvl: 200,
     "int": 50,
     sp: 77,
     haste: 51,
@@ -24648,6 +25292,7 @@ var equip = {
   }, {
     id: 37218,
     title: "Stone-Worn Footwraps",
+    ilvl: 200,
     "int": 52,
     sp: 68,
     crit: 57,
@@ -24655,6 +25300,7 @@ var equip = {
   }, {
     id: 37629,
     title: "Slithering Slippers",
+    ilvl: 200,
     "int": 44,
     sp: 68,
     crit: 57,
@@ -24662,6 +25308,7 @@ var equip = {
   }, {
     id: 36954,
     title: "The Conjurer's Slippers",
+    ilvl: 187,
     "int": 40,
     sp: 60,
     haste: 54,
@@ -24669,6 +25316,7 @@ var equip = {
   }, {
     id: 37730,
     title: "Cleric's Linen Shoes",
+    ilvl: 200,
     "int": 44,
     sp: 59,
     haste: 57,
@@ -24677,6 +25325,7 @@ var equip = {
   }, {
     id: 37867,
     title: "Footwraps of Teleportation",
+    ilvl: 200,
     "int": 57,
     spi: 39,
     sp: 59,
@@ -24688,6 +25337,7 @@ var equip = {
   }, {
     id: 41985,
     title: "Silky Iceshard Boots",
+    ilvl: 218700,
     sp: 60,
     crit: 37,
     haste: 29,
@@ -24695,6 +25345,7 @@ var equip = {
   }, {
     id: 42096,
     title: "Aurora Slippers",
+    ilvl: 187,
     "int": 40,
     spi: 51,
     sp: 60,
@@ -24704,6 +25355,7 @@ var equip = {
     id: 34574,
     itemset: ids.T6_SET,
     title: "Boots of the Tempest",
+    ilvl: 154,
     "int": 29,
     spi: 20,
     sp: 50,
@@ -24717,6 +25369,7 @@ var equip = {
   }, {
     id: 34919,
     title: "Boots of Incantations",
+    ilvl: 141,
     "int": 26,
     spi: 23,
     sp: 47,
@@ -24730,6 +25383,7 @@ var equip = {
     id: 22500,
     itemset: ids.T3_SET,
     title: "Frostfire Sandals",
+    ilvl: 86,
     "int": 18,
     spi: 10,
     sp: 28
@@ -24738,6 +25392,7 @@ var equip = {
   {
     id: 50714,
     title: "Valanar's Other Signet Ring",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     hit: 44,
@@ -24750,6 +25405,7 @@ var equip = {
   }, {
     id: 50170,
     title: "Valanar's Other Signet Ring",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     hit: 38,
@@ -24762,6 +25418,7 @@ var equip = {
   }, {
     id: 50664,
     title: "Ring of Rapid Ascent",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 68,
@@ -24774,6 +25431,7 @@ var equip = {
   }, {
     id: 50008,
     title: "Ring of Rapid Ascent",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 60,
@@ -24786,6 +25444,7 @@ var equip = {
   }, {
     id: 50644,
     title: "Ring of Maddening Whispers",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 110,
@@ -24798,6 +25457,7 @@ var equip = {
   }, {
     id: 49990,
     title: "Ring of Maddening Whispers",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 97,
@@ -24810,6 +25470,7 @@ var equip = {
   }, {
     id: 50636,
     title: "Memory of Malygos",
+    ilvl: 277,
     "int": 78,
     spi: 68,
     sp: 110,
@@ -24822,6 +25483,7 @@ var equip = {
   }, {
     id: 50424,
     title: "Memory of Malygos",
+    ilvl: 264,
     "int": 69,
     spi: 60,
     sp: 97,
@@ -24834,6 +25496,7 @@ var equip = {
   }, {
     id: 50610,
     title: "Marrowgar's Frigid Eye",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     haste: 68,
@@ -24846,6 +25509,7 @@ var equip = {
   }, {
     id: 49967,
     title: "Marrowgar's Frigid Eye",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     haste: 60,
@@ -24858,6 +25522,7 @@ var equip = {
   }, {
     id: 50614,
     title: "Loop of the Endless Labyrinth",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 73,
@@ -24870,6 +25535,7 @@ var equip = {
   }, {
     id: 49977,
     title: "Loop of the Endless Labyrinth",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 65,
@@ -24882,6 +25548,7 @@ var equip = {
   }, {
     id: 50720,
     title: "Incarnadine Band of Mending",
+    ilvl: 277,
     "int": 78,
     sp: 110,
     crit: 60,
@@ -24894,6 +25561,7 @@ var equip = {
   }, {
     id: 50174,
     title: "Incarnadine Band of Mending",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     crit: 52,
@@ -24906,6 +25574,7 @@ var equip = {
   }, {
     id: 51849,
     title: "Cerise Coiled Ring",
+    ilvl: 264,
     "int": 70,
     sp: 97,
     crit: 67,
@@ -24918,6 +25587,7 @@ var equip = {
   }, {
     id: 51381,
     title: "Cerise Coiled Ring",
+    ilvl: 251,
     "int": 62,
     sp: 85,
     crit: 59,
@@ -24930,6 +25600,7 @@ var equip = {
   }, {
     id: 51884,
     title: "Signet of Putrefaction",
+    ilvl: 264,
     "int": 69,
     sp: 97,
     haste: 52,
@@ -24942,6 +25613,7 @@ var equip = {
   }, {
     id: 50986,
     title: "Signet of Putrefaction",
+    ilvl: 251,
     "int": 61,
     sp: 85,
     haste: 45,
@@ -24955,6 +25627,7 @@ var equip = {
   {
     id: 47237,
     title: "Band of Deplorable Violence",
+    ilvl: 258,
     "int": 65,
     spi: 50,
     sp: 91,
@@ -24967,6 +25640,7 @@ var equip = {
   }, {
     id: 47054,
     title: "Band of Deplorable Violence",
+    ilvl: 245,
     "int": 58,
     spi: 44,
     sp: 89,
@@ -24975,6 +25649,7 @@ var equip = {
   }, {
     id: 47224,
     title: "Ring of the Darkmender",
+    ilvl: 258,
     "int": 65,
     sp: 91,
     haste: 49,
@@ -24987,6 +25662,7 @@ var equip = {
   }, {
     id: 47223,
     title: "Ring of the Darkmender",
+    ilvl: 245,
     "int": 58,
     sp: 89,
     haste: 50,
@@ -24995,6 +25671,7 @@ var equip = {
   }, {
     id: 47928,
     title: "Firestorm Ring",
+    ilvl: 245,
     "int": 59,
     sp: 80,
     crit: 33,
@@ -25007,6 +25684,7 @@ var equip = {
   }, {
     id: 47618,
     title: "Firestorm Ring",
+    ilvl: 232,
     "int": 52,
     sp: 78,
     crit: 36,
@@ -25016,6 +25694,7 @@ var equip = {
   {
     id: 45495,
     title: "Conductive Seal",
+    ilvl: 239,
     "int": 48,
     spi: 39,
     sp: 75,
@@ -25028,6 +25707,7 @@ var equip = {
   }, {
     id: 45451,
     title: "Frozen Loop",
+    ilvl: 226,
     "int": 46,
     sp: 74,
     hit: 46,
@@ -25044,6 +25724,7 @@ var equip = {
   }, {
     id: 45168,
     title: "Pyrelight Circle",
+    ilvl: 226,
     "int": 42,
     sp: 74,
     crit: 46,
@@ -25052,6 +25733,7 @@ var equip = {
   }, {
     id: 45235,
     title: "Radiant Seal",
+    ilvl: 226,
     "int": 42,
     sp: 74,
     haste: 46,
@@ -25060,6 +25742,7 @@ var equip = {
   }, {
     id: 45438,
     title: "Ring of the Faithful Servant",
+    ilvl: 226,
     "int": 42,
     sp: 74,
     crit: 36,
@@ -25068,6 +25751,7 @@ var equip = {
   }, {
     id: 45515,
     title: "Ring of the Vacant Eye",
+    ilvl: 226,
     "int": 46,
     spi: 42,
     sp: 74,
@@ -25076,6 +25760,7 @@ var equip = {
   }, {
     id: 45530,
     title: "Sanity's Bond",
+    ilvl: 226,
     "int": 42,
     sp: 74,
     haste: 31,
@@ -25084,6 +25769,7 @@ var equip = {
   }, {
     id: 45702,
     title: "Emerald Signet Ring",
+    ilvl: 218,
     "int": 48,
     spi: 43,
     sp: 70,
@@ -25092,6 +25778,7 @@ var equip = {
   }, {
     id: 46046,
     title: "Nebula Band",
+    ilvl: 226,
     "int": 36,
     sp: 74,
     crit: 46,
@@ -25104,6 +25791,7 @@ var equip = {
   }, {
     id: 45418,
     title: "Lady Maye's Sapphire Ring",
+    ilvl: 219,
     "int": 43,
     spi: 44,
     sp: 71,
@@ -25112,6 +25800,7 @@ var equip = {
   }, {
     id: 45946,
     title: "Fire Orchid Signet",
+    ilvl: 226,
     "int": 49,
     sp: 74,
     haste: 30,
@@ -25121,6 +25810,7 @@ var equip = {
   }, {
     id: 45297,
     title: "Shimmering Seal",
+    ilvl: 226,
     "int": 42,
     spi: 22,
     sp: 74,
@@ -25133,6 +25823,7 @@ var equip = {
   }, {
     id: 46096,
     title: "Signet of Soft Lament",
+    ilvl: 226,
     "int": 46,
     spi: 36,
     sp: 74,
@@ -25146,6 +25837,7 @@ var equip = {
   {
     id: 40433,
     title: "Wyrmrest Band",
+    ilvl: 213,
     "int": 40,
     sp: 67,
     haste: 32,
@@ -25154,6 +25846,7 @@ var equip = {
   {
     id: 40080,
     title: "Lost Jewel",
+    ilvl: 213,
     "int": 38,
     spi: 37,
     sp: 65,
@@ -25161,6 +25854,7 @@ var equip = {
   }, {
     id: 40375,
     title: "Ring of Decaying Beauty",
+    ilvl: 213,
     "int": 40,
     sp: 66,
     haste: 35,
@@ -25168,6 +25862,7 @@ var equip = {
   }, {
     id: 40108,
     title: "Seized Beauty",
+    ilvl: 213,
     "int": 43,
     sp: 66,
     crit: 38,
@@ -25175,6 +25870,7 @@ var equip = {
   }, {
     id: 40399,
     title: "Signet of Manifested Pain",
+    ilvl: 226,
     "int": 49,
     sp: 74,
     crit: 46,
@@ -25182,6 +25878,7 @@ var equip = {
   }, {
     id: 39193,
     title: "Band of Neglected Pleas",
+    ilvl: 200,
     "int": 38,
     sp: 59,
     crit: 33,
@@ -25189,6 +25886,7 @@ var equip = {
   }, {
     id: 39407,
     title: "Circle of Life",
+    ilvl: 200,
     "int": 36,
     sp: 59,
     haste: 34,
@@ -25196,6 +25894,7 @@ var equip = {
   }, {
     id: 39250,
     title: "Ring of Holy Cleansing",
+    ilvl: 200,
     "int": 38,
     spi: 29,
     sp: 59,
@@ -25203,6 +25902,7 @@ var equip = {
   }, {
     id: 39244,
     title: "Ring of the Fated",
+    ilvl: 200,
     "int": 37,
     sp: 42,
     crit: 50,
@@ -25210,6 +25910,7 @@ var equip = {
   }, {
     id: 39389,
     title: "Signet of the Malevolent",
+    ilvl: 200,
     "int": 34,
     sp: 46,
     hit: 49,
@@ -25217,6 +25918,7 @@ var equip = {
   }, {
     id: 39231,
     title: "Timeworn Silken Band",
+    ilvl: 200,
     "int": 38,
     spi: 28,
     sp: 59,
@@ -25225,27 +25927,32 @@ var equip = {
   {
     id: 42114,
     title: "Deadly Gladiator's Band of Ascendancy",
+    ilvl: 213,
     "int": 29,
     sp: 66,
     hit: 38
   }, {
     id: 42115,
     title: "Deadly Gladiator's Band of Victory",
+    ilvl: 213,
     hit: 38
   }, {
     id: 42110,
     title: "Hateful Gladiator's Band of Dominance",
+    ilvl: 200,
     "int": 24,
     sp: 59,
     crit: 34
   }, {
     id: 42112,
     title: "Hateful Gladiator's Band of Triumph",
+    ilvl: 200,
     crit: 34
   }, // prebis
   {
     id: 40719,
     title: "Band of Channeled Magic",
+    ilvl: 213,
     "int": 41,
     spi: 32,
     sp: 65,
@@ -25253,6 +25960,7 @@ var equip = {
   }, {
     id: 40720,
     title: "Renewal of Life",
+    ilvl: 213,
     "int": 41,
     sp: 66,
     crit: 28,
@@ -25260,6 +25968,7 @@ var equip = {
   }, {
     id: 40585,
     title: "Signet of the Kirin Tor",
+    ilvl: 200,
     "int": 34,
     sp: 59,
     crit: 36,
@@ -25267,6 +25976,7 @@ var equip = {
   }, {
     id: 44934,
     title: "Loop of the Kirin Tor",
+    ilvl: 200,
     "int": 34,
     spi: 36,
     sp: 59,
@@ -25274,24 +25984,28 @@ var equip = {
   }, {
     id: 37192,
     title: "Annhylde's Ring",
+    ilvl: 200,
     "int": 33,
     sp: 59,
     haste: 49
   }, {
     id: 37694,
     title: "Band of Guile",
+    ilvl: 200,
     "int": 34,
     sp: 59,
     haste: 50
   }, {
     id: 44283,
     title: "Signet of Hopeful Light",
+    ilvl: 200,
     "int": 50,
     sp: 58,
     haste: 36
   }, {
     id: 42644,
     title: "Titanium Spellshock Ring",
+    ilvl: 200,
     "int": 33,
     sp: 49,
     crit: 42,
@@ -25302,6 +26016,7 @@ var equip = {
   }, {
     id: 37195,
     title: "Band of Enchanted Growth",
+    ilvl: 200,
     "int": 31,
     sp: 50,
     mp5: 21,
@@ -25309,6 +26024,7 @@ var equip = {
   }, {
     id: 37232,
     title: "Ring of the Traitor King",
+    ilvl: 200,
     "int": 34,
     sp: 51,
     crit: 43,
@@ -25316,6 +26032,7 @@ var equip = {
   }, {
     id: 37371,
     title: "Ring of the Frenzied Wolvar",
+    ilvl: 200,
     "int": 28,
     sp: 51,
     haste: 43,
@@ -25323,6 +26040,7 @@ var equip = {
   }, {
     id: 37651,
     title: "The Prospector's Prize",
+    ilvl: 200,
     "int": 29,
     hit: 51,
     haste: 43,
@@ -25330,6 +26048,7 @@ var equip = {
   }, {
     id: 37869,
     title: "Globule Signet",
+    ilvl: 200,
     "int": 33,
     sp: 51,
     crit: 42,
@@ -25337,6 +26056,7 @@ var equip = {
   }, {
     id: 43408,
     title: "Solitaire of Reflecting Beams",
+    ilvl: 200,
     "int": 31,
     sp: 50,
     haste: 43,
@@ -25344,6 +26064,7 @@ var equip = {
   }, {
     id: 43253,
     title: "Ring of Northern Tears",
+    ilvl: 187,
     sp: 36,
     crit: 39,
     hit: 31,
@@ -25355,6 +26076,7 @@ var equip = {
   }, {
     id: 37732,
     title: "Spectral Seal of the Prophet",
+    ilvl: 200,
     "int": 30,
     spi: 52,
     sp: 51,
@@ -25363,6 +26085,7 @@ var equip = {
   {
     id: 34362,
     title: "Loop of Forged Power",
+    ilvl: 159,
     "int": 28,
     sp: 34,
     hit: 19,
@@ -25370,6 +26093,7 @@ var equip = {
   }, {
     id: 34230,
     title: "Ring of Omnipotence",
+    ilvl: 154,
     "int": 14,
     sp: 40,
     crit: 22,
@@ -25379,6 +26103,7 @@ var equip = {
     id: 23062,
     itemset: ids.T3_SET,
     title: "Frostfire Ring",
+    ilvl: 92,
     "int": 10,
     sp: 30
   }],
@@ -25386,42 +26111,50 @@ var equip = {
   {
     id: ids.TRINKET_DISLODGED_OBJECT_HC,
     title: "Dislodged Foreign Object",
+    ilvl: 277,
     haste: 170,
     phase: 4
   }, {
     id: ids.TRINKET_DISLODGED_OBJECT_NM,
     title: "Dislodged Foreign Object",
+    ilvl: 264,
     haste: 155,
     phase: 4
   }, {
     id: ids.TRINKET_NAMELESS_LICH_HC,
     title: "Phylactery of the Nameless Lich",
+    ilvl: 277,
     crit: 172,
     phase: 4
   }, {
     id: ids.TRINKET_NAMELESS_LICH_NM,
     title: "Phylactery of the Nameless Lich",
+    ilvl: 264,
     crit: 152,
     phase: 4
   }, {
     id: ids.TRINKET_MURADINS_SPYGLASS_HC,
     title: "Muradin's Spyglass",
+    ilvl: 264,
     crit: 152,
     phase: 4
   }, {
     id: ids.TRINKET_MURADINS_SPYGLASS_NM,
     title: "Muradin's Spyglass",
+    ilvl: 251,
     crit: 131,
     phase: 4
   }, {
     id: ids.TRINKET_SLIVER_PURE_ICE_HC,
     title: "Sliver of Pure Ice",
+    ilvl: 264,
     sp: 178,
     use: true,
     phase: 4
   }, {
     id: ids.TRINKET_SLIVER_PURE_ICE_NM,
     title: "Sliver of Pure Ice",
+    ilvl: 251,
     sp: 158,
     use: true,
     phase: 4
@@ -25429,32 +26162,38 @@ var equip = {
   {
     id: ids.TRINKET_REIGN_UNLIVING_HC,
     title: "Reign of the Unliving",
+    ilvl: 258,
     sp: 168,
     phase: 3
   }, {
     id: ids.TRINKET_REIGN_UNLIVING_NM,
     title: "Reign of the Unliving",
+    ilvl: 245,
     sp: 150,
     phase: 3
   }, {
     id: ids.TRINKET_SOLACE_DEFEATED_HC,
     title: "Solace of the Defeated",
+    ilvl: 258,
     sp: 168,
     phase: 3
   }, {
     id: ids.TRINKET_SOLACE_DEFEATED_NM,
     title: "Solace of the Defeated",
+    ilvl: 245,
     sp: 150,
     phase: 3
   }, {
     id: ids.TRINKET_VOLATILE_POWER_HC,
     title: "Talisman of Volatile Power",
+    ilvl: 245,
     crit: 126,
     use: true,
     phase: 3
   }, {
     id: ids.TRINKET_VOLATILE_POWER_NM,
     title: "Talisman of Volatile Power",
+    ilvl: 232,
     crit: 114,
     use: true,
     phase: 3
@@ -25462,122 +26201,147 @@ var equip = {
   {
     id: ids.TRINKET_SCALE_FATES,
     title: "Scale of Fates",
+    ilvl: 226,
     sp: 125,
     use: true,
     phase: 2
   }, {
     id: ids.TRINKET_SHOW_FAITH,
     title: "Show of Faith",
+    ilvl: 239,
     sp: 140,
     phase: 2
   }, {
     id: ids.TRINKET_ELEMENTAL_FOCUS_STONE,
     title: "Elemental Focus Stone",
+    ilvl: 219,
     hit: 108,
     phase: 2
   }, {
     id: ids.TRINKET_EYE_BROODMOTHER,
     title: "Eye of the Broodmother",
+    ilvl: 219,
     crit: 87,
     phase: 2
   }, {
     id: ids.TRINKET_SIFS_REMEMBERANCE,
     title: "Sif's Remembrance",
+    ilvl: 226,
     sp: 110,
     phase: 2
   }, {
     id: ids.TRINKET_SPARK_HOPE,
     title: "Spark of Hope",
+    ilvl: 219,
     spi: 100,
     phase: 2
   }, // os
   {
     id: ids.TRINKET_ILLUSTRATION_DRAGON_SOUL,
-    title: "Illustration of the Dragon Soul"
+    title: "Illustration of the Dragon Soul",
+    ilvl: 213
   }, // naxx
   {
     id: ids.TRINKET_DYING_CURSE,
     title: "Dying Curse",
+    ilvl: 213,
     hit: 71
   }, {
     id: ids.TRINKET_EXTRACT_NECROMANTIC_POWER,
     title: "Extract of Necromantic Power",
+    ilvl: 213,
     crit: 95
   }, {
     id: ids.TRINKET_SOUL_DEAD,
     title: "Soul of the Dead",
+    ilvl: 213,
     crit: 95
   }, {
     id: ids.TRINKET_EMBRACE_SPIDER,
     title: "Embrace of the Spider",
+    ilvl: 200,
     sp: 98
   }, // pvp
   {
     id: 42132,
     title: "Battlemaster's Bravery",
+    ilvl: 213,
     sp: 111
   }, {
     id: 42130,
     title: "Battlemaster's Avidity",
+    ilvl: 213,
     haste: 95
   }, {
     id: 42129,
     title: "Battlemaster's Accuracy",
+    ilvl: 213,
     hit: 95
   }, {
     id: 42128,
     title: "Battlemaster's Hostility",
+    ilvl: 213,
     crit: 95
   }, // prebis
   {
     id: ids.TRINKET_SUNDIAL_EXILED,
     title: "Sundial of the Exiled",
+    ilvl: 200,
     crit: 84
   }, {
     id: ids.TRINKET_DARKMOON_DEATH,
     title: "Darkmoon Card: Death",
+    ilvl: 200,
     crit: 85
   }, {
     id: 42988,
     title: "Darkmoon Card: Illusion",
+    ilvl: 200,
     sp: 100
   }, {
     id: ids.TRINKET_FORGE_EMBER,
     title: "Forge Ember",
+    ilvl: 200,
     crit: 73,
     q: "rare"
   }, {
     id: ids.TRINKET_PENDULUM_TELLURIC_CURRENTS,
     title: "Pendulum of Telluric Currents",
+    ilvl: 200,
     haste: 74,
     q: "rare"
   }, {
     id: ids.TRINKET_MERCURIAL_ALCHEMIST_STONE,
     title: "Mercurial Alchemist Stone",
+    ilvl: 200,
     sp: 59,
     haste: 50,
     q: "rare"
   }, {
     id: ids.TRINKET_MARK_WAR_PRISONER,
     title: "Mark of the War Prisoner",
+    ilvl: 200,
     hit: 73,
     use: true,
     q: "rare"
   }, {
     id: ids.TRINKET_CANNONEERS_FUSELIGHTER,
     title: "Cannoneer's Fuselighter",
+    ilvl: 174,
     crit: 54,
     use: true,
     q: "rare"
   }, {
     id: ids.TRINKET_TOME_ARCANE_PHENOMENA,
     title: "Tome of Arcane Phenomena",
+    ilvl: 187,
     sp: 68,
     use: true,
     q: "rare"
   }, {
     id: ids.TRINKET_TWILIGHT_SERPENT,
     title: "Figurine - Twilight Serpent",
+    ilvl: 200,
     hit: 42,
     sockets: ["r", "b"],
     bonus: {
@@ -25589,30 +26353,37 @@ var equip = {
   {
     id: ids.TRINKET_NAARU_SLIVER,
     title: "Shifting Naaru Sliver",
+    ilvl: 154,
     haste: 54,
     use: true
   }, {
     id: ids.TRINKET_SKULL_GULDAN,
     title: "The Skull of Gul'dan",
+    ilvl: 151,
     sp: 55,
     hit: 25,
     use: true
   }, {
     id: ids.TRINKET_ASHTONGUE_TALISMAN,
-    title: "Ashtongue Talisman"
+    title: "Ashtongue Talisman",
+    ilvl: 141
   }, {
     id: ids.TRINKET_SERPENT_COIL,
     title: "Serpent-Coil Braid",
+    ilvl: 128,
     crit: 30,
     hit: 12
   }, {
     id: ids.TRINKET_SHRUNKEN_HEAD,
     title: "Hex Shrunken Head",
+    ilvl: 133,
     sp: 53,
     use: true
-  }, {
+  }, // vanilla
+  {
     id: ids.TRINKET_MQG,
     title: "Mind Quickening Gem",
+    ilvl: 76,
     use: true
   }]
 };
@@ -30041,60 +30812,58 @@ var _hoisted_110 = {
 
 var _hoisted_111 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("DPS");
 
-var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Phase");
+var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("ilvl");
 
-var _hoisted_113 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sockets");
+var _hoisted_113 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Phase");
 
-var _hoisted_114 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Spell power");
+var _hoisted_114 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sockets");
 
-var _hoisted_115 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Crit rating");
+var _hoisted_115 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Spell power");
 
-var _hoisted_116 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Hit rating");
+var _hoisted_116 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Crit rating");
 
-var _hoisted_117 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Haste rating");
+var _hoisted_117 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Hit rating");
 
-var _hoisted_118 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Intellect");
+var _hoisted_118 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Haste rating");
 
-var _hoisted_119 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Spirit");
+var _hoisted_119 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Intellect");
 
-var _hoisted_120 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Mp5");
+var _hoisted_120 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Spirit");
 
-var _hoisted_121 = ["onClick"];
-var _hoisted_122 = {
+var _hoisted_121 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Mp5");
+
+var _hoisted_122 = ["onClick"];
+var _hoisted_123 = {
   "class": "min"
 };
-var _hoisted_123 = ["onClick"];
+var _hoisted_124 = ["onClick"];
 
-var _hoisted_124 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Add to comparison");
+var _hoisted_125 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Add to comparison");
 
-var _hoisted_125 = {
+var _hoisted_126 = {
   "class": "min"
 };
-var _hoisted_126 = ["onClick"];
+var _hoisted_127 = ["onClick"];
 
-var _hoisted_127 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete custom item");
+var _hoisted_128 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete custom item");
 
-var _hoisted_128 = {
+var _hoisted_129 = {
   "class": "title"
 };
-var _hoisted_129 = ["href"];
-var _hoisted_130 = ["onClick"];
+var _hoisted_130 = ["href"];
+var _hoisted_131 = ["onClick"];
 
-var _hoisted_131 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_132 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "  ", -1
 /* HOISTED */
 );
 
-var _hoisted_132 = [_hoisted_131];
-var _hoisted_133 = {
+var _hoisted_133 = [_hoisted_132];
+var _hoisted_134 = {
   key: 0
 };
-var _hoisted_134 = ["onClick"];
-
-var _hoisted_135 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
-/* HOISTED */
-);
+var _hoisted_135 = ["onClick"];
 
 var _hoisted_136 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
 /* HOISTED */
@@ -30128,431 +30897,434 @@ var _hoisted_143 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_144 = {
+var _hoisted_144 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_145 = {
   key: 0,
   "class": "large mt-4"
 };
 
-var _hoisted_145 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Enchant"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spell power"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Crit rating"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Hit rating"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Intellect"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spirit"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Mp5")])], -1
+var _hoisted_146 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Enchant"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spell power"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Crit rating"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Hit rating"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Intellect"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spirit"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Mp5")])], -1
 /* HOISTED */
 );
 
-var _hoisted_146 = ["onClick"];
-var _hoisted_147 = ["href"];
+var _hoisted_147 = ["onClick"];
+var _hoisted_148 = ["href"];
 
-var _hoisted_148 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_149 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-4"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_149 = {
+var _hoisted_150 = {
   key: 1,
   "class": "extra-socket mb-2"
 };
 
-var _hoisted_150 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Extra socket from blacksmithing", -1
+var _hoisted_151 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Extra socket from blacksmithing", -1
 /* HOISTED */
 );
 
-var _hoisted_151 = {
+var _hoisted_152 = {
   key: 2,
   "class": "extra-socket mb-2"
 };
 
-var _hoisted_152 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Extra socket from ");
+var _hoisted_153 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Extra socket from ");
 
-var _hoisted_153 = ["href"];
-var _hoisted_154 = {
+var _hoisted_154 = ["href"];
+var _hoisted_155 = {
   key: 3,
   "class": "search-gem mb-2"
 };
-var _hoisted_155 = {
+var _hoisted_156 = {
   key: 4,
   "class": "sockets"
 };
-var _hoisted_156 = {
+var _hoisted_157 = {
   "class": "socket"
 };
-var _hoisted_157 = {
+var _hoisted_158 = {
   "class": "large"
 };
-var _hoisted_158 = {
+var _hoisted_159 = {
   "class": "min"
 };
 
-var _hoisted_159 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Gem", -1
+var _hoisted_160 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Gem", -1
 /* HOISTED */
 );
 
-var _hoisted_160 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Stats", -1
+var _hoisted_161 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Stats", -1
 /* HOISTED */
 );
 
-var _hoisted_161 = {
-  key: 0
-};
 var _hoisted_162 = {
-  key: 1
-};
-var _hoisted_163 = ["onClick"];
-var _hoisted_164 = {
-  "class": "min"
-};
-var _hoisted_165 = ["href"];
-var _hoisted_166 = {
   key: 0
 };
+var _hoisted_163 = {
+  key: 1
+};
+var _hoisted_164 = ["onClick"];
+var _hoisted_165 = {
+  "class": "min"
+};
+var _hoisted_166 = ["href"];
 var _hoisted_167 = {
+  key: 0
+};
+var _hoisted_168 = {
   key: 1
 };
 
-var _hoisted_168 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Yes");
+var _hoisted_169 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Yes");
 
-var _hoisted_169 = {
+var _hoisted_170 = {
   key: 1,
   "class": "log"
 };
-var _hoisted_170 = {
+var _hoisted_171 = {
   "class": "log-wrapper"
 };
-var _hoisted_171 = {
+var _hoisted_172 = {
   "class": "filter"
 };
-var _hoisted_172 = {
+var _hoisted_173 = {
   "class": "form-item"
 };
 
-var _hoisted_173 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_174 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_174 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show cast start", -1
+var _hoisted_175 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show cast start", -1
 /* HOISTED */
 );
 
-var _hoisted_175 = {
+var _hoisted_176 = {
   "class": "form-item"
 };
 
-var _hoisted_176 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_177 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_177 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show cast success", -1
+var _hoisted_178 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show cast success", -1
 /* HOISTED */
 );
 
-var _hoisted_178 = {
+var _hoisted_179 = {
   "class": "form-item"
 };
 
-var _hoisted_179 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_180 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_180 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show spell impact", -1
+var _hoisted_181 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show spell impact", -1
 /* HOISTED */
 );
 
-var _hoisted_181 = {
+var _hoisted_182 = {
   "class": "form-item"
 };
 
-var _hoisted_182 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_183 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_183 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show mana gain", -1
+var _hoisted_184 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show mana gain", -1
 /* HOISTED */
 );
 
-var _hoisted_184 = {
+var _hoisted_185 = {
   "class": "form-item"
 };
 
-var _hoisted_185 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_186 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_186 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show buffs", -1
+var _hoisted_187 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show buffs", -1
 /* HOISTED */
 );
 
-var _hoisted_187 = {
+var _hoisted_188 = {
   "class": "form-item"
 };
 
-var _hoisted_188 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_189 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_189 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show wait", -1
+var _hoisted_190 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Show wait", -1
 /* HOISTED */
 );
 
-var _hoisted_190 = {
+var _hoisted_191 = {
   "class": "form-item mb-2"
 };
 
-var _hoisted_191 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Mana"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "DPS"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Event")], -1
+var _hoisted_192 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Time"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Mana"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "DPS"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Event")], -1
 /* HOISTED */
 );
 
-var _hoisted_192 = {
+var _hoisted_193 = {
   key: 2,
   "class": "timel"
 };
-var _hoisted_193 = {
+var _hoisted_194 = {
   key: 3,
   "class": "spells"
 };
-var _hoisted_194 = {
+var _hoisted_195 = {
   "class": "spells-wrapper"
 };
-var _hoisted_195 = {
+var _hoisted_196 = {
   "class": "large"
 };
 
-var _hoisted_196 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Caster"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spell"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Casts"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Misses"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Hits"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Crits"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Damage"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Min dmg"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Avg dmg"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Max dmg")], -1
+var _hoisted_197 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Caster"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Spell"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Casts"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Misses"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Hits"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Crits"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Damage"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Min dmg"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Avg dmg"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Max dmg")], -1
 /* HOISTED */
 );
 
-var _hoisted_197 = {
+var _hoisted_198 = {
   key: 4,
   "class": "histog"
 };
-var _hoisted_198 = {
+var _hoisted_199 = {
   key: 5,
   "class": "config"
 };
-var _hoisted_199 = {
+var _hoisted_200 = {
   "class": "fieldsets"
 };
-var _hoisted_200 = {
+var _hoisted_201 = {
   "class": "config-general"
 };
 
-var _hoisted_201 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "General", -1
+var _hoisted_202 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "General", -1
 /* HOISTED */
 );
 
-var _hoisted_202 = {
+var _hoisted_203 = {
   "class": "form-item"
 };
 
-var _hoisted_203 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Quick spec", -1
+var _hoisted_204 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Quick spec", -1
 /* HOISTED */
 );
 
-var _hoisted_204 = {
+var _hoisted_205 = {
   "class": "form-item"
 };
 
-var _hoisted_205 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Race", -1
+var _hoisted_206 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Race", -1
 /* HOISTED */
 );
 
-var _hoisted_206 = ["value"];
 var _hoisted_207 = ["value"];
 var _hoisted_208 = ["value"];
 var _hoisted_209 = ["value"];
 var _hoisted_210 = ["value"];
 var _hoisted_211 = ["value"];
-var _hoisted_212 = {
+var _hoisted_212 = ["value"];
+var _hoisted_213 = {
   "class": "form-item"
 };
 
-var _hoisted_213 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Talents (");
+var _hoisted_214 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Talents (");
 
-var _hoisted_214 = ["href"];
+var _hoisted_215 = ["href"];
 
-var _hoisted_215 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(")");
+var _hoisted_216 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(")");
 
-var _hoisted_216 = {
+var _hoisted_217 = {
   "class": "form-item"
 };
 
-var _hoisted_217 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of sims", -1
+var _hoisted_218 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of sims", -1
 /* HOISTED */
 );
 
-var _hoisted_218 = {
-  "class": "form-item form-row"
-};
 var _hoisted_219 = {
-  "class": "form-item"
-};
-
-var _hoisted_220 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Fight duration (sec)", -1
-/* HOISTED */
-);
-
-var _hoisted_221 = {
-  "class": "form-item"
-};
-
-var _hoisted_222 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Variance +/-", -1
-/* HOISTED */
-);
-
-var _hoisted_223 = {
   "class": "form-item form-row"
 };
-var _hoisted_224 = {
+var _hoisted_220 = {
   "class": "form-item"
 };
 
-var _hoisted_225 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Target level", -1
+var _hoisted_221 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Fight duration (sec)", -1
 /* HOISTED */
 );
 
-var _hoisted_226 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_222 = {
+  "class": "form-item"
+};
+
+var _hoisted_223 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Variance +/-", -1
+/* HOISTED */
+);
+
+var _hoisted_224 = {
+  "class": "form-item form-row"
+};
+var _hoisted_225 = {
+  "class": "form-item"
+};
+
+var _hoisted_226 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Target level", -1
+/* HOISTED */
+);
+
+var _hoisted_227 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 83
 }, "83", -1
 /* HOISTED */
 );
 
-var _hoisted_227 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_228 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 82
 }, "82", -1
 /* HOISTED */
 );
 
-var _hoisted_228 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_229 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 81
 }, "81", -1
 /* HOISTED */
 );
 
-var _hoisted_229 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_230 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 80
 }, "80", -1
 /* HOISTED */
 );
 
-var _hoisted_230 = [_hoisted_226, _hoisted_227, _hoisted_228, _hoisted_229];
-var _hoisted_231 = {
+var _hoisted_231 = [_hoisted_227, _hoisted_228, _hoisted_229, _hoisted_230];
+var _hoisted_232 = {
   "class": "form-item"
 };
 
-var _hoisted_232 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Resistance", -1
+var _hoisted_233 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Resistance", -1
 /* HOISTED */
 );
 
-var _hoisted_233 = {
+var _hoisted_234 = {
   "class": "form-item"
 };
 
-var _hoisted_234 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "No. of targets", -1
+var _hoisted_235 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "No. of targets", -1
 /* HOISTED */
 );
 
-var _hoisted_235 = {
+var _hoisted_236 = {
   "class": "form-item"
 };
 
-var _hoisted_236 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spell travel time (ms)", -1
+var _hoisted_237 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spell travel time (ms)", -1
 /* HOISTED */
 );
 
-var _hoisted_237 = {
+var _hoisted_238 = {
   key: 0,
   "class": "form-item"
 };
 
-var _hoisted_238 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Reaction time (ms)", -1
+var _hoisted_239 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Reaction time (ms)", -1
 /* HOISTED */
 );
 
-var _hoisted_239 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Affects cooldown usage when waiting for procs");
+var _hoisted_240 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Affects cooldown usage when waiting for procs");
 
-var _hoisted_240 = {
+var _hoisted_241 = {
   "class": "form-item"
 };
 
-var _hoisted_241 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "RNG seed", -1
+var _hoisted_242 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "RNG seed", -1
 /* HOISTED */
 );
 
-var _hoisted_242 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" A number above 0 will give all runs the same random seed.");
+var _hoisted_243 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" A number above 0 will give all runs the same random seed.");
 
-var _hoisted_243 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_244 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_244 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All iterations in the same run will still have different seeds.");
+var _hoisted_245 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All iterations in the same run will still have different seeds.");
 
-var _hoisted_245 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_246 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_246 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This might be useful for certain analysis. ");
+var _hoisted_247 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This might be useful for certain analysis. ");
 
-var _hoisted_247 = {
+var _hoisted_248 = {
   "class": "form-item"
 };
 
-var _hoisted_248 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Design", -1
+var _hoisted_249 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Design", -1
 /* HOISTED */
 );
 
-var _hoisted_249 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_250 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 0
 }, "- Choose -", -1
 /* HOISTED */
 );
 
-var _hoisted_250 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_251 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 1
 }, "Wotlk", -1
 /* HOISTED */
 );
 
-var _hoisted_251 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_252 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 2
 }, "Alternative", -1
 /* HOISTED */
 );
 
-var _hoisted_252 = [_hoisted_249, _hoisted_250, _hoisted_251];
-var _hoisted_253 = {
+var _hoisted_253 = [_hoisted_250, _hoisted_251, _hoisted_252];
+var _hoisted_254 = {
   "class": "form-item"
 };
 
-var _hoisted_254 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Use average spell damage", -1
+var _hoisted_255 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Use average spell damage", -1
 /* HOISTED */
 );
 
-var _hoisted_255 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will eliminate the random damage from spells.");
+var _hoisted_256 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will eliminate the random damage from spells.");
 
-var _hoisted_256 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_257 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_257 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This can be useful to verify calculations. ");
+var _hoisted_258 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This can be useful to verify calculations. ");
 
-var _hoisted_258 = {
+var _hoisted_259 = {
   "class": "form-item"
 };
 
-var _hoisted_259 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Additional data", -1
+var _hoisted_260 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Additional data", -1
 /* HOISTED */
 );
 
-var _hoisted_260 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will save data about dps and duration for each simulation.");
+var _hoisted_261 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will save data about dps and duration for each simulation.");
 
-var _hoisted_261 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_262 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_262 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will use more memory and can cause performance issues with a high number of sims. ");
+var _hoisted_263 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This will use more memory and can cause performance issues with a high number of sims. ");
 
-var _hoisted_263 = {
+var _hoisted_264 = {
   "class": "config-rotation"
 };
 
-var _hoisted_264 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Rotation", -1
+var _hoisted_265 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Rotation", -1
 /* HOISTED */
 );
 
-var _hoisted_265 = {
+var _hoisted_266 = {
   "class": "form-item"
 };
 
-var _hoisted_266 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Main rotation", -1
+var _hoisted_267 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Main rotation", -1
 /* HOISTED */
 );
 
-var _hoisted_267 = ["value"];
 var _hoisted_268 = ["value"];
 var _hoisted_269 = ["value"];
 var _hoisted_270 = ["value"];
@@ -30560,204 +31332,205 @@ var _hoisted_271 = ["value"];
 var _hoisted_272 = ["value"];
 var _hoisted_273 = ["value"];
 var _hoisted_274 = ["value"];
-var _hoisted_275 = {
+var _hoisted_275 = ["value"];
+var _hoisted_276 = {
   key: 0,
   "class": "form-item"
 };
 
-var _hoisted_276 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Keep up imp. scorch", -1
+var _hoisted_277 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Keep up imp. scorch", -1
 /* HOISTED */
 );
 
-var _hoisted_277 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Scorch from you");
+var _hoisted_278 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Scorch from you");
 
-var _hoisted_278 = {
+var _hoisted_279 = {
   "class": "form-item"
 };
 
-var _hoisted_279 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Stack Arcane Blast to 3 below mana %", -1
+var _hoisted_280 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Stack Arcane Blast to 3 below mana %", -1
 /* HOISTED */
 );
 
-var _hoisted_280 = {
+var _hoisted_281 = {
   "class": "form-item"
 };
 
-var _hoisted_281 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "AB without Missile Barrage above mana %", -1
+var _hoisted_282 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "AB without Missile Barrage above mana %", -1
 /* HOISTED */
 );
 
-var _hoisted_282 = {
+var _hoisted_283 = {
   "class": "form-item"
 };
 
-var _hoisted_283 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Always cast AB during Arcane Power", -1
+var _hoisted_284 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Always cast AB during Arcane Power", -1
 /* HOISTED */
 );
 
-var _hoisted_284 = {
+var _hoisted_285 = {
   key: 2,
   "class": "form-item"
 };
 
-var _hoisted_285 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Ice Lance at end of Fingers of Frost", -1
+var _hoisted_286 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Ice Lance at end of Fingers of Frost", -1
 /* HOISTED */
 );
 
-var _hoisted_286 = {
+var _hoisted_287 = {
   "class": "config-debuffs"
 };
 
-var _hoisted_287 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Debuffs", -1
+var _hoisted_288 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Debuffs", -1
 /* HOISTED */
 );
 
-var _hoisted_288 = {
+var _hoisted_289 = {
   "class": "form-item"
 };
-var _hoisted_289 = ["disabled"];
+var _hoisted_290 = ["disabled"];
 
-var _hoisted_290 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% crit", -1
+var _hoisted_291 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% crit", -1
 /* HOISTED */
 );
 
-var _hoisted_291 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Heart of the Crusader");
+var _hoisted_292 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Heart of the Crusader");
 
-var _hoisted_292 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_293 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_293 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Master Poisoner");
+var _hoisted_294 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Master Poisoner");
 
-var _hoisted_294 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_295 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_295 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Totem of Wrath ");
-
-var _hoisted_296 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
+var _hoisted_296 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Totem of Wrath ");
 
 var _hoisted_297 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_298 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("If you have Totem of Wrath you should select it under buffs instead. ");
+var _hoisted_298 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
 
-var _hoisted_299 = {
+var _hoisted_299 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("If you have Totem of Wrath you should select it under buffs instead. ");
+
+var _hoisted_300 = {
   "class": "form-item"
 };
 
-var _hoisted_300 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "5% spell crit", -1
+var _hoisted_301 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "5% spell crit", -1
 /* HOISTED */
 );
 
-var _hoisted_301 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Imp. Shadow Bolt");
+var _hoisted_302 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Imp. Shadow Bolt");
 
-var _hoisted_302 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_303 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_303 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Winter's Chill");
+var _hoisted_304 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Winter's Chill");
 
-var _hoisted_304 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_305 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_305 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Scorch ");
-
-var _hoisted_306 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
+var _hoisted_306 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Scorch ");
 
 var _hoisted_307 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_308 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Do no check this if you are the person keeping up Winter's Chill or Imp. Scorch. ");
+var _hoisted_308 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
 
-var _hoisted_309 = {
+var _hoisted_309 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Do no check this if you are the person keeping up Winter's Chill or Imp. Scorch. ");
+
+var _hoisted_310 = {
   "class": "form-item"
 };
 
-var _hoisted_310 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% spell hit", -1
+var _hoisted_311 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% spell hit", -1
 /* HOISTED */
 );
 
-var _hoisted_311 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Misery");
+var _hoisted_312 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Misery");
 
-var _hoisted_312 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_313 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_313 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Faerie Fire");
+var _hoisted_314 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Imp. Faerie Fire");
 
-var _hoisted_314 = {
+var _hoisted_315 = {
   "class": "form-item"
 };
 
-var _hoisted_315 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "13% spell dmg", -1
+var _hoisted_316 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "13% spell dmg", -1
 /* HOISTED */
 );
 
-var _hoisted_316 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Curse of Elements");
+var _hoisted_317 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Curse of Elements");
 
-var _hoisted_317 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_318 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_318 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Earth and Moon");
+var _hoisted_319 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Earth and Moon");
 
-var _hoisted_319 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_320 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_320 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ebon Spellbringer");
+var _hoisted_321 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ebon Spellbringer");
 
-var _hoisted_321 = {
+var _hoisted_322 = {
   "class": "form-item"
 };
 
-var _hoisted_322 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Judgement of Wisdom", -1
+var _hoisted_323 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Judgement of Wisdom", -1
 /* HOISTED */
 );
 
-var _hoisted_323 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Chance to restore 2% base mana on spell hit");
+var _hoisted_324 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Chance to restore 2% base mana on spell hit");
 
-var _hoisted_324 = {
+var _hoisted_325 = {
   "class": "config-buffs"
 };
 
-var _hoisted_325 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Buffs", -1
+var _hoisted_326 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Buffs", -1
 /* HOISTED */
 );
 
-var _hoisted_326 = {
+var _hoisted_327 = {
   "class": "form-item"
 };
 
-var _hoisted_327 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_328 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_328 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mage Armor", -1
+var _hoisted_329 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mage Armor", -1
 /* HOISTED */
 );
 
-var _hoisted_329 = {
+var _hoisted_330 = {
   "class": "form-item"
 };
 
-var _hoisted_330 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_331 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_331 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Molten Armor", -1
+var _hoisted_332 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Molten Armor", -1
 /* HOISTED */
 );
 
-var _hoisted_332 = {
+var _hoisted_333 = {
   "class": "form-item"
 };
 
-var _hoisted_333 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+var _hoisted_334 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   type: "checkbox",
   checked: true,
   disabled: true
@@ -30765,543 +31538,543 @@ var _hoisted_333 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_334 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Arcane Intellect", -1
+var _hoisted_335 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Arcane Intellect", -1
 /* HOISTED */
 );
 
-var _hoisted_335 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("60 intellect");
+var _hoisted_336 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("60 intellect");
 
-var _hoisted_336 = {
+var _hoisted_337 = {
   "class": "form-item"
 };
 
-var _hoisted_337 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Divine Spirit", -1
+var _hoisted_338 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Divine Spirit", -1
 /* HOISTED */
 );
 
-var _hoisted_338 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("80 spirit");
+var _hoisted_339 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("80 spirit");
 
-var _hoisted_339 = {
+var _hoisted_340 = {
   "class": "form-item"
 };
 
-var _hoisted_340 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Fel intelligence", -1
+var _hoisted_341 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Fel intelligence", -1
 /* HOISTED */
 );
 
-var _hoisted_341 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("64 spirit");
+var _hoisted_342 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("64 spirit");
 
-var _hoisted_342 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_343 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_343 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("The intellect part does not stack with Arcane Intellect");
+var _hoisted_344 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("The intellect part does not stack with Arcane Intellect");
 
-var _hoisted_344 = {
+var _hoisted_345 = {
   "class": "form-item"
 };
 
-var _hoisted_345 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mark of the Wild", -1
+var _hoisted_346 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mark of the Wild", -1
 /* HOISTED */
 );
 
-var _hoisted_346 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("37 stats");
+var _hoisted_347 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("37 stats");
 
-var _hoisted_347 = {
+var _hoisted_348 = {
   key: 0,
   "class": "form-item sub"
 };
 
-var _hoisted_348 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_349 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_349 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Imp. Mark of the Wild", -1
+var _hoisted_350 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Imp. Mark of the Wild", -1
 /* HOISTED */
 );
 
-var _hoisted_350 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("52 stats instead of 37");
+var _hoisted_351 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("52 stats instead of 37");
 
-var _hoisted_351 = {
+var _hoisted_352 = {
   "class": "form-item"
 };
 
-var _hoisted_352 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Totem of Wrath", -1
+var _hoisted_353 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Totem of Wrath", -1
 /* HOISTED */
 );
 
-var _hoisted_353 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("3% crit + 280 spell power");
+var _hoisted_354 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("3% crit + 280 spell power");
 
-var _hoisted_354 = {
+var _hoisted_355 = {
   "class": "form-item"
 };
 
-var _hoisted_355 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Flametongue Totem", -1
+var _hoisted_356 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Flametongue Totem", -1
 /* HOISTED */
 );
 
-var _hoisted_356 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("144 spell power");
+var _hoisted_357 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("144 spell power");
 
-var _hoisted_357 = {
+var _hoisted_358 = {
   "class": "form-item"
 };
 
-var _hoisted_358 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Demonic Pact", -1
+var _hoisted_359 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Demonic Pact", -1
 /* HOISTED */
 );
 
-var _hoisted_359 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Does not stack with Totem of Wrath or Flametongue totem.");
+var _hoisted_360 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Does not stack with Totem of Wrath or Flametongue totem.");
 
-var _hoisted_360 = {
+var _hoisted_361 = {
   key: 1,
   "class": "form-item"
 };
 
-var _hoisted_361 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Demonic Pact Bonus", -1
+var _hoisted_362 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Demonic Pact Bonus", -1
 /* HOISTED */
 );
 
-var _hoisted_362 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("10% of the Warlocks spell power.");
+var _hoisted_363 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("10% of the Warlocks spell power.");
 
-var _hoisted_363 = {
+var _hoisted_364 = {
   "class": "form-item"
 };
 
-var _hoisted_364 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Wrath of Air Totem", -1
+var _hoisted_365 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Wrath of Air Totem", -1
 /* HOISTED */
 );
 
-var _hoisted_365 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("5% spell haste");
+var _hoisted_366 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("5% spell haste");
 
-var _hoisted_366 = {
+var _hoisted_367 = {
   "class": "form-item"
 };
 
-var _hoisted_367 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mana Spring Totem", -1
+var _hoisted_368 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mana Spring Totem", -1
 /* HOISTED */
 );
 
-var _hoisted_368 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("91 mp5");
+var _hoisted_369 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("91 mp5");
 
-var _hoisted_369 = {
+var _hoisted_370 = {
   key: 2,
   "class": "form-item sub"
 };
 
-var _hoisted_370 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_371 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_371 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Restorative Totems", -1
+var _hoisted_372 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Restorative Totems", -1
 /* HOISTED */
 );
 
-var _hoisted_372 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("109 mp5 instead of 91");
+var _hoisted_373 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("109 mp5 instead of 91");
 
-var _hoisted_373 = {
+var _hoisted_374 = {
   "class": "form-item"
 };
 
-var _hoisted_374 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Blessing of Wisdom", -1
+var _hoisted_375 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Blessing of Wisdom", -1
 /* HOISTED */
 );
 
-var _hoisted_375 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("92 mp5");
+var _hoisted_376 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("92 mp5");
 
-var _hoisted_376 = {
+var _hoisted_377 = {
   key: 3,
   "class": "form-item sub"
 };
 
-var _hoisted_377 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_378 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_378 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Imp. Blessing of Wisdom", -1
+var _hoisted_379 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Imp. Blessing of Wisdom", -1
 /* HOISTED */
 );
 
-var _hoisted_379 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("110 mp5 instead of 91");
+var _hoisted_380 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("110 mp5 instead of 91");
 
-var _hoisted_380 = {
+var _hoisted_381 = {
   "class": "form-item"
 };
 
-var _hoisted_381 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Blessing of Kings", -1
+var _hoisted_382 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Blessing of Kings", -1
 /* HOISTED */
 );
 
-var _hoisted_382 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("10% stats");
+var _hoisted_383 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("10% stats");
 
-var _hoisted_383 = {
+var _hoisted_384 = {
   "class": "form-item"
 };
 
-var _hoisted_384 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drums of Forgotten Kings", -1
+var _hoisted_385 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Drums of Forgotten Kings", -1
 /* HOISTED */
 );
 
-var _hoisted_385 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("8% stats");
+var _hoisted_386 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("8% stats");
 
-var _hoisted_386 = {
+var _hoisted_387 = {
   "class": "form-item"
 };
 
-var _hoisted_387 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% damage", -1
+var _hoisted_388 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% damage", -1
 /* HOISTED */
 );
 
-var _hoisted_388 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sanctified Retribution");
+var _hoisted_389 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sanctified Retribution");
 
-var _hoisted_389 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_390 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_390 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ferocious Inspiration");
+var _hoisted_391 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ferocious Inspiration");
 
-var _hoisted_391 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_392 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_392 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Arcane Empowerment");
+var _hoisted_393 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Arcane Empowerment");
 
-var _hoisted_393 = {
+var _hoisted_394 = {
   "class": "form-item"
 };
 
-var _hoisted_394 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "5% spell crit", -1
+var _hoisted_395 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "5% spell crit", -1
 /* HOISTED */
 );
 
-var _hoisted_395 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Moonkin Aura");
+var _hoisted_396 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Moonkin Aura");
 
-var _hoisted_396 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_397 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_397 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Elemental Oath");
+var _hoisted_398 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Elemental Oath");
 
-var _hoisted_398 = {
+var _hoisted_399 = {
   "class": "form-item"
 };
 
-var _hoisted_399 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% haste", -1
+var _hoisted_400 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "3% haste", -1
 /* HOISTED */
 );
 
-var _hoisted_400 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Improved moonkin form");
+var _hoisted_401 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Improved moonkin form");
 
-var _hoisted_401 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_402 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_402 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Swift Retribution");
+var _hoisted_403 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Swift Retribution");
 
-var _hoisted_403 = {
+var _hoisted_404 = {
   "class": "form-item"
 };
 
-var _hoisted_404 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Replenish 1% mana every 5 sec", -1
+var _hoisted_405 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Replenish 1% mana every 5 sec", -1
 /* HOISTED */
 );
 
-var _hoisted_405 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Vampiric Touch");
+var _hoisted_406 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Vampiric Touch");
 
-var _hoisted_406 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_407 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_407 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Judgement of the Wise");
+var _hoisted_408 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Judgement of the Wise");
 
-var _hoisted_408 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_409 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_409 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Hunting Party");
+var _hoisted_410 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Hunting Party");
 
-var _hoisted_410 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_411 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_411 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Improved Soul Leech");
+var _hoisted_412 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Improved Soul Leech");
 
-var _hoisted_412 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_413 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_413 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Enduring Winter");
+var _hoisted_414 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Enduring Winter");
 
-var _hoisted_414 = {
+var _hoisted_415 = {
   "class": "form-item"
 };
 
-var _hoisted_415 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Focus Magic", -1
+var _hoisted_416 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Focus Magic", -1
 /* HOISTED */
 );
 
-var _hoisted_416 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3% spell crit, put on you by another mage.");
+var _hoisted_417 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3% spell crit, put on you by another mage.");
 
-var _hoisted_417 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_418 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_418 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you have Focus Magic talented it will be factored in with permanent uptime after 5 seconds into the fight. ");
+var _hoisted_419 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you have Focus Magic talented it will be factored in with permanent uptime after 5 seconds into the fight. ");
 
-var _hoisted_419 = {
+var _hoisted_420 = {
   key: 4,
   "class": "form-item"
 };
 
-var _hoisted_420 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Heroic Presence", -1
+var _hoisted_421 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Heroic Presence", -1
 /* HOISTED */
 );
 
-var _hoisted_421 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("1% hit from Draenei Racial.");
+var _hoisted_422 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("1% hit from Draenei Racial.");
 
-var _hoisted_422 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_423 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_423 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("This is automatically applied if your race is Draenei");
+var _hoisted_424 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("This is automatically applied if your race is Draenei");
 
-var _hoisted_424 = {
+var _hoisted_425 = {
   "class": "form-item"
 };
 
-var _hoisted_425 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Master of Anatomy (Skinning)", -1
+var _hoisted_426 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Master of Anatomy (Skinning)", -1
 /* HOISTED */
 );
 
-var _hoisted_426 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("40 crit rating");
+var _hoisted_427 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("40 crit rating");
 
-var _hoisted_427 = {
+var _hoisted_428 = {
   "class": "form-item"
 };
 
-var _hoisted_428 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mixology (Alchemy)", -1
+var _hoisted_429 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mixology (Alchemy)", -1
 /* HOISTED */
 );
 
-var _hoisted_429 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bonuses to flask and elixirs.");
+var _hoisted_430 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bonuses to flask and elixirs.");
 
-var _hoisted_430 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_431 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_431 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Flask of the Frostwyrm: +47sp");
+var _hoisted_432 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Flask of the Frostwyrm: +47sp");
 
-var _hoisted_432 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_433 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_433 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Spellpower Elixir: +23sp");
+var _hoisted_434 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Spellpower Elixir: +23sp");
 
-var _hoisted_434 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_435 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_435 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Guru's Elixir: +8 stats");
+var _hoisted_436 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Guru's Elixir: +8 stats");
 
-var _hoisted_436 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_437 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_437 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Accuracy: +20 hit rating");
+var _hoisted_438 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Accuracy: +20 hit rating");
 
-var _hoisted_438 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_439 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_439 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Deadly Strikes: +20 crit rating");
+var _hoisted_440 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Deadly Strikes: +20 crit rating");
 
-var _hoisted_440 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_441 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_441 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Lightning Speed: +20 haste rating");
+var _hoisted_442 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Lightning Speed: +20 haste rating");
 
-var _hoisted_442 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_443 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_443 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Spirit: +20 spirit");
+var _hoisted_444 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Spirit: +20 spirit");
 
-var _hoisted_444 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_445 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_445 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Mighty Mageblood: +10 mp5");
+var _hoisted_446 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Mighty Mageblood: +10 mp5");
 
-var _hoisted_446 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_447 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_447 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Mighty Thoughts: +20 int ");
+var _hoisted_448 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Elixir of Mighty Thoughts: +20 int ");
 
-var _hoisted_448 = {
+var _hoisted_449 = {
   "class": "form-item"
 };
 
-var _hoisted_449 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mana Injectors (Engineering)", -1
+var _hoisted_450 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mana Injectors (Engineering)", -1
 /* HOISTED */
 );
 
-var _hoisted_450 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("25% extra from mana potions");
+var _hoisted_451 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("25% extra from mana potions");
 
-var _hoisted_451 = {
+var _hoisted_452 = {
   "class": "config-consumes"
 };
 
-var _hoisted_452 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Consumes", -1
+var _hoisted_453 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Consumes", -1
 /* HOISTED */
 );
 
-var _hoisted_453 = {
+var _hoisted_454 = {
   key: 0,
   "class": "form-item"
 };
 
-var _hoisted_454 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Flask", -1
+var _hoisted_455 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Flask", -1
 /* HOISTED */
 );
 
-var _hoisted_455 = ["value"];
 var _hoisted_456 = ["value"];
 var _hoisted_457 = ["value"];
-var _hoisted_458 = {
+var _hoisted_458 = ["value"];
+var _hoisted_459 = {
   key: 1,
   "class": "form-item"
 };
 
-var _hoisted_459 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Battle Elixir", -1
+var _hoisted_460 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Battle Elixir", -1
 /* HOISTED */
 );
 
-var _hoisted_460 = ["value"];
 var _hoisted_461 = ["value"];
 var _hoisted_462 = ["value"];
 var _hoisted_463 = ["value"];
 var _hoisted_464 = ["value"];
 var _hoisted_465 = ["value"];
-var _hoisted_466 = {
+var _hoisted_466 = ["value"];
+var _hoisted_467 = {
   key: 2,
   "class": "form-item"
 };
 
-var _hoisted_467 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Guardian Elixir", -1
+var _hoisted_468 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Guardian Elixir", -1
 /* HOISTED */
 );
 
-var _hoisted_468 = ["value"];
 var _hoisted_469 = ["value"];
 var _hoisted_470 = ["value"];
 var _hoisted_471 = ["value"];
 var _hoisted_472 = ["value"];
-var _hoisted_473 = {
+var _hoisted_473 = ["value"];
+var _hoisted_474 = {
   "class": "form-item"
 };
 
-var _hoisted_474 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Food", -1
+var _hoisted_475 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Food", -1
 /* HOISTED */
 );
 
-var _hoisted_475 = ["value"];
 var _hoisted_476 = ["value"];
 var _hoisted_477 = ["value"];
 var _hoisted_478 = ["value"];
 var _hoisted_479 = ["value"];
-var _hoisted_480 = {
+var _hoisted_480 = ["value"];
+var _hoisted_481 = {
   "class": "form-item"
 };
 
-var _hoisted_481 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Potion", -1
+var _hoisted_482 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Potion", -1
 /* HOISTED */
 );
 
-var _hoisted_482 = ["value"];
 var _hoisted_483 = ["value"];
 var _hoisted_484 = ["value"];
 var _hoisted_485 = ["value"];
-var _hoisted_486 = {
+var _hoisted_486 = ["value"];
+var _hoisted_487 = {
   "class": "form-item"
 };
 
-var _hoisted_487 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Conjured", -1
+var _hoisted_488 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Conjured", -1
 /* HOISTED */
 );
 
-var _hoisted_488 = ["value"];
 var _hoisted_489 = ["value"];
-var _hoisted_490 = {
+var _hoisted_490 = ["value"];
+var _hoisted_491 = {
   "class": "config-precombat"
 };
 
-var _hoisted_491 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Pre-combat", -1
+var _hoisted_492 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Pre-combat", -1
 /* HOISTED */
 );
 
-var _hoisted_492 = {
+var _hoisted_493 = {
   "class": "form-item"
 };
 
-var _hoisted_493 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Potion", -1
+var _hoisted_494 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Potion", -1
 /* HOISTED */
 );
 
-var _hoisted_494 = ["value"];
 var _hoisted_495 = ["value"];
 var _hoisted_496 = ["value"];
 var _hoisted_497 = ["value"];
-var _hoisted_498 = {
+var _hoisted_498 = ["value"];
+var _hoisted_499 = {
   "class": "form-item"
 };
 
-var _hoisted_499 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mirror Image", -1
+var _hoisted_500 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Mirror Image", -1
 /* HOISTED */
 );
 
-var _hoisted_500 = {
+var _hoisted_501 = {
   key: 0,
   "class": "form-item"
 };
 
-var _hoisted_501 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Water Elemental", -1
+var _hoisted_502 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Water Elemental", -1
 /* HOISTED */
 );
 
-var _hoisted_502 = {
+var _hoisted_503 = {
   key: 1,
   "class": "form-item"
 };
 
-var _hoisted_503 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Fire Ward + Sapper", -1
+var _hoisted_504 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Fire Ward + Sapper", -1
 /* HOISTED */
 );
 
-var _hoisted_504 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sapper will be popped with Arcane Power if no timing is specified.");
+var _hoisted_505 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Sapper will be popped with Arcane Power if no timing is specified.");
 
-var _hoisted_505 = {
+var _hoisted_506 = {
   "class": "config-cooldowns"
 };
 
-var _hoisted_506 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Cooldowns", -1
+var _hoisted_507 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Cooldowns", -1
 /* HOISTED */
 );
 
-var _hoisted_507 = {
+var _hoisted_508 = {
   "class": "timings"
 };
-var _hoisted_508 = {
+var _hoisted_509 = {
   "class": "items"
 };
 
-var _hoisted_509 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+var _hoisted_510 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "icon"
 }, "CD"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "t"
@@ -31313,44 +32086,44 @@ var _hoisted_509 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_510 = {
+var _hoisted_511 = {
   "class": "icon"
 };
-var _hoisted_511 = ["src"];
-var _hoisted_512 = ["onClick"];
+var _hoisted_512 = ["src"];
+var _hoisted_513 = ["onClick"];
 
-var _hoisted_513 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_514 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_514 = [_hoisted_513];
-var _hoisted_515 = {
+var _hoisted_515 = [_hoisted_514];
+var _hoisted_516 = {
   "class": "t"
 };
-var _hoisted_516 = ["onUpdate:modelValue"];
-var _hoisted_517 = {
+var _hoisted_517 = ["onUpdate:modelValue"];
+var _hoisted_518 = {
   "class": "wait-for-buff"
 };
-var _hoisted_518 = ["onUpdate:modelValue"];
+var _hoisted_519 = ["onUpdate:modelValue"];
 
-var _hoisted_519 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_520 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: 0
 }, "Nothing", -1
 /* HOISTED */
 );
 
-var _hoisted_520 = ["value"];
-var _hoisted_521 = {
+var _hoisted_521 = ["value"];
+var _hoisted_522 = {
   "class": "wait-t"
 };
-var _hoisted_522 = ["onUpdate:modelValue"];
-var _hoisted_523 = {
+var _hoisted_523 = ["onUpdate:modelValue"];
+var _hoisted_524 = {
   "class": "add-timing"
 };
 
-var _hoisted_524 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_525 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "plus"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
@@ -31358,381 +32131,381 @@ var _hoisted_524 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_525 = {
+var _hoisted_526 = {
   "class": "menu"
 };
-var _hoisted_526 = ["onClick"];
-var _hoisted_527 = ["src"];
-var _hoisted_528 = {
+var _hoisted_527 = ["onClick"];
+var _hoisted_528 = ["src"];
+var _hoisted_529 = {
   "class": "config-profiles"
 };
 
-var _hoisted_529 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Profiles", -1
+var _hoisted_530 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Profiles", -1
 /* HOISTED */
 );
 
-var _hoisted_530 = {
+var _hoisted_531 = {
   "class": "profiles"
 };
-var _hoisted_531 = ["onClick"];
-var _hoisted_532 = {
+var _hoisted_532 = ["onClick"];
+var _hoisted_533 = {
   "class": "actions"
 };
-var _hoisted_533 = ["onClick"];
+var _hoisted_534 = ["onClick"];
 
-var _hoisted_534 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_535 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_535 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Move up");
+var _hoisted_536 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Move up");
 
-var _hoisted_536 = ["onClick"];
+var _hoisted_537 = ["onClick"];
 
-var _hoisted_537 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_538 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_538 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Move down");
+var _hoisted_539 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Move down");
 
-var _hoisted_539 = ["onClick"];
+var _hoisted_540 = ["onClick"];
 
-var _hoisted_540 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_541 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_541 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Load items only");
+var _hoisted_542 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Load items only");
 
-var _hoisted_542 = ["onClick"];
+var _hoisted_543 = ["onClick"];
 
-var _hoisted_543 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_544 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_544 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Load config only");
+var _hoisted_545 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Load config only");
 
-var _hoisted_545 = ["onClick"];
+var _hoisted_546 = ["onClick"];
 
-var _hoisted_546 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_547 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_547 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save profile");
+var _hoisted_548 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save profile");
 
-var _hoisted_548 = ["onClick"];
+var _hoisted_549 = ["onClick"];
 
-var _hoisted_549 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_550 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "material-icons"
 }, "", -1
 /* HOISTED */
 );
 
-var _hoisted_550 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete profile");
+var _hoisted_551 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete profile");
 
-var _hoisted_551 = {
+var _hoisted_552 = {
   "class": "new-profile mt-1"
 };
 
-var _hoisted_552 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New profile ");
+var _hoisted_553 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" New profile ");
 
-var _hoisted_553 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save your items and config");
+var _hoisted_554 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Save your items and config");
 
-var _hoisted_554 = {
+var _hoisted_555 = {
   "class": "export-import clearfix mt-2"
 };
-var _hoisted_555 = {
+var _hoisted_556 = {
   key: 0,
   "class": "lightbox small warning"
 };
-var _hoisted_556 = {
+var _hoisted_557 = {
   "class": "inner"
 };
 
-var _hoisted_557 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_558 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "BETA", -1
 /* HOISTED */
 );
 
-var _hoisted_558 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_559 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text"
 }, "This sim is under construction. Results may not be accurate as we discover more things in the Wotlk Beta.", -1
 /* HOISTED */
 );
 
-var _hoisted_559 = {
+var _hoisted_560 = {
   key: 1,
   "class": "lightbox"
 };
-var _hoisted_560 = {
+var _hoisted_561 = {
   "class": "inner"
 };
 
-var _hoisted_561 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_562 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "Export", -1
 /* HOISTED */
 );
 
-var _hoisted_562 = {
-  "class": "form-item"
-};
 var _hoisted_563 = {
   "class": "form-item"
 };
+var _hoisted_564 = {
+  "class": "form-item"
+};
 
-var _hoisted_564 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_565 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_565 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include items", -1
+var _hoisted_566 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include items", -1
 /* HOISTED */
 );
 
-var _hoisted_566 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_567 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_567 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include config", -1
+var _hoisted_568 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include config", -1
 /* HOISTED */
 );
 
-var _hoisted_568 = {
+var _hoisted_569 = {
   key: 2,
   "class": "lightbox"
 };
-var _hoisted_569 = {
+var _hoisted_570 = {
   "class": "inner"
 };
 
-var _hoisted_570 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_571 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "Import", -1
 /* HOISTED */
 );
 
-var _hoisted_571 = {
-  "class": "form-item"
-};
 var _hoisted_572 = {
   "class": "form-item"
 };
-var _hoisted_573 = ["disabled"];
+var _hoisted_573 = {
+  "class": "form-item"
+};
+var _hoisted_574 = ["disabled"];
 
-var _hoisted_574 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_575 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_575 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include items", -1
+var _hoisted_576 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include items", -1
 /* HOISTED */
 );
 
-var _hoisted_576 = ["disabled"];
+var _hoisted_577 = ["disabled"];
 
-var _hoisted_577 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
+var _hoisted_578 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)();
 
-var _hoisted_578 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include config", -1
+var _hoisted_579 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Include config", -1
 /* HOISTED */
 );
 
-var _hoisted_579 = {
+var _hoisted_580 = {
   key: 3,
   "class": "lightbox"
 };
-var _hoisted_580 = {
+var _hoisted_581 = {
   "class": "inner"
 };
 
-var _hoisted_581 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_582 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "Equipped items", -1
 /* HOISTED */
 );
 
-var _hoisted_582 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Slot"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Item"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Enchant"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Gems")])], -1
+var _hoisted_583 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Slot"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Item"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Enchant"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, "Gems")])], -1
 /* HOISTED */
 );
 
-var _hoisted_583 = {
+var _hoisted_584 = {
   "class": "equipped-item"
 };
-var _hoisted_584 = ["href"];
 var _hoisted_585 = ["href"];
-var _hoisted_586 = {
+var _hoisted_586 = ["href"];
+var _hoisted_587 = {
   key: 0
 };
-var _hoisted_587 = ["href"];
-var _hoisted_588 = {
+var _hoisted_588 = ["href"];
+var _hoisted_589 = {
   "class": "mt-2"
 };
-var _hoisted_589 = {
+var _hoisted_590 = {
   key: 4,
   "class": "lightbox small"
 };
-var _hoisted_590 = {
+var _hoisted_591 = {
   "class": "inner"
 };
 
-var _hoisted_591 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_592 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "Add custom item", -1
 /* HOISTED */
 );
 
-var _hoisted_592 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_593 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "description"
 }, "Custom items will only be added for your browser.", -1
 /* HOISTED */
 );
 
-var _hoisted_593 = {
+var _hoisted_594 = {
   "class": "form"
 };
-var _hoisted_594 = {
+var _hoisted_595 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_595 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ID ");
+var _hoisted_596 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ID ");
 
-var _hoisted_596 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Leave empty to generate a random ID");
+var _hoisted_597 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Leave empty to generate a random ID");
 
-var _hoisted_597 = {
+var _hoisted_598 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_598 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Name", -1
+var _hoisted_599 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Name", -1
 /* HOISTED */
 );
 
-var _hoisted_599 = {
+var _hoisted_600 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_600 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Slot", -1
+var _hoisted_601 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Slot", -1
 /* HOISTED */
 );
 
-var _hoisted_601 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_602 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: null
 }, "- Choose -", -1
 /* HOISTED */
 );
 
-var _hoisted_602 = ["value"];
-var _hoisted_603 = {
+var _hoisted_603 = ["value"];
+var _hoisted_604 = {
   key: 0,
   "class": "form-item form-row"
 };
 
-var _hoisted_604 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Twohanded", -1
+var _hoisted_605 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Twohanded", -1
 /* HOISTED */
 );
 
-var _hoisted_605 = {
+var _hoisted_606 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_606 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Quality", -1
+var _hoisted_607 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Quality", -1
 /* HOISTED */
 );
 
-var _hoisted_607 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_608 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "epic"
 }, "Epic", -1
 /* HOISTED */
 );
 
-var _hoisted_608 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_609 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "rare"
 }, "Rare", -1
 /* HOISTED */
 );
 
-var _hoisted_609 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_610 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "uncommon"
 }, "Uncommon", -1
 /* HOISTED */
 );
 
-var _hoisted_610 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_611 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "common"
 }, "Common", -1
 /* HOISTED */
 );
 
-var _hoisted_611 = [_hoisted_607, _hoisted_608, _hoisted_609, _hoisted_610];
-var _hoisted_612 = {
+var _hoisted_612 = [_hoisted_608, _hoisted_609, _hoisted_610, _hoisted_611];
+var _hoisted_613 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_613 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Intellect", -1
+var _hoisted_614 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Intellect", -1
 /* HOISTED */
 );
 
-var _hoisted_614 = {
+var _hoisted_615 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_615 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spirit", -1
+var _hoisted_616 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spirit", -1
 /* HOISTED */
 );
 
-var _hoisted_616 = {
+var _hoisted_617 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_617 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spell Power", -1
+var _hoisted_618 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Spell Power", -1
 /* HOISTED */
 );
 
-var _hoisted_618 = {
+var _hoisted_619 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_619 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Crit rating", -1
+var _hoisted_620 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Crit rating", -1
 /* HOISTED */
 );
 
-var _hoisted_620 = {
+var _hoisted_621 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_621 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Hit rating", -1
+var _hoisted_622 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Hit rating", -1
 /* HOISTED */
 );
 
-var _hoisted_622 = {
+var _hoisted_623 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_623 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Haste rating", -1
+var _hoisted_624 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Haste rating", -1
 /* HOISTED */
 );
 
-var _hoisted_624 = {
+var _hoisted_625 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_625 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Mp5", -1
+var _hoisted_626 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Mp5", -1
 /* HOISTED */
 );
 
-var _hoisted_626 = {
+var _hoisted_627 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_627 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of sockets", -1
+var _hoisted_628 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of sockets", -1
 /* HOISTED */
 );
 
-var _hoisted_628 = {
+var _hoisted_629 = {
   key: 0,
   "class": "mt-2 text-error"
 };
-var _hoisted_629 = {
+var _hoisted_630 = {
   "class": "mt-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -32220,7 +32993,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[32] || (_cache[32] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "phase"
+    name: "ilvl",
+    order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_112];
@@ -32235,8 +33009,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[33] || (_cache[33] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "sockets",
-    order: "desc"
+    name: "phase"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_113];
@@ -32251,7 +33024,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[34] || (_cache[34] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "sp",
+    name: "sockets",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32267,7 +33040,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[35] || (_cache[35] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "crit",
+    name: "sp",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32283,7 +33056,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[36] || (_cache[36] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "hit",
+    name: "crit",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32299,7 +33072,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[37] || (_cache[37] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "haste",
+    name: "hit",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32315,7 +33088,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[38] || (_cache[38] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "int",
+    name: "haste",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32331,7 +33104,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[39] || (_cache[39] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "spi",
+    name: "int",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -32347,11 +33120,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[40] || (_cache[40] = function ($event) {
       return _ctx.item_sort = $event;
     }),
-    name: "mp5",
+    name: "spi",
     order: "desc"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_120];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sort_link, {
+    modelValue: _ctx.item_sort,
+    "onUpdate:modelValue": _cache[41] || (_cache[41] = function ($event) {
+      return _ctx.item_sort = $event;
+    }),
+    name: "mp5",
+    order: "desc"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_121];
     }),
     _: 1
     /* STABLE */
@@ -32365,7 +33154,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.equipToggle(_ctx.active_slot, item);
       },
       key: item.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_122, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_123, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["compare", [$options.isComparing(item) ? 'active' : '']]),
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
         return $options.compareItem(item);
@@ -32374,14 +33163,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       icon: "e915"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_124];
+        return [_hoisted_125];
       }),
       _: 1
       /* STABLE */
 
     })], 10
     /* CLASS, PROPS */
-    , _hoisted_123)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_125, [_ctx.$get(item, 'custom') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    , _hoisted_124)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_126, [_ctx.$get(item, 'custom') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: 0,
       "class": "delete",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -32391,30 +33180,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       icon: "e872"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_127];
+        return [_hoisted_128];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_126)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_128, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    , _hoisted_127)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_129, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $options.itemUrl(item),
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['quality-' + _ctx.$get(item, 'q', 'epic')]),
       target: "_blank",
-      onClick: _cache[41] || (_cache[41] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+      onClick: _cache[42] || (_cache[42] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 11
     /* TEXT, CLASS, PROPS */
-    , _hoisted_129), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    , _hoisted_130), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": "link",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
         return $options.openItem(item);
       }, ["stop"])
-    }, _hoisted_132, 8
+    }, _hoisted_133, 8
     /* PROPS */
-    , _hoisted_130)]), $options.hasComparisons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_133, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.comparisonDps(item)), 1
+    , _hoisted_131)]), $options.hasComparisons ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_134, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.comparisonDps(item)), 1
     /* TEXT */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "phase", 1)), 1
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "ilvl", "")), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "phase", 1)), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [item.sockets ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 0
@@ -32447,7 +33238,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_121);
+    , _hoisted_122);
   }), 128
   /* KEYED_FRAGMENT */
   )), _ctx.active_slot == 'quicksets' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -32458,14 +33249,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $options.quickset(set);
       }
-    }, [_hoisted_135, _hoisted_136, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(set.title), 1
+    }, [_hoisted_136, _hoisted_137, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(set.title), 1
     /* TEXT */
-    ), _hoisted_137, _hoisted_138, _hoisted_139, _hoisted_140, _hoisted_141, _hoisted_142, _hoisted_143], 8
+    ), _hoisted_138, _hoisted_139, _hoisted_140, _hoisted_141, _hoisted_142, _hoisted_143, _hoisted_144], 8
     /* PROPS */
-    , _hoisted_134);
+    , _hoisted_135);
   }), 256
   /* UNKEYED_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), $options.activeEnchants.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_144, [_hoisted_145, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeEnchants, function (item) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), $options.activeEnchants.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_145, [_hoisted_146, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeEnchants, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["item", [$options.isEnchanted(_ctx.active_slot, item.id) ? 'active' : '']]),
       key: item.id,
@@ -32476,10 +33267,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       href: $options.spellUrl(item),
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['quality-' + _ctx.$get(item, 'q', 'uncommon')]),
       target: "_blank",
-      onClick: _cache[42] || (_cache[42] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"]))
+      onClick: _cache[43] || (_cache[43] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"]))
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 11
     /* TEXT, CLASS, PROPS */
-    , _hoisted_147)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "sp", "")), 1
+    , _hoisted_148)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "sp", "")), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$get(item, "crit", "")), 1
     /* TEXT */
@@ -32493,13 +33284,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_146);
+    , _hoisted_147);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_148, ['hands', 'wrist'].indexOf(_ctx.active_slot) != -1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_149, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_ctx.active_slot == 'hands' ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_149, ['hands', 'wrist'].indexOf(_ctx.active_slot) != -1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_150, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_ctx.active_slot == 'hands' ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "checkbox",
-    "onUpdate:modelValue": _cache[43] || (_cache[43] = function ($event) {
+    "onUpdate:modelValue": _cache[44] || (_cache[44] = function ($event) {
       return _ctx.config.hands_socket = $event;
     })
   }, null, 512
@@ -32507,44 +33298,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.hands_socket]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_slot == 'wrist' ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 1,
     type: "checkbox",
-    "onUpdate:modelValue": _cache[44] || (_cache[44] = function ($event) {
+    "onUpdate:modelValue": _cache[45] || (_cache[45] = function ($event) {
       return _ctx.config.wrist_socket = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.wrist_socket]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_150])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_slot == 'waist' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_151, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.wrist_socket]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_151])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_slot == 'waist' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[45] || (_cache[45] = function ($event) {
+    "onUpdate:modelValue": _cache[46] || (_cache[46] = function ($event) {
       return _ctx.config.waist_socket = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.waist_socket]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_152, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.waist_socket]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_153, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $options.itemUrl(41611),
     target: "_blank"
   }, "Eternal Belt Buckle", 8
   /* PROPS */
-  , _hoisted_153)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.activeSockets.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_154, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_154)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.activeSockets.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_155, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[46] || (_cache[46] = function ($event) {
+    "onUpdate:modelValue": _cache[47] || (_cache[47] = function ($event) {
       return _ctx.search_gem = $event;
     }),
     placeholder: "Search..."
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search_gem]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.activeSockets.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_155, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeSockets, function (socket, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_156, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_157, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_158, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search_gem]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.activeSockets.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_156, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeSockets, function (socket, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_157, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_158, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_159, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["socket-color", ['color-' + socket]])
     }, null, 2
     /* CLASS */
-    )]), _hoisted_159, _hoisted_160, socket == 'm' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", _hoisted_161, "Requires")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", _hoisted_162, "Unique"))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeGems(index), function (gem) {
+    )]), _hoisted_160, _hoisted_161, socket == 'm' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", _hoisted_162, "Requires")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", _hoisted_163, "Unique"))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeGems(index), function (gem) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$options.isSocketed(_ctx.active_slot, gem.id, index) ? 'active' : '']),
         onClick: function onClick($event) {
           return $options.setSocket(_ctx.active_slot, gem, index);
         },
         key: gem.id
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_164, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_165, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["socket-color", ['color-' + gem.color]])
       }, null, 2
       /* CLASS */
@@ -32552,12 +33343,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         href: $options.itemUrl(gem),
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["gem-color", ['color-' + gem.color]]),
         target: "_blank",
-        onClick: _cache[47] || (_cache[47] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"]))
+        onClick: _cache[48] || (_cache[48] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"]))
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(gem.title), 11
       /* TEXT, CLASS, PROPS */
-      , _hoisted_165)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatStats(gem)), 1
+      , _hoisted_166)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatStats(gem)), 1
       /* TEXT */
-      ), socket == 'm' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_166, [gem.req ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      ), socket == 'm' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_167, [gem.req ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 0
       }, [$options.metaGemHasCustomReq(gem) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 0
@@ -32577,69 +33368,69 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* UNKEYED_FRAGMENT */
       ))], 64
       /* STABLE_FRAGMENT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_167, [gem.unique ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_168, [gem.unique ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 0
-      }, [_hoisted_168], 64
+      }, [_hoisted_169], 64
       /* STABLE_FRAGMENT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]))], 10
       /* CLASS, PROPS */
-      , _hoisted_163);
+      , _hoisted_164);
     }), 128
     /* KEYED_FRAGMENT */
     ))])])]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'log' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_169, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_170, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_171, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_172, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'log' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_170, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_171, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_172, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_173, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[48] || (_cache[48] = function ($event) {
+    "onUpdate:modelValue": _cache[49] || (_cache[49] = function ($event) {
       return _ctx.log_filter[1] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[1]]]), _hoisted_173, _hoisted_174])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_175, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[1]]]), _hoisted_174, _hoisted_175])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_176, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[49] || (_cache[49] = function ($event) {
+    "onUpdate:modelValue": _cache[50] || (_cache[50] = function ($event) {
       return _ctx.log_filter[2] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[2]]]), _hoisted_176, _hoisted_177])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_178, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[2]]]), _hoisted_177, _hoisted_178])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_179, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[50] || (_cache[50] = function ($event) {
+    "onUpdate:modelValue": _cache[51] || (_cache[51] = function ($event) {
       return _ctx.log_filter[3] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[3]]]), _hoisted_179, _hoisted_180])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_181, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[3]]]), _hoisted_180, _hoisted_181])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_182, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[51] || (_cache[51] = function ($event) {
+    "onUpdate:modelValue": _cache[52] || (_cache[52] = function ($event) {
       return _ctx.log_filter[4] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[4]]]), _hoisted_182, _hoisted_183])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_184, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[4]]]), _hoisted_183, _hoisted_184])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_185, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[52] || (_cache[52] = function ($event) {
+    "onUpdate:modelValue": _cache[53] || (_cache[53] = function ($event) {
       return _ctx.log_filter[5] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[5]]]), _hoisted_185, _hoisted_186])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_187, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[5]]]), _hoisted_186, _hoisted_187])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_188, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[53] || (_cache[53] = function ($event) {
+    "onUpdate:modelValue": _cache[54] || (_cache[54] = function ($event) {
       return _ctx.log_filter[8] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[8]]]), _hoisted_188, _hoisted_189])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_190, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.log_filter[8]]]), _hoisted_189, _hoisted_190])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_191, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[54] || (_cache[54] = function ($event) {
+    "onUpdate:modelValue": _cache[55] || (_cache[55] = function ($event) {
       return _ctx.search_log = $event;
     }),
     placeholder: "Search..."
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search_log]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_191, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeLog, function (log) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.search_log]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_192, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.activeLog, function (log) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['type-' + log.type])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatTime(log.t)), 1
@@ -32655,12 +33446,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'timeline' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_192, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_timeline, {
+  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'timeline' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_193, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_timeline, {
     ref: "timeline",
     result: _ctx.result
   }, null, 8
   /* PROPS */
-  , ["result"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'spells' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_193, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_194, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_195, [_hoisted_196, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.result.spells, function (spell) {
+  , ["result"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'spells' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_194, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_195, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_196, [_hoisted_197, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.result.spells, function (spell) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(spell.source), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(spell.name), 1
@@ -32684,931 +33475,931 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'histogram' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_197, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_histogram, {
+  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'histogram' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_198, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_histogram, {
     data: _ctx.result.histogram
   }, null, 8
   /* PROPS */
-  , ["data"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'config' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_198, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_199, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_200, [_hoisted_201, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_202, [_hoisted_203, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  , ["data"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'config' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_199, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_200, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_201, [_hoisted_202, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_203, [_hoisted_204, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
-    onClick: _cache[55] || (_cache[55] = function ($event) {
+    onClick: _cache[56] || (_cache[56] = function ($event) {
       return $options.setSpec('arcane');
     })
   }, "Arcane"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
-    onClick: _cache[56] || (_cache[56] = function ($event) {
+    onClick: _cache[57] || (_cache[57] = function ($event) {
       return $options.setSpec('fire');
     })
   }, "Fire"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
-    onClick: _cache[57] || (_cache[57] = function ($event) {
+    onClick: _cache[58] || (_cache[58] = function ($event) {
       return $options.setSpec('frost');
     })
   }, "Frost"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
-    onClick: _cache[58] || (_cache[58] = function ($event) {
+    onClick: _cache[59] || (_cache[59] = function ($event) {
       return $options.setSpec('ffb');
     })
-  }, "FFB")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_204, [_hoisted_205, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[59] || (_cache[59] = function ($event) {
+  }, "FFB")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_205, [_hoisted_206, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[60] || (_cache[60] = function ($event) {
       return _ctx.config.race = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_BLOOD_ELF
   }, "Blood elf", 8
   /* PROPS */
-  , _hoisted_206), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_207), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_DRAENEI
   }, "Draenei", 8
   /* PROPS */
-  , _hoisted_207), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_208), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_GNOME
   }, "Gnome", 8
   /* PROPS */
-  , _hoisted_208), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_209), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_HUMAN
   }, "Human", 8
   /* PROPS */
-  , _hoisted_209), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_210), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_TROLL
   }, "Troll", 8
   /* PROPS */
-  , _hoisted_210), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_211), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.races.RACE_UNDEAD
   }, "Undead", 8
   /* PROPS */
-  , _hoisted_211)], 512
+  , _hoisted_212)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.race]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_212, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_213, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.race]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_213, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_214, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: _ctx.config.build,
     target: "_blank"
   }, "link", 8
   /* PROPS */
-  , _hoisted_214), _hoisted_215]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_215), _hoisted_216]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[60] || (_cache[60] = function ($event) {
+    "onUpdate:modelValue": _cache[61] || (_cache[61] = function ($event) {
       return _ctx.config.build = $event;
     }),
-    onInput: _cache[61] || (_cache[61] = function () {
+    onInput: _cache[62] || (_cache[62] = function () {
       return $options.onBuildInput && $options.onBuildInput.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.build]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_216, [_hoisted_217, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.build]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_217, [_hoisted_218, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[62] || (_cache[62] = function ($event) {
+    "onUpdate:modelValue": _cache[63] || (_cache[63] = function ($event) {
       return _ctx.config.iterations = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.iterations, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_218, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_219, [_hoisted_220, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_219, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_220, [_hoisted_221, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[63] || (_cache[63] = function ($event) {
+    "onUpdate:modelValue": _cache[64] || (_cache[64] = function ($event) {
       return _ctx.config.duration = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.duration, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_221, [_hoisted_222, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_222, [_hoisted_223, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[64] || (_cache[64] = function ($event) {
+    "onUpdate:modelValue": _cache[65] || (_cache[65] = function ($event) {
       return _ctx.config.duration_variance = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.duration_variance, void 0, {
     number: true
-  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_223, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_224, [_hoisted_225, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[65] || (_cache[65] = function ($event) {
+  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_224, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_225, [_hoisted_226, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[66] || (_cache[66] = function ($event) {
       return _ctx.config.target_level = $event;
     })
-  }, _hoisted_230, 512
+  }, _hoisted_231, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.target_level]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_231, [_hoisted_232, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.target_level]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_232, [_hoisted_233, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[66] || (_cache[66] = function ($event) {
+    "onUpdate:modelValue": _cache[67] || (_cache[67] = function ($event) {
       return _ctx.config.target_resistance = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.target_resistance, void 0, {
     number: true
-  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_233, [_hoisted_234, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_234, [_hoisted_235, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[67] || (_cache[67] = function ($event) {
+    "onUpdate:modelValue": _cache[68] || (_cache[68] = function ($event) {
       return _ctx.config.targets = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.targets, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_235, [_hoisted_236, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_236, [_hoisted_237, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[68] || (_cache[68] = function ($event) {
+    "onUpdate:modelValue": _cache[69] || (_cache[69] = function ($event) {
       return _ctx.config.spell_travel_time = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.spell_travel_time, void 0, {
     number: true
-  }]])]),  false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_240, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_241, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  }]])]),  false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_241, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_242, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_242, _hoisted_243, _hoisted_244, _hoisted_245, _hoisted_246];
+      return [_hoisted_243, _hoisted_244, _hoisted_245, _hoisted_246, _hoisted_247];
     }),
     _: 1
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[70] || (_cache[70] = function ($event) {
+    "onUpdate:modelValue": _cache[71] || (_cache[71] = function ($event) {
       return _ctx.config.rng_seed = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.rng_seed, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_247, [_hoisted_248, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    onInput: _cache[71] || (_cache[71] = function ($event) {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_248, [_hoisted_249, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    onInput: _cache[72] || (_cache[72] = function ($event) {
       return $options.onDesignInput($event);
     })
-  }, _hoisted_252, 32
+  }, _hoisted_253, 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_253, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_254, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[72] || (_cache[72] = function ($event) {
+    "onUpdate:modelValue": _cache[73] || (_cache[73] = function ($event) {
       return _ctx.config.avg_spell_dmg = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.avg_spell_dmg]]), _hoisted_254, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.avg_spell_dmg]]), _hoisted_255, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_255, _hoisted_256, _hoisted_257];
+      return [_hoisted_256, _hoisted_257, _hoisted_258];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_258, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_259, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[73] || (_cache[73] = function ($event) {
+    "onUpdate:modelValue": _cache[74] || (_cache[74] = function ($event) {
       return _ctx.config.additional_data = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.additional_data]]), _hoisted_259, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.additional_data]]), _hoisted_260, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_260, _hoisted_261, _hoisted_262];
+      return [_hoisted_261, _hoisted_262, _hoisted_263];
     }),
     _: 1
     /* STABLE */
 
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_263, [_hoisted_264, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_265, [_hoisted_266, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[74] || (_cache[74] = function ($event) {
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_264, [_hoisted_265, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_266, [_hoisted_267, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[75] || (_cache[75] = function ($event) {
       return _ctx.config.rotation = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_ST_FROSTFIRE
   }, "Frostfire Bolt", 8
   /* PROPS */
-  , _hoisted_267), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_268), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_ST_AB_AM
   }, "Arcane", 8
   /* PROPS */
-  , _hoisted_268), _ctx.config.talents.arcane_barrage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+  , _hoisted_269), _ctx.config.talents.arcane_barrage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
     key: 0,
     value: _ctx.rotations.ROTATION_ST_AB_AM_BARRAGE
   }, "Arcane + Barrage", 8
   /* PROPS */
-  , _hoisted_269)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_270)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_ST_FIRE
   }, "Fire", 8
   /* PROPS */
-  , _hoisted_270), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_271), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_ST_FROST
   }, "Frost", 8
   /* PROPS */
-  , _hoisted_271), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_272), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_AOE_AE
   }, "Arcane Explosion", 8
   /* PROPS */
-  , _hoisted_272), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_273), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_AOE_BLIZZ
   }, "Blizzard", 8
   /* PROPS */
-  , _hoisted_273), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_274), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.rotations.ROTATION_AOE_BLIZZ_FS
   }, "Flamestrike > Blizzard", 8
   /* PROPS */
-  , _hoisted_274)], 512
+  , _hoisted_275)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.rotation]])]), _ctx.config.talents.imp_scorch ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_275, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.rotation]])]), _ctx.config.talents.imp_scorch ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_276, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[75] || (_cache[75] = function ($event) {
+    "onUpdate:modelValue": _cache[76] || (_cache[76] = function ($event) {
       return _ctx.config.maintain_imp_scorch = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.maintain_imp_scorch]]), _hoisted_276, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.maintain_imp_scorch]]), _hoisted_277, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_277];
+      return [_hoisted_278];
     }),
     _: 1
     /* STABLE */
 
   })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), [_ctx.rotations.ROTATION_ST_AB_AM, _ctx.rotations.ROTATION_ST_AB_AM_BARRAGE].indexOf(_ctx.config.rotation) != -1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_278, [_hoisted_279, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_279, [_hoisted_280, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[76] || (_cache[76] = function ($event) {
+    "onUpdate:modelValue": _cache[77] || (_cache[77] = function ($event) {
       return _ctx.config.rot_ab3_mana = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.rot_ab3_mana, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_280, [_hoisted_281, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_281, [_hoisted_282, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[77] || (_cache[77] = function ($event) {
+    "onUpdate:modelValue": _cache[78] || (_cache[78] = function ($event) {
       return _ctx.config.rot_ab_no_mb_mana = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.rot_ab_no_mb_mana, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_282, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_283, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[78] || (_cache[78] = function ($event) {
+    "onUpdate:modelValue": _cache[79] || (_cache[79] = function ($event) {
       return _ctx.config.rot_ab_ap = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.rot_ab_ap]]), _hoisted_283])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.rot_ab_ap]]), _hoisted_284])])], 64
   /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.config.rotation == _ctx.rotations.ROTATION_ST_FROST ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_284, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.config.rotation == _ctx.rotations.ROTATION_ST_FROST ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_285, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[79] || (_cache[79] = function ($event) {
+    "onUpdate:modelValue": _cache[80] || (_cache[80] = function ($event) {
       return _ctx.config.rot_ice_lance = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.rot_ice_lance]]), _hoisted_285])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_286, [_hoisted_287, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_288, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.rot_ice_lance]]), _hoisted_286])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_287, [_hoisted_288, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_289, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[80] || (_cache[80] = function ($event) {
+    "onUpdate:modelValue": _cache[81] || (_cache[81] = function ($event) {
       return _ctx.config.debuff_crit = $event;
     }),
     disabled: _ctx.config.totem_of_wrath
   }, null, 8
   /* PROPS */
-  , _hoisted_289), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_crit]]), _hoisted_290, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  , _hoisted_290), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_crit]]), _hoisted_291, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_291, _hoisted_292, _hoisted_293, _hoisted_294, _hoisted_295, _hoisted_296, _hoisted_297, _hoisted_298];
+      return [_hoisted_292, _hoisted_293, _hoisted_294, _hoisted_295, _hoisted_296, _hoisted_297, _hoisted_298, _hoisted_299];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_299, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_300, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[81] || (_cache[81] = function ($event) {
+    "onUpdate:modelValue": _cache[82] || (_cache[82] = function ($event) {
       return _ctx.config.debuff_spell_crit = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_crit]]), _hoisted_300, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_crit]]), _hoisted_301, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_301, _hoisted_302, _hoisted_303, _hoisted_304, _hoisted_305, _hoisted_306, _hoisted_307, _hoisted_308];
+      return [_hoisted_302, _hoisted_303, _hoisted_304, _hoisted_305, _hoisted_306, _hoisted_307, _hoisted_308, _hoisted_309];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_309, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_310, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[82] || (_cache[82] = function ($event) {
+    "onUpdate:modelValue": _cache[83] || (_cache[83] = function ($event) {
       return _ctx.config.debuff_spell_hit = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_hit]]), _hoisted_310, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_hit]]), _hoisted_311, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_311, _hoisted_312, _hoisted_313];
+      return [_hoisted_312, _hoisted_313, _hoisted_314];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_314, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_315, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[83] || (_cache[83] = function ($event) {
+    "onUpdate:modelValue": _cache[84] || (_cache[84] = function ($event) {
       return _ctx.config.debuff_spell_dmg = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_dmg]]), _hoisted_315, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.debuff_spell_dmg]]), _hoisted_316, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_316, _hoisted_317, _hoisted_318, _hoisted_319, _hoisted_320];
+      return [_hoisted_317, _hoisted_318, _hoisted_319, _hoisted_320, _hoisted_321];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_321, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_322, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[84] || (_cache[84] = function ($event) {
+    "onUpdate:modelValue": _cache[85] || (_cache[85] = function ($event) {
       return _ctx.config.judgement_of_wisdom = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.judgement_of_wisdom]]), _hoisted_322, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.judgement_of_wisdom]]), _hoisted_323, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_323];
+      return [_hoisted_324];
     }),
     _: 1
     /* STABLE */
 
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_324, [_hoisted_325, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_326, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_325, [_hoisted_326, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_327, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[85] || (_cache[85] = function ($event) {
+    "onUpdate:modelValue": _cache[86] || (_cache[86] = function ($event) {
       return _ctx.config.mage_armor = $event;
     }),
-    onInput: _cache[86] || (_cache[86] = function ($event) {
+    onInput: _cache[87] || (_cache[87] = function ($event) {
       return $options.dontStack($event, 'molten_armor');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mage_armor]]), _hoisted_327, _hoisted_328])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_329, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mage_armor]]), _hoisted_328, _hoisted_329])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_330, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[87] || (_cache[87] = function ($event) {
+    "onUpdate:modelValue": _cache[88] || (_cache[88] = function ($event) {
       return _ctx.config.molten_armor = $event;
     }),
-    onInput: _cache[88] || (_cache[88] = function ($event) {
+    onInput: _cache[89] || (_cache[89] = function ($event) {
       return $options.dontStack($event, 'mage_armor');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.molten_armor]]), _hoisted_330, _hoisted_331])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_332, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_333, _hoisted_334, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.molten_armor]]), _hoisted_331, _hoisted_332])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_333, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_334, _hoisted_335, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_335];
+      return [_hoisted_336];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_336, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_337, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[89] || (_cache[89] = function ($event) {
+    "onUpdate:modelValue": _cache[90] || (_cache[90] = function ($event) {
       return _ctx.config.divine_spirit = $event;
     }),
-    onInput: _cache[90] || (_cache[90] = function ($event) {
+    onInput: _cache[91] || (_cache[91] = function ($event) {
       return $options.dontStack($event, 'fel_intelligence');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.divine_spirit]]), _hoisted_337, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.divine_spirit]]), _hoisted_338, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_338];
+      return [_hoisted_339];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_339, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_340, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[91] || (_cache[91] = function ($event) {
+    "onUpdate:modelValue": _cache[92] || (_cache[92] = function ($event) {
       return _ctx.config.fel_intelligence = $event;
     }),
-    onInput: _cache[92] || (_cache[92] = function ($event) {
+    onInput: _cache[93] || (_cache[93] = function ($event) {
       return $options.dontStack($event, 'divine_spirit');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.fel_intelligence]]), _hoisted_340, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.fel_intelligence]]), _hoisted_341, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_341, _hoisted_342, _hoisted_343];
+      return [_hoisted_342, _hoisted_343, _hoisted_344];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_344, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_345, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[93] || (_cache[93] = function ($event) {
+    "onUpdate:modelValue": _cache[94] || (_cache[94] = function ($event) {
       return _ctx.config.mark_of_the_wild = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mark_of_the_wild]]), _hoisted_345, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mark_of_the_wild]]), _hoisted_346, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_346];
+      return [_hoisted_347];
     }),
     _: 1
     /* STABLE */
 
-  })])]), _ctx.config.mark_of_the_wild ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_347, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), _ctx.config.mark_of_the_wild ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_348, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[94] || (_cache[94] = function ($event) {
+    "onUpdate:modelValue": _cache[95] || (_cache[95] = function ($event) {
       return _ctx.config.imp_mark_of_the_wild = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.imp_mark_of_the_wild]]), _hoisted_348, _hoisted_349, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.imp_mark_of_the_wild]]), _hoisted_349, _hoisted_350, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_350];
+      return [_hoisted_351];
     }),
     _: 1
     /* STABLE */
 
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_351, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_352, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[95] || (_cache[95] = function ($event) {
+    "onUpdate:modelValue": _cache[96] || (_cache[96] = function ($event) {
       return _ctx.config.totem_of_wrath = $event;
     }),
-    onInput: _cache[96] || (_cache[96] = function ($event) {
+    onInput: _cache[97] || (_cache[97] = function ($event) {
       _ctx.config.debuff_crit = $event.target.checked;
       $options.dontStack($event, 'flametongue');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.totem_of_wrath]]), _hoisted_352, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.totem_of_wrath]]), _hoisted_353, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_353];
+      return [_hoisted_354];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_354, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_355, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[97] || (_cache[97] = function ($event) {
+    "onUpdate:modelValue": _cache[98] || (_cache[98] = function ($event) {
       return _ctx.config.flametongue = $event;
     }),
-    onInput: _cache[98] || (_cache[98] = function ($event) {
+    onInput: _cache[99] || (_cache[99] = function ($event) {
       return $options.dontStack($event, 'totem_of_wrath');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.flametongue]]), _hoisted_355, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.flametongue]]), _hoisted_356, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_356];
+      return [_hoisted_357];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_357, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_358, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[99] || (_cache[99] = function ($event) {
+    "onUpdate:modelValue": _cache[100] || (_cache[100] = function ($event) {
       return _ctx.config.demonic_pact = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.demonic_pact]]), _hoisted_358, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.demonic_pact]]), _hoisted_359, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_359];
+      return [_hoisted_360];
     }),
     _: 1
     /* STABLE */
 
-  })])]), _ctx.config.demonic_pact ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_360, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_361, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  })])]), _ctx.config.demonic_pact ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_361, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_362, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_362];
+      return [_hoisted_363];
     }),
     _: 1
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[100] || (_cache[100] = function ($event) {
+    "onUpdate:modelValue": _cache[101] || (_cache[101] = function ($event) {
       return _ctx.config.demonic_pact_bonus = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.demonic_pact_bonus, void 0, {
     number: true
-  }]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_363, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_364, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[101] || (_cache[101] = function ($event) {
+    "onUpdate:modelValue": _cache[102] || (_cache[102] = function ($event) {
       return _ctx.config.buff_spell_haste = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_spell_haste]]), _hoisted_364, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_spell_haste]]), _hoisted_365, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_365];
+      return [_hoisted_366];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_366, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_367, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[102] || (_cache[102] = function ($event) {
+    "onUpdate:modelValue": _cache[103] || (_cache[103] = function ($event) {
       return _ctx.config.mana_spring = $event;
     }),
-    onInput: _cache[103] || (_cache[103] = function ($event) {
+    onInput: _cache[104] || (_cache[104] = function ($event) {
       return $options.dontStack($event, 'blessing_of_wisdom');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mana_spring]]), _hoisted_367, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mana_spring]]), _hoisted_368, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_368];
+      return [_hoisted_369];
     }),
     _: 1
     /* STABLE */
 
-  })])]), _ctx.config.mana_spring ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_369, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), _ctx.config.mana_spring ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_370, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[104] || (_cache[104] = function ($event) {
+    "onUpdate:modelValue": _cache[105] || (_cache[105] = function ($event) {
       return _ctx.config.restorative_totems = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.restorative_totems]]), _hoisted_370, _hoisted_371, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.restorative_totems]]), _hoisted_371, _hoisted_372, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_372];
+      return [_hoisted_373];
     }),
     _: 1
     /* STABLE */
 
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_373, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_374, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[105] || (_cache[105] = function ($event) {
+    "onUpdate:modelValue": _cache[106] || (_cache[106] = function ($event) {
       return _ctx.config.blessing_of_wisdom = $event;
     }),
-    onInput: _cache[106] || (_cache[106] = function ($event) {
+    onInput: _cache[107] || (_cache[107] = function ($event) {
       return $options.dontStack($event, 'mana_spring');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.blessing_of_wisdom]]), _hoisted_374, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.blessing_of_wisdom]]), _hoisted_375, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_375];
+      return [_hoisted_376];
     }),
     _: 1
     /* STABLE */
 
-  })])]), _ctx.config.blessing_of_wisdom ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_376, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), _ctx.config.blessing_of_wisdom ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_377, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[107] || (_cache[107] = function ($event) {
+    "onUpdate:modelValue": _cache[108] || (_cache[108] = function ($event) {
       return _ctx.config.imp_blessing_of_wisdom = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.imp_blessing_of_wisdom]]), _hoisted_377, _hoisted_378, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.imp_blessing_of_wisdom]]), _hoisted_378, _hoisted_379, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_379];
+      return [_hoisted_380];
     }),
     _: 1
     /* STABLE */
 
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_380, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_381, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[108] || (_cache[108] = function ($event) {
+    "onUpdate:modelValue": _cache[109] || (_cache[109] = function ($event) {
       return _ctx.config.blessing_of_kings = $event;
     }),
-    onInput: _cache[109] || (_cache[109] = function ($event) {
+    onInput: _cache[110] || (_cache[110] = function ($event) {
       return $options.dontStack($event, 'drums_of_forgotten_kings');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.blessing_of_kings]]), _hoisted_381, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.blessing_of_kings]]), _hoisted_382, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_382];
+      return [_hoisted_383];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_383, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_384, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[110] || (_cache[110] = function ($event) {
+    "onUpdate:modelValue": _cache[111] || (_cache[111] = function ($event) {
       return _ctx.config.drums_of_forgotten_kings = $event;
     }),
-    onInput: _cache[111] || (_cache[111] = function ($event) {
+    onInput: _cache[112] || (_cache[112] = function ($event) {
       return $options.dontStack($event, 'blessing_of_kings');
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.drums_of_forgotten_kings]]), _hoisted_384, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.drums_of_forgotten_kings]]), _hoisted_385, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_385];
+      return [_hoisted_386];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_386, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_387, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[112] || (_cache[112] = function ($event) {
+    "onUpdate:modelValue": _cache[113] || (_cache[113] = function ($event) {
       return _ctx.config.buff_dmg = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_dmg]]), _hoisted_387, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_dmg]]), _hoisted_388, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_388, _hoisted_389, _hoisted_390, _hoisted_391, _hoisted_392];
+      return [_hoisted_389, _hoisted_390, _hoisted_391, _hoisted_392, _hoisted_393];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_393, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_394, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[113] || (_cache[113] = function ($event) {
+    "onUpdate:modelValue": _cache[114] || (_cache[114] = function ($event) {
       return _ctx.config.buff_spell_crit = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_spell_crit]]), _hoisted_394, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_spell_crit]]), _hoisted_395, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_395, _hoisted_396, _hoisted_397];
+      return [_hoisted_396, _hoisted_397, _hoisted_398];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_398, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_399, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[114] || (_cache[114] = function ($event) {
+    "onUpdate:modelValue": _cache[115] || (_cache[115] = function ($event) {
       return _ctx.config.buff_haste = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_haste]]), _hoisted_399, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.buff_haste]]), _hoisted_400, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_400, _hoisted_401, _hoisted_402];
+      return [_hoisted_401, _hoisted_402, _hoisted_403];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_403, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_404, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[115] || (_cache[115] = function ($event) {
+    "onUpdate:modelValue": _cache[116] || (_cache[116] = function ($event) {
       return _ctx.config.mana_replenishment = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mana_replenishment]]), _hoisted_404, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.mana_replenishment]]), _hoisted_405, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_405, _hoisted_406, _hoisted_407, _hoisted_408, _hoisted_409, _hoisted_410, _hoisted_411, _hoisted_412, _hoisted_413];
+      return [_hoisted_406, _hoisted_407, _hoisted_408, _hoisted_409, _hoisted_410, _hoisted_411, _hoisted_412, _hoisted_413, _hoisted_414];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_414, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_415, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[116] || (_cache[116] = function ($event) {
+    "onUpdate:modelValue": _cache[117] || (_cache[117] = function ($event) {
       return _ctx.config.focus_magic = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.focus_magic]]), _hoisted_415, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.focus_magic]]), _hoisted_416, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_416, _hoisted_417, _hoisted_418];
+      return [_hoisted_417, _hoisted_418, _hoisted_419];
     }),
     _: 1
     /* STABLE */
 
-  })])]), $options.faction == 'alliance' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_419, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), $options.faction == 'alliance' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_420, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[117] || (_cache[117] = function ($event) {
+    "onUpdate:modelValue": _cache[118] || (_cache[118] = function ($event) {
       return _ctx.config.heroic_presence = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.heroic_presence]]), _hoisted_420, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.heroic_presence]]), _hoisted_421, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_421, _hoisted_422, _hoisted_423];
+      return [_hoisted_422, _hoisted_423, _hoisted_424];
     }),
     _: 1
     /* STABLE */
 
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_424, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_425, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[118] || (_cache[118] = function ($event) {
+    "onUpdate:modelValue": _cache[119] || (_cache[119] = function ($event) {
       return _ctx.config.prof_skinning = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_skinning]]), _hoisted_425, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_skinning]]), _hoisted_426, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_426];
+      return [_hoisted_427];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_427, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_428, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[119] || (_cache[119] = function ($event) {
+    "onUpdate:modelValue": _cache[120] || (_cache[120] = function ($event) {
       return _ctx.config.prof_alchemy = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_alchemy]]), _hoisted_428, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_alchemy]]), _hoisted_429, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_429, _hoisted_430, _hoisted_431, _hoisted_432, _hoisted_433, _hoisted_434, _hoisted_435, _hoisted_436, _hoisted_437, _hoisted_438, _hoisted_439, _hoisted_440, _hoisted_441, _hoisted_442, _hoisted_443, _hoisted_444, _hoisted_445, _hoisted_446, _hoisted_447];
+      return [_hoisted_430, _hoisted_431, _hoisted_432, _hoisted_433, _hoisted_434, _hoisted_435, _hoisted_436, _hoisted_437, _hoisted_438, _hoisted_439, _hoisted_440, _hoisted_441, _hoisted_442, _hoisted_443, _hoisted_444, _hoisted_445, _hoisted_446, _hoisted_447, _hoisted_448];
     }),
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_448, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_449, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[120] || (_cache[120] = function ($event) {
+    "onUpdate:modelValue": _cache[121] || (_cache[121] = function ($event) {
       return _ctx.config.prof_engineer = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_engineer]]), _hoisted_449, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.prof_engineer]]), _hoisted_450, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_450];
+      return [_hoisted_451];
     }),
     _: 1
     /* STABLE */
 
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_451, [_hoisted_452, !_ctx.config.battle_elixir && !_ctx.config.guardian_elixir ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_453, [_hoisted_454, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[121] || (_cache[121] = function ($event) {
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_452, [_hoisted_453, !_ctx.config.battle_elixir && !_ctx.config.guardian_elixir ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_454, [_hoisted_455, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[122] || (_cache[122] = function ($event) {
       return _ctx.config.flask = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.flasks.FLASK_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_455), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_456), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.flasks.FLASK_FROSTWYRM
   }, "Flask of the Frostwyrm (125 sp)", 8
   /* PROPS */
-  , _hoisted_456), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_457), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.flasks.FLASK_PURE_MOJO
   }, "Flask of Pure Mojo (45 mp5)", 8
   /* PROPS */
-  , _hoisted_457)], 512
+  , _hoisted_458)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.flask]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.config.flask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_458, [_hoisted_459, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[122] || (_cache[122] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.flask]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.config.flask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_459, [_hoisted_460, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[123] || (_cache[123] = function ($event) {
       return _ctx.config.battle_elixir = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_460), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_461), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_SPELLPOWER
   }, "Spellpower Elixir (58 sp)", 8
   /* PROPS */
-  , _hoisted_461), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_462), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_GURU
   }, "Guru's Elixir (20 stats)", 8
   /* PROPS */
-  , _hoisted_462), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_463), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_ACCURACY
   }, "Elixir of Accuracy (45 hit)", 8
   /* PROPS */
-  , _hoisted_463), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_464), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_DEADLY_STRIKES
   }, "Elixir of Deadly Strikes (45 crit)", 8
   /* PROPS */
-  , _hoisted_464), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_465), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_LIGHTNING_SPEED
   }, "Elixir of Lightning Speed (45 haste)", 8
   /* PROPS */
-  , _hoisted_465)], 512
+  , _hoisted_466)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.battle_elixir]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.config.flask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_466, [_hoisted_467, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[123] || (_cache[123] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.battle_elixir]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.config.flask ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_467, [_hoisted_468, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[124] || (_cache[124] = function ($event) {
       return _ctx.config.guardian_elixir = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_468), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_469), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_SPIRIT
   }, "Elixir of Spirit (50 spirit)", 8
   /* PROPS */
-  , _hoisted_469), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_470), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_MIGHTY_MAGEBLOOD
   }, "Elixir of Mighty Mageblood (30 mp5)", 8
   /* PROPS */
-  , _hoisted_470), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_471), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_MIGHTY_THOUGHTS
   }, "Elixir of Mighty Thoughts (45 int)", 8
   /* PROPS */
-  , _hoisted_471), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_472), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.elixirs.ELIXIR_DRAENIC_WISDOM
   }, "Elixir of Draenic Wisdom (30 int, 30 spirit)", 8
   /* PROPS */
-  , _hoisted_472)], 512
+  , _hoisted_473)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.guardian_elixir]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_473, [_hoisted_474, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[124] || (_cache[124] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.guardian_elixir]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_474, [_hoisted_475, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[125] || (_cache[125] = function ($event) {
       return _ctx.config.food = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.foods.FOOD_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_475), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_476), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.foods.FOOD_SPELL_POWER
   }, "Firecracker Salmon (46 sp)", 8
   /* PROPS */
-  , _hoisted_476), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_477), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.foods.FOOD_CRIT
   }, "Spiced Worm Burger (40 crit)", 8
   /* PROPS */
-  , _hoisted_477), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_478), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.foods.FOOD_HIT
   }, "Snapper Extreme (40 hit)", 8
   /* PROPS */
-  , _hoisted_478), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_479), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.foods.FOOD_HASTE
   }, "Imperial Manta Steak (40 haste)", 8
   /* PROPS */
-  , _hoisted_479)], 512
+  , _hoisted_480)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.food]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_480, [_hoisted_481, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[125] || (_cache[125] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.food]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_481, [_hoisted_482, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[126] || (_cache[126] = function ($event) {
       return _ctx.config.potion = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_482), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_483), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_MANA
   }, "Mana potion", 8
   /* PROPS */
-  , _hoisted_483), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_484), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_SPEED
   }, "Potion of Speed", 8
   /* PROPS */
-  , _hoisted_484), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_485), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_WILD_MAGIC
   }, "Potion of Wild Magic", 8
   /* PROPS */
-  , _hoisted_485)], 512
+  , _hoisted_486)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.potion]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_486, [_hoisted_487, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[126] || (_cache[126] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.potion]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_487, [_hoisted_488, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[127] || (_cache[127] = function ($event) {
       return _ctx.config.conjured = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.conjureds.CONJURED_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_488), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_489), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.conjureds.CONJURED_FLAME_CAP
   }, "Flame Cap", 8
   /* PROPS */
-  , _hoisted_489)], 512
+  , _hoisted_490)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.conjured]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_490, [_hoisted_491, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_492, [_hoisted_493, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[127] || (_cache[127] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.conjured]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_491, [_hoisted_492, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_493, [_hoisted_494, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[128] || (_cache[128] = function ($event) {
       return _ctx.config.pre_potion = $event;
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_NONE
   }, "None", 8
   /* PROPS */
-  , _hoisted_494), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_495), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_MANA
   }, "Mana potion", 8
   /* PROPS */
-  , _hoisted_495), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_496), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_SPEED
   }, "Potion of Speed", 8
   /* PROPS */
-  , _hoisted_496), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  , _hoisted_497), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: _ctx.potions.POTION_WILD_MAGIC
   }, "Potion of Wild Magic", 8
   /* PROPS */
-  , _hoisted_497)], 512
+  , _hoisted_498)], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.pre_potion]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_498, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.config.pre_potion]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_499, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[128] || (_cache[128] = function ($event) {
+    "onUpdate:modelValue": _cache[129] || (_cache[129] = function ($event) {
       return _ctx.config.pre_mirror_image = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_mirror_image]]), _hoisted_499])]), _ctx.config.talents.water_elemental ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_500, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_mirror_image]]), _hoisted_500])]), _ctx.config.talents.water_elemental ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_501, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[129] || (_cache[129] = function ($event) {
+    "onUpdate:modelValue": _cache[130] || (_cache[130] = function ($event) {
       return _ctx.config.pre_water_elemental = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_water_elemental]]), _hoisted_501])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.config.talents.incanters_absorption ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_502, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_water_elemental]]), _hoisted_502])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.config.talents.incanters_absorption ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_503, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[130] || (_cache[130] = function ($event) {
+    "onUpdate:modelValue": _cache[131] || (_cache[131] = function ($event) {
       return _ctx.config.pre_incanters_absorption = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_incanters_absorption]]), _hoisted_503, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.pre_incanters_absorption]]), _hoisted_504, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_504];
+      return [_hoisted_505];
     }),
     _: 1
     /* STABLE */
 
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_505, [_hoisted_506, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_507, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_508, [_hoisted_509, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.config.timings, function (timing) {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_506, [_hoisted_507, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_508, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_509, [_hoisted_510, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.config.timings, function (timing) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: timing.id
     }, [$options.timingEnabled(timing.name) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 0
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_510, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_511, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: $options.getTiming(timing.name, 'icon')
     }, null, 8
     /* PROPS */
-    , _hoisted_511), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, null, {
+    , _hoisted_512), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, null, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getTiming(timing.name, 'title')), 1
         /* TEXT */
@@ -33624,34 +34415,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $options.removeTiming(timing.id);
       }
-    }, _hoisted_514, 8
+    }, _hoisted_515, 8
     /* PROPS */
-    , _hoisted_512)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_515, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    , _hoisted_513)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_516, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return timing.t = $event;
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_516), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, timing.t, void 0, {
+    , _hoisted_517), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, timing.t, void 0, {
       number: true
-    }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_517, [$options.timingCanWait(timing.name) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
+    }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_518, [$options.timingCanWait(timing.name) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("select", {
       key: 0,
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return timing.wait_for_buff = $event;
       }
-    }, [_hoisted_519, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.waitBuffs, function (buff) {
+    }, [_hoisted_520, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.waitBuffs, function (buff) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
         value: buff.id,
         key: buff.id
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(buff.name), 9
       /* TEXT, PROPS */
-      , _hoisted_520);
+      , _hoisted_521);
     }), 128
     /* KEYED_FRAGMENT */
     ))], 8
     /* PROPS */
-    , _hoisted_518)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, timing.wait_for_buff]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_521, [$options.timingCanWait(timing.name) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    , _hoisted_519)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, timing.wait_for_buff]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_522, [$options.timingCanWait(timing.name) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 0,
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
@@ -33659,14 +34450,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_522)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, timing.wait_t, void 0, {
+    , _hoisted_523)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, timing.wait_t, void 0, {
       number: true
     }]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64
     /* STABLE_FRAGMENT */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_523, [_hoisted_524, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_525, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.timings, function (timing) {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_524, [_hoisted_525, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_526, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.timings, function (timing) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$options.timingEnabled(timing.name) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: 0,
       onClick: function onClick($event) {
@@ -33676,7 +34467,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: timing.icon
     }, null, 8
     /* PROPS */
-    , _hoisted_527), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, null, {
+    , _hoisted_528), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, null, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(timing.title), 1
         /* TEXT */
@@ -33689,12 +34480,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* DYNAMIC_SLOTS */
     )], 8
     /* PROPS */
-    , _hoisted_526)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    , _hoisted_527)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
     /* STABLE_FRAGMENT */
     );
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_528, [_hoisted_529, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_530, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.profiles, function (profile, index) {
+  ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_529, [_hoisted_530, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_531, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.profiles, function (profile, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "profile",
       key: profile.id
@@ -33705,238 +34496,238 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(profile.name), 9
     /* TEXT, PROPS */
-    , _hoisted_531), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_532, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_532), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_533, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "move move-up",
       onClick: function onClick($event) {
         return $options.moveProfile(index, -1);
       }
-    }, [_hoisted_534, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_535, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_535];
+        return [_hoisted_536];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_533), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_534), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "move move-down",
       onClick: function onClick($event) {
         return $options.moveProfile(index, 1);
       }
-    }, [_hoisted_537, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_538, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_538];
+        return [_hoisted_539];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_536), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_537), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "load-items",
       onClick: function onClick($event) {
         return $options.loadProfile(profile, 'items');
       }
-    }, [_hoisted_540, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_541, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_541];
+        return [_hoisted_542];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_539), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_540), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "load-config",
       onClick: function onClick($event) {
         return $options.loadProfile(profile, 'config');
       }
-    }, [_hoisted_543, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_544, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_544];
+        return [_hoisted_545];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_542), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_543), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "save",
       onClick: function onClick($event) {
         return $options.saveProfile(profile);
       }
-    }, [_hoisted_546, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_547, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_547];
+        return [_hoisted_548];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_545), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_546), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "delete",
       onClick: function onClick($event) {
         return $options.deleteProfile(profile);
       }
-    }, [_hoisted_549, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+    }, [_hoisted_550, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
       position: "t"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_550];
+        return [_hoisted_551];
       }),
       _: 1
       /* STABLE */
 
     })], 8
     /* PROPS */
-    , _hoisted_548)])]);
+    , _hoisted_549)])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_551, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_552, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[131] || (_cache[131] = function ($event) {
+    "onUpdate:modelValue": _cache[132] || (_cache[132] = function ($event) {
       return _ctx.new_profile = $event;
     }),
-    onKeydown: _cache[132] || (_cache[132] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
+    onKeydown: _cache[133] || (_cache[133] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
       return $options.newProfile();
     }, ["enter"]))
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.new_profile]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn", [_ctx.new_profile ? '' : 'disabled']]),
-    onClick: _cache[133] || (_cache[133] = function ($event) {
+    onClick: _cache[134] || (_cache[134] = function ($event) {
       return $options.newProfile();
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_552, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_553, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_tooltip, {
     position: "r"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_553];
+      return [_hoisted_554];
     }),
     _: 1
     /* STABLE */
 
   })])], 2
   /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_554, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_555, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn fl",
-    onClick: _cache[134] || (_cache[134] = function ($event) {
+    onClick: _cache[135] || (_cache[135] = function ($event) {
       return $options.openExport();
     })
   }, "Export"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn fl ml-n",
-    onClick: _cache[135] || (_cache[135] = function ($event) {
+    onClick: _cache[136] || (_cache[136] = function ($event) {
       return $options.openImport();
     })
   }, "Import"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn danger fr",
-    onClick: _cache[136] || (_cache[136] = function ($event) {
+    onClick: _cache[137] || (_cache[137] = function ($event) {
       return $options.nukeSettings();
     })
-  }, "Nuke settings")])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _ctx.beta_warning_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_555, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Nuke settings")])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _ctx.beta_warning_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_556, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "closer",
-    onClick: _cache[137] || (_cache[137] = function () {
-      return $options.closeBetaWarning && $options.closeBetaWarning.apply($options, arguments);
-    })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_556, [_hoisted_557, _hoisted_558, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "btn mt-2",
     onClick: _cache[138] || (_cache[138] = function () {
       return $options.closeBetaWarning && $options.closeBetaWarning.apply($options, arguments);
     })
-  }, "I understand")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.export_profile.open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_559, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "closer",
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_557, [_hoisted_558, _hoisted_559, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "btn mt-2",
     onClick: _cache[139] || (_cache[139] = function () {
+      return $options.closeBetaWarning && $options.closeBetaWarning.apply($options, arguments);
+    })
+  }, "I understand")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.export_profile.open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_560, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "closer",
+    onClick: _cache[140] || (_cache[140] = function () {
       return $options.closeExport && $options.closeExport.apply($options, arguments);
     })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_560, [_hoisted_561, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_562, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    "onUpdate:modelValue": _cache[140] || (_cache[140] = function ($event) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_561, [_hoisted_562, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_563, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "onUpdate:modelValue": _cache[141] || (_cache[141] = function ($event) {
       return _ctx.export_profile.string = $event;
     }),
     ref: "export_input"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.export_profile.string]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_563, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.export_profile.string]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_564, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[141] || (_cache[141] = function ($event) {
+    "onUpdate:modelValue": _cache[142] || (_cache[142] = function ($event) {
       return _ctx.export_profile.items = $event;
     }),
-    onInput: _cache[142] || (_cache[142] = function () {
+    onInput: _cache[143] || (_cache[143] = function () {
       return $options.updateExport && $options.updateExport.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.export_profile.items]]), _hoisted_564, _hoisted_565]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.export_profile.items]]), _hoisted_565, _hoisted_566]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[143] || (_cache[143] = function ($event) {
+    "onUpdate:modelValue": _cache[144] || (_cache[144] = function ($event) {
       return _ctx.export_profile.config = $event;
     }),
-    onInput: _cache[144] || (_cache[144] = function () {
+    onInput: _cache[145] || (_cache[145] = function () {
       return $options.updateExport && $options.updateExport.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.export_profile.config]]), _hoisted_566, _hoisted_567])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.export_profile.config]]), _hoisted_567, _hoisted_568])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn mt-2 wide",
-    onClick: _cache[145] || (_cache[145] = function () {
+    onClick: _cache[146] || (_cache[146] = function () {
       return $options.closeExport && $options.closeExport.apply($options, arguments);
     })
-  }, "Close")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.import_profile.open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_568, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Close")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.import_profile.open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_569, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "closer",
-    onClick: _cache[146] || (_cache[146] = function () {
+    onClick: _cache[147] || (_cache[147] = function () {
       return $options.closeImport && $options.closeImport.apply($options, arguments);
     })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_569, [_hoisted_570, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_571, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    "onUpdate:modelValue": _cache[147] || (_cache[147] = function ($event) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_570, [_hoisted_571, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_572, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "onUpdate:modelValue": _cache[148] || (_cache[148] = function ($event) {
       return _ctx.import_profile.string = $event;
     }),
     ref: "import_input",
-    onInput: _cache[148] || (_cache[148] = function () {
+    onInput: _cache[149] || (_cache[149] = function () {
       return $options.checkImportString && $options.checkImportString.apply($options, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.import_profile.string]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_572, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.import_profile.string]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_573, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[149] || (_cache[149] = function ($event) {
+    "onUpdate:modelValue": _cache[150] || (_cache[150] = function ($event) {
       return _ctx.import_profile.items = $event;
     }),
     disabled: !_ctx.import_status.items
   }, null, 8
   /* PROPS */
-  , _hoisted_573), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.import_profile.items]]), _hoisted_574, _hoisted_575]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_574), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.import_profile.items]]), _hoisted_575, _hoisted_576]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[150] || (_cache[150] = function ($event) {
+    "onUpdate:modelValue": _cache[151] || (_cache[151] = function ($event) {
       return _ctx.import_profile.config = $event;
     }),
     disabled: !_ctx.import_status.config
   }, null, 8
   /* PROPS */
-  , _hoisted_576), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.import_profile.config]]), _hoisted_577, _hoisted_578])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_577), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.import_profile.config]]), _hoisted_578, _hoisted_579])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["btn mt-2 wide", [_ctx.import_profile.string ? '' : 'disabled']]),
-    onClick: _cache[151] || (_cache[151] = function () {
+    onClick: _cache[152] || (_cache[152] = function () {
       return $options.doImport && $options.doImport.apply($options, arguments);
     })
   }, "Import", 2
   /* CLASS */
-  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.equiplist_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_579, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.equiplist_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_580, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "closer",
-    onClick: _cache[152] || (_cache[152] = function () {
+    onClick: _cache[153] || (_cache[153] = function () {
       return $options.closeEquiplist && $options.closeEquiplist.apply($options, arguments);
     })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_580, [_hoisted_581, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_582, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.equipped, function (item_id, slot) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_583, [item_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_581, [_hoisted_582, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [_hoisted_583, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.equipped, function (item_id, slot) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_584, [item_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 0
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatKey(slot)), 1
     /* TEXT */
@@ -33946,25 +34737,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['quality-' + _ctx.$get($options.getItem(slot, item_id), 'q', 'epic')])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getItem(slot, item_id).title), 11
     /* TEXT, CLASS, PROPS */
-    , _hoisted_584)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_ctx.$get(_ctx.enchants, slot) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    , _hoisted_585)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_ctx.$get(_ctx.enchants, slot) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: 0,
       href: $options.spellUrl(_ctx.enchants[slot]),
       target: "_blank",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['quality-' + _ctx.$get($options.getEnchant(slot, _ctx.enchants[slot]), 'q', 'uncommon')])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getEnchant(slot, _ctx.enchants[slot]).title), 11
     /* TEXT, CLASS, PROPS */
-    , _hoisted_585)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_ctx.gems.hasOwnProperty(slot) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    , _hoisted_586)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_ctx.gems.hasOwnProperty(slot) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 0
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.gems[slot], function (gem_id, index) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [gem_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 0
-      }, [index > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_586, ", ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      }, [index > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_587, ", ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         href: $options.itemUrl(gem_id),
         target: "_blank",
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['gem-color', 'color-' + $options.getGem(gem_id).color])
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getGem(gem_id).title), 11
       /* TEXT, CLASS, PROPS */
-      , _hoisted_587)], 64
+      , _hoisted_588)], 64
       /* STABLE_FRAGMENT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
       /* STABLE_FRAGMENT */
@@ -33976,143 +34767,143 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_588, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_589, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn wide",
-    onClick: _cache[153] || (_cache[153] = function () {
+    onClick: _cache[154] || (_cache[154] = function () {
       return $options.copyEquiplist && $options.copyEquiplist.apply($options, arguments);
     })
-  }, "Copy")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.custom_item_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_589, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Copy")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.custom_item_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_590, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "closer",
-    onClick: _cache[154] || (_cache[154] = function () {
+    onClick: _cache[155] || (_cache[155] = function () {
       return $options.closeCustomItem && $options.closeCustomItem.apply($options, arguments);
     })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_590, [_hoisted_591, _hoisted_592, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_593, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_594, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_595, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_591, [_hoisted_592, _hoisted_593, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_594, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_595, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [_hoisted_596, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_help, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_596];
+      return [_hoisted_597];
     }),
     _: 1
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[155] || (_cache[155] = function ($event) {
+    "onUpdate:modelValue": _cache[156] || (_cache[156] = function ($event) {
       return _ctx.custom_item.id = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.id, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_597, [_hoisted_598, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_598, [_hoisted_599, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "onUpdate:modelValue": _cache[156] || (_cache[156] = function ($event) {
+    "onUpdate:modelValue": _cache[157] || (_cache[157] = function ($event) {
       return _ctx.custom_item.title = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_599, [_hoisted_600, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[157] || (_cache[157] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_600, [_hoisted_601, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[158] || (_cache[158] = function ($event) {
       return _ctx.custom_item.slot = $event;
     })
-  }, [_hoisted_601, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.itemSlots, function (slot) {
+  }, [_hoisted_602, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.itemSlots, function (slot) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       value: slot
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatKey(slot)), 9
     /* TEXT, PROPS */
-    , _hoisted_602);
+    , _hoisted_603);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.custom_item.slot]])]), _ctx.custom_item.slot == 'weapon' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_603, [_hoisted_604, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.custom_item.slot]])]), _ctx.custom_item.slot == 'weapon' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_604, [_hoisted_605, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
-    "onUpdate:modelValue": _cache[158] || (_cache[158] = function ($event) {
+    "onUpdate:modelValue": _cache[159] || (_cache[159] = function ($event) {
       return _ctx.custom_item.twohand = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.custom_item.twohand]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_605, [_hoisted_606, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "onUpdate:modelValue": _cache[159] || (_cache[159] = function ($event) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.custom_item.twohand]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_606, [_hoisted_607, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[160] || (_cache[160] = function ($event) {
       return _ctx.custom_item.q = $event;
     })
-  }, _hoisted_611, 512
+  }, _hoisted_612, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.custom_item.q]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_612, [_hoisted_613, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.custom_item.q]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_613, [_hoisted_614, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[160] || (_cache[160] = function ($event) {
+    "onUpdate:modelValue": _cache[161] || (_cache[161] = function ($event) {
       return _ctx.custom_item["int"] = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item["int"], void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_614, [_hoisted_615, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_615, [_hoisted_616, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[161] || (_cache[161] = function ($event) {
+    "onUpdate:modelValue": _cache[162] || (_cache[162] = function ($event) {
       return _ctx.custom_item.spi = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.spi, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_616, [_hoisted_617, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_617, [_hoisted_618, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[162] || (_cache[162] = function ($event) {
+    "onUpdate:modelValue": _cache[163] || (_cache[163] = function ($event) {
       return _ctx.custom_item.sp = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.sp, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_618, [_hoisted_619, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_619, [_hoisted_620, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[163] || (_cache[163] = function ($event) {
+    "onUpdate:modelValue": _cache[164] || (_cache[164] = function ($event) {
       return _ctx.custom_item.crit = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.crit, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_620, [_hoisted_621, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_621, [_hoisted_622, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[164] || (_cache[164] = function ($event) {
+    "onUpdate:modelValue": _cache[165] || (_cache[165] = function ($event) {
       return _ctx.custom_item.hit = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.hit, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_622, [_hoisted_623, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_623, [_hoisted_624, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[165] || (_cache[165] = function ($event) {
+    "onUpdate:modelValue": _cache[166] || (_cache[166] = function ($event) {
       return _ctx.custom_item.haste = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.haste, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_624, [_hoisted_625, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_625, [_hoisted_626, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[166] || (_cache[166] = function ($event) {
+    "onUpdate:modelValue": _cache[167] || (_cache[167] = function ($event) {
       return _ctx.custom_item.mp5 = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.mp5, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_626, [_hoisted_627, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_627, [_hoisted_628, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
-    "onUpdate:modelValue": _cache[167] || (_cache[167] = function ($event) {
+    "onUpdate:modelValue": _cache[168] || (_cache[168] = function ($event) {
       return _ctx.custom_item.sockets = $event;
     })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.sockets, void 0, {
     number: true
-  }]])])]), _ctx.custom_item_error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_628, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.custom_item_error), 1
+  }]])])]), _ctx.custom_item_error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_629, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.custom_item_error), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_629, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_630, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn block",
-    onClick: _cache[168] || (_cache[168] = function () {
+    onClick: _cache[169] || (_cache[169] = function () {
       return $options.addCustomItem && $options.addCustomItem.apply($options, arguments);
     })
   }, "Save")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);

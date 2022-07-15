@@ -281,6 +281,9 @@
                                                 <sort-link v-model="item_sort" name="dps" order="desc">DPS</sort-link>
                                             </th>
                                             <th>
+                                                <sort-link v-model="item_sort" name="ilvl" order="desc">ilvl</sort-link>
+                                            </th>
+                                            <th>
                                                 <sort-link v-model="item_sort" name="phase">Phase</sort-link>
                                             </th>
                                             <th>
@@ -340,6 +343,7 @@
                                             <td v-if="hasComparisons">
                                                 {{ comparisonDps(item) }}
                                             </td>
+                                            <td>{{ $get(item, "ilvl", "") }}</td>
                                             <td>{{ $get(item, "phase", 1) }}</td>
                                             <td>
                                                 <template v-if="item.sockets">
