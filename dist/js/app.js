@@ -19381,7 +19381,7 @@ var equip = {
     id: 50276,
     itemset: ids.T10_SET,
     title: "Bloodmage Hood",
-    ilvl: 225164,
+    ilvl: 251,
     "int": 109,
     sp: 140,
     crit: 96,
@@ -19446,7 +19446,7 @@ var equip = {
   }, {
     id: 51554,
     title: "Cowl of Malefic Repose",
-    ilvl: 262514,
+    ilvl: 251,
     "int": 109,
     sp: 140,
     crit: 72,
@@ -25337,7 +25337,7 @@ var equip = {
   }, {
     id: 41985,
     title: "Silky Iceshard Boots",
-    ilvl: 218700,
+    ilvl: 187,
     sp: 60,
     crit: 37,
     haste: 29,

@@ -246,12 +246,12 @@ var equip = {
         // icc
         { id: 51281, itemset: ids.T10_SET, title: "Sanctified Bloodmage Hood", ilvl: 277, int: 139, sp: 186, crit: 122, haste: 98, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51158, itemset: ids.T10_SET, title: "Sanctified Bloodmage Hood", ilvl: 264, int: 123, sp: 162, crit: 108, haste: 84, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
-        { id: 50276, itemset: ids.T10_SET, title: "Bloodmage Hood", ilvl: 225164, int: 109, sp: 140, crit: 96, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
+        { id: 50276, itemset: ids.T10_SET, title: "Bloodmage Hood", ilvl: 251, int: 109, sp: 140, crit: 96, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 50661, title: "Corp'rethar Ceremonial Crown", ilvl: 277, int: 139, spi: 114, sp: 186, crit: 106, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
         { id: 51896, title: "Thaumaturge's Crackling Cowl", ilvl: 264, int: 123, spi: 100, sp: 171, haste: 84, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 50807, title: "Thaumaturge's Crackling Cowl", ilvl: 251, int: 109, spi: 88, sp: 149, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51837, title: "Cowl of Malefic Repose", ilvl: 264, int: 123, sp: 162, crit: 84, haste: 108, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
-        { id: 51554, title: "Cowl of Malefic Repose", ilvl: 262514, int: 109, sp: 140, crit: 72, haste: 96, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
+        { id: 51554, title: "Cowl of Malefic Repose", ilvl: 251, int: 109, sp: 140, crit: 72, haste: 96, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 50006, title: "Corp'rethar Ceremonial Crown", ilvl: 264, int: 123, spi: 100, sp: 162, crit: 92, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
         // onyxia
         { id: 49481, title: "Netherwind Crown", ilvl: 245, int: 92, sp: 150, crit: 86, hit: 64, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
@@ -895,7 +895,7 @@ var equip = {
         { id: 36954, title: "The Conjurer's Slippers", ilvl: 187, int: 40, sp: 60, haste: 54, q: "rare" },
         { id: 37730, title: "Cleric's Linen Shoes", ilvl: 200, int: 44, sp: 59, haste: 57, sockets: ["r"], q: "rare" },
         { id: 37867, title: "Footwraps of Teleportation", ilvl: 200, int: 57, spi: 39, sp: 59, sockets: ["y"], bonus: {sp: 5}, q: "rare" },
-        { id: 41985, title: "Silky Iceshard Boots", ilvl: 218700, sp: 60, crit: 37, haste: 29, q: "rare" },
+        { id: 41985, title: "Silky Iceshard Boots", ilvl: 187, sp: 60, crit: 37, haste: 29, q: "rare" },
         { id: 42096, title: "Aurora Slippers", ilvl: 187, int: 40, spi: 51, sp: 60, q: "rare" },
         // tbc
         { id: 34574, itemset: ids.T6_SET, title: "Boots of the Tempest", ilvl: 154, int: 29, spi: 20, sp: 50, crit: 20, hit: 15, haste: 25, sockets: ["y"], bonus: { sp: 2 } },
