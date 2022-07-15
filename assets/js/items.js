@@ -184,7 +184,7 @@ var equip = {
         { id: 40192, title: "Accursed Spine", ilvl: 213, int: 41, spi: 32, sp: 65, crit: 43 },
         { id: 39766, title: "Matriarch's Spawn", ilvl: 213, int: 41, spi: 43, sp: 66, haste: 32 },
         { id: 40273, title: "Surplus Limb", ilvl: 213, int: 38, sp: 65, hit: 32, haste: 41 },
-        { id: 40350, title: "Urn of Lost Memories", ilvl: 258213, int: 32, sp: 66, crit: 41, mp5: 21 },
+        { id: 40350, title: "Urn of Lost Memories", ilvl: 213, int: 32, sp: 66, crit: 41, mp5: 21 },
         { id: 39199, title: "Watchful Eye", ilvl: 200, int: 38, spi: 36, sp: 59, hit: 28 },
         { id: 39311, title: "Scepter of Murmuring Spirits", ilvl: 200, int: 34, sp: 59, crit: 38, mp5: 16 },
         // pvp

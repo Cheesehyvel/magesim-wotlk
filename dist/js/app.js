@@ -18952,7 +18952,7 @@ var equip = {
   }, {
     id: 40350,
     title: "Urn of Lost Memories",
-    ilvl: 258213,
+    ilvl: 213,
     "int": 32,
     sp: 66,
     crit: 41,
