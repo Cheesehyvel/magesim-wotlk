@@ -42,6 +42,12 @@ def getItem(item_id, phase = 1):
         return None
     stats["title"] = m.group(1)
 
+    # Item level
+    p = re.compile("\<level\>([0-9]+)\<")
+    m = p.search(xml)
+    if m:
+        stats["ilvl"] = int(m.group(1))
+
     # json equip data
     p = re.compile("\<jsonEquip\>\<\!\[CDATA\[([^\]]+)\]\]")
     m = p.search(xml)

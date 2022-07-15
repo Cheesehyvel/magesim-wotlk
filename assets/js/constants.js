@@ -41,6 +41,7 @@ export default {
         ELIXIR_SPIRIT: 40072,
         ELIXIR_MIGHTY_MAGEBLOOD: 40109,
         ELIXIR_MIGHTY_THOUGHTS: 44332,
+        ELIXIR_DRAENIC_WISDOM: 32067,
     },
     potions: {
         POTION_NONE: 0,

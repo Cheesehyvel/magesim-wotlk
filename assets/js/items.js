@@ -260,6 +260,7 @@ var equip = {
         { id: 47764, itemset: ids.T9_SET, title: "Sunstrider's Hood of Triumph", int: 116, sp: 151, hit: 86, haste: 94, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47771, itemset: ids.T9_SET, title: "Sunstrider's Hood of Triumph", int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47774, itemset: ids.T9_SET, title: "Sunstrider's Hood of Conquest", int: 92, sp: 113, hit: 64, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47564, title: "Gaze of the Unknown", int: 74, sp: 115, crit: 67, hit: 57, sockets: ["m", "r"], bonus: {hit: 8}, phase: 3 },
         // ulduar
         { id: 46129, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Hood", int: 87, spi: 66, sp: 113, hit: 69, sockets: ["m", "r"], bonus: {sp: 9}, phase: 2 },
         { id: 45365, itemset: ids.T8_SET, title: "Valorous Kirin Tor Hood", int: 81, spi: 61, sp: 105, hit: 64, sockets: ["m", "r"], bonus: {sp: 9}, phase: 2 },
@@ -282,6 +283,8 @@ var equip = {
         { id: 40247, title: "Cowl of Innocent Delight", int: 77, spi: 58, sp: 118, mp5: 25 },
         { id: 39409, title: "Cowl of Winged Fear", int: 60, spi: 45, sp: 87, crit: 36, sockets: ["m", "y"], bonus: {crit: 8} },
         { id: 39295, title: "Cowl of Sheet Lightning", int: 68, sp: 85, haste: 48, mp5: 19, sockets: ["m", "y"], bonus: {sp: 9} },
+        // wintergrasp
+        { id: 44910, title: "Titan-Forged Hood of Dominance", int: 45, sp: 87, hit: 44, sockets: ["m", "r"], phase: 4 },
         // pvp
         { id: 51465, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Cowl", int: 87, sp: 182, crit: 98, sockets: ["m", "r"], phase: 4 },
         { id: 41947, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Cowl", int: 73, sp: 149, crit: 80, sockets: ["m", "r"], phase: 3 },
@@ -290,6 +293,11 @@ var equip = {
         { id: 41944, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Cowl", int: 45, sp: 87, crit: 44, sockets: ["m", "r"] },
         { id: 41943, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Cowl", int: 39, sp: 73, crit: 36, sockets: ["m", "r"], q: "rare" },
         // prebis
+        { id: 49849, title: "Tattered Glacial-Woven Hood", int: 68, spi: 66, sp: 105, haste: 58, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
+        { id: 47695, title: "Hood of Clouded Sight", int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
+        { id: 47694, title: "Helm of Clouded Sight", int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
+        { id: 47692, title: "Hood of Smoldering Aftermath", int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47693, title: "Hood of Fiery Aftermath", int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 42553, title: "Visage Liquification Goggles", int: 60, sp: 87, crit: 73, sockets: ["m", "y"], bonus: {crit: 8} },
         { id: 37294, title: "Crown of Unbridled Magic", int: 62, spi: 52, sp: 81, sockets: ["m", "y"], bonus: {crit: 8}, q: "rare" },
         { id: 37594, title: "Elder Headpiece", int: 77, spi: 55, sp: 91, q: "rare" },
@@ -381,6 +389,7 @@ var equip = {
         { id: 51284, itemset: ids.T10_SET, title: "Sanctified Bloodmage Shoulderpads", int: 103, sp: 150, crit: 90, haste: 82, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 51155, itemset: ids.T10_SET, title: "Sanctified Bloodmage Shoulderpads", int: 92, sp: 132, crit: 80, haste: 72, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 50279, itemset: ids.T10_SET, title: "Bloodmage Shoulderpads", int: 81, sp: 116, crit: 71, haste: 63, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
+        { id: 50449, title: "Stiffened Corpse Shoulderpads", int: 92, spi: 80, sp: 122, crit: 64, sockets: ["y", "y"], bonus: {sp: 7}, phase: 4 },
         { id: 50643, title: "Shoulders of Mercy Killing", int: 103, sp: 140, hit: 74, haste: 90, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
         { id: 49991, title: "Shoulders of Mercy Killing", int: 92, sp: 122, hit: 64, haste: 80, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
         { id: 51859, title: "Shoulders of Ruinous Senility", int: 92, sp: 122, hit: 64, haste: 80, sockets: ["y", "y"], bonus: {sp: 7}, phase: 4 },
@@ -394,6 +403,7 @@ var equip = {
         // ulduar
         { id: 46134, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Shoulderpads", int: 65, spi: 33, sp: 98, haste: 62, sockets: ["y"], bonus: {int: 4}, phase: 2 },
         { id: 45369, itemset: ids.T8_SET, title: "Valorous Kirin Tor Shoulderpads", int: 60, spi: 30, sp: 91, haste: 57, sockets: ["y"], bonus: {int: 4}, phase: 2 },
+        { id: 46344, title: "Iceshear Mantle", int: 56, spi: 55, sp: 92, crit: 47, phase: 2 },
         { id: 45514, title: "Mantle of the Unknowing", int: 56, spi: 62, sp: 90, crit: 41, sockets: ["y"], bonus: {int: 4}, phase: 2 },
         { id: 45253, title: "Mantle of Wavering Calm", int: 56, spi: 62, sp: 99, haste: 49, phase: 2 },
         { id: 45186, title: "Soot-Covered Mantle", int: 65, spi: 49, sp: 90, hit: 52, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
@@ -412,6 +422,8 @@ var equip = {
         { id: 40289, title: "Sympathetic Amice", int: 57, sp: 88, crit: 50, mp5: 19 },
         { id: 39310, title: "Mantle of the Extensive Mind", int: 53, sp: 77, haste: 44, mp5: 23 },
         { id: 39284, title: "Miasma Mantle", int: 48, spi: 43, sp: 77, crit: 45 },
+        // wintergrasp
+        { id: 51572, title: "Titan-Forged Shoulderpads of Salvation", int: 54, sp: 116, haste: 63, sockets: ["y"], phase: 4 },
         // pvp
         { id: 51467, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Amice", int: 64, sp: 140, crit: 77, sockets: ["y"], phase: 4 },
         { id: 41966, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Amice", int: 54, sp: 116, crit: 63, sockets: ["y"], phase: 3 },
@@ -420,6 +432,14 @@ var equip = {
         { id: 41963, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Amice", int: 33, sp: 68, crit: 36, sockets: ["y"] },
         { id: 41962, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Amice", int: 28, sp: 59, crit: 31, sockets: ["y"], q: "rare" },
         // prebis
+        { id: 49854, title: "Mantle of Tattered Feathers", int: 59, spi: 53, sp: 92, crit: 53, phase: 4 },
+        { id: 50193, title: "Very Fashionable Shoulders", int: 68, sp: 105, hit: 62, haste: 55, phase: 4 },
+        { id: 49834, title: "Frayed Abomination Stitching Shoulders", int: 56, sp: 92, crit: 60, haste: 40, phase: 4 },
+        { id: 47716, title: "Mantle of Revered Mortality", int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47715, title: "Pauldrons of Revered Mortality", int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47714, title: "Pauldrons of Catastrophic Emanation", int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
+        { id: 47713, title: "Mantle of Catastrophic Emanation", int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
+        { id: 47226, title: "Mantle of Inconsolable Fear", int: 47, sp: 78, crit: 37, haste: 49, phase: 3 },
         { id: 37196, title: "Runecaster's Mantle", int: 47, spi: 44, sp: 68, sockets: ["y"], bonus: {sp: 5}, q: "rare" },
         { id: 37655, title: "Mantle of the Tribunal", int: 59, sp: 68, haste: 42, q: "rare" },
         { id: 37673, title: "Dark Runic Mantle", int: 44, sp: 59, haste: 50, sockets: ["r"], bonus: {spi: 4}, q: "rare" },
@@ -504,6 +524,8 @@ var equip = {
         { id: 51790, title: "Robes of Azure Downfall", int: 101, sp: 140, crit: 76, haste: 95, sockets: ["y", "r", "r"], bonus: {sp: 9}, phase: 4 },
         { id: 51851, title: "Bloodsoul Raiment", int: 123, spi: 90, sp: 162, haste: 102, sockets: ["r", "r", "y"], bonus: {sp: 9}, phase: 4 },
         { id: 51379, title: "Bloodsoul Raiment", int: 109, spi: 78, sp: 140, haste: 90, sockets: ["r", "r", "y"], bonus: {sp: 9}, phase: 4 },
+        { id: 50975, title: "Ermine Coronation Robes", ilvl: 264, int: 123, spi: 84, sp: 162, crit: 108, sockets: ["y", "r", "b"], bonus: {sp: 9}, phase: 4 },
+        { id: 50974, title: "Meteor Chaser's Raiment", ilvl: 264, int: 123, sp: 162, crit: 84, haste: 108, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 4 },
         // totc
         { id: 47766, itemset: ids.T9_SET, title: "Sunstrider's Robe of Triumph", int: 116, spi: 102, sp: 160, hit: 86, sockets: ["b", "r"], bonus: {sp: 7}, phase: 3 },
         { id: 47769, itemset: ids.T9_SET, title: "Sunstrider's Robe of Triumph", int: 103, spi: 90, sp: 140, hit: 74, sockets: ["b", "r"], bonus: {sp: 7}, phase: 3 },
@@ -512,8 +534,14 @@ var equip = {
         { id: 46992, title: "Flowing Vestments of Ascent", int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
         { id: 47129, title: "Skyweaver Robes", int: 116, sp: 151, hit: 86, haste: 94, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
         { id: 47126, title: "Skyweaver Robes", int: 103, sp: 140, hit: 82, haste: 82, sockets: ["b", "y"], bonus: {sp: 7}, phase: 3 },
+        { id: 48051, title: "Robes of the Sleepless", ilvl: 245, int: 95, sp: 140, crit: 71, hit: 96, sockets: ["b", "r"], bonus: {sp: 7}, phase: 3 },
         { id: 47974, title: "Vestments of the Sleepless", int: 95, sp: 140, crit: 71, hit: 96, sockets: ["b", "r"], bonus: {sp: 7}, phase: 3 },
+        { id: 47906, title: "Robes of the Sleepless", ilvl: 232, int: 88, sp: 132, crit: 65, hit: 86, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47838, title: "Vestments of the Sleepless", int: 88, sp: 132, crit: 65, hit: 86, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47603, title: "Merlin's Robe", ilvl: 245, int: 103, sp: 131, crit: 66, haste: 90, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
+        { id: 47606, title: "Royal Moonshroud Robe", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47264, title: "Flowing Robes of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
+        { id: 46992, title: "Flowing Vestments of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
         // ulduar
         { id: 46130, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Tunic", int: 81, spi: 50, sp: 132, crit: 82, sockets: ["b", "y"], bonus: {crit: 6}, phase: 2 },
         { id: 45368, itemset: ids.T8_SET, title: "Valorous Kirin Tor Tunic", int: 76, spi: 46, sp: 124, crit: 76, sockets: ["b", "y"], bonus: {crit: 6}, phase: 2 },
@@ -544,6 +572,11 @@ var equip = {
         { id: 41950, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Raiment", int: 45, sp: 87, crit: 44, sockets: ["r", "y"] },
         { id: 41949, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Raiment", int: 39, sp: 73, crit: 36, sockets: ["r", "y"], q: "rare" },
         // prebis
+        { id: 50266, title: "Ancient Polar Bear Hide", ilvl: 232, int: 92, sp: 141, hit: 61, haste: 92, phase: 4 },
+        { id: 50213, title: "Mord'rethar Robes", ilvl: 232, int: 92, spi: 86, sp: 141, crit: 70, phase: 4 },
+        { id: 47527, title: "Embrace of Madness", ilvl: 219, int: 70, spi: 56, sp: 124, crit: 69, sockets: ["b", "b"], bonus: {int: 6}, phase: 4 },
+        { id: 49825, title: "Palebone Robes", ilvl: 219, int: 79, sp: 124, crit: 71, haste: 71, phase: 4 },
+        { id: 43583, title: "Glacial Robe", ilvl: 213, sockets: ["r", "y", "b"] },
         { id: 42102, title: "Spellweave Robe", int: 64, spi: 52, sp: 104, haste: 90 },
         { id: 42101, title: "Ebonweave Robe", int: 89, sp: 105, hit: 68 },
         { id: 42100, title: "Moonshroud Robe", int: 68, spi: 89, sp: 105 },

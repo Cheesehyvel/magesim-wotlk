@@ -962,6 +962,7 @@
                                         <option :value="elixirs.ELIXIR_SPIRIT">Elixir of Spirit (50 spirit)</option>
                                         <option :value="elixirs.ELIXIR_MIGHTY_MAGEBLOOD">Elixir of Mighty Mageblood (30 mp5)</option>
                                         <option :value="elixirs.ELIXIR_MIGHTY_THOUGHTS">Elixir of Mighty Thoughts (45 int)</option>
+                                        <option :value="elixirs.ELIXIR_DRAENIC_WISDOM">Elixir of Draenic Wisdom (30 int, 30 spirit)</option>
                                     </select>
                                 </div>
                                 <div class="form-item">
@@ -2777,6 +2778,10 @@
                         stats.intellect+= 45;
                     else if (this.config.guardian_elixir == this.elixirs.ELIXIR_MIGHTY_MAGEBLOOD)
                         stats.mp5+= 30;
+                    else if (this.config.guardian_elixir == this.elixirs.ELIXIR_DRAENIC_WISDOM) {
+                        stats.intellect+= 30;
+                        stats.spirit+= 30;
+                    }
 
                     // Battle elixir
                     if (this.config.battle_elixir == this.elixirs.ELIXIR_SPELLPOWER) {

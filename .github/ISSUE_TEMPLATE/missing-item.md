@@ -7,6 +7,7 @@ assignees: ''
 
 ---
 
-Please include the item name in the title and a link to the item on any wotlk database (like wotlkdb.com or wowhead).
-
-Link:
+Please include:
+* The item name in the title
+* Link to the item on any wotlk database (like wotlkdb.com or wowhead).
+* Where it drops and/or which phase it becomes available
