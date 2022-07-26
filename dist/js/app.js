@@ -28733,14 +28733,14 @@ var DEFAULT_DESIGN = 2;
     itemUrl: function itemUrl(id) {
       if (_typeof(id) == "object") id = id.id;
       if (id > 99900) return null;
-      if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?item=" + id;
-      if (this.item_source == "evo") return "https://www.wotlkdb.com/?item=" + id;
+      if (this.item_source == "wotlkdb") return "https://www.wotlkdb.com/?item=" + id;
+      if (this.item_source == "evo") return "https://wotlk.evowow.com/?item=" + id;
       return "https://wotlk.wowhead.com/?item=" + id;
     },
     spellUrl: function spellUrl(id) {
       if (_typeof(id) == "object") id = id.id;
-      if (this.item_source == "wotlkdb") return "https://wotlkdb.com/?spell=" + id;
-      if (this.item_source == "evo") return "https://www.wotlkdb.com/?spell=" + id;
+      if (this.item_source == "wotlkdb") return "https://www.wotlkdb.com/?spell=" + id;
+      if (this.item_source == "evo") return "https://wotlk.evowow.com/?spell=" + id;
       return "https://wotlk.wowhead.com/?spell=" + id;
     },
     critRatingToChance: function critRatingToChance(rating) {
@@ -29123,16 +29123,16 @@ var DEFAULT_DESIGN = 2;
     },
     setSpec: function setSpec(spec) {
       if (spec == "arcane") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vfu0IzxGuMxebcZMGc0o:NzM0mM";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000523310033015032310250532-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_AB_AM;
       } else if (spec == "arcane_barrage") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vsu0IzxGuMxedcZMGc0o:NzM0mM";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_AB_AM_BARRAGE;
       } else if (spec == "fire") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0cZ0Ec0RhIuVubhst:VLi0mc";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003-0055030012303331053120301351_001q1g11xkk21q1y31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_FIRE;
       } else if (spec == "frost") {
-        this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/--0533030310233110200152231151_001q1j1258s21q1s31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_FROST;
       } else if (spec == "ffb") {
         this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/-2305030012303331053120311351-023303031002_001vrn11xkk21q1y31rj441rj551rj6";
@@ -84541,7 +84541,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /* module decorator */ module = __webpack_require__.nmd(module);
 //! moment.js
-//! version : 2.29.3
+//! version : 2.29.4
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -86995,7 +86995,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     function preprocessRFC2822(s) {
         // Remove comments and folding whitespace and replace multiple-spaces with a single space
         return s
-            .replace(/\([^)]*\)|[\n\t]/g, ' ')
+            .replace(/\([^()]*\)|[\n\t]/g, ' ')
             .replace(/(\s\s+)/g, ' ')
             .replace(/^\s\s*/, '')
             .replace(/\s\s*$/, '');
@@ -90176,7 +90176,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
     //! moment.js
 
-    hooks.version = '2.29.3';
+    hooks.version = '2.29.4';
 
     setHookCallback(createLocal);
 

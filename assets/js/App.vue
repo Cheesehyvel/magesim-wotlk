@@ -2997,9 +2997,9 @@
                 if (id > 99900)
                     return null;
                 if (this.item_source == "wotlkdb")
-                    return "https://wotlkdb.com/?item="+id;
-                if (this.item_source == "evo")
                     return "https://www.wotlkdb.com/?item="+id;
+                if (this.item_source == "evo")
+                    return "https://wotlk.evowow.com/?item="+id;
                 return "https://wotlk.wowhead.com/?item="+id;
             },
 
@@ -3007,9 +3007,9 @@
                 if (typeof(id) == "object")
                     id = id.id;
                 if (this.item_source == "wotlkdb")
-                    return "https://wotlkdb.com/?spell="+id;
-                if (this.item_source == "evo")
                     return "https://www.wotlkdb.com/?spell="+id;
+                if (this.item_source == "evo")
+                    return "https://wotlk.evowow.com/?spell="+id;
                 return "https://wotlk.wowhead.com/?spell="+id;
             },
 
@@ -3450,19 +3450,19 @@
 
             setSpec(spec) {
                 if (spec == "arcane") {
-                    this.config.build = "https://wotlk.evowow.com/?talent#of0Vfu0IzxGuMxebcZMGc0o:NzM0mM";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000523310033015032310250532-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_AB_AM;
                 }
                 else if (spec == "arcane_barrage") {
-                    this.config.build = "https://wotlk.evowow.com/?talent#of0Vsu0IzxGuMxedcZMGc0o:NzM0mM";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_AB_AM_BARRAGE;
                 }
                 else if (spec == "fire") {
-                    this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0cZ0Ec0RhIuVubhst:VLi0mc";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003-0055030012303331053120301351_001q1g11xkk21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_FIRE;
                 }
                 else if (spec == "frost") {
-                    this.config.build = "https://wotlk.evowow.com/?talent#of0Vck0fZZVIccofuobzgfkt:Rqn0mc";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/--0533030310233110200152231151_001q1j1258s21q1s31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_FROST;
                 }
                 else if (spec == "ffb") {

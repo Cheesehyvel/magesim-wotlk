@@ -624,7 +624,6 @@ a:hover {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   font-weight: 600;
   white-space: nowrap;
@@ -737,7 +736,6 @@ fieldset select {
   color: #aaa;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .form-item input:checked ~ span {
@@ -1026,7 +1024,6 @@ table.large tbody tr {
   padding: 10px 10px 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   transition: background 0.2s ease;
 }
@@ -1085,7 +1082,6 @@ table.large tbody tr {
   border-bottom: 2px solid transparent;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
