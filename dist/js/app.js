@@ -28491,10 +28491,9 @@ var DEFAULT_DESIGN = 2;
                 id: gem_id
               }) : null;
               if (gem && (gem.color != "m" || this.isMetaGemActive())) addStats(gem);
-              if (has_bonus && (!gem || !this.matchSocketColor(sockets[i], gem.color))) get_bonus = false;
             }
 
-            if (has_bonus && get_bonus) addStats(item.bonus);
+            if (has_bonus && this.hasSocketBonus(key)) addStats(item.bonus);
           }
 
           if (item.itemset) {

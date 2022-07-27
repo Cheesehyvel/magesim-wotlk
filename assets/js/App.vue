@@ -2659,11 +2659,9 @@
                                 gem = gem_id ? _.find(this.items.gems, {id: gem_id}) : null;
                                 if (gem && (gem.color != "m" || this.isMetaGemActive()))
                                     addStats(gem);
-                                if (has_bonus && (!gem || !this.matchSocketColor(sockets[i], gem.color)))
-                                    get_bonus = false;
                             }
 
-                            if (has_bonus && get_bonus)
+                            if (has_bonus && this.hasSocketBonus(key))
                                 addStats(item.bonus);
                         }
 
