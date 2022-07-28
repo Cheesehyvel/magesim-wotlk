@@ -1123,6 +1123,7 @@
                                     <div class="export-import clearfix mt-2">
                                         <div class="btn fl" @click="openExport()">Export</div>
                                         <div class="btn fl ml-n" @click="openImport()">Import</div>
+                                        <div class="btn ml-n" @click="openEightyUpgradesImport()">Import from 80up</div>
                                         <div class="btn danger fr" @click="nukeSettings()">Nuke settings</div>
                                     </div>
                                 </div>
@@ -1168,6 +1169,25 @@
                         <label><input type="checkbox" v-model="import_profile.config" :disabled="!import_status.config"> <span>Include config</span></label>
                     </div>
                     <div class="btn mt-2 wide" :class="[import_profile.string ? '' : 'disabled']" @click="doImport">Import</div>
+                </div>
+            </div>
+
+            <div class="lightbox" v-if="import_eighty_upgrades.open">
+                <div class="inner">
+                    <div class="title">Import from EightyUpgrades.com</div>
+                    <div class="form-item">
+                        <textarea v-model="import_eighty_upgrades.string" ref="import_eighty_upgrades_input" @input="checkImportString"></textarea>
+                    </div>
+                    <div class="form-item">
+                        <label><input type="checkbox" v-model="import_eighty_upgrades.items"> <span>Include items</span></label>
+                        <label><input type="checkbox" v-model="import_eighty_upgrades.config"> <span>Include config</span></label>
+                    </div>
+                    <div class="btn mt-2" :class="[import_eighty_upgrades.string ? '' : 'disabled']" @click="doEightyUpgradesImport">Import</div>
+                    <div class="close" @click="closeEightyUpgradesImport">
+                        <span class="material-icons">
+                            &#xe5cd;
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -1387,7 +1407,6 @@
                 flask: 0,
                 battle_elixir: 0,
                 guardian_elixir: 0,
-                weapon_oil: 0,
 
                 black_magic: false,
                 lightweave_embroidery: false,
@@ -1577,6 +1596,12 @@
                     items: true,
                     missing_items: [],
                     config: true,
+                },
+                import_eighty_upgrades: {
+                    open: false,
+                    string: null,
+                    items: true,
+                    config: false,
                 },
                 custom_item: {
                     id: null,
@@ -2502,13 +2527,27 @@
                 return _.find(this.items.equip[eslot], {id: id}, null);
             },
 
+            searchItem(slot, title) {
+                var eslot = this.equipSlotToItemSlot(slot);
+                return _.find(this.items.equip[eslot], {title: title}, null);
+            },
+
             getGem(id) {
                 return _.find(this.items.gems, {id: id}, null);
+            },
+
+            searchGem(title) {
+                return _.find(this.items.gems, {title: title}, null);
             },
 
             getEnchant(slot, id) {
                 var eslot = this.equipSlotToItemSlot(slot);
                 return _.find(this.items.enchants[eslot], {id: id}, null);
+            },
+
+            searchEnchant(slot, title) {
+                var eslot = this.equipSlotToItemSlot(slot);
+                return _.find(this.items.enchants[eslot], {title: title}, null);
             },
 
             equippedItem(slot) {
@@ -3767,6 +3806,276 @@
             closeImport() {
                 this.import_profile.open = false;
                 this.import_profile.string = null;
+            },
+
+            openEightyUpgradesImport() {
+                this.import_eighty_upgrades.string = null;
+                this.import_eighty_upgrades.open = true;
+
+                this.$nextTick(function() {
+                    this.$refs.import_eighty_upgrades_input.focus();
+                });
+            },
+
+            closeEightyUpgradesImport() {
+                this.import_eighty_upgrades.open = false;
+                this.import_eighty_upgrades.string = null;
+            },
+
+            doEightyUpgradesImport() {
+                if (this.import_eighty_upgrades.string && this.importEightyUpgradesString(this.import_eighty_upgrades.string))
+                    this.closeEightyUpgradesImport();
+            },
+
+            importEightyUpgradesError(err) {
+                alert(err);
+                this.import_eighty_upgrades.string = null;
+                this.$refs.import_eighty_upgrades_input.focus();
+                return false;
+            },
+
+            importEightyUpgradesString(str) {
+                try {
+                    var data = JSON.parse(str);
+                }
+                catch (e) {
+                    return this.importEightyUpgradesError("Could not parse import string");
+                }
+
+                if (!data)
+                    return this.importEightyUpgradesError("Could not parse import string");
+
+                if (!data.items)
+                    return this.importEightyUpgradesError("Invalid import string");
+
+                var profile = {
+                    items: null,
+                    enchants: null,
+                    gems: null,
+                    config: null,
+                };
+
+                if (this.import_eighty_upgrades.items) {
+                    profile.equipped = {};
+                    profile.enchants = {};
+                    profile.gems = {};
+
+                    for (var key in this.equipped) {
+                        profile.equipped[key] = null;
+                        profile.enchants[key] = null;
+                        profile.gems[key] = [null, null, null];
+                    }
+
+                    for (var i=0; i<data.items.length; i++) {
+                        var slot = this.getSlotFromEightyUpgrades(data.items[i]);
+                        if (!slot)
+                            continue;
+                        var item = this.getItem(slot, data.items[i].id);
+                        if (!item)
+                            item = this.searchItem(data.items[i].name);
+                        if (!item)
+                            return this.importEightyUpgradesError("Could not find item: "+data.items[i].name);
+                        profile.equipped[slot] = item.id;
+
+                        if (data.items[i].enchant) {
+                            var enchant = this.getEnchantFromEightyUpgrades(slot, data.items[i].enchant);
+                            if (!enchant)
+                                return this.importEightyUpgradesError("Could not find enchant: "+data.items[i].enchant.name);
+                            profile.enchants[slot] = enchant.id;
+                        }
+
+                        if (data.items[i].gems) {
+                            for (var j=0; j<data.items[i].gems.length; j++) {
+                                var gem = this.getGem(data.items[i].gems[j].id);
+                                if (!gem)
+                                    gem = this.searchGem(data.items[i].gems[j].name);
+                                if (!gem)
+                                    return this.importEightyUpgradesError("Could not find gem: "+data.items[i].gems[j].name);
+                                profile.gems[slot][j] = gem.id;
+                            }
+                        }
+                    }
+                }
+
+                // 80up has not implemented this yet
+                if (this.import_eighty_upgrades.config && data.exportOptions.buffs) {
+
+                }
+
+                if (this.import_eighty_upgrades.config && data.exportOptions.talents) {
+                    var talents = [
+                        "000000000000000000000000000000",
+                        "0000000000000000000000000000",
+                        "0000000000000000000000000000",
+                    ];
+
+                    var tmap = {
+                        "Arcane Subtlety": [0, 0],
+                        "Arcane Focus": [0, 1],
+                        "Arcane Stability": [0, 2],
+                        "Arcane Fortitude": [0, 3],
+                        "Magic Absorption": [0, 4],
+                        "Arcane Concentration": [0, 5],
+                        "Magic Attunement": [0, 6],
+                        "Spell Impact": [0, 7],
+                        "Student of the Mind": [0, 8],
+                        "Focus Magic": [0, 9],
+                        "Arcane Shielding": [0, 10],
+                        "Improved Counterspell": [0, 11],
+                        "Arcane Meditation": [0, 12],
+                        "Torment of the Weak": [0, 13],
+                        "Torment the Weak": [0, 13],
+                        "Improved Blink": [0, 14],
+                        "Presence of Mind": [0, 15],
+                        "Arcane Mind": [0, 16],
+                        "Prismatic Cloak": [0, 17],
+                        "Arcane Instability": [0, 18],
+                        "Arcane Potency": [0, 19],
+                        "Arcane Empowerment": [0, 20],
+                        "Arcane Power": [0, 21],
+                        "Incanter's Absorption": [0, 22],
+                        "Arcane Flows": [0, 23],
+                        "Mind Mastery": [0, 24],
+                        "Slow": [0, 25],
+                        "Missile Barrage": [0, 26],
+                        "Netherwind Presence": [0, 27],
+                        "Spell Power": [0, 28],
+                        "Arcane Barrage": [0, 29],
+                        "Improved Fire Blast": [1, 0],
+                        "Incineration": [1, 1],
+                        "Improved Fireball": [1, 2],
+                        "Ignite": [1, 3],
+                        "Burning Determination": [1, 4],
+                        "World in Flames": [1, 5],
+                        "Flame Throwing": [1, 6],
+                        "Impact": [1, 7],
+                        "Pyroblast": [1, 8],
+                        "Burning Soul": [1, 9],
+                        "Improved Scorch": [1, 10],
+                        "Molten Shields": [1, 11],
+                        "Master of Elements": [1, 12],
+                        "Playing with Fire": [1, 13],
+                        "Critical Mass": [1, 14],
+                        "Blast Wave": [1, 15],
+                        "Blazing Speed": [1, 16],
+                        "Fire Power": [1, 17],
+                        "Pyromaniac": [1, 18],
+                        "Combustion": [1, 19],
+                        "Molten Fury": [1, 20],
+                        "Fiery Payback": [1, 21],
+                        "Empowered Fire": [1, 22],
+                        "Firestarter": [1, 23],
+                        "Dragon's Breath": [1, 24],
+                        "Hot Streak": [1, 25],
+                        "Burnout": [1, 26],
+                        "Living Bomb": [1, 27],
+                        "Frostbite": [2, 0],
+                        "Improved Frostbolt": [2, 1],
+                        "Ice Floes": [2, 2],
+                        "Ice Shards": [2, 3],
+                        "Frost Warding": [2, 4],
+                        "Precision": [2, 5],
+                        "Permafrost": [2, 6],
+                        "Piercing Ice": [2, 7],
+                        "Icy Veins": [2, 8],
+                        "Improved Blizzard": [2, 9],
+                        "Arctic Reach": [2, 10],
+                        "Frost Channeling": [2, 11],
+                        "Shatter": [2, 12],
+                        "Cold Snap": [2, 13],
+                        "Improved Cone of Cold": [2, 14],
+                        "Frozen Core": [2, 15],
+                        "Cold as Ice": [2, 16],
+                        "Winter's Chill": [2, 17],
+                        "Shattered Barrier": [2, 18],
+                        "Ice Barrier": [2, 19],
+                        "Arctic Winds": [2, 20],
+                        "Empowered Frostbolt": [2, 21],
+                        "Fingers of Frost": [2, 22],
+                        "Brain Freeze": [2, 23],
+                        "Summon Water Elemental": [2, 24],
+                        "Enduring Winter": [2, 25],
+                        "Chilled to the Bone": [2, 26],
+                        "Deep Freeze": [2, 27],
+                    };
+
+                    for (var talent of data.talents) {
+                        if (!tmap.hasOwnProperty(talent.name))
+                            return this.importEightyUpgradesError("Unknown talent: "+talent.name);
+                        var t = tmap[talent.name]
+                        talents[t[0]] = talents[t[0]].substr(0, t[1]) + talent.rank + talents[t[0]].substr(t[1]+1);
+                    }
+
+                    var tstring = talents[0]+"-"+talents[1]+"-"+talents[2];
+                    tstring = tstring.replace(/0+\-/g, "-");
+                    tstring = tstring.replace(/0+$/g, "");
+                    tstring = "https://wowhead.com/wotlk/talent-calc/mage/"+tstring;
+
+                    if (data.glyphs && data.glyphs.length) {
+                        var encoding = "0123456789abcdefghjkmnpqrstvwxyz";
+                        var glyph, str, id;
+                        tstring+= "_0";
+                        for (var i=0, n=0; i<data.glyphs.length; i++, n++) {
+                            glyph = _.find(glyphs, {itemId: data.glyphs[i].id});
+                            if (!glyph)
+                                continue;
+                            if (data.glyphs[i].type == "MINOR" && i < 3)
+                                n = 3;
+                            id = glyph.spellId;
+                            str = encoding[(id >> 15) & 31] + encoding[(id >> 10) & 31] + encoding[(id >> 5) & 31] + encoding[(id >> 0) & 31];
+                            tstring+= n + str;
+                        }
+                    }
+
+                    profile.config.build = tstring;
+                }
+
+                this.loadProfile(profile);
+
+                return true;
+            },
+
+            getSlotFromEightyUpgrades(data) {
+                var slot = _.isString(data) ? data : data.slot;
+                slot = slot.toLowerCase();
+                slot = slot.replace("finger_", "finger");
+                slot = slot.replace("trinket_", "trinket");
+                slot = slot.replace("shoulders", "shoulder");
+                slot = slot.replace("wrists", "wrist");
+                if (slot == "main_hand")
+                    slot = "weapon";
+                if (!this.equipped.hasOwnProperty(slot))
+                    return null;
+                return slot;
+            },
+
+            getEnchantFromEightyUpgrades(slot, data) {
+                if (!data.spellId) {
+                    if (data.itemId) {
+                        var map = {
+                            28886: 35406,
+                            28909: 35437,
+                            23545: 29467,
+                            28881: 35405,
+                            28903: 35436,
+                            29191: 35447,
+                            19787: 24164,
+                            24274: 31372,
+                            24273: 31371
+                        };
+                        if (map.hasOwnProperty(data.itemId))
+                            return this.getEnchant(slot, map[data.itemId]);
+                        return this.searchEnchant(slot, data.name);
+                    }
+                    else {
+                        return this.searchEnchant(slot, data.name);
+                    }
+                }
+
+                var enchant = this.getEnchant(slot, data.spellId);
+                if (!enchant)
+                    enchant = this.searchEnchant(slot, data.name);
+                return enchant;
             },
 
             nukeSettings() {
