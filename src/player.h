@@ -661,7 +661,7 @@ namespace unit
             else if (hasBuff(buff::ARCANE_BLAST) && spell->school == SCHOOL_ARCANE)
                 actions.push_back(buffExpireAction(make_shared<buff::ArcaneBlast>()));
 
-            if (hasBuff(buff::BRAIN_FREEZE) && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
+            if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
                 // 10% chance - UNCONFIRMED
                 if (!config->t8_4set || random<int>(0, 9) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::BrainFreeze>()));

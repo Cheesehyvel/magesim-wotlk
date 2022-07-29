@@ -86,6 +86,7 @@ namespace spell
         School school;
 
         double actual_cost = 0;
+        double actual_cast_time = 0;
         int tick = 0;
         bool done = false;
 

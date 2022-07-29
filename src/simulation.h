@@ -288,6 +288,8 @@ public:
 
     void pushCastFinish(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t)
     {
+        spell->actual_cast_time = t;
+
         shared_ptr<Event> event(new Event());
         event->type = EVENT_CAST_FINISH;
         event->spell = spell;
