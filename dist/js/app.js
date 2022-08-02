@@ -29455,7 +29455,7 @@ var DEFAULT_DESIGN = 2;
         items: null,
         enchants: null,
         gems: null,
-        config: null
+        config: {}
       };
 
       if (this.import_eighty_upgrades.items) {
@@ -29484,10 +29484,17 @@ var DEFAULT_DESIGN = 2;
           }
 
           if (data.items[i].gems) {
+            var nsockets = _.get(item, "sockets.length", 0);
+
             for (var j = 0; j < data.items[i].gems.length; j++) {
               var gem = this.getGem(data.items[i].gems[j].id);
               if (!gem) gem = this.searchGem(data.items[i].gems[j].name);
               if (!gem) return this.importEightyUpgradesError("Could not find gem: " + data.items[i].gems[j].name);
+
+              if (j >= nsockets) {
+                if (j == nsockets && ["waist", "wrist", "hands"].indexOf(slot) != -1) profile.config[slot + "_socket"] = true;else break;
+              }
+
               profile.gems[slot][j] = gem.id;
             }
           }
