@@ -191,8 +191,11 @@ a {
 
 .help {
     display: inline-block;
+    margin-left: 2px;
+    cursor: default;
 
     .material-icons {
+        margin-top: -2px;
         color: $color_primary;
     }
 }

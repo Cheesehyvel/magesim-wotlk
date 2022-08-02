@@ -86,7 +86,7 @@
                     <div class="title">
                         <span>Stat weights</span>
                         <help>
-                            Stat weights are calculated by running {{ config.iterations }} iterations with +10 of each stat with the same RNG seed and comparing the dps gain.<br>
+                            Stat weights are calculated by running {{ config.iterations }} iterations with +{{ config.stat_weight_increment }} of each stat with the same RNG seed and comparing the dps gain.<br>
                             Calculated stat weights are based on your config. Any changes to it or your items can change the weights.<br>
                             The best way to find out if an item/gem/enchant is better is to equip it and run simulations.
                         </help>
@@ -651,6 +651,15 @@
                                         </help>
                                     </label>
                                     <input type="text" v-model.number="config.rng_seed">
+                                </div>
+                                <div class="form-item">
+                                    <label>
+                                        <span>Stat weight increment</span>
+                                        <help>
+                                            Each stat will be increased by this value when calculating stat weights.
+                                        </help>
+                                    </label>
+                                    <input type="text" v-model.number="config.stat_weight_increment">
                                 </div>
                                 <div class="form-item">
                                     <label>Design</label>
@@ -1359,6 +1368,7 @@
                 duration: 180,
                 duration_variance: 0,
                 rng_seed: 0,
+                stat_weight_increment: 20,
                 avg_spell_dmg: false,
                 additional_data: false,
                 targets: 1,
@@ -2413,8 +2423,11 @@
 
                 var rng_seed = Math.round(Math.random() * 100000);
                 var result;
+                var increment = this.config.stat_weight_increment;
+                if (increment < 1)
+                    increment = 20;
                 for (var stat in this.ep_result) {
-                    result = await this.runStat(stat, stat == "base" ? 0 : 10, rng_seed);
+                    result = await this.runStat(stat, stat == "base" ? 0 : increment, rng_seed);
                     this.ep_result[stat] = result.avg_dps;
                     if (!this.is_running_ep)
                         break;
@@ -3469,19 +3482,14 @@
 
             compareItem(item) {
                 var index = _.findIndex(this.item_comparison, {id: item.id});
-                if (index == -1) {
+                if (index == -1)
                     this.item_comparison.push({id: item.id, dps: null});
-                }
-                else {
+                else
                     this.item_comparison.splice(index, 1);
-                }
             },
 
             comparisonDps(item) {
                 var cmp = _.find(this.item_comparison, {id: item.id});
-                var cmp2 = _.find(this.item_comparison, {id: this.items.ids.STAT_WEIGHT_BASE});
-                if (cmp2 && cmp2.dps && item.id !== this.items.ids.STAT_WEIGHT_BASE)
-                    return cmp && cmp.dps ? "+"+_.round(cmp.dps-cmp2.dps, 2) : null;
                 return cmp && cmp.dps ? _.round(cmp.dps, 2) : null;
             },
 

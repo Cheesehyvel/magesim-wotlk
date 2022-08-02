@@ -687,8 +687,11 @@ a:hover {
 
 .help {
   display: inline-block;
+  margin-left: 2px;
+  cursor: default;
 }
 .help .material-icons {
+  margin-top: -2px;
   color: #06f;
 }
 
