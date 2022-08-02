@@ -26865,7 +26865,10 @@ var enchants = {
     title: "Precision",
     hit: 20
   }],
-  waist: [],
+  waist: [{
+    id: 54793,
+    title: "Frag belt"
+  }],
   legs: [{
     id: 55631,
     title: "Brilliant Spellthread",
