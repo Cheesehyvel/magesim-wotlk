@@ -4159,7 +4159,6 @@
                         }
                     }
                     _.merge(this.gems, profile.gems);
-                    this.confirmGems();
                 }
 
                 if (profile.config && (!only || only == "config")) {
@@ -4169,6 +4168,7 @@
                     this.profile_status.config = true;
                 }
 
+                this.confirmGems();
                 this.calcStats();
                 this.saveCurrentProfile();
 

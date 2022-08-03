@@ -29735,8 +29735,6 @@ var DEFAULT_DESIGN = 2;
         }
 
         _.merge(this.gems, profile.gems);
-
-        this.confirmGems();
       }
 
       if (profile.config && (!only || only == "config")) {
@@ -29748,6 +29746,7 @@ var DEFAULT_DESIGN = 2;
         this.profile_status.config = true;
       }
 
+      this.confirmGems();
       this.calcStats();
       this.saveCurrentProfile();
       var self = this;
