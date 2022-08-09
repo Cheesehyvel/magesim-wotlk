@@ -29449,7 +29449,7 @@ var DEFAULT_DESIGN = 2;
         items: null,
         enchants: null,
         gems: null,
-        config: {}
+        config: _.cloneDeep(this.config)
       };
 
       if (this.import_eighty_upgrades.items) {
