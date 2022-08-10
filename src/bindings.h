@@ -203,7 +203,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("rotation", &Config::rotation)
         .property("rot_ab3_mana", &Config::rot_ab3_mana)
         .property("rot_ab_no_mb_mana", &Config::rot_ab_no_mb_mana)
-        .property("rot_ab_ap", &Config::rot_ab_ap)
+        .property("rot_abs_ap", &Config::rot_abs_ap)
         .property("rot_ice_lance", &Config::rot_ice_lance)
         ;
 

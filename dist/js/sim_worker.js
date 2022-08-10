@@ -36,7 +36,7 @@ onmessage = function onmessage(event) {
       if (m.Conjured.values.hasOwnProperty(data.config.conjured)) config.conjured = m.Conjured.values[data.config.conjured];
 
       for (var i = 0; i < data.config.timings.length; i++) {
-        m.addTiming(config, data.config.timings[i].name, data.config.timings[i].t, data.config.timings[i].wait_for_buff, data.config.timings[i].wait_t);
+        m.addTiming(config, data.config.timings[i].name, data.config.timings[i].t ? data.config.timings[i].t : 0, data.config.timings[i].wait_for_buff, data.config.timings[i].wait_t ? data.config.timings[i].wait_t : 0);
       }
 
       var player = m.allocPlayer(config);

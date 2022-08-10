@@ -35,9 +35,9 @@ onmessage = (event) => {
                 m.addTiming(
                     config,
                     data.config.timings[i].name,
-                    data.config.timings[i].t,
+                    data.config.timings[i].t ? data.config.timings[i].t : 0,
                     data.config.timings[i].wait_for_buff,
-                    data.config.timings[i].wait_t
+                    data.config.timings[i].wait_t ? data.config.timings[i].wait_t : 0
                 );
             }
 

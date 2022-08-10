@@ -68,7 +68,7 @@ struct Config
     Rotation rotation = ROTATION_ST_AB_AM;
     double rot_ab3_mana = 0;
     double rot_ab_no_mb_mana = 100;
-    bool rot_ab_ap = false;
+    double rot_abs_ap = 0;
     bool rot_ice_lance = false;
 
     std::vector<std::shared_ptr<Timing>> timings;

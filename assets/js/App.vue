@@ -719,9 +719,8 @@
                                         <input type="text" v-model.number="config.rot_ab_no_mb_mana">
                                     </div>
                                     <div class="form-item">
-                                        <label><input type="checkbox" v-model="config.rot_ab_ap">
-                                            <span>Always cast AB during Arcane Power</span>
-                                        </label>
+                                        <label>Extra ABs during first AP</label>
+                                        <input type="text" v-model.number="config.rot_abs_ap">
                                     </div>
                                 </template>
                                 <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
@@ -1456,7 +1455,7 @@
                 rotation: constants.rotations.ROTATION_ST_AB_AM,
                 rot_ab3_mana: 0,
                 rot_ab_no_mb_mana: 100,
-                rot_ab_ap: false,
+                rot_abs_ap: 0,
                 rot_ice_lance: false,
 
                 timings: Array(),

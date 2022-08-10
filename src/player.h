@@ -18,8 +18,9 @@ namespace unit
         double t_living_bomb;
         double t_flamestrike;
         double t_mana_spent;
-        double fire_ward = 0;
+        double fire_ward;
         int mana_sapphire;
+        int ab_streak;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -39,6 +40,7 @@ namespace unit
             t_mana_spent = 0;
             fire_ward = 0;
             mana_sapphire = 3;
+            ab_streak = 0;
         }
 
         Stats getStats()
@@ -578,6 +580,9 @@ namespace unit
             else if (buff->id == buff::HYPERSPEED_ACCELERATION) {
                 actions.push_back(cooldownAction(make_shared<cooldown::TrinketShared>(buff->duration)));
             }
+            else if (buff->id == buff::ARCANE_BLAST) {
+                ab_streak++;
+            }
 
             return actions;
         }
@@ -592,6 +597,8 @@ namespace unit
                 actions.push_back(buffExpireAction(make_shared<buff::VolatilityNm>()));
             if (buff->id == buff::FIRE_WARD)
                 fire_ward = 0;
+            if (buff->id == buff::ARCANE_BLAST)
+                ab_streak = 0;
 
             return actions;
         }
@@ -1594,7 +1601,7 @@ namespace unit
                 if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
                     ab_stacks = 3;
 
-                if (canBlast(state) || config->rot_ab_ap && hasBuff(buff::ARCANE_POWER))
+                if (canBlast(state) || hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                     action = spellAction(make_shared<spell::ArcaneBlast>());
                 else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (hasBuff(buff::MISSILE_BARRAGE) || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
@@ -1609,7 +1616,7 @@ namespace unit
                     ab_stacks = 3;
 
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
-                    if (canBlast(state) || config->rot_ab_ap && hasBuff(buff::ARCANE_POWER))
+                    if (canBlast(state) || hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                         action = spellAction(make_shared<spell::ArcaneBlast>());
                     else if (hasBuff(buff::MISSILE_BARRAGE))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());

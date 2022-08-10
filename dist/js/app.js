@@ -27204,7 +27204,7 @@ var DEFAULT_DESIGN = 2;
       rotation: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_AB_AM,
       rot_ab3_mana: 0,
       rot_ab_no_mb_mana: 100,
-      rot_ab_ap: false,
+      rot_abs_ap: 0,
       rot_ice_lance: false,
       timings: Array(),
       build: "",
@@ -31651,7 +31651,7 @@ var _hoisted_286 = {
   "class": "form-item"
 };
 
-var _hoisted_287 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Always cast AB during Arcane Power", -1
+var _hoisted_287 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Extra ABs during first AP", -1
 /* HOISTED */
 );
 
@@ -34070,14 +34070,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.rot_ab_no_mb_mana, void 0, {
     number: true
-  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_286, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "checkbox",
+  }]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_286, [_hoisted_287, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
     "onUpdate:modelValue": _cache[80] || (_cache[80] = function ($event) {
-      return _ctx.config.rot_ab_ap = $event;
+      return _ctx.config.rot_abs_ap = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.config.rot_ab_ap]]), _hoisted_287])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.config.rot_abs_ap, void 0, {
+    number: true
+  }]])])], 64
   /* STABLE_FRAGMENT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.config.rotation == _ctx.rotations.ROTATION_ST_FROST ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_288, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
