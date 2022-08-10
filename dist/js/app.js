@@ -27131,7 +27131,7 @@ var DEFAULT_DESIGN = 2;
       targets: 1,
       target_resistance: 0,
       target_level: 83,
-      spell_travel_time: 500,
+      spell_travel_time: 1500,
       reaction_time: 300,
       // Debuffs
       debuff_crit: false,
@@ -29147,10 +29147,10 @@ var DEFAULT_DESIGN = 2;
     },
     setSpec: function setSpec(spec) {
       if (spec == "arcane") {
-        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000523310033015032310250532-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023203001_001wr211q1b21q1y31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_AB_AM;
       } else if (spec == "arcane_barrage") {
-        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
+        this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023203001_001wr211q1b21q1y31rj441rj551rj7";
         this.config.rotation = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].rotations.ROTATION_ST_AB_AM_BARRAGE;
       } else if (spec == "fire") {
         this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003-0055030012303331053120301351_001q1g11xkk21q1y31rj441rj551rj7";
@@ -29680,16 +29680,16 @@ var DEFAULT_DESIGN = 2;
       this.profiles.splice(pos, 0, this.profiles.splice(index, 1)[0]);
       this.saveProfiles();
     },
-    saveProfile: function saveProfile(profile) {
-      profile.equipped = _.cloneDeep(this.equipped);
-      profile.enchants = _.cloneDeep(this.enchants);
-      profile.gems = _.cloneDeep(this.gems);
-      profile.config = _.cloneDeep(this.config);
-
+    saveProfile: function saveProfile(profile, confirm) {
       var index = _.findIndex(this.profiles, {
         id: profile.id
       });
 
+      if (index != -1 && !window.confirm("Override " + profile.name + "?") && !confirm) return;
+      profile.equipped = _.cloneDeep(this.equipped);
+      profile.enchants = _.cloneDeep(this.enchants);
+      profile.gems = _.cloneDeep(this.gems);
+      profile.config = _.cloneDeep(this.config);
       if (index != -1) this.profiles.splice(index, 1, profile);else this.profiles.push(profile);
       this.saveProfiles();
     },

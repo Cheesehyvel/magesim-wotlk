@@ -1373,7 +1373,7 @@
                 targets: 1,
                 target_resistance: 0,
                 target_level: 83,
-                spell_travel_time: 500,
+                spell_travel_time: 1500,
                 reaction_time: 300,
 
                 // Debuffs
@@ -3494,11 +3494,11 @@
 
             setSpec(spec) {
                 if (spec == "arcane") {
-                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000523310033015032310250532-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023203001_001wr211q1b21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_AB_AM;
                 }
                 else if (spec == "arcane_barrage") {
-                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023023001_001wr211q1b21q1y31rj441rj551rj7";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/230005133100330150323102505321-03-023203001_001wr211q1b21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_AB_AM_BARRAGE;
                 }
                 else if (spec == "fire") {
@@ -4106,13 +4106,15 @@
                 this.saveProfiles();
             },
 
-            saveProfile(profile) {
+            saveProfile(profile, confirm) {
+                var index = _.findIndex(this.profiles, {id: profile.id});
+                if (index != -1 && !window.confirm("Override "+profile.name+"?") && !confirm)
+                    return;
                 profile.equipped = _.cloneDeep(this.equipped);
                 profile.enchants = _.cloneDeep(this.enchants);
                 profile.gems = _.cloneDeep(this.gems);
                 profile.config = _.cloneDeep(this.config);
 
-                var index = _.findIndex(this.profiles, {id: profile.id});
                 if (index != -1)
                     this.profiles.splice(index, 1, profile);
                 else
