@@ -176,14 +176,6 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="faded" v-if="result.stats.evocated.n">
-                            Evocated: {{ $round(result.stats.evocated.t, 1) }}s
-                            ({{ $round(result.stats.evocated.n / result.iterations * 100, 1) }}%)
-                        </div>
-                        <div class="faded" v-if="result.stats.t_gcd_capped">
-                            Wasted haste: {{ $round(result.stats.t_gcd_capped, 2) }}s
-                            <help>Time spent gcd capped</help>
-                        </div>
                         <div class="btn mt-2" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
                         <div class="btn mt-1" v-if="result.all_results" @click="allResults">Simulation data</div>
                     </template>
@@ -192,12 +184,6 @@
                             <div>DPS</div>
                             <div>Damage: {{ result.dmg }}</div>
                             <div>{{ $round(result.dps, 2) }}</div>
-                        </div>
-                        <div class="mt-1"></div>
-                        <div class="faded" v-if="result.evocated_at > 0">Evocated at: {{ $round(result.evocated_at, 1) }}</div>
-                        <div class="faded" v-if="result.t_gcd_capped">
-                            Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s
-                            <help>Time spent gcd capped</help>
                         </div>
                     </template>
 
@@ -682,6 +668,16 @@
                                         <option :value="1">Wotlk</option>
                                         <option :value="2">Alternative</option>
                                     </select>
+                                </div>
+                                <div class="form-item" v-if="config.talents.ignite">
+                                    <label><input type="checkbox" v-model="config.ignite_munching">
+                                        <span>Ignite munching</span>
+                                        <help>
+                                            When two spells crit at the same time, only the latter spell will count towards ignite.<br>
+                                            For example when an instant pyroblast lands right after a fireball, or when Living Bomb explodes at the same time as another spell lands on the target.<br>
+                                            However, this does not affect Hot Streak with Frostfire Bolt due to Frostfire Bolt having a faster travel time.<br>
+                                        </help>
+                                    </label>
                                 </div>
                                 <div class="form-item">
                                     <label><input type="checkbox" v-model="config.avg_spell_dmg">
@@ -1425,6 +1421,7 @@
                 target_level: 83,
                 spell_travel_time: 1000,
                 reaction_time: 300,
+                ignite_munching: false,
 
                 // Debuffs
                 debuff_crit: false,

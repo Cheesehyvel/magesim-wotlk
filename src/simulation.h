@@ -58,10 +58,6 @@ public:
         map<int, int> histogram;
         ostringstream results;
 
-        double evocated = 0;
-        double evocated_at = 0;
-        double t_gcd_capped = 0;
-
         if (config->additional_data)
             results << "DPS,Duration\n";
 
@@ -76,13 +72,6 @@ public:
             if (i == 0 || r.dps > result.max_dps)
                 result.max_dps = r.dps;
             result.avg_dps+= (r.dps - result.avg_dps) / (i+1);
-
-            if (r.evocated_at != -1) {
-                evocated++;
-                evocated_at+= (r.evocated_at - evocated_at) / evocated;
-            }
-
-            t_gcd_capped+= (r.t_gcd_capped - t_gcd_capped) / (i+1);
 
             bin = floor(r.dps/bin_size)*bin_size;
             if (histogram.find(bin) != histogram.end())
@@ -109,15 +98,6 @@ public:
         }
         ss << "}";
         result.histogram = ss.str();
-
-        // Stats json string
-        ss.str("");
-        ss.clear();
-        ss << "{";
-        ss << "\"evocated\":{\"t\":" << evocated_at << ",\"n\":" << evocated << "},";
-        ss << "\"t_gcd_capped\":" << t_gcd_capped;
-        ss << "}";
-        result.stats = ss.str();
 
         return result;
     }
@@ -153,7 +133,6 @@ public:
         result.dmg = state->dmg;
         result.t = state->t;
         result.dps = state->dmg/state->t;
-        result.evocated_at = state->evocated_at;
 
         if (logging) {
             result.log = jsonLog();
@@ -678,6 +657,7 @@ public:
     {
         // Stackable dot dmg, ie Ignite
         if (spell->stackable) {
+            bool munch = spell->id == spell::IGNITE && config->ignite_munching;
             list<shared_ptr<spell::SpellInstance>> dots = getDots(unit, spell);
             shared_ptr<spell::SpellInstance> dot = NULL;
             removeSpellImpacts(unit, spell);
@@ -686,9 +666,16 @@ public:
                 dot->tick = i;
                 if (!dots.empty()) {
                     dot->dmg+= dots.front()->dmg;
+                    if (munch && state->ignite_dmg > 0 && state->t - state->ignite_t <= IGNITE_MUNCH_WINDOW)
+                        dot->dmg-= state->ignite_dmg;
                     dots.pop_front();
                 }
                 pushDotTick(unit, dot);
+            }
+
+            if (munch) {
+                state->ignite_t = state->t;
+                state->ignite_dmg = spell->min_dmg;
             }
         }
         else {
@@ -1030,7 +1017,14 @@ public:
     {
         if (!spell->has_travel_time)
             return 0;
-        return config->spell_travel_time / 1000.0;
+
+        double t = config->spell_travel_time / 1000.0;
+
+        // ffb is a bit faster
+        if (spell->id == spell::FROSTFIRE_BOLT)
+            t*= 0.85;
+
+        return t;
     }
 
     double castTime(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)

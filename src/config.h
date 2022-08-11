@@ -11,6 +11,7 @@ struct Config
     int target_level = 83;
     int spell_travel_time = 500;
     int reaction_time = 300;
+    bool ignite_munching = false;
 
     // Buffs / debuffs
     bool debuff_spell_crit = false;

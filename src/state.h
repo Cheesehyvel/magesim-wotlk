@@ -7,7 +7,8 @@ public:
     double t;
     unsigned long long dmg;
     double duration;
-    double evocated_at = -1;
+    double ignite_dmg;
+    double ignite_t;
 
     map<spell::ID, SpellStats> spells;
     map<debuff::ID, shared_ptr<debuff::Debuff>> debuffs;
@@ -28,7 +29,9 @@ public:
         duration = config->duration;
         duration+= -config->duration_variance + random<double>(0, config->duration_variance*2);
 
-        evocated_at = -1;
+        ignite_dmg = 0;
+        ignite_t = -20;
+
         spells.clear();
         debuffs.clear();
         units.clear();

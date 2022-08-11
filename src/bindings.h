@@ -149,6 +149,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)
         .property("spell_travel_time", &Config::spell_travel_time)
+        .property("ignite_munching", &Config::ignite_munching)
 
         .property("debuff_spell_crit", &Config::debuff_spell_crit)
         .property("debuff_spell_dmg", &Config::debuff_spell_dmg)
@@ -324,8 +325,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("dmg", &SimulationResult::dmg)
         .field("t", &SimulationResult::t)
         .field("dps", &SimulationResult::dps)
-        .field("evocated_at", &SimulationResult::evocated_at)
-        .field("t_gcd_capped", &SimulationResult::t_gcd_capped)
         .field("log", &SimulationResult::log)
         .field("spells", &SimulationResult::spells)
         ;
@@ -337,7 +336,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("iterations", &SimulationsResult::iterations)
         .field("histogram", &SimulationsResult::histogram)
         .field("all_results", &SimulationsResult::all_results)
-        .field("stats", &SimulationsResult::stats)
         ;
 
     emscripten::function("runSimulation", &runSimulation);

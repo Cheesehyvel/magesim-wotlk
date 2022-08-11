@@ -1,4 +1,5 @@
 #define MANA_TICK_T 1.0
+#define IGNITE_MUNCH_WINDOW 0.04
 
 enum Rotation : int
 {
@@ -149,8 +150,6 @@ struct SimulationResult
     int dmg;
     double t;
     double dps;
-    double evocated_at;
-    double t_gcd_capped = 0;
     std::string log;
     std::string spells;
 };
@@ -161,7 +160,6 @@ struct SimulationsResult
     int iterations;
     std::string histogram;
     std::string all_results;
-    std::string stats;
 };
 
 double critRatingToChance(double rating)

@@ -66,7 +66,6 @@ onmessage = function onmessage(event) {
       if (result.log) result.log = JSON.parse(result.log);
       if (result.spells) result.spells = JSON.parse(result.spells);
       if (result.histogram) result.histogram = JSON.parse(result.histogram);
-      if (result.stats) result.stats = JSON.parse(result.stats);
       postMessage({
         type: "success",
         result: result
