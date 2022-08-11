@@ -73,6 +73,8 @@
                                         <div>{{ $round(hitRatingToChance(display_stats.hit_rating),2) }}% from {{ display_stats.hit_rating }} hit rating</div>
                                         <div v-if="config.talents.precision">{{ config.talents.precision }}% from Precision</div>
                                         <div v-if="config.debuff_spell_hit">3% from spell hit debuff</div>
+                                        <div v-if="config.debuff_spell_hit">3% from spell hit debuff</div>
+                                        <div v-if="config.heroic_presence">1% from Heroic Presence</div>
                                     </tooltip>
                                 </td>
                             </tr>
