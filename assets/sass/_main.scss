@@ -117,6 +117,9 @@ a {
 .tar {
     text-align: right;
 }
+.tac {
+    text-align: center;
+}
 
 .btn {
     display: inline-block;
@@ -1191,6 +1194,11 @@ table {
             &:hover {
                 background: #36008a;
             }
+        }
+
+        &.small {
+            border-radius: 20px;
+            padding: 8px 12px;
         }
 
         &.large {

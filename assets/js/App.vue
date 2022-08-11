@@ -88,6 +88,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="mt-1 tac">
+                        <div class="btn small" @click="openCustomStats">
+                            Bonus stats
+                        </div>
+                    </div>
                 </div>
                 <div class="ep-stats" v-if="epCalc">
                     <div class="title">
@@ -1257,6 +1262,42 @@
                 </div>
             </div>
 
+            <div class="lightbox small" v-if="custom_stats_open">
+                <div class="closer" @click="closeCustomStats"></div>
+                <div class="inner">
+                    <div class="title">Bonus stats</div>
+                    <div class="description">Add additional stats to your character.</div>
+                    <div class="form-item form-row">
+                        <label>Intellect</label>
+                        <input type="number" v-model.number="config.custom_stats.intellect">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Spirit</label>
+                        <input type="number" v-model.number="config.custom_stats.spirit">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Spell Power</label>
+                        <input type="number" v-model.number="config.custom_stats.spell_power">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Crit rating</label>
+                        <input type="number" v-model.number="config.custom_stats.crit_rating">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Hit rating</label>
+                        <input type="number" v-model.number="config.custom_stats.hit_rating">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Haste rating</label>
+                        <input type="number" v-model.number="config.custom_stats.haste_rating">
+                    </div>
+                    <div class="form-item form-row">
+                        <label>Mp5</label>
+                        <input type="number" v-model.number="config.custom_stats.mp5">
+                    </div>
+                </div>
+            </div>
+
             <div class="lightbox small" v-if="custom_item_open">
                 <div class="closer" @click="closeCustomItem"></div>
                 <div class="inner">
@@ -1484,6 +1525,16 @@
                     haste_rating: 0,
                 },
 
+                custom_stats: {
+                    intellect: 0,
+                    spirit: 0,
+                    mp5: 0,
+                    spell_power: 0,
+                    crit_rating: 0,
+                    hit_rating: 0,
+                    haste_rating: 0,
+                },
+
                 talents: {
                     arcane_focus: 0,
                     clearcast: 0,
@@ -1638,6 +1689,7 @@
                 },
                 custom_item_open: false,
                 custom_item_error: null,
+                custom_stats_open: false,
                 equiplist_open: false,
                 equiplist_string: null,
                 display_stats: null,
@@ -2807,6 +2859,12 @@
                 this.itemConfig();
 
                 var stats = this.config.stats;
+
+                // Custom stats
+                for (var key in this.config.custom_stats) {
+                    if (this.config.custom_stats[key])
+                        stats[key]+= this.config.custom_stats[key];
+                }
 
                 // Arcane intellect
                 stats.intellect+= 60;
@@ -4259,6 +4317,14 @@
 
             closeEquiplist() {
                 this.equiplist_open = false;
+            },
+
+            openCustomStats() {
+                this.custom_stats_open = true;
+            },
+
+            closeCustomStats() {
+                this.custom_stats_open = false;
             },
 
             openCustomItem() {
