@@ -388,6 +388,7 @@
                                             <th>Spell power</th>
                                             <th>Crit rating</th>
                                             <th>Hit rating</th>
+                                            <th>Haste rating</th>
                                             <th>Intellect</th>
                                             <th>Spirit</th>
                                             <th>Mp5</th>
@@ -409,6 +410,7 @@
                                             <td>{{ $get(item, "sp", "") }}</td>
                                             <td>{{ $get(item, "crit", "") }}</td>
                                             <td>{{ $get(item, "hit", "") }}</td>
+                                            <td>{{ $get(item, "haste", "") }}</td>
                                             <td>{{ $get(item, "int", "") }}</td>
                                             <td>{{ $get(item, "spi", "") }}</td>
                                             <td>{{ $get(item, "mp5", "") }}</td>
