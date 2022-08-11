@@ -1373,7 +1373,7 @@
                 targets: 1,
                 target_resistance: 0,
                 target_level: 83,
-                spell_travel_time: 1500,
+                spell_travel_time: 1000,
                 reaction_time: 300,
 
                 // Debuffs

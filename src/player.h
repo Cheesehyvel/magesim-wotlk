@@ -665,7 +665,7 @@ namespace unit
 
             if (spell->id == spell::ARCANE_BLAST)
                 actions.push_back(buffAction(make_shared<buff::ArcaneBlast>()));
-            else if (hasBuff(buff::ARCANE_BLAST) && spell->school == SCHOOL_ARCANE)
+            else if (hasBuff(buff::ARCANE_BLAST) && spell->school == SCHOOL_ARCANE && spell->min_dmg > 0)
                 actions.push_back(buffExpireAction(make_shared<buff::ArcaneBlast>()));
 
             if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
@@ -969,7 +969,7 @@ namespace unit
                     if (config->judgement_of_wisdom && random<int>(0,1) == 1)
                         actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
 
-                    if (hasBuff(buff::COMBUSTION) && instance->spell->school == SCHOOL_FIRE) {
+                    if (hasBuff(buff::COMBUSTION) && (instance->spell->school == SCHOOL_FIRE || instance->spell->school == SCHOOL_FROSTFIRE)) {
                         if (instance->result == spell::CRIT)
                             combustion++;
                         if (combustion == 3) {
