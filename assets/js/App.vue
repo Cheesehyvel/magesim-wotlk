@@ -75,6 +75,7 @@
                                             <div v-if="config.talents.precision">{{ config.talents.precision }}% from Precision</div>
                                             <div v-if="config.debuff_spell_hit">3% from spell hit debuff</div>
                                             <div v-if="config.heroic_presence">1% from Heroic Presence</div>
+                                            <div v-if="config.talents.arcane_focus">3% from Arcane Focus (arcane only, not included)</div>
                                         </div>
                                     </tooltip>
                                 </td>
