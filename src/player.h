@@ -671,8 +671,8 @@ namespace unit
                 actions.push_back(buffExpireAction(make_shared<buff::ArcaneBlast>()));
 
             if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
-                // 10% chance - UNCONFIRMED
-                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                // 20% chance - Sorta confirmed from elitist jerks
+                if (!config->t8_4set || random<int>(0, 4) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::BrainFreeze>()));
                     if (config->t10_2set)
                         actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
@@ -680,16 +680,16 @@ namespace unit
             }
 
             if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE)) {
-                // 10% chance - UNCONFIRMED
-                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                // 20% chance - Sorta confirmed from elitist jerks
+                if (!config->t8_4set || random<int>(0, 4) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::MissileBarrage>()));
                     if (config->t10_2set)
                         actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
                 }
             }
             if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
-                // 10% chance - UNCONFIRMED
-                if (!config->t8_4set || random<int>(0, 9) != 0) {
+                // 20% chance - Sorta confirmed from elitist jerks
+                if (!config->t8_4set || random<int>(0, 4) != 0) {
                     actions.push_back(buffExpireAction(make_shared<buff::HotStreak>()));
                     if (config->t10_2set)
                         actions.push_back(buffAction(make_shared<buff::PushingTheLimit>()));
