@@ -149,7 +149,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)
         .property("spell_travel_time", &Config::spell_travel_time)
-        .property("ignite_munching", &Config::ignite_munching)
 
         .property("debuff_spell_crit", &Config::debuff_spell_crit)
         .property("debuff_spell_dmg", &Config::debuff_spell_dmg)
@@ -206,6 +205,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("rot_ab_no_mb_mana", &Config::rot_ab_no_mb_mana)
         .property("rot_abs_ap", &Config::rot_abs_ap)
         .property("rot_ice_lance", &Config::rot_ice_lance)
+        .property("ignite_munching", &Config::ignite_munching)
+        .property("hot_streak_cqs", &Config::hot_streak_cqs)
         ;
 
     emscripten::function("allocConfig", &allocConfig);

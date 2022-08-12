@@ -11,7 +11,6 @@ struct Config
     int target_level = 83;
     int spell_travel_time = 500;
     int reaction_time = 300;
-    bool ignite_munching = false;
 
     // Buffs / debuffs
     bool debuff_spell_crit = false;
@@ -71,6 +70,8 @@ struct Config
     double rot_ab_no_mb_mana = 100;
     double rot_abs_ap = 0;
     bool rot_ice_lance = false;
+    bool ignite_munching = false;
+    bool hot_streak_cqs = false;
 
     std::vector<std::shared_ptr<Timing>> timings;
     std::vector<std::shared_ptr<Interruption>> interruptions;

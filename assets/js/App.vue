@@ -670,16 +670,6 @@
                                         <option :value="2">Alternative</option>
                                     </select>
                                 </div>
-                                <div class="form-item" v-if="config.talents.ignite">
-                                    <label><input type="checkbox" v-model="config.ignite_munching">
-                                        <span>Ignite munching</span>
-                                        <help>
-                                            When two spells crit at the same time, only the latter spell will count towards ignite.<br>
-                                            For example when an instant pyroblast lands right after a fireball, or when Living Bomb explodes at the same time as another spell lands on the target.<br>
-                                            However, this does not affect Hot Streak with Frostfire Bolt due to Frostfire Bolt having a faster travel time.<br>
-                                        </help>
-                                    </label>
-                                </div>
                                 <div class="form-item">
                                     <label><input type="checkbox" v-model="config.avg_spell_dmg">
                                         <span>Use average spell damage</span>
@@ -737,6 +727,25 @@
                                 <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
                                     <label><input type="checkbox" v-model="config.rot_ice_lance">
                                         <span>Ice Lance at end of Fingers of Frost</span>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.talents.ignite">
+                                    <label><input type="checkbox" v-model="config.ignite_munching">
+                                        <span>Ignite munching</span>
+                                        <help>
+                                            When two spells crit at the same time, only the latter spell will count towards ignite.<br>
+                                            For example when an instant pyroblast lands right after a fireball, or when Living Bomb explodes at the same time as another spell lands on the target.<br>
+                                            However, this does not affect Hot Streak with Frostfire Bolt due to Frostfire Bolt having a faster travel time.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.talents.hot_streak">
+                                    <label><input type="checkbox" v-model="config.hot_streak_cqs">
+                                        <span>Delay Pyroblast slightly</span>
+                                        <help>
+                                            This will delay Pyroblast by 100ms after a Hot Streak to prevent ignite munching.<br>
+                                            There is no way to do this perfectly in-game, but a cqs macro can do this with about 70-90% reliability.
+                                        </help>
                                     </label>
                                 </div>
                             </fieldset>
@@ -1423,6 +1432,7 @@
                 spell_travel_time: 1000,
                 reaction_time: 300,
                 ignite_munching: false,
+                hot_streak_cqs: false,
 
                 // Debuffs
                 debuff_crit: false,

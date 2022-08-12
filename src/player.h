@@ -21,6 +21,7 @@ namespace unit
         double fire_ward;
         int mana_sapphire;
         int ab_streak;
+        bool waited;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -41,6 +42,7 @@ namespace unit
             fire_ward = 0;
             mana_sapphire = 3;
             ab_streak = 0;
+            waited = false;
         }
 
         Stats getStats()
@@ -1595,6 +1597,27 @@ namespace unit
                 }
             }
 
+            // Fire rotation
+            else if (config->rotation == ROTATION_ST_FIRE) {
+                if (hasBuff(buff::HOT_STREAK)) {
+                    if (waited || !config->hot_streak_cqs) {
+                        action = spellAction(make_shared<spell::Pyroblast>());
+                        waited = false;
+                    }
+                    else {
+                        action = make_shared<action::Action>(action::TYPE_WAIT);
+                        action->value = 0.1;
+                        waited = true;
+                    }
+                }
+                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
+                    action = spellAction(make_shared<spell::LivingBomb>());
+                }
+                else {
+                    action = spellAction(make_shared<spell::Fireball>());
+                }
+            }
+
             // AB -> AM rotation
             else if (config->rotation == ROTATION_ST_AB_AM) {
                 int ab_stacks = 4;
@@ -1627,19 +1650,6 @@ namespace unit
                 }
                 else {
                     action = spellAction(make_shared<spell::ArcaneBlast>());
-                }
-            }
-
-            // Fire rotation
-            else if (config->rotation == ROTATION_ST_FIRE) {
-                if (hasBuff(buff::HOT_STREAK)) {
-                    action = spellAction(make_shared<spell::Pyroblast>());
-                }
-                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
-                    action = spellAction(make_shared<spell::LivingBomb>());
-                }
-                else {
-                    action = spellAction(make_shared<spell::Fireball>());
                 }
             }
 
