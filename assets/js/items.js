@@ -966,6 +966,7 @@ var equip = {
         // prebis
         { id: 40719, title: "Band of Channeled Magic", ilvl: 213, int: 41, spi: 32, sp: 65, haste: 43 },
         { id: 40720, title: "Renewal of Life", ilvl: 213, int: 41, sp: 66, crit: 28, mp5: 21 },
+        { id: 49123, title: "The Horseman's Seal", ilvl: 200, int: 38, sp: 58, hit: 29, haste: 36 },
         { id: 40585, title: "Signet of the Kirin Tor", ilvl: 200, int: 34, sp: 59, crit: 36, haste: 28 },
         { id: 44934, title: "Loop of the Kirin Tor", ilvl: 200, int: 34, spi: 36, sp: 59, mp5: 14 },
         { id: 37192, title: "Annhylde's Ring", ilvl: 200, int: 33, sp: 59, haste: 49 },

@@ -25966,6 +25966,14 @@ var equip = {
     crit: 28,
     mp5: 21
   }, {
+    id: 49123,
+    title: "The Horseman's Seal",
+    ilvl: 200,
+    "int": 38,
+    sp: 58,
+    hit: 29,
+    haste: 36
+  }, {
     id: 40585,
     title: "Signet of the Kirin Tor",
     ilvl: 200,
