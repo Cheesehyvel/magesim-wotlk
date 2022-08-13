@@ -2150,6 +2150,8 @@
                     buffs.push({id: constants.buffs.FORGE_EMBER, name: "Forge Ember"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_SUNDIAL_EXILED))
                     buffs.push({id: constants.buffs.NOW_IS_THE_TIME, name: "Sundial of the Exiled"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_FLARE_HEAVENS))
+                    buffs.push({id: constants.buffs.FLARE_HEAVENS, name: "Flare of the Heavens"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER))
                     buffs.push({id: constants.buffs.EMBRACE_SPIDER, name: "Embrace of the Spider"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_DYING_CURSE))

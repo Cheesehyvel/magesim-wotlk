@@ -44,6 +44,7 @@ namespace cooldown
         SOUL_DEAD = 60538,
         ALACRITY_ELEMENTS = 65004,
         MEMORIES_LOVE = 65003,
+        FLARE_HEAVENS = 64713,
         SHOW_FAITH = 64739,
         REIGN_UNLIVING_HC = 67758,
         REIGN_UNLIVING_NM = 67712,
@@ -510,6 +511,18 @@ namespace cooldown
         MemoriesLove()
         {
             id = MEMORIES_LOVE;
+            duration = 45;
+        }
+
+    };
+
+    class FlareHeavens : public Cooldown
+    {
+
+    public:
+        FlareHeavens()
+        {
+            id = FLARE_HEAVENS;
             duration = 45;
         }
 

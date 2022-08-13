@@ -68,6 +68,7 @@ export default {
         // Trinkets
         FORGE_EMBER: 60479,
         NOW_IS_THE_TIME: 60064,
+        FLARE_HEAVENS: 64713,
         EMBRACE_SPIDER: 60492,
         DYING_CURSE: 60494,
         ALACRITY_ELEMENTS: 65004,

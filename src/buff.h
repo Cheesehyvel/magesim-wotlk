@@ -48,6 +48,7 @@ namespace buff
         EYE_BROODMOTHER = 65006,
         MEMORIES_LOVE = 65003,
         SCALE_FATES = 64707,
+        FLARE_HEAVENS = 64713,
         SHOW_FAITH = 64739,
         VOLATILE_POWER_HC = 67744,
         VOLATILE_POWER_NM = 67736,
@@ -706,6 +707,20 @@ namespace buff
             name = "Scale of Fates";
             duration = 20;
             stats.haste_rating = 432;
+        }
+
+    };
+
+    class FlareHeavens : public Buff
+    {
+
+    public:
+        FlareHeavens()
+        {
+            id = FLARE_HEAVENS;
+            name = "Flame of the Heavens";
+            duration = 10;
+            stats.spell_power = 850;
         }
 
     };

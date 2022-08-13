@@ -17568,6 +17568,7 @@ __webpack_require__.r(__webpack_exports__);
     // Trinkets
     FORGE_EMBER: 60479,
     NOW_IS_THE_TIME: 60064,
+    FLARE_HEAVENS: 64713,
     EMBRACE_SPIDER: 60492,
     DYING_CURSE: 60494,
     ALACRITY_ELEMENTS: 65004,
@@ -17849,6 +17850,7 @@ var ids = {
   TRINKET_SIFS_REMEMBERANCE: 45929,
   TRINKET_SPARK_HOPE: 45703,
   TRINKET_SCALE_FATES: 45466,
+  TRINKET_FLARE_HEAVENS: 45518,
   TRINKET_SHOW_FAITH: 45535,
   TRINKET_VOLATILE_POWER_HC: 47946,
   TRINKET_VOLATILE_POWER_NM: 47726,
@@ -26214,6 +26216,12 @@ var equip = {
     use: true,
     phase: 2
   }, {
+    id: ids.TRINKET_FLARE_HEAVENS,
+    title: "Flare of the Heavens",
+    ilvl: 239,
+    crit: 120,
+    phase: 2
+  }, {
     id: ids.TRINKET_SHOW_FAITH,
     title: "Show of Faith",
     ilvl: 239,
@@ -27806,6 +27814,10 @@ var DEFAULT_DESIGN = 2;
       if (this.isEquipped("trinket", this.items.ids.TRINKET_SUNDIAL_EXILED)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.NOW_IS_THE_TIME,
         name: "Sundial of the Exiled"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_FLARE_HEAVENS)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.FLARE_HEAVENS,
+        name: "Flare of the Heavens"
       });
       if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.EMBRACE_SPIDER,

@@ -19,6 +19,7 @@ var ids = {
     TRINKET_SIFS_REMEMBERANCE: 45929,
     TRINKET_SPARK_HOPE: 45703,
     TRINKET_SCALE_FATES: 45466,
+    TRINKET_FLARE_HEAVENS: 45518,
     TRINKET_SHOW_FAITH: 45535,
     TRINKET_VOLATILE_POWER_HC: 47946,
     TRINKET_VOLATILE_POWER_NM: 47726,
@@ -1006,6 +1007,7 @@ var equip = {
         { id: ids.TRINKET_VOLATILE_POWER_NM, title: "Talisman of Volatile Power", ilvl: 232, crit: 114, use: true, phase: 3 },
         // ulduar
         { id: ids.TRINKET_SCALE_FATES, title: "Scale of Fates", ilvl: 226, sp: 125, use: true, phase: 2 },
+        { id: ids.TRINKET_FLARE_HEAVENS, title: "Flare of the Heavens", ilvl: 239, crit: 120, phase: 2 },
         { id: ids.TRINKET_SHOW_FAITH, title: "Show of Faith", ilvl: 239, sp: 140, phase: 2 },
         { id: ids.TRINKET_ELEMENTAL_FOCUS_STONE, title: "Elemental Focus Stone", ilvl: 219, hit: 108, phase: 2 },
         { id: ids.TRINKET_EYE_BROODMOTHER, title: "Eye of the Broodmother", ilvl: 219, crit: 87, phase: 2 },

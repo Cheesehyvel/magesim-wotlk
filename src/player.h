@@ -801,6 +801,12 @@ namespace unit
             }
 
             // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_FLARE_HEAVENS) && !hasCooldown(cooldown::FLARE_HEAVENS) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::FlareHeavens>());
+                action->cooldown = make_shared<cooldown::FlareHeavens>();
+                actions.push_back(action);
+            }
+
             if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && random<int>(0, 9) == 0) {
                 action = buffAction(make_shared<buff::NowIsTheTime>());
                 action->cooldown = make_shared<cooldown::NowIsTheTime>();
