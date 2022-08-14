@@ -137,6 +137,8 @@ namespace unit
 
         bool canReactTo(buff::ID id, double t)
         {
+            if (t < t_gcd)
+                t = t_gcd;
             auto buff = getBuff(id);
             if (buff != NULL && t - buff->t_gained >= config->reaction_time/1000.0)
                 return true;

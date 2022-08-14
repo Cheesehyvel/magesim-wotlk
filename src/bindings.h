@@ -206,6 +206,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("rot_ab3_mana", &Config::rot_ab3_mana)
         .property("rot_ab_no_mb_mana", &Config::rot_ab_no_mb_mana)
         .property("rot_abs_ap", &Config::rot_abs_ap)
+        .property("rot_mb_below_ab", &Config::rot_mb_below_ab)
+        .property("rot_mb_mana", &Config::rot_mb_mana)
         .property("rot_ice_lance", &Config::rot_ice_lance)
         .property("ignite_munching", &Config::ignite_munching)
         .property("hot_streak_cqs", &Config::hot_streak_cqs)

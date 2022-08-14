@@ -1589,6 +1589,13 @@ namespace unit
                 return spellAction(make_shared<spell::Evocation>(evocationTicks()));
             }
 
+            // If we're on gcd at this point, just wait for gcd
+            if (state->t < t_gcd) {
+                action = make_shared<action::Action>(action::TYPE_WAIT);
+                action->value = t_gcd - state->t;
+                return action;
+            }
+
             // Frostfire bolt
             if (config->rotation == ROTATION_ST_FROSTFIRE) {
                 if (canReactTo(buff::HOT_STREAK, state->t)) {
@@ -1624,11 +1631,12 @@ namespace unit
                 }
             }
 
-            // AB -> AM rotation
-            else if (config->rotation == ROTATION_ST_AB_AM) {
+            // Arcane rotations
+            else if (config->rotation == ROTATION_ST_AB_AM || config->rotation == ROTATION_ST_AB_AM_BARRAGE) {
                 int ab_stacks = 4;
                 if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
                     ab_stacks = 3;
+                bool has_mb = canReactTo(buff::MISSILE_BARRAGE, state->t);
 
                 // AB until the end
                 if (canBlast(state))
@@ -1636,38 +1644,25 @@ namespace unit
                 // Extra ABs during AP
                 else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                     action = spellAction(make_shared<spell::ArcaneBlast>());
-                // AM if we have AB stacks and (we shouldn't gamble or we got barrage)
-                else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (canReactTo(buff::MISSILE_BARRAGE, state->t) || config->rot_ab_no_mb_mana >= manaPercent()))
+                // AM if we have MB and below n AB stacks
+                else if (config->rot_mb_below_ab && has_mb && buffStacks(buff::ARCANE_BLAST) < config->rot_mb_below_ab)
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
-                else
+                // AM if we have MB and below mana %
+                else if (config->rot_mb_mana && has_mb && manaPercent() < config->rot_mb_mana)
+                    action = spellAction(make_shared<spell::ArcaneMissiles>());
+                // AB if we don't have barrage and over mana %
+                else if (!has_mb && config->rot_ab_no_mb_mana < manaPercent())
                     action = spellAction(make_shared<spell::ArcaneBlast>());
-            }
-
-            // AB -> AM + Barrage rotation
-            else if (config->rotation == ROTATION_ST_AB_AM_BARRAGE) {
-                int ab_stacks = 4;
-                if (config->rot_ab3_mana > 0 && manaPercent() < config->rot_ab3_mana)
-                    ab_stacks = 3;
-
-                if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
-                    // AB until the end
-                    if (canBlast(state))
-                        action = spellAction(make_shared<spell::ArcaneBlast>());
-                    // Extra ABs during AP
-                    else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
-                        action = spellAction(make_shared<spell::ArcaneBlast>());
-                    // AM if we got barrage
-                    else if (canReactTo(buff::MISSILE_BARRAGE, state->t))
-                        action = spellAction(make_shared<spell::ArcaneMissiles>());
-                    // Abarr if we shouldn't gamble
-                    else if (config->rot_ab_no_mb_mana >= manaPercent())
+                // AM / Abarr if we have AB stacks
+                else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
+                    // Arcane Barrage if we don't have Missile Barrage proc
+                    if (!has_mb && config->rotation == ROTATION_ST_AB_AM_BARRAGE)
                         action = spellAction(make_shared<spell::ArcaneBarrage>());
                     else
-                        action = spellAction(make_shared<spell::ArcaneBlast>());
+                        action = spellAction(make_shared<spell::ArcaneMissiles>());
                 }
-                else {
+                else
                     action = spellAction(make_shared<spell::ArcaneBlast>());
-                }
             }
 
             // Frost

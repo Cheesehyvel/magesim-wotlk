@@ -738,6 +738,20 @@
                                         <label>Extra ABs during first AP</label>
                                         <input type="text" v-model.number="config.rot_abs_ap">
                                     </div>
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Use Missile Barrage below n AB stacks</span>
+                                            <help>Settings this to 1 or 2 can potentially be a dps increase with Arcane Barrage rotation or T8 4p.</help>
+                                        </label>
+                                        <input type="text" v-model.number="config.rot_mb_below_ab">
+                                    </div>
+                                    <div class="form-item">
+                                        <label>
+                                            <span>Use Missile Barrage ASAP below mana %</span>
+                                            <help>This can be useful to conserve mana</help>
+                                        </label>
+                                        <input type="text" v-model.number="config.rot_mb_mana">
+                                    </div>
                                 </template>
                                 <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
                                     <label><input type="checkbox" v-model="config.rot_ice_lance">
@@ -1529,6 +1543,8 @@
                 rot_ab3_mana: 0,
                 rot_ab_no_mb_mana: 100,
                 rot_abs_ap: 0,
+                rot_mb_below_ab: 0,
+                rot_mb_mana: 0,
                 rot_ice_lance: false,
 
                 timings: Array(),
