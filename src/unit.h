@@ -135,6 +135,14 @@ namespace unit
             return NULL;
         }
 
+        bool canReactTo(buff::ID id, double t)
+        {
+            auto buff = getBuff(id);
+            if (buff != NULL && t - buff->t_gained >= config->reaction_time/1000.0)
+                return true;
+            return false;
+        }
+
         bool hasSnapshot(buff::ID id)
         {
             return snapshot_buffs.find(id) != snapshot_buffs.end();

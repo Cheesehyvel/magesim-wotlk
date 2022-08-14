@@ -29,7 +29,7 @@ SimulationResult runSimulation(std::shared_ptr<Config> config, std::shared_ptr<u
     std::shared_ptr<Simulation> sim(new Simulation(config, player));
     sim->logging = true;
 
-    return sim->run();
+    return sim->run(true);
 }
 
 SimulationsResult runSimulations(std::shared_ptr<Config> config, std::shared_ptr<unit::Player> player, int iterations)

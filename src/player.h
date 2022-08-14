@@ -18,7 +18,6 @@ namespace unit
         double t_living_bomb;
         double t_flamestrike;
         double t_mana_spent;
-        double t_barrage;
         double fire_ward;
         int mana_sapphire;
         int ab_streak;
@@ -40,7 +39,6 @@ namespace unit
             t_living_bomb = -20;
             t_flamestrike = -20;
             t_mana_spent = 0;
-            t_barrage = 0;
             fire_ward = 0;
             mana_sapphire = 3;
             ab_streak = 0;
@@ -603,8 +601,6 @@ namespace unit
                 fire_ward = 0;
             if (buff->id == buff::ARCANE_BLAST)
                 ab_streak = 0;
-            if (buff->id == buff::MISSILE_BARRAGE)
-                t_barrage = 0;
 
             return actions;
         }
@@ -738,11 +734,8 @@ namespace unit
                     if (spell->id == spell::ARCANE_BLAST)
                         chance*= 2;
 
-                    if (random<int>(0, 99) < chance) {
-                        if (!t_barrage)
-                            t_barrage = state->t;
+                    if (random<int>(0, 99) < chance)
                         actions.push_back(buffAction(make_shared<buff::MissileBarrage>()));
-                    }
                 }
             }
 
@@ -1598,7 +1591,7 @@ namespace unit
 
             // Frostfire bolt
             if (config->rotation == ROTATION_ST_FROSTFIRE) {
-                if (hasBuff(buff::HOT_STREAK)) {
+                if (canReactTo(buff::HOT_STREAK, state->t)) {
                     action = spellAction(make_shared<spell::Pyroblast>());
                 }
                 else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
@@ -1612,7 +1605,7 @@ namespace unit
 
             // Fire rotation
             else if (config->rotation == ROTATION_ST_FIRE) {
-                if (hasBuff(buff::HOT_STREAK)) {
+                if (canReactTo(buff::HOT_STREAK, state->t)) {
                     if (waited || !config->hot_streak_cqs) {
                         action = spellAction(make_shared<spell::Pyroblast>());
                         waited = false;
@@ -1644,7 +1637,7 @@ namespace unit
                 else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                     action = spellAction(make_shared<spell::ArcaneBlast>());
                 // AM if we have AB stacks and (we shouldn't gamble or we got barrage)
-                else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (t_barrage && state->t - t_barrage > config->reaction_time/1000.0 || config->rot_ab_no_mb_mana >= manaPercent()))
+                else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (canReactTo(buff::MISSILE_BARRAGE, state->t) || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
                 else
                     action = spellAction(make_shared<spell::ArcaneBlast>());
@@ -1664,7 +1657,7 @@ namespace unit
                     else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                         action = spellAction(make_shared<spell::ArcaneBlast>());
                     // AM if we got barrage
-                    else if (t_barrage && state->t - t_barrage > config->reaction_time/1000.0)
+                    else if (canReactTo(buff::MISSILE_BARRAGE, state->t))
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
                     // Abarr if we shouldn't gamble
                     else if (config->rot_ab_no_mb_mana >= manaPercent())
@@ -1687,7 +1680,7 @@ namespace unit
                     else if (config->rot_ice_lance)
                         action = spellAction(make_shared<spell::IceLance>());
                 }
-                else if (hasBuff(buff::BRAIN_FREEZE)) {
+                else if (canReactTo(buff::BRAIN_FREEZE, state->t)) {
                     action = spellAction(make_shared<spell::FrostfireBolt>());
                 }
 

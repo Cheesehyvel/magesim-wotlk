@@ -87,6 +87,8 @@ namespace buff
         bool hidden = false;
         bool snapshot = false;
         double cost = 0;
+        double t_gained = 0;
+        double t_refreshed = 0;
         Stats stats;
 
         int addStack()

@@ -68,6 +68,7 @@ namespace spell
         double delay = 0;
         double coeff = 1;
         double gcd = 1.5;
+        double travel_time_factor = 1;
         bool channeling = false;
         bool dot = false;
         bool stackable = false;
@@ -193,6 +194,7 @@ namespace spell
             channeling = true;
             ticks = 5;
             has_travel_time = true;
+            travel_time_factor = 0.5;
         }
 
     };
@@ -291,6 +293,7 @@ namespace spell
             coeff = 3/3.5;
             school = SCHOOL_FROSTFIRE;
             has_travel_time = true;
+            travel_time_factor = 0.85;
             binary = true;
         }
 

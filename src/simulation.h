@@ -102,8 +102,11 @@ public:
         return result;
     }
 
-    SimulationResult run()
+    SimulationResult run(bool single = false)
     {
+        if (single && config->rng_seed)
+            setRNGSeed(config->rng_seed);
+
         reset();
 
         runPrecombat();
@@ -781,7 +784,13 @@ public:
         }
 
         int old_stacks = unit->buffStacks(buff->id);
+
+        buff->t_refreshed = state->t;
+        if (old_stacks < 1)
+            buff->t_gained = state->t;
+
         int stacks = unit->addBuff(buff);
+
         if (old_stacks < 1 || buff->stack_refresh) {
             removeBuffExpiration(unit, buff);
             pushBuffExpire(unit, buff);
@@ -1020,9 +1029,8 @@ public:
 
         double t = config->spell_travel_time / 1000.0;
 
-        // ffb is a bit faster
-        if (spell->id == spell::FROSTFIRE_BOLT)
-            t*= 0.85;
+        if (spell->travel_time_factor)
+            t*= spell->travel_time_factor;
 
         return t;
     }

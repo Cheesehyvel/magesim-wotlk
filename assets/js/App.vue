@@ -638,6 +638,18 @@
                                     <label>Spell travel time (ms)</label>
                                     <input type="text" v-model.number="config.spell_travel_time">
                                 </div>
+                                <div class="form-item">
+                                    <label>
+                                        <span>Reaction time (ms)</span>
+                                        <help>
+                                            This only affects certain mechanics where an instant reaction can have an important impact on the rotation, like:<br>
+                                            Missile Barrage<br>
+                                            Hot Streak<br>
+                                            Brain Freeze
+                                        </help>
+                                    </label>
+                                    <input type="text" v-model.number="config.reaction_time">
+                                </div>
                                 <div class="form-item" v-if="false">
                                     <label>
                                         <span>Reaction time (ms)</span>
