@@ -150,6 +150,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)
         .property("spell_travel_time", &Config::spell_travel_time)
+        .property("reaction_time", &Config::reaction_time)
 
         .property("debuff_spell_crit", &Config::debuff_spell_crit)
         .property("debuff_spell_dmg", &Config::debuff_spell_dmg)

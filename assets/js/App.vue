@@ -508,6 +508,9 @@
                                 <div class="form-item">
                                     <label><input type="checkbox" v-model="log_filter[8]"> <span>Show wait</span></label>
                                 </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="log_filter_player"> <span>Show player only</span></label>
+                                </div>
                             </div>
                             <div class="form-item mb-2">
                                 <input type="text" v-model="search_log" placeholder="Search...">
@@ -1725,6 +1728,7 @@
                     "8": false,
                     "9": true,
                 },
+                log_filter_player: false,
                 talent_map: [[],[],[]],
                 default_config: default_config,
                 config: _.cloneDeep(default_config),
@@ -1866,6 +1870,9 @@
                     return [];
 
                 var log = this.result.log;
+
+                if (this.log_filter_player)
+                    log = log.filter(l => l.unit == "Player");
 
                 if (this.search_log)
                     log = log.filter(l => l.text.toLowerCase().indexOf(this.search_log.toLowerCase()) != -1);
