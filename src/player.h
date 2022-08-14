@@ -1643,7 +1643,7 @@ namespace unit
                 // Extra ABs during AP
                 else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
                     action = spellAction(make_shared<spell::ArcaneBlast>());
-                // AM if we have AB stacks and (we should gamble or we got barrage)
+                // AM if we have AB stacks and (we shouldn't gamble or we got barrage)
                 else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks && (t_barrage && state->t - t_barrage > config->reaction_time/1000.0 || config->rot_ab_no_mb_mana >= manaPercent()))
                     action = spellAction(make_shared<spell::ArcaneMissiles>());
                 else
@@ -1657,10 +1657,16 @@ namespace unit
                     ab_stacks = 3;
 
                 if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
-                    if (canBlast(state) || hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
+                    // AB until the end
+                    if (canBlast(state))
                         action = spellAction(make_shared<spell::ArcaneBlast>());
-                    else if (hasBuff(buff::MISSILE_BARRAGE))
+                    // Extra ABs during AP
+                    else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)
+                        action = spellAction(make_shared<spell::ArcaneBlast>());
+                    // AM if we got barrage
+                    else if (t_barrage && state->t - t_barrage > config->reaction_time/1000.0)
                         action = spellAction(make_shared<spell::ArcaneMissiles>());
+                    // Abarr if we shouldn't gamble
                     else if (config->rot_ab_no_mb_mana >= manaPercent())
                         action = spellAction(make_shared<spell::ArcaneBarrage>());
                     else
