@@ -1739,7 +1739,7 @@
                 is_running: false,
                 is_running_ep: false,
                 active_tab: "gear",
-                item_source: "evo",
+                item_source: "wowhead",
                 phase_filter: 0,
                 search_item: "",
                 search_gem: "",
@@ -3161,7 +3161,7 @@
                     return "https://www.wotlkdb.com/?item="+id;
                 if (this.item_source == "evo")
                     return "https://wotlk.evowow.com/?item="+id;
-                return "https://wotlk.wowhead.com/?item="+id;
+                return "https://www.wowhead.com/wotlk/item="+id;
             },
 
             spellUrl(id) {
@@ -3171,7 +3171,7 @@
                     return "https://www.wotlkdb.com/?spell="+id;
                 if (this.item_source == "evo")
                     return "https://wotlk.evowow.com/?spell="+id;
-                return "https://wotlk.wowhead.com/?spell="+id;
+                return "https://www.wowhead.com/wotlk/spell="+id;
             },
 
             critRatingToChance(rating) {
