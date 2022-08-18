@@ -658,25 +658,28 @@ public:
 
     void dotApply(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        // Stackable dot dmg, ie Ignite
-        if (spell->stackable) {
-            bool munch = spell->id == spell::IGNITE && config->ignite_munching;
+        // Ignite special case
+        if (spell->id == spell::IGNITE) {
             list<shared_ptr<spell::SpellInstance>> dots = getDots(unit, spell);
             shared_ptr<spell::SpellInstance> dot = NULL;
             removeSpellImpacts(unit, spell);
+
+            double leftover = 0;
+            while (!dots.empty()) {
+                leftover+= dots.front()->dmg;
+                dots.pop_front();
+            }
+
             for (int i=1; i<=spell->ticks; i++) {
                 dot = getSpellInstance(unit, spell);
                 dot->tick = i;
-                if (!dots.empty()) {
-                    dot->dmg+= dots.front()->dmg;
-                    if (munch && state->ignite_dmg > 0 && state->t - state->ignite_t <= IGNITE_MUNCH_WINDOW)
-                        dot->dmg-= state->ignite_dmg;
-                    dots.pop_front();
-                }
+                dot->dmg+= round(leftover / 2.0);
+                if (config->ignite_munching && state->ignite_dmg > 0 && state->t - state->ignite_t <= IGNITE_MUNCH_WINDOW)
+                    dot->dmg-= state->ignite_dmg;
                 pushDotTick(unit, dot);
             }
 
-            if (munch) {
+            if (config->ignite_munching) {
                 state->ignite_t = state->t;
                 state->ignite_dmg = spell->min_dmg;
             }

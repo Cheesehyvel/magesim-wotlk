@@ -71,7 +71,6 @@ namespace spell
         double travel_time_factor = 1;
         bool channeling = false;
         bool dot = false;
-        bool stackable = false;
         bool overlap = false;
         bool proc = false;
         bool binary = false;
@@ -618,7 +617,6 @@ namespace spell
             ticks = 2;
             coeff = 0;
             min_dmg = max_dmg = _dmg;
-            stackable = true;
             fixed_dmg = true;
             school = SCHOOL_FIRE;
         }
