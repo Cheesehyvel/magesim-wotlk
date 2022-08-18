@@ -1060,12 +1060,6 @@ public:
         if (config->debuff_spell_hit)
             hit+= 3.0;
 
-        // Binary spells get reduced chance to hit from resistance
-        // This is instead of partial resists
-        // https://wowwiki-archive.fandom.com/wiki/Spell_hit#Effect_of_resistance
-        if (spell->binary)
-            hit*= 1.0 - avgResist(unit);
-
         return min(hit, 100.0);
     }
 
@@ -1151,37 +1145,26 @@ public:
         return dmg;
     }
 
-    double avgResist(shared_ptr<unit::Unit> unit)
-    {
-        double resistance = (double) config->target_resistance;
-        double target_constant = 5 * config->target_level;
-
-        if (config->target_level == 83)
-            target_constant = 510;
-
-        return resistance / (target_constant + resistance);
-    }
-
     double spellDmgResist(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
         if (instance->spell->binary || instance->spell->fixed_dmg)
             return 0.0;
 
-        // Partial resist based on an old elitist jerks article
-        // https://web.archive.org/web/20110210195704/http://elitistjerks.com/f15/t44675-resistance_mechanics_wotlk/
+        // No confirmed formulas or resistance tables can be found
+        // This resistance table is based on data from Naxxramas in Wotlk Beta uploaded to WCL
+        // It results in 5.9% mitigation
+
+        int resist[3] = {55, 31, 14};
+        int roll = random<int>(0, 99);
 
         double resistance_multiplier = 0.0;
-        double roll = random<double>(0, 1);
-        double avg_resist = avgResist(unit);
-        double resist_chance, x;
-
-        for (double i=0.1; i<1.0; i+= 0.1) {
-            resist_chance = max(0.0, 0.5 - 2.5 * abs(i - avg_resist));
-            if (roll < resist_chance) {
-                resistance_multiplier = i;
+        for (int i=0; i<3; i++) {
+            if (roll < resist[i]) {
+                resistance_multiplier = ((float) i) * 0.1;
                 break;
             }
-            roll-= resist_chance;
+
+            roll-= resist[i];
         }
 
         if (!resistance_multiplier)

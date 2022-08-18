@@ -615,20 +615,14 @@
                                         <input type="text" v-model.number="config.duration_variance">
                                     </div>
                                 </div>
-                                <div class="form-item form-row">
-                                    <div class="form-item">
-                                        <label>Target level</label>
-                                        <select v-model="config.target_level">
-                                            <option :value="83">83</option>
-                                            <option :value="82">82</option>
-                                            <option :value="81">81</option>
-                                            <option :value="80">80</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-item">
-                                        <label>Resistance</label>
-                                        <input type="text" v-model.number="config.target_resistance">
-                                    </div>
+                                <div class="form-item">
+                                    <label>Target level</label>
+                                    <select v-model="config.target_level">
+                                        <option :value="83">83</option>
+                                        <option :value="82">82</option>
+                                        <option :value="81">81</option>
+                                        <option :value="80">80</option>
+                                    </select>
                                 </div>
                                 <div class="form-item">
                                     <label>No. of targets</label>
