@@ -2752,20 +2752,20 @@
                     stats.spirit = 175;
                 }
                 if (this.config.race == this.races.RACE_BLOOD_ELF) {
-                    stats.intellect = 185;
-                    stats.spirit = 173;
+                    stats.intellect = 184;
+                    stats.spirit = 172;
                 }
                 if (this.config.race == this.races.RACE_DRAENEI) {
-                    stats.intellect = 182;
+                    stats.intellect = 181;
                     stats.spirit = 176;
                 }
                 if (this.config.race == this.races.RACE_GNOME) {
-                    stats.intellect = 193;
+                    stats.intellect = 184;
                     stats.spirit = 174;
                 }
                 if (this.config.race == this.races.RACE_HUMAN) {
                     stats.intellect = 181;
-                    stats.spirit = 179;
+                    stats.spirit = 174;
                 }
 
                 return stats;
@@ -3044,7 +3044,7 @@
                 if (this.config.race == this.races.RACE_GNOME)
                     stats.intellect*= 1.05;
                 if (this.config.race == this.races.RACE_HUMAN)
-                    stats.spirit*= 1.1;
+                    stats.spirit*= 1.03;
                 if (this.config.blessing_of_kings) {
                     stats.intellect*= 1.1;
                     stats.spirit*= 1.1;
