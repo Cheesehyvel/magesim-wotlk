@@ -778,8 +778,6 @@ namespace spell
             name = "Mirror Image";
             cost = 10;
             is_trigger = true;
-            off_gcd = true;
-            gcd = 0;
             school = SCHOOL_ARCANE;
         }
 

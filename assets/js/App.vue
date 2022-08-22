@@ -3495,7 +3495,7 @@
             defaultGem(color) {
                 if (color == "m")
                     return this.items.ids.META_CHAOTIC_SKYFLARE;
-                return 1;
+                return 39998; // 19 sp
             },
 
             confirmGems() {

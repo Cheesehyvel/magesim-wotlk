@@ -29093,7 +29093,7 @@ var DEFAULT_DESIGN = 2;
     },
     defaultGem: function defaultGem(color) {
       if (color == "m") return this.items.ids.META_CHAOTIC_SKYFLARE;
-      return 1;
+      return 39998; // 19 sp
     },
     confirmGems: function confirmGems() {
       for (var slot in this.gems) {
