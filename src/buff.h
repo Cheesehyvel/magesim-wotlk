@@ -50,6 +50,8 @@ namespace buff
         SCALE_FATES = 64707,
         FLARE_HEAVENS = 64713,
         SHOW_FAITH = 64739,
+        LIVING_FLAME = 64712,
+        PANDORAS_PLEA = 64741,
         VOLATILE_POWER_HC = 67744,
         VOLATILE_POWER_NM = 67736,
         VOLATILITY_HC = 67743,
@@ -737,6 +739,34 @@ namespace buff
             name = "Show of Faith";
             duration = 15;
             stats.mp5 = 241;
+        }
+
+    };
+
+    class LivingFlame : public Buff
+    {
+
+    public:
+        LivingFlame()
+        {
+            id = LIVING_FLAME;
+            name = "Living Flame";
+            duration = 20;
+            stats.spell_power = 505;
+        }
+
+    };
+
+    class PandorasPlea : public Buff
+    {
+
+    public:
+        PandorasPlea()
+        {
+            id = PANDORAS_PLEA;
+            name = "Pandora's Plea";
+            duration = 10;
+            stats.spell_power = 751;
         }
 
     };

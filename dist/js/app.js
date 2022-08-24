@@ -17569,6 +17569,7 @@ __webpack_require__.r(__webpack_exports__);
     FORGE_EMBER: 60479,
     NOW_IS_THE_TIME: 60064,
     FLARE_HEAVENS: 64713,
+    PANDORAS_PLEA: 64741,
     EMBRACE_SPIDER: 60492,
     DYING_CURSE: 60494,
     ALACRITY_ELEMENTS: 65004,
@@ -17852,6 +17853,8 @@ var ids = {
   TRINKET_SCALE_FATES: 45466,
   TRINKET_FLARE_HEAVENS: 45518,
   TRINKET_SHOW_FAITH: 45535,
+  TRINKET_PANDORAS_PLEA: 45490,
+  TRINKET_LIVING_FLAME: 45148,
   TRINKET_VOLATILE_POWER_HC: 47946,
   TRINKET_VOLATILE_POWER_NM: 47726,
   TRINKET_SOLACE_DEFEATED_HC: 47059,
@@ -26209,13 +26212,6 @@ var equip = {
     phase: 3
   }, // ulduar
   {
-    id: ids.TRINKET_SCALE_FATES,
-    title: "Scale of Fates",
-    ilvl: 226,
-    sp: 125,
-    use: true,
-    phase: 2
-  }, {
     id: ids.TRINKET_FLARE_HEAVENS,
     title: "Flare of the Heavens",
     ilvl: 239,
@@ -26226,6 +26222,26 @@ var equip = {
     title: "Show of Faith",
     ilvl: 239,
     sp: 140,
+    phase: 2
+  }, {
+    id: ids.TRINKET_PANDORAS_PLEA,
+    title: "Pandora's Plea",
+    ilvl: 226,
+    "int": 108,
+    phase: 2
+  }, {
+    id: ids.TRINKET_LIVING_FLAME,
+    title: "Living Flame",
+    ilvl: 226,
+    hit: 107,
+    use: true,
+    phase: 2
+  }, {
+    id: ids.TRINKET_SCALE_FATES,
+    title: "Scale of Fates",
+    ilvl: 226,
+    sp: 125,
+    use: true,
     phase: 2
   }, {
     id: ids.TRINKET_ELEMENTAL_FOCUS_STONE,
@@ -27725,6 +27741,10 @@ var DEFAULT_DESIGN = 2;
         title: "Scale of Fates",
         icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_02.jpg"
       }, {
+        id: this.items.ids.TRINKET_LIVING_FLAME,
+        title: "Living Flame",
+        icon: "https://www.wowhead.com/images/wow/icons/large/spell_fire_burnout.jpg"
+      }, {
         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
         title: "Figurine - Twilight Serpent",
         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg"
@@ -27824,6 +27844,10 @@ var DEFAULT_DESIGN = 2;
       if (this.isEquipped("trinket", this.items.ids.TRINKET_FLARE_HEAVENS)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.FLARE_HEAVENS,
         name: "Flare of the Heavens"
+      });
+      if (this.isEquipped("trinket", this.items.ids.TRINKET_PANDORAS_PLEA)) buffs.push({
+        id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.PANDORAS_PLEA,
+        name: "Pandora's Plea"
       });
       if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER)) buffs.push({
         id: _constants__WEBPACK_IMPORTED_MODULE_3__["default"].buffs.EMBRACE_SPIDER,
@@ -30337,6 +30361,15 @@ __webpack_require__.r(__webpack_exports__);
         color: "#ddd"
       }, {
         title: "Show of Faith",
+        color: "#ddd"
+      }, {
+        title: "Flame of the Heavens",
+        color: "#ddd"
+      }, {
+        title: "Living Flame",
+        color: "#ddd"
+      }, {
+        title: "Pandora's Plea",
         color: "#ddd"
       }, {
         title: "Memories of Love",

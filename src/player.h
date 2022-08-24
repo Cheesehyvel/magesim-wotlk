@@ -807,6 +807,13 @@ namespace unit
                 actions.push_back(action);
             }
 
+            // Unconfirmed - on spell cast ?
+            if (hasTrinket(TRINKET_PANDORAS_PLEA) && !hasCooldown(cooldown::PANDORAS_PLEA) && random<int>(0, 9) == 0) {
+                action = buffAction(make_shared<buff::PandorasPlea>());
+                action->cooldown = make_shared<cooldown::PandorasPlea>();
+                actions.push_back(action);
+            }
+
             if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && random<int>(0, 9) == 0) {
                 action = buffAction(make_shared<buff::NowIsTheTime>());
                 action->cooldown = make_shared<cooldown::NowIsTheTime>();
@@ -1305,6 +1312,8 @@ namespace unit
                 return true;
             if (trinket == TRINKET_SCALE_FATES)
                 return true;
+            if (trinket == TRINKET_LIVING_FLAME)
+                return true;
             if (trinket == TRINKET_MARK_WAR_PRISONER)
                 return true;
             if (trinket == TRINKET_CANNONEERS_FUSELIGHTER)
@@ -1395,6 +1404,9 @@ namespace unit
             }
             else if (trinket == TRINKET_SCALE_FATES) {
                 buff = make_shared<buff::ScaleFates>();
+            }
+            else if (trinket == TRINKET_LIVING_FLAME) {
+                buff = make_shared<buff::LivingFlame>();
             }
             else if (trinket == TRINKET_TOME_ARCANE_PHENOMENA) {
                 buff = make_shared<buff::TomeArcanePhenomena>();

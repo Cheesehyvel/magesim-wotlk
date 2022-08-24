@@ -46,6 +46,7 @@ namespace cooldown
         MEMORIES_LOVE = 65003,
         FLARE_HEAVENS = 64713,
         SHOW_FAITH = 64739,
+        PANDORAS_PLEA = 64741,
         REIGN_UNLIVING_HC = 67758,
         REIGN_UNLIVING_NM = 67712,
         DISLODGED_OBJECT_HC = 71644,
@@ -535,6 +536,18 @@ namespace cooldown
         ShowFaith()
         {
             id = SHOW_FAITH;
+            duration = 45;
+        }
+
+    };
+
+    class PandorasPlea : public Cooldown
+    {
+
+    public:
+        PandorasPlea()
+        {
+            id = PANDORAS_PLEA;
             duration = 45;
         }
 

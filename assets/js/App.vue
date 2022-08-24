@@ -2092,6 +2092,11 @@
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_02.jpg",
                     },
                     {
+                        id: this.items.ids.TRINKET_LIVING_FLAME,
+                        title: "Living Flame",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/spell_fire_burnout.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
                         title: "Figurine - Twilight Serpent",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg",
@@ -2181,6 +2186,8 @@
                     buffs.push({id: constants.buffs.NOW_IS_THE_TIME, name: "Sundial of the Exiled"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_FLARE_HEAVENS))
                     buffs.push({id: constants.buffs.FLARE_HEAVENS, name: "Flare of the Heavens"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_PANDORAS_PLEA))
+                    buffs.push({id: constants.buffs.PANDORAS_PLEA, name: "Pandora's Plea"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_EMBRACE_SPIDER))
                     buffs.push({id: constants.buffs.EMBRACE_SPIDER, name: "Embrace of the Spider"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_DYING_CURSE))
