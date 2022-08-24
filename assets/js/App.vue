@@ -3612,7 +3612,7 @@
                     this.config.rotation = constants.rotations.ROTATION_ST_FIRE;
                 }
                 else if (spec == "frost") {
-                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/--0533030310233110200152231151_001q1j1258s21q1s31rj441rj551rj7";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003--0533030310233100030152231351_00258s11q1j21q1y31kd841rj451rj5";
                     this.config.rotation = constants.rotations.ROTATION_ST_FROST;
                 }
                 else if (spec == "ffb") {
