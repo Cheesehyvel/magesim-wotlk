@@ -1454,6 +1454,9 @@ namespace unit
             if (config->t6_2set)
                 ticks++;
 
+            if (config->evo_ticks && config->evo_ticks <= ticks)
+                ticks = config->evo_ticks;
+
             return ticks;
         }
 

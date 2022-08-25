@@ -771,6 +771,16 @@
                                         </help>
                                     </label>
                                 </div>
+                                <div class="form-item">
+                                    <label>
+                                        <span>Number of Evocation ticks</span>
+                                        <help>
+                                            This will allow you to cancel evocation early.<br>
+                                            Setting this to 0 will cast a full evocation.
+                                        </help>
+                                    </label>
+                                    <input type="text" v-model.number="config.evo_ticks">
+                                </div>
                             </fieldset>
                             <fieldset class="config-debuffs">
                                 <legend>Debuffs</legend>
@@ -1454,8 +1464,6 @@
                 target_level: 83,
                 spell_travel_time: 1000,
                 reaction_time: 300,
-                ignite_munching: false,
-                hot_streak_cqs: false,
 
                 // Debuffs
                 debuff_crit: false,
@@ -1540,6 +1548,9 @@
                 rot_mb_below_ab: 0,
                 rot_mb_mana: 0,
                 rot_ice_lance: false,
+                ignite_munching: false,
+                hot_streak_cqs: false,
+                evo_ticks: 0,
 
                 timings: Array(),
 

@@ -74,6 +74,7 @@ struct Config
     bool rot_ice_lance = false;
     bool ignite_munching = false;
     bool hot_streak_cqs = false;
+    int evo_ticks = 0;
 
     std::vector<std::shared_ptr<Timing>> timings;
     std::vector<std::shared_ptr<Interruption>> interruptions;

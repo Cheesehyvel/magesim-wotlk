@@ -213,6 +213,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("rot_ice_lance", &Config::rot_ice_lance)
         .property("ignite_munching", &Config::ignite_munching)
         .property("hot_streak_cqs", &Config::hot_streak_cqs)
+        .property("evo_ticks", &Config::evo_ticks)
         ;
 
     emscripten::function("allocConfig", &allocConfig);
