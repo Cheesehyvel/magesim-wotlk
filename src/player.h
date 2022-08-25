@@ -14,7 +14,7 @@ namespace unit
 
         int combustion;
         int fingers_of_frost;
-        bool on_hot_streak;
+        bool heating_up;
         double t_living_bomb;
         double t_flamestrike;
         double t_mana_spent;
@@ -22,6 +22,7 @@ namespace unit
         int mana_sapphire;
         int ab_streak;
         bool waited;
+        bool should_wait;
 
         Player(shared_ptr<Config> _config) : Unit(_config)
         {
@@ -35,7 +36,7 @@ namespace unit
             Unit::reset();
             combustion = 0;
             fingers_of_frost = 0;
-            on_hot_streak = false;
+            heating_up = false;
             t_living_bomb = -20;
             t_flamestrike = -20;
             t_mana_spent = 0;
@@ -43,6 +44,7 @@ namespace unit
             mana_sapphire = 3;
             ab_streak = 0;
             waited = false;
+            should_wait = false;
         }
 
         Stats getStats()
@@ -1070,14 +1072,14 @@ namespace unit
                     instance->spell->id == spell::FROSTFIRE_BOLT ||
                     instance->spell->id == spell::FIRE_BLAST)
                 {
-                    double hot_streaked = false;
+                    double heating = false;
                     if (instance->result == spell::CRIT) {
-                        if (on_hot_streak)
+                        if (heating_up)
                             actions.push_back(buffAction(make_shared<buff::HotStreak>()));
                         else
-                            hot_streaked = true;
+                            heating = true;
                     }
-                    on_hot_streak = hot_streaked;
+                    heating_up = heating;
                 }
             }
 
@@ -1650,10 +1652,16 @@ namespace unit
 
             // Fire rotation
             else if (config->rotation == ROTATION_ST_FIRE) {
-                if (canReactTo(buff::HOT_STREAK, state->t)) {
-                    if (waited || !config->hot_streak_cqs) {
+                bool no_bomb = talents.living_bomb && t_living_bomb+12.0 <= state->t && state->t + 12.0 < state->duration;
+                if (no_bomb && !heating_up) {
+                    action = spellAction(make_shared<spell::LivingBomb>());
+                    should_wait = false;
+                }
+                else if (canReactTo(buff::HOT_STREAK, state->t)) {
+                    if (waited || !should_wait || !config->hot_streak_cqs) {
                         action = spellAction(make_shared<spell::Pyroblast>());
                         waited = false;
+                        should_wait = false;
                     }
                     else {
                         action = make_shared<action::Action>(action::TYPE_WAIT);
@@ -1661,11 +1669,13 @@ namespace unit
                         waited = true;
                     }
                 }
-                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
+                else if (no_bomb) {
                     action = spellAction(make_shared<spell::LivingBomb>());
+                    should_wait = false;
                 }
                 else {
                     action = spellAction(make_shared<spell::Fireball>());
+                    should_wait = true;
                 }
             }
 
