@@ -596,8 +596,6 @@ public:
         }
 
         if (spell->active_use) {
-            if (!spell->is_trigger && unit->hasBuff(buff::CLEARCAST) && !spell->tick)
-                onBuffExpire(unit, make_shared<buff::Clearcast>());
             onCastSuccessProc(unit, spell);
         }
 
@@ -1014,9 +1012,6 @@ public:
 
     double manaCost(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        if (unit->hasBuff(buff::CLEARCAST))
-            return 0;
-
         return unit->manaCost(spell);
     }
 

@@ -472,6 +472,9 @@ namespace unit
         {
             double multi = Unit::manaCostMultiplier(spell);
 
+            if (hasBuff(buff::CLEARCAST))
+                return 0;
+
             if (spell->id == spell::FLAMESTRIKE && hasBuff(buff::FIRESTARTER))
                 return 0;
 
@@ -510,6 +513,17 @@ namespace unit
             double rating = Unit::getHasteRating();
 
             return rating;
+        }
+
+        double shouldConsumeClearcast(shared_ptr<spell::Spell> spell)
+        {
+            if (spell->is_trigger || spell->tick)
+                return false;
+
+            if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE))
+                return false;
+
+            return true;
         }
 
         double cooldownMod(shared_ptr<cooldown::Cooldown> cooldown)
@@ -655,6 +669,9 @@ namespace unit
                 actions.push_back(buffAction(make_shared<buff::FireWard>()));
             }
 
+            if (hasBuff(buff::ARCANE_POTENCY) && !spell->channeling)
+                actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
+
             if (spell->id == spell::LIVING_BOMB)
                 t_living_bomb = state->t;
             if (spell->id == spell::FLAMESTRIKE) {
@@ -667,6 +684,9 @@ namespace unit
 
             if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
                 actions.push_back(buffExpireAction(make_shared<buff::PresenceOfMind>()));
+
+            if (hasBuff(buff::CLEARCAST) && shouldConsumeClearcast(spell))
+                actions.push_back(buffExpireAction(make_shared<buff::Clearcast>()));
 
             if (spell->id == spell::ARCANE_BLAST)
                 actions.push_back(buffAction(make_shared<buff::ArcaneBlast>()));
@@ -968,12 +988,6 @@ namespace unit
                     }
                 }
                 else {
-                    if (hasBuff(buff::ARCANE_POTENCY)) {
-                        // Special case for blizzard
-                        if (instance->spell->id != spell::BLIZZARD || instance->tick == instance->spell->ticks)
-                            actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
-                    }
-
                     if (talents.clearcast) {
                         double chance = talents.clearcast * 2.0;
                         // Less chance per tick for channelled spells
@@ -1096,6 +1110,12 @@ namespace unit
 
             if (spell->id == spell::EVOCATION)
                 actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
+
+            if (hasBuff(buff::ARCANE_POTENCY)) {
+                // Special case for blizzard
+                if (spell->id != spell::BLIZZARD || tick == spell->ticks)
+                    actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
+            }
 
             return actions;
         }
