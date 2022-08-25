@@ -475,6 +475,9 @@ namespace unit
             if (spell->id == spell::FLAMESTRIKE && hasBuff(buff::FIRESTARTER))
                 return 0;
 
+            if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE))
+                return 0;
+
             if (talents.precision)
                 multi*= (1.0 - talents.precision*0.01);
             if (talents.arcane_focus && spell->school == SCHOOL_ARCANE)
