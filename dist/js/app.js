@@ -21938,6 +21938,7 @@ var equip = {
     id: 50278,
     itemset: ids.T10_SET,
     title: "Bloodmage Robe",
+    ilvl: 251,
     "int": 109,
     sp: 149,
     crit: 80,
@@ -22107,6 +22108,48 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 47759,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Robe of Triumph",
+    ilvl: 258,
+    "int": 116,
+    spi: 102,
+    sp: 160,
+    hit: 86,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47756,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Robe of Triumph",
+    ilvl: 245,
+    "int": 103,
+    spi: 90,
+    sp: 140,
+    hit: 74,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47749,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Robe of Conquest",
+    ilvl: 232,
+    "int": 92,
+    spi: 80,
+    sp: 122,
+    hit: 64,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
     id: 46993,
     title: "Flowing Vestments of Ascent",
     ilvl: 258,
@@ -22128,6 +22171,32 @@ var equip = {
     sp: 140,
     haste: 74,
     sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47462,
+    title: "Skyweaver Vestments",
+    ilvl: 258,
+    "int": 116,
+    sp: 151,
+    hit: 86,
+    haste: 94,
+    sockets: ["b", "y", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
+    id: 47301,
+    title: "Skyweaver Vestments",
+    ilvl: 245,
+    "int": 103,
+    sp: 140,
+    hit: 82,
+    haste: 82,
+    sockets: ["b", "y"],
     bonus: {
       sp: 7
     },
@@ -22165,19 +22234,6 @@ var equip = {
   }, _defineProperty(_ref4, "ilvl", 245), _defineProperty(_ref4, "int", 95), _defineProperty(_ref4, "sp", 140), _defineProperty(_ref4, "crit", 71), _defineProperty(_ref4, "hit", 96), _defineProperty(_ref4, "sockets", ["b", "r"]), _defineProperty(_ref4, "bonus", {
     sp: 7
   }), _defineProperty(_ref4, "phase", 3), _ref4), {
-    id: 47974,
-    title: "Vestments of the Sleepless",
-    ilvl: 245,
-    "int": 95,
-    sp: 140,
-    crit: 71,
-    hit: 96,
-    sockets: ["b", "r"],
-    bonus: {
-      sp: 7
-    },
-    phase: 3
-  }, {
     id: 47906,
     title: "Robes of the Sleepless",
     ilvl: 232,
@@ -22191,6 +22247,19 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 47974,
+    title: "Vestments of the Sleepless",
+    ilvl: 245,
+    "int": 95,
+    sp: 140,
+    crit: 71,
+    hit: 96,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
     id: 47838,
     title: "Vestments of the Sleepless",
     ilvl: 232,
@@ -22201,6 +22270,19 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47604,
+    title: "Merlin's Robe",
+    ilvl: 245,
+    "int": 103,
+    sp: 131,
+    crit: 66,
+    haste: 90,
+    sockets: ["b", "y", "r"],
+    bonus: {
+      sp: 9
     },
     phase: 3
   }, {
@@ -22225,6 +22307,19 @@ var equip = {
     sp: 131,
     crit: 66,
     sockets: ["r", "y", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
+    id: 47425,
+    title: "Flowing Robes of Ascent",
+    ilvl: 258,
+    "int": 116,
+    spi: 94,
+    sp: 151,
+    haste: 86,
+    sockets: ["b", "r", "y"],
     bonus: {
       sp: 9
     },
@@ -22466,6 +22561,25 @@ var equip = {
     sp: 104,
     haste: 42,
     mp5: 33
+  }, // wintergrasp
+  {
+    id: 46066,
+    title: "Titan-Forged Raiment of Salvation",
+    ilvl: 213,
+    "int": 50,
+    sp: 98,
+    haste: 51,
+    sockets: ["r", "y"],
+    phase: 2
+  }, {
+    id: 46065,
+    title: "Titan-Forged Raiment of Dominance",
+    ilvl: 213,
+    "int": 50,
+    sp: 98,
+    hit: 51,
+    sockets: ["r", "y"],
+    phase: 2
   }, // pvp
   {
     id: 51463,
