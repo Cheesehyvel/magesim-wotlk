@@ -36,6 +36,10 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
+            action = gcdAction(state->t);
+            if (action)
+                return action;
+
             action = spellAction(make_shared<spell::Waterbolt>());
 
             return action;

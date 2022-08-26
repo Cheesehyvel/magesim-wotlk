@@ -156,26 +156,30 @@
                         <div class="dps-result">
                             <div>DPS</div>
                             <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
-                            <div>{{ $round(result.avg_dps, 2) }}</div>
-                            <div class="pinned" v-if="pin_dps">
-                                <span class="update" @click="updatePin">
-                                    <span class="material-icons">&#xe5d5;</span>
-                                    <tooltip position="r">Update reference</tooltip>
-                                </span>
-                                <span class="diff" :class="[pin_dps > result.avg_dps ? 'lt' : 'gt']">
-                                    <template v-if="pin_dps <= result.avg_dps">+</template>{{ $roundFixed(result.avg_dps - pin_dps, 2) }}
-                                </span>
-                                <span class="remove" @click="removePin">
-                                    <span class="material-icons">&#xe5cd;</span>
-                                    <tooltip position="r">Remove reference</tooltip>
-                                </span>
+                            <div class="dps">{{ $round(result.avg_dps, 2) }}</div>
+                            <div class="faded mb-1" v-if="result.t_gcd_capped">
+                                <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
+                                <help>Time spent gcd capped</help>
                             </div>
-                            <div class="pin" v-else>
-                                <span>
-                                    <span class="material-icons" @click="updatePin">&#xf10d;</span>
-                                    <tooltip position="r">Set reference</tooltip>
-                                </span>
-                            </div>
+                        </div>
+                        <div class="pinned" v-if="pin_dps">
+                            <span class="update" @click="updatePin">
+                                <span class="material-icons">&#xe5d5;</span>
+                                <tooltip position="r">Update reference</tooltip>
+                            </span>
+                            <span class="diff" :class="[pin_dps > result.avg_dps ? 'lt' : 'gt']">
+                                <template v-if="pin_dps <= result.avg_dps">+</template>{{ $roundFixed(result.avg_dps - pin_dps, 2) }}
+                            </span>
+                            <span class="remove" @click="removePin">
+                                <span class="material-icons">&#xe5cd;</span>
+                                <tooltip position="r">Remove reference</tooltip>
+                            </span>
+                        </div>
+                        <div class="pin" v-else>
+                            <span>
+                                <span class="material-icons" @click="updatePin">&#xf10d;</span>
+                                <tooltip position="r">Set reference</tooltip>
+                            </span>
                         </div>
                         <div class="btn mt-2" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
                         <div class="btn mt-1" v-if="result.all_results" @click="allResults">Simulation data</div>
@@ -183,8 +187,12 @@
                     <template v-else>
                         <div class="dps-result">
                             <div>DPS</div>
-                            <div>Damage: {{ result.dmg }}</div>
-                            <div>{{ $round(result.dps, 2) }}</div>
+                            <div class="faded">Damage: {{ result.dmg }}</div>
+                            <div class="dps">{{ $round(result.dps, 2) }}</div>
+                            <div class="faded" v-if="result.t_gcd_capped">
+                                <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
+                                <help>Time spent gcd capped</help>
+                            </div>
                         </div>
                     </template>
 

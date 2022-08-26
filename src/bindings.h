@@ -333,6 +333,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("dmg", &SimulationResult::dmg)
         .field("t", &SimulationResult::t)
         .field("dps", &SimulationResult::dps)
+        .field("t_gcd_capped", &SimulationResult::t_gcd_capped)
         .field("log", &SimulationResult::log)
         .field("spells", &SimulationResult::spells)
         ;
@@ -341,6 +342,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("min_dps", &SimulationsResult::min_dps)
         .field("avg_dps", &SimulationsResult::avg_dps)
         .field("max_dps", &SimulationsResult::max_dps)
+        .field("t_gcd_capped", &SimulationsResult::t_gcd_capped)
         .field("iterations", &SimulationsResult::iterations)
         .field("histogram", &SimulationsResult::histogram)
         .field("all_results", &SimulationsResult::all_results)

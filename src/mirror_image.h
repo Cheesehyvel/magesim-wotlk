@@ -43,6 +43,10 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
+            action = gcdAction(state->t);
+            if (action)
+                return action;
+
             if (!hasCooldown(cooldown::FIRE_BLAST) && random<int>(0, 2) == 0)
                 action = spellAction(make_shared<spell::MirrorFireBlast>());
             else

@@ -21,6 +21,7 @@ namespace unit
         bool unique = true;
         bool get_raid_buffs = true;
         bool is_channeling = false;
+        double last_spell_cast_time = 0;
         int id;
 
         map<cooldown::ID, shared_ptr<cooldown::Cooldown>> cooldowns;
@@ -39,6 +40,7 @@ namespace unit
             t_gcd = 0;
             t_gcd_capped = 0;
             is_channeling = false;
+            last_spell_cast_time = 0;
 
             buffs.clear();
             snapshot_buffs.clear();
@@ -567,6 +569,22 @@ namespace unit
             action->value = mana;
             action->str = str;
             return action;
+        }
+
+        virtual shared_ptr<action::Action> gcdAction(double t)
+        {
+            if (t < t_gcd) {
+                shared_ptr<action::Action> action = make_shared<action::Action>(action::TYPE_WAIT);
+                action->value = t_gcd - t;
+                action->str = "GCD";
+
+                if (last_spell_cast_time > 0)
+                    t_gcd_capped+= action->value;
+
+                return action;
+            }
+
+            return NULL;
         }
 
         virtual shared_ptr<action::Action> nextAction(shared_ptr<State> state)

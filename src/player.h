@@ -1543,10 +1543,6 @@ namespace unit
                 action = spellAction(make_shared<spell::MirrorImage>());
                 action->cooldown = make_shared<cooldown::MirrorImage>();
             }
-            else if (talents.incanters_absorption && hasBuff(buff::FIRE_WARD) && !hasCooldown(cooldown::SAPPER_CHARGE) && (useTimingIfPossible("sapper_charge", state, true) || hasBuff(buff::ARCANE_POWER) && getNextTiming("sapper_charge") == NULL)) {
-                action = spellAction(make_shared<spell::SapperCharge>());
-                action->cooldown = make_shared<cooldown::SapperCharge>();
-            }
 
             if (action != NULL && action->type != action::TYPE_SPELL)
                 action->primary_action = true;
@@ -1604,12 +1600,32 @@ namespace unit
             return action;
         }
 
+        shared_ptr<action::Action> offGcd(shared_ptr<State> state)
+        {
+            shared_ptr<action::Action> action = NULL;
+
+            if (talents.incanters_absorption && hasBuff(buff::FIRE_WARD) && !hasCooldown(cooldown::SAPPER_CHARGE) && (useTimingIfPossible("sapper_charge", state, true) || hasBuff(buff::ARCANE_POWER) && getNextTiming("sapper_charge") == NULL)) {
+                action = spellAction(make_shared<spell::SapperCharge>());
+                action->cooldown = make_shared<cooldown::SapperCharge>();
+            }
+
+            return action;
+        }
+
         shared_ptr<action::Action> nextAction(shared_ptr<State> state)
         {
             shared_ptr<action::Action> action = NULL;
 
             if (!state->inCombat())
                 return preCombat(state);
+
+            action = offGcd(state);
+            if (action)
+                return action;
+
+            action = gcdAction(state->t);
+            if (action)
+                return action;
 
             action = useCooldown(state);
             if (action)
@@ -1627,13 +1643,6 @@ namespace unit
             }
             else if (shouldEvocate(state)) {
                 return spellAction(make_shared<spell::Evocation>(evocationTicks()));
-            }
-
-            // If we're on gcd at this point, just wait for gcd
-            if (state->t < t_gcd) {
-                action = make_shared<action::Action>(action::TYPE_WAIT);
-                action->value = t_gcd - state->t;
-                return action;
             }
 
             // Frostfire bolt

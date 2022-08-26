@@ -73,6 +73,8 @@ public:
                 result.max_dps = r.dps;
             result.avg_dps+= (r.dps - result.avg_dps) / (i+1);
 
+            result.t_gcd_capped+= (r.t_gcd_capped - result.t_gcd_capped) / (i+1);
+
             bin = floor(r.dps/bin_size)*bin_size;
             if (histogram.find(bin) != histogram.end())
                 histogram[bin]++;
@@ -136,6 +138,7 @@ public:
         result.dmg = state->dmg;
         result.t = state->t;
         result.dps = state->dmg/state->t;
+        result.t_gcd_capped = player->t_gcd_capped;
 
         if (logging) {
             result.log = jsonLog();
@@ -270,8 +273,6 @@ public:
 
     void pushCastFinish(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell, double t)
     {
-        spell->actual_cast_time = t;
-
         shared_ptr<Event> event(new Event());
         event->type = EVENT_CAST_FINISH;
         event->spell = spell;
@@ -468,7 +469,7 @@ public:
     void onAction(shared_ptr<unit::Unit> unit, shared_ptr<action::Action> action)
     {
         if (action->type == action::TYPE_WAIT) {
-            pushWait(unit, action->value);
+            pushWait(unit, action->value, action->str);
         }
         else if (action->type == action::TYPE_SPELL) {
             cast(unit, action->spell);
@@ -525,6 +526,7 @@ public:
             return false;
 
         onAction(unit, action);
+
         return true;
     }
 
@@ -550,15 +552,20 @@ public:
 
     void onCastStart(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
+        spell->actual_cast_time = castTime(unit, spell);
+
         logCastStart(unit, spell);
 
-        if (spell->active_use)
+        if (spell->active_use) {
             unit->t_gcd = state->t + unit->gcd(spell->gcd);
+            if (spell->gcd)
+                unit->last_spell_cast_time = spell->actual_cast_time;
+        }
 
         if (spell->channeling)
             onCastSuccess(unit, spell);
         else
-            pushCastFinish(unit, spell, castTime(unit, spell));
+            pushCastFinish(unit, spell, spell->actual_cast_time);
     }
 
     void onCastFinish(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
@@ -571,7 +578,6 @@ public:
 
     void onCastSuccess(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
-        double duration = 0;
         int targets = spell->aoe ? config->targets : 1;
 
         spell->actual_cost = manaCost(unit, spell);
@@ -583,9 +589,8 @@ public:
 
         for (int t=0; t<targets; t++) {
             if (spell->channeling && !spell->tick) {
-                duration = castTime(unit, spell);
                 for (int i=1; i<=spell->ticks; i++)
-                    pushChannelingTick(unit, spell, duration / spell->ticks * i, i);
+                    pushChannelingTick(unit, spell, spell->actual_cast_time / spell->ticks * i, i);
             }
             else if (spell->dot) {
                 dotApply(unit, spell);
@@ -601,8 +606,8 @@ public:
 
         if (spell->active_use) {
             if (state->inCombat()) {
-                if (duration > 0)
-                    pushWait(unit, duration);
+                if (spell->channeling && spell->actual_cast_time > 0)
+                    pushWait(unit, spell->actual_cast_time);
                 else
                     nextAction(unit);
             }
