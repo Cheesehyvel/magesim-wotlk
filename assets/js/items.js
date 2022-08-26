@@ -408,6 +408,9 @@ var equip = {
         { id: 47767, itemset: ids.T9_SET, title: "Sunstrider's Shoulderpads of Triumph", ilvl: 258, int: 86, sp: 124, crit: 68, haste: 76, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47768, itemset: ids.T9_SET, title: "Sunstrider's Shoulderpads of Triumph", ilvl: 245, int: 77, sp: 109, crit: 59, haste: 67, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47777, itemset: ids.T9_SET, title: "Sunstrider's Shoulderpads of Conquest", ilvl: 232, int: 68, sp: 96, crit: 52, haste: 60, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47758, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Triumph", ilvl: 258, int: 86, sp: 124, crit: 68, haste: 76, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47757, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Triumph", ilvl: 245, int: 77, sp: 109, crit: 59, haste: 67, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47751, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Conquest", ilvl: 232, int: 68, sp: 96, crit: 52, haste: 60, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         // ulduar
         { id: 46134, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Shoulderpads", ilvl: 226, int: 65, spi: 33, sp: 98, haste: 62, sockets: ["y"], bonus: {int: 4}, phase: 2 },
         { id: 45369, itemset: ids.T8_SET, title: "Valorous Kirin Tor Shoulderpads", ilvl: 219, int: 60, spi: 30, sp: 91, haste: 57, sockets: ["y"], bonus: {int: 4}, phase: 2 },
@@ -432,6 +435,7 @@ var equip = {
         { id: 39284, title: "Miasma Mantle", ilvl: 200, int: 48, spi: 43, sp: 77, crit: 45 },
         // wintergrasp
         { id: 51572, title: "Titan-Forged Shoulderpads of Salvation", ilvl: 251, int: 54, sp: 116, haste: 63, sockets: ["y"], phase: 4 },
+        { id: 51573, title: "Titan-Forged Shoulderpads of Domination", ilvl: 251, int: 54, sp: 116, hit: 63, sockets: ["y"], bonus: {spi: 4}, phase: 4 },
         // pvp
         { id: 51467, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Amice", ilvl: 270, int: 64, sp: 140, crit: 77, sockets: ["y"], phase: 4 },
         { id: 41966, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Amice", ilvl: 251, int: 54, sp: 116, crit: 63, sockets: ["y"], phase: 3 },

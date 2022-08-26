@@ -20911,6 +20911,48 @@ var equip = {
       sp: 5
     },
     phase: 3
+  }, {
+    id: 47758,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Shoulderpads of Triumph",
+    ilvl: 258,
+    "int": 86,
+    sp: 124,
+    crit: 68,
+    haste: 76,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47757,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Shoulderpads of Triumph",
+    ilvl: 245,
+    "int": 77,
+    sp: 109,
+    crit: 59,
+    haste: 67,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47751,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Shoulderpads of Conquest",
+    ilvl: 232,
+    "int": 68,
+    sp: 96,
+    crit: 52,
+    haste: 60,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
   }, // ulduar
   {
     id: 46134,
@@ -21129,6 +21171,18 @@ var equip = {
     sp: 116,
     haste: 63,
     sockets: ["y"],
+    phase: 4
+  }, {
+    id: 51573,
+    title: "Titan-Forged Shoulderpads of Domination",
+    ilvl: 251,
+    "int": 54,
+    sp: 116,
+    hit: 63,
+    sockets: ["y"],
+    bonus: {
+      spi: 4
+    },
     phase: 4
   }, // pvp
   {
