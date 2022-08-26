@@ -25207,6 +25207,32 @@ var equip = {
     phase: 4
   }, // totc
   {
+    id: 47454,
+    title: "Sandals of the Mourning Widow",
+    ilvl: 258,
+    "int": 86,
+    spi: 76,
+    sp: 124,
+    haste: 68,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47293,
+    title: "Sandals of the Mourning Widow",
+    ilvl: 245,
+    "int": 77,
+    spi: 67,
+    sp: 109,
+    haste: 59,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
     id: 47097,
     title: "Boots of the Mourning Widow",
     ilvl: 258,
@@ -25227,6 +25253,32 @@ var equip = {
     spi: 67,
     sp: 109,
     haste: 59,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47482,
+    title: "Boots of the Icy Floe",
+    ilvl: 258,
+    "int": 86,
+    sp: 114,
+    hit: 60,
+    haste: 76,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47321,
+    title: "Boots of the Icy Floe",
+    ilvl: 245,
+    "int": 77,
+    sp: 109,
+    hit: 59,
+    haste: 67,
     sockets: ["b"],
     bonus: {
       sp: 5
@@ -25259,6 +25311,28 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 49233,
+    title: "Sandals of the Grieving Soul",
+    ilvl: 245,
+    "int": 77,
+    spi: 51,
+    sp: 109,
+    crit: 72,
+    sockets: ["y"],
+    bonus: {
+      "int": 4
+    },
+    phase: 3
+  }, {
+    id: 49232,
+    title: "Sandals of the Grieving Soul",
+    ilvl: 232,
+    "int": 68,
+    spi: 52,
+    sp: 105,
+    crit: 64,
+    phase: 3
+  }, {
     id: 49234,
     title: "Boots of the Grieving Soul",
     ilvl: 245,
@@ -25279,6 +25353,32 @@ var equip = {
     spi: 52,
     sp: 105,
     crit: 64,
+    phase: 3
+  }, {
+    id: 48012,
+    title: "Sunreaver Magus' Sandals",
+    ilvl: 245,
+    "int": 70,
+    sp: 104,
+    crit: 72,
+    hit: 47,
+    sockets: ["y", "r"],
+    bonus: {
+      crit: 6
+    },
+    phase: 3
+  }, {
+    id: 47873,
+    title: "Sunreaver Magus' Sandals",
+    ilvl: 232,
+    "int": 69,
+    sp: 100,
+    crit: 64,
+    hit: 40,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
     phase: 3
   }, {
     id: 47940,
@@ -25397,6 +25497,18 @@ var equip = {
     haste: 46
   }, // naxx
   {
+    id: 40269,
+    title: "Boots of Persuasion",
+    ilvl: 213,
+    "int": 50,
+    spi: 55,
+    sp: 78,
+    crit: 35,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    }
+  }, {
     id: 40326,
     title: "Boots of Forlorn Wishes",
     ilvl: 213,
@@ -25416,17 +25528,6 @@ var equip = {
     sp: 88,
     hit: 37,
     haste: 55
-  }, {
-    id: 40269,
-    title: "Boots of Persuasion",
-    "int": 50,
-    spi: 55,
-    sp: 78,
-    crit: 35,
-    sockets: ["y"],
-    bonus: {
-      crit: 4
-    }
   }, {
     id: 40236,
     title: "Serene Echoes",
@@ -25472,6 +25573,69 @@ var equip = {
     phase: 2
   }, // pvp
   {
+    id: 51338,
+    title: "Wrathful Gladiator's Treads of Alacrity",
+    ilvl: 264,
+    "int": 61,
+    sp: 132,
+    haste: 72,
+    sockets: ["y"],
+    phase: 4
+  }, {
+    id: 51328,
+    title: "Wrathful Gladiator's Treads of Dominance",
+    ilvl: 264,
+    "int": 61,
+    sp: 132,
+    crit: 72,
+    sockets: ["y"],
+    phase: 4
+  }, {
+    id: 51366,
+    title: "Wrathful Gladiator's Treads of Salvation",
+    ilvl: 264,
+    "int": 61,
+    spi: 72,
+    sp: 132,
+    sockets: ["y"],
+    phase: 4
+  }, {
+    id: 41886,
+    title: "Relentless Gladiator's Treads of Salvation",
+    ilvl: 245,
+    "int": 51,
+    spi: 59,
+    sp: 109,
+    sockets: ["y"],
+    phase: 3
+  }, {
+    id: 41904,
+    title: "Relentless Gladiator's Treads of Dominance",
+    ilvl: 245,
+    "int": 51,
+    sp: 109,
+    crit: 59,
+    sockets: ["y"],
+    phase: 3
+  }, {
+    id: 41885,
+    title: "Furious Gladiator's Slippers of Salvation",
+    ilvl: 226,
+    "int": 42,
+    spi: 48,
+    sp: 90,
+    sockets: ["y"],
+    phase: 2
+  }, {
+    id: 41903,
+    title: "Furious Gladiator's Slippers of Dominance",
+    ilvl: 226,
+    "int": 42,
+    sp: 90,
+    crit: 48,
+    sockets: ["y"],
+    phase: 2
+  }, {
     id: 41902,
     title: "Deadly Gladiator's Treads of Dominance",
     ilvl: 213,
@@ -25505,6 +25669,89 @@ var equip = {
     sockets: ["y"]
   }, // prebis
   {
+    id: 49890,
+    title: "Deathfrost Boots",
+    ilvl: 264,
+    "int": 92,
+    sp: 122,
+    crit: 80,
+    hit: 64,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 49893,
+    title: "Sandals of Consecration",
+    ilvl: 264,
+    "int": 92,
+    spi: 80,
+    sp: 122,
+    crit: 64,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50286,
+    title: "Prelate's Snowshoes",
+    ilvl: 232,
+    "int": 68,
+    spi: 61,
+    sp: 105,
+    haste: 57,
+    phase: 4
+  }, {
+    id: 45566,
+    title: "Spellslinger's Slippers",
+    ilvl: 226,
+    "int": 64,
+    spi: 41,
+    sp: 81,
+    haste: 56,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45567,
+    title: "Savior's Slippers",
+    ilvl: 226,
+    "int": 60,
+    spi: 57,
+    sp: 81,
+    crit: 40,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 49805,
+    title: "Ice-Steeped Sandals",
+    ilvl: 219,
+    "int": 59,
+    spi: 45,
+    sp: 92,
+    haste: 57,
+    phase: 4
+  }, {
+    id: 47560,
+    title: "Boots of the Crackling Flame",
+    ilvl: 219,
+    "int": 61,
+    sp: 92,
+    crit: 51,
+    hit: 35,
+    sockets: ["y"],
+    bonus: {
+      hit: 4
+    },
+    phase: 3
+  }, {
     id: 40750,
     title: "Xintor's Expeditionary Boots",
     ilvl: 213,
@@ -25531,6 +25778,11 @@ var equip = {
     bonus: {
       "int": 4
     }
+  }, {
+    id: 43585,
+    title: "Glacial Slippers",
+    ilvl: 213,
+    sockets: ["r", "y"]
   }, {
     id: 37218,
     title: "Stone-Worn Footwraps",
