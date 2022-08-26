@@ -19545,6 +19545,48 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 47761,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Hood of Triumph",
+    ilvl: 258,
+    "int": 116,
+    sp: 151,
+    hit: 86,
+    haste: 94,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
+    id: 47754,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Hood of Triumph",
+    ilvl: 245,
+    "int": 103,
+    sp: 131,
+    hit: 74,
+    haste: 82,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
+    id: 47748,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Hood of Conquest",
+    ilvl: 232,
+    "int": 92,
+    sp: 113,
+    hit: 64,
+    haste: 72,
+    sockets: ["m", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
     id: 47564,
     title: "Gaze of the Unknown",
     ilvl: 219,
@@ -19783,7 +19825,19 @@ var equip = {
     sp: 87,
     hit: 44,
     sockets: ["m", "r"],
-    phase: 4
+    phase: 2
+  }, {
+    id: 44909,
+    title: "Titan-Forged Hood of Salvation",
+    ilvl: 200,
+    "int": 45,
+    sp: 87,
+    haste: 44,
+    sockets: ["m", "r"],
+    bonus: {
+      spi: 8
+    },
+    phase: 2
   }, // pvp
   {
     id: 51465,
@@ -19845,19 +19899,6 @@ var equip = {
     q: "rare"
   }, // prebis
   {
-    id: 49849,
-    title: "Tattered Glacial-Woven Hood",
-    ilvl: 219,
-    "int": 68,
-    spi: 66,
-    sp: 105,
-    haste: 58,
-    sockets: ["m", "y"],
-    bonus: {
-      sp: 9
-    },
-    phase: 4
-  }, {
     id: 47695,
     title: "Hood of Clouded Sight",
     ilvl: 245,
@@ -19909,6 +19950,32 @@ var equip = {
       sp: 9
     },
     phase: 3
+  }, {
+    id: 50298,
+    title: "Sightless Crown of Ulmaas",
+    ilvl: 232,
+    "int": 84,
+    sp: 122,
+    hit: 62,
+    haste: 78,
+    sockets: ["m", "b"],
+    bonus: {
+      crit: 8
+    },
+    phase: 4
+  }, {
+    id: 49849,
+    title: "Tattered Glacial-Woven Hood",
+    ilvl: 219,
+    "int": 68,
+    spi: 66,
+    sp: 105,
+    haste: 58,
+    sockets: ["m", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
   }, {
     id: 42553,
     title: "Visage Liquification Goggles",
@@ -25224,7 +25291,8 @@ var equip = {
     "int": 33,
     sp: 68,
     hit: 36,
-    sockets: ["y"]
+    sockets: ["y"],
+    phase: 2
   }, {
     id: 44900,
     title: "Titan-Forged Slippers of Salvation",
@@ -25232,7 +25300,8 @@ var equip = {
     "int": 33,
     sp: 68,
     haste: 36,
-    sockets: ["y"]
+    sockets: ["y"],
+    phase: 2
   }, // pvp
   {
     id: 41902,

@@ -263,6 +263,9 @@ var equip = {
         { id: 47764, itemset: ids.T9_SET, title: "Sunstrider's Hood of Triumph", ilvl: 258, int: 116, sp: 151, hit: 86, haste: 94, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47771, itemset: ids.T9_SET, title: "Sunstrider's Hood of Triumph", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47774, itemset: ids.T9_SET, title: "Sunstrider's Hood of Conquest", ilvl: 232, int: 92, sp: 113, hit: 64, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47761, itemset: ids.T9_SET, title: "Khadgar's Hood of Triumph", ilvl: 258, int: 116, sp: 151, hit: 86, haste: 94, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47754, itemset: ids.T9_SET, title: "Khadgar's Hood of Triumph", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47748, itemset: ids.T9_SET, title: "Khadgar's Hood of Conquest", ilvl: 232, int: 92, sp: 113, hit: 64, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47564, title: "Gaze of the Unknown", ilvl: 219, int: 74, sp: 115, crit: 67, hit: 57, sockets: ["m", "r"], bonus: {hit: 8}, phase: 3 },
         // ulduar
         { id: 46129, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Hood", ilvl: 226, int: 87, spi: 66, sp: 113, hit: 69, sockets: ["m", "r"], bonus: {sp: 9}, phase: 2 },
@@ -287,7 +290,8 @@ var equip = {
         { id: 39409, title: "Cowl of Winged Fear", ilvl: 200, int: 60, spi: 45, sp: 87, crit: 36, sockets: ["m", "y"], bonus: {crit: 8} },
         { id: 39295, title: "Cowl of Sheet Lightning", ilvl: 200, int: 68, sp: 85, haste: 48, mp5: 19, sockets: ["m", "y"], bonus: {sp: 9} },
         // wintergrasp
-        { id: 44910, title: "Titan-Forged Hood of Dominance", ilvl: 200, int: 45, sp: 87, hit: 44, sockets: ["m", "r"], phase: 4 },
+        { id: 44910, title: "Titan-Forged Hood of Dominance", ilvl: 200, int: 45, sp: 87, hit: 44, sockets: ["m", "r"], phase: 2 },
+        { id: 44909, title: "Titan-Forged Hood of Salvation", ilvl: 200, int: 45, sp: 87, haste: 44, sockets: ["m", "r"], bonus: {spi: 8}, phase: 2 },
         // pvp
         { id: 51465, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Cowl", ilvl: 270, int: 87, sp: 182, crit: 98, sockets: ["m", "r"], phase: 4 },
         { id: 41947, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Cowl", ilvl: 251, int: 73, sp: 149, crit: 80, sockets: ["m", "r"], phase: 3 },
@@ -296,11 +300,12 @@ var equip = {
         { id: 41944, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Cowl", ilvl: 200, int: 45, sp: 87, crit: 44, sockets: ["m", "r"] },
         { id: 41943, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Cowl", ilvl: 200, int: 39, sp: 73, crit: 36, sockets: ["m", "r"], q: "rare" },
         // prebis
-        { id: 49849, title: "Tattered Glacial-Woven Hood", ilvl: 219, int: 68, spi: 66, sp: 105, haste: 58, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
         { id: 47695, title: "Hood of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
         { id: 47694, title: "Helm of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
         { id: 47692, title: "Hood of Smoldering Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47693, title: "Hood of Fiery Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 50298, title: "Sightless Crown of Ulmaas", ilvl: 232, int: 84, sp: 122, hit: 62, haste: 78, sockets: ["m", "b"], bonus: {crit: 8}, phase: 4 },
+        { id: 49849, title: "Tattered Glacial-Woven Hood", ilvl: 219, int: 68, spi: 66, sp: 105, haste: 58, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
         { id: 42553, title: "Visage Liquification Goggles", ilvl: 200, int: 60, sp: 87, crit: 73, sockets: ["m", "y"], bonus: {crit: 8} },
         { id: 37294, title: "Crown of Unbridled Magic", ilvl: 200, int: 62, spi: 52, sp: 81, sockets: ["m", "y"], bonus: {crit: 8}, q: "rare" },
         { id: 37594, title: "Elder Headpiece", ilvl: 200, int: 77, spi: 55, sp: 91, q: "rare" },
@@ -882,8 +887,8 @@ var equip = {
         { id: 39254, title: "Saltarello Shoes", ilvl: 200, int: 51, spi: 51, sp: 77, haste: 33 },
         { id: 39273, title: "Sullen Cloth Boots", ilvl: 200, int: 50, spi: 38, sp: 76, crit: 48 },
         // wintergrasp
-        { id: 44899, title: "Titan-Forged Slippers of Dominance", ilvl: 200, int: 33, sp: 68, hit: 36, sockets: ["y"] },
-        { id: 44900, title: "Titan-Forged Slippers of Salvation", ilvl: 200, int: 33, sp: 68, haste: 36, sockets: ["y"] },
+        { id: 44899, title: "Titan-Forged Slippers of Dominance", ilvl: 200, int: 33, sp: 68, hit: 36, sockets: ["y"], phase: 2 },
+        { id: 44900, title: "Titan-Forged Slippers of Salvation", ilvl: 200, int: 33, sp: 68, haste: 36, sockets: ["y"], phase: 2 },
         // pvp
         { id: 41902, title: "Deadly Gladiator's Treads of Dominance", ilvl: 213, int: 37, sp: 78, crit: 42, sockets: ["y"] },
         { id: 41884, title: "Deadly Gladiator's Treads of Salvation", ilvl: 213, int: 37, spi: 42, sp: 78, sockets: ["y"] },
