@@ -23413,6 +23413,32 @@ var equip = {
       spi: 6
     },
     phase: 4
+  }, {
+    id: 50984,
+    title: "Gloves of Ambivalence",
+    ilvl: 264,
+    "int": 92,
+    spi: 80,
+    sp: 122,
+    crit: 64,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
+  }, {
+    id: 50983,
+    title: "Gloves of False Gestures",
+    ilvl: 264,
+    "int": 92,
+    sp: 122,
+    crit: 80,
+    haste: 64,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 4
   }, // totc
   {
     id: 47763,
@@ -23457,6 +23483,74 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 47762,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Gauntlets of Triumph",
+    ilvl: 258,
+    "int": 86,
+    sp: 124,
+    crit: 76,
+    haste: 68,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    },
+    phase: 3
+  }, {
+    id: 47753,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Gauntlets of Triumph",
+    ilvl: 245,
+    "int": 77,
+    sp: 109,
+    crit: 67,
+    haste: 59,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    },
+    phase: 3
+  }, {
+    id: 47752,
+    itemset: ids.T9_SET,
+    title: "Khadgar's Gauntlets of Conquest",
+    ilvl: 232,
+    "int": 68,
+    sp: 96,
+    crit: 60,
+    haste: 52,
+    sockets: ["r"],
+    bonus: {
+      crit: 4
+    },
+    phase: 3
+  }, {
+    id: 47487,
+    title: "Handwraps of the Lifeless Touch",
+    ilvl: 258,
+    "int": 86,
+    sp: 114,
+    crit: 60,
+    haste: 76,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
+    id: 47326,
+    title: "Handwraps of the Lifeless Touch",
+    ilvl: 245,
+    "int": 77,
+    sp: 109,
+    crit: 59,
+    haste: 67,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
     id: 47236,
     title: "Gloves of the Lifeless Touch",
     ilvl: 258,
@@ -23480,6 +23574,32 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 5
+    },
+    phase: 3
+  }, {
+    id: 48028,
+    title: "Looming Shadow Wraps",
+    ilvl: 245,
+    "int": 69,
+    sp: 109,
+    hit: 51,
+    haste: 67,
+    sockets: ["y", "r"],
+    bonus: {
+      haste: 6
+    },
+    phase: 3
+  }, {
+    id: 47889,
+    title: "Looming Shadow Wraps",
+    ilvl: 232,
+    "int": 60,
+    sp: 96,
+    hit: 44,
+    haste: 60,
+    sockets: ["y", "r"],
+    bonus: {
+      haste: 6
     },
     phase: 3
   }, {
@@ -23696,7 +23816,7 @@ var equip = {
   }, {
     id: 39285,
     title: "Handgrips of Turmoil",
-    ilvl: 213,
+    ilvl: 200,
     "int": 48,
     sp: 68,
     haste: 44,
@@ -23781,6 +23901,59 @@ var equip = {
     q: "rare"
   }, // prebis
   {
+    id: 50299,
+    title: "Suspiciously Soft Gloves",
+    ilvl: 232,
+    "int": 68,
+    spi: 57,
+    sp: 105,
+    crit: 61,
+    phase: 4
+  }, {
+    id: 45840,
+    title: "Touch of the Occult",
+    ilvl: 226,
+    "int": 60,
+    spi: 60,
+    sp: 100,
+    haste: 49,
+    phase: 2
+  }, {
+    id: 49828,
+    title: "Marwyn's Macabre Fingertips",
+    ilvl: 219,
+    "int": 56,
+    spi: 53,
+    sp: 83,
+    crit: 45,
+    sockets: ["r"],
+    bonus: {
+      "int": 4
+    },
+    phase: 4
+  }, {
+    id: 49788,
+    title: "Cold Sweat Grips",
+    ilvl: 219,
+    "int": 57,
+    sp: 92,
+    crit: 56,
+    hit: 47,
+    phase: 4
+  }, {
+    id: 47230,
+    title: "Handwraps of Surrendered Hope",
+    ilvl: 200,
+    "int": 41,
+    spi: 49,
+    sp: 73,
+    haste: 29,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
     id: 42113,
     title: "Spellweave Gloves",
     ilvl: 200,
