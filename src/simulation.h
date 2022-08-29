@@ -1216,7 +1216,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " started casting " << spell->name;
+        s << unit->name << " started casting " << spell->name << ".";
 
         addLog(unit, LOG_CAST_START, s.str());
     }
@@ -1228,7 +1228,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " successfully cast " << spell->name;
+        s << unit->name << " successfully cast " << spell->name << ".";
 
         addLog(unit, LOG_CAST_SUCCESS, s.str());
     }
@@ -1253,6 +1253,8 @@ public:
         if (instance->resist)
             s << " (" << instance->resist << " resisted)";
 
+        s << ".";
+
         addLog(unit, LOG_SPELL_IMPACT, s.str());
     }
 
@@ -1266,6 +1268,7 @@ public:
         s << unit->name << " gained " << buff->name;
         if (buff->max_stacks > 1)
             s << " (" << stacks << ")";
+        s << ".";
 
         addLog(unit, LOG_BUFF, s.str());
     }
@@ -1277,7 +1280,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " lost " << buff->name;
+        s << unit->name << " lost " << buff->name << ".";
 
         addLog(unit, LOG_BUFF, s.str());
     }
@@ -1292,6 +1295,7 @@ public:
         s << "Target gained " << debuff->name;
         if (debuff->max_stacks > 1)
             s << " (" << stacks << ")";
+        s << ".";
 
         addLog(player, LOG_BUFF, s.str());
     }
@@ -1303,7 +1307,7 @@ public:
 
         ostringstream s;
 
-        s << "Target lost " << debuff->name;
+        s << "Target lost " << debuff->name << ".";
 
         addLog(player, LOG_BUFF, s.str());
     }
@@ -1317,9 +1321,9 @@ public:
 
         s << fixed << setprecision(0);
         if (mana < 0)
-            s << unit->name << " lost " << (0-mana) << " mana from " << source;
+            s << unit->name << " lost " << (0-mana) << " mana from " << source << ".";
         else
-            s << unit->name << " gained " << mana << " mana from " << source;
+            s << unit->name << " gained " << mana << " mana from " << source << ".";
 
         addLog(unit, LOG_MANA, s.str());
     }
@@ -1331,7 +1335,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " spawned";
+        s << unit->name << " spawned.";
 
         addLog(unit, LOG_UNIT, s.str());
     }
@@ -1343,7 +1347,7 @@ public:
 
         ostringstream s;
 
-        s << unit->name << " despawned";
+        s << unit->name << " despawned.";
 
         addLog(unit, LOG_UNIT, s.str());
     }

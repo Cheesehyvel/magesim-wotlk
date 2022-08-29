@@ -31065,7 +31065,10 @@ __webpack_require__.r(__webpack_exports__);
         title: "Forge Ember",
         color: "#ddd"
       }, {
-        title: "Improved Mana Gem",
+        title: "Mana Surge",
+        color: "#2da"
+      }, {
+        title: "Mana Surges",
         color: "#2da"
       }, {
         title: "Fel Infusion",
@@ -31122,7 +31125,7 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < this.cds.length; i++) {
         logs = _.filter(this.result.log, function (l) {
-          return l.type == 5 && l.text.indexOf(_this.cds[i].title) > 0;
+          return l.type == 5 && l.text.indexOf(_this.cds[i].title + ".") > 0;
         });
 
         if (logs.length) {
@@ -31155,7 +31158,7 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < this.trinkets.length; i++) {
         logs = _.filter(this.result.log, function (l) {
-          return l.text.indexOf(_this.trinkets[i].title) > 0;
+          return l.text.indexOf(_this.trinkets[i].title + ".") > 0;
         });
 
         if (logs.length) {

@@ -1135,8 +1135,13 @@ namespace unit
             else
                 return 0;
 
-            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
-                max*= 1.25;
+            double imp = 1;
+            if (config->t7_2set)
+                imp+= 0.25;
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                imp+= 0.25;
+            max*= imp;
+
             if (glyphs.mana_gem)
                 max*= 1.4;
 
@@ -1250,15 +1255,22 @@ namespace unit
                 mana = random<int>(3330, 3500);
             }
 
-            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
-                mana*= 1.25;
+            double imp = 1;
+            if (config->t7_2set)
+                imp+= 0.25;
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                imp+= 0.25;
+            mana*= imp;
+
             if (glyphs.mana_gem)
                 mana*= 1.4;
 
             actions.push_back(manaAction(mana, "Mana Gem"));
 
-            if (config->t7_2set || hasTrinket(TRINKET_SERPENT_COIL))
-                actions.push_back(buffAction(make_shared<buff::ImprovedManaGem>()));
+            if (config->t7_2set)
+                actions.push_back(buffAction(make_shared<buff::ManaSurges>()));
+            if (hasTrinket(TRINKET_SERPENT_COIL))
+                actions.push_back(buffAction(make_shared<buff::ManaSurge>()));
 
             actions.push_back(cooldownAction(make_shared<cooldown::ManaGem>()));
 

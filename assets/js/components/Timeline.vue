@@ -95,7 +95,8 @@
                     { title: "Argent Valor", color: "#ddd" },
                     { title: "Mark of the War Prisoner", color: "#ddd" },
                     { title: "Forge Ember", color: "#ddd" },
-                    { title: "Improved Mana Gem", color: "#2da" },
+                    { title: "Mana Surge", color: "#2da" },
+                    { title: "Mana Surges", color: "#2da" },
                     { title: "Fel Infusion", color: "#b24" },
                     { title: "Mojo Madness", color: "#d22" },
                     { title: "Insight of the Ashtongue", color: "#cc8" },
@@ -138,7 +139,7 @@
 
                 // CDs
                 for (var i=0; i<this.cds.length; i++) {
-                    logs = _.filter(this.result.log, l => l.type == 5 && l.text.indexOf(this.cds[i].title) > 0);
+                    logs = _.filter(this.result.log, l => l.type == 5 && l.text.indexOf(this.cds[i].title+".") > 0);
                     if (logs.length) {
                         uptime = 0;
                         event = _.clone(this.cds[i]);
@@ -162,7 +163,7 @@
                 // Trinkets
                 var delta = 0;
                 for (var i=0; i<this.trinkets.length; i++) {
-                    logs = _.filter(this.result.log, l => l.text.indexOf(this.trinkets[i].title) > 0);
+                    logs = _.filter(this.result.log, l => l.text.indexOf(this.trinkets[i].title+".") > 0);
                     if (logs.length) {
                         uptime = 0;
                         event = _.clone(this.trinkets[i]);

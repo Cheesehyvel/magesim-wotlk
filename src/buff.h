@@ -30,7 +30,8 @@ namespace buff
         LIGHTWEAVE = 55637,
         SPEED = 53908,
         WILD_MAGIC = 53909,
-        IMPROVED_MANA_GEM = 61062,
+        MANA_SURGE = 37447,
+        MANA_SURGES = 61062,
         PRAXIS = 64867,
         QUAD_CORE = 70747,
         PUSHING_THE_LIMIT = 70753,
@@ -477,14 +478,28 @@ namespace buff
 
     };
 
-    class ImprovedManaGem : public Buff
+    class ManaSurge : public Buff
     {
 
     public:
-        ImprovedManaGem()
+        ManaSurge()
         {
-            id = IMPROVED_MANA_GEM;
-            name = "Improved Mana Gem";
+            id = MANA_SURGE;
+            name = "Mana Surge";
+            duration = 15;
+            stats.spell_power = 225;
+        }
+
+    };
+
+    class ManaSurges : public Buff
+    {
+
+    public:
+        ManaSurges()
+        {
+            id = MANA_SURGES;
+            name = "Mana Surges";
             duration = 15;
             stats.spell_power = 225;
         }
