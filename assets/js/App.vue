@@ -1202,15 +1202,6 @@
                 </div>
             </div>
 
-            <div class="lightbox small warning" v-if="beta_warning_open">
-                <div class="closer" @click="closeBetaWarning"></div>
-                <div class="inner">
-                    <div class="title">BETA</div>
-                    <div class="text">This sim is under construction. Results may not be accurate as we discover more things in the Wotlk Beta.</div>
-                    <div class="btn mt-2" @click="closeBetaWarning">I understand</div>
-                </div>
-            </div>
-
             <div class="lightbox" v-if="export_profile.open">
                 <div class="closer" @click="closeExport"></div>
                 <div class="inner">
@@ -1452,7 +1443,6 @@
             this.calcStats();
 
             this.checkDonation();
-            this.betaWarning();
         },
 
         data() {
@@ -1680,7 +1670,6 @@
             var data = {
                 ...constants,
                 donation_open: false,
-                beta_warning_open: false,
                 items: items,
                 equipped: {},
                 enchants: {},
@@ -2391,17 +2380,6 @@
                     window.location.hash = "";
                     this.donation_open = true;
                 }
-            },
-
-            betaWarning() {
-                if (!localStorage.getItem("beta_warning")) {
-                    this.beta_warning_open = true;
-                }
-            },
-
-            closeBetaWarning() {
-                localStorage.setItem("beta_warning", 1);
-                this.beta_warning_open = false;
             },
 
             runMultiple() {
