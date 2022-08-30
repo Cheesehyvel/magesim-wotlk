@@ -17880,6 +17880,7 @@ var ids = {
   T8_SET: 836,
   T7_SET: 803,
   T6_SET: 671,
+  T5_SET: 649,
   T3_SET: 526,
   GLADIATOR_SET: 779,
   DUSKWEAVE_SET: 764,
@@ -20075,6 +20076,19 @@ var equip = {
     crit: 29,
     hit: 13,
     sockets: ["m", "y"]
+  }, {
+    id: 30206,
+    itemset: ids.T5_SET,
+    title: "Cowl of Tirisfal",
+    ilvl: 133,
+    "int": 36,
+    spi: 24,
+    sp: 55,
+    crit: 24,
+    sockets: ["m", "y"],
+    bonus: {
+      hit: 4
+    }
   }, // vanilla
   {
     id: 22498,
@@ -21406,6 +21420,19 @@ var equip = {
     spi: 21,
     sp: 46,
     crit: 21,
+    sockets: ["y", "b"],
+    bonus: {
+      sp: 4
+    }
+  }, {
+    id: 30210,
+    itemset: ids.T5_SET,
+    title: "Mantle of Tirisfal",
+    ilvl: 133,
+    "int": 24,
+    spi: 24,
+    sp: 40,
+    crit: 17,
     sockets: ["y", "b"],
     bonus: {
       sp: 4
@@ -22828,6 +22855,19 @@ var equip = {
     bonus: {
       sp: 5
     }
+  }, {
+    id: 30196,
+    itemset: ids.T5_SET,
+    title: "Robes of Tirisfal",
+    ilvl: 133,
+    "int": 35,
+    spi: 20,
+    sp: 55,
+    crit: 19,
+    sockets: ["y", "y", "b"],
+    bonus: {
+      sp: 5
+    }
   }, // Vanilla
   {
     id: 22496,
@@ -24129,6 +24169,15 @@ var equip = {
     bonus: {
       sp: 2
     }
+  }, {
+    id: 30205,
+    itemset: ids.T5_SET,
+    title: "Gloves of Tirisfal",
+    ilvl: 133,
+    "int": 27,
+    spi: 18,
+    sp: 41,
+    crit: 27
   }, // vanilla
   {
     id: 22501,
@@ -25287,6 +25336,20 @@ var equip = {
     sockets: ["b"],
     bonus: {
       sp: 2
+    }
+  }, {
+    id: 30207,
+    itemset: ids.T5_SET,
+    title: "Leggings of Tirisfal",
+    ilvl: 133,
+    "int": 36,
+    spi: 26,
+    sp: 54,
+    crit: 17,
+    hit: 26,
+    sockets: ["y"],
+    bonus: {
+      hit: 2
     }
   }, // vanilla
   {
@@ -27868,6 +27931,8 @@ var DEFAULT_DESIGN = 2;
       lightweave_embroidery: false,
       darkglow_embroidery: false,
       hyperspeed_accelerators: false,
+      t5_2set: false,
+      t5_4set: false,
       t6_2set: false,
       t6_4set: false,
       t7_2set: false,
@@ -29293,6 +29358,9 @@ var DEFAULT_DESIGN = 2;
       var num = this.numEquippedSet(this.items.ids.T6_SET);
       this.config.t6_2set = num > 1;
       this.config.t6_4set = num > 3;
+      var num = this.numEquippedSet(this.items.ids.T5_SET);
+      this.config.t5_2set = num > 1;
+      this.config.t5_4set = num > 3;
       var num = this.numEquippedSet(this.items.ids.T3_SET);
       this.config.t3_2set = num > 1;
       var num = this.numEquippedSet(this.items.ids.UDC_SET);
@@ -30991,6 +31059,9 @@ __webpack_require__.r(__webpack_exports__);
         color: "#fcd3e1"
       }, {
         title: "Quad Core",
+        color: "#ddd"
+      }, {
+        title: "Arcane Madness",
         color: "#ddd"
       }],
       trinkets: [{

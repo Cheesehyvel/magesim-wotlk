@@ -73,6 +73,7 @@
                     { title: "Praxis", color: "#690042" },
                     { title: "Pushing the Limit", color: "#fcd3e1" },
                     { title: "Quad Core", color: "#ddd" },
+                    { title: "Arcane Madness", color: "#ddd" },
                 ],
                 trinkets: [
                     { title: "Surge of Power", color: "#ddd" },

@@ -48,6 +48,7 @@ var ids = {
     T8_SET: 836,
     T7_SET: 803,
     T6_SET: 671,
+    T5_SET: 649,
     T3_SET: 526,
     GLADIATOR_SET: 779,
     DUSKWEAVE_SET: 764,
@@ -316,6 +317,7 @@ var equip = {
         { id: 34340, title: "Dark Conjuror's Collar", ilvl: 164, int: 42, sp: 75, crit: 38, haste: 30, sockets: ["m", "b"], bonus: { sp: 5 } },
         { id: 34405, title: "Helm of Arcane Purity", ilvl: 164, int: 42, spi: 38, sp: 75, crit: 30, sockets: ["m", "r"], bonus: { sp: 5 } },
         { id: 31056, itemset: ids.T6_SET, title: "Cowl of the Tempest", ilvl: 146, int: 40, spi: 28, sp: 62, crit: 29, hit: 13, sockets: ["m", "y"] },
+        { id: 30206, itemset: ids.T5_SET, title: "Cowl of Tirisfal", ilvl: 133, int: 36, spi: 24, sp: 55, crit: 24, sockets: ["m", "y"], bonus: {hit: 4} },
         // vanilla
         { id: 22498, itemset: ids.T3_SET, title: "Frostfire Circlet", ilvl: 88, int: 23, sp: 35, hit: 8 },
     ],
@@ -460,6 +462,7 @@ var equip = {
         { id: 34210, title: "Amice of the Convoker", ilvl: 159, int: 28, sp: 53, crit: 22, haste: 30, sockets: ["r", "y"], bonus: { sp: 4 } },
         { id: 34393, title: "Shoulderpads of Knowledge's Pursuit", ilvl: 159, int: 33, spi: 22, sp: 53, crit: 26, sockets: ["r", "y"], bonus: { sp: 4 } },
         { id: 31059, itemset: ids.T6_SET, title: "Mantle of the Tempest", ilvl: 146, int: 27, spi: 21, sp: 46, crit: 21, sockets: ["y", "b"], bonus: { sp: 4 } },
+        { id: 30210, itemset: ids.T5_SET, title: "Mantle of Tirisfal", ilvl: 133, int: 24, spi: 24, sp: 40, crit: 17, sockets: ["y", "b"], bonus: {sp: 4} },
         // vanilla
         { id: 22499, itemset: ids.T3_SET, title: "Frostfire Shoulderpads", ilvl: 86, int: 18, spi: 9, sp: 36 },
     ],
@@ -614,6 +617,7 @@ var equip = {
         { id: 34399, title: "Robes of Ghostly Hatred", ilvl: 159, int: 40, spi: 32, sp: 71, crit: 26, haste: 27, sockets: ["r", "r", "y"], bonus: { sp: 5 } },
         { id: 34232, title: "Fel Conquerer Raiments", ilvl: 159, int: 41, sp: 71, crit: 24, haste: 33, sockets: ["r", "y", "y"], bonus: { sp: 5 } },
         { id: 31057, itemset: ids.T6_SET, title: "Robes of the Tempest", ilvl: 146, int: 39, spi: 31, sp: 62, crit: 23, hit: 13, sockets: ["y", "y", "b"], bonus: { sp: 5 } },
+        { id: 30196, itemset: ids.T5_SET, title: "Robes of Tirisfal", ilvl: 133, int: 35, spi: 20, sp: 55, crit: 19, sockets: ["y", "y", "b"], bonus: {sp: 5} },
         // Vanilla
         { id: 22496, itemset: ids.T3_SET, title: "Frostfire Robe", ilvl: 92, int: 27, sp: 47, hit: 8 },
         { id: 23085, itemset: ids.CUDC_SET, title: "Robe of Undead Cleansing", ilvl: 63, int: 13, q: "rare" },
@@ -754,6 +758,7 @@ var equip = {
         { id: 34342, title: "Handguards of the Dawn", ilvl: 164, int: 32, spi: 36, sp: 47, haste: 27, sockets: ["r", "b"], bonus: {mp5: 1} },
         { id: 34366, title: "Sunfire Handwraps", ilvl: 159, int: 30, sp: 53, crit: 37, sockets: ["r", "r"], bonus: { sp: 4 } },
         { id: 31055, itemset: ids.T6_SET, title: "Gloves of the Tempest", ilvl: 146, int: 26, spi: 21, sp: 46, crit: 19, hit: 20, sockets: ["y"], bonus: { sp: 2 } },
+        { id: 30205, itemset: ids.T5_SET, title: "Gloves of Tirisfal", ilvl: 133, int: 27, spi: 18, sp: 41, crit: 27 },
         // vanilla
         { id: 22501, itemset: ids.T3_SET, title: "Frostfire Gloves", ilvl: 88, int: 19, spi: 10, sp: 36 },
         { id: 23084, itemset: ids.CUDC_SET, title: "Gloves of Undead Cleansing", ilvl: 64, int: 10, q: "rare" },
@@ -877,6 +882,7 @@ var equip = {
         { id: 34181, title: "Leggings of Calamity", ilvl: 159, int: 41, sp: 71, crit: 33, haste: 32, sockets: ["r", "r", "y"], bonus: { sp: 5 } },
         { id: 34386, title: "Pantaloons of Growing Strife", ilvl: 159, int: 36, spi: 25, sp: 71, haste: 42, sockets: ["r", "y", "y"], bonus: { sp: 5 } },
         { id: 31058, itemset: ids.T6_SET, title: "Leggings of the Tempest", ilvl: 146, int: 47, spi: 29, sp: 62, crit: 29, hit: 20, sockets: ["b"], bonus: { sp: 2 } },
+        { id: 30207, itemset: ids.T5_SET, title: "Leggings of Tirisfal", ilvl: 133, int: 36, spi: 26, sp: 54, crit: 17, hit: 26, sockets: ["y"], bonus: {hit: 2} },
         // vanilla
         { id: 22497, itemset: ids.T3_SET, title: "Frostfire Leggings", ilvl: 88, int: 26, spi: 10, sp: 46, hit: 8 },
     ],

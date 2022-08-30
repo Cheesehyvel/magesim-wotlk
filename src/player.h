@@ -427,6 +427,9 @@ namespace unit
                 multi*= 1 + ab * buffStacks(buff::ARCANE_BLAST, true);
             }
 
+            if (config->t5_2set && spell->id == spell::ARCANE_BLAST)
+                multi*= 1.05;
+
             if (spell->id == spell::ICE_LANCE && isFrozen()) {
                 if (glyphs.ice_lance)
                     multi*= 4;
@@ -464,8 +467,11 @@ namespace unit
                     cost-= base_cost * talents.frost_channeling*0.1;
             }
 
-            if (spell->id == spell::ARCANE_BLAST)
+            if (spell->id == spell::ARCANE_BLAST) {
                 cost+= base_cost * 1.75 * buffStacks(buff::ARCANE_BLAST);
+                if (config->t5_2set)
+                    cost+= base_cost * 0.05;
+            }
 
             return cost;
         }
@@ -1062,6 +1068,9 @@ namespace unit
                         action->cooldown = make_shared<cooldown::ReignUnlivingNm>();
                         actions.push_back(action);
                     }
+
+                    if (config->t5_4set)
+                        actions.push_back(buffAction(make_shared<buff::ArcaneMadness>()));
                 }
             }
 

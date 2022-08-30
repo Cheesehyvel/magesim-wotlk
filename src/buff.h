@@ -74,6 +74,7 @@ namespace buff
         NAARU_SLIVER = 45042,
         ASHTONGUE_TALISMAN = 40482,
         MQG = 23723,
+        ARCANE_MADNESS = 37444,
     };
 
 
@@ -1069,6 +1070,20 @@ namespace buff
             name = "MQG";
             duration = 20;
             stats.haste_rating = 330;
+        }
+
+    };
+
+    class ArcaneMadness : public Buff
+    {
+
+    public:
+        ArcaneMadness()
+        {
+            id = ARCANE_MADNESS;
+            name = "Arcane Madness";
+            duration = 6;
+            stats.spell_power = 70;
         }
 
     };

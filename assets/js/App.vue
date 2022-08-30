@@ -1508,6 +1508,8 @@
                 lightweave_embroidery: false,
                 darkglow_embroidery: false,
                 hyperspeed_accelerators: false,
+                t5_2set: false,
+                t5_4set: false,
                 t6_2set: false,
                 t6_4set: false,
                 t7_2set: false,
@@ -2878,6 +2880,10 @@
                 var num = this.numEquippedSet(this.items.ids.T6_SET);
                 this.config.t6_2set = num > 1;
                 this.config.t6_4set = num > 3;
+
+                var num = this.numEquippedSet(this.items.ids.T5_SET);
+                this.config.t5_2set = num > 1;
+                this.config.t5_4set = num > 3;
 
                 var num = this.numEquippedSet(this.items.ids.T3_SET);
                 this.config.t3_2set = num > 1;
