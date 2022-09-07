@@ -601,7 +601,7 @@ namespace unit
             else if (buff->id == buff::FIRE_WARD) {
                 fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE)*0.1;
             }
-            else if (buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) {
+            else if ((buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) && talents.arcane_potency) {
                 actions.push_back(buffAction(make_shared<buff::ArcanePotency>()));
             }
             else if (buff->id == buff::HYPERSPEED_ACCELERATION) {
