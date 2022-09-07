@@ -106,43 +106,43 @@
                     </div>
                     <select v-model="ep_weight">
                         <option value="dps">DPS</option>
-                        <option value="int">Intellect (EP)</option>
-                        <option value="spi">Spirit (EP)</option>
+                        <option value="intellect">Intellect (EP)</option>
+                        <option value="spirit">Spirit (EP)</option>
                         <option value="mp5">Mp5 (EP)</option>
-                        <option value="sp">Spell power (EP)</option>
-                        <option value="crit">Crit rating (EP)</option>
-                        <option value="hit">Hit rating (EP)</option>
-                        <option value="haste">Haste rating (EP)</option>
+                        <option value="spell_power">Spell power (EP)</option>
+                        <option value="crit_rating">Crit rating (EP)</option>
+                        <option value="hit_rating">Hit rating (EP)</option>
+                        <option value="haste_rating">Haste rating (EP)</option>
                     </select>
                     <table class="simple mt-1">
                         <tbody>
-                            <tr @click="ep_weight = 'int'">
+                            <tr @click="ep_weight = 'intellect'">
                                 <td>Intellect</td>
-                                <td>{{ $nullRound(epCalc.int, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.intellect, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'spi'">
+                            <tr @click="ep_weight = 'spirit'">
                                 <td>Spirit</td>
-                                <td>{{ $nullRound(epCalc.spi, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.spirit, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'mp5'">
                                 <td>Mp5</td>
                                 <td>{{ $nullRound(epCalc.mp5, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'sp'">
+                            <tr @click="ep_weight = 'spell_power'">
                                 <td>Spell power</td>
-                                <td>{{ $nullRound(epCalc.sp, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.spell_power, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'sp_crit'">
+                            <tr @click="ep_weight = 'crit_rating'">
                                 <td>Crit rating</td>
-                                <td>{{ $nullRound(epCalc.crit, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.crit_rating, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'spt_hit'">
+                            <tr @click="ep_weight = 'hit_rating'">
                                 <td>Hit rating</td>
-                                <td>{{ $nullRound(epCalc.hit, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.hit_rating, 2) }}</td>
                             </tr>
-                            <tr @click="ep_weight = 'sp_haste'">
+                            <tr @click="ep_weight = 'haste_rating'">
                                 <td>Haste rating</td>
-                                <td>{{ $nullRound(epCalc.haste, 2) }}</td>
+                                <td>{{ $nullRound(epCalc.haste_rating, 2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1933,13 +1933,13 @@
                     return null;
 
                 var ep = {
-                    int: null,
-                    spi: null,
+                    intellect: null,
+                    spirit: null,
                     mp5: null,
-                    sp: null,
-                    crit: null,
-                    hit: null,
-                    haste: null,
+                    spell_power: null,
+                    crit_rating: null,
+                    hit_rating: null,
+                    haste_rating: null,
                 };
 
                 if (!this.ep_result.base)
@@ -2462,26 +2462,6 @@
             async runStat(stat, value, rng_seed) {
                 var self = this;
 
-                var addStats = function(config, stats) {
-                    stats = _.merge({
-                        int: 0,
-                        spi: 0,
-                        mp5: 0,
-                        crit: 0,
-                        hit: 0,
-                        sp: 0,
-                        haste: 0,
-                    }, stats);
-
-                    config.stats.intellect+= stats.int;
-                    config.stats.spirit+= stats.spi;
-                    config.stats.mp5+= stats.mp5;
-                    config.stats.spell_power+= stats.sp;
-                    config.stats.crit+= self.critRatingToChance(stats.crit);
-                    config.stats.hit+= self.hitRatingToChance(stats.hit);
-                    config.stats.haste_rating+= stats.haste;
-                };
-
                 return new Promise((resolve, reject) => {
                     var sim = new SimulationWorkers(self.config.iterations, (result) => {
                         self.is_running = false;
@@ -2492,12 +2472,14 @@
                         reject(error);
                     });
 
+                    if (self.config.custom_stats[stat] == "")
+                        self.config.custom_stats[stat] = 0;
+                    self.config.custom_stats[stat]+= value;
                     self.prepare();
                     var config = _.cloneDeep(self.config);
+                    self.config.custom_stats[stat]-= value;
                     if (rng_seed)
                         config.rng_seed = rng_seed;
-                    if (value)
-                        addStats(config, {[stat]: value});
                     self.is_running = true;
                     sim.start(config);
                 });
@@ -2517,13 +2499,13 @@
                 this.result = null;
                 this.ep_result = {
                     base: null,
-                    int: null,
-                    spi: null,
+                    intellect: null,
+                    spirit: null,
                     mp5: null,
-                    sp: null,
-                    crit: null,
-                    hit: null,
-                    haste: null,
+                    spell_power: null,
+                    crit_rating: null,
+                    hit_rating: null,
+                    haste_rating: null,
                 };
 
                 var rng_seed = Math.round(Math.random() * 100000);

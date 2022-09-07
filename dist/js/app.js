@@ -28312,13 +28312,13 @@ var DEFAULT_DESIGN = 2;
     epCalc: function epCalc() {
       if (!this.ep_result) return null;
       var ep = {
-        "int": null,
-        spi: null,
+        intellect: null,
+        spirit: null,
         mp5: null,
-        sp: null,
-        crit: null,
-        hit: null,
-        haste: null
+        spell_power: null,
+        crit_rating: null,
+        hit_rating: null,
+        haste_rating: null
       };
       if (!this.ep_result.base) return ep;
 
@@ -28866,32 +28866,12 @@ var DEFAULT_DESIGN = 2;
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var self, addStats;
+        var self;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 self = _this5;
-
-                addStats = function addStats(config, stats) {
-                  stats = _.merge({
-                    "int": 0,
-                    spi: 0,
-                    mp5: 0,
-                    crit: 0,
-                    hit: 0,
-                    sp: 0,
-                    haste: 0
-                  }, stats);
-                  config.stats.intellect += stats["int"];
-                  config.stats.spirit += stats.spi;
-                  config.stats.mp5 += stats.mp5;
-                  config.stats.spell_power += stats.sp;
-                  config.stats.crit += self.critRatingToChance(stats.crit);
-                  config.stats.hit += self.hitRatingToChance(stats.hit);
-                  config.stats.haste_rating += stats.haste;
-                };
-
                 return _context3.abrupt("return", new Promise(function (resolve, reject) {
                   var sim = new _simulation__WEBPACK_IMPORTED_MODULE_0__.SimulationWorkers(self.config.iterations, function (result) {
                     self.is_running = false;
@@ -28901,17 +28881,19 @@ var DEFAULT_DESIGN = 2;
                     console.error(error);
                     reject(error);
                   });
+                  if (self.config.custom_stats[stat] == "") self.config.custom_stats[stat] = 0;
+                  self.config.custom_stats[stat] += value;
                   self.prepare();
 
                   var config = _.cloneDeep(self.config);
 
+                  self.config.custom_stats[stat] -= value;
                   if (rng_seed) config.rng_seed = rng_seed;
-                  if (value) addStats(config, _defineProperty({}, stat, value));
                   self.is_running = true;
                   sim.start(config);
                 }));
 
-              case 3:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -28943,13 +28925,13 @@ var DEFAULT_DESIGN = 2;
                 _this6.result = null;
                 _this6.ep_result = {
                   base: null,
-                  "int": null,
-                  spi: null,
+                  intellect: null,
+                  spirit: null,
                   mp5: null,
-                  sp: null,
-                  crit: null,
-                  hit: null,
-                  haste: null
+                  spell_power: null,
+                  crit_rating: null,
+                  hit_rating: null,
+                  haste_rating: null
                 };
                 rng_seed = Math.round(Math.random() * 100000);
                 increment = _this6.config.stat_weight_increment;
@@ -31670,7 +31652,7 @@ var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The best way to find out if an item/gem/enchant is better is to equip it and run simulations. ");
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"dps\">DPS</option><option value=\"int\">Intellect (EP)</option><option value=\"spi\">Spirit (EP)</option><option value=\"mp5\">Mp5 (EP)</option><option value=\"sp\">Spell power (EP)</option><option value=\"crit\">Crit rating (EP)</option><option value=\"hit\">Hit rating (EP)</option><option value=\"haste\">Haste rating (EP)</option>", 8);
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"dps\">DPS</option><option value=\"intellect\">Intellect (EP)</option><option value=\"spirit\">Spirit (EP)</option><option value=\"mp5\">Mp5 (EP)</option><option value=\"spell_power\">Spell power (EP)</option><option value=\"crit_rating\">Crit rating (EP)</option><option value=\"hit_rating\">Hit rating (EP)</option><option value=\"haste_rating\">Haste rating (EP)</option>", 8);
 
 var _hoisted_48 = [_hoisted_40];
 var _hoisted_49 = {
@@ -33980,15 +33962,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.ep_weight]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[7] || (_cache[7] = function ($event) {
-      return _ctx.ep_weight = 'int';
+      return _ctx.ep_weight = 'intellect';
     })
-  }, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc["int"], 2)), 1
+  }, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.intellect, 2)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[8] || (_cache[8] = function ($event) {
-      return _ctx.ep_weight = 'spi';
+      return _ctx.ep_weight = 'spirit';
     })
-  }, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.spi, 2)), 1
+  }, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.spirit, 2)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[9] || (_cache[9] = function ($event) {
@@ -33998,27 +33980,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[10] || (_cache[10] = function ($event) {
-      return _ctx.ep_weight = 'sp';
+      return _ctx.ep_weight = 'spell_power';
     })
-  }, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.sp, 2)), 1
+  }, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.spell_power, 2)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[11] || (_cache[11] = function ($event) {
-      return _ctx.ep_weight = 'sp_crit';
+      return _ctx.ep_weight = 'crit_rating';
     })
-  }, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.crit, 2)), 1
+  }, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.crit_rating, 2)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[12] || (_cache[12] = function ($event) {
-      return _ctx.ep_weight = 'spt_hit';
+      return _ctx.ep_weight = 'hit_rating';
     })
-  }, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.hit, 2)), 1
+  }, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.hit_rating, 2)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
     onClick: _cache[13] || (_cache[13] = function ($event) {
-      return _ctx.ep_weight = 'sp_haste';
+      return _ctx.ep_weight = 'haste_rating';
     })
-  }, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.haste, 2)), 1
+  }, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$nullRound($options.epCalc.haste_rating, 2)), 1
   /* TEXT */
   )])])]), _ctx.is_running ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_loader, {
     key: 0,
