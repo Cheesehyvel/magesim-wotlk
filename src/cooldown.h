@@ -608,7 +608,7 @@ namespace cooldown
         NamelessLichHc()
         {
             id = NAMELESS_LICH_HC;
-            duration = 60;
+            duration = 100;
         }
 
     };
@@ -620,7 +620,7 @@ namespace cooldown
         NamelessLichNm()
         {
             id = NAMELESS_LICH_NM;
-            duration = 60;
+            duration = 100;
         }
 
     };
