@@ -1093,12 +1093,12 @@ table {
     > .inner {
         background: #161620;
         padding: $spacer*0.5;
-        text-align: center;
 
         .title {
             font-size: 24px;
             margin-bottom: $spacer*0.25;
             font-weight: 700;
+            text-align: center;
         }
 
         .text {
@@ -1111,6 +1111,24 @@ table {
 
         .checklist {
             font-size: 16px;
+        }
+    }
+}
+
+.notices {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    max-width: 350px;
+    z-index: 1000;
+
+    .notice {
+        position: relative;
+        bottom: auto;
+        right: auto;
+
+        &:nth-child(n+2) {
+            margin-top: 20px;
         }
     }
 }

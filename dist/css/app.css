@@ -1529,12 +1529,12 @@ table.large tbody tr {
 .notice > .inner {
   background: #161620;
   padding: 30px;
-  text-align: center;
 }
 .notice > .inner .title {
   font-size: 24px;
   margin-bottom: 15px;
   font-weight: 700;
+  text-align: center;
 }
 .notice > .inner .text {
   margin-bottom: 15px;
@@ -1544,6 +1544,22 @@ table.large tbody tr {
 }
 .notice > .inner .checklist {
   font-size: 16px;
+}
+
+.notices {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  max-width: 350px;
+  z-index: 1000;
+}
+.notices .notice {
+  position: relative;
+  bottom: auto;
+  right: auto;
+}
+.notices .notice:nth-child(n+2) {
+  margin-top: 20px;
 }
 
 .checklist {

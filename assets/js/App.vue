@@ -9,13 +9,23 @@
             </div>
         </div>
 
-        <div class="profile-status notice" v-if="profile_status.open" @click="profile_status.open = false">
-            <div class="inner">
-                <div class="title">Profile loaded</div>
-                <div class="checklist">
-                    <check-item :value="profile_status.items">Items</check-item>
-                    <check-item :value="false" v-for="slot in profile_status.missing_items" :key="slot">{{ formatKey(slot) }}</check-item>
-                    <check-item :value="profile_status.config">Config</check-item>
+        <div class="notices">
+            <div class="error-notice notice" v-if="error_notice.open" @click="error_notice.open = false">
+                <div class="inner">
+                    <div class="title mb-2" v-if="error_notice.title">{{ error_notice.title }}</div>
+                    <div class="text" v-if="error_notice.text">
+                        <div v-for="text in error_notice.text">{{ text }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-status notice" v-if="profile_status.open" @click="profile_status.open = false">
+                <div class="inner">
+                    <div class="title">Profile loaded</div>
+                    <div class="checklist">
+                        <check-item :value="profile_status.items">Items</check-item>
+                        <check-item :value="false" v-for="slot in profile_status.missing_items" :key="slot">{{ formatKey(slot) }}</check-item>
+                        <check-item :value="profile_status.config">Config</check-item>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1708,6 +1718,12 @@
                     items: true,
                     missing_items: [],
                     config: true,
+                },
+                error_notice: {
+                    open: false,
+                    timeout: null,
+                    title: null,
+                    text: [],
                 },
                 import_eighty_upgrades: {
                     open: false,
@@ -3804,6 +3820,18 @@
                 return Math.round(num);
             },
 
+            errorNotice(title, text) {
+                this.error_notice.open = true;
+                this.error_notice.title = title;
+                this.error_notice.text = text;
+
+                var self = this;
+                clearTimeout(this.error_notice.timeout);
+                this.error_notice.timeout = setTimeout(function() {
+                    self.error_notice.open = false;
+                }, 10000);
+            },
+
             exportString() {
                 var data = {
                     equipped: this.export_profile.items ? _.cloneDeep(this.equipped) : null,
@@ -3960,6 +3988,8 @@
                     config: _.cloneDeep(this.config),
                 };
 
+                var errors = [];
+
                 if (this.import_eighty_upgrades.items) {
                     profile.equipped = {};
                     profile.enchants = {};
@@ -3978,15 +4008,18 @@
                         var item = this.getItem(slot, data.items[i].id);
                         if (!item)
                             item = this.searchItem(data.items[i].name);
-                        if (!item)
-                            return this.importEightyUpgradesError("Could not find item: "+data.items[i].name);
+                        if (!item) {
+                            errors.push(data.items[i].name);
+                            continue;
+                        }
                         profile.equipped[slot] = item.id;
 
                         if (data.items[i].enchant) {
                             var enchant = this.getEnchantFromEightyUpgrades(slot, data.items[i].enchant);
                             if (!enchant)
-                                return this.importEightyUpgradesError("Could not find enchant: "+data.items[i].enchant.name);
-                            profile.enchants[slot] = enchant.id;
+                                errors.push(data.items[i].enchant.name);
+                            else
+                                profile.enchants[slot] = enchant.id;
                         }
 
                         if (data.items[i].gems) {
@@ -3995,15 +4028,22 @@
                                 var gem = this.getGem(data.items[i].gems[j].id);
                                 if (!gem)
                                     gem = this.searchGem(data.items[i].gems[j].name);
-                                if (!gem)
-                                    return this.importEightyUpgradesError("Could not find gem: "+data.items[i].gems[j].name);
+
                                 if (j >= nsockets) {
                                     if (j == nsockets && ["waist", "wrist", "hands"].indexOf(slot) != -1)
                                         profile.config[slot+"_socket"] = true;
                                     else
                                         break;
                                 }
-                                profile.gems[slot][j] = gem.id;
+
+                                if (!gem) {
+                                    var str = data.items[i].gems[j].name;
+                                    if (errors.indexOf(str) == -1)
+                                        errors.push(str);
+                                }
+                                else {
+                                    profile.gems[slot][j] = gem.id;
+                                }
                             }
                         }
                     }
@@ -4140,6 +4180,11 @@
                     }
 
                     profile.config.build = tstring;
+                }
+
+                if (errors.length) {
+                    errors.unshift("Following item(s) could not be found:");
+                    this.errorNotice("Warning", errors);
                 }
 
                 this.loadProfile(profile);
