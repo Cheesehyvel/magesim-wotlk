@@ -17,6 +17,10 @@ label {
     display: block;
 }
 
+.faded {
+    color: #aaa;
+}
+
 a {
     color: $color_primary;
     text-decoration: none;
@@ -178,6 +182,14 @@ a {
             background: $color_primary_hover;
             color: #fff;
         }
+    }
+
+    img {
+        max-width: 16px;
+        vertical-align: middle;
+        margin-top: -2px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
     }
 }
 
@@ -463,10 +475,6 @@ table {
                         font-weight: 700;
                         font-size: 32px;
                     }
-                }
-
-                div.faded {
-                    color: #aaa;
                 }
 
                 .pin,
@@ -785,6 +793,10 @@ table {
                 grid-column: 1/3;
                 grid-row: 3;
             }
+            .config-quick-profiles {
+                grid-column: 3/5;
+                grid-row: 3;
+            }
 
             .timings {
                 table {
@@ -988,6 +1000,14 @@ table {
         }
     }
 
+    .profile-choices {
+        margin-top: $spacer*0.5;
+
+        .profile-choice {
+            margin: 0 10px 15px 0;
+        }
+    }
+
     .lightbox {
         position: fixed;
         top: 0;
@@ -1034,15 +1054,17 @@ table {
             }
         }
 
-        &.small > .inner {
-            position: relative;
-            left: auto;
-            top: auto;
-            right: auto;
-            bottom: auto;
-            max-width: 100%;
-            width: 500px;
-            margin: 10vh auto;
+        &.small {
+            > .inner {
+                position: relative;
+                left: auto;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                max-width: 100%;
+                width: 500px;
+                margin: 10vh auto;
+            }
         }
 
         &.warning {
@@ -1052,7 +1074,7 @@ table {
 
                 > .title {
                     font-size: 24px;
-                    letter-spacing: 4px;
+                    letter-spacing: 2px;
                     text-transform: uppercase;;
                 }
 

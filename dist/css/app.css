@@ -1,11 +1,3 @@
-@-webkit-keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes fade {
   0% {
     opacity: 0;
@@ -14,28 +6,12 @@
     opacity: 1;
   }
 }
-@-webkit-keyframes moveInFromBelow {
-  0% {
-    transform: translate3d(0, 50px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
 @keyframes moveInFromBelow {
   0% {
     transform: translate3d(0, 50px, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
-  }
-}
-@-webkit-keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
 @keyframes loader {
@@ -530,6 +506,10 @@ label {
   display: block;
 }
 
+.faded {
+  color: #aaa;
+}
+
 a {
   color: #06f;
   text-decoration: none;
@@ -679,6 +659,13 @@ a:hover {
 .btn.secondary:hover {
   background: #038;
   color: #fff;
+}
+.btn img {
+  max-width: 16px;
+  vertical-align: middle;
+  margin-top: -2px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
 }
 
 .text-error {
@@ -909,21 +896,17 @@ table.large tbody tr {
   margin: 8px;
   border: 8px solid #06f;
   border-radius: 50%;
-  -webkit-animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-          animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #06f transparent transparent transparent;
 }
 .loader div:nth-child(1) {
-  -webkit-animation-delay: -0.45s;
-          animation-delay: -0.45s;
+  animation-delay: -0.45s;
 }
 .loader div:nth-child(2) {
-  -webkit-animation-delay: -0.3s;
-          animation-delay: -0.3s;
+  animation-delay: -0.3s;
 }
 .loader div:nth-child(3) {
-  -webkit-animation-delay: -0.15s;
-          animation-delay: -0.15s;
+  animation-delay: -0.15s;
 }
 .loader.small {
   width: 80px;
@@ -967,9 +950,6 @@ table.large tbody tr {
 #app .wrapper .sidebar .result .dps-result > div.dps {
   font-weight: 700;
   font-size: 32px;
-}
-#app .wrapper .sidebar .result div.faded {
-  color: #aaa;
 }
 #app .wrapper .sidebar .result .pin .material-icons,
 #app .wrapper .sidebar .result .pinned .material-icons {
@@ -1077,8 +1057,7 @@ table.large tbody tr {
 }
 #app .wrapper .main .body > div {
   padding: 30px;
-  -webkit-animation: fade 0.2s ease;
-          animation: fade 0.2s ease;
+  animation: fade 0.2s ease;
 }
 #app .wrapper .main .body .gear {
   padding: 0;
@@ -1268,6 +1247,10 @@ table.large tbody tr {
   grid-column: 1/3;
   grid-row: 3;
 }
+#app .config .fieldsets .config-quick-profiles {
+  grid-column: 3/5;
+  grid-row: 3;
+}
 #app .config .fieldsets .timings table tr {
   border: none;
 }
@@ -1360,7 +1343,6 @@ table.large tbody tr {
   background: rgba(40, 40, 60, 0.7);
   padding: 5px 10px;
   display: grid;
-  grid-template-columns: auto -webkit-min-content;
   grid-template-columns: auto min-content;
 }
 #app .profiles .profile:nth-child(n+1) {
@@ -1396,7 +1378,6 @@ table.large tbody tr {
 }
 #app .profiles .new-profile {
   display: grid;
-  grid-template-columns: 1fr -webkit-min-content;
   grid-template-columns: 1fr min-content;
   grid-gap: 15px;
 }
@@ -1435,6 +1416,12 @@ table.large tbody tr {
 #app .log table tr.type-9 td:nth-child(4) {
   color: #b88;
 }
+#app .profile-choices {
+  margin-top: 30px;
+}
+#app .profile-choices .profile-choice {
+  margin: 0 10px 15px 0;
+}
 #app .lightbox {
   position: fixed;
   top: 0;
@@ -1443,8 +1430,7 @@ table.large tbody tr {
   right: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 200;
-  -webkit-animation: fade 0.4s ease forwards;
-          animation: fade 0.4s ease forwards;
+  animation: fade 0.4s ease forwards;
 }
 #app .lightbox > .closer {
   position: absolute;
@@ -1463,8 +1449,7 @@ table.large tbody tr {
   padding: 30px;
   box-sizing: border-box;
   overflow: auto;
-  -webkit-animation: moveInFromBelow 0.4s ease forwards;
-          animation: moveInFromBelow 0.4s ease forwards;
+  animation: moveInFromBelow 0.4s ease forwards;
 }
 #app .lightbox > .inner > .title {
   font-size: 18px;
@@ -1494,7 +1479,7 @@ table.large tbody tr {
 }
 #app .lightbox.warning > .inner > .title {
   font-size: 24px;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 #app .lightbox.warning > .inner > .text {
@@ -1518,8 +1503,7 @@ table.large tbody tr {
   max-width: 350px;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
-  -webkit-animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
-          animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
+  animation: fade 0.4s ease forwards, moveInFromBelow 0.4s ease forwards;
   cursor: pointer;
 }
 .notice.notice-alt {

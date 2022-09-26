@@ -1159,7 +1159,7 @@
                                 </div>
                             </fieldset>
                             <fieldset class="config-profiles">
-                                <legend>Profiles</legend>
+                                <legend>Your profiles</legend>
                                 <div class="profiles">
                                     <div class="profile" v-for="(profile, index) in profiles" :key="profile.id">
                                         <div class="name" @click="loadProfile(profile)">{{ profile.name }}</div>
@@ -1191,7 +1191,7 @@
                                         </div>
                                     </div>
                                     <div class="new-profile mt-1">
-                                        <input type="text" v-model="new_profile" @keydown.enter="newProfile()">
+                                        <input type="text" v-model="new_profile" placeholder="Enter the name of your new profile" @keydown.enter="newProfile()">
                                         <div class="btn" :class="[new_profile ? '' : 'disabled']" @click="newProfile()">
                                             <span>
                                                 New profile
@@ -1204,6 +1204,14 @@
                                         <div class="btn fl ml-n" @click="openImport()">Import</div>
                                         <div class="btn ml-n" @click="openEightyUpgradesImport()">Import from 80up</div>
                                         <div class="btn danger fr" @click="nukeSettings()">Nuke settings</div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="config-quick-profiles">
+                                <legend>Quick profiles</legend>
+                                <div class="profiles">
+                                    <div class="profile" v-for="(profile, index) in default_profiles" :key="profile.id">
+                                        <div class="name" @click="loadProfile(profile)">{{ profile.name }}</div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -1427,6 +1435,25 @@
                 </div>
             </div>
 
+            <div class="lightbox small warning" v-if="quick_start_open">
+                <div class="inner">
+                    <div class="title">Quick start</div>
+                    <div class="text">
+                        Select a profile below to start your simming!<br>
+                        <span class="faded">You can access all of these profiles later and even create your own under the</span> <b>Config</b> <span class="faded">tab.</span>
+                    </div>
+                    <div class="profile-choices">
+                        <div class="profile-choice btn" v-for="profile in default_profiles" @click="loadProfile(profile); quick_start_open = false">
+                            <img :src="profile.icon" v-if="profile.icon">
+                            {{ profile.name }}
+                        </div>
+                    </div>
+                    <div class="btn mt-2" @click="quick_start_open = false">
+                        No thanks, I'll start from scratch
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
@@ -1436,6 +1463,7 @@
     import items from "./items";
     import glyphs from "./glyphs";
     import constants from "./constants";
+    import default_profiles from "./default_profiles";
     const DEFAULT_DESIGN = 2;
 
     export default {
@@ -1444,14 +1472,16 @@
             if (!design)
                 design = DEFAULT_DESIGN;
             document.documentElement.classList.add("design-"+design);
+
+            this.checkNewUser();
         },
 
         mounted() {
             this.loadCustomItems();
             this.loadCurrentProfile();
+            this.loadDefaultProfiles();
             this.loadProfiles();
             this.calcStats();
-
             this.checkDonation();
         },
 
@@ -1682,6 +1712,7 @@
             var data = {
                 ...constants,
                 donation_open: false,
+                quick_start_open: false,
                 items: items,
                 equipped: {},
                 enchants: {},
@@ -1693,6 +1724,7 @@
                     name: null,
                     order: null,
                 },
+                default_profiles: [],
                 profiles: [],
                 active_slot: "weapon",
                 new_profile: null,
@@ -2398,6 +2430,16 @@
                     window.location.hash = "";
                     this.donation_open = true;
                 }
+            },
+
+            checkNewUser() {
+                var storages = ["magesim_wotlk_profile", "magesim_wotlk_profiles", "magesim_wotlk_custom_items"];
+                for (var key of storages) {
+                    if (localStorage.getItem(key) !== null)
+                        return;
+                }
+
+                this.quick_start_open = true;
             },
 
             runMultiple() {
@@ -4547,6 +4589,17 @@
 
             onLoadConfig(cfg) {
                 this.parseTalents();
+            },
+
+            loadDefaultProfiles() {
+                var prof;
+                for (var i=0; i<default_profiles.length; i++) {
+                    prof = JSON.parse(atob(default_profiles[i].str));
+                    prof.name = default_profiles[i].name;
+                    prof.id = "default-profile-"+i;
+                    prof.icon = default_profiles[i].icon ? default_profiles[i].icon : null;
+                    this.default_profiles.push(prof);
+                }
             },
 
             saveProfiles() {
