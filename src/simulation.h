@@ -842,8 +842,10 @@ public:
     {
         onBuffGain(player, buff);
 
-        for (auto itr = state->units.begin(); itr != state->units.end(); itr++)
-            onBuffGain(*itr, buff);
+        for (auto itr = state->units.begin(); itr != state->units.end(); itr++) {
+            if ((*itr)->get_raid_buffs)
+                onBuffGain(*itr, buff);
+        }
     }
 
     void onDebuffGain(shared_ptr<debuff::Debuff> debuff)
