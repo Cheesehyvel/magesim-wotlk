@@ -92,6 +92,7 @@
                     { title: "Now is the Time!", color: "#ddd" },
                     { title: "Embrace of the Spider", color: "#777" },
                     { title: "Twilight Serpent", color: "#ddd" },
+                    { title: "Infinite Power", color: "#ddd" },
                     { title: "Tome of Arcane Phenomena", color: "#ddd" },
                     { title: "Argent Valor", color: "#ddd" },
                     { title: "Mark of the War Prisoner", color: "#ddd" },

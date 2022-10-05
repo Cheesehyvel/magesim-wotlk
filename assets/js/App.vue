@@ -2175,6 +2175,11 @@
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_13.jpg",
                     },
                     {
+                        id: this.items.ids.TRINKET_RUNE_INFINITE_POWER,
+                        title: "Rune of Infinite Power",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_rune_10.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_NAARU_SLIVER,
                         title: "Shifting Naaru Sliver",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg",

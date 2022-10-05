@@ -1368,6 +1368,8 @@ namespace unit
                 return true;
             if (trinket == TRINKET_TWILIGHT_SERPENT)
                 return true;
+            if (trinket == TRINKET_RUNE_INFINITE_POWER)
+                return true;
 
             // TBC
             if (trinket == TRINKET_NAARU_SLIVER)
@@ -1433,6 +1435,9 @@ namespace unit
 
             if (trinket == TRINKET_TWILIGHT_SERPENT) {
                 buff = make_shared<buff::TwilightSerpent>();
+            }
+            else if (trinket == TRINKET_RUNE_INFINITE_POWER) {
+                buff = make_shared<buff::InfinitePower>();
             }
             else if (trinket == TRINKET_SLIVER_PURE_ICE_HC) {
                 actions.push_back(manaAction(1830, "Sliver of Pure Ice"));

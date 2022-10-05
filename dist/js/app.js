@@ -17923,6 +17923,7 @@ var ids = {
   // Trinkets
   TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
   TRINKET_TWILIGHT_SERPENT: 42395,
+  TRINKET_RUNE_INFINITE_POWER: 38765,
   TRINKET_TOME_ARCANE_PHENOMENA: 36972,
   TRINKET_CANNONEERS_FUSELIGHTER: 44013,
   TRINKET_MARK_WAR_PRISONER: 37873,
@@ -27195,6 +27196,13 @@ var equip = {
     },
     use: true,
     q: "rare"
+  }, {
+    id: ids.TRINKET_RUNE_INFINITE_POWER,
+    title: "Rune of Infinite Power",
+    ilvl: 174,
+    hit: 55,
+    use: true,
+    q: "uncommon"
   }, // TBC trinkets
   {
     id: ids.TRINKET_NAARU_SLIVER,
@@ -28587,6 +28595,10 @@ var DEFAULT_DESIGN = 2;
         id: this.items.ids.TRINKET_MARK_WAR_PRISONER,
         title: "Mark of the War Prisoner",
         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_13.jpg"
+      }, {
+        id: this.items.ids.TRINKET_RUNE_INFINITE_POWER,
+        title: "Rune of Infinite Power",
+        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_rune_10.jpg"
       }, {
         id: this.items.ids.TRINKET_NAARU_SLIVER,
         title: "Shifting Naaru Sliver",
@@ -31239,6 +31251,9 @@ __webpack_require__.r(__webpack_exports__);
         color: "#777"
       }, {
         title: "Twilight Serpent",
+        color: "#ddd"
+      }, {
+        title: "Infinite Power",
         color: "#ddd"
       }, {
         title: "Tome of Arcane Phenomena",

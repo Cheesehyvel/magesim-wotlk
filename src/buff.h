@@ -37,6 +37,7 @@ namespace buff
         PUSHING_THE_LIMIT = 70753,
         // Trinkets
         TWILIGHT_SERPENT = 56184,
+        INFINITE_POWER = 61428,
         TOME_ARCANE_PHENOMENA = 60471,
         ARGENT_VALOR = 59657,
         MARK_WAR_PRISONER = 60480,
@@ -557,6 +558,20 @@ namespace buff
             name = "Twilight Serpent";
             duration = 20;
             stats.spell_power = 292;
+        }
+
+    };
+
+    class InfinitePower : public Buff
+    {
+
+    public:
+        InfinitePower()
+        {
+            id = INFINITE_POWER;
+            name = "Infinite Power";
+            duration = 20;
+            stats.spell_power = 202;
         }
 
     };

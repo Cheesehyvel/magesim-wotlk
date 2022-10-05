@@ -2,6 +2,7 @@ var ids = {
     // Trinkets
     TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
     TRINKET_TWILIGHT_SERPENT: 42395,
+    TRINKET_RUNE_INFINITE_POWER: 38765,
     TRINKET_TOME_ARCANE_PHENOMENA: 36972,
     TRINKET_CANNONEERS_FUSELIGHTER: 44013,
     TRINKET_MARK_WAR_PRISONER: 37873,
@@ -1102,6 +1103,7 @@ var equip = {
         { id: ids.TRINKET_CANNONEERS_FUSELIGHTER, title: "Cannoneer's Fuselighter", ilvl: 174, crit: 54, use: true, q: "rare" },
         { id: ids.TRINKET_TOME_ARCANE_PHENOMENA, title: "Tome of Arcane Phenomena", ilvl: 187, sp: 68, use: true, q: "rare" },
         { id: ids.TRINKET_TWILIGHT_SERPENT, title: "Figurine - Twilight Serpent", ilvl: 200, hit: 42, sockets: ["r", "b"], bonus: {sp: 7}, use: true, q: "rare" },
+        { id: ids.TRINKET_RUNE_INFINITE_POWER, title: "Rune of Infinite Power", ilvl: 174, hit: 55, use: true, q: "uncommon" },
         // TBC trinkets
         { id: ids.TRINKET_NAARU_SLIVER, title: "Shifting Naaru Sliver", ilvl: 154, haste: 54, use: true },
         { id: ids.TRINKET_SKULL_GULDAN, title: "The Skull of Gul'dan", ilvl: 151, sp: 55, hit: 25, use: true },
