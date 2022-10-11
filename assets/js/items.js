@@ -930,8 +930,8 @@ var equip = {
         { id: 39254, title: "Saltarello Shoes", ilvl: 200, int: 51, spi: 51, sp: 77, haste: 33 },
         { id: 39273, title: "Sullen Cloth Boots", ilvl: 200, int: 50, spi: 38, sp: 76, crit: 48 },
         // wintergrasp
-        { id: 44899, title: "Titan-Forged Slippers of Dominance", ilvl: 200, int: 33, sp: 68, hit: 36, sockets: ["y"], phase: 2 },
-        { id: 44900, title: "Titan-Forged Slippers of Salvation", ilvl: 200, int: 33, sp: 68, haste: 36, sockets: ["y"], phase: 2 },
+        { id: 44899, title: "Titan-Forged Slippers of Dominance", ilvl: 200, int: 33, sp: 68, hit: 36, sockets: ["y"] },
+        { id: 44900, title: "Titan-Forged Slippers of Salvation", ilvl: 200, int: 33, sp: 68, haste: 36, sockets: ["y"] },
         // pvp
         { id: 51338, title: "Wrathful Gladiator's Treads of Alacrity", ilvl: 264, int: 61, sp: 132, haste: 72, sockets: ["y"], phase: 4 },
         { id: 51328, title: "Wrathful Gladiator's Treads of Dominance", ilvl: 264, int: 61, sp: 132, crit: 72, sockets: ["y"], phase: 4 },

@@ -25886,8 +25886,7 @@ var equip = {
     "int": 33,
     sp: 68,
     hit: 36,
-    sockets: ["y"],
-    phase: 2
+    sockets: ["y"]
   }, {
     id: 44900,
     title: "Titan-Forged Slippers of Salvation",
@@ -25895,8 +25894,7 @@ var equip = {
     "int": 33,
     sp: 68,
     haste: 36,
-    sockets: ["y"],
-    phase: 2
+    sockets: ["y"]
   }, // pvp
   {
     id: 51338,
