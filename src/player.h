@@ -605,7 +605,7 @@ namespace unit
                 actions.push_back(buffAction(make_shared<buff::ArcanePotency>()));
             }
             else if (buff->id == buff::HYPERSPEED_ACCELERATION) {
-                actions.push_back(cooldownAction(make_shared<cooldown::TrinketShared>(buff->duration)));
+                // actions.push_back(cooldownAction(make_shared<cooldown::TrinketShared>(buff->duration)));
             }
             else if (buff->id == buff::ARCANE_BLAST) {
                 ab_streak++;
@@ -1536,7 +1536,7 @@ namespace unit
                 action = buffAction(make_shared<buff::Berserking>());
                 action->cooldown = make_shared<cooldown::Berserking>();
             }
-            else if (config->hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && !hasCooldown(cooldown::TRINKET_SHARED) && useTimingIfPossible("hyperspeed_accelerators", state)) {
+            else if (config->hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && useTimingIfPossible("hyperspeed_accelerators", state)) {
                 action = buffAction(make_shared<buff::HyperspeedAcceleration>());
                 action->cooldown = make_shared<cooldown::HyperspeedAcceleration>();
             }
