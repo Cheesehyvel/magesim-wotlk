@@ -489,6 +489,7 @@ var equip = {
         { id: 46977, title: "Shawl of the Refreshing Winds", ilvl: 258, int: 65, spi: 57, sp: 91, haste: 49, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
         { id: 46976, title: "Shawl of the Refreshing Winds", ilvl: 245, int: 58, spi: 50, sp: 89, haste: 50, phase: 3 },
         // ulduar
+        { id: 45618, title: "Sunglimmer Cloak", ilvl: 239, int: 48, spi: 48, sp: 75, haste: 39, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 45493, title: "Asimov's Drape", ilvl: 226, int: 42, spi: 42, sp: 74, crit: 49, phase: 2 },
         { id: 45242, title: "Drape of Mortal Downfall", ilvl: 239, int: 51, sp: 75, crit: 43, hit: 41, sockets: ["y"], bonus: {sp: 5}, phase: 2 },
         { id: 45486, title: "Drape of the Sullen Goddess", ilvl: 239, int: 51, sp: 75, crit: 40, mp5: 24, sockets: ["y"], bonus: {sp: 5}, phase: 2 },

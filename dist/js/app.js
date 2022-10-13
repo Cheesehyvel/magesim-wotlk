@@ -21740,6 +21740,19 @@ var equip = {
     phase: 3
   }, // ulduar
   {
+    id: 45618,
+    title: "Sunglimmer Cloak",
+    ilvl: 239,
+    "int": 48,
+    spi: 48,
+    sp: 75,
+    haste: 39,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
     id: 45493,
     title: "Asimov's Drape",
     ilvl: 226,
