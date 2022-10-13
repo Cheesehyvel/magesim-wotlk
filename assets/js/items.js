@@ -989,6 +989,7 @@ var equip = {
         { id: 51381, title: "Cerise Coiled Ring", ilvl: 251, int: 62, sp: 85, crit: 59, haste: 35, sockets: ["r"], bonus: {sp: 5}, phase: 4 },
         { id: 51884, title: "Signet of Putrefaction", ilvl: 264, int: 69, sp: 97, haste: 52, mp5: 30, sockets: ["r"], bonus: {sp: 5}, phase: 4 },
         { id: 50986, title: "Signet of Putrefaction", ilvl: 251, int: 61, sp: 85, haste: 45, mp5: 27, sockets: ["r"], bonus: {sp: 5}, phase: 4 },
+        { id: 51557, title: "Runed Signet of the Kirin Tor", ilvl: 251, int: 54, sp: 94, crit: 53, haste: 54, phase: 4 },
         // totc
         { id: 47237, title: "Band of Deplorable Violence", ilvl: 258, int: 65, spi: 50, sp: 91, crit: 53, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
         { id: 47054, title: "Band of Deplorable Violence", ilvl: 245, int: 58, spi: 44, sp: 89, crit: 54, phase: 3 },
@@ -996,6 +997,7 @@ var equip = {
         { id: 47223, title: "Ring of the Darkmender", ilvl: 245, int: 58, sp: 89, haste: 50, mp5: 25, phase: 3 },
         { id: 47928, title: "Firestorm Ring", ilvl: 245, int: 59, sp: 80, crit: 33, hit: 56, sockets: ["r"], bonus: {sp: 5}, phase: 3 },
         { id: 47618, title: "Firestorm Ring", ilvl: 232, int: 52, sp: 78, crit: 36, hit: 50, phase: 3 },
+        { id: 48957, title: "Etched Signet of the Kirin Tor", ilvl: 226, int: 43, sp: 74, crit: 41, haste: 43, phase: 3 },
         // ulduar
         { id: 45495, title: "Conductive Seal", ilvl: 239, int: 48, spi: 39, sp: 75, haste: 55, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 45451, title: "Frozen Loop", ilvl: 226, int: 46, sp: 74, hit: 46, haste: 36, phase: 2 },
@@ -1011,6 +1013,7 @@ var equip = {
         { id: 45946, title: "Fire Orchid Signet", ilvl: 226, int: 49, sp: 74, haste: 30, mp5: 19, sockets: ["y"], phase: 2 },
         { id: 45297, title: "Shimmering Seal", ilvl: 226, int: 42, spi: 22, sp: 74, hit: 42, sockets: ["r"], bonus: {sp: 5}, phase: 2 },
         { id: 46096, title: "Signet of Soft Lament", ilvl: 226, int: 46, spi: 36, sp: 74, crit: 32, sockets: ["b"], bonus: {spi: 4}, phase: 2 },
+        { id: 45691, title: "Inscribed Signet of the Kirin Tor", ilvl: 213, int: 38, sp: 66, crit: 37, haste: 38, phase: 2 },
         // os
         { id: 40433, title: "Wyrmrest Band", ilvl: 213, int: 40, sp: 67, haste: 32, mp5: 20 },
         // naxx

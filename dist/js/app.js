@@ -26441,6 +26441,15 @@ var equip = {
       sp: 5
     },
     phase: 4
+  }, {
+    id: 51557,
+    title: "Runed Signet of the Kirin Tor",
+    ilvl: 251,
+    "int": 54,
+    sp: 94,
+    crit: 53,
+    haste: 54,
+    phase: 4
   }, // totc
   {
     id: 47237,
@@ -26507,6 +26516,15 @@ var equip = {
     sp: 78,
     crit: 36,
     hit: 50,
+    phase: 3
+  }, {
+    id: 48957,
+    title: "Etched Signet of the Kirin Tor",
+    ilvl: 226,
+    "int": 43,
+    sp: 74,
+    crit: 41,
+    haste: 43,
     phase: 3
   }, // ulduar
   {
@@ -26650,6 +26668,15 @@ var equip = {
     bonus: {
       spi: 4
     },
+    phase: 2
+  }, {
+    id: 45691,
+    title: "Inscribed Signet of the Kirin Tor",
+    ilvl: 213,
+    "int": 38,
+    sp: 66,
+    crit: 37,
+    haste: 38,
     phase: 2
   }, // os
   {
