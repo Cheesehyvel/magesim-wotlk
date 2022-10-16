@@ -28276,6 +28276,7 @@ var DEFAULT_DESIGN = 2;
         slot: null,
         q: "rare",
         sockets: null,
+        meta_socket: false,
         "int": null,
         spi: null,
         sp: null,
@@ -30789,7 +30790,7 @@ var DEFAULT_DESIGN = 2;
       this.custom_item.id = null;
       this.custom_item.title = null;
       this.custom_item.slot = null;
-      this.custom_item.sockets = [null, null, null];
+      this.custom_item.sockets = null;
       this.custom_item["int"] = null;
       this.custom_item.spi = null;
       this.custom_item.sp = null;
@@ -30816,14 +30817,17 @@ var DEFAULT_DESIGN = 2;
       var item = _.clone(this.custom_item);
 
       item.custom = true;
-      if (item.slot != "weapon" || !item.twohand) delete item.twohand;
-      delete item.slot;
       if (!item.id) item.id = this.createItemId();
       item.sockets = [];
+      if (item.slot == "head" && item.meta_socket) item.sockets.push("m");
 
       for (var i = 0; i < this.custom_item.sockets; i++) {
-        item.sockets.push("r");
+        item.sockets.push("a");
       }
+
+      if (item.slot != "weapon" || !item.twohand) delete item.twohand;
+      delete item.meta_socket;
+      delete item.slot;
 
       for (var key in item) {
         if (!item[key]) delete item[key];
@@ -34013,32 +34017,41 @@ var _hoisted_701 = {
   "class": "form-item form-row"
 };
 
-var _hoisted_702 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of sockets", -1
+var _hoisted_702 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Number of prismatic sockets", -1
 /* HOISTED */
 );
 
 var _hoisted_703 = {
+  key: 1,
+  "class": "form-item form-row"
+};
+
+var _hoisted_704 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Meta socket", -1
+/* HOISTED */
+);
+
+var _hoisted_705 = {
   key: 0,
   "class": "mt-2 text-error"
 };
-var _hoisted_704 = {
+var _hoisted_706 = {
   "class": "mt-2"
 };
-var _hoisted_705 = {
+var _hoisted_707 = {
   key: 6,
   "class": "lightbox small warning"
 };
-var _hoisted_706 = {
+var _hoisted_708 = {
   "class": "inner"
 };
 
-var _hoisted_707 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_709 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title"
 }, "Quick start", -1
 /* HOISTED */
 );
 
-var _hoisted_708 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_710 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Select a profile below to start your simming!"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "faded"
@@ -34048,11 +34061,11 @@ var _hoisted_708 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
 /* HOISTED */
 );
 
-var _hoisted_709 = {
+var _hoisted_711 = {
   "class": "profile-choices"
 };
-var _hoisted_710 = ["onClick"];
-var _hoisted_711 = ["src"];
+var _hoisted_712 = ["onClick"];
+var _hoisted_713 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_check_item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-item");
 
@@ -36681,14 +36694,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.custom_item.sockets, void 0, {
     number: true
-  }]])])]), _ctx.custom_item_error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_703, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.custom_item_error), 1
+  }]])]), _ctx.custom_item.slot == 'head' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_703, [_hoisted_704, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "checkbox",
+    "onUpdate:modelValue": _cache[191] || (_cache[191] = function ($event) {
+      return _ctx.custom_item.meta_socket = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.custom_item.meta_socket]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _ctx.custom_item_error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_705, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.custom_item_error), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_704, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_706, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn block",
-    onClick: _cache[191] || (_cache[191] = function () {
+    onClick: _cache[192] || (_cache[192] = function () {
       return $options.addCustomItem && $options.addCustomItem.apply($options, arguments);
     })
-  }, "Save")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.quick_start_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_705, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_706, [_hoisted_707, _hoisted_708, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_709, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.default_profiles, function (profile) {
+  }, "Save")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.quick_start_open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_707, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_708, [_hoisted_709, _hoisted_710, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_711, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.default_profiles, function (profile) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "profile-choice btn",
       onClick: function onClick($event) {
@@ -36700,16 +36720,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: profile.icon
     }, null, 8
     /* PROPS */
-    , _hoisted_711)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(profile.name), 1
+    , _hoisted_713)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(profile.name), 1
     /* TEXT */
     )], 8
     /* PROPS */
-    , _hoisted_710);
+    , _hoisted_712);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "btn mt-2",
-    onClick: _cache[192] || (_cache[192] = function ($event) {
+    onClick: _cache[193] || (_cache[193] = function ($event) {
       return _ctx.quick_start_open = false;
     })
   }, " No thanks, I'll start from scratch ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);

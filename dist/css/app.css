@@ -759,6 +759,12 @@ fieldset select {
 .form-row.mt-0 {
   margin-top: 0;
 }
+.form-row > label {
+  line-height: 38px;
+}
+.form-row input[type=checkbox] {
+  margin-top: 12px;
+}
 .form-row > .form-item {
   grid-row: 1;
   grid-column-width: 1fr;

@@ -1422,8 +1422,14 @@
                             <input type="number" v-model.number="custom_item.mp5">
                         </div>
                         <div class="form-item form-row">
-                            <label>Number of sockets</label>
+                            <label>Number of prismatic sockets</label>
                             <input type="number" v-model.number="custom_item.sockets">
+                        </div>
+                        <div class="form-item form-row" v-if="custom_item.slot == 'head'">
+                            <label>Meta socket</label>
+                            <div>
+                                <input type="checkbox" v-model="custom_item.meta_socket">
+                            </div>
                         </div>
                     </div>
                     <div class="mt-2 text-error" v-if="custom_item_error">
@@ -1769,6 +1775,7 @@
                     slot: null,
                     q: "rare",
                     sockets: null,
+                    meta_socket: false,
                     int: null,
                     spi: null,
                     sp: null,
@@ -4461,7 +4468,7 @@
                 this.custom_item.id = null;
                 this.custom_item.title = null;
                 this.custom_item.slot = null;
-                this.custom_item.sockets = [null, null, null];
+                this.custom_item.sockets = null;
                 this.custom_item.int = null;
                 this.custom_item.spi = null;
                 this.custom_item.sp = null;
@@ -4492,16 +4499,20 @@
 
                 var item = _.clone(this.custom_item);
                 item.custom = true;
-                if (item.slot != "weapon" || !item.twohand)
-                    delete item.twohand;
-                delete item.slot;
 
                 if (!item.id)
                     item.id = this.createItemId();
 
                 item.sockets = [];
+                if (item.slot == "head" && item.meta_socket)
+                    item.sockets.push("m");
                 for (var i=0; i<this.custom_item.sockets; i++)
-                    item.sockets.push("r");
+                    item.sockets.push("a");
+
+                if (item.slot != "weapon" || !item.twohand)
+                    delete item.twohand;
+                delete item.meta_socket;
+                delete item.slot;
 
                 for (var key in item) {
                     if (!item[key])

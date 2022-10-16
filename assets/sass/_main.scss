@@ -294,6 +294,14 @@ fieldset {
         margin-top: 0;
     }
 
+    > label {
+        line-height: 38px;
+    }
+
+    input[type="checkbox"] {
+        margin-top: 12px;
+    }
+
     > .form-item {
         grid-row: 1;
         grid-column-width: 1fr;
