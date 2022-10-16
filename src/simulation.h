@@ -53,7 +53,7 @@ public:
 
         logging = false;
 
-        double bin_size = 20;
+        double bin_size = 50;
         int bin;
         map<int, int> histogram;
         ostringstream results;

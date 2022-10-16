@@ -31029,10 +31029,10 @@ __webpack_require__.r(__webpack_exports__);
       this.draw();
     }
   },
-  props: ['data'],
+  props: ["data", "avg"],
   methods: {
     draw: function draw() {
-      var bin_size = 20;
+      var bin_size = 50;
       var data = {
         labels: [],
         datasets: [{
@@ -31043,6 +31043,7 @@ __webpack_require__.r(__webpack_exports__);
           barPercentage: 1.25
         }]
       };
+      var avg = Math.floor(this.avg / bin_size) * bin_size;
 
       var keys = _.keys(this.data).sort(function (a, b) {
         return a - b;
@@ -35056,10 +35057,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256
   /* UNKEYED_FRAGMENT */
   ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'histogram' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_211, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_histogram, {
-    data: _ctx.result.histogram
+    ref: "histogram",
+    data: _ctx.result.histogram,
+    avg: _ctx.result.avg_dps
   }, null, 8
   /* PROPS */
-  , ["data"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'config' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_212, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_213, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_214, [_hoisted_215, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_216, [_hoisted_217, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  , ["data", "avg"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.active_tab == 'config' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_212, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_213, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_214, [_hoisted_215, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_216, [_hoisted_217, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "btn secondary",
     onClick: _cache[59] || (_cache[59] = function ($event) {
       return $options.setSpec('arcane');

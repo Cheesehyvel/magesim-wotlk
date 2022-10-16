@@ -20,11 +20,11 @@
             }
         },
 
-        props: ['data'],
+        props: ["data", "avg"],
 
         methods: {
             draw() {
-                var bin_size = 20;
+                var bin_size = 50;
 
                 var data = {
                     labels: [],
@@ -36,6 +36,8 @@
                         barPercentage: 1.25,
                     }],
                 };
+
+                var avg = Math.floor(this.avg/bin_size)*bin_size;
 
                 var keys = _.keys(this.data).sort((a,b) => a-b);
                 var first = parseInt(keys[0]);
