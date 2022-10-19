@@ -1,5 +1,5 @@
 #define MANA_TICK_T 1.0
-#define IGNITE_MUNCH_WINDOW 0.04
+#define IGNITE_MUNCH_WINDOW 0.01
 
 enum Rotation : int
 {

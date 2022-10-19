@@ -17,6 +17,7 @@ namespace unit
         bool heating_up;
         double t_living_bomb;
         double t_flamestrike;
+        double t_scorch;
         double t_mana_spent;
         double fire_ward;
         int mana_sapphire;
@@ -39,6 +40,7 @@ namespace unit
             heating_up = false;
             t_living_bomb = -20;
             t_flamestrike = -20;
+            t_scorch = -60;
             t_mana_spent = 0;
             fire_ward = 0;
             mana_sapphire = 3;
@@ -682,6 +684,8 @@ namespace unit
 
             if (spell->id == spell::LIVING_BOMB)
                 t_living_bomb = state->t;
+            if (spell->id == spell::SCORCH)
+                t_scorch = state->t;
             if (spell->id == spell::FLAMESTRIKE) {
                 t_flamestrike = state->t;
                 actions.push_back(spellAction(make_shared<spell::FlamestrikeDot>()));
@@ -1671,6 +1675,11 @@ namespace unit
                 return spellAction(make_shared<spell::Evocation>(evocationTicks()));
             }
 
+            if (config->maintain_imp_scorch && talents.imp_scorch && t_scorch+27.0 <= state->t) {
+                action = spellAction(make_shared<spell::Scorch>());
+                return action;
+            }
+
             // Frostfire bolt
             if (config->rotation == ROTATION_ST_FROSTFIRE) {
                 if (canReactTo(buff::HOT_STREAK, state->t)) {
@@ -1678,7 +1687,6 @@ namespace unit
                 }
                 else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
                     action = spellAction(make_shared<spell::LivingBomb>());
-                    t_living_bomb = state->t + 12;
                 }
                 else {
                     action = spellAction(make_shared<spell::FrostfireBolt>());
@@ -1700,7 +1708,7 @@ namespace unit
                     }
                     else {
                         action = make_shared<action::Action>(action::TYPE_WAIT);
-                        action->value = 0.1;
+                        action->value = config->hot_streak_cqs_time / 1000.0;
                         waited = true;
                     }
                 }

@@ -74,8 +74,10 @@ struct Config
     int rot_mb_below_ab = 0;
     double rot_mb_mana = 0;
     bool rot_ice_lance = false;
+    bool maintain_imp_scorch = false;
     bool ignite_munching = false;
     bool hot_streak_cqs = false;
+    double hot_streak_cqs_time = 100;
     int evo_ticks = 0;
 
     std::vector<std::shared_ptr<Timing>> timings;
