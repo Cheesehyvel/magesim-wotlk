@@ -552,6 +552,8 @@ var equip = {
         { id: 47749, itemset: ids.T9_SET, title: "Khadgar's Robe of Conquest", ilvl: 232, int: 92, spi: 80, sp: 122, hit: 64, sockets: ["b", "r"], bonus: {sp: 7}, phase: 3 },
         { id: 46993, title: "Flowing Vestments of Ascent", ilvl: 258, int: 116, spi: 94, sp: 151, haste: 86, sockets: ["b", "r", "y"], bonus: {sp: 9}, phase: 3 },
         { id: 46992, title: "Flowing Vestments of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
+        { id: 47425, title: "Flowing Robes of Ascent", ilvl: 258, int: 116, spi: 94, sp: 151, haste: 86, sockets: ["b", "r", "y"], bonus: {sp: 9}, phase: 3 },
+        { id: 47264, title: "Flowing Robes of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
         { id: 47462, title: "Skyweaver Vestments", ilvl: 258, int: 116, sp: 151, hit: 86, haste: 94, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
         { id: 47301, title: "Skyweaver Vestments", ilvl: 245, int: 103, sp: 140, hit: 82, haste: 82, sockets: ["b", "y"], bonus: {sp: 7}, phase: 3 },
         { id: 47129, title: "Skyweaver Robes", ilvl: 258, int: 116, sp: 151, hit: 86, haste: 94, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
@@ -562,10 +564,8 @@ var equip = {
         { id: 47838, title: "Vestments of the Sleepless", ilvl: 232, int: 88, sp: 132, crit: 65, hit: 86, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47604, title: "Merlin's Robe", ilvl: 245, int: 103, sp: 131, crit: 66, haste: 90, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
         { id: 47603, title: "Merlin's Robe", ilvl: 245, int: 103, sp: 131, crit: 66, haste: 90, sockets: ["b", "y", "r"], bonus: {sp: 9}, phase: 3 },
+        { id: 47605, title: "Royal Moonshroud Robe", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47606, title: "Royal Moonshroud Robe", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 3 },
-        { id: 47425, title: "Flowing Robes of Ascent", ilvl: 258, int: 116, spi: 94, sp: 151, haste: 86, sockets: ["b", "r", "y"], bonus: {sp: 9}, phase: 3 },
-        { id: 47264, title: "Flowing Robes of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
-        { id: 46992, title: "Flowing Vestments of Ascent", ilvl: 245, int: 103, spi: 90, sp: 140, haste: 74, sockets: ["r", "y"], bonus: {sp: 7}, phase: 3 },
         // ulduar
         { id: 46130, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Tunic", ilvl: 226, int: 81, spi: 50, sp: 132, crit: 82, sockets: ["b", "y"], bonus: {crit: 6}, phase: 2 },
         { id: 45368, itemset: ids.T8_SET, title: "Valorous Kirin Tor Tunic", ilvl: 219, int: 76, spi: 46, sp: 124, crit: 76, sockets: ["b", "y"], bonus: {crit: 6}, phase: 2 },
@@ -641,6 +641,10 @@ var equip = {
         { id: 47141, title: "Bindings of Dark Essence", ilvl: 245, int: 58, sp: 89, crit: 58, hit: 38, phase: 3 },
         { id: 47927, title: "Felspark Bindings", ilvl: 245, int: 58, sp: 80, hit: 33, haste: 56, sockets: ["y"], bonus: {crit: 4}, phase: 3 },
         { id: 47663, title: "Felspark Bindings", ilvl: 232, int: 51, sp: 78, hit: 36, haste: 50, phase: 3 },
+        { id: 47585, title: "Bejeweled Wizard's Bracers", ilvl: 245, int: 58, sp: 80, crit: 42, haste: 50, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47586, title: "Bejeweled Wizard's Bracers", ilvl: 245, int: 58, sp: 80, crit: 42, haste: 50, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47587, title: "Royal Moonshroud Bracers", ilvl: 245, int: 58, spi: 50, sp: 80, crit: 42, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47588, title: "Royal Moonshroud Bracers", ilvl: 245, int: 58, spi: 50, sp: 80, crit: 42, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         // ulduar
         { id: 45275, title: "Bracers of Unleashed Magic", ilvl: 226, int: 46, sp: 74, hit: 36, haste: 42, phase: 2 },
         { id: 45446, title: "Grasps of Reason", ilvl: 239, int: 52, spi: 48, sp: 75, haste: 39, sockets: ["r"], bonus: {spi: 4}, phase: 2 },
@@ -790,6 +794,8 @@ var equip = {
         { id: 45619, title: "Starwatcher's Binding", ilvl: 239, int: 69, spi: 64, sp: 92, crit: 47, sockets: ["y", "y"], bonus: {sp: 7}, phase: 2 },
         { id: 45306, title: "Binding of the Dragon Matriarch", ilvl: 219, int: 46, spi: 58, sp: 91, crit: 57, phase: 2 },
         { id: 45694, title: "Conductive Cord", ilvl: 219, int: 54, spi: 60, sp: 93, crit: 41, phase: 2 },
+        { id: 45557, title: "Sash of Ancient Power", ilvl: 226, int: 64, sp: 81, hit: 43, haste: 49, sockets: ["b", "r"], bonus: {sp: 7}, phase: 2 },
+        { id: 45558, title: "Cord of the White Dawn", ilvl: 226, int: 62, spi: 48, sp: 81, crit: 48, sockets: ["r", "y"], bonus: {sp: 7}, phase: 2 },
         // eoe
         { id: 40561, title: "Leash of Heedless Magic", ilvl: 226, int: 60, spi: 48, sp: 103, haste: 62 },
         // naxx
@@ -833,6 +839,8 @@ var equip = {
         { id: 51777, title: "Leggings of the Refracted Mind", ilvl: 251, int: 101, spi: 80, sp: 149, crit: 96, sockets: ["y", "r", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51882, title: "Kilt of Untreated Wounds", ilvl: 264, int: 123, sp: 162, crit: 96, haste: 96, sockets: ["y", "y", "r"], bonus: {sp: 9}, phase: 4 },
         { id: 50990, title: "Kilt of Untreated Wounds", ilvl: 251, int: 109, sp: 140, crit: 84, haste: 84, sockets: ["y", "y", "r"], bonus: {sp: 9}, phase: 4 },
+        { id: 49891, title: "Leggings of Woven Death", ilvl: 264, int: 123, sp: 162, crit: 84, haste: 108, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 4 },
+        { id: 49892, title: "Lightweave Leggings", ilvl: 264, int: 123, spi: 108, sp: 162, crit: 84, sockets: ["r", "y", "b"], bonus: {sp: 9}, phase: 4 },
         // totc
         { id: 47765, itemset: ids.T9_SET, title: "Sunstrider's Leggings of Triumph", ilvl: 258, int: 116, spi: 86, sp: 160, crit: 102, sockets: ["y", "y"], bonus: {sp: 7}, phase: 3 },
         { id: 47770, itemset: ids.T9_SET, title: "Sunstrider's Leggings of Triumph", ilvl: 245, int: 103, spi: 74, sp: 140, crit: 90, sockets: ["y", "y"], bonus: {sp: 7}, phase: 3 },

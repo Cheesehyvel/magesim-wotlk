@@ -22306,6 +22306,32 @@ var equip = {
     },
     phase: 3
   }, {
+    id: 47425,
+    title: "Flowing Robes of Ascent",
+    ilvl: 258,
+    "int": 116,
+    spi: 94,
+    sp: 151,
+    haste: 86,
+    sockets: ["b", "r", "y"],
+    bonus: {
+      sp: 9
+    },
+    phase: 3
+  }, {
+    id: 47264,
+    title: "Flowing Robes of Ascent",
+    ilvl: 245,
+    "int": 103,
+    spi: 90,
+    sp: 140,
+    haste: 74,
+    sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 3
+  }, {
     id: 47462,
     title: "Skyweaver Vestments",
     ilvl: 258,
@@ -22429,7 +22455,7 @@ var equip = {
     },
     phase: 3
   }, {
-    id: 47606,
+    id: 47605,
     title: "Royal Moonshroud Robe",
     ilvl: 245,
     "int": 103,
@@ -22442,42 +22468,16 @@ var equip = {
     },
     phase: 3
   }, {
-    id: 47425,
-    title: "Flowing Robes of Ascent",
-    ilvl: 258,
-    "int": 116,
-    spi: 94,
-    sp: 151,
-    haste: 86,
-    sockets: ["b", "r", "y"],
+    id: 47606,
+    title: "Royal Moonshroud Robe",
+    ilvl: 245,
+    "int": 103,
+    spi: 90,
+    sp: 131,
+    crit: 66,
+    sockets: ["r", "y", "b"],
     bonus: {
       sp: 9
-    },
-    phase: 3
-  }, {
-    id: 47264,
-    title: "Flowing Robes of Ascent",
-    ilvl: 245,
-    "int": 103,
-    spi: 90,
-    sp: 140,
-    haste: 74,
-    sockets: ["r", "y"],
-    bonus: {
-      sp: 7
-    },
-    phase: 3
-  }, {
-    id: 46992,
-    title: "Flowing Vestments of Ascent",
-    ilvl: 245,
-    "int": 103,
-    spi: 90,
-    sp: 140,
-    haste: 74,
-    sockets: ["r", "y"],
-    bonus: {
-      sp: 7
     },
     phase: 3
   }, // ulduar
@@ -23155,6 +23155,58 @@ var equip = {
     sp: 78,
     hit: 36,
     haste: 50,
+    phase: 3
+  }, {
+    id: 47585,
+    title: "Bejeweled Wizard's Bracers",
+    ilvl: 245,
+    "int": 58,
+    sp: 80,
+    crit: 42,
+    haste: 50,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47586,
+    title: "Bejeweled Wizard's Bracers",
+    ilvl: 245,
+    "int": 58,
+    sp: 80,
+    crit: 42,
+    haste: 50,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47587,
+    title: "Royal Moonshroud Bracers",
+    ilvl: 245,
+    "int": 58,
+    spi: 50,
+    sp: 80,
+    crit: 42,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 3
+  }, {
+    id: 47588,
+    title: "Royal Moonshroud Bracers",
+    ilvl: 245,
+    "int": 58,
+    spi: 50,
+    sp: 80,
+    crit: 42,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
     phase: 3
   }, // ulduar
   {
@@ -24562,6 +24614,32 @@ var equip = {
     sp: 93,
     crit: 41,
     phase: 2
+  }, {
+    id: 45557,
+    title: "Sash of Ancient Power",
+    ilvl: 226,
+    "int": 64,
+    sp: 81,
+    hit: 43,
+    haste: 49,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45558,
+    title: "Cord of the White Dawn",
+    ilvl: 226,
+    "int": 62,
+    spi: 48,
+    sp: 81,
+    crit: 48,
+    sockets: ["r", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
   }, // eoe
   {
     id: 40561,
@@ -24920,6 +24998,32 @@ var equip = {
     crit: 84,
     haste: 84,
     sockets: ["y", "y", "r"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 49891,
+    title: "Leggings of Woven Death",
+    ilvl: 264,
+    "int": 123,
+    sp: 162,
+    crit: 84,
+    haste: 108,
+    sockets: ["r", "y", "b"],
+    bonus: {
+      sp: 9
+    },
+    phase: 4
+  }, {
+    id: 49892,
+    title: "Lightweave Leggings",
+    ilvl: 264,
+    "int": 123,
+    spi: 108,
+    sp: 162,
+    crit: 84,
+    sockets: ["r", "y", "b"],
     bonus: {
       sp: 9
     },
