@@ -3340,7 +3340,7 @@
                 this.equipped[slot] = item.id;
 
                 this.gems[slot] = [null, null, null];
-                if (item.sockets) {
+                if (this.gems.hasOwnProperty(slot)) {
                     this.gems[slot] = this.defaultGems(item);
                     if (this.item_gems.hasOwnProperty(item.id)) {
                         var n = this.slotSockets(slot).length;
