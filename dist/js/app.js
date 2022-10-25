@@ -31475,8 +31475,9 @@ __webpack_require__.r(__webpack_exports__);
       var logs; // CDs
 
       for (var i = 0; i < this.cds.length; i++) {
+        var r = new RegExp(this.cds[i].title + "( \([0-9]+\))?\.");
         logs = _.filter(this.result.log, function (l) {
-          return l.type == 5 && l.text.indexOf(_this.cds[i].title + ".") > 0;
+          return l.type == 5 && l.text.match(r);
         });
 
         if (logs.length) {
