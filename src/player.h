@@ -1680,16 +1680,23 @@ namespace unit
                 return action;
             }
 
-            // Frostfire bolt
-            if (config->rotation == ROTATION_ST_FROSTFIRE) {
-                if (canReactTo(buff::HOT_STREAK, state->t)) {
+            // FFB / Scorch
+            if (config->rotation == ROTATION_ST_FROSTFIRE || config->rotation == ROTATION_ST_FIRE_SC) {
+                bool no_bomb = talents.living_bomb && t_living_bomb+12.0 <= state->t && state->t + 12.0 < state->duration;
+                if (no_bomb && !heating_up) {
+                    action = spellAction(make_shared<spell::LivingBomb>());
+                }
+                else if (canReactTo(buff::HOT_STREAK, state->t)) {
                     action = spellAction(make_shared<spell::Pyroblast>());
                 }
-                else if (t_living_bomb+12.0 <= state->t && talents.living_bomb) {
+                else if (no_bomb) {
                     action = spellAction(make_shared<spell::LivingBomb>());
                 }
                 else {
-                    action = spellAction(make_shared<spell::FrostfireBolt>());
+                    if (config->rotation == ROTATION_ST_FIRE_SC)
+                        action = spellAction(make_shared<spell::Scorch>());
+                    else
+                        action = spellAction(make_shared<spell::FrostfireBolt>());
                 }
             }
 

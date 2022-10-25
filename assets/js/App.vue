@@ -725,6 +725,7 @@
                                         <option :value="rotations.ROTATION_ST_AB_AM">Arcane</option>
                                         <option :value="rotations.ROTATION_ST_AB_AM_BARRAGE" v-if="config.talents.arcane_barrage">Arcane + Barrage</option>
                                         <option :value="rotations.ROTATION_ST_FIRE">Fire</option>
+                                        <option :value="rotations.ROTATION_ST_FIRE_SC">Fire (Scorch)</option>
                                         <option :value="rotations.ROTATION_ST_FROST">Frost</option>
                                         <option :value="rotations.ROTATION_AOE_AE">Arcane Explosion</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ">Blizzard</option>
