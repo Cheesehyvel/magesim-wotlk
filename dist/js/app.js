@@ -26670,6 +26670,7 @@ var equip = {
   }, {
     id: 45113,
     title: "Glowing Ring of Reclamation",
+    ilvl: 226,
     "int": 49,
     spi: 44,
     sp: 74,

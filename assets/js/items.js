@@ -1010,7 +1010,7 @@ var equip = {
         // ulduar
         { id: 45495, title: "Conductive Seal", ilvl: 239, int: 48, spi: 39, sp: 75, haste: 55, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 45451, title: "Frozen Loop", ilvl: 226, int: 46, sp: 74, hit: 46, haste: 36, phase: 2 },
-        { id: 45113, title: "Glowing Ring of Reclamation", int: 49, spi: 44, sp: 74, crit: 39, phase: 2 },
+        { id: 45113, title: "Glowing Ring of Reclamation", ilvl: 226, int: 49, spi: 44, sp: 74, crit: 39, phase: 2 },
         { id: 45168, title: "Pyrelight Circle", ilvl: 226, int: 42, sp: 74, crit: 46, haste: 36, phase: 2 },
         { id: 45235, title: "Radiant Seal", ilvl: 226, int: 42, sp: 74, haste: 46, mp5: 18, phase: 2 },
         { id: 45438, title: "Ring of the Faithful Servant", ilvl: 226, int: 42, sp: 74, crit: 36, mp5: 23, phase: 2 },
