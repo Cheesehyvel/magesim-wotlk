@@ -3203,7 +3203,7 @@
                 // Mana
                 stats.mana+= stats.intellect*15 - 280;
                 if (this.metaGem() && this.metaGem().id == this.items.ids.META_BEAMING_EARTHSIEGE)
-                    stats.mana*= 1.02;
+                    stats.mana = Math.round(stats.mana*1.02);
 
                 this.display_stats = stats;
             },
