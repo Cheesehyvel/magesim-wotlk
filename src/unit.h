@@ -325,6 +325,8 @@ namespace unit
             if (get_raid_buffs) {
                 if (config->buff_spell_crit)
                     crit+= 5;
+                if (config->buff_spell_crit_oath)
+                    crit+= 3;
             }
 
             return crit;

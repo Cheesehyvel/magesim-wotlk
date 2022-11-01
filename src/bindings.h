@@ -161,6 +161,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("debuff_spell_hit", &Config::debuff_spell_hit)
         .property("debuff_crit", &Config::debuff_crit)
         .property("buff_spell_crit", &Config::buff_spell_crit)
+        .property("buff_spell_crit_oath", &Config::buff_spell_crit_oath)
         .property("buff_spell_haste", &Config::buff_spell_haste)
         .property("buff_haste", &Config::buff_haste)
         .property("buff_dmg", &Config::buff_dmg)
