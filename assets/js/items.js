@@ -1221,6 +1221,7 @@ var enchants = {
     chest: [
         { id: 60692, title: "Powerful Stats", int: 10, spi: 10 },
         { id: 44509, title: "Greater Mana Restoration", mp5: 10 },
+        { id: 33990, title: "Major Spirit", spi: 15 },
     ],
     wrist: [
         { id: 57691, title: "Fur Lining - Spell Power", sp: 76 },

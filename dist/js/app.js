@@ -27833,6 +27833,10 @@ var enchants = {
     id: 44509,
     title: "Greater Mana Restoration",
     mp5: 10
+  }, {
+    id: 33990,
+    title: "Major Spirit",
+    spi: 15
   }],
   wrist: [{
     id: 57691,
