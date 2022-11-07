@@ -2,6 +2,7 @@ struct Talents
 {
     int arcane_focus = 0;
     int clearcast = 0;
+    int magic_attunement = 0;
     int spell_impact = 0;
     int student_of_the_mind = 0;
     int focus_magic = 0;

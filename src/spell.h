@@ -31,7 +31,6 @@ namespace spell
         COLD_SNAP = 11958,
         FIRE_WARD = 43010,
         MANA_SHIELD = 43020,
-        FROZEN_RUNE = 29432,
         IGNITE = 12848,
         MANA_GEM = 42987,
         EVOCATION = 12051,
@@ -614,23 +613,6 @@ namespace spell
             is_trigger = true;
             can_proc = false;
             school = SCHOOL_ARCANE;
-        }
-
-    };
-
-    class FrozenRune : public Spell
-    {
-
-    public:
-        FrozenRune()
-        {
-            id = FROZEN_RUNE;
-            name = "Frozen Rune";
-            cost = 0;
-            gcd = 0;
-            is_trigger = true;
-            can_proc = false;
-            school = SCHOOL_FIRE;
         }
 
     };

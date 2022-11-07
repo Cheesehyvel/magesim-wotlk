@@ -128,7 +128,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
 
     emscripten::enum_<Conjured>("Conjured")
         .value("CONJURED_NONE", CONJURED_NONE)
-        .value("CONJURED_FLAME_CAP", CONJURED_FLAME_CAP);
+        .value("CONJURED_FLAME_CAP", CONJURED_FLAME_CAP)
+        .value("CONJURED_DARK_RUNE", CONJURED_DARK_RUNE);
 
     emscripten::enum_<LogType>("LogType")
         .value("LOG_NONE", LOG_NONE)
@@ -173,6 +174,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("judgement_of_wisdom", &Config::judgement_of_wisdom)
         .property("mage_armor", &Config::mage_armor)
         .property("molten_armor", &Config::molten_armor)
+        .property("amplify_magic", &Config::amplify_magic)
         .property("prof_engineer", &Config::prof_engineer)
 
         .property("black_magic", &Config::black_magic)
@@ -201,7 +203,6 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("pre_water_elemental", &Config::pre_water_elemental)
         .property("pre_incanters_absorption", &Config::pre_incanters_absorption)
         .property("pre_mana_incanters_absorption", &Config::pre_mana_incanters_absorption)
-        .property("pre_rune_incanters_absorption", &Config::pre_rune_incanters_absorption)
 
         .property("potion", &Config::potion)
         .property("pre_potion", &Config::pre_potion)
@@ -243,6 +244,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
     emscripten::value_object<Talents>("Talents")
         .field("arcane_focus", &Talents::arcane_focus)
         .field("clearcast", &Talents::clearcast)
+        .field("magic_attunement", &Talents::magic_attunement)
         .field("spell_impact", &Talents::spell_impact)
         .field("student_of_the_mind", &Talents::student_of_the_mind)
         .field("focus_magic", &Talents::focus_magic)

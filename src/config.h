@@ -30,6 +30,7 @@ struct Config
     bool judgement_of_wisdom = false;
     bool mage_armor = true;
     bool molten_armor = false;
+    bool amplify_magic = false;
     bool prof_engineer = false;
 
     // Enchants / procs
@@ -59,7 +60,6 @@ struct Config
     bool pre_water_elemental = false;
     bool pre_incanters_absorption = false;
     bool pre_mana_incanters_absorption = false;
-    bool pre_rune_incanters_absorption = false;
 
     Potion potion;
     Potion pre_potion;

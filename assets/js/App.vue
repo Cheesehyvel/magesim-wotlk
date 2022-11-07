@@ -848,6 +848,15 @@
                                     </label>
                                 </div>
                                 <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.amplify_magic">
+                                        <span>Amplify Magic</span>
+                                        <help>
+                                            Increases spell damage and healing taken.<br>
+                                            Mostly used for Incanter's Absorption
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item">
                                     <label><input type="checkbox" v-model="config.divine_spirit" @input="dontStack($event, 'fel_intelligence')">
                                         <span>Divine Spirit</span>
                                         <help>80 spirit</help>
@@ -1072,6 +1081,7 @@
                                     <select v-model="config.conjured">
                                         <option :value="conjureds.CONJURED_NONE">None</option>
                                         <option :value="conjureds.CONJURED_FLAME_CAP">Flame Cap</option>
+                                        <option :value="conjureds.CONJURED_DARK_RUNE">Dark Rune</option>
                                     </select>
                                 </div>
                             </fieldset>
@@ -1104,15 +1114,11 @@
                                 </div>
                                 <div class="form-item" v-if="config.talents.incanters_absorption && config.pre_incanters_absorption">
                                     <label><input type="checkbox" v-model="config.pre_mana_incanters_absorption">
-                                        <span>Mana Shield with Fire Ward</span>
-                                    </label>
-                                </div>
-                                <div class="form-item" v-if="config.talents.incanters_absorption && config.pre_incanters_absorption">
-                                    <label><input type="checkbox" v-model="config.pre_rune_incanters_absorption">
-                                        <span>Frozen Rune with Fire Ward</span>
+                                        <span>Mana Shield</span>
                                         <help>
-                                            Frozen Rune is a consumable that absorbs fire damage.<br>
-                                            It could be found in 40 man Naxxramas and is no longer obtainable.
+                                            Mana Shield can absorb damage from Sapper Charge and/or Dark Rune.<br>
+                                            If you want to use a Dark Rune, make sure you select it as the Conjured consumable.<br>
+                                            Dark Rune will be popped with Arcane Power if no timing is specified.
                                         </help>
                                     </label>
                                 </div>
@@ -1533,6 +1539,7 @@
                 // Buffs
                 mage_armor: false,
                 molten_armor: true,
+                amplify_magic: false,
                 divine_spirit: false,
                 fel_intelligence: false,
                 mark_of_the_wild: false,
@@ -1590,7 +1597,6 @@
                 pre_water_elemental: false,
                 pre_incanters_absorption: false,
                 pre_mana_incanters_absorption: false,
-                pre_rune_incanters_absorption: false,
 
                 wrist_socket: false,
                 hands_socket: false,
@@ -1646,6 +1652,7 @@
                 talents: {
                     arcane_focus: 0,
                     clearcast: 0,
+                    magic_attunement: 0,
                     spell_impact: 0,
                     student_of_the_mind: 0,
                     focus_magic: 0,
@@ -1863,6 +1870,7 @@
 
             data.talent_map[0][1] = "arcane_focus";
             data.talent_map[0][5] = "clearcast";
+            data.talent_map[0][6] = "magic_attunement";
             data.talent_map[0][7] = "spell_impact";
             data.talent_map[0][8] = "student_of_the_mind";
             data.talent_map[0][9] = "focus_magic";
@@ -2149,6 +2157,13 @@
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg",
                     });
                 }
+                else if (this.config.conjured == constants.conjureds.CONJURED_DARK_RUNE) {
+                    timings.push({
+                        name: "conjured",
+                        title: "Dark Rune",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_sealofkings.jpg",
+                    });
+                }
 
                 var trinkets = [
                     {
@@ -2348,6 +2363,7 @@
                 var always = [
                     "bloodlust", "mana_tide", "power_infusion",
                     "innervate", "mana_gem", "evocation", "mirror_image",
+                    "dark_rune",
                 ];
                 if (always.indexOf(name) != -1)
                     return true;

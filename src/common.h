@@ -114,6 +114,7 @@ enum Conjured : int
 {
     CONJURED_NONE = 0,
     CONJURED_FLAME_CAP = 22788,
+    CONJURED_DARK_RUNE = 20520,
 };
 
 enum EventType : int

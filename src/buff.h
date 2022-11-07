@@ -25,8 +25,8 @@ namespace buff
         FOCUS_MAGIC = 54648,
         FIRE_WARD = 43010,
         MANA_SHIELD = 43020,
-        FROZEN_RUNE = 29432,
         INCANTERS_ABSORPTION = 44413,
+        INCANTERS_ABSORPTION2 = 444130,
         HYPERSPEED_ACCELERATION = 54758,
         BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
@@ -406,19 +406,6 @@ namespace buff
 
     };
 
-    class FrozenRune : public Buff
-    {
-
-    public:
-        FrozenRune()
-        {
-            id = FROZEN_RUNE;
-            name = "Fire Protection";
-            duration = 60*60;
-        }
-
-    };
-
     class IncantersAbsorption : public Buff
     {
 
@@ -426,6 +413,24 @@ namespace buff
         IncantersAbsorption(double sp)
         {
             id = INCANTERS_ABSORPTION;
+            duration = 10;
+            stats.spell_power = sp;
+
+            std::ostringstream s;
+            s << std::fixed << std::setprecision(0);
+            s << "Incanter's Absorption (" << sp << ")";
+            name = s.str();
+        }
+
+    };
+
+    class IncantersAbsorption2 : public Buff
+    {
+
+    public:
+        IncantersAbsorption2(double sp)
+        {
+            id = INCANTERS_ABSORPTION2;
             duration = 10;
             stats.spell_power = sp;
 

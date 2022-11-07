@@ -21,7 +21,6 @@ namespace unit
         double t_mana_spent;
         double fire_ward;
         double mana_shield;
-        double frozen_rune;
         int mana_sapphire;
         int ab_streak;
         bool waited;
@@ -46,7 +45,6 @@ namespace unit
             t_mana_spent = 0;
             fire_ward = 0;
             mana_shield = 0;
-            frozen_rune = 0;
             mana_sapphire = 3;
             ab_streak = 0;
             waited = false;
@@ -610,10 +608,6 @@ namespace unit
             else if (buff->id == buff::MANA_SHIELD) {
                 mana_shield = 1330.0 + getSpellPower(SCHOOL_ARCANE)*0.8053;
             }
-            else if (buff->id == buff::FROZEN_RUNE) {
-                frozen_rune = random<double>(1500, 2500);
-                actions.push_back(cooldownAction(make_shared<cooldown::Conjured>(60*3)));
-            }
             else if ((buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) && talents.arcane_potency) {
                 actions.push_back(buffAction(make_shared<buff::ArcanePotency>()));
             }
@@ -693,9 +687,6 @@ namespace unit
             }
             if (spell->id == spell::MANA_SHIELD) {
                 actions.push_back(buffAction(make_shared<buff::ManaShield>()));
-            }
-            if (spell->id == spell::FROZEN_RUNE) {
-                actions.push_back(buffAction(make_shared<buff::FrozenRune>()));
             }
 
             if (hasBuff(buff::ARCANE_POTENCY) && !spell->channeling)
@@ -952,69 +943,75 @@ namespace unit
             return actions;
         }
 
+        list<shared_ptr<action::Action>> onSelfDmg(double dmg, School school = SCHOOL_NONE)
+        {
+            list<shared_ptr<action::Action>> actions;
+
+            double absorb = 0;
+            double abs;
+
+            if (config->amplify_magic) {
+                dmg+= 240.0;
+                if (talents.magic_attunement)
+                    dmg+= talents.magic_attunement * 60.0;
+            }
+
+            if (hasBuff(buff::MANA_SHIELD)) {
+                abs = dmg;
+                if (abs > mana_shield)
+                    abs = mana_shield;
+                mana_shield-= abs;
+                absorb+= abs;
+                dmg-= abs;
+
+                if (abs) {
+                    double mana_loss = -abs*1.5;
+                    if (talents.arcane_shielding == 1)
+                        mana_loss*= 0.83;
+                    else if (talents.arcane_shielding == 2)
+                        mana_loss*= 0.67;
+                    actions.push_back(manaAction(mana_loss, "Mana Shield"));
+                }
+
+                if (mana_shield <= 0)
+                    actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
+            }
+
+            if (hasBuff(buff::FIRE_WARD) && school == SCHOOL_FIRE) {
+                abs = dmg;
+                if (abs > fire_ward)
+                    abs = fire_ward;
+                fire_ward-= abs;
+                absorb+= abs;
+                dmg-= abs;
+
+                if (fire_ward <= 0)
+                    actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
+            }
+
+            if (absorb && talents.incanters_absorption) {
+                absorb*= talents.incanters_absorption * 0.05;
+                absorb = round(absorb);
+                if (hasBuff(buff::INCANTERS_ABSORPTION))
+                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption2>(absorb)));
+                else
+                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
+            }
+
+            return actions;
+        }
+
         list<shared_ptr<action::Action>> onSpellImpactProc(shared_ptr<State> state, shared_ptr<spell::SpellInstance> instance)
         {
             list<shared_ptr<action::Action>> actions = Unit::onSpellImpactProc(state, instance);
             shared_ptr<action::Action> action = NULL;
 
-            // Special case for sapper
+            // Special case for Sapper
             if (instance->spell->id == spell::SAPPER_CHARGE) {
-                double absorb = 0;
-                double abs;
                 double dmg = random<double>(2188, 2812);
-
-                if (hasBuff(buff::MANA_SHIELD)) {
-                    abs = dmg;
-                    if (abs > mana_shield)
-                        abs = mana_shield;
-                    mana_shield-= abs;
-                    absorb+= abs;
-                    dmg-= abs;
-
-                    if (abs) {
-                        double mana_loss = -abs*1.5;
-                        if (talents.arcane_shielding == 1)
-                            mana_loss*= 0.83;
-                        else if (talents.arcane_shielding == 2)
-                            mana_loss*= 0.67;
-                        actions.push_back(manaAction(mana_loss, "Mana Shield"));
-                    }
-
-                    if (mana_shield <= 0)
-                        actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
-                }
-
-                if (hasBuff(buff::FIRE_WARD)) {
-                    abs = dmg;
-                    if (abs > fire_ward)
-                        abs = fire_ward;
-                    fire_ward-= abs;
-                    absorb+= abs;
-                    dmg-= abs;
-
-                    if (fire_ward <= 0)
-                        actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
-                }
-
-                if (hasBuff(buff::FROZEN_RUNE)) {
-                    abs = dmg;
-                    if (abs > frozen_rune)
-                        abs = frozen_rune;
-                    frozen_rune-= abs;
-                    absorb+= abs;
-                    dmg-= abs;
-
-                    if (frozen_rune <= 0)
-                        actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
-                }
-
-                if (absorb && talents.incanters_absorption) {
-                    absorb*= talents.incanters_absorption * 0.05;
-                    absorb = round(absorb);
-                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
-                }
-
-                return actions;
+                list<shared_ptr<action::Action>> tmp = onSelfDmg(dmg, instance->spell->school);
+                for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
+                    actions.push_back(*itr);
             }
 
             if (instance->result != spell::MISS) {
@@ -1373,6 +1370,15 @@ namespace unit
                 cd = 180;
                 actions.push_back(buffAction(make_shared<buff::FlameCap>()));
             }
+            else if (conjured == CONJURED_DARK_RUNE) {
+                cd = 900;
+                double dmg = random<double>(600, 1000);
+                double mana_gain = random<double>(900, 1500);
+                list<shared_ptr<action::Action>> tmp = onSelfDmg(dmg, SCHOOL_SHADOW);
+                for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
+                    actions.push_back(*itr);
+                actions.push_back(manaAction(mana_gain, "Dark Rune"));
+            }
             else {
                 return actions;
             }
@@ -1621,9 +1627,24 @@ namespace unit
                 action = make_shared<action::Action>(action::TYPE_POTION);
                 action->potion = config->potion;
             }
-            else if (config->conjured != CONJURED_NONE && !hasCooldown(cooldown::CONJURED) && useTimingIfPossible("conjured", state)) {
+            else if (config->conjured == CONJURED_DARK_RUNE && !hasCooldown(cooldown::CONJURED) && (
+                    useTimingIfPossible("conjured", state, true) ||
+                    (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && hasBuff(buff::MANA_SHIELD) && hasBuff(buff::ARCANE_POWER) && getNextTiming("conjured") == NULL) ||
+                    ((!talents.incanters_absorption || !config->pre_incanters_absorption || !config->pre_mana_incanters_absorption) && maxMana()-mana > 1500 && useTimingIfPossible("conjured", state))))
+            {
                 action = make_shared<action::Action>(action::TYPE_CONJURED);
                 action->conjured = config->conjured;
+            }
+            else if (config->conjured == CONJURED_FLAME_CAP && !hasCooldown(cooldown::CONJURED) && useTimingIfPossible("conjured", state)) {
+                action = make_shared<action::Action>(action::TYPE_CONJURED);
+                action->conjured = config->conjured;
+            }
+            else if (!hasCooldown(cooldown::SAPPER_CHARGE) && (
+                    useTimingIfPossible("sapper_charge", state, true) ||
+                    (talents.incanters_absorption && config->pre_incanters_absorption && (hasBuff(buff::FIRE_WARD) || hasBuff(buff::MANA_SHIELD)) && hasBuff(buff::ARCANE_POWER) && getNextTiming("sapper_charge") == NULL)))
+            {
+                action = spellAction(make_shared<spell::SapperCharge>());
+                action->cooldown = make_shared<cooldown::SapperCharge>();
             }
             else if (isUseTrinket(config->trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config->trinket1) && useTimingIfPossible("trinket1", state)) {
                 action = make_shared<action::Action>(action::TYPE_TRINKET);
@@ -1681,10 +1702,7 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_rune_incanters_absorption && !hasBuff(buff::FROZEN_RUNE)) {
-                action = spellAction(make_shared<spell::FrozenRune>());
-            }
-            else if (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && !hasBuff(buff::MANA_SHIELD)) {
+            if (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && !hasBuff(buff::MANA_SHIELD)) {
                 action = spellAction(make_shared<spell::ManaShield>());
             }
             else if (talents.incanters_absorption && config->pre_incanters_absorption && !hasBuff(buff::FIRE_WARD)) {
@@ -1709,28 +1727,12 @@ namespace unit
             return action;
         }
 
-        shared_ptr<action::Action> offGcd(shared_ptr<State> state)
-        {
-            shared_ptr<action::Action> action = NULL;
-
-            if (talents.incanters_absorption && hasBuff(buff::FIRE_WARD) && !hasCooldown(cooldown::SAPPER_CHARGE) && (useTimingIfPossible("sapper_charge", state, true) || hasBuff(buff::ARCANE_POWER) && getNextTiming("sapper_charge") == NULL)) {
-                action = spellAction(make_shared<spell::SapperCharge>());
-                action->cooldown = make_shared<cooldown::SapperCharge>();
-            }
-
-            return action;
-        }
-
         shared_ptr<action::Action> nextAction(shared_ptr<State> state)
         {
             shared_ptr<action::Action> action = NULL;
 
             if (!state->inCombat())
                 return preCombat(state);
-
-            action = offGcd(state);
-            if (action)
-                return action;
 
             action = gcdAction(state->t);
             if (action)

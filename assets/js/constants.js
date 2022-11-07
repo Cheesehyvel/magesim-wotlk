@@ -54,6 +54,7 @@ export default {
         CONJURED_NONE: 0,
         CONJURED_MANA_GEM: 33312,
         CONJURED_FLAME_CAP: 22788,
+        CONJURED_DARK_RUNE: 20520,
     },
     buffs: {
         MISSILE_BARRAGE: 44401,
