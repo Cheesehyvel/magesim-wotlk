@@ -156,8 +156,11 @@ public:
             t-= 1.5;
         if (player->talents.water_elemental && config->pre_water_elemental)
             t-= 1.5;
-        if (player->talents.incanters_absorption && config->pre_incanters_absorption)
+        if (player->talents.incanters_absorption && config->pre_incanters_absorption) {
             t-= 1.5;
+            if (config->pre_mana_incanters_absorption)
+                t-= 1.5;
+        }
         if (t >= 0)
             t-= 1.5;
 

@@ -5,6 +5,7 @@ struct Talents
     int spell_impact = 0;
     int student_of_the_mind = 0;
     int focus_magic = 0;
+    int arcane_shielding = 0;
     int arcane_meditation = 0;
     int torment_of_the_weak = 0;
     int presence_of_mind = 0;

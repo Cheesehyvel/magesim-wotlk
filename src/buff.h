@@ -24,6 +24,8 @@ namespace buff
         GHOST_FINGERS = 4454411,
         FOCUS_MAGIC = 54648,
         FIRE_WARD = 43010,
+        MANA_SHIELD = 43020,
+        FROZEN_RUNE = 29432,
         INCANTERS_ABSORPTION = 44413,
         HYPERSPEED_ACCELERATION = 54758,
         BLACK_MAGIC = 59626,
@@ -387,6 +389,32 @@ namespace buff
             id = FIRE_WARD;
             name = "Fire Ward";
             duration = 30;
+        }
+
+    };
+
+    class ManaShield : public Buff
+    {
+
+    public:
+        ManaShield()
+        {
+            id = MANA_SHIELD;
+            name = "Mana Shield";
+            duration = 60;
+        }
+
+    };
+
+    class FrozenRune : public Buff
+    {
+
+    public:
+        FrozenRune()
+        {
+            id = FROZEN_RUNE;
+            name = "Fire Protection";
+            duration = 60*60;
         }
 
     };

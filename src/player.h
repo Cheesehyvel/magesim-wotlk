@@ -20,6 +20,8 @@ namespace unit
         double t_scorch;
         double t_mana_spent;
         double fire_ward;
+        double mana_shield;
+        double frozen_rune;
         int mana_sapphire;
         int ab_streak;
         bool waited;
@@ -43,6 +45,8 @@ namespace unit
             t_scorch = -60;
             t_mana_spent = 0;
             fire_ward = 0;
+            mana_shield = 0;
+            frozen_rune = 0;
             mana_sapphire = 3;
             ab_streak = 0;
             waited = false;
@@ -603,12 +607,19 @@ namespace unit
             else if (buff->id == buff::FIRE_WARD) {
                 fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE)*0.1;
             }
+            else if (buff->id == buff::MANA_SHIELD) {
+                mana_shield = 1330.0 + getSpellPower(SCHOOL_ARCANE)*0.8053;
+            }
+            else if (buff->id == buff::FROZEN_RUNE) {
+                frozen_rune = random<double>(1500, 2500);
+                actions.push_back(cooldownAction(make_shared<cooldown::Conjured>(60*3)));
+            }
             else if ((buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) && talents.arcane_potency) {
                 actions.push_back(buffAction(make_shared<buff::ArcanePotency>()));
             }
-            else if (buff->id == buff::HYPERSPEED_ACCELERATION) {
+            // else if (buff->id == buff::HYPERSPEED_ACCELERATION) {
                 // actions.push_back(cooldownAction(make_shared<cooldown::TrinketShared>(buff->duration)));
-            }
+            // }
             else if (buff->id == buff::ARCANE_BLAST) {
                 ab_streak++;
             }
@@ -680,6 +691,12 @@ namespace unit
                 actions.push_back(cooldownAction(make_shared<cooldown::FireWard>()));
                 actions.push_back(buffAction(make_shared<buff::FireWard>()));
             }
+            if (spell->id == spell::MANA_SHIELD) {
+                actions.push_back(buffAction(make_shared<buff::ManaShield>()));
+            }
+            if (spell->id == spell::FROZEN_RUNE) {
+                actions.push_back(buffAction(make_shared<buff::FrozenRune>()));
+            }
 
             if (hasBuff(buff::ARCANE_POTENCY) && !spell->channeling)
                 actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
@@ -735,20 +752,6 @@ namespace unit
 
             if (talents.firestarter && (spell->id == spell::BLAST_WAVE || spell->id == spell::DRAGONS_BREATH))
                 actions.push_back(buffAction(make_shared<buff::Firestarter>()));
-
-            // Unconfirmed - on spell cast ?
-            if (config->black_magic && !spell->is_trigger && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
-                action = buffAction(make_shared<buff::BlackMagic>());
-                action->cooldown = make_shared<cooldown::BlackMagic>();
-                actions.push_back(action);
-            }
-
-            // Unconfirmed - on spell cast ?
-            if (config->darkglow_embroidery && !hasCooldown(cooldown::DARKGLOW) && random<int>(0, 99) < 35) {
-                action = manaAction(400, "Darkglow");
-                action->cooldown = make_shared<cooldown::Darkglow>();
-                actions.push_back(action);
-            }
 
             if (talents.fingers_of_frost && hasBuff(buff::FINGERS_OF_FROST)) {
                 fingers_of_frost--;
@@ -814,118 +817,136 @@ namespace unit
                 }
             }
 
-            // Confirmed - on harmful spell cast
-            if (hasTrinket(TRINKET_FORGE_EMBER) && !hasCooldown(cooldown::FORGE_EMBER) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::ForgeEmber>());
-                action->cooldown = make_shared<cooldown::ForgeEmber>();
-                actions.push_back(action);
-            }
+            if (spell->can_proc) {
 
-            // Unconfirmed - on harmful spell cast ?
-            if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && is_harmful && random<int>(0, 19) < 3) {
-                action = spellAction(make_shared<spell::PendulumTelluricCurrents>());
-                action->cooldown = make_shared<cooldown::PendulumTelluricCurrents>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (config->black_magic && !spell->is_trigger && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
+                    action = buffAction(make_shared<buff::BlackMagic>());
+                    action->cooldown = make_shared<cooldown::BlackMagic>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_EMBRACE_SPIDER) && !hasCooldown(cooldown::EMBRACE_SPIDER) && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::EmbraceSpider>());
-                action->cooldown = make_shared<cooldown::EmbraceSpider>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (config->darkglow_embroidery && !hasCooldown(cooldown::DARKGLOW) && random<int>(0, 99) < 35) {
+                    action = manaAction(400, "Darkglow");
+                    action->cooldown = make_shared<cooldown::Darkglow>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on harmful spell cast ?
-            if (hasTrinket(TRINKET_FLARE_HEAVENS) && !hasCooldown(cooldown::FLARE_HEAVENS) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::FlareHeavens>());
-                action->cooldown = make_shared<cooldown::FlareHeavens>();
-                actions.push_back(action);
-            }
+                // Confirmed - on harmful spell cast
+                if (hasTrinket(TRINKET_FORGE_EMBER) && !hasCooldown(cooldown::FORGE_EMBER) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::ForgeEmber>());
+                    action->cooldown = make_shared<cooldown::ForgeEmber>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_PANDORAS_PLEA) && !hasCooldown(cooldown::PANDORAS_PLEA) && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::PandorasPlea>());
-                action->cooldown = make_shared<cooldown::PandorasPlea>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on harmful spell cast ?
+                if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && is_harmful && random<int>(0, 19) < 3) {
+                    action = spellAction(make_shared<spell::PendulumTelluricCurrents>());
+                    action->cooldown = make_shared<cooldown::PendulumTelluricCurrents>();
+                    actions.push_back(action);
+                }
 
-            // Confirmed - on harmful spell cast
-            if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::NowIsTheTime>());
-                action->cooldown = make_shared<cooldown::NowIsTheTime>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_EMBRACE_SPIDER) && !hasCooldown(cooldown::EMBRACE_SPIDER) && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::EmbraceSpider>());
+                    action->cooldown = make_shared<cooldown::EmbraceSpider>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_DYING_CURSE) && !hasCooldown(cooldown::DYING_CURSE) && random<int>(0, 19) < 3) {
-                action = buffAction(make_shared<buff::DyingCurse>());
-                action->cooldown = make_shared<cooldown::DyingCurse>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on harmful spell cast ?
+                if (hasTrinket(TRINKET_FLARE_HEAVENS) && !hasCooldown(cooldown::FLARE_HEAVENS) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::FlareHeavens>());
+                    action->cooldown = make_shared<cooldown::FlareHeavens>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL)) {
-                action = buffAction(make_shared<buff::IllustrationDragonSoul>());
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_PANDORAS_PLEA) && !hasCooldown(cooldown::PANDORAS_PLEA) && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::PandorasPlea>());
+                    action->cooldown = make_shared<cooldown::PandorasPlea>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on harmful spell cast ?
-            if (hasTrinket(TRINKET_ELEMENTAL_FOCUS_STONE) && !hasCooldown(cooldown::ALACRITY_ELEMENTS) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::AlacrityElements>());
-                action->cooldown = make_shared<cooldown::AlacrityElements>();
-                actions.push_back(action);
-            }
+                // Confirmed - on harmful spell cast
+                if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::NowIsTheTime>());
+                    action->cooldown = make_shared<cooldown::NowIsTheTime>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
-                action = buffAction(make_shared<buff::EyeBroodmother>());
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_DYING_CURSE) && !hasCooldown(cooldown::DYING_CURSE) && random<int>(0, 19) < 3) {
+                    action = buffAction(make_shared<buff::DyingCurse>());
+                    action->cooldown = make_shared<cooldown::DyingCurse>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_SIFS_REMEMBERANCE) && !hasCooldown(cooldown::MEMORIES_LOVE) && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::MemoriesLove>());
-                action->cooldown = make_shared<cooldown::MemoriesLove>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL)) {
+                    action = buffAction(make_shared<buff::IllustrationDragonSoul>());
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_SHOW_FAITH) && !hasCooldown(cooldown::SHOW_FAITH) && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::ShowFaith>());
-                action->cooldown = make_shared<cooldown::ShowFaith>();
-                actions.push_back(action);
-            }
+                // Unconfirmed - on harmful spell cast ?
+                if (hasTrinket(TRINKET_ELEMENTAL_FOCUS_STONE) && !hasCooldown(cooldown::ALACRITY_ELEMENTS) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::AlacrityElements>());
+                    action->cooldown = make_shared<cooldown::AlacrityElements>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC)) {
-                action = buffAction(make_shared<buff::VolatilityHc>());
-                actions.push_back(action);
-            }
-            if (hasTrinket(TRINKET_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM)) {
-                action = buffAction(make_shared<buff::VolatilityNm>());
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
+                    action = buffAction(make_shared<buff::EyeBroodmother>());
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on spell cast ?
-            if (hasTrinket(TRINKET_SOLACE_DEFEATED_HC)) {
-                action = buffAction(make_shared<buff::EnergizedHc>());
-                actions.push_back(action);
-            }
-            if (hasTrinket(TRINKET_SOLACE_DEFEATED_NM)) {
-                action = buffAction(make_shared<buff::EnergizedNm>());
-                actions.push_back(action);
-            }
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_SIFS_REMEMBERANCE) && !hasCooldown(cooldown::MEMORIES_LOVE) && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::MemoriesLove>());
+                    action->cooldown = make_shared<cooldown::MemoriesLove>();
+                    actions.push_back(action);
+                }
 
-            // Unconfirmed - on harmful spell cast ?
-            if (hasTrinket(TRINKET_DISLODGED_OBJECT_HC) && !hasCooldown(cooldown::DISLODGED_OBJECT_HC) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::DislodgedObjectHc>());
-                action->cooldown = make_shared<cooldown::DislodgedObjectHc>();
-                actions.push_back(action);
-            }
-            if (hasTrinket(TRINKET_DISLODGED_OBJECT_NM) && !hasCooldown(cooldown::DISLODGED_OBJECT_NM) && is_harmful && random<int>(0, 9) == 0) {
-                action = buffAction(make_shared<buff::DislodgedObjectNm>());
-                action->cooldown = make_shared<cooldown::DislodgedObjectNm>();
-                actions.push_back(action);
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_SHOW_FAITH) && !hasCooldown(cooldown::SHOW_FAITH) && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::ShowFaith>());
+                    action->cooldown = make_shared<cooldown::ShowFaith>();
+                    actions.push_back(action);
+                }
+
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC)) {
+                    action = buffAction(make_shared<buff::VolatilityHc>());
+                    actions.push_back(action);
+                }
+                if (hasTrinket(TRINKET_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM)) {
+                    action = buffAction(make_shared<buff::VolatilityNm>());
+                    actions.push_back(action);
+                }
+
+                // Unconfirmed - on spell cast ?
+                if (hasTrinket(TRINKET_SOLACE_DEFEATED_HC)) {
+                    action = buffAction(make_shared<buff::EnergizedHc>());
+                    actions.push_back(action);
+                }
+                if (hasTrinket(TRINKET_SOLACE_DEFEATED_NM)) {
+                    action = buffAction(make_shared<buff::EnergizedNm>());
+                    actions.push_back(action);
+                }
+
+                // Unconfirmed - on harmful spell cast ?
+                if (hasTrinket(TRINKET_DISLODGED_OBJECT_HC) && !hasCooldown(cooldown::DISLODGED_OBJECT_HC) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::DislodgedObjectHc>());
+                    action->cooldown = make_shared<cooldown::DislodgedObjectHc>();
+                    actions.push_back(action);
+                }
+                if (hasTrinket(TRINKET_DISLODGED_OBJECT_NM) && !hasCooldown(cooldown::DISLODGED_OBJECT_NM) && is_harmful && random<int>(0, 9) == 0) {
+                    action = buffAction(make_shared<buff::DislodgedObjectNm>());
+                    action->cooldown = make_shared<cooldown::DislodgedObjectNm>();
+                    actions.push_back(action);
+                }
+
             }
 
             return actions;
@@ -937,16 +958,57 @@ namespace unit
             shared_ptr<action::Action> action = NULL;
 
             // Special case for sapper
-            if (instance->spell->id == spell::SAPPER_CHARGE && hasBuff(buff::FIRE_WARD)) {
-                double absorb = random<double>(2188, 2812);
-                if (absorb > fire_ward)
-                    absorb = fire_ward;
-                fire_ward-= absorb;
+            if (instance->spell->id == spell::SAPPER_CHARGE) {
+                double absorb = 0;
+                double abs;
+                double dmg = random<double>(2188, 2812);
 
-                if (fire_ward <= 0)
-                    actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
+                if (hasBuff(buff::MANA_SHIELD)) {
+                    abs = dmg;
+                    if (abs > mana_shield)
+                        abs = mana_shield;
+                    mana_shield-= abs;
+                    absorb+= abs;
+                    dmg-= abs;
 
-                if (talents.incanters_absorption) {
+                    if (abs) {
+                        double mana_loss = -abs*1.5;
+                        if (talents.arcane_shielding == 1)
+                            mana_loss*= 0.83;
+                        else if (talents.arcane_shielding == 2)
+                            mana_loss*= 0.67;
+                        actions.push_back(manaAction(mana_loss, "Mana Shield"));
+                    }
+
+                    if (mana_shield <= 0)
+                        actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
+                }
+
+                if (hasBuff(buff::FIRE_WARD)) {
+                    abs = dmg;
+                    if (abs > fire_ward)
+                        abs = fire_ward;
+                    fire_ward-= abs;
+                    absorb+= abs;
+                    dmg-= abs;
+
+                    if (fire_ward <= 0)
+                        actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
+                }
+
+                if (hasBuff(buff::FROZEN_RUNE)) {
+                    abs = dmg;
+                    if (abs > frozen_rune)
+                        abs = frozen_rune;
+                    frozen_rune-= abs;
+                    absorb+= abs;
+                    dmg-= abs;
+
+                    if (frozen_rune <= 0)
+                        actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
+                }
+
+                if (absorb && talents.incanters_absorption) {
                     absorb*= talents.incanters_absorption * 0.05;
                     absorb = round(absorb);
                     actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
@@ -1139,7 +1201,7 @@ namespace unit
 
             if (hasBuff(buff::ARCANE_POTENCY)) {
                 // Special case for blizzard
-                if (spell->id != spell::BLIZZARD || tick == spell->ticks)
+                if (spell->min_dmg && (spell->id != spell::BLIZZARD || tick == spell->ticks))
                     actions.push_back(buffExpireAction(make_shared<buff::ArcanePotency>()));
             }
 
@@ -1580,7 +1642,7 @@ namespace unit
                 action = spellAction(make_shared<spell::WaterElemental>());
                 action->cooldown = make_shared<cooldown::WaterElemental>();
             }
-            else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state)) {
+            else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state, true)) {
                 action = spellAction(make_shared<spell::MirrorImage>());
                 action->cooldown = make_shared<cooldown::MirrorImage>();
             }
@@ -1619,7 +1681,13 @@ namespace unit
         {
             shared_ptr<action::Action> action = NULL;
 
-            if (talents.incanters_absorption && config->pre_incanters_absorption && !hasCooldown(cooldown::FIRE_WARD)) {
+            if (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_rune_incanters_absorption && !hasBuff(buff::FROZEN_RUNE)) {
+                action = spellAction(make_shared<spell::FrozenRune>());
+            }
+            else if (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && !hasBuff(buff::MANA_SHIELD)) {
+                action = spellAction(make_shared<spell::ManaShield>());
+            }
+            else if (talents.incanters_absorption && config->pre_incanters_absorption && !hasBuff(buff::FIRE_WARD)) {
                 action = spellAction(make_shared<spell::FireWard>());
             }
             else if (config->pre_potion && !hasCooldown(cooldown::POTION) && state->t >= -2.0) {

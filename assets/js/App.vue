@@ -101,7 +101,7 @@
                     </table>
                     <div class="mt-1 tac">
                         <div class="btn small" @click="openCustomStats">
-                            Bonus stats
+                            Add bonus stats
                         </div>
                     </div>
                 </div>
@@ -377,23 +377,6 @@
                                             <td>{{ $get(item, "int", "") }}</td>
                                             <td>{{ $get(item, "spi", "") }}</td>
                                             <td>{{ $get(item, "mp5", "") }}</td>
-                                        </tr>
-                                        <tr
-                                            class="item"
-                                            @click="quickset(set)"
-                                            v-for="(set, key) in items.quicksets"
-                                            v-if="active_slot == 'quicksets'"
-                                        >
-                                            <td></td>
-                                            <td></td>
-                                            <td>{{ set.title }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1119,6 +1102,20 @@
                                         <help>Sapper will be popped with Arcane Power if no timing is specified.</help>
                                     </label>
                                 </div>
+                                <div class="form-item" v-if="config.talents.incanters_absorption && config.pre_incanters_absorption">
+                                    <label><input type="checkbox" v-model="config.pre_mana_incanters_absorption">
+                                        <span>Mana Shield with Fire Ward</span>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.talents.incanters_absorption && config.pre_incanters_absorption">
+                                    <label><input type="checkbox" v-model="config.pre_rune_incanters_absorption">
+                                        <span>Frozen Rune with Fire Ward</span>
+                                        <help>
+                                            Frozen Rune is a consumable that absorbs fire damage.<br>
+                                            It could be found in 40 man Naxxramas and is no longer obtainable.
+                                        </help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-cooldowns">
                                 <legend>Cooldowns</legend>
@@ -1592,6 +1589,8 @@
                 pre_mirror_image: false,
                 pre_water_elemental: false,
                 pre_incanters_absorption: false,
+                pre_mana_incanters_absorption: false,
+                pre_rune_incanters_absorption: false,
 
                 wrist_socket: false,
                 hands_socket: false,
@@ -1650,6 +1649,7 @@
                     spell_impact: 0,
                     student_of_the_mind: 0,
                     focus_magic: 0,
+                    arcane_shielding: 0,
                     arcane_meditation: 0,
                     torment_of_the_weak: 0,
                     presence_of_mind: 0,
@@ -1859,13 +1859,14 @@
                 data.gems[slot] = [null, null, null];
             }
 
-            data.slots = [...slots, "quicksets"];
+            data.slots = [...slots];
 
             data.talent_map[0][1] = "arcane_focus";
             data.talent_map[0][5] = "clearcast";
             data.talent_map[0][7] = "spell_impact";
             data.talent_map[0][8] = "student_of_the_mind";
             data.talent_map[0][9] = "focus_magic";
+            data.talent_map[0][10] = "arcane_shielding";
             data.talent_map[0][12] = "arcane_meditation";
             data.talent_map[0][13] = "torment_of_the_weak";
             data.talent_map[0][15] = "presence_of_mind";

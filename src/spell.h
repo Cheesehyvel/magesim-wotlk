@@ -30,6 +30,8 @@ namespace spell
         DEEP_FREEZE = 44572,
         COLD_SNAP = 11958,
         FIRE_WARD = 43010,
+        MANA_SHIELD = 43020,
+        FROZEN_RUNE = 29432,
         IGNITE = 12848,
         MANA_GEM = 42987,
         EVOCATION = 12051,
@@ -81,6 +83,7 @@ namespace spell
         bool active_use = true;
         bool off_gcd = false;
         bool is_trigger = false;
+        bool can_proc = true;
         int ticks = 0;
         int t_interval = 1;
         School school;
@@ -593,7 +596,40 @@ namespace spell
             name = "Fire Ward";
             cost = 16;
             is_trigger = true;
+            can_proc = false;
+            school = SCHOOL_FIRE;
+        }
+
+    };
+
+    class ManaShield : public Spell
+    {
+
+    public:
+        ManaShield()
+        {
+            id = MANA_SHIELD;
+            name = "Mana Shield";
+            cost = 7;
+            is_trigger = true;
+            can_proc = false;
+            school = SCHOOL_ARCANE;
+        }
+
+    };
+
+    class FrozenRune : public Spell
+    {
+
+    public:
+        FrozenRune()
+        {
+            id = FROZEN_RUNE;
+            name = "Frozen Rune";
+            cost = 0;
             gcd = 0;
+            is_trigger = true;
+            can_proc = false;
             school = SCHOOL_FIRE;
         }
 

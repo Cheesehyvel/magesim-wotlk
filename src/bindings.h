@@ -200,6 +200,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("pre_mirror_image", &Config::pre_mirror_image)
         .property("pre_water_elemental", &Config::pre_water_elemental)
         .property("pre_incanters_absorption", &Config::pre_incanters_absorption)
+        .property("pre_mana_incanters_absorption", &Config::pre_mana_incanters_absorption)
+        .property("pre_rune_incanters_absorption", &Config::pre_rune_incanters_absorption)
 
         .property("potion", &Config::potion)
         .property("pre_potion", &Config::pre_potion)
@@ -244,6 +246,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("spell_impact", &Talents::spell_impact)
         .field("student_of_the_mind", &Talents::student_of_the_mind)
         .field("focus_magic", &Talents::focus_magic)
+        .field("arcane_shielding", &Talents::arcane_shielding)
         .field("arcane_meditation", &Talents::arcane_meditation)
         .field("torment_of_the_weak", &Talents::torment_of_the_weak)
         .field("presence_of_mind", &Talents::presence_of_mind)
