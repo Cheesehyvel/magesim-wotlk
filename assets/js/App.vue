@@ -964,12 +964,6 @@
                                     </label>
                                 </div>
                                 <div class="form-item">
-                                    <label><input type="checkbox" v-model="config.buff_spell_crit_oath">
-                                        <span>3% spell crit</span>
-                                        <help>1/2 Elemental Oath<br>Stacks with 5% Moonkin aura and 2/2 Elemental Oath</help>
-                                    </label>
-                                </div>
-                                <div class="form-item">
                                     <label><input type="checkbox" v-model="config.buff_haste">
                                         <span>3% haste</span>
                                         <help>Improved moonkin form<br>Swift Retribution</help>
@@ -1556,7 +1550,6 @@
                 drums_of_forgotten_kings: false,
                 buff_dmg: false,
                 buff_spell_crit: false,
-                buff_spell_crit_oath: false,
                 buff_haste: false,
                 buff_spell_haste: false,
                 mana_replenishment: false,
@@ -3196,9 +3189,6 @@
                 // Buff:: Spell crit
                 if (this.config.buff_spell_crit)
                     stats.crit+= 5;
-                // Buff:: Spell crit
-                if (this.config.buff_spell_crit_oath)
-                    stats.crit+= 3;
 
                 // Debuff: Spell crit
                 if (this.config.debuff_spell_crit)

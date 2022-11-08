@@ -18,7 +18,6 @@ struct Config
     bool debuff_spell_hit = false;
     bool debuff_crit = false;
     bool buff_spell_crit = false;
-    bool buff_spell_crit_oath = false;
     bool buff_spell_haste = false;
     bool buff_haste = false;
     bool buff_dmg = false;
