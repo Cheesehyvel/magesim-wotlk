@@ -950,11 +950,15 @@ namespace unit
             double absorb = 0;
             double abs;
 
+            /**
+             * Dark rune / Sapper scaling with amp magic
+             * Currently disabled
             if (config->amplify_magic) {
                 dmg+= 240.0;
                 if (talents.magic_attunement)
                     dmg+= talents.magic_attunement * 60.0;
             }
+            */
 
             if (hasBuff(buff::MANA_SHIELD)) {
                 abs = dmg;

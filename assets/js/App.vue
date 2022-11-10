@@ -848,15 +848,6 @@
                                     </label>
                                 </div>
                                 <div class="form-item">
-                                    <label><input type="checkbox" v-model="config.amplify_magic">
-                                        <span>Amplify Magic</span>
-                                        <help>
-                                            Increases spell damage and healing taken.<br>
-                                            Mostly used for Incanter's Absorption
-                                        </help>
-                                    </label>
-                                </div>
-                                <div class="form-item">
                                     <label><input type="checkbox" v-model="config.divine_spirit" @input="dontStack($event, 'fel_intelligence')">
                                         <span>Divine Spirit</span>
                                         <help>80 spirit</help>
