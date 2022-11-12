@@ -187,8 +187,8 @@ namespace spell
             id = ARCANE_MISSILES;
             name = "Arcane Missiles";
             cost = 31;
-            min_dmg = 360;
-            max_dmg = 360;
+            min_dmg = 362;
+            max_dmg = 362;
             cast_time = 5;
             coeff = 5.0/3.5;
             school = SCHOOL_ARCANE;
@@ -229,10 +229,10 @@ namespace spell
             id = FROSTBOLT;
             name = "Frostbolt";
             cost = 11;
-            min_dmg = 799;
-            max_dmg = 861;
+            min_dmg = 804;
+            max_dmg = 866;
             cast_time = 3;
-            coeff = 3/3.5 * 0.95;
+            coeff = 3/3.5;
             school = SCHOOL_FROST;
             has_travel_time = true;
         }
@@ -248,8 +248,8 @@ namespace spell
             id = FIREBALL;
             name = "Fireball";
             cost = 19;
-            min_dmg = 888;
-            max_dmg = 1132;
+            min_dmg = 898;
+            max_dmg = 1143;
             cast_time = 3.5;
             coeff = 1;
             school = SCHOOL_FIRE;
@@ -327,8 +327,8 @@ namespace spell
             id = SCORCH;
             name = "Scorch";
             cost = 8;
-            min_dmg = 376;
-            max_dmg = 444;
+            min_dmg = 382;
+            max_dmg = 451;
             cast_time = 1.5;
             coeff = 1.5/3.5;
             school = SCHOOL_FIRE;
@@ -363,8 +363,8 @@ namespace spell
             id = ICE_LANCE;
             name = "Ice Lance";
             cost = 6;
-            min_dmg = 221;
-            max_dmg = 255;
+            min_dmg = 224;
+            max_dmg = 258;
             cast_time = 0;
             coeff = 1.5/3.5/3.0;
             has_travel_time = true;
@@ -382,8 +382,8 @@ namespace spell
             id = PYROBLAST;
             name = "Pyroblast";
             cost = 22;
-            min_dmg = 1190;
-            max_dmg = 1510;
+            min_dmg = 1210;
+            max_dmg = 1531;
             cast_time = 5;
             coeff = 1.15;
             school = SCHOOL_FIRE;
@@ -422,8 +422,8 @@ namespace spell
             name = "Flamestrike";
             aoe = true;
             cost = 30;
-            min_dmg = 873;
-            max_dmg = 1067;
+            min_dmg = 876;
+            max_dmg = 1071;
             cast_time = 2;
             coeff = 0.2357;
             school = SCHOOL_FIRE;
@@ -540,8 +540,8 @@ namespace spell
             name = "Cone of Cold";
             aoe = true;
             cost = 25;
-            min_dmg = 707;
-            max_dmg = 773;
+            min_dmg = 710;
+            max_dmg = 776;
             cast_time = 0;
             coeff = 0.214;
             school = SCHOOL_FROST;
@@ -558,8 +558,8 @@ namespace spell
             id = DEEP_FREEZE;
             name = "Deep Freeze";
             cost = 9;
-            min_dmg = 1469;
-            max_dmg = 1741;
+            min_dmg = 2369;
+            max_dmg = 2641;
             cast_time = 0;
             coeff = 7.5/3.5;
             school = SCHOOL_FROST;
