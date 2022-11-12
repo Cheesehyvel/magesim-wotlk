@@ -234,7 +234,6 @@ namespace spell
             cast_time = 3;
             coeff = 3/3.5 * 0.95;
             school = SCHOOL_FROST;
-            binary = true;
             has_travel_time = true;
         }
 
@@ -295,7 +294,6 @@ namespace spell
             school = SCHOOL_FROSTFIRE;
             has_travel_time = true;
             travel_time_factor = 0.85;
-            binary = true;
         }
 
     };
@@ -815,7 +813,6 @@ namespace spell
             cast_time = 3;
             coeff = 0.3;
             school = SCHOOL_FROST;
-            binary = true;
             has_travel_time = true;
         }
 

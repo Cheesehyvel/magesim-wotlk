@@ -1152,7 +1152,7 @@ public:
 
     double spellDmgResist(shared_ptr<unit::Unit> unit, shared_ptr<spell::SpellInstance> instance)
     {
-        if (instance->spell->binary || instance->spell->fixed_dmg)
+        if (instance->spell->binary)
             return 0.0;
 
         // No confirmed formulas or resistance tables can be found
