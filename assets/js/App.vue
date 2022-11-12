@@ -749,11 +749,24 @@
                                         <input type="text" v-model.number="config.rot_mb_mana">
                                     </div>
                                 </template>
-                                <div class="form-item" v-if="config.rotation == rotations.ROTATION_ST_FROST">
-                                    <label><input type="checkbox" v-model="config.rot_ice_lance">
-                                        <span>Ice Lance at end of Fingers of Frost</span>
-                                    </label>
-                                </div>
+                                <template v-if="config.rotation == rotations.ROTATION_ST_FROST">
+                                    <div class="form-item">
+                                        <label><input type="checkbox" v-model="config.rot_ice_lance">
+                                            <span>Ice Lance at end of Fingers of Frost</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-item" v-if="config.talents.brain_freeze">
+                                        <label>
+                                            <span>Brain Freeze duration cutoff</span>
+                                            <help>
+                                                Brain Freeze will always be used when the buff duration is below the given number of seconds.<br>
+                                                Otherwise it will only be used as the bonus spell at the end of Fingers of Frost.<br>
+                                                Setting this to a low number can be a dps increase when you are close to haste cap.
+                                            </help>
+                                        </label>
+                                        <input type="text" v-model.number="config.rot_brain_freeze_hold">
+                                    </div>
+                                </template>
                                 <div class="form-item" v-if="config.talents.ignite">
                                     <label><input type="checkbox" v-model="config.ignite_munching">
                                         <span>Ignite munching</span>
@@ -1601,6 +1614,7 @@
                 rot_mb_below_ab: 0,
                 rot_mb_mana: 0,
                 rot_ice_lance: false,
+                rot_brain_freeze_hold: 15,
                 ignite_munching: false,
                 hot_streak_cqs: false,
                 hot_streak_cqs_time: 100,

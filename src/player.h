@@ -18,6 +18,7 @@ namespace unit
         double t_living_bomb;
         double t_flamestrike;
         double t_scorch;
+        double t_brain_freeze;
         double t_mana_spent;
         double fire_ward;
         double mana_shield;
@@ -42,6 +43,7 @@ namespace unit
             t_living_bomb = -20;
             t_flamestrike = -20;
             t_scorch = -60;
+            t_brain_freeze = 0;
             t_mana_spent = 0;
             fire_ward = 0;
             mana_shield = 0;
@@ -616,6 +618,9 @@ namespace unit
             // }
             else if (buff->id == buff::ARCANE_BLAST) {
                 ab_streak++;
+            }
+            else if (buff->id == buff::BRAIN_FREEZE) {
+                t_brain_freeze = state->t;
             }
 
             return actions;
@@ -1853,12 +1858,12 @@ namespace unit
                 if (hasBuff(buff::GHOST_FINGERS)) {
                     if (talents.deep_freeze && !hasCooldown(cooldown::DEEP_FREEZE))
                         action = spellAction(make_shared<spell::DeepFreeze>());
-                    else if (hasBuff(buff::BRAIN_FREEZE))
+                    else if (canReactTo(buff::BRAIN_FREEZE, state->t))
                         action = spellAction(make_shared<spell::FrostfireBolt>());
                     else if (config->rot_ice_lance)
                         action = spellAction(make_shared<spell::IceLance>());
                 }
-                else if (canReactTo(buff::BRAIN_FREEZE, state->t)) {
+                else if (canReactTo(buff::BRAIN_FREEZE, state->t) && 15.0 - (state->t - t_brain_freeze) <= config->rot_brain_freeze_hold) {
                     action = spellAction(make_shared<spell::FrostfireBolt>());
                 }
 

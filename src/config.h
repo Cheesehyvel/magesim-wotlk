@@ -76,6 +76,7 @@ struct Config
     int rot_mb_below_ab = 0;
     double rot_mb_mana = 0;
     bool rot_ice_lance = false;
+    double rot_brain_freeze_hold = 15;
     bool maintain_imp_scorch = false;
     bool ignite_munching = false;
     bool hot_streak_cqs = false;
