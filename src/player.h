@@ -960,6 +960,18 @@ namespace unit
             }
             */
 
+            if (hasBuff(buff::FIRE_WARD) && school == SCHOOL_FIRE) {
+                abs = dmg;
+                if (abs > fire_ward)
+                    abs = fire_ward;
+                fire_ward-= abs;
+                absorb+= abs;
+                dmg-= abs;
+
+                if (fire_ward <= 0)
+                    actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
+            }
+
             if (hasBuff(buff::MANA_SHIELD)) {
                 abs = dmg;
                 if (abs > mana_shield)
@@ -979,18 +991,6 @@ namespace unit
 
                 if (mana_shield <= 0)
                     actions.push_back(buffExpireAction(make_shared<buff::ManaShield>()));
-            }
-
-            if (hasBuff(buff::FIRE_WARD) && school == SCHOOL_FIRE) {
-                abs = dmg;
-                if (abs > fire_ward)
-                    abs = fire_ward;
-                fire_ward-= abs;
-                absorb+= abs;
-                dmg-= abs;
-
-                if (fire_ward <= 0)
-                    actions.push_back(buffExpireAction(make_shared<buff::FireWard>()));
             }
 
             if (absorb && talents.incanters_absorption) {
