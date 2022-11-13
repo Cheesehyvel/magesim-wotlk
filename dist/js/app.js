@@ -27629,6 +27629,20 @@ var equip = {
   }]
 };
 var gems = [{
+  id: 49110,
+  title: "Nightmare Tear",
+  color: "a",
+  "int": 10,
+  spi: 10,
+  unique: true
+}, {
+  id: 42702,
+  title: "Enchanted Tear",
+  color: "a",
+  "int": 6,
+  spi: 6,
+  unique: true
+}, {
   id: ids.META_CHAOTIC_SKYFLARE,
   title: "Chaotic Skyflare Diamond",
   color: "m",

@@ -1128,6 +1128,8 @@ var equip = {
 };
 
 var gems = [
+    { id: 49110, title: "Nightmare Tear", color: "a", int: 10, spi: 10, unique: true },
+    { id: 42702, title: "Enchanted Tear", color: "a", int: 6, spi: 6, unique: true },
     { id: ids.META_CHAOTIC_SKYFLARE, title: "Chaotic Skyflare Diamond", color: "m", crit: 21, desc: "+3% crit dmg", req: {b: 2} },
     { id: ids.META_EMBER_SKYFLARE, title: "Ember Skyflare Diamond", color: "m", sp: 25, desc: "+2% int", req: {r: 3} },
     { id: ids.META_BEAMING_EARTHSIEGE, title: "Beaming Earthsiege Diamond", color: "m", crit: 21, desc: "+2% mana", req: {y: 1, r: 2} },
