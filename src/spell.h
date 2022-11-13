@@ -794,6 +794,7 @@ namespace spell
             name = "Mirror Image";
             cost = 10;
             is_trigger = true;
+            can_proc = false;
             school = SCHOOL_ARCANE;
         }
 
