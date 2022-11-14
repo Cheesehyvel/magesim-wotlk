@@ -816,7 +816,7 @@ public:
             pushBuffGain(unit, buff, 2);
         }
 
-        if (stacks > old_stacks)
+        if (stacks > old_stacks || buff->show_refresh)
             logBuffGain(unit, buff, stacks);
 
         std::list<shared_ptr<action::Action>> actions = unit->onBuffGain(state, buff);
@@ -887,7 +887,7 @@ public:
 
     void useConjured(shared_ptr<unit::Unit> unit, Conjured conjured)
     {
-        std::list<shared_ptr<action::Action>> actions = unit->useConjured(conjured);
+        std::list<shared_ptr<action::Action>> actions = unit->useConjured(state, conjured);
         processActions(unit, actions);
     }
 

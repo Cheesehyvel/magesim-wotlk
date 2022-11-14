@@ -19,6 +19,7 @@ namespace unit
         double t_flamestrike;
         double t_scorch;
         double t_brain_freeze;
+        double t_incanters_absorption;
         double t_mana_spent;
         double fire_ward;
         double mana_shield;
@@ -44,6 +45,7 @@ namespace unit
             t_flamestrike = -20;
             t_scorch = -60;
             t_brain_freeze = 0;
+            t_incanters_absorption = 0;
             t_mana_spent = 0;
             fire_ward = 0;
             mana_shield = 0;
@@ -635,6 +637,9 @@ namespace unit
             else if (buff->id == buff::BRAIN_FREEZE) {
                 t_brain_freeze = state->t;
             }
+            else if (buff->id == buff::INCANTERS_ABSORPTION) {
+                t_incanters_absorption = state->t;
+            }
 
             return actions;
         }
@@ -893,7 +898,7 @@ namespace unit
             return actions;
         }
 
-        list<shared_ptr<action::Action>> onSelfDmg(double dmg, School school = SCHOOL_NONE)
+        list<shared_ptr<action::Action>> onSelfDmg(shared_ptr<State> state, double dmg, School school = SCHOOL_NONE)
         {
             list<shared_ptr<action::Action>> actions;
 
@@ -946,10 +951,12 @@ namespace unit
             if (absorb && talents.incanters_absorption) {
                 absorb*= talents.incanters_absorption * 0.05;
                 absorb = round(absorb);
-                if (hasBuff(buff::INCANTERS_ABSORPTION))
-                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption2>(absorb)));
-                else
-                    actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
+                if (hasBuff(buff::INCANTERS_ABSORPTION)) {
+                    shared_ptr<buff::Buff> ia = getBuff(buff::INCANTERS_ABSORPTION);
+                    absorb+= (10.0 - (state->t - t_incanters_absorption))/10.0 * ia->stats.spell_power;
+                    actions.push_back(buffExpireAction(ia));
+                }
+               actions.push_back(buffAction(make_shared<buff::IncantersAbsorption>(absorb)));
             }
 
             return actions;
@@ -963,7 +970,7 @@ namespace unit
             // Special case for Sapper
             if (instance->spell->id == spell::SAPPER_CHARGE) {
                 double dmg = random<double>(2188, 2812);
-                list<shared_ptr<action::Action>> tmp = onSelfDmg(dmg, instance->spell->school);
+                list<shared_ptr<action::Action>> tmp = onSelfDmg(state, dmg, instance->spell->school);
                 for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
                     actions.push_back(*itr);
             }
@@ -1408,9 +1415,9 @@ namespace unit
             return actions;
         }
 
-        list<shared_ptr<action::Action>> useConjured(Conjured conjured)
+        list<shared_ptr<action::Action>> useConjured(shared_ptr<State> state, Conjured conjured)
         {
-            list<shared_ptr<action::Action>> actions = Unit::useConjured(conjured);
+            list<shared_ptr<action::Action>> actions = Unit::useConjured(state, conjured);
 
             double cd = 120;
 
@@ -1422,7 +1429,7 @@ namespace unit
                 cd = 900;
                 double dmg = random<double>(600, 1000);
                 double mana_gain = random<double>(900, 1500);
-                list<shared_ptr<action::Action>> tmp = onSelfDmg(dmg, SCHOOL_SHADOW);
+                list<shared_ptr<action::Action>> tmp = onSelfDmg(state, dmg, SCHOOL_SHADOW);
                 for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
                     actions.push_back(*itr);
                 actions.push_back(manaAction(mana_gain, "Dark Rune"));

@@ -504,7 +504,7 @@ namespace unit
             return actions;
         }
 
-        virtual list<shared_ptr<action::Action>> useConjured(Conjured conjured)
+        virtual list<shared_ptr<action::Action>> useConjured(shared_ptr<State> state, Conjured conjured)
         {
             list<shared_ptr<action::Action>> actions;
 

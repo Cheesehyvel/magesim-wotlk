@@ -26,7 +26,6 @@ namespace buff
         FIRE_WARD = 43010,
         MANA_SHIELD = 43020,
         INCANTERS_ABSORPTION = 44413,
-        INCANTERS_ABSORPTION2 = 444130,
         HYPERSPEED_ACCELERATION = 54758,
         BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
@@ -91,6 +90,7 @@ namespace buff
         int stacks = 1;
         int max_stacks = 1;
         bool stack_refresh = true;
+        bool show_refresh = false;
         bool hidden = false;
         bool snapshot = false;
         double cost = 0;
@@ -415,24 +415,7 @@ namespace buff
             id = INCANTERS_ABSORPTION;
             duration = 10;
             stats.spell_power = sp;
-
-            std::ostringstream s;
-            s << std::fixed << std::setprecision(0);
-            s << "Incanter's Absorption (" << sp << ")";
-            name = s.str();
-        }
-
-    };
-
-    class IncantersAbsorption2 : public Buff
-    {
-
-    public:
-        IncantersAbsorption2(double sp)
-        {
-            id = INCANTERS_ABSORPTION2;
-            duration = 10;
-            stats.spell_power = sp;
+            show_refresh = true;
 
             std::ostringstream s;
             s << std::fixed << std::setprecision(0);
