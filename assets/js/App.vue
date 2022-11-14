@@ -555,7 +555,7 @@
                                     <th>Max dmg</th>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="spell in result.spells">
+                                    <tr v-for="spell in spellStats">
                                         <td>{{ spell.source }}</td>
                                         <td>{{ spell.name }}</td>
                                         <td>{{ spell.casts }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
@@ -1946,6 +1946,18 @@
                 if (alliance.indexOf(this.config.race) != -1)
                     return "alliance";
                 return "horde";
+            },
+
+            spellStats() {
+                if (!this.result.spells)
+                    return [];
+                return this.result.spells.sort(function(a, b) {
+                    if (a.source == "Player" && b.source != "Player")
+                        return -1;
+                    if (b.source == "Player" && a.source != "Player")
+                        return 1;
+                    return a.name.localeCompare(b.name);
+                });
             },
 
             activeItems() {

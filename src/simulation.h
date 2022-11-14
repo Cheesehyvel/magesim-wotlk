@@ -614,12 +614,6 @@ public:
                 else
                     nextAction(unit);
             }
-
-            // Log spell use
-            if (logging && spell->min_dmg) {
-                initSpellStats(unit, spell);
-                state->spells[spell->id].casts++;
-            }
         }
     }
 
@@ -635,7 +629,9 @@ public:
         onSpellImpactProc(unit, instance);
 
         // Log spell use
-        if (logging && state->spells.find(instance->spell->id) != state->spells.end()) {
+        if (logging) {
+            initSpellStats(unit, instance->spell);
+            state->spells[instance->spell->id].casts++;
             if (instance->result == spell::MISS)
                 state->spells[instance->spell->id].misses++;
             else if (instance->result == spell::CRIT)
@@ -1411,6 +1407,8 @@ public:
     {
         if (state->spells.find(spell->id) == state->spells.end()) {
             state->spells[spell->id].name = spell->name;
+            if (spell->dot)
+                state->spells[spell->id].name+= " (dot)";
             state->spells[spell->id].source = unit->name;
         }
     }

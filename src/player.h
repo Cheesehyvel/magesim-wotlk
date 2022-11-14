@@ -343,6 +343,7 @@ namespace unit
             if (talents.empowered_fire) {
                 if (spell->id == spell::FIREBALL ||
                     spell->id == spell::FROSTFIRE_BOLT ||
+                    spell->id == spell::PYROBLAST_DOT ||
                     spell->id == spell::PYROBLAST)
                 {
                     coeff+= talents.empowered_fire * 0.05;
@@ -369,8 +370,6 @@ namespace unit
                 multi*= 1 + talents.arctic_winds * 0.01;
             if (talents.fire_power && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
                 multi*= 1 + talents.fire_power * 0.02;
-            if (talents.chilled_to_the_bone && (spell->id == spell::FROSTBOLT || spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::ICE_LANCE))
-                multi*= 1 + talents.chilled_to_the_bone * 0.01;
             if (spell->id == spell::FROSTFIRE_BOLT && glyphs.frostfire)
                 multi*= 1.02;
             if (spell->id == spell::FROSTBOLT && glyphs.frostbolt)
@@ -392,11 +391,24 @@ namespace unit
             if (config->cudc_3set)
                 multi*= 1.02;
 
+            if (talents.chilled_to_the_bone) {
+                if (spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT_DOT ||
+                    spell->id == spell::ICE_LANCE)
+                {
+                    multi*= 1 + talents.chilled_to_the_bone * 0.01;
+                }
+            }
+
             if (talents.torment_of_the_weak) {
                 if (spell->id == spell::FROSTBOLT ||
                     spell->id == spell::FIREBALL ||
+                    spell->id == spell::FIREBALL_DOT ||
                     spell->id == spell::FROSTFIRE_BOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT_DOT ||
                     spell->id == spell::PYROBLAST ||
+                    spell->id == spell::PYROBLAST_DOT ||
                     spell->id == spell::ARCANE_MISSILES ||
                     spell->id == spell::ARCANE_BLAST ||
                     spell->id == spell::ARCANE_BARRAGE)
@@ -411,6 +423,7 @@ namespace unit
                     spell->id == spell::BLAST_WAVE ||
                     spell->id == spell::CONE_OF_COLD ||
                     spell->id == spell::FIREBALL ||
+                    spell->id == spell::FIREBALL_DOT ||
                     spell->id == spell::FIRE_BLAST ||
                     spell->id == spell::ICE_LANCE ||
                     spell->id == spell::SCORCH)
