@@ -361,6 +361,7 @@ namespace unit
         double buffDmgMultiplier(shared_ptr<spell::Spell> spell, shared_ptr<State> state)
         {
             double multi = Unit::buffDmgMultiplier(spell, state);
+            double additive = 1;
 
             if (talents.arcane_instability)
                 multi*= 1 + talents.arcane_instability * 0.01;
@@ -370,18 +371,8 @@ namespace unit
                 multi*= 1 + talents.piercing_ice * 0.02;
             if (talents.arctic_winds && (spell->school == SCHOOL_FROST || spell->school == SCHOOL_FROSTFIRE))
                 multi*= 1 + talents.arctic_winds * 0.01;
-            if (talents.fire_power && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
-                multi*= 1 + talents.fire_power * 0.02;
-            if (spell->id == spell::FROSTFIRE_BOLT && glyphs.frostfire)
-                multi*= 1.02;
-            if (spell->id == spell::FROSTBOLT && glyphs.frostbolt)
-                multi*= 1.05;
-            if (spell->id == spell::SCORCH && glyphs.scorch)
-                multi*= 1.2;
             if (spell->id == spell::CONE_OF_COLD && talents.imp_cone_of_cold)
                 multi*= 1.05 + talents.imp_cone_of_cold * 0.1;
-            if (config->t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
-                multi*= 1.05;
             if (hasBuff(buff::QUAD_CORE))
                 multi*= 1.18;
             if (config->udc_2set)
@@ -392,16 +383,6 @@ namespace unit
                 multi*= 1.03;
             if (config->cudc_3set)
                 multi*= 1.02;
-
-            if (talents.chilled_to_the_bone) {
-                if (spell->id == spell::FROSTBOLT ||
-                    spell->id == spell::FROSTFIRE_BOLT ||
-                    spell->id == spell::FROSTFIRE_BOLT_DOT ||
-                    spell->id == spell::ICE_LANCE)
-                {
-                    multi*= 1 + talents.chilled_to_the_bone * 0.01;
-                }
-            }
 
             if (talents.torment_of_the_weak) {
                 if (spell->id == spell::FROSTBOLT ||
@@ -419,27 +400,9 @@ namespace unit
                 }
             }
 
-            if (talents.spell_impact) {
-                if (spell->id == spell::ARCANE_BLAST ||
-                    spell->id == spell::ARCANE_EXPLOSION ||
-                    spell->id == spell::BLAST_WAVE ||
-                    spell->id == spell::CONE_OF_COLD ||
-                    spell->id == spell::FIREBALL ||
-                    spell->id == spell::FIREBALL_DOT ||
-                    spell->id == spell::FIRE_BLAST ||
-                    spell->id == spell::ICE_LANCE ||
-                    spell->id == spell::SCORCH)
-                {
-                    multi*= 1 + talents.spell_impact*0.02;
-                }
-            }
-
             // Below 35% - We'll estimate that to last 35% of duration
             if (talents.molten_fury && state->t / state->duration >= 0.65)
                 multi*= 1 + (talents.molten_fury * 0.06);
-
-            if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
-                multi*= 1.2;
 
             if (spell->school == SCHOOL_ARCANE && hasBuff(buff::ARCANE_BLAST, true)) {
                 double ab = 0.15;
@@ -457,6 +420,55 @@ namespace unit
                 else
                     multi*= 3;
             }
+
+            // Additive category
+            additive = 1;
+
+            if (talents.fire_power && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
+                additive+= talents.fire_power * 0.02;
+            if (spell->id == spell::SCORCH && glyphs.scorch)
+                additive+= 0.2;
+            if (spell->id == spell::FROSTFIRE_BOLT && glyphs.frostfire)
+                additive+= 0.02;
+            if (config->t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
+                additive+= 0.05;
+            if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
+                additive+= 0.2;
+
+            if (talents.spell_impact) {
+                if (spell->id == spell::ARCANE_BLAST ||
+                    spell->id == spell::ARCANE_EXPLOSION ||
+                    spell->id == spell::BLAST_WAVE ||
+                    spell->id == spell::CONE_OF_COLD ||
+                    spell->id == spell::FIREBALL ||
+                    spell->id == spell::FIREBALL_DOT ||
+                    spell->id == spell::FIRE_BLAST ||
+                    spell->id == spell::ICE_LANCE ||
+                    spell->id == spell::SCORCH)
+                {
+                    additive+= talents.spell_impact*0.02;
+                }
+            }
+
+            multi*= additive;
+
+            // Additive category
+            additive = 1;
+
+            if (spell->id == spell::FROSTBOLT && glyphs.frostbolt)
+                additive+= 0.05;
+
+            if (talents.chilled_to_the_bone) {
+                if (spell->id == spell::FROSTBOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT ||
+                    spell->id == spell::FROSTFIRE_BOLT_DOT ||
+                    spell->id == spell::ICE_LANCE)
+                {
+                    additive+= talents.chilled_to_the_bone * 0.01;
+                }
+            }
+
+            multi*= additive;
 
             return multi;
         }
