@@ -1576,6 +1576,16 @@ namespace unit
             return false;
         }
 
+        bool isTimingReadySoon(string name, shared_ptr<State> state, double t = 5)
+        {
+            shared_ptr<Timing> timing = getNextTiming(name);
+
+            if (timing != NULL && timing->t - state->t < t)
+                return true;
+
+            return false;
+        }
+
         list<shared_ptr<action::Action>> useTrinket(Trinket trinket, shared_ptr<cooldown::Cooldown> cooldown)
         {
             list<shared_ptr<action::Action>> actions = Unit::useTrinket(trinket, cooldown);
@@ -1886,6 +1896,9 @@ namespace unit
 
                 // AB until the end
                 if (canBlast(state))
+                    action = spellAction(make_shared<spell::ArcaneBlast>());
+                // Extra ABs before first AP
+                else if (!hasBuff(buff::ARCANE_POWER) && isTimingReadySoon("arcane_power", state, 5) && state->t < 10)
                     action = spellAction(make_shared<spell::ArcaneBlast>());
                 // Extra ABs during AP
                 else if (hasBuff(buff::ARCANE_POWER) && config->rot_abs_ap+4 > ab_streak && state->t < 60)

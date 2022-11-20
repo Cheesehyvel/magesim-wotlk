@@ -216,6 +216,7 @@ namespace spell
             school = SCHOOL_FROST;
             channeling = true;
             ticks = 8;
+            aoe = true;
         }
 
     };
