@@ -18531,11 +18531,11 @@ var equip = {
   {
     id: 45620,
     title: "Starshard Edge",
-    ilvl: 239,
-    "int": 55,
-    spi: 43,
-    sp: 587,
-    hit: 39,
+    ilvl: 245,
+    "int": 58,
+    spi: 46,
+    sp: 622,
+    hit: 41,
     sockets: ["b"],
     bonus: {
       sp: 5
@@ -18544,49 +18544,49 @@ var equip = {
   }, {
     id: 45527,
     title: "Soulscribe",
-    ilvl: 232,
-    "int": 49,
-    sp: 550,
-    crit: 28,
-    haste: 48,
+    ilvl: 238,
+    "int": 52,
+    sp: 582,
+    crit: 30,
+    haste: 51,
     phase: 2
   }, {
     id: 45437,
     title: "Runescribed Blade",
-    ilvl: 232,
-    "int": 51,
-    spi: 37,
-    sp: 550,
-    crit: 52,
+    ilvl: 238,
+    "int": 54,
+    spi: 39,
+    sp: 582,
+    crit: 55,
     phase: 2
   }, {
     id: 45171,
     title: "Intensity",
-    ilvl: 232,
-    "int": 121,
-    spi: 86,
-    sp: 550,
-    hit: 120,
+    ilvl: 238,
+    "int": 128,
+    spi: 91,
+    sp: 582,
+    hit: 127,
     twohand: true,
     phase: 2
   }, {
     id: 45234,
     title: "Rapture",
-    ilvl: 232,
-    "int": 119,
-    spi: 121,
-    sp: 550,
-    crit: 81,
+    ilvl: 238,
+    "int": 126,
+    spi: 128,
+    sp: 582,
+    crit: 86,
     twohand: true,
     phase: 2
   }, {
     id: 45457,
     title: "Staff of Endless Winter",
-    ilvl: 239,
-    "int": 128,
-    spi: 84,
-    sp: 587,
-    crit: 104,
+    ilvl: 252,
+    "int": 146,
+    spi: 96,
+    sp: 668,
+    crit: 118,
     sockets: ["b", "b"],
     bonus: {
       sp: 9
@@ -18596,30 +18596,30 @@ var equip = {
   }, {
     id: 45479,
     title: "The Lifebinder",
-    ilvl: 232,
-    "int": 121,
-    spi: 80,
-    sp: 550,
-    haste: 120,
+    ilvl: 238,
+    "int": 128,
+    spi: 85,
+    sp: 582,
+    haste: 127,
     twohand: true,
     phase: 2
   }, {
     id: 45287,
     title: "Firesoul",
-    ilvl: 219,
-    "int": 46,
-    sp: 487,
-    hit: 34,
-    haste: 26,
+    ilvl: 225,
+    "int": 49,
+    sp: 515,
+    hit: 36,
+    haste: 27,
     phase: 2
   }, {
     id: 45990,
     title: "Fusion Blade",
-    ilvl: 232,
-    "int": 36,
-    sp: 550,
-    crit: 37,
-    hit: 52,
+    ilvl: 245,
+    "int": 41,
+    sp: 624,
+    crit: 42,
+    hit: 59,
     sockets: ["y"],
     bonus: {
       hit: 4
@@ -18628,30 +18628,30 @@ var equip = {
   }, {
     id: 45685,
     title: "Plasma Foil",
-    ilvl: 219,
-    "int": 45,
-    spi: 46,
-    sp: 487,
-    crit: 35,
+    ilvl: 225,
+    "int": 48,
+    spi: 49,
+    sp: 515,
+    crit: 37,
     phase: 2
   }, {
     id: 46025,
     title: "Devotion",
-    ilvl: 219,
-    "int": 81,
-    spi: 106,
-    sp: 487,
-    haste: 87,
+    ilvl: 225,
+    "int": 86,
+    spi: 112,
+    sp: 515,
+    haste: 92,
     twohand: true,
     phase: 2
   }, {
     id: 45886,
     title: "Icecore Staff",
-    ilvl: 232,
-    "int": 112,
-    spi: 84,
-    sp: 550,
-    haste: 93,
+    ilvl: 245,
+    "int": 128,
+    spi: 96,
+    sp: 626,
+    haste: 106,
     sockets: ["b", "r"],
     bonus: {
       sp: 7
@@ -18661,11 +18661,11 @@ var equip = {
   }, {
     id: 45934,
     title: "Unraveling Reach",
-    ilvl: 219,
-    "int": 76,
-    spi: 93,
-    sp: 487,
-    hit: 114,
+    ilvl: 225,
+    "int": 80,
+    spi: 98,
+    sp: 515,
+    hit: 121,
     twohand: true,
     phase: 2
   },
@@ -19105,38 +19105,38 @@ var equip = {
   {
     id: 45617,
     title: "Cosmos",
-    ilvl: 238,
-    "int": 55,
-    sp: 84,
-    crit: 41,
-    hit: 51,
+    ilvl: 245,
+    "int": 58,
+    sp: 89,
+    crit: 43,
+    hit: 54,
     phase: 2
   }, {
     id: 45271,
     title: "Ironmender",
-    ilvl: 226,
-    "int": 47,
-    spi: 45,
-    sp: 74,
-    haste: 36,
+    ilvl: 232,
+    "int": 50,
+    spi: 48,
+    sp: 78,
+    haste: 38,
     phase: 2
   }, {
     id: 45115,
     title: "Leviathan Fueling Manual",
-    ilvl: 226,
-    "int": 46,
-    spi: 42,
-    sp: 75,
-    hit: 41,
+    ilvl: 232,
+    "int": 49,
+    spi: 44,
+    sp: 79,
+    hit: 43,
     phase: 2
   }, {
     id: 45314,
     title: "Igniter Rod",
-    ilvl: 219,
-    "int": 45,
-    spi: 36,
-    sp: 64,
-    crit: 47,
+    ilvl: 225,
+    "int": 48,
+    spi: 38,
+    sp: 68,
+    crit: 50,
     phase: 2
   },
   // naxx
@@ -19401,53 +19401,53 @@ var equip = {
   },
   // ulduar
   {
-    id: 45257,
-    title: "Quartz Crystal Wand",
-    ilvl: 232,
-    "int": 25,
-    spi: 24,
-    sp: 44,
-    hit: 27,
-    phase: 2
-  }, {
-    id: 45170,
-    title: "Scepter of Creation",
-    ilvl: 232,
-    "int": 26,
-    spi: 25,
-    sp: 44,
-    crit: 24,
-    phase: 2
-  }, {
-    id: 45511,
-    title: "Scepter of Lost Souls",
-    ilvl: 232,
-    "int": 26,
-    sp: 44,
-    crit: 18,
-    haste: 29,
-    phase: 2
-  }, {
-    id: 45713,
-    title: "Nurturing Touch",
-    ilvl: 219,
-    "int": 26,
-    spi: 24,
-    sp: 39,
-    crit: 20,
-    phase: 2
-  }, {
     id: 45294,
     title: "Petrified Ivy Sprig",
-    ilvl: 232,
-    "int": 19,
-    spi: 22,
-    sp: 45,
-    hit: 29,
+    ilvl: 245,
+    "int": 22,
+    spi: 25,
+    sp: 51,
+    hit: 33,
     sockets: ["y"],
     bonus: {
       spi: 4
     },
+    phase: 2
+  }, {
+    id: 45257,
+    title: "Quartz Crystal Wand",
+    ilvl: 238,
+    "int": 26,
+    spi: 25,
+    sp: 47,
+    hit: 29,
+    phase: 2
+  }, {
+    id: 45170,
+    title: "Scepter of Creation",
+    ilvl: 238,
+    "int": 27,
+    spi: 26,
+    sp: 47,
+    crit: 25,
+    phase: 2
+  }, {
+    id: 45511,
+    title: "Scepter of Lost Souls",
+    ilvl: 238,
+    "int": 27,
+    sp: 47,
+    crit: 19,
+    haste: 31,
+    phase: 2
+  }, {
+    id: 45713,
+    title: "Nurturing Touch",
+    ilvl: 225,
+    "int": 27,
+    spi: 25,
+    sp: 41,
+    crit: 21,
     phase: 2
   },
   // naxx
@@ -19828,11 +19828,11 @@ var equip = {
     id: 46129,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Hood",
-    ilvl: 226,
-    "int": 87,
-    spi: 66,
-    sp: 113,
-    hit: 69,
+    ilvl: 232,
+    "int": 92,
+    spi: 70,
+    sp: 120,
+    hit: 73,
     sockets: ["m", "r"],
     bonus: {
       sp: 9
@@ -19842,24 +19842,37 @@ var equip = {
     id: 45365,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Hood",
-    ilvl: 219,
-    "int": 81,
-    spi: 61,
-    sp: 105,
-    hit: 64,
+    ilvl: 225,
+    "int": 86,
+    spi: 65,
+    sp: 112,
+    hit: 68,
     sockets: ["m", "r"],
     bonus: {
       sp: 9
     },
     phase: 2
   }, {
+    id: 45497,
+    title: "Crown of Luminescence",
+    ilvl: 252,
+    "int": 105,
+    spi: 80,
+    sp: 149,
+    crit: 79,
+    sockets: ["m", "r"],
+    bonus: {
+      spi: 8
+    },
+    phase: 2
+  }, {
     id: 45150,
     title: "Collar of the Wyrmhunter",
-    ilvl: 226,
-    "int": 87,
-    sp: 114,
-    hit: 51,
-    haste: 68,
+    ilvl: 232,
+    "int": 92,
+    sp: 121,
+    hit: 54,
+    haste: 72,
     sockets: ["m", "b"],
     bonus: {
       sp: 9
@@ -19868,11 +19881,11 @@ var equip = {
   }, {
     id: 45532,
     title: "Cowl of Dark Whispers",
-    ilvl: 226,
-    "int": 66,
-    spi: 80,
-    sp: 115,
-    crit: 59,
+    ilvl: 232,
+    "int": 70,
+    spi: 85,
+    sp: 122,
+    crit: 63,
     sockets: ["m", "b"],
     bonus: {
       sp: 9
@@ -19881,33 +19894,20 @@ var equip = {
   }, {
     id: 45435,
     title: "Cowl of the Absolute",
-    ilvl: 226,
-    "int": 91,
-    spi: 57,
-    sp: 133,
-    hit: 86,
-    phase: 2
-  }, {
-    id: 45497,
-    title: "Crown of Luminescence",
-    ilvl: 239,
-    "int": 92,
-    spi: 70,
-    sp: 131,
-    crit: 69,
-    sockets: ["m", "r"],
-    bonus: {
-      spi: 8
-    },
+    ilvl: 232,
+    "int": 96,
+    spi: 60,
+    sp: 141,
+    hit: 91,
     phase: 2
   }, {
     id: 45464,
     title: "Cowl of Icy Breaths",
-    ilvl: 219,
-    "int": 74,
-    spi: 48,
-    sp: 115,
-    hit: 60,
+    ilvl: 225,
+    "int": 79,
+    spi: 51,
+    sp: 122,
+    hit: 64,
     sockets: ["m", "y"],
     bonus: {
       hit: 8
@@ -19916,11 +19916,11 @@ var equip = {
   }, {
     id: 45289,
     title: "Lifespark Visage",
-    ilvl: 219,
-    "int": 73,
-    spi: 45,
-    sp: 105,
-    haste: 63,
+    ilvl: 225,
+    "int": 78,
+    spi: 48,
+    sp: 112,
+    haste: 67,
     sockets: ["m", "b"],
     bonus: {
       spi: 8
@@ -20591,11 +20591,11 @@ var equip = {
   {
     id: 45133,
     title: "Pendant of Fiery Havoc",
-    ilvl: 239,
-    "int": 51,
-    sp: 75,
-    hit: 46,
-    haste: 41,
+    ilvl: 252,
+    "int": 58,
+    sp: 85,
+    hit: 52,
+    haste: 46,
     sockets: ["y"],
     bonus: {
       sp: 5
@@ -20604,42 +20604,24 @@ var equip = {
   }, {
     id: 45243,
     title: "Sapphire Amulet of Renewal",
-    ilvl: 239,
-    "int": 48,
-    spi: 47,
-    sp: 75,
-    haste: 35,
+    ilvl: 252,
+    "int": 54,
+    spi: 53,
+    sp: 85,
+    haste: 40,
     sockets: ["r"],
     bonus: {
       spi: 4
     },
     phase: 2
   }, {
-    id: 45236,
-    title: "Unblinking Eye",
-    ilvl: 226,
-    "int": 43,
-    spi: 41,
-    sp: 74,
-    crit: 49,
-    phase: 2
-  }, {
-    id: 45116,
-    title: "Freya's Choker of Warding",
-    ilvl: 226,
-    "int": 46,
-    sp: 74,
-    haste: 39,
-    mp5: 23,
-    phase: 2
-  }, {
     id: 45443,
     title: "Charm of Meticulous Timing",
-    ilvl: 239,
-    "int": 51,
-    sp: 75,
-    haste: 40,
-    mp5: 24,
+    ilvl: 252,
+    "int": 58,
+    sp: 85,
+    haste: 45,
+    mp5: 27,
     sockets: ["b"],
     bonus: {
       sp: 5
@@ -20648,59 +20630,77 @@ var equip = {
   }, {
     id: 45933,
     title: "Pendant of the Shallow Grave",
-    ilvl: 226,
-    "int": 43,
-    sp: 74,
-    crit: 41,
-    haste: 31,
+    ilvl: 239,
+    "int": 49,
+    sp: 84,
+    crit: 46,
+    haste: 35,
     sockets: ["y"],
     bonus: {
       crit: 4
     },
     phase: 2
   }, {
-    id: 45699,
-    title: "Pendant of the Piercing Glare",
-    ilvl: 219,
-    "int": 45,
-    sp: 69,
-    hit: 46,
-    haste: 29,
+    id: 45447,
+    title: "Watchful Eye of Fate",
+    ilvl: 239,
+    "int": 41,
+    spi: 42,
+    sp: 84,
+    haste: 45,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
     phase: 2
   }, {
-    id: 46015,
-    title: "Pendant of Endless Despair",
-    ilvl: 219,
-    "int": 40,
-    sp: 70,
-    crit: 29,
-    mp5: 23,
+    id: 45236,
+    title: "Unblinking Eye",
+    ilvl: 232,
+    "int": 45,
+    spi: 43,
+    sp: 78,
+    crit: 52,
+    phase: 2
+  }, {
+    id: 45116,
+    title: "Freya's Choker of Warding",
+    ilvl: 232,
+    "int": 49,
+    sp: 78,
+    haste: 41,
+    mp5: 24,
     phase: 2
   }, {
     id: 46047,
     title: "Pendant of the Somber Witness",
-    ilvl: 226,
-    "int": 46,
-    sp: 66,
-    crit: 36,
-    mp5: 19,
+    ilvl: 232,
+    "int": 49,
+    sp: 70,
+    crit: 38,
+    mp5: 20,
     sockets: ["r"],
     bonus: {
       sp: 5
     },
     phase: 2
   }, {
-    id: 45447,
-    title: "Watchful Eye of Fate",
-    ilvl: 226,
-    "int": 36,
-    spi: 37,
+    id: 45699,
+    title: "Pendant of the Piercing Glare",
+    ilvl: 225,
+    "int": 48,
+    sp: 73,
+    hit: 49,
+    haste: 31,
+    phase: 2
+  }, {
+    id: 46015,
+    title: "Pendant of Endless Despair",
+    ilvl: 225,
+    "int": 42,
     sp: 74,
-    haste: 40,
-    sockets: ["y"],
-    bonus: {
-      crit: 4
-    },
+    crit: 31,
+    mp5: 24,
     phase: 2
   },
   // eoe
@@ -21215,11 +21215,11 @@ var equip = {
     id: 46134,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Shoulderpads",
-    ilvl: 226,
-    "int": 65,
-    spi: 33,
-    sp: 98,
-    haste: 62,
+    ilvl: 232,
+    "int": 69,
+    spi: 35,
+    sp: 104,
+    haste: 66,
     sockets: ["y"],
     bonus: {
       "int": 4
@@ -21229,33 +21229,37 @@ var equip = {
     id: 45369,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Shoulderpads",
-    ilvl: 219,
-    "int": 60,
-    spi: 30,
-    sp: 91,
-    haste: 57,
+    ilvl: 225,
+    "int": 64,
+    spi: 32,
+    sp: 96,
+    haste: 60,
     sockets: ["y"],
     bonus: {
       "int": 4
     },
     phase: 2
   }, {
-    id: 46344,
-    title: "Iceshear Mantle",
-    ilvl: 219,
+    id: 46068,
+    title: "Amice of Inconceivable Horror",
+    ilvl: 239,
     "int": 56,
-    spi: 55,
-    sp: 92,
-    crit: 47,
+    spi: 48,
+    sp: 114,
+    haste: 71,
+    sockets: ["r", "y"],
+    bonus: {
+      spi: 6
+    },
     phase: 2
   }, {
     id: 45514,
     title: "Mantle of the Unknowing",
-    ilvl: 226,
-    "int": 56,
-    spi: 62,
-    sp: 90,
-    crit: 41,
+    ilvl: 232,
+    "int": 59,
+    spi: 66,
+    sp: 95,
+    crit: 43,
     sockets: ["y"],
     bonus: {
       "int": 4
@@ -21264,55 +21268,51 @@ var equip = {
   }, {
     id: 45253,
     title: "Mantle of Wavering Calm",
-    ilvl: 226,
-    "int": 56,
-    spi: 62,
-    sp: 99,
-    haste: 49,
+    ilvl: 232,
+    "int": 59,
+    spi: 66,
+    sp: 105,
+    haste: 52,
     phase: 2
   }, {
     id: 45186,
     title: "Soot-Covered Mantle",
-    ilvl: 226,
-    "int": 65,
-    spi: 49,
-    sp: 90,
-    hit: 52,
+    ilvl: 232,
+    "int": 69,
+    spi: 52,
+    sp: 95,
+    hit: 55,
     sockets: ["b"],
     bonus: {
       sp: 5
     },
     phase: 2
   }, {
-    id: 46068,
-    title: "Amice of Inconceivable Horror",
-    ilvl: 226,
-    "int": 49,
-    spi: 42,
-    sp: 100,
-    haste: 62,
-    sockets: ["r", "y"],
-    bonus: {
-      spi: 6
-    },
+    id: 46344,
+    title: "Iceshear Mantle",
+    ilvl: 225,
+    "int": 59,
+    spi: 58,
+    sp: 97,
+    crit: 50,
     phase: 2
   }, {
     id: 45832,
     title: "Mantle of the Preserver",
-    ilvl: 219,
-    "int": 56,
-    spi: 46,
-    sp: 91,
-    crit: 57,
+    ilvl: 225,
+    "int": 59,
+    spi: 49,
+    sp: 96,
+    crit: 60,
     phase: 2
   }, {
     id: 46013,
     title: "Underworld Mantle",
-    ilvl: 219,
-    "int": 60,
-    spi: 46,
-    sp: 92,
-    haste: 40,
+    ilvl: 225,
+    "int": 64,
+    spi: 49,
+    sp: 98,
+    haste: 42,
     sockets: ["y"],
     bonus: {
       spi: 4
@@ -21904,35 +21904,13 @@ var equip = {
   },
   // ulduar
   {
-    id: 45618,
-    title: "Sunglimmer Cloak",
-    ilvl: 239,
-    "int": 48,
-    spi: 48,
-    sp: 75,
-    haste: 39,
-    sockets: ["b"],
-    bonus: {
-      sp: 5
-    },
-    phase: 2
-  }, {
-    id: 45493,
-    title: "Asimov's Drape",
-    ilvl: 226,
-    "int": 42,
-    spi: 42,
-    sp: 74,
-    crit: 49,
-    phase: 2
-  }, {
     id: 45242,
     title: "Drape of Mortal Downfall",
-    ilvl: 239,
-    "int": 51,
-    sp: 75,
-    crit: 43,
-    hit: 41,
+    ilvl: 252,
+    "int": 58,
+    sp: 85,
+    crit: 49,
+    hit: 46,
     sockets: ["y"],
     bonus: {
       sp: 5
@@ -21941,33 +21919,55 @@ var equip = {
   }, {
     id: 45486,
     title: "Drape of the Sullen Goddess",
-    ilvl: 239,
-    "int": 51,
-    sp: 75,
-    crit: 40,
-    mp5: 24,
+    ilvl: 252,
+    "int": 58,
+    sp: 85,
+    crit: 45,
+    mp5: 27,
     sockets: ["y"],
     bonus: {
       sp: 5
     },
     phase: 2
   }, {
+    id: 45618,
+    title: "Sunglimmer Cloak",
+    ilvl: 245,
+    "int": 51,
+    spi: 51,
+    sp: 80,
+    haste: 41,
+    sockets: ["b"],
+    bonus: {
+      sp: 5
+    },
+    phase: 2
+  }, {
+    id: 45493,
+    title: "Asimov's Drape",
+    ilvl: 232,
+    "int": 44,
+    spi: 44,
+    sp: 78,
+    crit: 52,
+    phase: 2
+  }, {
     id: 45529,
     title: "Shawl of Haunted Memories",
-    ilvl: 226,
-    "int": 46,
-    spi: 49,
-    sp: 74,
-    crit: 36,
+    ilvl: 232,
+    "int": 49,
+    spi: 52,
+    sp: 78,
+    crit: 38,
     phase: 2
   }, {
     id: 46042,
     title: "Drape of the Messenger",
-    ilvl: 226,
-    "int": 36,
-    sp: 74,
-    crit: 49,
-    hit: 31,
+    ilvl: 232,
+    "int": 38,
+    sp: 78,
+    crit: 52,
+    hit: 33,
     sockets: ["y"],
     bonus: {
       sp: 5
@@ -21976,11 +21976,11 @@ var equip = {
   }, {
     id: 45317,
     title: "Shawl of the Caretaker",
-    ilvl: 219,
-    "int": 35,
-    sp: 74,
-    haste: 39,
-    mp5: 15,
+    ilvl: 225,
+    "int": 37,
+    sp: 78,
+    haste: 41,
+    mp5: 16,
     phase: 2
   },
   // os
@@ -22657,11 +22657,11 @@ var equip = {
     id: 46130,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Tunic",
-    ilvl: 226,
-    "int": 81,
-    spi: 50,
-    sp: 132,
-    crit: 82,
+    ilvl: 232,
+    "int": 86,
+    spi: 53,
+    sp: 140,
+    crit: 87,
     sockets: ["b", "y"],
     bonus: {
       crit: 6
@@ -22671,11 +22671,11 @@ var equip = {
     id: 45368,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Tunic",
-    ilvl: 219,
-    "int": 76,
-    spi: 46,
-    sp: 124,
-    crit: 76,
+    ilvl: 225,
+    "int": 81,
+    spi: 49,
+    sp: 132,
+    crit: 81,
     sockets: ["b", "y"],
     bonus: {
       crit: 6
@@ -22684,11 +22684,11 @@ var equip = {
   }, {
     id: 45272,
     title: "Robes of the Umbral Brute",
-    ilvl: 226,
-    "int": 86,
-    sp: 123,
-    crit: 58,
-    haste: 82,
+    ilvl: 232,
+    "int": 91,
+    sp: 130,
+    crit: 61,
+    haste: 87,
     sockets: ["y"],
     bonus: {
       sp: 5
@@ -22697,11 +22697,11 @@ var equip = {
   }, {
     id: 45240,
     title: "Raiments of the Iron Council",
-    ilvl: 226,
-    "int": 81,
-    spi: 57,
-    sp: 115,
-    haste: 70,
+    ilvl: 232,
+    "int": 86,
+    spi: 61,
+    sp: 122,
+    haste: 74,
     sockets: ["b", "r"],
     bonus: {
       haste: 6
@@ -22710,11 +22710,11 @@ var equip = {
   }, {
     id: 45865,
     title: "Raiments of the Corrupted",
-    ilvl: 219,
-    "int": 62,
-    sp: 117,
-    crit: 61,
-    hit: 76,
+    ilvl: 225,
+    "int": 66,
+    sp: 124,
+    crit: 65,
+    hit: 81,
     sockets: ["b"],
     bonus: {
       hit: 4
@@ -22723,11 +22723,11 @@ var equip = {
   }, {
     id: 46012,
     title: "Vestments of the Piercing Light",
-    ilvl: 219,
-    "int": 81,
-    spi: 76,
-    sp: 124,
-    crit: 62,
+    ilvl: 225,
+    "int": 86,
+    spi: 80,
+    sp: 131,
+    crit: 66,
     phase: 2
   },
   // eoe
@@ -23393,53 +23393,53 @@ var equip = {
   },
   // ulduar
   {
-    id: 45275,
-    title: "Bracers of Unleashed Magic",
-    ilvl: 226,
-    "int": 46,
-    sp: 74,
-    hit: 36,
-    haste: 42,
-    phase: 2
-  }, {
     id: 45446,
     title: "Grasps of Reason",
-    ilvl: 239,
-    "int": 52,
-    spi: 48,
-    sp: 75,
-    haste: 39,
+    ilvl: 252,
+    "int": 59,
+    spi: 54,
+    sp: 85,
+    haste: 44,
     sockets: ["r"],
     bonus: {
       spi: 4
     },
     phase: 2
   }, {
+    id: 45275,
+    title: "Bracers of Unleashed Magic",
+    ilvl: 232,
+    "int": 49,
+    sp: 78,
+    hit: 38,
+    haste: 44,
+    phase: 2
+  }, {
     id: 45146,
     title: "Shackles of the Odalisque",
-    ilvl: 226,
-    "int": 42,
-    spi: 49,
-    sp: 74,
-    crit: 42,
+    ilvl: 232,
+    "int": 44,
+    spi: 52,
+    sp: 78,
+    crit: 44,
     phase: 2
   }, {
     id: 45291,
     title: "Combustion Bracers",
-    ilvl: 219,
-    "int": 41,
-    spi: 44,
-    sp: 70,
-    hit: 32,
+    ilvl: 225,
+    "int": 43,
+    spi: 47,
+    sp: 74,
+    hit: 34,
     phase: 2
   }, {
     id: 45423,
     title: "Runetouch Wristwraps",
-    ilvl: 219,
-    "int": 42,
-    spi: 29,
-    sp: 69,
-    crit: 46,
+    ilvl: 225,
+    "int": 44,
+    spi: 31,
+    sp: 73,
+    crit: 49,
     phase: 2
   },
   // os
@@ -24020,11 +24020,11 @@ var equip = {
     id: 46132,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Gauntlets",
-    ilvl: 226,
-    "int": 62,
-    sp: 100,
-    hit: 60,
-    haste: 47,
+    ilvl: 232,
+    "int": 66,
+    sp: 106,
+    hit: 64,
+    haste: 60,
     sockets: ["y"],
     bonus: {
       hit: 4
@@ -24034,42 +24034,24 @@ var equip = {
     id: 46131,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Gauntlets",
-    ilvl: 219,
-    "int": 57,
-    sp: 93,
-    hit: 55,
-    haste: 44,
+    ilvl: 225,
+    "int": 60,
+    sp: 99,
+    hit: 58,
+    haste: 47,
     sockets: ["y"],
     bonus: {
       hit: 4
     },
     phase: 2
   }, {
-    id: 45117,
-    title: "Constructor's Handwraps",
-    ilvl: 226,
-    "int": 62,
-    spi: 53,
-    sp: 99,
-    crit: 58,
-    phase: 2
-  }, {
-    id: 45273,
-    title: "Handwraps of Plentiful Recovery",
-    ilvl: 226,
-    "int": 62,
-    spi: 56,
-    sp: 99,
-    haste: 56,
-    phase: 2
-  }, {
     id: 45520,
     title: "Handwraps of the Vigilant",
-    ilvl: 239,
-    "int": 72,
-    spi: 51,
-    sp: 92,
-    crit: 59,
+    ilvl: 252,
+    "int": 82,
+    spi: 58,
+    sp: 105,
+    crit: 67,
     sockets: ["y", "y"],
     bonus: {
       sp: 7
@@ -24078,46 +24060,64 @@ var equip = {
   }, {
     id: 45665,
     title: "Pharos Gloves",
-    ilvl: 239,
-    "int": 72,
-    sp: 92,
-    crit: 64,
-    haste: 74,
+    ilvl: 245,
+    "int": 77,
+    sp: 98,
+    crit: 68,
+    haste: 79,
     sockets: ["b", "y"],
     bonus: {
       sp: 7
     },
     phase: 2
   }, {
-    id: 45927,
-    title: "Handwraps of Resonance",
-    ilvl: 226,
-    "int": 60,
-    spi: 53,
-    sp: 99,
-    crit: 52,
-    phase: 2
-  }, {
     id: 46045,
     title: "Pulsar Gloves",
-    ilvl: 239,
-    "int": 47,
-    sp: 100,
-    hit: 50,
-    haste: 46,
+    ilvl: 232,
+    "int": 50,
+    sp: 106,
+    hit: 53,
+    haste: 49,
     sockets: ["r", "r"],
     bonus: {
       hit: 6
     },
     phase: 2
   }, {
+    id: 45117,
+    title: "Constructor's Handwraps",
+    ilvl: 232,
+    "int": 66,
+    spi: 56,
+    sp: 105,
+    crit: 61,
+    phase: 2
+  }, {
+    id: 45273,
+    title: "Handwraps of Plentiful Recovery",
+    ilvl: 232,
+    "int": 66,
+    spi: 59,
+    sp: 105,
+    haste: 59,
+    phase: 2
+  }, {
+    id: 45927,
+    title: "Handwraps of Resonance",
+    ilvl: 225,
+    "int": 63,
+    spi: 56,
+    sp: 105,
+    crit: 55,
+    phase: 2
+  }, {
     id: 45976,
     title: "Static Charge Handwraps",
-    ilvl: 219,
-    "int": 56,
-    spi: 39,
-    sp: 92,
-    hit: 60,
+    ilvl: 225,
+    "int": 59,
+    spi: 41,
+    sp: 97,
+    hit: 63,
     phase: 2
   },
   // os
@@ -24763,13 +24763,26 @@ var equip = {
   },
   // ulduar
   {
+    id: 45619,
+    title: "Starwatcher's Binding",
+    ilvl: 245,
+    "int": 73,
+    spi: 68,
+    sp: 98,
+    crit: 50,
+    sockets: ["y", "y"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
     id: 45508,
     title: "Belt of the Darkspeaker",
-    ilvl: 226,
-    "int": 63,
-    spi: 49,
-    sp: 90,
-    hit: 56,
+    ilvl: 232,
+    "int": 67,
+    spi: 52,
+    sp: 95,
+    hit: 59,
     sockets: ["b"],
     bonus: {
       sp: 5
@@ -24778,51 +24791,20 @@ var equip = {
   }, {
     id: 45119,
     title: "Embrace of the Leviathan",
-    ilvl: 226,
-    "int": 64,
-    spi: 62,
-    sp: 99,
-    haste: 49,
-    phase: 2
-  }, {
-    id: 45619,
-    title: "Starwatcher's Binding",
-    ilvl: 239,
-    "int": 69,
-    spi: 64,
-    sp: 92,
-    crit: 47,
-    sockets: ["y", "y"],
-    bonus: {
-      sp: 7
-    },
-    phase: 2
-  }, {
-    id: 45306,
-    title: "Binding of the Dragon Matriarch",
-    ilvl: 219,
-    "int": 46,
-    spi: 58,
-    sp: 91,
-    crit: 57,
-    phase: 2
-  }, {
-    id: 45694,
-    title: "Conductive Cord",
-    ilvl: 219,
-    "int": 54,
-    spi: 60,
-    sp: 93,
-    crit: 41,
+    ilvl: 232,
+    "int": 68,
+    spi: 66,
+    sp: 105,
+    haste: 52,
     phase: 2
   }, {
     id: 45557,
     title: "Sash of Ancient Power",
-    ilvl: 226,
-    "int": 64,
-    sp: 81,
-    hit: 43,
-    haste: 49,
+    ilvl: 232,
+    "int": 68,
+    sp: 86,
+    hit: 46,
+    haste: 52,
     sockets: ["b", "r"],
     bonus: {
       sp: 7
@@ -24831,15 +24813,33 @@ var equip = {
   }, {
     id: 45558,
     title: "Cord of the White Dawn",
-    ilvl: 226,
-    "int": 62,
-    spi: 48,
-    sp: 81,
-    crit: 48,
+    ilvl: 232,
+    "int": 66,
+    spi: 51,
+    sp: 86,
+    crit: 51,
     sockets: ["r", "y"],
     bonus: {
       sp: 7
     },
+    phase: 2
+  }, {
+    id: 45306,
+    title: "Binding of the Dragon Matriarch",
+    ilvl: 225,
+    "int": 49,
+    spi: 61,
+    sp: 96,
+    crit: 60,
+    phase: 2
+  }, {
+    id: 45694,
+    title: "Conductive Cord",
+    ilvl: 225,
+    "int": 57,
+    spi: 63,
+    sp: 98,
+    crit: 43,
     phase: 2
   },
   // eoe
@@ -25364,11 +25364,11 @@ var equip = {
     id: 46133,
     itemset: ids.T8_SET,
     title: "Conqueror's Kirin Tor Leggings",
-    ilvl: 226,
-    "int": 82,
-    sp: 123,
-    crit: 74,
-    hit: 66,
+    ilvl: 232,
+    "int": 87,
+    sp: 131,
+    crit: 79,
+    hit: 70,
     sockets: ["r", "b"],
     bonus: {
       crit: 6
@@ -25378,72 +25378,72 @@ var equip = {
     id: 45367,
     itemset: ids.T8_SET,
     title: "Valorous Kirin Tor Leggings",
-    ilvl: 219,
-    "int": 76,
-    sp: 115,
-    crit: 68,
-    hit: 62,
+    ilvl: 225,
+    "int": 81,
+    sp: 122,
+    crit: 72,
+    hit: 66,
     sockets: ["r", "b"],
     bonus: {
       crit: 6
     },
     phase: 2
   }, {
-    id: 45468,
-    title: "Leggings of Lost Love",
-    ilvl: 226,
-    "int": 81,
-    spi: 86,
-    sp: 115,
-    haste: 41,
-    sockets: ["r", "b"],
-    bonus: {
-      spi: 6
-    },
-    phase: 2
-  }, {
     id: 45488,
     title: "Leggings of the Enslaved Idol",
-    ilvl: 239,
-    "int": 98,
-    sp: 122,
-    crit: 77,
-    hit: 70,
+    ilvl: 252,
+    "int": 112,
+    sp: 140,
+    crit: 88,
+    hit: 80,
     sockets: ["r", "y", "b"],
     bonus: {
       sp: 9
     },
     phase: 2
   }, {
-    id: 45238,
-    title: "Overload Legwraps",
-    ilvl: 226,
-    "int": 86,
-    sp: 132,
-    hit: 81,
-    haste: 66,
-    phase: 2
-  }, {
     id: 46034,
     title: "Leggings of Profound Darkness",
-    ilvl: 226,
-    "int": 82,
-    spi: 66,
-    sp: 132,
-    crit: 60,
+    ilvl: 239,
+    "int": 93,
+    spi: 75,
+    sp: 150,
+    crit: 68,
     sockets: ["r", "y"],
     bonus: {
       sp: 7
     },
     phase: 2
   }, {
+    id: 45468,
+    title: "Leggings of Lost Love",
+    ilvl: 232,
+    "int": 86,
+    spi: 91,
+    sp: 122,
+    haste: 44,
+    sockets: ["r", "b"],
+    bonus: {
+      spi: 6
+    },
+    phase: 2
+  }, {
+    id: 45238,
+    title: "Overload Legwraps",
+    ilvl: 232,
+    "int": 91,
+    sp: 140,
+    hit: 86,
+    haste: 70,
+    phase: 2
+  }, {
     id: 45894,
     title: "Leggings of Unstable Discharge",
-    ilvl: 219,
-    "int": 81,
-    spi: 53,
-    sp: 124,
-    crit: 70,
+    ilvl: 225,
+    "int": 86,
+    spi: 56,
+    sp: 131,
+    crit: 74,
     phase: 2
   },
   // eoe
@@ -26072,24 +26072,37 @@ var equip = {
   {
     id: 45135,
     title: "Boots of Fiery Resolution",
-    ilvl: 239,
-    "int": 72,
-    spi: 64,
-    sp: 102,
-    haste: 55,
+    ilvl: 252,
+    "int": 82,
+    spi: 73,
+    sp: 116,
+    haste: 63,
     sockets: ["r", "y"],
     bonus: {
       haste: 6
     },
     phase: 2
   }, {
+    id: 45537,
+    title: "Treads of the False Oracle",
+    ilvl: 252,
+    "int": 79,
+    sp: 105,
+    crit: 69,
+    haste: 54,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
     id: 45483,
     title: "Boots of the Servant",
-    ilvl: 226,
-    "int": 56,
-    spi: 48,
-    sp: 90,
-    haste: 62,
+    ilvl: 232,
+    "int": 59,
+    spi: 51,
+    sp: 95,
+    haste: 66,
     sockets: ["b"],
     bonus: {
       sp: 5
@@ -26098,42 +26111,29 @@ var equip = {
   }, {
     id: 45258,
     title: "Sandals of Rash Temperament",
-    ilvl: 226,
-    "int": 60,
-    sp: 99,
-    crit: 56,
-    hit: 57,
+    ilvl: 232,
+    "int": 63,
+    sp: 105,
+    crit: 59,
+    hit: 60,
     phase: 2
   }, {
     id: 45441,
     title: "Sandals of the Ancient Keeper",
-    ilvl: 226,
-    "int": 64,
-    spi: 62,
-    sp: 99,
-    crit: 49,
-    phase: 2
-  }, {
-    id: 45537,
-    title: "Treads of the False Oracle",
-    ilvl: 239,
-    "int": 69,
-    sp: 92,
-    crit: 61,
-    haste: 47,
-    sockets: ["r", "b"],
-    bonus: {
-      sp: 7
-    },
+    ilvl: 232,
+    "int": 68,
+    spi: 66,
+    sp: 105,
+    crit: 52,
     phase: 2
   }, {
     id: 46050,
     title: "Starlight Treads",
-    ilvl: 226,
-    "int": 65,
-    spi: 45,
-    sp: 94,
-    crit: 57,
+    ilvl: 232,
+    "int": 69,
+    spi: 48,
+    sp: 100,
+    crit: 61,
     sockets: ["b", "y"],
     bonus: {
       spi: 6
@@ -26142,11 +26142,11 @@ var equip = {
   }, {
     id: 46030,
     title: "Treads of the Dragon Council",
-    ilvl: 219,
-    "int": 57,
-    spi: 42,
-    sp: 93,
-    crit: 59,
+    ilvl: 225,
+    "int": 60,
+    spi: 44,
+    sp: 98,
+    crit: 62,
     phase: 2
   },
   // eoe
@@ -26876,128 +26876,34 @@ var equip = {
   {
     id: 45495,
     title: "Conductive Seal",
-    ilvl: 239,
-    "int": 48,
-    spi: 39,
-    sp: 75,
-    haste: 55,
+    ilvl: 252,
+    "int": 54,
+    spi: 44,
+    sp: 85,
+    haste: 62,
     sockets: ["b"],
     bonus: {
       sp: 5
     },
     phase: 2
   }, {
-    id: 45451,
-    title: "Frozen Loop",
-    ilvl: 226,
-    "int": 46,
-    sp: 74,
-    hit: 46,
-    haste: 36,
-    phase: 2
-  }, {
-    id: 45113,
-    title: "Glowing Ring of Reclamation",
-    ilvl: 226,
-    "int": 49,
-    spi: 44,
-    sp: 74,
-    crit: 39,
-    phase: 2
-  }, {
-    id: 45168,
-    title: "Pyrelight Circle",
-    ilvl: 226,
-    "int": 42,
-    sp: 74,
-    crit: 46,
-    haste: 36,
-    phase: 2
-  }, {
-    id: 45235,
-    title: "Radiant Seal",
-    ilvl: 226,
-    "int": 42,
-    sp: 74,
-    haste: 46,
-    mp5: 18,
-    phase: 2
-  }, {
-    id: 45438,
-    title: "Ring of the Faithful Servant",
-    ilvl: 226,
-    "int": 42,
-    sp: 74,
-    crit: 36,
-    mp5: 23,
-    phase: 2
-  }, {
-    id: 45515,
-    title: "Ring of the Vacant Eye",
-    ilvl: 226,
-    "int": 46,
-    spi: 42,
-    sp: 74,
-    hit: 42,
-    phase: 2
-  }, {
-    id: 45530,
-    title: "Sanity's Bond",
-    ilvl: 226,
-    "int": 42,
-    sp: 74,
-    haste: 31,
-    mp5: 25,
-    phase: 2
-  }, {
-    id: 45702,
-    title: "Emerald Signet Ring",
-    ilvl: 218,
-    "int": 48,
-    spi: 43,
-    sp: 70,
-    hit: 34,
-    phase: 2
-  }, {
-    id: 46046,
-    title: "Nebula Band",
-    ilvl: 226,
-    "int": 36,
-    sp: 74,
-    crit: 46,
-    haste: 36,
-    sockets: ["y"],
-    bonus: {
-      crit: 4
-    },
-    phase: 2
-  }, {
-    id: 45418,
-    title: "Lady Maye's Sapphire Ring",
-    ilvl: 219,
-    "int": 43,
-    spi: 44,
-    sp: 71,
-    haste: 32,
-    phase: 2
-  }, {
     id: 45946,
     title: "Fire Orchid Signet",
-    ilvl: 226,
-    "int": 49,
-    sp: 74,
-    haste: 30,
-    mp5: 19,
+    ilvl: 239,
+    "int": 56,
+    sp: 84,
+    haste: 34,
+    mp5: 22,
     sockets: ["y"],
     phase: 2
   }, {
     id: 45297,
     title: "Shimmering Seal",
-    ilvl: 226,
-    "int": 42,
-    spi: 22,
-    sp: 74,
-    hit: 42,
+    ilvl: 239,
+    "int": 48,
+    spi: 25,
+    sp: 84,
+    hit: 48,
     sockets: ["r"],
     bonus: {
       sp: 5
@@ -27006,15 +26912,109 @@ var equip = {
   }, {
     id: 46096,
     title: "Signet of Soft Lament",
-    ilvl: 226,
-    "int": 46,
-    spi: 36,
-    sp: 74,
-    crit: 32,
+    ilvl: 239,
+    "int": 52,
+    spi: 41,
+    sp: 84,
+    crit: 36,
     sockets: ["b"],
     bonus: {
       spi: 4
     },
+    phase: 2
+  }, {
+    id: 45451,
+    title: "Frozen Loop",
+    ilvl: 232,
+    "int": 49,
+    sp: 78,
+    hit: 49,
+    haste: 38,
+    phase: 2
+  }, {
+    id: 45113,
+    title: "Glowing Ring of Reclamation",
+    ilvl: 232,
+    "int": 52,
+    spi: 47,
+    sp: 78,
+    crit: 41,
+    phase: 2
+  }, {
+    id: 45168,
+    title: "Pyrelight Circle",
+    ilvl: 232,
+    "int": 44,
+    sp: 78,
+    crit: 49,
+    haste: 38,
+    phase: 2
+  }, {
+    id: 45235,
+    title: "Radiant Seal",
+    ilvl: 232,
+    "int": 44,
+    sp: 78,
+    haste: 49,
+    mp5: 19,
+    phase: 2
+  }, {
+    id: 45438,
+    title: "Ring of the Faithful Servant",
+    ilvl: 232,
+    "int": 44,
+    sp: 78,
+    crit: 38,
+    mp5: 24,
+    phase: 2
+  }, {
+    id: 45515,
+    title: "Ring of the Vacant Eye",
+    ilvl: 232,
+    "int": 49,
+    spi: 44,
+    sp: 78,
+    hit: 44,
+    phase: 2
+  }, {
+    id: 45530,
+    title: "Sanity's Bond",
+    ilvl: 232,
+    "int": 44,
+    sp: 78,
+    haste: 33,
+    mp5: 26,
+    phase: 2
+  }, {
+    id: 46046,
+    title: "Nebula Band",
+    ilvl: 232,
+    "int": 38,
+    sp: 78,
+    crit: 49,
+    haste: 38,
+    sockets: ["y"],
+    bonus: {
+      crit: 4
+    },
+    phase: 2
+  }, {
+    id: 45418,
+    title: "Lady Maye's Sapphire Ring",
+    ilvl: 225,
+    "int": 45,
+    spi: 47,
+    sp: 75,
+    haste: 34,
+    phase: 2
+  }, {
+    id: 45702,
+    title: "Emerald Signet Ring",
+    ilvl: 225,
+    "int": 51,
+    spi: 45,
+    sp: 74,
+    hit: 36,
     phase: 2
   }, {
     id: 45691,
@@ -27410,58 +27410,58 @@ var equip = {
   {
     id: ids.TRINKET_FLARE_HEAVENS,
     title: "Flare of the Heavens",
-    ilvl: 239,
-    crit: 120,
+    ilvl: 252,
+    crit: 135,
     phase: 2
   }, {
     id: ids.TRINKET_SHOW_FAITH,
     title: "Show of Faith",
-    ilvl: 239,
-    sp: 140,
+    ilvl: 252,
+    sp: 158,
     phase: 2
   }, {
     id: ids.TRINKET_PANDORAS_PLEA,
     title: "Pandora's Plea",
-    ilvl: 226,
-    "int": 108,
+    ilvl: 232,
+    "int": 114,
     phase: 2
   }, {
     id: ids.TRINKET_LIVING_FLAME,
     title: "Living Flame",
-    ilvl: 226,
-    hit: 107,
+    ilvl: 232,
+    hit: 113,
     use: true,
     phase: 2
   }, {
     id: ids.TRINKET_SCALE_FATES,
     title: "Scale of Fates",
-    ilvl: 226,
-    sp: 125,
+    ilvl: 232,
+    sp: 132,
     use: true,
     phase: 2
   }, {
     id: ids.TRINKET_ELEMENTAL_FOCUS_STONE,
     title: "Elemental Focus Stone",
-    ilvl: 219,
-    hit: 108,
+    ilvl: 225,
+    hit: 114,
     phase: 2
   }, {
     id: ids.TRINKET_EYE_BROODMOTHER,
     title: "Eye of the Broodmother",
-    ilvl: 219,
-    crit: 87,
+    ilvl: 225,
+    crit: 92,
     phase: 2
   }, {
     id: ids.TRINKET_SIFS_REMEMBERANCE,
     title: "Sif's Remembrance",
-    ilvl: 226,
-    sp: 110,
+    ilvl: 239,
+    sp: 124,
     phase: 2
   }, {
     id: ids.TRINKET_SPARK_HOPE,
     title: "Spark of Hope",
-    ilvl: 219,
-    spi: 100,
+    ilvl: 225,
+    spi: 106,
     phase: 2
   },
   // os

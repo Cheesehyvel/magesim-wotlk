@@ -714,7 +714,7 @@ namespace buff
             id = ALACRITY_ELEMENTS;
             name = "Alacrity of the Elements";
             duration = 10;
-            stats.haste_rating = 522;
+            stats.haste_rating = 552;
         }
 
     };
@@ -729,7 +729,7 @@ namespace buff
             name = "Eye of the Broodmother";
             duration = 10;
             max_stacks = 5;
-            stats.spell_power = 25;
+            stats.spell_power = 26;
         }
 
     };
@@ -743,7 +743,7 @@ namespace buff
             id = MEMORIES_LOVE;
             name = "Memories of Love";
             duration = 15;
-            stats.mp5 = 195;
+            stats.mp5 = 220;
         }
 
     };
@@ -757,7 +757,7 @@ namespace buff
             id = SCALE_FATES;
             name = "Scale of Fates";
             duration = 20;
-            stats.haste_rating = 432;
+            stats.haste_rating = 457;
         }
 
     };
@@ -771,7 +771,7 @@ namespace buff
             id = FLARE_HEAVENS;
             name = "Flame of the Heavens";
             duration = 10;
-            stats.spell_power = 850;
+            stats.spell_power = 959;
         }
 
     };
@@ -785,7 +785,7 @@ namespace buff
             id = SHOW_FAITH;
             name = "Show of Faith";
             duration = 15;
-            stats.mp5 = 241;
+            stats.mp5 = 272;
         }
 
     };
@@ -799,7 +799,7 @@ namespace buff
             id = LIVING_FLAME;
             name = "Living Flame";
             duration = 20;
-            stats.spell_power = 505;
+            stats.spell_power = 534;
         }
 
     };
@@ -813,7 +813,7 @@ namespace buff
             id = PANDORAS_PLEA;
             name = "Pandora's Plea";
             duration = 10;
-            stats.spell_power = 751;
+            stats.spell_power = 794;
         }
 
     };

@@ -478,7 +478,7 @@ namespace unit
             double cost = Unit::baseManaCost(spell);
 
             if (hasTrinket(TRINKET_SPARK_HOPE)) {
-                cost-= 42;
+                cost-= 44;
                 if (cost < 0)
                     cost = 0;
             }
