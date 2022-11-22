@@ -256,7 +256,7 @@
                                 <div class="top clearfix">
                                     <div class="fl clearfix">
                                         <div class="form-item">
-                                            <select v-model="phase_filter">
+                                            <select v-model="phase_filter" @change="refreshTooltips">
                                                 <option :value="0">- Filter by content phase -</option>
                                                 <option :value="1">Phase 1 - Naxxramas, Eye of Eternity, Obsidian Sanctum</option>
                                                 <option :value="2">Phase 2 - Ulduar</option>
@@ -266,7 +266,14 @@
                                             </select>
                                         </div>
                                         <div class="form-item">
-                                            <input type="text" v-model="search_item" placeholder="Search...">
+                                            <select v-model="pvp_filter" @change="refreshTooltips">
+                                                <option :value="null">PvE and PvP items</option>
+                                                <option value="pve">Only PvE items</option>
+                                                <option value="pvp">Only PvP items</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-item">
+                                            <input type="text" v-model="search_item" placeholder="Search..." @input="refreshTooltips">
                                         </div>
                                     </div>
                                     <div class="fr">
@@ -1824,6 +1831,7 @@
                 active_tab: "gear",
                 item_source: "wowhead",
                 phase_filter: 0,
+                pvp_filter: null,
                 search_item: "",
                 search_gem: "",
                 search_log: "",
@@ -1970,6 +1978,11 @@
 
                 if (this.phase_filter && this.phase_filter != "0")
                     items = items.filter(item => _.get(item, "phase", 1) <= this.phase_filter);
+
+                if (this.pvp_filter == "pvp")
+                    items = items.filter(item => item.title.indexOf(" Gladiator's ") != -1);
+                if (this.pvp_filter == "pve")
+                    items = items.filter(item => item.title.indexOf(" Gladiator's ") == -1);
 
                 if (this.search_item)
                     items = items.filter(item => item.title.toLowerCase().indexOf(this.search_item.toLowerCase()) != -1);
