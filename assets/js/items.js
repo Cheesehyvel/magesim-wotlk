@@ -807,7 +807,7 @@ var equip = {
         { id: 47956, title: "Gloves of Looming Shadow", ilvl: 245, int: 69, sp: 109, hit: 51, haste: 67, sockets: ["y", "r"], bonus: {haste: 6}, phase: 3 },
         { id: 47745, title: "Gloves of Looming Shadow", ilvl: 232, int: 60, sp: 96, hit: 44, haste: 60, sockets: ["y", "r"], bonus: {haste: 6}, phase: 3 },
         // ulduar
-        { id: 46132, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Gauntlets", ilvl: 232, int: 66, sp: 106, hit: 64, haste: 60, sockets: ["y"], bonus: {hit: 4}, phase: 2 },
+        { id: 46132, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Gauntlets", ilvl: 232, int: 66, sp: 106, hit: 64, haste: 50, sockets: ["y"], bonus: {hit: 4}, phase: 2 },
         { id: 46131, itemset: ids.T8_SET, title: "Valorous Kirin Tor Gauntlets", ilvl: 225, int: 60, sp: 99, hit: 58, haste: 47, sockets: ["y"], bonus: {hit: 4}, phase: 2 },
         { id: 45520, title: "Handwraps of the Vigilant", ilvl: 252, int: 82, spi: 58, sp: 105, crit: 67, sockets: ["y", "y"], bonus: {sp: 7}, phase: 2 },
         { id: 45665, title: "Pharos Gloves", ilvl: 245, int: 77, sp: 98, crit: 68, haste: 79, sockets: ["b", "y"], bonus: {sp: 7}, phase: 2 },
@@ -830,7 +830,7 @@ var equip = {
         // pvp
         { id: 51464, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Handguards", ilvl: 270, int: 64, sp: 140, crit: 77, sockets: ["b"], bonus: { sp: 5 }, phase: 4 },
         { id: 41972, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Handguards", ilvl: 251, int: 54, sp: 116, crit: 63, sockets: ["b"], bonus: { sp: 5 }, phase: 3 },
-        { id: 41971, itemset: ids.GLADIATOR_SET, title: "Furious Gladiator's Silk Handguards", ilvl: 238, int: 48, sp: 105, crit: 41, sockets: ["b"], bonus: { sp: 5 }, phase: 2 },
+        { id: 41971, itemset: ids.GLADIATOR_SET, title: "Furious Gladiator's Silk Handguards", ilvl: 238, int: 48, sp: 102, crit: 41, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 41970, itemset: ids.GLADIATOR_SET, title: "Deadly Gladiator's Silk Handguards", ilvl: 213, int: 37, sp: 78, crit: 32, sockets: ["b"], bonus: { sp: 5 } },
         { id: 41969, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Handguards", ilvl: 200, int: 33, sp: 68, crit: 27, sockets: ["b"], bonus: { sp: 5 } },
         { id: 41968, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Handguards", ilvl: 200, int: 28, sp: 59, crit: 22, sockets: ["b"], bonus: { sp: 5 }, q: "rare" },
@@ -977,7 +977,7 @@ var equip = {
         // pvp
         { id: 51466, itemset: ids.GLADIATOR_SET, title: "Wrathful Gladiator's Silk Trousers", ilvl: 270, int: 87, sp: 182, crit: 98, sockets: ["r", "b"], bonus: { sp: 7 }, phase: 4 },
         { id: 41960, itemset: ids.GLADIATOR_SET, title: "Relentless Gladiator's Silk Trousers", ilvl: 251, int: 73, sp: 149, crit: 80, sockets: ["r", "b"], bonus: { sp: 7 }, phase: 3 },
-        { id: 41959, itemset: ids.GLADIATOR_SET, title: "Furious Gladiator's Silk Trousers", ilvl: 238, int: 64, sp: 131, crit: 68, sockets: ["r", "b"], bonus: { sp: 7 }, phase: 2 },
+        { id: 41959, itemset: ids.GLADIATOR_SET, title: "Furious Gladiator's Silk Trousers", ilvl: 238, int: 64, sp: 131, crit: 68, sockets: ["r", "b"], bonus: {sp: 7}, phase: 2 },
         { id: 41958, itemset: ids.GLADIATOR_SET, title: "Deadly Gladiator's Silk Trousers", ilvl: 213, int: 50, sp: 99, crit: 51, sockets: ["r", "b"], bonus: { sp: 7 } },
         { id: 41957, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Trousers", ilvl: 200, int: 45, sp: 87, crit: 44, sockets: ["r", "b"], bonus: { sp: 7 } },
         { id: 41956, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Trousers", ilvl: 200, int: 39, sp: 73, crit: 36, sockets: ["r", "b"], bonus: { sp: 7 }, q: "rare" },

@@ -24924,7 +24924,7 @@ var equip = {
     "int": 66,
     sp: 106,
     hit: 64,
-    haste: 60,
+    haste: 50,
     sockets: ["y"],
     bonus: {
       hit: 4
@@ -25145,7 +25145,7 @@ var equip = {
     title: "Furious Gladiator's Silk Handguards",
     ilvl: 238,
     "int": 48,
-    sp: 105,
+    sp: 102,
     crit: 41,
     sockets: ["b"],
     bonus: {

@@ -9,7 +9,7 @@ def getItem(item_id, phase = 1):
     if item_id[:4] == "http":
         url = item_id + "&xml"
     else:
-        url = "https://wotlk.evowow.com/?item=" + item_id + "&xml"
+        url = "https://www.wowhead.com/wotlk/?item=" + item_id + "&xml"
 
     response = requests.get(url)
     if response.status_code != 200:
@@ -18,7 +18,7 @@ def getItem(item_id, phase = 1):
 
     xml = response.content.decode()
 
-    p = re.compile("\<error\>(.*)\<\/error\>")
+    p = re.compile("\<error\>(.*?)\<\/error\>")
     m = p.search(xml)
     if m:
         print("Error for "+item_id+" : "+m.group(1))
@@ -49,7 +49,7 @@ def getItem(item_id, phase = 1):
         stats["ilvl"] = int(m.group(1))
 
     # json equip data
-    p = re.compile("\<jsonEquip\>\<\!\[CDATA\[([^\]]+)\]\]")
+    p = re.compile("\<jsonEquip\>\<\!\[CDATA\[(.*?)\]\]\>")
     m = p.search(xml)
     if m:
         equip = json.loads("{"+m.group(1)+"}")
@@ -59,6 +59,8 @@ def getItem(item_id, phase = 1):
             stats["spi"] = equip["spi"]
         if "splpwr" in equip:
             stats["sp"] = equip["splpwr"]
+        if "spldmg" in equip:
+            stats["sp"] = equip["spldmg"]
         if "critstrkrtng" in equip:
             stats["crit"] = equip["critstrkrtng"]
         if "hitrtng" in equip:
@@ -80,6 +82,9 @@ def getItem(item_id, phase = 1):
     # Socket bonus
     p = re.compile("\>Socket Bonus: \<[^\>]+\>([^\<]+)\<")
     m = p.search(xml)
+    if not m:
+        p = re.compile("\>Socket Bonus: ([^\<]+)\<")
+        m = p.search(xml)
     if m:
         p = re.compile("\+([0-9]+) ([A-Za-z0-9\ ]+)")
         m = p.search(m.group(1))
