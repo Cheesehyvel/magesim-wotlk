@@ -1227,7 +1227,6 @@
                                     <div class="export-import clearfix mt-2">
                                         <div class="btn fl" @click="openExport()">Export</div>
                                         <div class="btn fl ml-n" @click="openImport()">Import</div>
-                                        <div class="btn ml-n" @click="openEightyUpgradesImport()">Import from 80up</div>
                                         <div class="btn danger fr" @click="nukeSettings()">Nuke settings</div>
                                     </div>
                                 </div>
@@ -1264,6 +1263,9 @@
                 <div class="closer" @click="closeImport"></div>
                 <div class="inner">
                     <div class="title">Import</div>
+                    <div class="description">
+                        Supported formats: MageSim, EightyUpgrades, WowSims Exporter addon.
+                    </div>
                     <div class="form-item">
                         <textarea v-model="import_profile.string" ref="import_input" @input="checkImportString"></textarea>
                     </div>
@@ -1272,25 +1274,6 @@
                         <label><input type="checkbox" v-model="import_profile.config" :disabled="!import_status.config"> <span>Include config</span></label>
                     </div>
                     <div class="btn mt-2 wide" :class="[import_profile.string ? '' : 'disabled']" @click="doImport">Import</div>
-                </div>
-            </div>
-
-            <div class="lightbox" v-if="import_eighty_upgrades.open">
-                <div class="inner">
-                    <div class="title">Import from EightyUpgrades.com</div>
-                    <div class="form-item">
-                        <textarea v-model="import_eighty_upgrades.string" ref="import_eighty_upgrades_input" @input="checkImportString"></textarea>
-                    </div>
-                    <div class="form-item">
-                        <label><input type="checkbox" v-model="import_eighty_upgrades.items"> <span>Include items</span></label>
-                        <label><input type="checkbox" v-model="import_eighty_upgrades.config"> <span>Include config</span></label>
-                    </div>
-                    <div class="btn mt-2" :class="[import_eighty_upgrades.string ? '' : 'disabled']" @click="doEightyUpgradesImport">Import</div>
-                    <div class="close" @click="closeEightyUpgradesImport">
-                        <span class="material-icons">
-                            &#xe5cd;
-                        </span>
-                    </div>
                 </div>
             </div>
 
@@ -1793,12 +1776,6 @@
                     timeout: null,
                     title: null,
                     text: [],
-                },
-                import_eighty_upgrades: {
-                    open: false,
-                    string: null,
-                    items: true,
-                    config: false,
                 },
                 custom_item: {
                     id: null,
@@ -2772,6 +2749,19 @@
             getEnchant(slot, id) {
                 var eslot = this.equipSlotToItemSlot(slot);
                 return _.find(this.items.enchants[eslot], {id: id}, null);
+            },
+
+            getEnchantFromEnchantmentId(slot, id) {
+                var map = {
+                    3872: 3719,
+                    3873: 3721,
+                };
+
+                if (map.hasOwnProperty(id))
+                    id = map[id];
+
+                var eslot = this.equipSlotToItemSlot(slot);
+                return _.find(this.items.enchants[eslot], {enchantmentId: id}, null);
             },
 
             searchEnchant(slot, title) {
@@ -3945,6 +3935,10 @@
                 }, 10000);
             },
 
+
+            /**
+             * Sim export/import
+             */
             exportString() {
                 var data = {
                     equipped: this.export_profile.items ? _.cloneDeep(this.equipped) : null,
@@ -3957,9 +3951,14 @@
             },
 
             checkImportString() {
-                var json = atob(this.import_profile.string);
-                if (!json)
+                try {
+                    var json = atob(this.import_profile.string);
+                    if (!json)
+                        return;
+                }
+                catch (e) {
                     return;
+                }
 
                 try {
                     var data = JSON.parse(json);
@@ -3976,9 +3975,33 @@
             },
 
             importString(str) {
-                var json = atob(str);
-                if (!json)
+                var import_type = null;
+                try {
+                    var data = JSON.parse(str);
+                    if (data.phase)
+                        import_type = "80up";
+                    else if (data.gear && data.gear.items)
+                        import_type = "wse";
+                }
+                catch (e) {
+                    import_type = "native";
+                }
+
+                if (import_type == "80up")
+                    return this.importEightyUpgradesString(str);
+                else if (import_type == "wse")
+                    return this.importWSEString(str);
+                else if (import_type != "native")
                     return this.importError("Could not parse import string");
+
+                try {
+                    var json = atob(str);
+                    if (!json)
+                        return this.importError("Could not parse import string");
+                }
+                catch (e) {
+                    return this.importError("Could not parse import string");
+                }
 
                 try {
                     var data = JSON.parse(json);
@@ -4054,45 +4077,23 @@
                 this.import_profile.string = null;
             },
 
-            openEightyUpgradesImport() {
-                this.import_eighty_upgrades.string = null;
-                this.import_eighty_upgrades.open = true;
 
-                this.$nextTick(function() {
-                    this.$refs.import_eighty_upgrades_input.focus();
-                });
-            },
-
-            closeEightyUpgradesImport() {
-                this.import_eighty_upgrades.open = false;
-                this.import_eighty_upgrades.string = null;
-            },
-
-            doEightyUpgradesImport() {
-                if (this.import_eighty_upgrades.string && this.importEightyUpgradesString(this.import_eighty_upgrades.string))
-                    this.closeEightyUpgradesImport();
-            },
-
-            importEightyUpgradesError(err) {
-                alert(err);
-                this.import_eighty_upgrades.string = null;
-                this.$refs.import_eighty_upgrades_input.focus();
-                return false;
-            },
-
+            /**
+             * Eighty upgrades import
+             */
             importEightyUpgradesString(str) {
                 try {
                     var data = JSON.parse(str);
                 }
                 catch (e) {
-                    return this.importEightyUpgradesError("Could not parse import string");
+                    return this.importError("Could not parse import string");
                 }
 
                 if (!data)
-                    return this.importEightyUpgradesError("Could not parse import string");
+                    return this.importError("Could not parse import string");
 
                 if (!data.items)
-                    return this.importEightyUpgradesError("Invalid import string");
+                    return this.importError("Invalid import string");
 
                 var profile = {
                     items: null,
@@ -4103,7 +4104,7 @@
 
                 var errors = [];
 
-                if (this.import_eighty_upgrades.items) {
+                if (this.import_profile.items) {
                     profile.equipped = {};
                     profile.enchants = {};
                     profile.gems = {};
@@ -4138,6 +4139,8 @@
                         if (data.items[i].gems) {
                             var nsockets = _.get(item, "sockets.length", 0);
                             for (var j=0; j<data.items[i].gems.length; j++) {
+                                if (!data.items[i].gems[j])
+                                    continue;
                                 var gem = this.getGem(data.items[i].gems[j].id);
                                 if (!gem)
                                     gem = this.searchGem(data.items[i].gems[j].name);
@@ -4163,11 +4166,11 @@
                 }
 
                 // 80up has not implemented this yet
-                if (this.import_eighty_upgrades.config && data.exportOptions.buffs) {
+                if (this.import_profile.config && data.exportOptions.buffs) {
 
                 }
 
-                if (this.import_eighty_upgrades.config && data.exportOptions.talents) {
+                if (this.import_profile.config && data.exportOptions.talents) {
                     var talents = [
                         "000000000000000000000000000000",
                         "0000000000000000000000000000",
@@ -4266,7 +4269,7 @@
 
                     for (var talent of data.talents) {
                         if (!tmap.hasOwnProperty(talent.name))
-                            return this.importEightyUpgradesError("Unknown talent: "+talent.name);
+                            return this.importError("Unknown talent: "+talent.name);
                         var t = tmap[talent.name]
                         talents[t[0]] = talents[t[0]].substr(0, t[1]) + talent.rank + talents[t[0]].substr(t[1]+1);
                     }
@@ -4347,6 +4350,140 @@
                     enchant = this.searchEnchant(slot, data.name);
                 return enchant;
             },
+
+
+            /**
+             * WowSims Exporter
+             */
+            importWSEString(str) {
+                try {
+                    var data = JSON.parse(str);
+                }
+                catch (e) {
+                    return this.importError("Could not parse import string");
+                }
+
+                if (!data)
+                    return this.importError("Could not parse import string");
+
+                if (!data.gear || !data.gear.items)
+                    return this.importError("Invalid import string");
+
+                var profile = {
+                    items: null,
+                    enchants: null,
+                    gems: null,
+                    config: _.cloneDeep(this.config),
+                };
+
+                var errors = [];
+
+                if (this.import_profile.items) {
+                    profile.equipped = {};
+                    profile.enchants = {};
+                    profile.gems = {};
+
+                    for (var key in this.equipped) {
+                        profile.equipped[key] = null;
+                        profile.enchants[key] = null;
+                        profile.gems[key] = [null, null, null];
+                    }
+
+                    var slots = [
+                        "head", "neck", "shoulder", "back", "chest",
+                        "wrist", "hands", "waist", "legs", "feet",
+                        "finger1", "finger2", "trinket1", "trinket2",
+                        "weapon", "off_hand", "ranged",
+                    ];
+
+                    for (var i=0; i<data.gear.items.length; i++) {
+                        if (data.gear.items[i]) {
+                            var slot = slots[i];
+                            var item = this.getItem(slot, data.gear.items[i].id);
+                            if (!item) {
+                                errors.push(data.gear.items[i].id);
+                                continue;
+                            }
+                            profile.equipped[slot] = data.gear.items[i].id;
+
+                            if (data.gear.items[i].enchant) {
+                                var enchant = this.getEnchantFromEnchantmentId(slot, data.gear.items[i].enchant);
+                                if (!enchant)
+                                    errors.push(data.gear.items[i].enchant);
+                                else
+                                    profile.enchants[slot] = enchant.id;
+                            }
+
+                            if (data.gear.items[i].gems) {
+                                var nsockets = _.get(item, "sockets.length", 0);
+                                for (var j=0; j<data.gear.items[i].gems.length; j++) {
+                                    var gem = this.getGem(data.gear.items[i].gems[j]);
+
+                                    if (j >= nsockets) {
+                                        if (j == nsockets && ["waist", "wrist", "hands"].indexOf(slot) != -1)
+                                            profile.config[slot+"_socket"] = true;
+                                        else
+                                            break;
+                                    }
+
+                                    if (!gem) {
+                                        var str = data.gear.items[i].gems[j];
+                                        if (errors.indexOf(str) == -1)
+                                            errors.push(str);
+                                    }
+                                    else {
+                                        profile.gems[slot][j] = gem.id;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (this.import_profile.config && data.talents) {
+                    var tstring = "https://wowhead.com/wotlk/talent-calc/mage/"+data.talents;
+
+                    if (data.glyphs) {
+                        var encoding = "0123456789abcdefghjkmnpqrstvwxyz";
+                        var glyph, str, id;
+                        tstring+= "_0";
+
+                        if (data.glyphs.major) {
+                            for (var i=0, n=0; i<data.glyphs.major.length; i++, n++) {
+                                glyph = _.find(glyphs, {name: data.glyphs.major[i]});
+                                if (!glyph)
+                                    continue;
+                                id = glyph.spellId;
+                                str = encoding[(id >> 15) & 31] + encoding[(id >> 10) & 31] + encoding[(id >> 5) & 31] + encoding[(id >> 0) & 31];
+                                tstring+= n + str;
+                            }
+                        }
+
+                        if (data.glyphs.minor) {
+                            for (var i=0, n=3; i<data.glyphs.minor.length; i++, n++) {
+                                glyph = _.find(glyphs, {name: data.glyphs.minor[i]});
+                                if (!glyph)
+                                    continue;
+                                id = glyph.spellId;
+                                str = encoding[(id >> 15) & 31] + encoding[(id >> 10) & 31] + encoding[(id >> 5) & 31] + encoding[(id >> 0) & 31];
+                                tstring+= n + str;
+                            }
+                        }
+                    }
+
+                    profile.config.build = tstring;
+                }
+
+                if (errors.length) {
+                    errors.unshift("Following item(s) could not be found:");
+                    this.errorNotice("Warning", errors);
+                }
+
+                this.loadProfile(profile);
+
+                return true;
+            },
+
 
             nukeSettings() {
                 if (!window.confirm("This will remove all profiles and configurations from this computer"))
