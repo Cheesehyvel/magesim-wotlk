@@ -31925,6 +31925,10 @@ var DEFAULT_DESIGN = 2;
           }
         }
       }
+      if (this.import_profile.config && data.race) {
+        var race = data.race.toLowerCase().replace(/\s+/, "");
+        if (race == "undead") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_UNDEAD;else if (race == "troll") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_TROLL;else if (race == "bloodelf") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_BLOOD_ELF;else if (race == "draenei") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_DRAENEI;else if (race == "gnome") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_GNOME;else if (race == "human") profile.config.race = _constants__WEBPACK_IMPORTED_MODULE_3__["default"].races.RACE_HUMAN;
+      }
       if (this.import_profile.config && data.talents) {
         var tstring = "https://wowhead.com/wotlk/talent-calc/mage/" + data.talents;
         if (data.glyphs) {
