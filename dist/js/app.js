@@ -29039,7 +29039,7 @@ var enchants = {
     twohand: true
   }, {
     id: 60714,
-    enchantmentId: 3824,
+    enchantmentId: 3834,
     title: "Mighty Spellpower",
     sp: 63
   }, {

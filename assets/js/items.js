@@ -1305,7 +1305,7 @@ var gems = [
 var enchants = {
     weapon: [
         { id: 62948, enchantmentId: 3854, title: "Greater Spellpower", sp: 81, twohand: true },
-        { id: 60714, enchantmentId: 3824, title: "Mighty Spellpower", sp: 63 },
+        { id: 60714, enchantmentId: 3834, title: "Mighty Spellpower", sp: 63 },
         { id: 59619, enchantmentId: 3788, title: "Accuracy", crit: 25, hit: 25 },
         { id: ids.BLACK_MAGIC, enchantmentId: 3790, title: "Black Magic" }, // 35% chance, 35s icd
     ],
