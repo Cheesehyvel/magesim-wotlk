@@ -4458,6 +4458,7 @@
 
                 if (this.import_profile.config && data.talents) {
                     var tstring = "https://wowhead.com/wotlk/talent-calc/mage/"+data.talents;
+                    var rotation = null;
 
                     if (data.glyphs) {
                         var encoding = "0123456789abcdefghjkmnpqrstvwxyz";
@@ -4469,6 +4470,14 @@
                                 glyph = _.find(glyphs, {name: data.glyphs.major[i]});
                                 if (!glyph)
                                     continue;
+                                if (glyph.spellId == 56363)
+                                    rotation = constants.rotations.ROTATION_ST_AB_AM;
+                                else if (glyph.spellId == 56368)
+                                    rotation = constants.rotations.ROTATION_ST_FIRE;
+                                else if (glyph.spellId == 61205)
+                                    rotation = constants.rotations.ROTATION_ST_FROSTFIRE;
+                                else if (glyph.spellId == 56370)
+                                    rotation = constants.rotations.ROTATION_ST_FROST;
                                 id = glyph.spellId;
                                 str = encoding[(id >> 15) & 31] + encoding[(id >> 10) & 31] + encoding[(id >> 5) & 31] + encoding[(id >> 0) & 31];
                                 tstring+= n + str;
@@ -4485,6 +4494,18 @@
                                 tstring+= n + str;
                             }
                         }
+                    }
+
+                    if (rotation && rotation != this.config.rotation) {
+                        var main_rotations = [
+                            constants.rotations.ROTATION_ST_AB_AM,
+                            constants.rotations.ROTATION_ST_FIRE,
+                            constants.rotations.ROTATION_ST_FROSTFIRE,
+                            constants.rotations.ROTATION_ST_FROST,
+                        ];
+
+                        if (main_rotations.indexOf(this.config.rotation) != -1)
+                            profile.config.rotation = rotation;
                     }
 
                     profile.config.build = tstring;
