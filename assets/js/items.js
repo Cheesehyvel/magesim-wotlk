@@ -1031,6 +1031,8 @@ var equip = {
         { id: 45258, title: "Sandals of Rash Temperament", ilvl: 232, int: 63, sp: 105, crit: 59, hit: 60, phase: 2 },
         { id: 45441, title: "Sandals of the Ancient Keeper", ilvl: 232, int: 68, spi: 66, sp: 105, crit: 52, phase: 2 },
         { id: 46050, title: "Starlight Treads", ilvl: 232, int: 69, spi: 48, sp: 100, crit: 61, sockets: ["b", "y"], bonus: {spi: 6}, phase: 2 },
+        { id: 45566, title: "Spellslinger's Slippers", ilvl: 232, int: 68, spi: 44, sp: 86, haste: 60, sockets: ["b", "r"], bonus: {sp: 7}, phase: 2 },
+        { id: 45567, title: "Savior's Slippers", ilvl: 232, int: 64, spi: 61, sp: 86, crit: 43, sockets: ["r", "b"], bonus: {sp: 7}, phase: 2 },
         { id: 46030, title: "Treads of the Dragon Council", ilvl: 225, int: 60, spi: 44, sp: 98, crit: 62, phase: 2 },
         // eoe
         { id: 40558, title: "Arcanic Tramplers", ilvl: 226, int: 52, spi: 62, sp: 99, haste: 46 },
@@ -1060,8 +1062,6 @@ var equip = {
         { id: 49890, title: "Deathfrost Boots", ilvl: 264, int: 92, sp: 122, crit: 80, hit: 64, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
         { id: 49893, title: "Sandals of Consecration", ilvl: 264, int: 92, spi: 80, sp: 122, crit: 64, sockets: ["y", "y"], bonus: {sp: 7}, phase: 4 },
         { id: 50286, title: "Prelate's Snowshoes", ilvl: 232, int: 68, spi: 61, sp: 105, haste: 57, phase: 4 },
-        { id: 45566, title: "Spellslinger's Slippers", ilvl: 226, int: 64, spi: 41, sp: 81, haste: 56, sockets: ["b", "r"], bonus: {sp: 7}, phase: 2 },
-        { id: 45567, title: "Savior's Slippers", ilvl: 226, int: 60, spi: 57, sp: 81, crit: 40, sockets: ["r", "b"], bonus: {sp: 7}, phase: 2 },
         { id: 49805, title: "Ice-Steeped Sandals", ilvl: 219, int: 59, spi: 45, sp: 92, haste: 57, phase: 4 },
         { id: 47560, title: "Boots of the Crackling Flame", ilvl: 219, int: 61, sp: 92, crit: 51, hit: 35, sockets: ["y"], bonus: {hit: 4}, phase: 3 },
         { id: 40750, title: "Xintor's Expeditionary Boots", ilvl: 213, int: 57, spi: 55, sp: 88, hit: 43 },

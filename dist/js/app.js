@@ -27136,6 +27136,32 @@ var equip = {
     },
     phase: 2
   }, {
+    id: 45566,
+    title: "Spellslinger's Slippers",
+    ilvl: 232,
+    "int": 68,
+    spi: 44,
+    sp: 86,
+    haste: 60,
+    sockets: ["b", "r"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
+    id: 45567,
+    title: "Savior's Slippers",
+    ilvl: 232,
+    "int": 64,
+    spi: 61,
+    sp: 86,
+    crit: 43,
+    sockets: ["r", "b"],
+    bonus: {
+      sp: 7
+    },
+    phase: 2
+  }, {
     id: 46030,
     title: "Treads of the Dragon Council",
     ilvl: 225,
@@ -27364,32 +27390,6 @@ var equip = {
     sp: 105,
     haste: 57,
     phase: 4
-  }, {
-    id: 45566,
-    title: "Spellslinger's Slippers",
-    ilvl: 226,
-    "int": 64,
-    spi: 41,
-    sp: 81,
-    haste: 56,
-    sockets: ["b", "r"],
-    bonus: {
-      sp: 7
-    },
-    phase: 2
-  }, {
-    id: 45567,
-    title: "Savior's Slippers",
-    ilvl: 226,
-    "int": 60,
-    spi: 57,
-    sp: 81,
-    crit: 40,
-    sockets: ["r", "b"],
-    bonus: {
-      sp: 7
-    },
-    phase: 2
   }, {
     id: 49805,
     title: "Ice-Steeped Sandals",
