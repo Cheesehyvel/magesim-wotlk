@@ -845,11 +845,9 @@ namespace unit
 
             if (spell->can_proc) {
 
-                if (!spell->channeling) {
-                    list<shared_ptr<action::Action>> tmp = onCastOrTick(state, spell);
-                    for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
-                        actions.push_back(*itr);
-                }
+                list<shared_ptr<action::Action>> tmp = onCastOrTick(state, spell);
+                for (auto itr = tmp.begin(); itr != tmp.end(); itr++)
+                    actions.push_back(*itr);
 
                 // Unconfirmed - on spell cast ?
                 if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
