@@ -142,7 +142,7 @@
 
                 // CDs
                 for (var i=0; i<this.cds.length; i++) {
-                    var r = new RegExp(this.cds[i].title+"( \([0-9]+\))?\.");
+                    var r = new RegExp(this.cds[i].title+"( \\\([0-9]+\\\))?\\\.");
                     logs = _.filter(this.result.log, l => l.type == 5 && l.text.match(r));
                     if (logs.length) {
                         uptime = 0;
@@ -167,7 +167,7 @@
                 // Trinkets
                 var delta = 0;
                 for (var i=0; i<this.trinkets.length; i++) {
-                    var r = new RegExp(this.trinkets[i].title+"( \([0-9]+\))?\.");
+                    var r = new RegExp(this.trinkets[i].title+"( \\\([0-9]+\\\))?\\\.");
                     logs = _.filter(this.result.log, l => l.type == 5 && l.text.match(r));
                     if (logs.length) {
                         uptime = 0;
