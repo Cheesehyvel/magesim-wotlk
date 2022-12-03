@@ -18097,6 +18097,56 @@ var equip = {
   weapon: [
   // icc
   {
+    id: 50732,
+    title: "Bloodsurge, Kel'Thuzad's Blade of Agony",
+    ilvl: 284,
+    "int": 81,
+    sp: 893,
+    crit: 55,
+    haste: 71,
+    sockets: ["r"],
+    bonus: {
+      sp: 5
+    },
+    phase: 4
+  }, {
+    id: 50427,
+    title: "Bloodsurge, Kel'Thuzad's Blade of Agony",
+    ilvl: 271,
+    "int": 71,
+    sp: 792,
+    crit: 63,
+    haste: 63,
+    phase: 4
+  }, {
+    id: 50731,
+    title: "Archus, Greatstaff of Antonidas",
+    ilvl: 284,
+    "int": 188,
+    spi: 141,
+    sp: 893,
+    haste: 141,
+    sockets: ["r", "r", "r"],
+    bonus: {
+      sp: 9
+    },
+    twohand: true,
+    phase: 4
+  }, {
+    id: 50429,
+    title: "Archus, Greatstaff of Antonidas",
+    ilvl: 271,
+    "int": 167,
+    spi: 130,
+    sp: 792,
+    haste: 130,
+    sockets: ["r", "r"],
+    bonus: {
+      sp: 7
+    },
+    twohand: true,
+    phase: 4
+  }, {
     id: 50704,
     title: "Rigormortis",
     ilvl: 277,
