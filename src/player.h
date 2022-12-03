@@ -1060,6 +1060,13 @@ namespace unit
                         action->cooldown = make_shared<cooldown::Lightweave>();
                         actions.push_back(action);
                     }
+
+                    // Unconfirmed - on spell impact
+                    if (config->ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
+                        action = buffAction(make_shared<buff::AshenBand>());
+                        action->cooldown = make_shared<cooldown::AshenBand>();
+                        actions.push_back(action);
+                    }
                 }
 
                 if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {

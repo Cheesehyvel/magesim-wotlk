@@ -74,6 +74,7 @@
                     { title: "Pushing the Limit", color: "#fcd3e1" },
                     { title: "Quad Core", color: "#ddd" },
                     { title: "Arcane Madness", color: "#ddd" },
+                    { title: "Frostforged Sage", color: "#ddd" },
                 ],
                 trinkets: [
                     { title: "Surge of Power", color: "#ddd" },
@@ -141,7 +142,7 @@
 
                 // CDs
                 for (var i=0; i<this.cds.length; i++) {
-                    var r = new RegExp(this.cds[i].title+"( \([0-9]+\))?\.")
+                    var r = new RegExp(this.cds[i].title+"( \([0-9]+\))?\.");
                     logs = _.filter(this.result.log, l => l.type == 5 && l.text.match(r));
                     if (logs.length) {
                         uptime = 0;
@@ -166,7 +167,8 @@
                 // Trinkets
                 var delta = 0;
                 for (var i=0; i<this.trinkets.length; i++) {
-                    logs = _.filter(this.result.log, l => l.text.indexOf(this.trinkets[i].title+".") > 0);
+                    var r = new RegExp(this.trinkets[i].title+"( \([0-9]+\))?\.");
+                    logs = _.filter(this.result.log, l => l.type == 5 && l.text.match(r));
                     if (logs.length) {
                         uptime = 0;
                         event = _.clone(this.trinkets[i]);

@@ -43,6 +43,11 @@ var ids = {
     HYPERSPEED_ACCELERATORS: 54999,
     LIGHTWEAVE_EMBROIDERY: 55642,
     DARKGLOW_EMBROIDERY: 55769,
+    // Other items
+    ASHEN_BAND_UNMATCHED_DESTRUCTION: 50397,
+    ASHEN_BAND_ENDLESS_DESTRUCTION: 50398,
+    ASHEN_BAND_UNMATCHED_WISDOM: 50399,
+    ASHEN_BAND_ENDLESS_WISDOM: 50400,
     // Item sets
     T10_SET: 483,
     T9_SET: 344,
@@ -1087,6 +1092,10 @@ var equip = {
     ],
     finger: [
         // icc
+        { id: ids.ASHEN_BAND_ENDLESS_DESTRUCTION, title: "Ashen Band of Endless Destruction", ilvl: 277, int: 73, sp: 101, hit: 51, haste: 64, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
+        { id: ids.ASHEN_BAND_UNMATCHED_DESTRUCTION, title: "Ashen Band of Unmatched Destruction", ilvl: 268, int: 66, sp: 101, hit: 50, haste: 62, phase: 4 },
+        { id: ids.ASHEN_BAND_ENDLESS_WISDOM, title: "Ashen Band of Endless Wisdom", ilvl: 277, int: 73, sp: 101, haste: 59, mp5: 30, sockets: ["y"], phase: 4 },
+        { id: ids.ASHEN_BAND_UNMATCHED_WISDOM, title: "Ashen Band of Unmatched Wisdom", ilvl: 268, int: 66, sp: 101, haste: 57, mp5: 29, phase: 4 },
         { id: 50714, title: "Valanar's Other Signet Ring", ilvl: 277, int: 78, sp: 110, hit: 44, haste: 78, sockets: ["b"], bonus: {sp: 5}, phase: 4 },
         { id: 50170, title: "Valanar's Other Signet Ring", ilvl: 264, int: 69, sp: 97, hit: 38, haste: 69, sockets: ["b"], bonus: {sp: 5}, phase: 4 },
         { id: 50664, title: "Ring of Rapid Ascent", ilvl: 277, int: 78, sp: 110, crit: 68, haste: 60, sockets: ["b"], bonus: {sp: 5}, phase: 4 },

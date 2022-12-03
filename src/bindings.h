@@ -197,6 +197,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("udc_3set", &Config::udc_3set)
         .property("udc_4set", &Config::udc_4set)
         .property("cudc_3set", &Config::cudc_3set)
+        .property("ashen_band", &Config::ashen_band)
 
         .property("pre_mirror_image", &Config::pre_mirror_image)
         .property("pre_water_elemental", &Config::pre_water_elemental)

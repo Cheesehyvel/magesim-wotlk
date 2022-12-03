@@ -252,7 +252,7 @@
                                 @click="setActiveSlot(slot);"
                             >{{ formatKey(slot) }}</div>
                         </div>
-                        <div class="items">
+                        <div class="items" ref="items">
                             <div class="items-wrapper">
                                 <div class="top clearfix">
                                     <div class="fl clearfix">
@@ -370,7 +370,7 @@
                                             </td>
                                             <td>{{ $get(item, "ilvl", "") }}</td>
                                             <td>{{ $get(item, "phase", 1) }}</td>
-                                            <td>
+                                            <td @click.prevent.stop="scrollToGems">
                                                 <template v-if="item.sockets">
                                                     <div class="socket-color" :class="['color-'+socket]" v-for="socket in item.sockets"></div>
                                                 </template>
@@ -426,7 +426,7 @@
                                     </tbody>
                                 </table>
 
-                                <div class="mt-4"></div>
+                                <div class="mt-4" ref="gemsAnchor"></div>
 
                                 <div class="extra-socket mb-2" v-if="['hands', 'wrist'].indexOf(active_slot) != -1">
                                     <label>
@@ -2309,6 +2309,11 @@
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_NM))
                     buffs.push({id: constants.buffs.NAMELESS_LICH_NM, name: "Phylactery of the Nameless Lich"});
 
+                if (this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_DESTRUCTION) || this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_DESTRUCTION))
+                    buffs.push({id: constants.buffs.ASHEN_BAND, name: "Frostforged Sage (Ashen Band)"});
+                else if (this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_WISDOM) || this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_WISDOM))
+                    buffs.push({id: constants.buffs.ASHEN_BAND, name: "Frostforged Sage (Ashen Band)"});
+
                 buffs = _.sortBy(buffs, "name");
 
                 return buffs;
@@ -3002,6 +3007,16 @@
                 this.config.lightweave_embroidery = this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY;
                 this.config.darkglow_embroidery = this.enchants.back == this.items.ids.DARKGLOW_EMBROIDERY;
                 this.config.hyperspeed_accelerators = this.enchants.hands == this.items.ids.HYPERSPEED_ACCELERATORS;
+
+                if (this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_DESTRUCTION) ||
+                    this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_DESTRUCTION) ||
+                    this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_WISDOM) ||
+                    this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_WISDOM)
+                )
+                    this.config.ashen_band = true;
+                else
+                    this.config.ashen_band = false;
+
             },
 
             simStats() {
@@ -3668,6 +3683,15 @@
                     return true;
 
                 return false;
+            },
+
+            scrollToGems() {
+                if (this.$refs.gemsAnchor && this.$refs.items) {
+                    this.$refs.items.scrollTo({
+                        top: this.$refs.gemsAnchor.offsetTop - this.$refs.items.offsetTop - 30,
+                        behavior: "smooth"
+                    });
+                }
             },
 
             updatePin() {

@@ -54,6 +54,7 @@ struct Config
     bool udc_3set = false;
     bool udc_4set = false;
     bool cudc_3set = false;
+    bool ashen_band = false;
 
     bool pre_mirror_image = false;
     bool pre_water_elemental = false;

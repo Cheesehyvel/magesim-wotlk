@@ -67,6 +67,7 @@ export default {
         INNERVATE: 29166,
         PRAXIS: 64867,
         PUSHING_THE_LIMIT: 70753,
+        ASHEN_BAND: 72416,
         // Trinkets
         FORGE_EMBER: 60479,
         NOW_IS_THE_TIME: 60064,

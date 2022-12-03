@@ -36,6 +36,7 @@ namespace buff
         PRAXIS = 64867,
         QUAD_CORE = 70747,
         PUSHING_THE_LIMIT = 70753,
+        ASHEN_BAND = 72416,
         // Trinkets
         TWILIGHT_SERPENT = 56184,
         INFINITE_POWER = 61428,
@@ -560,6 +561,20 @@ namespace buff
             id = PUSHING_THE_LIMIT;
             name = "Pushing the Limit";
             duration = 5;
+        }
+
+    };
+
+    class AshenBand : public Buff
+    {
+
+    public:
+        AshenBand()
+        {
+            id = ASHEN_BAND;
+            name = "Frostforged Sage";
+            duration = 10;
+            stats.spell_power = 285;
         }
 
     };
