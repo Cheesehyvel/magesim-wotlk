@@ -1067,18 +1067,20 @@ public:
     double critChance(shared_ptr<unit::Unit> unit, shared_ptr<spell::Spell> spell)
     {
         double crit = unit->critChance(spell);
-        double spell_crit = 0;
+        double crit_debuff = 0;
 
         if (config->debuff_spell_crit || state->hasDebuff(debuff::IMPROVED_SCORCH))
-            spell_crit+= 5.0;
+            crit_debuff+= 5.0;
         else if (state->hasDebuff(debuff::WINTERS_CHILL))
-            spell_crit+= state->debuffStacks(debuff::WINTERS_CHILL);
-        if (spell->id == spell::FROSTFIRE_BOLT)
-            spell_crit*= 2;
-        crit+= spell_crit;
+            crit_debuff+= state->debuffStacks(debuff::WINTERS_CHILL);
 
         if (config->debuff_crit)
-            crit+= 3.0;
+            crit_debuff+= 3.0;
+
+        if (spell->id == spell::FROSTFIRE_BOLT)
+            crit_debuff*= 2;
+
+        crit+= crit_debuff;
 
         return crit;
     }
