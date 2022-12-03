@@ -206,6 +206,10 @@ namespace unit
             if (spell->school == SCHOOL_ARCANE && talents.arcane_focus)
                 hit+= talents.arcane_focus*1.0;
 
+            // Precision double dip for ffb
+            if (spell->id == spell::FROSTFIRE_BOLT && talents.precision)
+                hit+= talents.precision;
+
             return hit;
         }
 
