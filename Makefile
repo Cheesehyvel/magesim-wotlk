@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = src/main.cpp
+OBJS = src/buff.cpp src/common.cpp src/main.cpp src/mirror_image.cpp src/player.cpp src/simulation.cpp src/state.cpp src/unit.cpp src/water_elemental.cpp
 
 #CC specifies which compiler we're using
 CC = em++
