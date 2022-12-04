@@ -191,6 +191,10 @@ double Player::hitChance(std::shared_ptr<spell::Spell>spell, double dlevel)
     if (spell->school == SCHOOL_ARCANE && talents.arcane_focus)
         hit += talents.arcane_focus * 1.0;
 
+    // Precision double dip for ffb
+    if (spell->id == spell::FROSTFIRE_BOLT && talents.precision)
+        hit += talents.precision;
+
     return hit;
 }
 
@@ -827,11 +831,8 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
     }
 
     if (spell->can_proc) {
-
-        if (!spell->channeling) {
-            for (auto& i : onCastOrTick(state, spell))
-                actions.push_back(std::move(i));
-        }
+        for (auto& i : onCastOrTick(state, spell))
+            actions.push_back(std::move(i));
 
         // Unconfirmed - on spell cast ?
         if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
@@ -1020,6 +1021,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             // Unconfirmed - does it proc on resist?
             if (config->lightweave_embroidery && !instance.spell->channeling && !hasCooldown(cooldown::LIGHTWEAVE) && random<int>(0, 99) < 35) {
                 actions.push_back(buffCooldownAction<buff::Lightweave, cooldown::Lightweave>());
+            }
+
+            // Unconfirmed - on spell impact
+            if (config->ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
+                actions.push_back(buffCooldownAction<buff::AshenBand, cooldown::AshenBand>());
             }
         }
 

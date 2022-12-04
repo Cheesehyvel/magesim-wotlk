@@ -42,6 +42,7 @@ enum ID : int
     PRAXIS = 64867,
     QUAD_CORE = 70747,
     PUSHING_THE_LIMIT = 70753,
+    ASHEN_BAND = 72416,
     // Trinkets
     TWILIGHT_SERPENT = 56184,
     INFINITE_POWER = 61428,
@@ -343,6 +344,13 @@ class PushingTheLimit : public Buff
 
 public:
     PushingTheLimit();
+};
+
+class AshenBand : public Buff
+{
+
+public:
+    AshenBand();
 };
 
 class TwilightSerpent : public Buff
