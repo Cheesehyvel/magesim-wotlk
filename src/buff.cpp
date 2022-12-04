@@ -274,6 +274,14 @@ PushingTheLimit::PushingTheLimit()
     duration = 5;
 }
 
+AshenBand::AshenBand()
+{
+    id = ASHEN_BAND;
+    name = "Frostforged Sage";
+    duration = 10;
+    stats.spell_power = 285;
+}
+
 TwilightSerpent::TwilightSerpent()
 {
     id = TWILIGHT_SERPENT;
