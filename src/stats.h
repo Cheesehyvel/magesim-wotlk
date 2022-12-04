@@ -1,3 +1,5 @@
+#pragma once
+
 struct Stats
 {
     double intellect = 0;

@@ -1,20 +1,19 @@
+#pragma once
+
 namespace debuff
 {
-
     enum ID : int
     {
         IMPROVED_SCORCH = 22959,
         WINTERS_CHILL = 12579,
     };
 
-
-    class Debuff
+    // Prolonged ownership by Event, State and Unit. TODO: Do Event and Unit really need the same copy (i.e. pointer)?
+    struct Debuff
     {
-
-    public:
         ID id;
-        std::string name;
-        double duration;
+        std::string name = "";
+        double duration = 0;
         int stacks = 1;
         int max_stacks = 1;
         bool hidden = false;
@@ -22,7 +21,7 @@ namespace debuff
         int addStack()
         {
             if (stacks < max_stacks)
-                stacks++;
+                ++stacks;
             else
                 return 0;
 

@@ -1,8 +1,9 @@
-using namespace std;
+#pragma once
+
+#include <string>
 
 namespace spell
 {
-
     enum ID : int
     {
         ARCANE_BARRAGE = 44781,
@@ -51,17 +52,16 @@ namespace spell
 
     enum Result : int
     {
+        NONE,
         HIT,
         CRIT,
         MISS
     };
 
-    class Spell
+    struct Spell
     {
-
-    public:
-        ID id;
-        string name;
+        const ID id;
+        const std::string name;
         double cost = 0;
         double min_dmg = 0;
         double max_dmg = 0;
@@ -85,188 +85,131 @@ namespace spell
         bool can_proc = true;
         int ticks = 0;
         int t_interval = 1;
-        School school;
+        const School school = SCHOOL_NONE;
 
         double actual_cost = 0;
         double actual_cast_time = 0;
         int tick = 0;
         bool done = false;
 
-        double avgDmg()
+        double avgDmg() const
         {
             return (min_dmg + max_dmg)/2.0;
         }
 
-        shared_ptr<Spell> clone() const
-        {
-            return make_shared<Spell>(*this);
-        }
-
+        // TODO: what other fields can be const-init?
+        Spell(ID _id, const std::string& _name, School _school)
+            : id(_id), name(_name), school(_school) {}
     };
 
-    class SpellInstance
+    struct SpellInstance
     {
-
-    public:
-        shared_ptr<Spell> spell;
-        Result result;
+        std::shared_ptr<Spell> spell;
+        Result result = Result::NONE;
         double dmg = 0;
         double resist = 0;
         int tick = 0;
-
-        SpellInstance(shared_ptr<Spell> _spell)
-        {
-            spell = _spell;
-        }
     };
 
-
-    class ArcaneBarrage : public Spell
+    struct ArcaneBarrage : Spell
     {
-
-    public:
-        ArcaneBarrage()
+        ArcaneBarrage() : Spell(ARCANE_BARRAGE, "Arcane Barrage", SCHOOL_ARCANE)
         {
-            id = ARCANE_BARRAGE;
-            name = "Arcane Barrage";
             cost = 18;
             min_dmg = 936;
             max_dmg = 1144;
             cast_time = 0;
             coeff = 2.5/3.5;
-            school = SCHOOL_ARCANE;
             has_travel_time = true;
         }
-
     };
 
-
-    class ArcaneBlast : public Spell
+    struct ArcaneBlast : Spell
     {
-
-    public:
-        ArcaneBlast()
+        ArcaneBlast() : Spell(ARCANE_BLAST, "Arcane Blast", SCHOOL_ARCANE)
         {
-            id = ARCANE_BLAST;
-            name = "Arcane Blast";
             cost = 7;
             min_dmg = 1185;
             max_dmg = 1377;
             cast_time = 2.5;
             coeff = 2.5/3.5;
-            school = SCHOOL_ARCANE;
         }
-
     };
 
-    class ArcaneExplosion : public Spell
+    struct ArcaneExplosion : Spell
     {
-
-    public:
-        ArcaneExplosion()
+        ArcaneExplosion() : Spell(ARCANE_EXPLOSION, "Arcane Explosion", SCHOOL_ARCANE)
         {
-            id = ARCANE_EXPLOSION;
-            name = "Arcane Explosion";
             cost = 22;
             min_dmg = 538;
             max_dmg = 582;
             cast_time = 0;
             coeff = 1.5/3.5/2;
-            school = SCHOOL_ARCANE;
             aoe = true;
         }
-
     };
 
-    class ArcaneMissiles : public Spell
+    struct ArcaneMissiles : Spell
     {
-
-    public:
-        ArcaneMissiles()
+        ArcaneMissiles() : Spell(ARCANE_MISSILES, "Arcane Missiles", SCHOOL_ARCANE)
         {
-            id = ARCANE_MISSILES;
-            name = "Arcane Missiles";
             cost = 31;
             min_dmg = 362;
             max_dmg = 362;
             cast_time = 5;
             coeff = 5.0/3.5;
-            school = SCHOOL_ARCANE;
             channeling = true;
             ticks = 5;
             has_travel_time = true;
             travel_time_factor = 0.5;
         }
-
     };
 
-    class Blizzard : public Spell
+    struct Blizzard : Spell
     {
-
-    public:
-        Blizzard()
+        Blizzard() : Spell(BLIZZARD, "Blizzard", SCHOOL_FROST)
         {
-            id = BLIZZARD;
-            name = "Blizzard";
             cost = 74;
             min_dmg = 426;
             max_dmg = 426;
             cast_time = 8;
             coeff = 4.0/3.5;
-            school = SCHOOL_FROST;
             channeling = true;
             ticks = 8;
             aoe = true;
         }
-
     };
 
-    class Frostbolt : public Spell
+    struct Frostbolt : Spell
     {
-
-    public:
-        Frostbolt()
+        Frostbolt() : Spell(FROSTBOLT, "Frostbolt", SCHOOL_FROST)
         {
-            id = FROSTBOLT;
-            name = "Frostbolt";
             cost = 11;
             min_dmg = 804;
             max_dmg = 866;
             cast_time = 3;
             coeff = 3/3.5;
-            school = SCHOOL_FROST;
             has_travel_time = true;
         }
-
     };
 
-    class Fireball : public Spell
+    struct Fireball : Spell
     {
-
-    public:
-        Fireball()
+        Fireball() : Spell(FIREBALL, "Fireball", SCHOOL_FIRE)
         {
-            id = FIREBALL;
-            name = "Fireball";
             cost = 19;
             min_dmg = 898;
             max_dmg = 1143;
             cast_time = 3.5;
             coeff = 1;
-            school = SCHOOL_FIRE;
             has_travel_time = true;
         }
-
     };
 
-    class FireballDot : public Spell
+    struct FireballDot : Spell
     {
-
-    public:
-        FireballDot()
+        FireballDot() : Spell(FIREBALL_DOT, "Fireball", SCHOOL_FIRE)
         {
-            id = FIREBALL_DOT;
-            name = "Fireball";
             dot = true;
             active_use = false;
             coeff = 0;
@@ -274,39 +217,27 @@ namespace spell
             ticks = 4;
             min_dmg = 29;
             max_dmg = 29;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class FrostfireBolt : public Spell
+    struct FrostfireBolt : Spell
     {
-
-    public:
-        FrostfireBolt()
+        FrostfireBolt() : Spell(FROSTFIRE_BOLT, "Frostfire Bolt", SCHOOL_FROSTFIRE)
         {
-            id = FROSTFIRE_BOLT;
-            name = "Frostfire Bolt";
             cost = 14;
             min_dmg = 722;
             max_dmg = 838;
             cast_time = 3;
             coeff = 3/3.5;
-            school = SCHOOL_FROSTFIRE;
             has_travel_time = true;
             travel_time_factor = 0.85;
         }
-
     };
 
-    class FrostfireBoltDot : public Spell
+    struct FrostfireBoltDot : Spell
     {
-
-    public:
-        FrostfireBoltDot()
+        FrostfireBoltDot() : Spell(FROSTFIRE_BOLT_DOT, "Frostfire Bolt", SCHOOL_FROSTFIRE)
         {
-            id = FROSTFIRE_BOLT_DOT;
-            name = "Frostfire Bolt";
             dot = true;
             active_use = false;
             t_interval = 3;
@@ -314,93 +245,63 @@ namespace spell
             coeff = 0;
             min_dmg = 30;
             max_dmg = 30;
-            school = SCHOOL_FROSTFIRE;
         }
-
     };
 
-    class Scorch : public Spell
+    struct Scorch : Spell
     {
-
-    public:
-        Scorch()
+        Scorch() : Spell(SCORCH, "Scorch", SCHOOL_FIRE)
         {
-            id = SCORCH;
-            name = "Scorch";
             cost = 8;
             min_dmg = 382;
             max_dmg = 451;
             cast_time = 1.5;
             coeff = 1.5/3.5;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class FireBlast : public Spell
+    struct FireBlast : Spell
     {
-
-    public:
-        FireBlast()
+        FireBlast() : Spell(FIRE_BLAST, "Fire Blast", SCHOOL_FIRE)
         {
-            id = FIRE_BLAST;
-            name = "Fire Blast";
             cost = 21;
             min_dmg = 925;
             max_dmg = 1095;
             cast_time = 0;
             coeff = 1.5/3.5;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class IceLance : public Spell
+    struct IceLance : Spell
     {
-
-    public:
-        IceLance()
+        IceLance() : Spell(ICE_LANCE, "Ice Lance", SCHOOL_FROST)
         {
-            id = ICE_LANCE;
-            name = "Ice Lance";
             cost = 6;
             min_dmg = 224;
             max_dmg = 258;
             cast_time = 0;
             coeff = 1.5/3.5/3.0;
             has_travel_time = true;
-            school = SCHOOL_FROST;
         }
-
     };
 
-    class Pyroblast : public Spell
+    struct Pyroblast : Spell
     {
-
-    public:
-        Pyroblast()
+        Pyroblast() : Spell(PYROBLAST, "Pyroblast", SCHOOL_FIRE)
         {
-            id = PYROBLAST;
-            name = "Pyroblast";
             cost = 22;
             min_dmg = 1210;
             max_dmg = 1531;
             cast_time = 5;
             coeff = 1.15;
-            school = SCHOOL_FIRE;
             has_travel_time = true;
         }
-
     };
 
-    class PyroblastDot : public Spell
+    struct PyroblastDot : Spell
     {
-
-    public:
-        PyroblastDot()
+        PyroblastDot() : Spell(PYROBLAST_DOT, "Pyroblast", SCHOOL_FIRE)
         {
-            id = PYROBLAST_DOT;
-            name = "Pyroblast";
             dot = true;
             active_use = false;
             t_interval = 3;
@@ -408,38 +309,26 @@ namespace spell
             min_dmg = 113;
             max_dmg = 113;
             coeff = 0.05;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class Flamestrike : public Spell
+    struct Flamestrike : Spell
     {
-
-    public:
-        Flamestrike()
+        Flamestrike() : Spell(FLAMESTRIKE, "Flamestrike", SCHOOL_FIRE)
         {
-            id = FLAMESTRIKE;
-            name = "Flamestrike";
             aoe = true;
             cost = 30;
             min_dmg = 876;
             max_dmg = 1071;
             cast_time = 2;
             coeff = 0.2357;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class FlamestrikeDot : public Spell
+    struct FlamestrikeDot : Spell
     {
-
-    public:
-        FlamestrikeDot()
+        FlamestrikeDot() : Spell(FLAMESTRIKE_DOT, "Flamestrike", SCHOOL_FIRE)
         {
-            id = FLAMESTRIKE_DOT;
-            name = "Flamestrike";
             aoe = true;
             aoe_capped = false;
             overlap = true;
@@ -450,19 +339,13 @@ namespace spell
             min_dmg = 195;
             max_dmg = 195;
             coeff = 0.122;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class LivingBomb : public Spell
+    struct LivingBomb : Spell
     {
-
-    public:
-        LivingBomb()
+        LivingBomb() : Spell(LIVING_BOMB, "Living Bomb", SCHOOL_FIRE)
         {
-            id = LIVING_BOMB;
-            name = "Living Bomb";
             cost = 22;
             dot = true;
             t_interval = 3;
@@ -470,164 +353,106 @@ namespace spell
             min_dmg = 345;
             max_dmg = 345;
             coeff = 0.2;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class LivingBombExplosion : public Spell
+    struct LivingBombExplosion : Spell
     {
-
-    public:
-        LivingBombExplosion()
+        LivingBombExplosion() : Spell(LIVING_BOMB_EXPLOSION, "Living Bomb", SCHOOL_FIRE)
         {
-            id = LIVING_BOMB_EXPLOSION;
-            name = "Living Bomb";
             aoe = true;
             active_use = false;
             min_dmg = 690;
             max_dmg = 690;
             coeff = 0.4286;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class BlastWave : public Spell
+    struct BlastWave : Spell
     {
-
-    public:
-        BlastWave()
+        BlastWave() : Spell(BLAST_WAVE, "Blast Wave", SCHOOL_FIRE)
         {
-            id = BLAST_WAVE;
-            name = "Blast Wave";
             aoe = true;
             cost = 7;
             min_dmg = 1047;
             max_dmg = 1233;
             cast_time = 0;
             coeff = 0.1936;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class DragonsBreath : public Spell
+    struct DragonsBreath : Spell
     {
-
-    public:
-        DragonsBreath()
+        DragonsBreath() : Spell(DRAGONS_BREATH, "Dragon's Breath", SCHOOL_FIRE)
         {
-            id = DRAGONS_BREATH;
-            name = "Dragon's Breath";
             aoe = true;
             cost = 7;
             min_dmg = 1101;
             max_dmg = 1279;
             cast_time = 0;
             coeff = 0.1936;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class ConeOfCold : public Spell
+    struct ConeOfCold : Spell
     {
-
-    public:
-        ConeOfCold()
+        ConeOfCold() : Spell(CONE_OF_COLD, "Cone of Cold", SCHOOL_FROST)
         {
-            id = CONE_OF_COLD;
-            name = "Cone of Cold";
             aoe = true;
             cost = 25;
             min_dmg = 710;
             max_dmg = 776;
             cast_time = 0;
             coeff = 0.214;
-            school = SCHOOL_FROST;
         }
-
     };
 
-    class DeepFreeze : public Spell
+    struct DeepFreeze : Spell
     {
-
-    public:
-        DeepFreeze()
+        DeepFreeze() : Spell(DEEP_FREEZE, "Deep Freeze", SCHOOL_FROST)
         {
-            id = DEEP_FREEZE;
-            name = "Deep Freeze";
             cost = 9;
             min_dmg = 2369;
             max_dmg = 2641;
             cast_time = 0;
             coeff = 7.5/3.5;
-            school = SCHOOL_FROST;
         }
-
     };
 
-    class ColdSnap : public Spell
+    struct ColdSnap : Spell
     {
-
-    public:
-        ColdSnap()
+        ColdSnap() : Spell(COLD_SNAP, "Cold Snap", SCHOOL_FROST)
         {
-            id = COLD_SNAP;
-            name = "Cold Snap";
             cost = 0;
             is_trigger = true;
             gcd = 0;
-            school = SCHOOL_FROST;
         }
-
     };
 
-    class FireWard : public Spell
+    struct FireWard : Spell
     {
-
-    public:
-        FireWard()
+        FireWard() : Spell(FIRE_WARD, "Fire Ward", SCHOOL_FIRE)
         {
-            id = FIRE_WARD;
-            name = "Fire Ward";
             cost = 16;
             is_trigger = true;
             can_proc = false;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class ManaShield : public Spell
+    struct ManaShield : Spell
     {
-
-    public:
-        ManaShield()
+        ManaShield() : Spell(MANA_SHIELD, "Mana Shield", SCHOOL_ARCANE)
         {
-            id = MANA_SHIELD;
-            name = "Mana Shield";
             cost = 7;
             is_trigger = true;
             can_proc = false;
-            school = SCHOOL_ARCANE;
         }
-
     };
 
-    class Ignite : public Spell
+    struct Ignite : Spell
     {
-
-    public:
-        double dmg2;
-        double dmg3;
-        double dmg4;
-
-        Ignite(double _dmg)
+        Ignite(double _dmg) : Spell(IGNITE, "Ignite", SCHOOL_FIRE)
         {
-            id = IGNITE;
-            name = "Ignite";
             dot = true;
             active_use = false;
             t_interval = 2;
@@ -635,70 +460,45 @@ namespace spell
             coeff = 0;
             min_dmg = max_dmg = _dmg;
             fixed_dmg = true;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-    class ManaGem : public Spell
+    struct ManaGem : Spell
     {
-
-    public:
-        ManaGem()
+        ManaGem() : Spell(MANA_GEM, "Mana Gem", SCHOOL_ARCANE)
         {
-            id = MANA_GEM;
-            name = "Mana Gem";
             is_trigger = true;
             gcd = 0;
-            school = SCHOOL_ARCANE;
         }
-
     };
 
-    class Evocation : public Spell
+    struct Evocation : Spell
     {
-
-    public:
-        Evocation(int _ticks = 4)
+        Evocation(int _ticks = 4) : Spell(EVOCATION, "Evocation", SCHOOL_ARCANE)
         {
-            id = EVOCATION;
-            name = "Evocation";
             is_trigger = true;
-            school = SCHOOL_ARCANE;
             channeling = true;
             ticks = _ticks;
             cast_time = _ticks*2;
         }
-
     };
 
-    class SapperCharge : public Spell
+    struct SapperCharge : Spell
     {
-
-    public:
-        SapperCharge()
+        SapperCharge() : Spell(SAPPER_CHARGE, "Global Thermal Sapper Charge", SCHOOL_FIRE)
         {
-            id = SAPPER_CHARGE;
-            name = "Global Thermal Sapper Charge";
-            school = SCHOOL_FIRE;
             min_dmg = 2188;
             max_dmg = 2812;
             coeff = 0;
             gcd = 0;
             off_gcd = true;
         }
-
     };
 
-    class PendulumTelluricCurrents : public Spell
+    struct PendulumTelluricCurrents : Spell
     {
-
-    public:
-        PendulumTelluricCurrents()
+        PendulumTelluricCurrents() : Spell(PENDULUM_TELLURIC_CURRENTS, "Pendulum of Telluric Currents", SCHOOL_SHADOW)
         {
-            id = PENDULUM_TELLURIC_CURRENTS;
-            name = "Pendulum of Telluric Currents";
-            school = SCHOOL_SHADOW;
             proc = true;
             min_dmg = 1168;
             max_dmg = 1752;
@@ -708,15 +508,10 @@ namespace spell
         }
     };
 
-    class DarkmoonDeath : public Spell
+    struct DarkmoonDeath : Spell
     {
-
-    public:
-        DarkmoonDeath()
+        DarkmoonDeath() : Spell(DARKMOON_DEATH, "Darkmoon Card: Death", SCHOOL_SHADOW)
         {
-            id = DARKMOON_DEATH;
-            name = "Darkmoon Card: Death";
-            school = SCHOOL_SHADOW;
             proc = true;
             min_dmg = 1750;
             max_dmg = 2250;
@@ -727,15 +522,10 @@ namespace spell
         }
     };
 
-    class ExtractNecromanticPower : public Spell
+    struct ExtractNecromanticPower : Spell
     {
-
-    public:
-        ExtractNecromanticPower()
+        ExtractNecromanticPower() : Spell(EXTRACT_NECROMANTIC_POWER, "Extract of Necromatic Power", SCHOOL_SHADOW)
         {
-            id = EXTRACT_NECROMANTIC_POWER;
-            name = "Extract of Necromatic Power";
-            school = SCHOOL_SHADOW;
             proc = true;
             min_dmg = 788;
             max_dmg = 1312;
@@ -746,15 +536,10 @@ namespace spell
         }
     };
 
-    class PillarOfFlameHc : public Spell
+    struct PillarOfFlameHc : Spell
     {
-
-    public:
-        PillarOfFlameHc()
+        PillarOfFlameHc() : Spell(PILLAR_OF_FLAME_HC, "Pillar of Flame", SCHOOL_FIRE)
         {
-            id = PILLAR_OF_FLAME_HC;
-            name = "Pillar of Flame";
-            school = SCHOOL_FIRE;
             proc = true;
             min_dmg = 1959;
             max_dmg = 2275;
@@ -765,15 +550,10 @@ namespace spell
         }
     };
 
-    class PillarOfFlameNm : public Spell
+    struct PillarOfFlameNm : Spell
     {
-
-    public:
-        PillarOfFlameNm()
+        PillarOfFlameNm() : Spell(PILLAR_OF_FLAME_NM, "Pillar of Flame", SCHOOL_FIRE)
         {
-            id = PILLAR_OF_FLAME_NM;
-            name = "Pillar of Flame";
-            school = SCHOOL_FIRE;
             proc = true;
             min_dmg = 1741;
             max_dmg = 2023;
@@ -784,92 +564,59 @@ namespace spell
         }
     };
 
-
-    class MirrorImage : public Spell
+    struct MirrorImage : Spell
     {
-
-    public:
-        MirrorImage()
+        MirrorImage() : Spell(MIRROR_IMAGE, "Mirror Image", SCHOOL_ARCANE)
         {
-            id = MIRROR_IMAGE;
-            name = "Mirror Image";
             cost = 10;
             is_trigger = true;
             can_proc = false;
-            school = SCHOOL_ARCANE;
         }
-
     };
 
-    class MirrorFrostbolt : public Spell
+    struct MirrorFrostbolt : Spell
     {
-
-    public:
-        MirrorFrostbolt()
+        MirrorFrostbolt() : Spell(MIRROR_FROSTBOLT, "Frostbolt", SCHOOL_FROST)
         {
-            id = MIRROR_FROSTBOLT;
-            name = "Frostbolt";
             cost = 0;
             min_dmg = 163;
             max_dmg = 169;
             cast_time = 3;
             coeff = 0.3;
-            school = SCHOOL_FROST;
             has_travel_time = true;
         }
-
     };
 
-    class MirrorFireBlast : public Spell
+    struct MirrorFireBlast : Spell
     {
-
-    public:
-        MirrorFireBlast()
+        MirrorFireBlast() : Spell(MIRROR_FIRE_BLAST, "Fire Blast", SCHOOL_FIRE)
         {
-            id = MIRROR_FIRE_BLAST;
-            name = "Fire Blast";
             cost = 0;
             min_dmg = 88;
             max_dmg = 98;
             cast_time = 0;
             coeff = 0.15;
-            school = SCHOOL_FIRE;
         }
-
     };
 
-
-    class WaterElemental : public Spell
+    struct WaterElemental : Spell
     {
-
-    public:
-        WaterElemental()
+        WaterElemental() : Spell(WATER_ELEMENTAL, "Water Elemental", SCHOOL_FROST)
         {
-            id = WATER_ELEMENTAL;
-            name = "Water Elemental";
             cost = 16;
             is_trigger = true;
-            school = SCHOOL_FROST;
         }
-
     };
 
-    class Waterbolt : public Spell
+    struct Waterbolt : Spell
     {
-
-    public:
-        Waterbolt()
+        Waterbolt() : Spell(WATERBOLT, "Waterbolt", SCHOOL_FROST)
         {
-            id = WATERBOLT;
-            name = "Waterbolt";
             cost = 1;
             min_dmg = 601;
             max_dmg = 673;
             cast_time = 2.5;
             coeff = 2.5/3.0;
-            school = SCHOOL_FROST;
         }
-
     };
-
 }

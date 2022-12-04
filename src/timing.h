@@ -1,10 +1,15 @@
-class Timing
+#pragma once
+
+#include <string>
+
+struct Timing
 {
-public:
-    Timing(){}
-    std::string name;
-    double t;
+    std::string name = "";
+    double t = 0;
     double wait_t = 0;
-    bool used = false;
     int wait_for_buff = 0;
+    bool used = false;
+
+    Timing() {}
+    void Use() { used = true; }
 };

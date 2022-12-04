@@ -1,3 +1,7 @@
+#pragma once
+
+#include <algorithm>
+
 namespace cooldown
 {
 
@@ -57,21 +61,13 @@ namespace cooldown
     };
 
 
-    class Cooldown
+    // Owned by Action and Unit.  Needs to be a pointer because child classes can be bigger.
+    struct Cooldown
     {
-
-    public:
         ID id;
         double duration;
 
-        Cooldown(ID _id = NONE, double _duration = 0)
-        {
-            if (_id)
-                id = _id;
-            if (_duration > 0)
-                duration = _duration;
-        }
-
+        Cooldown(ID _id = NONE, double _duration = 0) : id(_id), duration(std::max(0.0, _duration)) {}
     };
 
     class TrinketShared : public Cooldown

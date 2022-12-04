@@ -1,3 +1,7 @@
+#pragma once
+
+#include <random>
+
 #define MANA_TICK_T 1.0
 #define IGNITE_MUNCH_WINDOW 0.01
 
@@ -119,6 +123,7 @@ enum Conjured : int
 
 enum EventType : int
 {
+    EVENT_NONE,
     EVENT_CAST_START,
     EVENT_CAST_FINISH,
     EVENT_SPELL_IMPACT,
@@ -153,7 +158,7 @@ struct SpellStats
 
 struct SimulationResult
 {
-    int dmg;
+    unsigned long long dmg;
     double t;
     double dps;
     double t_gcd_capped;
@@ -170,23 +175,14 @@ struct SimulationsResult
     std::string all_results;
 };
 
-double critRatingToChance(double rating)
-{
-    return rating / 45.91;
-}
+double critRatingToChance(double rating);
 
-double hitRatingToChance(double rating)
-{
-    return rating / 26.232;
-}
+double hitRatingToChance(double rating);
 
-double hasteRatingToHaste(double rating)
-{
-    return rating / 32.79;
-}
+double hasteRatingToHaste(double rating);
 
 // Global rng generator
-thread_local static std::mt19937 g_rng(std::random_device{}());
+extern thread_local std::mt19937 g_rng;
 
 template<typename Numeric>
 Numeric random(Numeric from, Numeric to)
@@ -203,7 +199,4 @@ Numeric random(Numeric from, Numeric to)
     return dist(g_rng, typename dist_type::param_type{from, to});
 }
 
-void setRNGSeed(int seed)
-{
-    g_rng.seed(seed);
-}
+void setRNGSeed(int seed);

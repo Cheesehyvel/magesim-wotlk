@@ -1,7 +1,22 @@
-using namespace std;
+#pragma once
 
-class State
+#include "common.h"
+#include "config.h"
+#include "spell.h"
+#include "debuff.h"
+
+#include <unordered_map>
+#include <vector>
+
+namespace unit
 {
+class Unit;
+}
+
+struct State
+{
+private:
+    std::shared_ptr<Config> config;
 
 public:
     double t;
@@ -10,111 +25,26 @@ public:
     double ignite_dmg;
     double ignite_t;
 
-    map<spell::ID, SpellStats> spells;
-    map<debuff::ID, shared_ptr<debuff::Debuff>> debuffs;
-    list<shared_ptr<unit::Unit>> units;
+    std::unordered_map<spell::ID, SpellStats> spells;
+    std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
+    std::vector<std::shared_ptr<unit::Unit>> units;
 
-    shared_ptr<Config> config;
+    State(std::shared_ptr<Config> _config);
 
-    State(shared_ptr<Config> _config)
-    {
-        config = _config;
-        reset();
-    }
+    void reset();
 
-    void reset()
-    {
-        t = 0;
-        dmg = 0;
-        duration = config->duration;
-        duration+= -config->duration_variance + random<double>(0, config->duration_variance*2);
+    bool inCombat() const;
 
-        ignite_dmg = 0;
-        ignite_t = -20;
+    double dps() const;
 
-        spells.clear();
-        debuffs.clear();
-        units.clear();
-    }
+    int debuffStacks(debuff::ID id) const;
+    bool hasDebuff(debuff::ID id) const;
+    int addDebuff(std::shared_ptr<debuff::Debuff> debuff);
+    void removeDebuff(debuff::ID id);
 
-    bool inCombat()
-    {
-        return t >= 0;
-    }
+    bool hasUnit(int id) const;
+    void addUnit(std::shared_ptr<unit::Unit> unit);
+    void removeUnit(std::shared_ptr<unit::Unit> unit);
 
-    double dps()
-    {
-        if (t == 0)
-            return 0;
-
-        return dmg / t;
-    }
-
-    int debuffStacks(debuff::ID id)
-    {
-        if (hasDebuff(id))
-            return debuffs[id]->stacks;
-        return 0;
-    }
-
-    bool hasDebuff(debuff::ID id)
-    {
-        return debuffs.find(id) != debuffs.end();
-    }
-
-    int addDebuff(shared_ptr<debuff::Debuff> debuff)
-    {
-        if (hasDebuff(debuff->id))
-            return debuffs[debuff->id]->addStack();
-        else
-            debuffs[debuff->id] = debuff;
-
-        return 1;
-    }
-
-    void removeDebuff(debuff::ID id)
-    {
-        debuffs.erase(id);
-    }
-
-    bool hasUnit(int id)
-    {
-        for (auto itr = units.begin(); itr != units.end(); itr++) {
-            if ((*itr)->id == id)
-                return true;
-        }
-
-        return false;
-    }
-
-    void addUnit(shared_ptr<unit::Unit> unit)
-    {
-        units.push_back(unit);
-    }
-
-    void removeUnit(shared_ptr<unit::Unit> unit)
-    {
-        for (auto itr = units.begin(); itr != units.end(); itr++) {
-            if ((*itr) == unit) {
-                units.erase(itr);
-                break;
-            }
-        }
-    }
-
-    void removeUnit(int id)
-    {
-        for (auto itr = units.begin(); itr != units.end(); itr++) {
-            if ((*itr)->id == id) {
-                units.erase(itr);
-                break;
-            }
-        }
-    }
-
-    double timeRemain()
-    {
-        return duration - t;
-    }
-
+    double timeRemain() const;
 };

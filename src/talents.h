@@ -1,3 +1,5 @@
+#pragma once
+
 struct Talents
 {
     int arcane_focus = 0;

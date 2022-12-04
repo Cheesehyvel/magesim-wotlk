@@ -1,6 +1,11 @@
+#pragma once
+
+#include "common.h"
+#include "timing.h"
+#include "interruption.h"
+
 struct Config
 {
-
     int duration = 200;
     double duration_variance = 1.5;
     int rng_seed = 0;
@@ -61,9 +66,9 @@ struct Config
     bool pre_incanters_absorption = false;
     bool pre_mana_incanters_absorption = false;
 
-    Potion potion;
-    Potion pre_potion;
-    Conjured conjured;
+    Potion potion = POTION_NONE;
+    Potion pre_potion = POTION_NONE;
+    Conjured conjured = CONJURED_NONE;
 
     Trinket trinket1 = TRINKET_NONE;
     Trinket trinket2 = TRINKET_NONE;
@@ -84,7 +89,6 @@ struct Config
     double hot_streak_cqs_time = 100;
     int evo_ticks = 0;
 
-    std::vector<std::shared_ptr<Timing>> timings;
-    std::vector<std::shared_ptr<Interruption>> interruptions;
-
+    std::vector<Timing> timings;
+    std::vector<Interruption> interruptions;
 };
