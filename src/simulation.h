@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <list>
 
 namespace spell
 {
@@ -61,8 +62,7 @@ private:
 
 public:
     bool logging = true;
-    // possibly a good use of std::list, because of frequent insertions in the middle
-    std::vector<Event> queue;
+    std::list<Event> queue;
     std::vector<LogEntry> log;
     std::shared_ptr<unit::Player> player;
     State state;

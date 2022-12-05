@@ -166,13 +166,13 @@ void Simulation::runPrecombat()
 
 void Simulation::workCurrent()
 {
-    for (auto i = queue.begin(); i != queue.end();)
+    while (true)
     {
-        if (i->t != state.t)
+        auto event = queue.front();
+        if (event.t != state.t)
             return;
-
-        tick(*i);
-        i = queue.erase(i);
+        queue.pop_front();
+        tick(event);
     }
 }
 
@@ -180,21 +180,16 @@ void Simulation::work()
 {
     while (true)
     {
-        auto i = queue.begin();
+        auto event = queue.front();
+        queue.pop_front();
 
-        if (i == queue.end())
-            break;
-
-        auto const t = i->t;
-        auto event = std::move(*i);
-        i = queue.erase(i);
-
-        tick(event);
-
-        if (t >= state.duration) {
+        if (event.t >= state.duration)
+        {
             state.t = state.duration;
             break;
         }
+
+        tick(event);
     }
 
     queue.clear();
@@ -206,6 +201,9 @@ void Simulation::tick(Event& event)
 
     switch (event.type)
     {
+        case EVENT_NONE:
+        case EVENT_DOT:
+            break;
         case EVENT_CAST_START:
             cast(event.unit, event.spell);
             break;
@@ -263,12 +261,12 @@ void Simulation::push(Event& event)
 
     for (auto itr = queue.begin(); itr != queue.end(); itr++) {
         if (event.t < itr->t) {
-            queue.insert(itr, std::move(event));
+            queue.insert(itr, event);
             return;
         }
     }
 
-    queue.push_back(std::move(event));
+    queue.push_back(event);
 }
 
 void Simulation::pushCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t)
@@ -308,7 +306,7 @@ void Simulation::pushSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellI
 {
     Event event;
     event.type = EVENT_SPELL_IMPACT;
-    event.instance = std::move(instance);
+    event.instance = instance;
     event.unit = unit;
     event.t = t;
 
@@ -334,7 +332,7 @@ void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell
 
     Event event;
     event.type = EVENT_SPELL_IMPACT;
-    event.instance = std::move(instance);
+    event.instance = instance;
     event.unit = unit;
     event.t = tick * spell->t_interval;
 
@@ -345,7 +343,7 @@ void Simulation::pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInsta
 {
     Event event;
     event.type = EVENT_SPELL_IMPACT;
-    event.instance = std::move(instance);
+    event.instance = instance;
     event.unit = unit;
     event.t = instance.tick * instance.spell->t_interval;
 

@@ -45,7 +45,8 @@ enum School : int
     SCHOOL_FROSTFIRE,
 };
 
-enum MetaGem : int {
+enum MetaGem : int
+{
     META_NONE = 0,
     META_CHAOTIC_SKYFLARE = 41285,
     META_EMBER_SKYFLARE = 41333,
@@ -158,7 +159,7 @@ struct SpellStats
 
 struct SimulationResult
 {
-    unsigned long long dmg;
+    int dmg;
     double t;
     double dps;
     double t_gcd_capped;
@@ -184,15 +185,11 @@ double hasteRatingToHaste(double rating);
 // Global rng generator
 extern thread_local std::mt19937 g_rng;
 
-template<typename Numeric>
+template <typename Numeric>
 Numeric random(Numeric from, Numeric to)
 {
-    using dist_type = typename std::conditional
-    <
-        std::is_integral<Numeric>::value
-        , std::uniform_int_distribution<Numeric>
-        , std::uniform_real_distribution<Numeric>
-    >::type;
+    using dist_type = typename std::conditional<
+        std::is_integral<Numeric>::value, std::uniform_int_distribution<Numeric>, std::uniform_real_distribution<Numeric>>::type;
 
     thread_local static dist_type dist;
 

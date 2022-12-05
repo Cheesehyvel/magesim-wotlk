@@ -1,5 +1,3 @@
-#pragma once
-
 #include "unit.h"
 #include "mirror_image.h"
 #include "state.h"

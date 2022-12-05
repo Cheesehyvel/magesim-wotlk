@@ -1,16 +1,20 @@
-#ifdef __EMSCRIPTEN__
+#include "config.h"
+#include "player.h"
+#include "simulation.h"
+#include "common.h"
 
 #include <emscripten.h>
 #include <emscripten/bind.h>
 
+#include <memory>
 
 void addTiming(std::shared_ptr<Config> config, std::string name, double t, int wait_for_buff = 0, int wait_t = 0)
 {
-    std::shared_ptr<Timing> timing = std::make_shared<Timing>();
-    timing->name = name;
-    timing->t = t;
-    timing->wait_for_buff = wait_for_buff;
-    timing->wait_t = wait_t;
+    Timing timing;
+    timing.name = name;
+    timing.t = t;
+    timing.wait_for_buff = wait_for_buff;
+    timing.wait_t = wait_t;
     config->timings.push_back(timing);
 }
 
@@ -26,7 +30,7 @@ std::shared_ptr<unit::Player> allocPlayer(std::shared_ptr<Config> config)
 
 SimulationResult runSimulation(std::shared_ptr<Config> config, std::shared_ptr<unit::Player> player)
 {
-    std::shared_ptr<Simulation> sim(new Simulation(config, player));
+    auto sim = std::make_shared<Simulation>(config, player);
     sim->logging = true;
 
     return sim->run(true);
@@ -34,12 +38,11 @@ SimulationResult runSimulation(std::shared_ptr<Config> config, std::shared_ptr<u
 
 SimulationsResult runSimulations(std::shared_ptr<Config> config, std::shared_ptr<unit::Player> player, int iterations)
 {
-    std::shared_ptr<Simulation> sim(new Simulation(config, player));
-
-    return sim->runMultiple(iterations);
+    return std::make_shared<Simulation>(config, player)->runMultiple(iterations);
 }
 
-EMSCRIPTEN_BINDINGS(my_module) {
+EMSCRIPTEN_BINDINGS(my_module)
+{
 
     emscripten::register_vector<double>("VectorDouble");
 
@@ -52,8 +55,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("ROTATION_ST_FROST", ROTATION_ST_FROST)
         .value("ROTATION_AOE_AE", ROTATION_AOE_AE)
         .value("ROTATION_AOE_BLIZZ", ROTATION_AOE_BLIZZ)
-        .value("ROTATION_AOE_BLIZZ_FS", ROTATION_AOE_BLIZZ_FS)
-        ;
+        .value("ROTATION_AOE_BLIZZ_FS", ROTATION_AOE_BLIZZ_FS);
 
     emscripten::enum_<Race>("Race")
         .value("RACE_BLOOD_ELF", RACE_BLOOD_ELF)
@@ -109,16 +111,14 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("TRINKET_DISLODGED_OBJECT_HC", TRINKET_DISLODGED_OBJECT_HC)
         .value("TRINKET_DISLODGED_OBJECT_NM", TRINKET_DISLODGED_OBJECT_NM)
         .value("TRINKET_NAMELESS_LICH_HC", TRINKET_NAMELESS_LICH_HC)
-        .value("TRINKET_NAMELESS_LICH_NM", TRINKET_NAMELESS_LICH_NM)
-        ;
+        .value("TRINKET_NAMELESS_LICH_NM", TRINKET_NAMELESS_LICH_NM);
 
     emscripten::enum_<MetaGem>("MetaGem")
         .value("META_NONE", META_NONE)
         .value("META_CHAOTIC_SKYFLARE", META_CHAOTIC_SKYFLARE)
         .value("META_EMBER_SKYFLARE", META_EMBER_SKYFLARE)
         .value("META_BEAMING_EARTHSIEGE", META_BEAMING_EARTHSIEGE)
-        .value("META_INSIGHTFUL_EARTHSIEGE", META_INSIGHTFUL_EARTHSIEGE)
-        ;
+        .value("META_INSIGHTFUL_EARTHSIEGE", META_INSIGHTFUL_EARTHSIEGE);
 
     emscripten::enum_<Potion>("Potion")
         .value("POTION_NONE", POTION_NONE)
@@ -141,8 +141,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .value("LOG_DOT", LOG_DOT)
         .value("LOG_DEBUG", LOG_DEBUG)
         .value("LOG_WAIT", LOG_WAIT)
-        .value("LOG_UNIT", LOG_UNIT)
-        ;
+        .value("LOG_UNIT", LOG_UNIT);
 
     emscripten::class_<Config>("Config")
         .smart_ptr<std::shared_ptr<Config>>("Config")
@@ -224,8 +223,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .property("ignite_munching", &Config::ignite_munching)
         .property("hot_streak_cqs", &Config::hot_streak_cqs)
         .property("hot_streak_cqs_time", &Config::hot_streak_cqs_time)
-        .property("evo_ticks", &Config::evo_ticks)
-        ;
+        .property("evo_ticks", &Config::evo_ticks);
 
     emscripten::function("allocConfig", &allocConfig);
 
@@ -239,8 +237,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("hit", &Stats::hit)
         .field("haste", &Stats::haste)
         .field("haste_rating", &Stats::haste_rating)
-        .field("spell_power", &Stats::spell_power)
-        ;
+        .field("spell_power", &Stats::spell_power);
 
     emscripten::value_object<Talents>("Talents")
         .field("arcane_focus", &Talents::arcane_focus)
@@ -305,8 +302,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("water_elemental", &Talents::water_elemental)
         .field("enduring_winter", &Talents::enduring_winter)
         .field("chilled_to_the_bone", &Talents::chilled_to_the_bone)
-        .field("deep_freeze", &Talents::deep_freeze)
-        ;
+        .field("deep_freeze", &Talents::deep_freeze);
 
     emscripten::value_object<Glyphs>("Glyphs")
         .field("arcane_barrage", &Glyphs::arcane_barrage)
@@ -326,8 +322,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("molten_armor", &Glyphs::molten_armor)
         .field("scorch", &Glyphs::scorch)
         .field("water_elemental", &Glyphs::water_elemental)
-        .field("blast_wave", &Glyphs::blast_wave)
-        ;
+        .field("blast_wave", &Glyphs::blast_wave);
 
     emscripten::class_<unit::Player>("Player")
         .smart_ptr<std::shared_ptr<unit::Player>>("Player")
@@ -337,8 +332,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .function("getTalents", &unit::Player::getTalents)
         .function("setTalents", &unit::Player::setTalents)
         .function("getGlyphs", &unit::Player::getGlyphs)
-        .function("setGlyphs", &unit::Player::setGlyphs)
-        ;
+        .function("setGlyphs", &unit::Player::setGlyphs);
 
     emscripten::function("allocPlayer", &allocPlayer);
 
@@ -348,8 +342,7 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("dps", &SimulationResult::dps)
         .field("t_gcd_capped", &SimulationResult::t_gcd_capped)
         .field("log", &SimulationResult::log)
-        .field("spells", &SimulationResult::spells)
-        ;
+        .field("spells", &SimulationResult::spells);
 
     emscripten::value_object<SimulationsResult>("SimulationsResult")
         .field("min_dps", &SimulationsResult::min_dps)
@@ -358,11 +351,8 @@ EMSCRIPTEN_BINDINGS(my_module) {
         .field("t_gcd_capped", &SimulationsResult::t_gcd_capped)
         .field("iterations", &SimulationsResult::iterations)
         .field("histogram", &SimulationsResult::histogram)
-        .field("all_results", &SimulationsResult::all_results)
-        ;
+        .field("all_results", &SimulationsResult::all_results);
 
     emscripten::function("runSimulation", &runSimulation);
     emscripten::function("runSimulations", &runSimulations);
 }
-
-#endif

@@ -15,26 +15,28 @@
 #include <iostream>
 #include <thread>
 
-#ifndef __EMSCRIPTEN__
+#ifdef __EMSCRIPTEN__
+#include "bindings.h"
+#else
 
 namespace
 {
-std::vector<SimulationsResult> results;
+    std::vector<SimulationsResult> results;
 
-void Work(int runs, int duration, int thread_id)
-{
-    auto config = std::make_shared<Config>();
-    if (duration > 0)
-        config->duration = duration;
-    auto player = std::make_shared<unit::Player>(config);
+    void Work(int runs, int duration, int thread_id)
+    {
+        auto config = std::make_shared<Config>();
+        if (duration > 0)
+            config->duration = duration;
+        auto player = std::make_shared<unit::Player>(config);
 
-    auto start = std::chrono::high_resolution_clock::now();
+        auto start = std::chrono::high_resolution_clock::now();
 
-    Simulation sim(config, player);
+        Simulation sim(config, player);
 
-    sim.logging = false;
-    results[thread_id] = sim.runMultiple(runs);
-}
+        sim.logging = false;
+        results[thread_id] = sim.runMultiple(runs);
+    }
 }
 
 int main(int argc, char **argv)
@@ -89,7 +91,7 @@ int main(int argc, char **argv)
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
             bool finished = true;
-            for (auto const& r : results)
+            for (auto const &r : results)
                 if (r.iterations == 0)
                 {
                     finished = false;
@@ -100,13 +102,13 @@ int main(int argc, char **argv)
                 break;
         } while (true);
 
-        for (auto& t : threads)
+        for (auto &t : threads)
             t.join();
     }
 
     double avg_dps = 0, min_dps = 0, max_dps = 0;
 
-    for (auto const& r : results)
+    for (auto const &r : results)
     {
         avg_dps += r.avg_dps;
         min_dps += r.min_dps;
@@ -117,7 +119,8 @@ int main(int argc, char **argv)
     auto exec_time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
     std::cout << "Threads: " << thread_count << "\nSims: " << runs << "\nDPS: " << avg_dps << " ("
-        << min_dps << " - " << max_dps << ")" << "\nExec time: " << exec_time.count() << std::endl;
+              << min_dps << " - " << max_dps << ")"
+              << "\nExec time: " << exec_time.count() << std::endl;
 
     return 0;
 }
