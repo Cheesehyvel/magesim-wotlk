@@ -41,10 +41,10 @@ SimulationsResult Simulation::runMultiple(int iterations)
     constexpr double bin_size = 50;
 
     std::unordered_map<int, int> histogram;
-    std::ostringstream results;
+    std::string results{ "" };
 
     if (config->additional_data)
-        results << "DPS,Duration\n";
+        results += "DPS,Duration\n";
 
     for (int i = 0; i < iterations; i++) {
         if (config->rng_seed)
@@ -67,24 +67,23 @@ SimulationsResult Simulation::runMultiple(int iterations)
             histogram[bin] = 1;
 
         if (config->additional_data)
-            results << r.dps << "," << r.t << "\n";
+            results += std::to_string(r.dps) + "," + std::to_string(r.t) + "\n";
     }
 
     result.iterations = iterations;
 
     if (config->additional_data)
-        result.all_results = results.str();
+        result.all_results = std::move(results);
 
     // Histogram json string
-    std::ostringstream ss;
-    ss << "{";
+    std::string ss{ "{" };
     for (auto itr = histogram.begin(); itr != histogram.end(); itr++) {
         if (itr != histogram.begin())
-            ss << ",";
-        ss << "\"" << itr->first << "\":" << itr->second;
+            ss += ",";
+        ss += "\"" + std::to_string(itr->first) + "\":" + std::to_string(itr->second);
     }
-    ss << "}";
-    result.histogram = ss.str();
+    ss += "}";
+    result.histogram = std::move(ss);
 
     return result;
 }
@@ -468,12 +467,8 @@ void Simulation::pushWait(std::shared_ptr<unit::Unit> unit, double t, const std:
 
     push(event);
 
-    if (str.length()) {
-        std::ostringstream s;
-        s << std::fixed << std::setprecision(2);
-        s << str << ", " << unit->name << " waiting " << t << " seconds...";
-        addLog(unit, LOG_WAIT, s.str());
-    }
+    if (!str.empty())
+        addLog(unit, LOG_WAIT, str + ", " + unit->name + " waiting " + std::to_string(t) + " seconds...");
 }
 
 void Simulation::onAction(std::shared_ptr<unit::Unit> unit, action::Action &action)
@@ -1183,11 +1178,7 @@ void Simulation::logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     if (!logging || !spell->active_use || !spell->cast_time)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " started casting " << spell->name << ".";
-
-    addLog(unit, LOG_CAST_START, s.str());
+    addLog(unit, LOG_CAST_START, unit->name + " started casting " + spell->name + ".");
 }
 
 void Simulation::logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
@@ -1195,11 +1186,7 @@ void Simulation::logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_pt
     if (!logging || !spell->active_use)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " successfully cast " << spell->name << ".";
-
-    addLog(unit, LOG_CAST_SUCCESS, s.str());
+    addLog(unit, LOG_CAST_SUCCESS, unit->name + " successfully cast " + spell->name + ".");
 }
 
 void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance)
@@ -1207,24 +1194,23 @@ void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::S
     if (!logging)
         return;
 
-    std::ostringstream s;
+    std::string s = unit->name + "'s " + instance.spell->name;
 
-    s << unit->name << "'s " << instance.spell->name;
     if (instance.spell->dot)
-        s << " (dot)";
+        s += " (dot)";
     if (instance.result == spell::MISS)
-        s << " was resisted";
+        s += " was resisted";
     else if (instance.result == spell::CRIT)
-        s << " crit for " << instance.dmg;
+        s += " crit for " + std::to_string(instance.dmg);
     else
-        s << " hit for " << instance.dmg;
+        s += " hit for " + std::to_string(instance.dmg);
 
     if (instance.resist)
-        s << " (" << instance.resist << " resisted)";
+        s += " (" + std::to_string(instance.resist) + " resisted)";
 
-    s << ".";
+    s += ".";
 
-    addLog(unit, LOG_SPELL_IMPACT, s.str());
+    addLog(unit, LOG_SPELL_IMPACT, s);
 }
 
 void Simulation::logBuffGain(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff, int stacks)
@@ -1232,14 +1218,12 @@ void Simulation::logBuffGain(std::shared_ptr<unit::Unit> unit, const buff::Buff&
     if (!logging || buff.hidden)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " gained " << buff.name;
+    std::string s = unit->name + " gained " + buff.name;
     if (buff.max_stacks > 1)
-        s << " (" << stacks << ")";
-    s << ".";
+        s += " (" + std::to_string(stacks) + ")";
+    s += ".";
 
-    addLog(unit, LOG_BUFF, s.str());
+    addLog(unit, LOG_BUFF, s);
 }
 
 void Simulation::logBuffExpire(std::shared_ptr<unit::Unit> unit, const buff::Buff &buff)
@@ -1247,11 +1231,7 @@ void Simulation::logBuffExpire(std::shared_ptr<unit::Unit> unit, const buff::Buf
     if (!logging || buff.hidden)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " lost " << buff.name << ".";
-
-    addLog(unit, LOG_BUFF, s.str());
+    addLog(unit, LOG_BUFF, unit->name + " lost " + buff.name + ".");
 }
 
 void Simulation::logDebuffGain(const debuff::Debuff& debuff, int stacks)
@@ -1259,14 +1239,12 @@ void Simulation::logDebuffGain(const debuff::Debuff& debuff, int stacks)
     if (!logging || debuff.hidden)
         return;
 
-    std::ostringstream s;
-
-    s << "Target gained " << debuff.name;
+    std::string s = "Target gained " + debuff.name;
     if (debuff.max_stacks > 1)
-        s << " (" << stacks << ")";
-    s << ".";
+        s += " (" + std::to_string(stacks) + ")";
+    s += ".";
 
-    addLog(player, LOG_BUFF, s.str());
+    addLog(player, LOG_BUFF, s);
 }
 
 void Simulation::logDebuffExpire(const debuff::Debuff& debuff)
@@ -1274,11 +1252,7 @@ void Simulation::logDebuffExpire(const debuff::Debuff& debuff)
     if (!logging || debuff.hidden)
         return;
 
-    std::ostringstream s;
-
-    s << "Target lost " << debuff.name << ".";
-
-    addLog(player, LOG_BUFF, s.str());
+    addLog(player, LOG_BUFF, "Target lost " + debuff.name + ".");
 }
 
 void Simulation::logManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source)
@@ -1286,15 +1260,16 @@ void Simulation::logManaGain(std::shared_ptr<unit::Unit> unit, double mana, cons
     if (!logging)
         return;
 
-    std::ostringstream s;
+    std::string s = unit->name;
 
-    s << std::fixed << std::setprecision(0);
     if (mana < 0)
-        s << unit->name << " lost " << (0 - mana) << " mana from " << source << ".";
+        s += " lost " + std::to_string(0 - mana);
     else
-        s << unit->name << " gained " << mana << " mana from " << source << ".";
+        s += " gained " + std::to_string(mana);
 
-    addLog(unit, LOG_MANA, s.str());
+    s += " mana from " + source + ".";
+
+    addLog(unit, LOG_MANA, s);
 }
 
 void Simulation::logUnitSpawn(std::shared_ptr<unit::Unit> unit)
@@ -1302,11 +1277,7 @@ void Simulation::logUnitSpawn(std::shared_ptr<unit::Unit> unit)
     if (!logging)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " spawned.";
-
-    addLog(unit, LOG_UNIT, s.str());
+    addLog(unit, LOG_UNIT, unit->name + " spawned");
 }
 
 void Simulation::logUnitDespawn(std::shared_ptr<unit::Unit> unit)
@@ -1314,11 +1285,7 @@ void Simulation::logUnitDespawn(std::shared_ptr<unit::Unit> unit)
     if (!logging)
         return;
 
-    std::ostringstream s;
-
-    s << unit->name << " despawned.";
-
-    addLog(unit, LOG_UNIT, s.str());
+    addLog(unit, LOG_UNIT, unit->name + " despawned");
 }
 
 std::string Simulation::jsonLog() const
@@ -1392,29 +1359,27 @@ void Simulation::initSpellStats(std::shared_ptr<unit::Unit> unit, std::shared_pt
 
 std::string Simulation::spellStats()
 {
-    std::ostringstream s;
-
-    s << "[";
+    std::string s{ "[" };
 
     for (auto itr = state.spells.begin(); itr != state.spells.end(); itr++) {
         if (itr != state.spells.begin())
-            s << ",";
-        s << "{";
-        s << "\"id\":" << itr->first << ",";
-        s << "\"name\":\"" << itr->second.name << "\",";
-        s << "\"source\":\"" << itr->second.source << "\",";
-        s << "\"casts\":" << itr->second.casts << ",";
-        s << "\"misses\":" << itr->second.misses << ",";
-        s << "\"hits\":" << itr->second.hits << ",";
-        s << "\"crits\":" << itr->second.crits << ",";
-        s << "\"min_dmg\":" << itr->second.min_dmg << ",";
-        s << "\"max_dmg\":" << itr->second.max_dmg << ",";
-        s << "\"dmg\":" << itr->second.dmg;
-        s << "}";
+            s += ",";
+        s += "{";
+        s += "\"id\":" + std::to_string(itr->first) + ",";
+        s += "\"name\":\"" + itr->second.name + "\",";
+        s += "\"source\":\"" + itr->second.source + "\",";
+        s += "\"casts\":" + std::to_string(itr->second.casts) + ",";
+        s += "\"misses\":" + std::to_string(itr->second.misses) + ",";
+        s += "\"hits\":" + std::to_string(itr->second.hits) + ",";
+        s += "\"crits\":" + std::to_string(itr->second.crits) + ",";
+        s += "\"min_dmg\":" + std::to_string(itr->second.min_dmg) + ",";
+        s += "\"max_dmg\":" + std::to_string(itr->second.max_dmg) + ",";
+        s += "\"dmg\":" + std::to_string(itr->second.dmg);
+        s += "}";
     }
 
-    s << "]";
+    s += "]";
 
-    return s.str();
+    return s;
 }
 

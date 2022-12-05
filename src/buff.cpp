@@ -2,7 +2,6 @@
 #include "common.h"
 
 #include <string>
-#include <sstream>
 #include <iomanip>
 
 namespace buff
@@ -189,10 +188,7 @@ IncantersAbsorption::IncantersAbsorption(double sp)
     stats.spell_power = sp;
     show_refresh = true;
 
-    std::ostringstream s;
-    s << std::fixed << std::setprecision(0);
-    s << "Incanter's Absorption (" << sp << ")";
-    name = s.str();
+    name = "Incanter's Absorption (" + std::to_string(sp) + ")";
 }
 
 HyperspeedAcceleration::HyperspeedAcceleration()
