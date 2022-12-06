@@ -97,15 +97,15 @@ public:
 
     virtual double critChance(std::shared_ptr<spell::Spell> spell) const;
 
-    virtual bool canCast(std::shared_ptr<spell::Spell> spell) const;
+    bool canCast(std::shared_ptr<spell::Spell> spell) const;
 
-    virtual bool canBuff(const buff::Buff &buff) const;
+    bool canBuff(const buff::Buff &buff) const;
 
-    virtual bool canMiss(std::shared_ptr<spell::Spell> spell) const;
+    bool canMiss(std::shared_ptr<spell::Spell> spell) const;
 
     virtual bool canCrit(std::shared_ptr<spell::Spell> spell) const;
 
-    virtual bool canResist(std::shared_ptr<spell::Spell> spell) const;
+    bool canResist(std::shared_ptr<spell::Spell> spell) const;
 
     virtual double baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const;
 

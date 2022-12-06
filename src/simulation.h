@@ -210,13 +210,13 @@ public:
 
     double debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
 
-    double spellDmg(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    double spellDmg(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 
-    double spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance& instance) const;
+    double spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance& instance);
 
     spell::Result getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
 
-    spell::SpellInstance getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    spell::SpellInstance getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 
     void logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 

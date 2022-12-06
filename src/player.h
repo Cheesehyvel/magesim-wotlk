@@ -56,7 +56,7 @@ public:
 
     bool hasTrinket(Trinket trinket) const;
 
-    double manaPerSecond(const State& state);
+    double manaPerSecond(const State& state) const;
 
     double maxMana() const;
 
@@ -64,19 +64,19 @@ public:
 
     double castHaste() const;
 
-    double hitChance(std::shared_ptr<spell::Spell> spell, double dlevel = 3);
+    double hitChance(std::shared_ptr<spell::Spell> spell, double dlevel = 3) const;
 
-    double critChance(std::shared_ptr<spell::Spell> spell);
+    double critChance(std::shared_ptr<spell::Spell> spell) const;
 
-    bool canCrit(std::shared_ptr<spell::Spell> spell);
+    bool canCrit(std::shared_ptr<spell::Spell> spell) const;
 
-    double baseCritMultiplier(std::shared_ptr<spell::Spell> spell);
+    double baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const;
 
-    double critMultiplierMod(std::shared_ptr<spell::Spell> spell);
+    double critMultiplierMod(std::shared_ptr<spell::Spell> spell) const;
 
-    double spellCoeffMod(std::shared_ptr<spell::Spell> spell);
+    double spellCoeffMod(std::shared_ptr<spell::Spell> spell) const;
 
-    double buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const State& state);
+    double buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const State& state) const;
 
     double baseManaCost(std::shared_ptr<spell::Spell> spell) const;
 
@@ -84,15 +84,13 @@ public:
 
     double manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const;
 
-    double getSpellPower(School school = SCHOOL_NONE);
-
-    double getHasteRating();
+    double getSpellPower(School school = SCHOOL_NONE) const;
 
     bool shouldConsumeClearcast(std::shared_ptr<spell::Spell>  spell) const;
 
     double cooldownMod(const cooldown::Cooldown& cooldown) const;
 
-    bool isFrozen();
+    bool isFrozen() const;
 
     bool hasChillEffect(std::shared_ptr<spell::Spell> spell) const;
 
@@ -156,6 +154,5 @@ public:
 
 private:
     Timing* getNextTiming(const std::string& name);
-
 };
 }

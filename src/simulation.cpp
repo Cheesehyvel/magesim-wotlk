@@ -36,7 +36,7 @@ SimulationsResult Simulation::runMultiple(int iterations)
     SimulationResult r;
     SimulationsResult result;
 
-    logging = false;
+    logging = iterations == 1;
 
     constexpr double bin_size = 50;
 
@@ -1071,7 +1071,7 @@ double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit>, std::shared_
     return multi;
 }
 
-double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
 {
     double dmg;
 
@@ -1084,7 +1084,7 @@ double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_
         return dmg;
 
     if (spell->coeff) {
-        double sp = unit->getSpellPower(spell->school);
+        auto const sp = unit->getSpellPower(spell->school);
         double coeff = spell->coeff;
 
         coeff += unit->spellCoeffMod(spell);
@@ -1105,7 +1105,7 @@ double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_
     return dmg;
 }
 
-double Simulation::spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance) const
+double Simulation::spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance)
 {
     if (instance.spell->binary)
         return 0.0;
@@ -1144,7 +1144,7 @@ spell::Result Simulation::getSpellResult(std::shared_ptr<unit::Unit> unit, std::
     return spell::HIT;
 }
 
-spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
 {
     spell::SpellInstance instance;
 

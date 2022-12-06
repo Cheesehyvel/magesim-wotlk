@@ -92,7 +92,7 @@ bool Player::hasTrinket(Trinket trinket) const
     return config->trinket1 == trinket || config->trinket2 == trinket;
 }
 
-double Player::manaPerSecond(const State& state)
+double Player::manaPerSecond(const State& state) const
 {
     double mps = staticManaPerSecond();
     double spi = spiritManaPerSecond();
@@ -184,7 +184,7 @@ double Player::castHaste() const
     return 1.0 / haste;
 }
 
-double Player::hitChance(std::shared_ptr<spell::Spell>spell, double dlevel)
+double Player::hitChance(std::shared_ptr<spell::Spell> spell, double dlevel) const
 {
     double hit = Unit::hitChance(spell, dlevel);
 
@@ -198,7 +198,7 @@ double Player::hitChance(std::shared_ptr<spell::Spell>spell, double dlevel)
     return hit;
 }
 
-double Player::critChance(std::shared_ptr<spell::Spell>spell)
+double Player::critChance(std::shared_ptr<spell::Spell> spell) const
 {
     double crit = Unit::critChance(spell);
 
@@ -275,7 +275,7 @@ double Player::critChance(std::shared_ptr<spell::Spell>spell)
     return crit;
 }
 
-bool Player::canCrit(std::shared_ptr<spell::Spell>spell)
+bool Player::canCrit(std::shared_ptr<spell::Spell> spell) const
 {
     if (glyphs.living_bomb && spell->id == spell::LIVING_BOMB)
         return true;
@@ -283,7 +283,7 @@ bool Player::canCrit(std::shared_ptr<spell::Spell>spell)
     return Unit::canCrit(spell);
 }
 
-double Player::baseCritMultiplier(std::shared_ptr<spell::Spell>spell)
+double Player::baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const
 {
     double base = 1;
 
@@ -293,7 +293,7 @@ double Player::baseCritMultiplier(std::shared_ptr<spell::Spell>spell)
     return base;
 }
 
-double Player::critMultiplierMod(std::shared_ptr<spell::Spell>spell)
+double Player::critMultiplierMod(std::shared_ptr<spell::Spell> spell) const
 {
     double multi = Unit::critMultiplierMod(spell);
 
@@ -320,7 +320,7 @@ double Player::critMultiplierMod(std::shared_ptr<spell::Spell>spell)
     return multi;
 }
 
-double Player::spellCoeffMod(std::shared_ptr<spell::Spell>spell)
+double Player::spellCoeffMod(std::shared_ptr<spell::Spell> spell) const
 {
     double coeff = Unit::spellCoeffMod(spell);
 
@@ -347,7 +347,7 @@ double Player::spellCoeffMod(std::shared_ptr<spell::Spell>spell)
     return coeff;
 }
 
-double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell>spell, const State& state)
+double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const State& state) const
 {
     double multi = Unit::buffDmgMultiplier(spell, state);
     double additive = 1;
@@ -525,7 +525,7 @@ double Player::manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const
     return multi;
 }
 
-double Player::getSpellPower(School school)
+double Player::getSpellPower(School school) const
 {
     double sp = Unit::getSpellPower(school);
 
@@ -538,14 +538,7 @@ double Player::getSpellPower(School school)
     return sp;
 }
 
-double Player::getHasteRating()
-{
-    double rating = Unit::getHasteRating();
-
-    return rating;
-}
-
-bool Player::shouldConsumeClearcast(std::shared_ptr<spell::Spell>spell) const
+bool Player::shouldConsumeClearcast(std::shared_ptr<spell::Spell> spell) const
 {
     if (spell->is_trigger || spell->tick)
         return false;
@@ -592,7 +585,7 @@ double Player::cooldownMod(const cooldown::Cooldown& cooldown) const
     return mod;
 }
 
-bool Player::isFrozen()
+bool Player::isFrozen() const
 {
     return hasBuff(buff::FINGERS_OF_FROST) || hasBuff(buff::GHOST_FINGERS);
 }
@@ -661,7 +654,7 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
     return actions;
 }
 
-std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell>spell)
+std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell)
 {
     auto actions = Unit::onCastSuccessProc(state, spell);
 
@@ -1122,7 +1115,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
     return actions;
 }
 
-std::vector<action::Action> Player::onSpellTickProc(const State& state, std::shared_ptr<spell::Spell>spell, int tick)
+std::vector<action::Action> Player::onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, int tick)
 {
     std::vector<action::Action> actions = Unit::onSpellTickProc(state, spell, tick);
 
@@ -1143,7 +1136,7 @@ std::vector<action::Action> Player::onSpellTickProc(const State& state, std::sha
     return actions;
 }
 
-std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell>spell)
+std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell)
 {
     std::vector<action::Action> actions;
 
