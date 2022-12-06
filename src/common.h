@@ -169,7 +169,9 @@ struct SimulationResult
 
 struct SimulationsResult
 {
-    double min_dps, avg_dps, max_dps;
+    double min_dps = 0;
+    double max_dps = 0;
+    double avg_dps = 0;
     double t_gcd_capped = 0;
     int iterations;
     std::string histogram;
