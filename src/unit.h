@@ -22,10 +22,10 @@ class Unit
 {
 protected:
     std::shared_ptr<Config> config;
-
-public:
     Stats stats;
     Stats buff_stats;
+
+public:
     std::string name;
     double base_mana = 2241;
     double mana;
@@ -231,7 +231,7 @@ action::Action Unit::cooldownAction(Args... args) const
 template <typename B, typename C>
 action::Action Unit::buffCooldownAction(bool primary_action) const
 {
-    auto action = buffAction<B>();
+    auto action = buffAction<B>(primary_action);
     action.cooldown = std::make_shared<C>();
     return action;
 }
