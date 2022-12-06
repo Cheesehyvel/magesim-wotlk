@@ -1656,12 +1656,14 @@ action::Action Player::useCooldown(const State& state)
         action::Action action{ action::TYPE_TRINKET };
         action.cooldown = std::make_shared<cooldown::Cooldown>(cooldown::TRINKET1);
         action.trinket = config->trinket1;
+        action.primary_action = true;
         return action;
     }
     else if (isUseTrinket(config->trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config->trinket2) && useTimingIfPossible("trinket2", state)) {
         action::Action action{ action::TYPE_TRINKET };
         action.cooldown = std::make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
         action.trinket = config->trinket2;
+        action.primary_action = true;
         return action;
     }
     else if (!hasCooldown(cooldown::EVOCATION) && useTimingIfPossible("evocation", state, true)) {
