@@ -480,7 +480,7 @@ double Player::manaCostMod(std::shared_ptr<spell::Spell> spell) const
     double base_cost = baseManaCost(spell);
     double cost = Unit::manaCostMod(spell);
 
-    if (talents.frost_channeling && (spell->school == SCHOOL_FROST || spell->school == SCHOOL_FROSTFIRE)) {
+    if (talents.frost_channeling) {
         if (talents.frost_channeling == 1)
             cost -= base_cost * talents.frost_channeling * 0.04;
         else if (talents.frost_channeling == 2)
