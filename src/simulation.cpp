@@ -1199,12 +1199,12 @@ void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::S
     if (instance.result == spell::MISS)
         s += " was resisted";
     else if (instance.result == spell::CRIT)
-        s += " crit for " + std::to_string(instance.dmg);
+        s += " crit for " + std::to_string(static_cast<unsigned int>(instance.dmg));
     else
-        s += " hit for " + std::to_string(instance.dmg);
+        s += " hit for " + std::to_string(static_cast<unsigned int>(instance.dmg));
 
     if (instance.resist)
-        s += " (" + std::to_string(instance.resist) + " resisted)";
+        s += " (" + std::to_string(static_cast<unsigned int>(instance.resist)) + " resisted)";
 
     s += ".";
 
@@ -1261,9 +1261,9 @@ void Simulation::logManaGain(std::shared_ptr<unit::Unit> unit, double mana, cons
     std::string s = unit->name;
 
     if (mana < 0)
-        s += " lost " + std::to_string(0 - mana);
+        s += " lost " + std::to_string(static_cast<unsigned int>(0 - mana));
     else
-        s += " gained " + std::to_string(mana);
+        s += " gained " + std::to_string(static_cast<unsigned int>(mana));
 
     s += " mana from " + source + ".";
 
