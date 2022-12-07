@@ -116,6 +116,12 @@ def getItem(item_id, phase = 1):
     if m and m.group(1) == "3":
         stats["q"] = "rare"
 
+    # Unique
+    p = re.compile("Unique")
+    m = p.search(xml)
+    if m:
+        stats["unique"] = True
+
     # Phase
     if phase > 1:
         stats["phase"] = phase;

@@ -2709,6 +2709,15 @@
                 return this.equipSlotToItemSlot(slot);
             },
 
+            otherSlot(slot) {
+                var n = slot.substr(-1);
+                n = parseInt(n);
+                if (isNaN(n))
+                    return slot;
+                n = n == 1 ? 2 : 1;
+                return slot.substr(0, slot.length-1)+n;
+            },
+
             dontStack(input, config) {
                 if (!Array.isArray(config))
                     config = [config];
@@ -3370,10 +3379,18 @@
                     this.item_off_hand = item.id;
                 }
 
-                if (slot.indexOf("trinket") === 0) {
-                    var other = slot == "trinket1" ? "trinket2" : "trinket1";
-                    if (this.isEquipped(other, item.id))
-                        return;
+                if (item.unique) {
+                    var other = this.otherSlot(slot);
+                    if (other != slot && this.equipped[other]) {
+                        if (this.isEquipped(other, item.id))
+                            return;
+                        // A unique category
+                        if (item.unique !== true) {
+                            var other_item = this.getItem(other, this.equipped[other]);
+                            if (_.get(other_item, "unique", null) === item.unique)
+                                return;
+                        }
+                    }
                 }
 
                 this.onUnequip(slot);
