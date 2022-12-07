@@ -18,7 +18,7 @@
 #include <sstream>
 #include <algorithm>
 
-Simulation::Simulation(std::shared_ptr<Config> _config, std::shared_ptr<unit::Player> _player)
+Simulation::Simulation(const Config& _config, std::shared_ptr<unit::Player> _player)
     : config(_config), player(_player), state(_config) {}
 
 void Simulation::reset()
@@ -26,9 +26,6 @@ void Simulation::reset()
     clearLog();
     state.reset();
     player->reset();
-
-    for (auto& t : config->timings)
-        t.used = false;
 }
 
 SimulationsResult Simulation::runMultiple(int iterations)
@@ -43,12 +40,12 @@ SimulationsResult Simulation::runMultiple(int iterations)
     std::unordered_map<int, int> histogram;
     std::string results{ "" };
 
-    if (config->additional_data)
+    if (config.additional_data)
         results += "DPS,Duration\n";
 
     for (int i = 0; i < iterations; i++) {
-        if (config->rng_seed)
-            setRNGSeed(config->rng_seed + i);
+        if (config.rng_seed)
+            setRNGSeed(config.rng_seed + i);
 
         r = run();
 
@@ -66,13 +63,13 @@ SimulationsResult Simulation::runMultiple(int iterations)
         else
             histogram[bin] = 1;
 
-        if (config->additional_data)
+        if (config.additional_data)
             results += std::to_string(r.dps) + "," + std::to_string(r.t) + "\n";
     }
 
     result.iterations = iterations;
 
-    if (config->additional_data)
+    if (config.additional_data)
         result.all_results = std::move(results);
 
     // Histogram json string
@@ -90,8 +87,8 @@ SimulationsResult Simulation::runMultiple(int iterations)
 
 SimulationResult Simulation::run(bool single)
 {
-    if (single && config->rng_seed)
-        setRNGSeed(config->rng_seed);
+    if (single && config.rng_seed)
+        setRNGSeed(config.rng_seed);
 
     reset();
 
@@ -99,7 +96,7 @@ SimulationResult Simulation::run(bool single)
 
     onManaRegen(player);
 
-    for (auto &timing : config->timings)
+    for (auto &timing : config.timings)
     {
         if (timing.name == "bloodlust")
             pushBuffGainAll(std::make_shared<buff::Bloodlust>(), timing.t);
@@ -137,13 +134,13 @@ void Simulation::runPrecombat()
 {
     double t = 0;
 
-    if (config->pre_mirror_image)
+    if (config.pre_mirror_image)
         t -= 1.5;
-    if (player->talents.water_elemental && config->pre_water_elemental)
+    if (player->talents.water_elemental && config.pre_water_elemental)
         t -= 1.5;
-    if (player->talents.incanters_absorption && config->pre_incanters_absorption) {
+    if (player->talents.incanters_absorption && config.pre_incanters_absorption) {
         t -= 1.5;
-        if (config->pre_mana_incanters_absorption)
+        if (config.pre_mana_incanters_absorption)
             t -= 1.5;
     }
     if (t >= 0)
@@ -581,7 +578,7 @@ void Simulation::onCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
 
 void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
 {
-    int targets = spell->aoe ? config->targets : 1;
+    int targets = spell->aoe ? config.targets : 1;
 
     spell->actual_cost = unit->manaCost(spell);
     unit->applyMana(state, -spell->actual_cost);
@@ -674,12 +671,12 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
             auto dot = getSpellInstance(unit, spell);
             dot.tick = i;
             dot.dmg += round(leftover / 2.0);
-            if (config->ignite_munching && state.ignite_dmg > 0 && state.t - state.ignite_t <= IGNITE_MUNCH_WINDOW)
+            if (config.ignite_munching && state.ignite_dmg > 0 && state.t - state.ignite_t <= IGNITE_MUNCH_WINDOW)
                 dot.dmg -= state.ignite_dmg;
             pushDotTick(unit, dot);
         }
 
-        if (config->ignite_munching) {
+        if (config.ignite_munching) {
             state.ignite_t = state.t;
             state.ignite_dmg = spell->min_dmg;
         }
@@ -1008,7 +1005,7 @@ double Simulation::travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     if (!spell->has_travel_time)
         return 0;
 
-    double t = config->spell_travel_time / 1000.0;
+    double t = config.spell_travel_time / 1000.0;
 
     if (spell->travel_time_factor)
         t *= spell->travel_time_factor;
@@ -1018,7 +1015,7 @@ double Simulation::travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
 
 double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
 {
-    int dlevel = config->target_level - 80;
+    int dlevel = config.target_level - 80;
 
     double hit = 96.0 - dlevel;
 
@@ -1027,7 +1024,7 @@ double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<s
 
     hit += unit->hitChance(spell);
 
-    if (config->debuff_spell_hit)
+    if (config.debuff_spell_hit)
         hit += 3.0;
 
     return std::min(hit, 100.0);
@@ -1038,12 +1035,12 @@ double Simulation::critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     double crit = unit->critChance(spell);
     double crit_debuff = 0;
 
-    if (config->debuff_spell_crit || state.hasDebuff(debuff::IMPROVED_SCORCH))
+    if (config.debuff_spell_crit || state.hasDebuff(debuff::IMPROVED_SCORCH))
         crit_debuff += 5.0;
     else if (state.hasDebuff(debuff::WINTERS_CHILL))
         crit_debuff += state.debuffStacks(debuff::WINTERS_CHILL);
 
-    if (config->debuff_crit)
+    if (config.debuff_crit)
         crit_debuff += 3.0;
 
     if (spell->id == spell::FROSTFIRE_BOLT)
@@ -1082,7 +1079,7 @@ double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit>, std::shared_
 {
     double multi = 1;
 
-    if (config->debuff_spell_dmg)
+    if (config.debuff_spell_dmg)
         multi *= 1.13;
 
     return multi;
@@ -1092,7 +1089,7 @@ double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_
 {
     double dmg;
 
-    if (config->avg_spell_dmg)
+    if (config.avg_spell_dmg)
         dmg = spell->avgDmg();
     else
         dmg = random<double>(spell->min_dmg, spell->max_dmg);
@@ -1114,8 +1111,8 @@ double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_
 
     dmg *= buffDmgMultiplier(unit, spell);
 
-    if (spell->aoe && spell->aoe_capped && config->targets > 10)
-        dmg *= 10 / config->targets;
+    if (spell->aoe && spell->aoe_capped && config.targets > 10)
+        dmg *= 10 / config.targets;
 
     dmg *= debuffDmgMultiplier(unit, spell);
 

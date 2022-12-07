@@ -2,7 +2,7 @@
 #include "config.h"
 #include "unit.h"
 
-State::State(std::shared_ptr<Config> _config) : config(_config)
+State::State(const Config& _config) : config(_config)
 {
     reset();
 }
@@ -11,8 +11,8 @@ void State::reset()
 {
     t = 0;
     dmg = 0;
-    duration = config->duration;
-    duration += -config->duration_variance + random<double>(0, config->duration_variance * 2);
+    duration = config.duration;
+    duration += -config.duration_variance + random<double>(0, config.duration_variance * 2);
 
     ignite_dmg = 0;
     ignite_t = -20;

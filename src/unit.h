@@ -21,34 +21,31 @@ namespace unit
 class Unit
 {
 protected:
-    std::shared_ptr<Config> config;
-    Stats stats;
+    const Config config;
+    const Stats stats;
     Stats buff_stats;
 
 public:
     std::string name;
     double base_mana = 2241;
-    double mana;
-    double t_gcd;
+    double mana = 0;
+    double t_gcd = 0;
     double t_gcd_capped = 0;
     double duration = 0;
     bool unique = true;
     bool get_raid_buffs = true;
     bool is_channeling = false;
     double last_spell_cast_time = 0;
-    int id;
+    int id = 0;
 
     std::unordered_map<cooldown::ID, std::shared_ptr<cooldown::Cooldown>> cooldowns;
     std::unordered_map<buff::ID, std::shared_ptr<buff::Buff>> buffs;
     std::unordered_map<buff::ID, std::shared_ptr<buff::Buff>> snapshot_buffs;
     std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
 
-    Unit(std::shared_ptr<Config> _config);
+    Unit(const Config& config, const Stats& stats);
 
     virtual void reset();
-
-    virtual Stats getStats();
-    virtual void setStats(Stats _stats);
 
     bool hasCooldown(cooldown::ID id) const;
     void addCooldown(std::shared_ptr<cooldown::Cooldown> cooldown);

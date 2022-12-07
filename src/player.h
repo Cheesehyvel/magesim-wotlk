@@ -10,10 +10,15 @@ namespace unit
 {
 class Player : public Unit
 {
+private:
+    std::vector<bool> used_timings;
+    const Timing* getNextTiming(const std::string& name) const;
+    void useTiming(const Timing* timing);
+
 public:
-    Stats summon_stats;
-    Talents talents;
-    Glyphs glyphs;
+    const Talents talents;
+    const Glyphs glyphs;
+
     Race race = RACE_UNDEAD;
 
     int combustion;
@@ -33,27 +38,11 @@ public:
     bool waited;
     bool should_wait;
 
-    Player(std::shared_ptr<Config> _config);
+    Player(const Config& config, const Stats& stats, const Talents& talents, const Glyphs& glyphs);
 
     void reset();
 
-    Stats getStats();
-
-    void setStats(Stats _stats);
-
-    Stats getSummonStats();
-
-    void setSummonStats(Stats _stats);
-
-    Talents getTalents();
-
-    void setTalents(Talents _talents);
-
-    Glyphs getGlyphs();
-
-    void setGlyphs(Glyphs _glyphs);
-
-    Faction faction();
+    Faction faction() const;
 
     bool hasTrinket(Trinket trinket) const;
 
@@ -137,7 +126,7 @@ public:
 
     bool isUseTrinket(Trinket trinket) const;
 
-    bool isTimingReady(const Timing& timing, const State& state) const;
+    bool isTimingReady(const Timing* timing, const State& state) const;
 
     bool useTimingIfPossible(const std::string& name, const State& state, bool expl = false);
 
@@ -154,8 +143,5 @@ public:
     action::Action preCombat(const State& state);
 
     action::Action nextAction(const State& state);
-
-private:
-    Timing* getNextTiming(const std::string& name);
 };
 }

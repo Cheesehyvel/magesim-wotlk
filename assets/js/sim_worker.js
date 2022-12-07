@@ -41,30 +41,27 @@ onmessage = (event) => {
                 );
             }
 
-            var player = m.allocPlayer(config);
-            if (m.Race.values.hasOwnProperty(data.config.race))
-                player.race = m.Race.values[data.config.race];
-
-            var stats = JSON.parse(JSON.stringify(player.getStats()));
+            var stats = JSON.parse(JSON.stringify(m.emptyStats()));
             for (var key in data.config.stats) {
                 if (stats.hasOwnProperty(key))
                     stats[key] = data.config.stats[key];
             }
-            player.setStats(stats);
 
-            var talents = JSON.parse(JSON.stringify(player.getTalents()));
+            var talents = JSON.parse(JSON.stringify(m.emptyTalents()));
             for (var key in data.config.talents) {
                 if (talents.hasOwnProperty(key))
                     talents[key] = data.config.talents[key];
             }
-            player.setTalents(talents);
 
-            var glyphs = JSON.parse(JSON.stringify(player.getGlyphs()));
+            var glyphs = JSON.parse(JSON.stringify(m.emptyGlyphs()));
             for (var key in data.config.glyphs) {
                 if (glyphs.hasOwnProperty(key))
                     glyphs[key] = data.config.glyphs[key];
             }
-            player.setGlyphs(glyphs);
+
+            var player = m.allocPlayer(config, stats, talents, glyphs);
+            if (m.Race.values.hasOwnProperty(data.config.race))
+                player.race = m.Race.values[data.config.race];
 
             if (data.iterations && data.iterations > 1)
                 var result = m.runSimulations(config, player, data.iterations);
