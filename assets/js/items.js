@@ -1138,7 +1138,7 @@ var equip = {
         { id: 46046, title: "Nebula Band", ilvl: 232, int: 38, sp: 78, crit: 49, haste: 38, sockets: ["y"], bonus: {crit: 4}, unique: true, phase: 2 },
         { id: 45418, title: "Lady Maye's Sapphire Ring", ilvl: 225, int: 45, spi: 47, sp: 75, haste: 34, unique: true, phase: 2 },
         { id: 45702, title: "Emerald Signet Ring", ilvl: 225, int: 51, spi: 45, sp: 74, hit: 36, unique: true, phase: 2 },
-        { id: 45691, title: "Inscribed Signet of the Kirin Tor", ilvl: 213, int: 38, sp: 66, crit: 37, haste: 38, unique: true, phase: 2 },
+        { id: 45691, title: "Inscribed Signet of the Kirin Tor", ilvl: 225, int: 43, sp: 74, crit: 41, haste: 43, unique: true, phase: 2 },
         // os
         { id: 40433, title: "Wyrmrest Band", ilvl: 213, int: 40, sp: 67, haste: 32, mp5: 20, unique: true },
         // naxx
