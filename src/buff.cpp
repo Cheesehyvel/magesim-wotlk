@@ -188,7 +188,7 @@ IncantersAbsorption::IncantersAbsorption(double sp)
     stats.spell_power = sp;
     show_refresh = true;
 
-    name = "Incanter's Absorption (" + std::to_string(sp) + ")";
+    name = "Incanter's Absorption (" + std::to_string(static_cast<unsigned int>(sp)) + ")";
 }
 
 HyperspeedAcceleration::HyperspeedAcceleration()
