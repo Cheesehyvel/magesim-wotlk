@@ -63,6 +63,11 @@ class SimulationWorkers {
                         }
                         sum.stats.t_gcd_capped = (sum.stats.t_gcd_capped * sum.iterations + result.stats.t_gcd_capped * result.iterations) / (sum.iterations + result.iterations);
                     }
+
+                    if (result.all_results) {
+                        var index = result.all_results.indexOf("\n");
+                        sum.all_results+= result.all_results.substr(index+1);
+                    }
                 }
 
                 if (sum.iterations == iterations)
