@@ -29,6 +29,7 @@ public:
     double mana_shield;
     int mana_sapphire;
     int ab_streak;
+    bool used_dark_rune;
     bool waited;
     bool should_wait;
 

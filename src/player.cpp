@@ -36,6 +36,7 @@ void Player::reset()
     mana_shield = 0;
     mana_sapphire = 3;
     ab_streak = 0;
+    used_dark_rune = false;
     waited = false;
     should_wait = false;
 }
@@ -1370,7 +1371,13 @@ std::vector<action::Action> Player::useConjured(const State& state, Conjured con
         actions.push_back(buffAction<buff::FlameCap>());
     }
     else if (conjured == CONJURED_DARK_RUNE) {
-        cd = 900;
+        if (used_dark_rune) {
+            cd = 900;
+        }
+        else {
+            cd = 120;
+            used_dark_rune = true;
+        }
         double dmg = random<double>(600, 1000);
         double mana_gain = random<double>(900, 1500);
         for (auto &i : onSelfDmg(state, dmg, SCHOOL_SHADOW))
