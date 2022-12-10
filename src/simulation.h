@@ -196,6 +196,8 @@ public:
 
     double debuffDuration(debuff::ID id) const;
 
+    double cooldownDuration(std::shared_ptr<unit::Unit> unit, cooldown::ID id) const;
+
     void removeUnitEvents(std::shared_ptr<unit::Unit> unit);
 
     double travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);

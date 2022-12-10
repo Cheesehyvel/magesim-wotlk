@@ -862,9 +862,12 @@ void Simulation::onCooldownGain(std::shared_ptr<unit::Unit> unit, std::shared_pt
     if (mod)
         cooldown->duration += unit->cooldownMod(*cooldown);
 
-    removeCooldownExpiration(unit, *cooldown);
     unit->addCooldown(cooldown);
-    pushCooldownExpire(unit, cooldown);
+
+    if (cooldownDuration(unit, cooldown->id) < cooldown->duration) {
+        removeCooldownExpiration(unit, *cooldown);
+        pushCooldownExpire(unit, cooldown);
+    }
 }
 
 void Simulation::onCooldownExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<cooldown::Cooldown> cooldown)
@@ -970,6 +973,15 @@ double Simulation::debuffDuration(debuff::ID id) const
 {
     for (auto const& i : queue)
         if (i.type == EVENT_BUFF_EXPIRE && i.debuff->id == id)
+            return i.t - state.t;
+
+    return 0;
+}
+
+double Simulation::cooldownDuration(std::shared_ptr<unit::Unit> unit, cooldown::ID id) const
+{
+    for (auto const& i : queue)
+        if (i.type == EVENT_CD_EXPIRE && i.cooldown->id == id && i.unit == unit)
             return i.t - state.t;
 
     return 0;
