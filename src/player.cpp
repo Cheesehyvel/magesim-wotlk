@@ -1496,7 +1496,7 @@ bool Player::isTimingReady(const Timing& timing, const State& state) const
 
     if (timing.wait_for_buff != 0 && timing.wait_t + timing.t > state.t) {
         auto buff_id = static_cast<buff::ID>(timing.wait_for_buff);
-        if (!hasBuff(buff_id))
+        if (!canReactTo(buff_id, state.t))
             return false;
     }
 
