@@ -552,6 +552,9 @@ bool Player::shouldConsumeClearcast(std::shared_ptr<spell::Spell> spell) const
 
 double Player::cooldownMod(const cooldown::Cooldown& cooldown) const
 {
+    if (cooldown.id == cooldown::ARCANE_POWER && cooldown.duration == 1.5)
+        return 0;
+
     double mod = Unit::cooldownMod(cooldown);
 
     if (talents.arcane_floes) {
@@ -721,8 +724,10 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
     if (hasBuff(buff::GHOST_FINGERS))
         actions.push_back(buffExpireAction<buff::GhostFingers>());
 
-    if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling)
+    if (hasBuff(buff::PRESENCE_OF_MIND) && spell->cast_time && !spell->channeling) {
         actions.push_back(buffExpireAction<buff::PresenceOfMind>());
+        actions.push_back(cooldownAction<cooldown::ArcanePower>(1.5));
+    }
 
     if (hasBuff(buff::CLEARCAST) && shouldConsumeClearcast(spell))
         actions.push_back(buffExpireAction<buff::Clearcast>());

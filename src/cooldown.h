@@ -122,10 +122,10 @@ namespace cooldown
     {
 
     public:
-        ArcanePower()
+        ArcanePower(double _duration = 120)
         {
             id = ARCANE_POWER;
-            duration = 120;
+            duration = _duration;
         }
 
     };
