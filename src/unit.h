@@ -73,6 +73,8 @@ public:
     int addDebuff(std::shared_ptr<debuff::Debuff> debuff);
     void removeDebuff(debuff::ID id);
 
+    virtual void applyMana(const State& state, double _mana);
+
     virtual double spiritManaPerSecond() const;
 
     virtual double staticManaPerSecond() const;

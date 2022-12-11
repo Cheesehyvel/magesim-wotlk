@@ -57,6 +57,8 @@ public:
 
     bool hasTrinket(Trinket trinket) const;
 
+    void applyMana(const State& state, double _mana);
+
     double manaPerSecond(const State& state) const;
 
     double maxMana() const;

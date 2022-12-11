@@ -202,6 +202,16 @@ void Unit::removeDebuff(debuff::ID id)
     debuffs.erase(id);
 }
 
+void Unit::applyMana(const State& state, double _mana)
+{
+    mana+= _mana;
+
+    if (mana > maxMana())
+        mana = maxMana();
+    else if (mana < 0)
+        mana = 0;
+}
+
 double Unit::spiritManaPerSecond() const
 {
     return 0.001 + getSpirit() * 0.003345 * sqrt(getIntellect());

@@ -584,27 +584,32 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
     int targets = spell->aoe ? config->targets : 1;
 
     spell->actual_cost = unit->manaCost(spell);
-    unit->mana -= spell->actual_cost;
-    logCastSuccess(unit, spell);
+    unit->applyMana(state, -spell->actual_cost);
 
-    if (spell->channeling && !spell->tick)
-        unit->is_channeling = true;
-
-    for (int t = 0; t < targets; t++) {
-        if (spell->channeling && !spell->tick) {
-            for (int i = 1; i <= spell->ticks; i++)
-                pushChannelingTick(unit, spell, spell->actual_cast_time / spell->ticks * i, i);
-        }
-        else if (spell->dot) {
-            dotApply(unit, spell);
-        }
-        else if (!spell->is_trigger) {
-            pushSpellImpact(unit, spell, travelTime(unit, spell));
-        }
+    if (spell->dot && spell->active_use && random<double>(0, 100) > hitChance(unit, spell)) {
+        logCastMiss(unit, spell);
     }
+    else {
+        logCastSuccess(unit, spell);
 
-    if (spell->active_use) {
-        onCastSuccessProc(unit, spell);
+        if (spell->channeling && !spell->tick)
+            unit->is_channeling = true;
+
+        for (int t = 0; t < targets; t++) {
+            if (spell->channeling && !spell->tick) {
+                for (int i = 1; i <= spell->ticks; i++)
+                    pushChannelingTick(unit, spell, spell->actual_cast_time / spell->ticks * i, i);
+            }
+            else if (spell->dot) {
+                dotApply(unit, spell);
+            }
+            else if (!spell->is_trigger) {
+                pushSpellImpact(unit, spell, travelTime(unit, spell));
+            }
+        }
+
+        if (spell->active_use)
+            onCastSuccessProc(unit, spell);
     }
 
     if (spell->active_use) {
@@ -756,7 +761,7 @@ void Simulation::onManaRegen(std::shared_ptr<unit::Unit> unit, bool next)
 
 void Simulation::onManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source)
 {
-    unit->mana = std::min(player->maxMana(), unit->mana + mana);
+    unit->applyMana(state, mana);
     logManaGain(unit, mana, source);
 }
 
@@ -778,7 +783,7 @@ void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<bu
     if (buff->cost) {
         if (!unit->canBuff(*buff))
             return;
-        unit->mana -= unit->manaCost(*buff);
+        unit->applyMana(state, -unit->manaCost(*buff));
     }
 
     int old_stacks = unit->buffStacks(buff->id);
@@ -1199,6 +1204,14 @@ void Simulation::logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_pt
     addLog(unit, LOG_CAST_SUCCESS, unit->name + " successfully cast " + spell->name + ".");
 }
 
+void Simulation::logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+{
+    if (!logging || !spell->active_use)
+        return;
+
+    addLog(unit, LOG_CAST_SUCCESS, unit->name + "'s " + spell->name+" missed");
+}
+
 void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance)
 {
     if (!logging)
@@ -1209,7 +1222,7 @@ void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::S
     if (instance.spell->dot)
         s += " (dot)";
     if (instance.result == spell::MISS)
-        s += " was resisted";
+        s += " missed";
     else if (instance.result == spell::CRIT)
         s += " crit for " + std::to_string(static_cast<unsigned int>(instance.dmg));
     else

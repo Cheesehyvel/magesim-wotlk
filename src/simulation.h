@@ -224,6 +224,8 @@ public:
 
     void logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 
+    void logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+
     void logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance);
 
     void logBuffGain(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff, int stacks = 1);

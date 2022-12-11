@@ -93,6 +93,14 @@ bool Player::hasTrinket(Trinket trinket) const
     return config->trinket1 == trinket || config->trinket2 == trinket;
 }
 
+void Player::applyMana(const State& state, double _mana)
+{
+    Unit::applyMana(state, _mana);
+
+    if (_mana < 0)
+        t_mana_spent = state.t;
+}
+
 double Player::manaPerSecond(const State& state) const
 {
     double mps = staticManaPerSecond();
@@ -661,9 +669,6 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
 std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell)
 {
     auto actions = Unit::onCastSuccessProc(state, spell);
-
-    if (spell->actual_cost)
-        t_mana_spent = state.t;
 
     if (spell->id == spell::MANA_GEM)
         return useManaGem();
