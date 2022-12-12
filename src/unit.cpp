@@ -382,9 +382,11 @@ double Unit::baseManaCost(const buff::Buff& buff) const
 
 double Unit::manaCost(std::shared_ptr<spell::Spell> spell) const
 {
-    double cost = baseManaCost(spell) + manaCostMod(spell);
+    double cost = floor(baseManaCost(spell) * manaCostMultiplier(spell));
 
-    return round(cost * manaCostMultiplier(spell));
+    cost+= manaCostMod(spell, cost);
+
+    return cost;
 }
 
 double Unit::manaCost(const buff::Buff& buff) const
@@ -394,15 +396,9 @@ double Unit::manaCost(const buff::Buff& buff) const
     return round(cost);
 }
 
-double Unit::manaCostMod(std::shared_ptr<spell::Spell> spell) const
+double Unit::manaCostMod(std::shared_ptr<spell::Spell> spell, double mana_cost) const
 {
-    double base_cost = baseManaCost(spell);
-    double cost = 0;
-
-    if (hasBuff(buff::ARCANE_POWER))
-        cost += 0.2 * base_cost;
-
-    return cost;
+    return 0;
 }
 
 double Unit::manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const

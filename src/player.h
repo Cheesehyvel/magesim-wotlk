@@ -83,7 +83,7 @@ public:
 
     double baseManaCost(std::shared_ptr<spell::Spell> spell) const;
 
-    double manaCostMod(std::shared_ptr<spell::Spell> spell) const;
+    double manaCostMod(std::shared_ptr<spell::Spell> spell, double mana_cost) const;
 
     double manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const;
 

@@ -125,7 +125,7 @@ public:
 
     virtual double manaCost(const buff::Buff &buff) const;
 
-    virtual double manaCostMod(std::shared_ptr<spell::Spell> spell) const;
+    virtual double manaCostMod(std::shared_ptr<spell::Spell> spell, double mana_cost) const;
 
     virtual double manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const;
 
