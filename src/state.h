@@ -16,7 +16,7 @@ class Unit;
 struct State
 {
 private:
-    std::shared_ptr<Config> config;
+    const Config config;
 
 public:
     double t;
@@ -29,7 +29,7 @@ public:
     std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
     std::vector<std::shared_ptr<unit::Unit>> units;
 
-    State(std::shared_ptr<Config> _config);
+    State(const Config& config);
 
     void reset();
 

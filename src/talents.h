@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 struct Talents
 {
     int arcane_focus = 0;
@@ -10,7 +12,7 @@ struct Talents
     int focus_magic = 0;
     int arcane_shielding = 0;
     int arcane_meditation = 0;
-    int torment_of_the_weak = 0;
+    int torment_the_weak = 0;
     int presence_of_mind = 0;
     int arcane_mind = 0;
     int arcane_instability = 0;
@@ -18,7 +20,7 @@ struct Talents
     int arcane_empowerment = 0;
     int arcane_power = 0;
     int incanters_absorption = 0;
-    int arcane_floes = 0;
+    int arcane_flows = 0;
     int mind_mastery = 0;
     int missile_barrage = 0;
     int netherwind_presence = 0;
@@ -35,7 +37,7 @@ struct Talents
     int master_of_elements = 0;
     int playing_with_fire = 0;
     int critical_mass = 0;
-    int blast_weave = 0;
+    int blast_wave = 0;
     int fire_power = 0;
     int pyromaniac = 0;
     int combustion = 0;
@@ -68,6 +70,8 @@ struct Talents
     int chilled_to_the_bone = 0;
     int deep_freeze = 0;
 };
+
+Talents talents_from_url(const std::string& url);
 
 struct Glyphs
 {

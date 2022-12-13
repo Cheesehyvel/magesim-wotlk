@@ -8,8 +8,8 @@ struct Timing
     double t = 0;
     double wait_t = 0;
     int wait_for_buff = 0;
-    bool used = false;
 
     Timing() {}
-    void Use() { used = true; }
+    Timing(const std::string& _name, double _t, double _wait_t, int _wait_for_buff) :
+        name(_name), t(_t), wait_t(_wait_t), wait_for_buff(_wait_for_buff) {}
 };

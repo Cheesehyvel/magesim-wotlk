@@ -4,10 +4,22 @@
 
 #include <vector>
 
+namespace
+{
+Stats CorrectStats(const Stats& stats)
+{
+    Stats result = stats;
+    result.haste_rating = 0;
+    result.haste = 0;
+    result.spell_power *= 0.33;
+    return result;
+}
+}
+
 namespace unit
 {
-
-MirrorImage::MirrorImage(std::shared_ptr<Config> _config) : Unit(_config)
+MirrorImage::MirrorImage(const Config& _config, const Stats& _stats)
+    : Unit(_config, CorrectStats(_stats))
 {
     base_mana = 3000; // Unknown
     name = "Mirror Image";
@@ -15,14 +27,6 @@ MirrorImage::MirrorImage(std::shared_ptr<Config> _config) : Unit(_config)
     duration = 30;
     get_raid_buffs = false;
     unique = false;
-}
-
-void MirrorImage::setStats(Stats _stats)
-{
-    stats = _stats;
-    stats.haste_rating = 0;
-    stats.haste = 0;
-    stats.spell_power *= 0.33;
 }
 
 std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell)

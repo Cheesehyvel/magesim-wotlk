@@ -1,6 +1,7 @@
 #pragma once
 
 #include "unit.h"
+#include "stats.h"
 
 #include <vector>
 
@@ -18,9 +19,7 @@ class MirrorImage : public Unit
 {
 public:
 
-    MirrorImage(std::shared_ptr<Config> _config);
-
-    void setStats(Stats _stats);
+    MirrorImage(const Config& config, const Stats& stats);
 
     std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell);
 

@@ -1,7 +1,3 @@
-#include "config.h"
-#include "player.h"
-#include "simulation.h"
-
 #include <chrono>
 #include <memory>
 #include <map>
@@ -14,44 +10,190 @@
 #include <iomanip>
 #include <iostream>
 #include <thread>
+#include <mutex>
 
 #ifdef __EMSCRIPTEN__
 #include "bindings.h"
 #else
 
+#include "config.h"
+#include "player.h"
+#include "simulation.h"
+#include "stats.h"
+#include "talents.h"
+
+static constexpr size_t iterations_per_gear_set = 1000;
+
 namespace
 {
-    std::vector<SimulationsResult> results;
+struct
+{
+    double max;
+    GearSet gear;
+    std::mutex mutex;
+    std::atomic_uint64_t sims;
+    std::atomic_int finished_threads;
+} BulkResults;
 
-    void Work(int runs, int duration, int thread_id)
+void BulkSimWork(const Config& config, const Talents& talents, const Glyphs &glyphs, BulkSimPlan* plan, int thread_id)
+{
+    do
     {
-        auto config = std::make_shared<Config>();
-        if (duration > 0)
-            config->duration = duration;
-        auto player = std::make_shared<unit::Player>(config);
+        auto const work = plan->Consumer(thread_id);
 
-        auto start = std::chrono::high_resolution_clock::now();
+        // if there is nothing for us to do, wait for a bit and try again
+        if (work.empty())
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            continue;
+        }
 
-        Simulation sim(config, player);
+        for (auto const& i : work)
+        {
+            auto player = std::make_shared<unit::Player>(
+                config, i.BuildStats(config, talents, glyphs, *plan),
+                talents, glyphs);
 
-        sim.logging = false;
-        results[thread_id] = sim.runMultiple(runs);
-    }
+            Simulation sim(config, player);
+
+            auto const results = sim.runMultiple(iterations_per_gear_set);
+            BulkResults.sims += iterations_per_gear_set;
+
+            {
+                std::lock_guard<std::mutex> lock(BulkResults.mutex);
+                if (results.avg_dps > BulkResults.max)
+                {
+                    BulkResults.max = results.avg_dps;
+                    BulkResults.gear = i;
+                    std::cout << "New max DPS: " << BulkResults.max << std::endl;
+                }
+            }
+        }
+
+        // done producing data? end this thread
+        if (plan->Done())
+            break;
+    } while (true);
+
+    ++BulkResults.finished_threads;
 }
 
-int main(int argc, char **argv)
+bool TestGearSetStats()
 {
-    int runs = 1, duration = 0, thread_count = 1;
-    bool log_mana = false;
+    Glyphs glyphs;
+
+    glyphs.fireball = true;
+    glyphs.molten_armor = true;
+    glyphs.living_bomb = true;
+    glyphs.blast_wave = true;
+
+    auto const talents = talents_from_url(
+        "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003-0055030012302331053120311351_001q1g11q1y21xkk31wne41rj451rj5"
+    );
+
+    // frost... nothing
+
+    Config config;
+
+    config.race = RACE_TROLL;
+    config.duration = 120;
+    config.duration_variance = 10;
+    config.rng_seed = 46;
+
+    config.debuff_spell_crit = true;
+    config.debuff_spell_dmg = true;
+    config.debuff_spell_hit = true;
+    config.debuff_crit = true;
+
+    config.buff_spell_crit = true;
+    config.buff_spell_haste = true;
+    config.buff_haste = true;
+    config.buff_dmg = true;
+
+    config.demonic_pact = true;
+    config.demonic_pact_bonus = 280;
+
+    config.judgement_of_wisdom = true;
+    config.mage_armor = false;
+    config.molten_armor = true;
+    config.prof_engineer = true;
+
+    config.pre_mirror_image = true;
+    config.pre_potion = POTION_SPEED;
+
+    config.potion = POTION_SPEED;
+    config.conjured = CONJURED_FLAME_CAP;
+
+    config.rotation = ROTATION_ST_FIRE;
+    config.ignite_munching = true;
+    config.hot_streak_cqs = true;
+    config.hot_streak_cqs_time = 100;
+    config.evo_ticks = 3;
+
+    config.timings.emplace_back("berserking", 2, 0, 0);
+    config.timings.emplace_back("bloodlust", 2, 0, 0);
+    config.timings.emplace_back("combustion", 2, 0, 0);
+    config.timings.emplace_back("conjured", 2, 0, 0);
+    config.timings.emplace_back("evocation", 40, 0, 0);
+    config.timings.emplace_back("hyperspeed_accelerators", 2, 0, 0);
+    config.timings.emplace_back("hyperspeed_accelerators", 62, 0, 0);
+    config.timings.emplace_back("mana_gem", 15, 0, 0);
+    config.timings.emplace_back("potion", 62, 0, 0);
+    config.timings.emplace_back("trinket1", 2, 0, 0);
+
+    const std::array<std::vector<int>, BulkSimPlan::slots> items{
+        std::vector<int>{45085},
+        std::vector<int>{40698},
+        std::vector<int>{37177},
+        std::vector<int>{42553},
+        std::vector<int>{39472},
+        std::vector<int>{34210},
+        std::vector<int>{41610},
+        std::vector<int>{39492},
+        std::vector<int>{37361},
+        std::vector<int>{39495},
+        std::vector<int>{40696},
+        std::vector<int>{37854},
+        std::vector<int>{44202},
+        std::vector<int>{40585, 42644},
+        std::vector<int>{37873, 40682}
+    };
+
+    const std::vector<int> gems{ 41285, 40014, 40049, 40026, 40099 };
+
+    BulkSimPlan plan{ 1u, items, {}, gems};
+
+    GearSet gear{ {45085,40698, 37177, 42553, 39472, 34210, 41610, 39492, 37361, 39495, 40696, 37854, 44202, 40585, 42644, 37873, 40682 } };
+
+    gear.gems[3] = { 41285, 40014 };
+    gear.gems[5] = { 40049, 40014 };
+    gear.gems[7] = { 40049, 40014 };
+    gear.gems[9] = { 40049 };
+    gear.gems[10] = { 40014, 40026 };
+    gear.gems[12] = { 40099 };
+    gear.gems[14] = { 40049 };
+
+    auto const stats = gear.BuildStats(config, talents, glyphs, plan);
+
+    auto player = std::make_shared<unit::Player>(config, stats, talents, glyphs);
+
+    Simulation sim(config, player);
+
+    auto const result = sim.run(true);
+
+    return false;
+}
+}
+
+int main(int argc, char** argv)
+{
+    size_t thread_count = 16;
+
 
     auto start = std::chrono::high_resolution_clock::now();
 
     if (argc > 1)
-        runs = atoi(argv[1]);
-    if (argc > 2)
-        duration = atoi(argv[2]);
-    if (argc > 3)
-        thread_count = atoi(argv[3]);
+        thread_count = static_cast<size_t>(atoi(argv[1]));
 
     if (thread_count <= 0)
     {
@@ -59,68 +201,90 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    results.resize(thread_count);
-
-    if (thread_count == 1 || runs < 20)
-        Work(runs, duration, 0);
-    else
+    if (!TestGearSetStats())
     {
+        std::cerr << "WARNING: Sanity test is not correct" << std::endl;
+        //return 1;
+    }
+
+    BulkResults.max = 0;
+
+    try
+    {
+        Config config;
+        Talents talents;
+        Glyphs glyphs;
+
+        auto plan = initialize_from_json("c:\\users\\bill\\source\\repos\\magesim-wotlk\\config_batch.json",
+            config, talents, glyphs, thread_count);
+
+        std::cout << "Maximum permutations: " << plan.Permutations(config.regem) << std::endl;
+
         std::vector<std::thread> threads;
+        threads.reserve(thread_count + 1);
 
         for (auto i = 0; i < thread_count; ++i)
-        {
-            // for 10 runs over three threads
-            // thread 0: 3 runs
-            // thread 1: 3 runs
-            // thread 2: 4 runs
+            threads.emplace_back(BulkSimWork, config, talents, glyphs, &plan, i);
 
-            auto thread_runs = runs / thread_count;
+        threads.emplace_back(&BulkSimPlan::Producer, &plan);
 
-            // if this is the last thread, take whatever are left
-            if (i == thread_count - 1)
-            {
-                auto const total = thread_runs * i;
-                thread_runs = runs - total;
-            }
+        auto last_status = std::chrono::high_resolution_clock::now();
 
-            threads.emplace_back(Work, thread_runs, duration, i);
-        }
+        bool first_iteration_seen = false;
+        std::chrono::steady_clock::time_point first_iteration;
 
         do
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-            bool finished = true;
-            for (auto const &r : results)
-                if (r.iterations == 0)
-                {
-                    finished = false;
-                    break;
-                }
-
-            if (finished)
+            if (BulkResults.finished_threads.load() == thread_count)
                 break;
+
+            if (!first_iteration_seen && !BulkResults.sims)
+                continue;
+            else if (BulkResults.sims > 0)
+            {
+                first_iteration_seen = true;
+                first_iteration = std::chrono::high_resolution_clock::now();
+            }
+
+            auto const now = std::chrono::high_resolution_clock::now();
+            if (std::chrono::duration_cast<std::chrono::milliseconds>(now - last_status).count() > 5000)
+            {
+                auto const runtime = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
+                auto const iterations_per_sec = BulkResults.sims / runtime;
+                auto const total_planned = iterations_per_gear_set * plan.Permutations(config.regem);
+                auto const percent_complete = (100 * BulkResults.sims) / total_planned;
+                auto const time_remaining = (total_planned - BulkResults.sims) / iterations_per_sec;
+
+                std::cout
+                    << "Iterations: " << BulkResults.sims
+                    << " in " << runtime
+                    << " seconds.  Iterations per second: " << iterations_per_sec
+                    << " Total planned: " << total_planned
+                    << " Percent complete: " << percent_complete
+                    << " Seconds remaining: " << time_remaining
+                    << std::endl;
+                last_status = now;
+            }
         } while (true);
 
-        for (auto &t : threads)
+        for (auto& t : threads)
             t.join();
+
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto exec_time = std::chrono::duration_cast<std::chrono::seconds>(stop - start);
+
+        std::cout << "Finished in " << exec_time.count() << " seconds" << std::endl;
+
+        for (auto const& i : BulkResults.gear.items)
+            std::cout << i << std::endl;
     }
-
-    double avg_dps = 0, min_dps = 0, max_dps = 0;
-
-    for (auto const &r : results)
+    catch (const std::exception& e)
     {
-        avg_dps += r.avg_dps;
-        min_dps += r.min_dps;
-        max_dps += r.max_dps;
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
     }
-
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto exec_time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    std::cout << "Threads: " << thread_count << "\nSims: " << runs << "\nDPS: " << avg_dps << " ("
-              << min_dps << " - " << max_dps << ")"
-              << "\nExec time: " << exec_time.count() << std::endl;
 
     return 0;
 }
