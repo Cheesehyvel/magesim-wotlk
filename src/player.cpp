@@ -447,27 +447,21 @@ double Player::baseManaCost(std::shared_ptr<spell::Spell> spell) const
     return cost;
 }
 
-double Player::manaCostMod(std::shared_ptr<spell::Spell> spell) const
+double Player::manaCostMod(std::shared_ptr<spell::Spell> spell, double mana_cost) const
 {
-    double base_cost = baseManaCost(spell);
-    double cost = Unit::manaCostMod(spell);
+    double mod = Unit::manaCostMod(spell, mana_cost);
 
-    if (talents.frost_channeling) {
-        if (talents.frost_channeling == 1)
-            cost -= base_cost * talents.frost_channeling * 0.04;
-        else if (talents.frost_channeling == 2)
-            cost -= base_cost * talents.frost_channeling * 0.07;
-        else if (talents.frost_channeling == 3)
-            cost -= base_cost * talents.frost_channeling * 0.1;
-    }
+    if (hasBuff(buff::ARCANE_POWER))
+        mod += 0.2 * mana_cost;
 
     if (spell->id == spell::ARCANE_BLAST) {
-        cost += base_cost * 1.75 * buffStacks(buff::ARCANE_BLAST);
+        double multi = 1.75 * buffStacks(buff::ARCANE_BLAST);
         if (stats.t5_2set)
-            cost += base_cost * 0.05;
+            multi += 0.05;
+        mod += ceil(mana_cost * multi - 0.5);
     }
 
-    return cost;
+    return mod;
 }
 
 double Player::manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const
@@ -504,23 +498,6 @@ double Player::manaCostMultiplier(std::shared_ptr<spell::Spell> spell) const
     }
 
     return multi;
-}
-
-double Player::manaCostMod(std::shared_ptr<spell::Spell> spell, double mana_cost) const
-{
-    double mod = Unit::manaCostMod(spell, mana_cost);
-
-    if (hasBuff(buff::ARCANE_POWER))
-        mod+= 0.2 * mana_cost;
-
-    if (spell->id == spell::ARCANE_BLAST) {
-        double multi = 1.75 * buffStacks(buff::ARCANE_BLAST);
-        if (config->t5_2set)
-            multi += 0.05;
-        mod+= ceil(mana_cost * multi - 0.5);
-    }
-
-    return mod;
 }
 
 double Player::getSpellPower(School school) const
