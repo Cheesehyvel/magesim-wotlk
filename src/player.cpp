@@ -53,7 +53,7 @@ Faction Player::faction() const
 
 bool Player::hasTrinket(Trinket trinket) const
 {
-    return config.trinket1 == trinket || config.trinket2 == trinket;
+    return stats.trinket1 == trinket || stats.trinket2 == trinket;
 }
 
 void Player::applyMana(const State& state, double _mana)
@@ -96,7 +96,7 @@ double Player::manaPerSecond(const State& state) const
         while_casting += 0.5;
         if (glyphs.mage_armor)
             while_casting += 0.2;
-        if (config.t9_2set)
+        if (stats.t9_2set)
             while_casting += 0.1;
     }
 
@@ -109,7 +109,7 @@ double Player::maxMana() const
 {
     double mana = Unit::maxMana();
 
-    if (config.meta_gem == META_BEAMING_EARTHSIEGE)
+    if (stats.meta_gem == META_BEAMING_EARTHSIEGE)
         mana *= 1.02;
 
     return mana;
@@ -178,7 +178,7 @@ double Player::critChance(std::shared_ptr<spell::Spell> spell) const
         double multi = 0.35;
         if (glyphs.molten_armor)
             multi += 0.2;
-        if (config.t9_2set)
+        if (stats.t9_2set)
             multi += 0.15;
         crit += critRatingToChance(round(getSpirit() * multi));
     }
@@ -233,7 +233,7 @@ double Player::critChance(std::shared_ptr<spell::Spell> spell) const
             crit -= 1;
     }
 
-    if (config.t9_4set) {
+    if (stats.t9_4set) {
         if (spell->id == spell::ARCANE_BLAST ||
             spell->id == spell::ARCANE_MISSILES ||
             spell->id == spell::FIREBALL ||
@@ -259,7 +259,7 @@ double Player::baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const
 {
     double base = 1;
 
-    if (config.meta_gem == META_CHAOTIC_SKYFLARE)
+    if (stats.meta_gem == META_CHAOTIC_SKYFLARE)
         base *= 1.03;
 
     return base;
@@ -273,7 +273,7 @@ double Player::critMultiplierMod(std::shared_ptr<spell::Spell> spell) const
         multi += talents.spell_power * 0.25;
     if (talents.burnout)
         multi += talents.burnout * 0.1;
-    if (config.t7_4set)
+    if (stats.t7_4set)
         multi += 0.05;
 
     if (spell->id == spell::ARCANE_MISSILES && glyphs.arcane_missiles)
@@ -336,16 +336,16 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
         multi *= 1.05 + talents.imp_cone_of_cold * 0.1;
     if (hasBuff(buff::QUAD_CORE))
         multi *= 1.18;
-    if (config.udc_2set)
+    if (stats.udc_2set)
         multi *= 1.01;
-    if (config.udc_3set)
+    if (stats.udc_3set)
         multi *= 1.02;
-    if (config.udc_4set)
+    if (stats.udc_4set)
         multi *= 1.03;
-    if (config.cudc_3set)
+    if (stats.cudc_3set)
         multi *= 1.02;
 
-    if (talents.torment_of_the_weak) {
+    if (talents.torment_the_weak) {
         if (spell->id == spell::FROSTBOLT ||
             spell->id == spell::FIREBALL ||
             spell->id == spell::FIREBALL_DOT ||
@@ -357,7 +357,7 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
             spell->id == spell::ARCANE_BLAST ||
             spell->id == spell::ARCANE_BARRAGE)
         {
-            multi *= 1 + (0.04 * talents.torment_of_the_weak);
+            multi *= 1 + (0.04 * talents.torment_the_weak);
         }
     }
 
@@ -372,7 +372,7 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
         multi *= 1 + ab * buffStacks(buff::ARCANE_BLAST, true);
     }
 
-    if (config.t5_2set && spell->id == spell::ARCANE_BLAST)
+    if (stats.t5_2set && spell->id == spell::ARCANE_BLAST)
         multi *= 1.05;
 
     if (spell->id == spell::ICE_LANCE && isFrozen()) {
@@ -391,7 +391,7 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
         additive += 0.2;
     if (spell->id == spell::FROSTFIRE_BOLT && glyphs.frostfire)
         additive += 0.02;
-    if (config.t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
+    if (stats.t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
         additive += 0.05;
     if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
         additive += 0.2;
@@ -463,7 +463,7 @@ double Player::manaCostMod(std::shared_ptr<spell::Spell> spell) const
 
     if (spell->id == spell::ARCANE_BLAST) {
         cost += base_cost * 1.75 * buffStacks(buff::ARCANE_BLAST);
-        if (config.t5_2set)
+        if (stats.t5_2set)
             cost += base_cost * 0.05;
     }
 
@@ -554,11 +554,11 @@ double Player::cooldownMod(const cooldown::Cooldown& cooldown) const
 
     double mod = Unit::cooldownMod(cooldown);
 
-    if (talents.arcane_floes) {
+    if (talents.arcane_flows) {
         if (cooldown.id == cooldown::PRESENCE_OF_MIND || cooldown.id == cooldown::ARCANE_POWER)
-            mod -= cooldown.duration * 0.15 * talents.arcane_floes;
+            mod -= cooldown.duration * 0.15 * talents.arcane_flows;
         if (cooldown.id == cooldown::EVOCATION)
-            mod -= 60 * talents.arcane_floes;
+            mod -= 60 * talents.arcane_flows;
     }
 
     if (talents.ice_floes) {
@@ -580,7 +580,7 @@ double Player::cooldownMod(const cooldown::Cooldown& cooldown) const
             mod *= 1.0 - talents.cold_as_ice * 0.1;
     }
 
-    if (cooldown.id == cooldown::EVOCATION && config.t3_2set)
+    if (cooldown.id == cooldown::EVOCATION && stats.t3_2set)
         mod -= 60;
 
     return mod;
@@ -733,26 +733,26 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
 
     if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        if (!config.t8_4set || random<int>(0, 4) != 0) {
+        if (!stats.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::BrainFreeze>());
-            if (config.t10_2set)
+            if (stats.t10_2set)
                 actions.push_back(buffAction<buff::PushingTheLimit>());
         }
     }
 
     if (spell->id == spell::ARCANE_MISSILES && hasBuff(buff::MISSILE_BARRAGE)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        if (!config.t8_4set || random<int>(0, 4) != 0) {
+        if (!stats.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::MissileBarrage>());
-            if (config.t10_2set)
+            if (stats.t10_2set)
                 actions.push_back(buffAction<buff::PushingTheLimit>());
         }
     }
     if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        if (!config.t8_4set || random<int>(0, 4) != 0) {
+        if (!stats.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::HotStreak>());
-            if (config.t10_2set)
+            if (stats.t10_2set)
                 actions.push_back(buffAction<buff::PushingTheLimit>());
         }
     }
@@ -795,7 +795,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             action.unit->name += " #" + std::to_string(i + 1);
             actions.push_back(std::move(action));
         }
-        if (config.t10_4set)
+        if (stats.t10_4set)
             actions.push_back(buffAction<buff::QuadCore>());
     }
 
@@ -809,7 +809,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         actions.push_back(std::move(action));
     }
 
-    if (config.t8_2set && !hasCooldown(cooldown::PRAXIS)) {
+    if (stats.t8_2set && !hasCooldown(cooldown::PRAXIS)) {
         if (spell->id == spell::ARCANE_BLAST ||
             spell->id == spell::FIREBALL ||
             spell->id == spell::FROSTBOLT ||
@@ -826,12 +826,12 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             actions.push_back(std::move(i));
 
         // Unconfirmed - on spell cast ?
-        if (config.black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
+        if (stats.black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
             actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
         }
 
         // Unconfirmed - on spell cast ?
-        if (config.darkglow_embroidery && !hasCooldown(cooldown::DARKGLOW) && random<int>(0, 99) < 35) {
+        if (stats.darkglow_embroidery && !hasCooldown(cooldown::DARKGLOW) && random<int>(0, 99) < 35) {
             auto action = manaAction(400, "Darkglow");
             action.cooldown = std::make_shared<cooldown::Darkglow>();
             actions.push_back(std::move(action));
@@ -1010,12 +1010,12 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             // Confirmed - on spell impact
             // Confirmed - does not proc on channeled spells
             // Unconfirmed - does it proc on resist?
-            if (config.lightweave_embroidery && !instance.spell->channeling && !hasCooldown(cooldown::LIGHTWEAVE) && random<int>(0, 99) < 35) {
+            if (stats.lightweave_embroidery && !instance.spell->channeling && !hasCooldown(cooldown::LIGHTWEAVE) && random<int>(0, 99) < 35) {
                 actions.push_back(buffCooldownAction<buff::Lightweave, cooldown::Lightweave>());
             }
 
             // Unconfirmed - on spell impact
-            if (config.ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
+            if (stats.ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
                 actions.push_back(buffCooldownAction<buff::AshenBand, cooldown::AshenBand>());
             }
         }
@@ -1067,7 +1067,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffCooldownAction<buff::ReignUnlivingNm, cooldown::ReignUnlivingNm>());
             }
 
-            if (config.t5_4set)
+            if (stats.t5_4set)
                 actions.push_back(buffAction<buff::ArcaneMadness>());
         }
     }
@@ -1212,7 +1212,7 @@ double Player::manaGemMax() const
         return 0;
 
     double imp = 1;
-    if (config.t7_2set)
+    if (stats.t7_2set)
         imp += 0.25;
     if (hasTrinket(TRINKET_SERPENT_COIL))
         imp += 0.25;
@@ -1336,7 +1336,7 @@ std::vector<action::Action> Player::useManaGem()
     }
 
     double imp = 1;
-    if (config.t7_2set)
+    if (stats.t7_2set)
         imp += 0.25;
     if (hasTrinket(TRINKET_SERPENT_COIL))
         imp += 0.25;
@@ -1347,7 +1347,7 @@ std::vector<action::Action> Player::useManaGem()
 
     actions.push_back(manaAction(mana, "Mana Gem"));
 
-    if (config.t7_2set)
+    if (stats.t7_2set)
         actions.push_back(buffAction<buff::ManaSurges>());
     if (hasTrinket(TRINKET_SERPENT_COIL))
         actions.push_back(buffAction<buff::ManaSurge>());
@@ -1604,7 +1604,7 @@ int Player::evocationTicks() const
 {
     int ticks = 4;
 
-    if (config.t6_2set)
+    if (stats.t6_2set)
         ++ticks;
 
     if (config.evo_ticks && config.evo_ticks <= ticks)
@@ -1636,7 +1636,7 @@ action::Action Player::useCooldown(const State& state)
     else if (race == RACE_TROLL && !hasCooldown(cooldown::BERSERKING) && useTimingIfPossible("berserking", state)) {
         return buffCooldownAction<buff::Berserking, cooldown::Berserking>(true);
     }
-    else if (config.hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && useTimingIfPossible("hyperspeed_accelerators", state)) {
+    else if (stats.hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && useTimingIfPossible("hyperspeed_accelerators", state)) {
         return buffCooldownAction<buff::HyperspeedAcceleration, cooldown::HyperspeedAcceleration>(true);
     }
     else if (config.potion != POTION_NONE && config.potion != POTION_MANA && !hasCooldown(cooldown::POTION) && useTimingIfPossible("potion", state)) {
@@ -1673,17 +1673,17 @@ action::Action Player::useCooldown(const State& state)
     {
         return spellCooldownAction<spell::SapperCharge, cooldown::SapperCharge>();
     }
-    else if (isUseTrinket(config.trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(config.trinket1) && useTimingIfPossible("trinket1", state)) {
+    else if (isUseTrinket(stats.trinket1) && !hasCooldown(cooldown::TRINKET1) && !isTrinketOnSharedCD(stats.trinket1) && useTimingIfPossible("trinket1", state)) {
         action::Action action{ action::TYPE_TRINKET };
         action.cooldown = std::make_shared<cooldown::Cooldown>(cooldown::TRINKET1);
-        action.trinket = config.trinket1;
+        action.trinket = stats.trinket1;
         action.primary_action = true;
         return action;
     }
-    else if (isUseTrinket(config.trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(config.trinket2) && useTimingIfPossible("trinket2", state)) {
+    else if (isUseTrinket(stats.trinket2) && !hasCooldown(cooldown::TRINKET2) && !isTrinketOnSharedCD(stats.trinket2) && useTimingIfPossible("trinket2", state)) {
         action::Action action{ action::TYPE_TRINKET };
         action.cooldown = std::make_shared<cooldown::Cooldown>(cooldown::TRINKET2);
-        action.trinket = config.trinket2;
+        action.trinket = stats.trinket2;
         action.primary_action = true;
         return action;
     }

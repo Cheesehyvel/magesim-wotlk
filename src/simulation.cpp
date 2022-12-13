@@ -462,7 +462,8 @@ void Simulation::pushWait(std::shared_ptr<unit::Unit> unit, double t, const std:
 
     push(event);
 
-    if (!str.empty())
+    // extra check for logging here to save cpu cycles building the string
+    if (logging && !str.empty())
         addLog(unit, LOG_WAIT, str + ", " + unit->name + " waiting " + std::to_string(t) + " seconds...");
 }
 

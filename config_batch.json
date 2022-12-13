@@ -1,0 +1,134 @@
+{
+  "duration": 180,
+  "duration_variance": 1.5,
+  "rng_seed": 0,
+  "avg_spell_dmg": false,
+  "additional_data": false,
+  "targets": 1,
+  "target_resistance": 0,
+  "target_level": 83,
+  "spell_travel_time": 500,
+  "reaction_time": 300,
+  "regem": false, 
+
+  "debuff_spell_crit": false,
+  "debuff_spell_dmg": false,
+  "debuff_spell_hit": false,
+  "debuff_crit": false,
+  "buff_spell_crit": false,
+  "buff_spell_haste": false,
+  "buff_haste": false,
+  "buff_dmg": false,
+  "totem_of_wrath": false,
+  "flametongue": false,
+  "demonic_pact": false,
+  "demonic_pact_bonus": 0.0,
+  "mana_replenishment": false,
+  "judgement_of_wisdom": false,
+  "mage_armor": true,
+  "molten_armor": false,
+  "amplify_magic": false,
+  "prof_engineer": false,
+
+  "pre_mirror_image": false,
+  "pre_water_elemental": false,
+  "pre_incanters_absorption": false,
+  "pre_mana_incanters_absorption": false,
+
+  "potion": 0,
+  "pre_potion": 0,
+  "conjured": 0,
+
+  "rotation": "st_fire",
+  "rot_ab3_mana": 0,
+  "rot_ab_no_mb_mana": 100,
+  "rot_abs_ap": 0,
+  "rot_mb_below_ab": 0,
+  "rot_mb_mana": 0,
+  "rot_ice_lance": false,
+  "rot_brain_freeze_hold": 15,
+  "maintain_imp_scorch": false,
+  "ignite_munching": false,
+  "hot_streak_cqs": false,
+  "hot_streak_cqs_time": 100,
+  "evo_ticks": 0,
+
+  "talents": "https://www.wowhead.com/wotlk/talent-calc/mage/23000503210033015032313250532-03-023203001_001wr211q1b21q1y31rj441rj551rj7",
+  "glyphs": {
+    "major": [ "Glyph of Molten Armor", "Glyph of Arcane Blast", "Glyph of Arcane Missiles" ],
+    "minor": [ "Glyph of Arcane Intellect", "Glyph of the Penguin", "Glyph of Slow Fall" ]
+  },
+
+  "items": [
+    45457,
+    45620,
+
+    45617,
+
+    45294,
+    45257,
+    45511,
+
+    45497,
+    46129,
+
+    45133,
+
+    46068,
+    46134,
+    45242,
+
+    45618,
+
+    46130,
+    
+    45446,
+    45291,
+
+    45665,
+    45520,
+    46132,
+
+    45619,
+
+    45488,
+    46133,
+
+    45135,
+    45537,
+
+    45495,
+    46046,
+    45297,
+    45515,
+
+    45518,
+    45490,
+    45148,
+    45466
+  ],
+  "gems": [
+    41285,
+    39998,
+    40026,
+    40049,
+    40051,
+    40014,
+    40088,
+    40091
+  ],
+  "enchants": [
+    59970,
+    59937,
+    55642,
+    60692,
+    60767,
+    54999,
+    54793,
+    55631,
+    55016,
+    60714,
+    59625,
+    62948
+  ]
+}

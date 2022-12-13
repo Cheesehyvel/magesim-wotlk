@@ -40,8 +40,6 @@ def js_dump_group(f, data: dict, key: str, indent: int):
 
 
 def c_dump_item(f, data: dict, key: str):
-    f.write("constexpr Item " + key + "[] = {\n")
-
     def val_or_default(item: dict, value: str):
         if value not in item:
             if value == "use":
@@ -50,6 +48,8 @@ def c_dump_item(f, data: dict, key: str):
                 return 0
         if isinstance(item[value], bool):
             return str(item[value]).lower()
+        elif isinstance(item[value], str) and item[value][:4] == "ids.":
+            return "ids::" + item[value][4:]
         return item[value]
 
     for item in data[key]:
@@ -65,9 +65,43 @@ def c_dump_item(f, data: dict, key: str):
         else:
             id_str = item["id"]
 
+        if key == "weapon":
+            slot_id = 0
+        elif key == "off_hand":
+            slot_id = 1
+        elif key == "ranged":
+            slot_id = 2
+        elif key == "head":
+            slot_id = 3
+        elif key == "neck":
+            slot_id = 4
+        elif key == "shoulder":
+            slot_id = 5
+        elif key == "back":
+            slot_id = 6
+        elif key == "chest":
+            slot_id = 7
+        elif key == "wrist":
+            slot_id = 8
+        elif key == "hands":
+            slot_id = 9
+        elif key == "waist":
+            slot_id = 10
+        elif key == "legs":
+            slot_id = 11
+        elif key == "feet":
+            slot_id = 12
+        elif key == "finger":
+            slot_id = 13
+        elif key == "trinket":
+            slot_id = 14
+        else:
+            raise Exception("Unrecognized gear slot " + key)
+
         f.write(
-            f'{id_str}, "{item["title"]}", '
+            f'{id_str}, {slot_id}, "{item["title"]}", '
             f'{val_or_default(item, "ilvl")}, '
+            f'{val_or_default(item, "itemset")}, '
             f'{val_or_default(item, "int")}, '
             f'{val_or_default(item, "spi")}, '
             f'{val_or_default(item, "sp")}, '
@@ -90,6 +124,8 @@ def c_dump_item(f, data: dict, key: str):
         f.write("{")
         if "bonus" in item:
             f.write(
+                f'{val_or_default(item["bonus"], "int")}, '
+                f'{val_or_default(item["bonus"], "spi")}, '
                 f'{val_or_default(item["bonus"], "sp")}, '
                 f'{val_or_default(item["bonus"], "hit")}, '
                 f'{val_or_default(item["bonus"], "crit")}, '
@@ -99,8 +135,6 @@ def c_dump_item(f, data: dict, key: str):
             f.write("0, 0, 0, 0")
         f.write("}")
         f.write(" },\n")
-
-    f.write("};\n\n")
 
 
 def c_dump_gem(f, data: dict):
@@ -163,7 +197,29 @@ def c_dump_enchants(f, data: dict, key: str):
             return str(enchant[value]).lower()
         return enchant[value]
 
-    f.write("\nconstexpr Enchant enchant_" + key + "[] = {\n")
+    if key == "weapon":
+        slot = 0
+    elif key == "head":
+        slot = 1
+    elif key == "shoulder":
+        slot = 2
+    elif key == "back":
+        slot = 3
+    elif key == "chest":
+        slot = 4
+    elif key == "wrist":
+        slot = 5
+    elif key == "hands":
+        slot = 6
+    elif key == "waist":
+        slot = 7
+    elif key == "legs":
+        slot = 8
+    elif key == "feet":
+        slot = 9
+    elif key == "finger":
+        slot = 10
+
     for enchant in data[key]:
         if isinstance(enchant["id"], str) and "ids." in enchant["id"]:
             id_str = "ids::" + enchant["id"][4:]
@@ -172,21 +228,10 @@ def c_dump_enchants(f, data: dict, key: str):
 
         f.write("    { ")
 
-        """
-    int id;
-    int enchantmentId;
-    const char *title;
-    int intellect;
-    int spirit;
-    int sp;
-    int crit;
-    int haste;
-    int mp5;
-    bool two_hand;
-        """
         f.write(
             f"{id_str}, "
             f'{val_or_default(enchant, "enchantmentId")}, '
+            f'{slot}, '
             f'"{val_or_default(enchant, "title")}", '
             f'{val_or_default(enchant, "intellect")}, '
             f'{val_or_default(enchant, "spi")}, '
@@ -198,7 +243,6 @@ def c_dump_enchants(f, data: dict, key: str):
         )
 
         f.write("},\n")
-    f.write("};\n")
 
 
 def c_dump_glyph(f, data: dict):
@@ -279,6 +323,8 @@ def main():
                 """
 struct Bonus
 {
+    int intellect;
+    int spirit;
     int sp;
     int hit;
     int crit;
@@ -288,8 +334,10 @@ struct Bonus
 struct Item
 {
     int id;
+    int slot;
     const char *title;
     int ilvl;
+    int itemset;
     int intellect;
     int spirit;
     int sp;
@@ -323,6 +371,7 @@ struct Enchant
 {
     int id;
     int enchantmentId;
+    int slot;
     const char *title;
     int intellect;
     int spirit;
@@ -351,6 +400,7 @@ struct Glyph
 """
             )
 
+            h.write("constexpr Item items[] = {\n")
             for key in [
                 "weapon",
                 "off_hand",
@@ -372,14 +422,14 @@ struct Glyph
                 c_dump_item(h, data, key)
 
             js.write("};\n\nvar gems = [\n")
-            h.write("constexpr Gem gems[] = {\n")
+            h.write("};\n\nconstexpr Gem gems[] = {\n")
 
             for gem in data["gems"]:
                 js_dump_dict(js, gem, 4)
                 c_dump_gem(h, gem)
 
             js.write("];\n\nvar enchants = {\n")
-            h.write("};\n")
+            h.write("};\n\nconstexpr Enchant enchants[] = {\n")
 
             for key in [
                 "weapon",
@@ -398,7 +448,7 @@ struct Glyph
                 c_dump_enchants(h, data["enchants"], key)
 
             js.write("};\n\nvar itemsets = [\n")
-            h.write("\nconstexpr Itemset itemsets[] = {\n")
+            h.write("};\nconstexpr Itemset itemsets[] = {\n")
 
             for itemset in data["itemsets"]:
                 js_dump_dict(js, itemset, 4)
@@ -420,7 +470,6 @@ struct Glyph
 
         h.write("\n} // namespace wow_data\n")
     pass
-
 
 if __name__ == "__main__":
     main()
