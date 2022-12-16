@@ -21,7 +21,7 @@ namespace spell
         PYROBLAST = 42891,
         PYROBLAST_DOT = 4289100,
         LIVING_BOMB = 55360,
-        LIVING_BOMB_EXPLOSION = 5536000,
+        LIVING_BOMB_EXPLOSION = 55362,
         FLAMESTRIKE = 42926,
         FLAMESTRIKE_DOT = 4292600,
         BLAST_WAVE = 42945,
@@ -364,7 +364,7 @@ namespace spell
             active_use = false;
             min_dmg = 690;
             max_dmg = 690;
-            coeff = 0.4286;
+            coeff = 0.4;
         }
     };
 
