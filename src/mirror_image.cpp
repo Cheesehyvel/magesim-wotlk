@@ -38,9 +38,16 @@ std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, s
 
 action::Action MirrorImage::nextAction(const State& state)
 {
-    auto action = gcdAction(state.t);
-    if (action.type != action::TYPE_NONE)
+    auto gcd = gcdAction(state.t);
+    if (gcd.type != action::TYPE_NONE)
+        return gcd;
+
+    if (state.isInterrupted(false)) {
+        action::Action action;
+        action.type = action::TYPE_WAIT;
+        action.value = state.interruptedFor(false);
         return action;
+    }
 
     if (!hasCooldown(cooldown::FIRE_BLAST) && random<int>(0, 2) == 0)
         return spellAction<spell::MirrorFireBlast>();

@@ -4,6 +4,7 @@
 
 State::State(std::shared_ptr<Config> _config) : config(_config)
 {
+    active_interruptions.resize(config->interruptions.size());
     reset();
 }
 
@@ -20,6 +21,8 @@ void State::reset()
     spells.clear();
     debuffs.clear();
     units.clear();
+
+    std::fill(active_interruptions.begin(), active_interruptions.end(), false);
 }
 
 bool State::inCombat() const
@@ -84,8 +87,68 @@ void State::removeUnit(std::shared_ptr<unit::Unit> unit)
     }
 }
 
-
 double State::timeRemain() const
 {
     return duration - t;
+}
+
+void State::activateInterruption(int index)
+{
+    active_interruptions[index] = true;
+}
+
+void State::deactivateInterruption(int index)
+{
+    active_interruptions[index] = false;
+}
+
+double State::interruptedFor(bool is_player) const
+{
+    double max = 0;
+    double d = 0;
+
+    for (int i=0; i<active_interruptions.size(); i++) {
+        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all)) {
+            d = config->interruptions[i].t + config->interruptions[i].duration;
+            if (d > max)
+                max = d;
+        }
+    }
+
+    return max - t;
+}
+
+bool State::isInterrupted(bool is_player) const
+{
+    for (int i=0; i<active_interruptions.size(); i++) {
+        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all))
+            return true;
+    }
+
+    return false;
+}
+
+bool State::isSilenced(bool is_player) const
+{
+    for (int i=0; i<active_interruptions.size(); i++) {
+        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all) && config->interruptions[i].silence)
+            return true;
+    }
+
+    return false;
+}
+
+bool State::isMoving(bool is_player) const
+{
+    bool is_moving = false;
+
+    for (int i=0; i<active_interruptions.size(); i++) {
+        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all)) {
+            if (config->interruptions[i].silence)
+                return false;
+            is_moving = true;
+        }
+    }
+
+    return is_moving;
 }

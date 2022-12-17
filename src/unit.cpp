@@ -456,6 +456,11 @@ double Unit::cooldownMod(const cooldown::Cooldown &cooldown) const
     return 0;
 }
 
+void Unit::interrupt(const Interruption& interruption)
+{
+    is_channeling = false;
+}
+
 std::vector<action::Action> Unit::onBuffGain(const State &state, std::shared_ptr<buff::Buff> buff)
 {
     return {};

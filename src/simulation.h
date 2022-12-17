@@ -34,6 +34,7 @@ struct Event
     double t = 0;
     double mana = 0;
     int tick = 0;
+    int interruption_index = -1;
     std::string source = "";
     EventType type = EventType::EVENT_NONE;
 
@@ -120,6 +121,8 @@ public:
 
     void pushWait(std::shared_ptr<unit::Unit> unit, double t, const std::string &str = "", std::shared_ptr<spell::Spell> spell = NULL);
 
+    void pushInterruption(int index);
+
     void onAction(std::shared_ptr<unit::Unit> unit, action::Action & action);
 
     bool nextAction(std::shared_ptr<unit::Unit> unit);
@@ -157,6 +160,10 @@ public:
     void onManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source = "");
 
     void onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell = NULL);
+
+    void onInterruption(int index);
+
+    void onInterruptionEnd(int index);
 
     void onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff);
 
@@ -241,6 +248,8 @@ public:
     void logUnitSpawn(std::shared_ptr<unit::Unit> unit);
 
     void logUnitDespawn(std::shared_ptr<unit::Unit> unit);
+
+    void logInterruption(Interruption& interruption);
 
     std::string jsonLog() const;
 

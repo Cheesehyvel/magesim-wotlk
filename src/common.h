@@ -141,7 +141,9 @@ enum EventType : int
     EVENT_CD_EXPIRE,
     EVENT_UNIT,
     EVENT_UNIT_DESPAWN,
-    EVENT_WAIT
+    EVENT_WAIT,
+    EVENT_INTERRUPTION,
+    EVENT_INTERRUPTION_END
 };
 
 struct SpellStats

@@ -97,6 +97,8 @@ public:
 
     bool hasChillEffect(std::shared_ptr<spell::Spell> spell) const;
 
+    void interrupt(const Interruption& interruption);
+
     std::vector<action::Action> onBuffGain(const State& state, std::shared_ptr<buff::Buff> buff);
 
     std::vector<action::Action> onBuffExpire(const State& state, std::shared_ptr<buff::Buff> buff);

@@ -1184,6 +1184,51 @@
                                     </div>
                                 </div>
                             </fieldset>
+                            <fieldset class="config-interruptions">
+                                <legend>Interruptions</legend>
+                                <div class="interruptions">
+                                    <table class="items">
+                                        <thead>
+                                            <tr>
+                                                <th class="type">Type</th>
+                                                <th class="affects">Affects</th>
+                                                <th class="t">Time</th>
+                                                <th class="duration">Duration</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="interruption in config.interruptions" :key="interruption.id">
+                                                <td class="type">
+                                                    <select v-model="interruption.silence">
+                                                        <option :value="false">Movement</option>
+                                                        <option :value="true">Silence</option>
+                                                    </select>
+                                                    <div class="remove" @click="removeInterruption(interruption.id)">
+                                                        <span class="material-icons">&#xe5cd;</span>
+                                                    </div>
+                                                </td>
+                                                <td class="affects">
+                                                    <select v-model="interruption.affects_all">
+                                                        <option :value="false">Player</option>
+                                                        <option :value="true">Player and pets</option>
+                                                    </select>
+                                                </td>
+                                                <td class="t">
+                                                    <input type="text" v-model.number="interruption.t">
+                                                </td>
+                                                <td class="t">
+                                                    <input type="text" v-model.number="interruption.duration">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="add-timing">
+                                        <div class="plus" @click="addInterruption">
+                                            <span class="material-icons">&#xe145;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                             <fieldset class="config-profiles">
                                 <legend>Your profiles</legend>
                                 <div class="profiles">
@@ -1612,6 +1657,7 @@
                 evo_ticks: 0,
 
                 timings: Array(),
+                interruptions: Array(),
 
                 build: "",
 
@@ -1824,6 +1870,7 @@
                     "7": true,
                     "8": false,
                     "9": true,
+                    "10": true,
                 },
                 log_filter_player: false,
                 talent_map: [[],[],[]],
@@ -2410,6 +2457,31 @@
                     return false;
 
                 return true;
+            },
+
+            newInterruptionId() {
+                var id = 0;
+                for (var i=0; i<this.config.interruptions.length; i++)
+                    id = Math.max(id, this.config.interruptions[i].id);
+                return id+1;
+            },
+
+            addInterruption() {
+                this.config.interruptions.push({
+                    id: this.newInterruptionId(),
+                    silence: false,
+                    affects_all: false,
+                    t: 0,
+                    duration: 0,
+                });
+
+                this.config.interruptions = _.sortBy(this.config.interruptions, "t");
+            },
+
+            removeInterruption(id) {
+                var index = _.findIndex(this.config.interruptions, {id: id});
+                if (index != -1)
+                    this.config.interruptions.splice(index, 1);
             },
 
             sort(items, sorting) {
@@ -4636,6 +4708,7 @@
 
                 if (profile.config && (!only || only == "config")) {
                     this.config.timings = [];
+                    this.config.interruptions = [];
                     _.merge(this.config, _.pick(profile.config, _.keys(this.config)));
                     this.onLoadConfig(profile.config);
                     this.profile_status.config = true;

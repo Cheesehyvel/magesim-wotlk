@@ -1,11 +1,9 @@
 #pragma once
 
-class Interruption
+struct Interruption
 {
-public:
-    Interruption(){}
     bool silence = false;
     bool affects_all = false;
-    double t;
-    double duration;
+    double t = 0;
+    double duration = 0;
 };

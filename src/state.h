@@ -28,6 +28,7 @@ public:
     std::unordered_map<spell::ID, SpellStats> spells;
     std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
     std::vector<std::shared_ptr<unit::Unit>> units;
+    std::vector<bool> active_interruptions;
 
     State(std::shared_ptr<Config> _config);
 
@@ -47,4 +48,11 @@ public:
     void removeUnit(std::shared_ptr<unit::Unit> unit);
 
     double timeRemain() const;
+
+    void activateInterruption(int index);
+    void deactivateInterruption(int index);
+    double interruptedFor(bool is_player = true) const;
+    bool isInterrupted(bool is_player = true) const;
+    bool isSilenced(bool is_player = true) const;
+    bool isMoving(bool is_player = true) const;
 };

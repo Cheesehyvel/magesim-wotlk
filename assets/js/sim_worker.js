@@ -41,6 +41,16 @@ onmessage = (event) => {
                 );
             }
 
+            for (var i=0; i<data.config.interruptions.length; i++) {
+                m.addInterruption(
+                    config,
+                    data.config.interruptions[i].silence,
+                    data.config.interruptions[i].affects_all,
+                    data.config.interruptions[i].t,
+                    data.config.interruptions[i].duration
+                );
+            }
+
             var player = m.allocPlayer(config);
             if (m.Race.values.hasOwnProperty(data.config.race))
                 player.race = m.Race.values[data.config.race];

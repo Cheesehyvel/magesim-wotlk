@@ -33,6 +33,13 @@ action::Action WaterElemental::nextAction(const State& state)
     if (action.type != action::TYPE_NONE)
         return action;
 
+    if (state.isInterrupted(false)) {
+        action::Action action;
+        action.type = action::TYPE_WAIT;
+        action.value = state.interruptedFor(false);
+        return action;
+    }
+
     return spellAction<spell::Waterbolt>();
 }
 }

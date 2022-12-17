@@ -18,6 +18,16 @@ void addTiming(std::shared_ptr<Config> config, std::string name, double t, int w
     config->timings.push_back(timing);
 }
 
+void addInterruption(std::shared_ptr<Config> config, bool silence, bool affects_all, double t, double duration)
+{
+    Interruption interruption;
+    interruption.silence = silence;
+    interruption.affects_all = affects_all;
+    interruption.t = t;
+    interruption.duration = duration;
+    config->interruptions.push_back(interruption);
+}
+
 std::shared_ptr<Config> allocConfig()
 {
     return std::make_shared<Config>();
@@ -228,6 +238,8 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("allocConfig", &allocConfig);
 
     emscripten::function("addTiming", &addTiming);
+
+    emscripten::function("addInterruption", &addInterruption);
 
     emscripten::value_object<Stats>("Stats")
         .field("intellect", &Stats::intellect)

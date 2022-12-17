@@ -111,6 +111,10 @@ SimulationResult Simulation::run(bool single)
             pushBuffGain(player, std::make_shared<buff::ManaTide>(), timing.t);
     }
 
+    for (int i=0; i<config->interruptions.size(); i++) {
+        pushInterruption(i);
+    }
+
     if (player->talents.focus_magic) {
         pushBuffGain(player, std::make_shared<buff::FocusMagic>(), 5.0);
     }
@@ -251,6 +255,12 @@ void Simulation::tick(Event& event)
             break;
         case EVENT_WAIT:
             onWait(event.unit, event.spell);
+            break;
+        case EVENT_INTERRUPTION:
+            onInterruption(event.interruption_index);
+            break;
+        case EVENT_INTERRUPTION_END:
+            onInterruptionEnd(event.interruption_index);
             break;
     }
 }
@@ -467,6 +477,21 @@ void Simulation::pushWait(std::shared_ptr<unit::Unit> unit, double t, const std:
 
     if (!str.empty())
         addLog(unit, LOG_WAIT, str + ", " + unit->name + " waiting " + std::to_string(t) + " seconds...");
+}
+
+void Simulation::pushInterruption(int index)
+{
+    Event start;
+    start.type = EVENT_INTERRUPTION;
+    start.t = config->interruptions[index].t;
+    start.interruption_index = index;
+    push(start);
+
+    Event end;
+    end.type = EVENT_INTERRUPTION_END;
+    end.t = config->interruptions[index].t + config->interruptions[index].duration;
+    end.interruption_index = index;
+    push(end);
 }
 
 void Simulation::onAction(std::shared_ptr<unit::Unit> unit, action::Action &action)
@@ -776,6 +801,53 @@ void Simulation::onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell:
         cast(unit, spell);
     else
         nextAction(unit);
+}
+
+void Simulation::onInterruption(int index)
+{
+    logInterruption(config->interruptions[index]);
+
+    state.activateInterruption(index);
+
+    player->interrupt(config->interruptions[index]);
+
+    if (config->interruptions[index].affects_all) {
+        for (auto i = state.units.begin(); i != state.units.end(); ++i)
+            (*i)->interrupt(config->interruptions[index]);
+    }
+
+    for (auto i = queue.begin(); i != queue.end();) {
+        if ((i->type == EVENT_CAST_FINISH || i->type == EVENT_SPELL_TICK || i->type == EVENT_WAIT) &&
+            (i->unit->id == player->id || config->interruptions[index].affects_all))
+        {
+            i = queue.erase(i);
+        }
+        else {
+            ++i;
+        }
+    }
+
+    if (config->interruptions[index].silence) {
+        pushWait(player, config->interruptions[index].duration);
+
+        if (config->interruptions[index].affects_all) {
+            for (auto i = state.units.begin(); i != state.units.end(); ++i)
+                pushWait(*i, config->interruptions[index].duration);
+        }
+    }
+    else {
+        nextAction(player);
+
+        if (config->interruptions[index].affects_all) {
+            for (auto i = state.units.begin(); i != state.units.end(); ++i)
+                nextAction(*i);
+        }
+    }
+}
+
+void Simulation::onInterruptionEnd(int index)
+{
+    state.deactivateInterruption(index);
 }
 
 void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff)
@@ -1309,6 +1381,28 @@ void Simulation::logUnitDespawn(std::shared_ptr<unit::Unit> unit)
         return;
 
     addLog(unit, LOG_UNIT, unit->name + " despawned");
+}
+
+void Simulation::logInterruption(Interruption& interruption)
+{
+    if (!logging)
+        return;
+
+    std::string s = "Interruption ";
+
+    if (interruption.silence)
+        s+= "(silence)";
+    else
+        s+= "(movement)";
+
+    s+= " on player";
+
+    if (interruption.affects_all)
+        s+= " and pets";
+
+    s+= " for "+std::to_string(static_cast<unsigned int>(interruption.duration))+" seconds.";
+
+    addLog(player, LOG_INTERRUPTION, s);
 }
 
 std::string Simulation::jsonLog() const

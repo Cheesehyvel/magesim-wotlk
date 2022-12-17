@@ -616,6 +616,13 @@ bool Player::hasChillEffect(std::shared_ptr<spell::Spell> spell) const
     return false;
 }
 
+void Player::interrupt(const Interruption& interruption)
+{
+    Unit::interrupt(interruption);
+    waited = false;
+    should_wait = false;
+}
+
 std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_ptr<buff::Buff> buff)
 {
     auto actions = Unit::onBuffGain(state, buff);
@@ -1620,6 +1627,16 @@ int Player::evocationTicks() const
 
 action::Action Player::useCooldown(const State& state)
 {
+    if (state.isMoving()) {
+        if (talents.presence_of_mind && !hasCooldown(cooldown::PRESENCE_OF_MIND) && !hasBuff(buff::ARCANE_POWER) && useTimingIfPossible("presence_of_mind", state)) {
+            return buffCooldownAction<buff::PresenceOfMind, cooldown::PresenceOfMind>(true);
+        }
+        else if (!hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state, true)) {
+            return spellCooldownAction<spell::MirrorImage, cooldown::MirrorImage>();
+        }
+        return { action::TYPE_NONE };
+    }
+
     if (talents.arcane_power && !hasCooldown(cooldown::ARCANE_POWER) && !hasBuff(buff::PRESENCE_OF_MIND) && useTimingIfPossible("arcane_power", state)) {
         auto action = buffAction<buff::ArcanePower>(true, glyphs.arcane_power);
         action.cooldown = std::make_shared<cooldown::ArcanePower>();
@@ -1791,6 +1808,18 @@ action::Action Player::nextAction(const State& state)
         else if (no_bomb) {
             return spellAction<spell::LivingBomb>();
         }
+        else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>();
+            }
+            else {
+                action::Action action{ action::TYPE_WAIT };
+                action.value = state.interruptedFor();
+                if (action.value > 0.1)
+                    action.value = 0.1;
+                return action;
+            }
+        }
         else {
             if (config->rotation == ROTATION_ST_FIRE_SC)
                 return spellAction<spell::Scorch>();
@@ -1827,6 +1856,18 @@ action::Action Player::nextAction(const State& state)
             should_wait = false;
             return action;
         }
+        else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>();
+            }
+            else {
+                action::Action action{ action::TYPE_WAIT };
+                action.value = state.interruptedFor();
+                if (action.value > 0.1)
+                    action.value = 0.1;
+                return action;
+            }
+        }
         else {
             auto action = spellAction<spell::Fireball>();
             should_wait = true;
@@ -1841,8 +1882,23 @@ action::Action Player::nextAction(const State& state)
             ab_stacks = 3;
         bool has_mb = canReactTo(buff::MISSILE_BARRAGE, state.t);
 
+        if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (talents.arcane_barrage && !hasCooldown(cooldown::ARCANE_BARRAGE)) {
+                return spellAction<spell::FireBlast>();
+            }
+            else if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>();
+            }
+            else {
+                action::Action action{ action::TYPE_WAIT };
+                action.value = state.interruptedFor();
+                if (action.value > 0.1)
+                    action.value = 0.1;
+                return action;
+            }
+        }
         // AB until the end
-        if (canBlast(state))
+        else if (canBlast(state))
             return spellAction<spell::ArcaneBlast>();
         // Extra ABs before first AP
         else if (!hasBuff(buff::ARCANE_POWER) && isTimingReadySoon("arcane_power", state, 5) && state.t < 10)
@@ -1884,6 +1940,18 @@ action::Action Player::nextAction(const State& state)
         else if (canReactTo(buff::BRAIN_FREEZE, state.t) && 15.0 - (state.t - t_brain_freeze) <= config->rot_brain_freeze_hold) {
             return spellAction<spell::FrostfireBolt>();
         }
+        else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>();
+            }
+            else {
+                action::Action action{ action::TYPE_WAIT };
+                action.value = state.interruptedFor();
+                if (action.value > 0.1)
+                    action.value = 0.1;
+                return action;
+            }
+        }
 
         return spellAction<spell::Frostbolt>();
     }
@@ -1894,13 +1962,17 @@ action::Action Player::nextAction(const State& state)
 
     // Blizzard
     else if (config->rotation == ROTATION_AOE_BLIZZ) {
+        if (state.isMoving())
+            return spellAction<spell::ArcaneExplosion>();
         return spellAction<spell::Blizzard>();
     }
 
     // Blizzard + Flamestrike
     else if (config->rotation == ROTATION_AOE_BLIZZ_FS) {
         auto fs = std::make_shared<spell::Flamestrike>();
-        if (t_flamestrike + 8.0 + castTime(fs) <= state.t)
+        if (state.isMoving())
+            return spellAction<spell::ArcaneExplosion>();
+        else if (t_flamestrike + 8.0 + castTime(fs) <= state.t)
             return spellAction(fs);
         else
             return spellAction<spell::Blizzard>();

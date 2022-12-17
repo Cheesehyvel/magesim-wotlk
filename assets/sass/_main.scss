@@ -806,7 +806,15 @@ table {
                 grid-row: 3;
             }
 
-            .timings {
+            .config-cooldowns {
+                grid-row: 1;
+            }
+            .config-interruptions {
+                grid-row: 2;
+            }
+
+            .timings,
+            .interruptions {
                 table {
                     tr {
                         border: none;
@@ -901,6 +909,18 @@ table {
                         transition: all 0.2s ease;
                         transition-delay: 0s;
                     }
+                }
+            }
+
+            .interruptions {
+                table tr td {
+                    &.type,
+                    &.affects {
+                        width: 120px;
+                    }
+                }
+                .add-timing .plus {
+                    cursor: pointer;
                 }
             }
         }
@@ -1004,6 +1024,9 @@ table {
             tr.type-8 td:nth-child(4),
             tr.type-9 td:nth-child(4) {
                 color: #b88;
+            }
+            tr.type-10 td:nth-child(4) {
+                color: #fb2;
             }
         }
     }

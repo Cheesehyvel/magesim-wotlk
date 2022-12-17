@@ -20,6 +20,7 @@ enum LogType : int
     LOG_DEBUG,
     LOG_WAIT,
     LOG_UNIT,
+    LOG_INTERRUPTION
 };
 
 struct LogEntry
