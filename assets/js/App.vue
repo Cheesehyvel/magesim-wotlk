@@ -3550,7 +3550,7 @@
                     this.gems[slot].splice(index, 1, null);
                 }
                 else {
-                    if (gem.unique && this.isSocketedAnywhere(gem.id))
+                    if (gem.unique && this.isSocketedAnywhere(gem.id, gem.unique))
                         return;
                     this.gems[slot].splice(index, 1, gem.id);
                 }
@@ -3619,11 +3619,16 @@
                 return _.get(this.gems[slot], index) == id;
             },
 
-            isSocketedAnywhere(id) {
+            isSocketedAnywhere(id, unique) {
                 for (var slot in this.gems) {
                     for (var i=0; i<this.gems[slot].length; i++) {
                         if (id == this.gems[slot][i])
                             return true;
+                        if (unique !== true) {
+                            var gem = this.getGem(this.gems[slot][i]);
+                            if (unique === _.get(gem, "unique", null))
+                                return true;
+                        }
                     }
                 }
                 return false;
@@ -3719,6 +3724,16 @@
                     var n = this.slotSockets(slot).length;
                     for (var i=n; i<3; i++) {
                         this.gems[slot][i] = null;
+                    }
+                    for (var i=0; i<this.gems[slot].length; i++) {
+                        if (this.gems[slot][i]) {
+                            var gem = this.getGem(this.gems[slot][i]);
+                            this.gems[slot][i] = null;
+                            if (gem) {
+                                if (!gem.unique || !this.isSocketedAnywhere(gem.id, gem.unique))
+                                    this.gems[slot][i] = gem.id;
+                            }
+                        }
                     }
                 }
             },

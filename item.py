@@ -65,6 +65,8 @@ def getItem(item_id, phase = 1):
             stats["crit"] = equip["critstrkrtng"]
         if "hitrtng" in equip:
             stats["hit"] = equip["hitrtng"]
+        elif "splhitrtng" in equip:
+            stats["hit"] = equip["splhitrtng"]
         if "hastertng" in equip:
             stats["haste"] = equip["hastertng"]
         if "manargn" in equip:
