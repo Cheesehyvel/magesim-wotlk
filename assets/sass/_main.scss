@@ -235,6 +235,10 @@ select {
     color: #fff;
     width: 100%;
     box-sizing: border-box;
+
+    &:focus {
+        outline: 0;
+    }
 }
 
 option {
@@ -620,19 +624,33 @@ table {
                     padding: 0;
 
                     .slots {
+                        position: relative;
                         background: rgba(0,0,0,0.2);
-                        padding: $spacer*0.5 $spacer $spacer*0.5 $spacer*0.5;
+                        padding: $spacer*0.5 $spacer*2.5 $spacer*0.5 $spacer*0.5;
 
                         .slot {
                             display: inline-block;
                             font-weight: 700;
                             font-size: 16px;
-                            margin-right: $spacer*0.5;
                             cursor: pointer;
                             color: rgba(255,255,255,0.5);
                             border-bottom: 2px solid transparent;
                             user-select: none;
                             transition: color 0.2s ease, border-color 0.2s ease;
+
+                            &:nth-child(n+2) {
+                                margin-left: $spacer*0.5;
+
+                                @media all and (max-width: 1820px) {
+                                    margin-left: 20px;
+                                }
+                                @media all and (max-width: 1620px) {
+                                    margin-left: 15px;
+                                }
+                                @media all and (max-width: 1540px) {
+                                    font-size: 14px;
+                                }
+                            }
 
                             &:hover {
                                 color: #fff;
@@ -642,27 +660,41 @@ table {
                                 color: #fff;
                                 border-color: #fff;
                             }
+                        }
 
-                            @media all and (max-width: 1820px) {
-                                margin-right: 20px;
-                            }
-                            @media all and (max-width: 1620px) {
-                                margin-right: 15px;
-                            }
-                            @media all and (max-width: 1540px) {
-                                font-size: 14px;
+                        .btn-splitview {
+                            position: absolute;
+                            top: 23px;
+                            right: 25px;
+                            cursor: pointer;
+
+                            span {
+                                vertical-align: middle;
+
+                                + .material-icons {
+                                    margin-left: 5px;
+                                }
                             }
                         }
                     }
 
+                    .gear-wrapper {
+                        display: grid;
+                        grid-template-columns: 1fr;
+
+                        &.splitview {
+                            grid-template-columns: 1fr 350px;
+                        }
+                    }
+
                     .items {
-                        max-height: calc(100vh - 146px);
                         overflow: auto;
                         box-sizing: border-box;
+                        max-height: calc(100vh - 146px);
 
                         .search-gem {
                             input {
-                                width: 300px;
+                                width: 200px;
                             }
                         }
 
@@ -676,7 +708,7 @@ table {
                                 }
 
                                 input {
-                                    width: 300px;
+                                    width: 200px;
                                 }
                             }
                         }
@@ -765,6 +797,153 @@ table {
 
                             &:hover {
                                 color: $color_primary;
+                            }
+                        }
+                    }
+
+                    .splitview .items {
+                        .form-item-phase {
+                            width: 140px;
+                        }
+                        .items-table {
+                            td, th {
+                                &:nth-child(n+4) {
+                                    width: 10%;
+                                }
+                                &:nth-last-child(-n+7) {
+                                    display: none;
+                                }
+                            }
+                        }
+                        .enchants-table tr > :nth-child(n+2) {
+                            display: none;
+                        }
+                    }
+
+                    .character {
+                        padding: $spacer*0.5;
+
+                        .paperdoll {
+                            @include clearfix();
+
+                            .left {
+                                float: left;
+
+                                .paperslot:nth-last-child(3) {
+                                    margin-top: 30px;
+                                }
+                            }
+                            .right {
+                                float: right;
+
+                                .paperslot .papers {
+                                    left: auto;
+                                    right: 60px;
+
+                                    .paperv {
+                                        float: right;
+                                    }
+                                }
+                            }
+
+                            .paperslot {
+                                position: relative;
+                                margin-bottom: 5px;
+
+                                &.active .paperitem {
+                                    border-color: $color_primary;
+                                }
+
+                                .paperv {
+                                    position: relative;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    cursor: pointer;
+                                }
+
+                                a {
+                                    @include position-cover(absolute);
+                                    display: block;
+                                    width: auto;
+                                    height: auto;
+
+                                    span:last-child {
+                                        display: none;
+                                    }
+
+                                    * {
+                                        @include position-cover(absolute);
+                                        display: block;
+                                        width: auto;
+                                        height: auto;
+                                    }
+
+                                    ins {
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                    }
+
+                                    del {
+                                        display: none;
+                                    }
+                                }
+
+                                .paperitem {
+                                    width: 50px;
+                                    height: 50px;
+                                    border: 2px solid rgba(255,255,255,0.2);
+                                }
+
+                                .papers {
+                                    @include clearfix();
+                                    position: absolute;
+                                    left: 60px;
+                                    bottom: 0;
+                                    width: 80px;
+
+                                    .paperv {
+                                        float: left;
+                                        width: 16px;
+                                        height: 16px;
+                                        border: 1px solid rgba(255,255,255,0.2);
+
+                                        &:nth-child(n+2) {
+                                            margin-left: 2px;
+                                        }
+                                    }
+                                }
+
+                                .paperenchant {
+                                    background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_enchant.jpg");
+                                }
+
+                                .papersocket {
+                                    background-image: url("https://wow.zamimg.com/images/Icon/small/socket/background.jpg");
+                                    background-size: auto 18px;
+
+                                    &.papersocket-color-m { border-color: rgba(255,255,255,0.4); background-position: -1 0; }
+                                    &.papersocket-color-r { border-color: rgba(255,0,0,0.4); background-position: -19px 0; }
+                                    &.papersocket-color-y { border-color: rgba(255,255,0,0.4); background-position: -37px 0; }
+                                    &.papersocket-color-b { border-color: rgba(0,0,255,0.4); background-position: -55px 0; }
+                                    &.papersocket-color-a { border-color: rgba(255,255,255,0.4); background-position: -73px 0; }
+                                }
+
+                                &.head .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_head.jpg"); }
+                                &.neck .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_neck.jpg"); }
+                                &.shoulder .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_shoulder.jpg"); }
+                                &.chest .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_chest.jpg"); }
+                                &.wrist .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_wrists.jpg"); }
+                                &.hands .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_hands.jpg"); }
+                                &.waist .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_waist.jpg"); }
+                                &.legs .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_legs.jpg"); }
+                                &.feet .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_feet.jpg"); }
+                                &.finger1 .paperitem,
+                                &.finger2 .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_finger.jpg"); }
+                                &.trinket1 .paperitem,
+                                &.trinket2 .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_trinket.jpg"); }
+                                &.weapon .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_mainhand.jpg"); }
+                                &.off_hand .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_offhand.jpg"); }
+                                &.ranged .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_ranged.jpg"); }
                             }
                         }
                     }
