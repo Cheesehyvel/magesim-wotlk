@@ -619,8 +619,11 @@ bool Player::hasChillEffect(std::shared_ptr<spell::Spell> spell) const
 void Player::interrupt(const Interruption& interruption)
 {
     Unit::interrupt(interruption);
-    waited = false;
-    should_wait = false;
+
+    if (interruption.duration > 0) {
+        waited = false;
+        should_wait = false;
+    }
 }
 
 std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_ptr<buff::Buff> buff)
@@ -1814,8 +1817,8 @@ action::Action Player::nextAction(const State& state)
             }
             else {
                 action::Action action{ action::TYPE_WAIT };
-                action.value = state.interruptedFor();
-                if (action.value > 0.1)
+                action.value = state.interruptedFor()
+;                if (action.value > 0.1)
                     action.value = 0.1;
                 return action;
             }

@@ -120,7 +120,10 @@ SimulationResult Simulation::run(bool single)
     }
 
     workCurrent();
-    nextAction(player);
+
+    if (!state.isSilenced())
+        nextAction(player);
+
     work();
 
     SimulationResult result;
@@ -827,15 +830,7 @@ void Simulation::onInterruption(int index)
         }
     }
 
-    if (config->interruptions[index].silence) {
-        pushWait(player, config->interruptions[index].duration);
-
-        if (config->interruptions[index].affects_all) {
-            for (auto i = state.units.begin(); i != state.units.end(); ++i)
-                pushWait(*i, config->interruptions[index].duration);
-        }
-    }
-    else {
+    if (!config->interruptions[index].silence && state.t > 0) {
         nextAction(player);
 
         if (config->interruptions[index].affects_all) {
@@ -848,6 +843,15 @@ void Simulation::onInterruption(int index)
 void Simulation::onInterruptionEnd(int index)
 {
     state.deactivateInterruption(index);
+
+    if (config->interruptions[index].silence && state.t > 0 && !state.isSilenced()) {
+        nextAction(player);
+
+        if (config->interruptions[index].affects_all && !state.isSilenced(false)) {
+            for (auto i = state.units.begin(); i != state.units.end(); ++i)
+                nextAction(*i);
+        }
+    }
 }
 
 void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff)
