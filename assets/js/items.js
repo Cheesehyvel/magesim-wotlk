@@ -428,6 +428,8 @@ var equip = {
         { id: 46047, title: "Pendant of the Somber Witness", ilvl: 239, int: 52, sp: 75, crit: 41, mp5: 21, sockets: ["r"], bonus: {sp: 5}, phase: 2 },
         { id: 45699, title: "Pendant of the Piercing Glare", ilvl: 225, int: 48, sp: 73, hit: 49, haste: 31, phase: 2 },
         { id: 46015, title: "Pendant of Endless Despair", ilvl: 225, int: 42, sp: 74, crit: 31, mp5: 24, phase: 2 },
+        { id: 45822, title: "Evoker's Charm", ilvl: 232, int: 45, spi: 43, sp: 78, haste: 44, phase: 2 },
+        { id: 45823, title: "Frozen Tear of Elune", ilvl: 232, int: 45, sp: 78, crit: 43, mp5: 22, phase: 2 },
         // eoe
         { id: 44661, title: "Wyrmrest Necklace of Power", ilvl: 226, int: 48, sp: 64, hit: 33, haste: 43, sockets: ["b"], bonus: {sp: 5} },
         { id: 44662, title: "Life-Binder's Locket", ilvl: 226, int: 48, sp: 64, crit: 35, mp5: 20, sockets: ["y"], bonus: {sp: 5} },
@@ -826,6 +828,7 @@ var equip = {
         { id: 45273, title: "Handwraps of Plentiful Recovery", ilvl: 232, int: 66, spi: 59, sp: 105, haste: 59, phase: 2 },
         { id: 45927, title: "Handwraps of Resonance", ilvl: 225, int: 63, spi: 56, sp: 105, crit: 55, phase: 2 },
         { id: 45976, title: "Static Charge Handwraps", ilvl: 225, int: 59, spi: 41, sp: 97, hit: 63, phase: 2 },
+        { id: 45840, title: "Touch of the Occult", ilvl: 232, int: 63, spi: 63, sp: 106, haste: 52, phase: 2 },
         // os
         { id: 40415, itemset: ids.T7_SET, title: "Valorous Frostfire Gloves", ilvl: 213, int: 57, sp: 69, crit: 53, hit: 38, sockets: ["r"], bonus: {int: 4} },
         { id: 39495, itemset: ids.T7_SET, title: "Heroes' Frostfire Gloves", ilvl: 200, int: 51, sp: 59, crit: 48, hit: 33, sockets: ["r"], bonus: {int: 4} },
@@ -901,6 +904,7 @@ var equip = {
         { id: 45558, title: "Cord of the White Dawn", ilvl: 232, int: 66, spi: 51, sp: 86, crit: 51, sockets: ["r", "y"], bonus: {sp: 7}, phase: 2 },
         { id: 45306, title: "Binding of the Dragon Matriarch", ilvl: 225, int: 49, spi: 61, sp: 96, crit: 60, phase: 2 },
         { id: 45694, title: "Conductive Cord", ilvl: 225, int: 57, spi: 63, sp: 98, crit: 43, phase: 2 },
+        { id: 45831, title: "Sash of Potent Incantations", ilvl: 232, int: 63, spi: 63, sp: 106, crit: 42, phase: 2 },
         // eoe
         { id: 40561, title: "Leash of Heedless Magic", ilvl: 226, int: 60, spi: 48, sp: 103, haste: 62 },
         // naxx
@@ -972,6 +976,7 @@ var equip = {
         { id: 45468, title: "Leggings of Lost Love", ilvl: 232, int: 86, spi: 91, sp: 122, haste: 44, sockets: ["r", "b"], bonus: {spi: 6}, phase: 2 },
         { id: 45238, title: "Overload Legwraps", ilvl: 232, int: 91, sp: 140, hit: 86, haste: 70, phase: 2 },
         { id: 45894, title: "Leggings of Unstable Discharge", ilvl: 225, int: 86, spi: 56, sp: 131, crit: 74, phase: 2 },
+        { id: 45848, title: "Legwraps of the Master Conjurer", ilvl: 232, int: 86, spi: 72, sp: 122, crit: 71, sockets: ["y", "b"], bonus: {sp: 7}, phase: 2 },
         // eoe
         { id: 40560, title: "Leggings of the Wanton Spellcaster", ilvl: 226, int: 92, sp: 132, hit: 82, haste: 66 },
         // naxx
