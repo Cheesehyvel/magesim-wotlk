@@ -5,3 +5,11 @@
         clear: both;
     }
 }
+
+@mixin position-cover($pos) {
+    position: $pos;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
