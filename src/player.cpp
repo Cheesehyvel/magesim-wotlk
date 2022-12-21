@@ -1726,7 +1726,7 @@ bool Player::canBlast(const State& state) const
         return false;
 
     auto ab = std::make_shared<spell::ArcaneBlast>();
-    auto const cast_time = castTime(ab);
+    auto const cast_time = 2.5 * castHaste();
     auto const base_cost = baseManaCost(ab);
 
     double cur_mana = mana;
