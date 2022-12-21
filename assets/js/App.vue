@@ -2950,8 +2950,9 @@
                 }
             },
 
-            slotSockets(slot) {
-                var item = this.equippedItem(slot);
+            slotSockets(slot, item) {
+                if (!item)
+                    item = this.equippedItem(slot);
                 var sockets = [];
                 if (item && item.sockets)
                     sockets = _.clone(item.sockets);
@@ -3562,7 +3563,7 @@
 
                 this.gems[slot] = [null, null, null];
                 if (this.gems.hasOwnProperty(slot)) {
-                    this.gems[slot] = this.defaultGems(item);
+                    this.gems[slot] = this.defaultGems(slot, item);
                     if (this.item_gems.hasOwnProperty(item.id)) {
                         var n = this.slotSockets(slot).length;
                         for (var i=0; i<n; i++) {
@@ -3784,12 +3785,13 @@
                 return null;
             },
 
-            defaultGems(item) {
+            defaultGems(slot, item) {
                 var gems = [null, null, null];
+                var sockets = this.slotSockets(slot, item);
 
-                if (item.sockets) {
-                    for (var i=0; i<item.sockets.length; i++)
-                        gems[i] = this.defaultGem(item.sockets[i]);
+                if (sockets.length) {
+                    for (var i=0; i<sockets.length; i++)
+                        gems[i] = this.defaultGem(sockets[i]);
                 }
 
                 return gems;
