@@ -639,7 +639,7 @@ std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_p
         actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
     }
     else if (buff->id == buff::FIRE_WARD) {
-        fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE) * 0.1;
+        fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE) * 0.8053;
     }
     else if (buff->id == buff::MANA_SHIELD) {
         mana_shield = 1330.0 + getSpellPower(SCHOOL_ARCANE) * 0.8053;
@@ -954,11 +954,12 @@ std::vector<action::Action> Player::onSelfDmg(const State& state, double dmg, Sc
         absorb = round(absorb);
 
         auto const i = buffs.find(buff::INCANTERS_ABSORPTION);
-        if (i != buffs.end())
-        {
+        if (i != buffs.end()) {
             absorb += (10.0 - (state.t - t_incanters_absorption)) / 10.0 * i->second->stats.spell_power;
             actions.push_back(buffExpireAction(i->second));
         }
+
+        absorb = std::min(absorb, 1000.0); // Assume 20k health, 5% cap = 1000 sp
         actions.push_back(buffAction<buff::IncantersAbsorption>(false, absorb));
     }
 
