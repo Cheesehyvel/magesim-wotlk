@@ -849,7 +849,6 @@ var equip = {
         { id: 41968, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Handguards", ilvl: 200, int: 28, sp: 59, crit: 22, sockets: ["b"], bonus: { sp: 5 }, q: "rare" },
         // prebis
         { id: 50299, title: "Suspiciously Soft Gloves", ilvl: 232, int: 68, spi: 57, sp: 105, crit: 61, phase: 4 },
-        { id: 45840, title: "Touch of the Occult", ilvl: 226, int: 60, spi: 60, sp: 100, haste: 49, phase: 2 },
         { id: 49828, title: "Marwyn's Macabre Fingertips", ilvl: 219, int: 56, spi: 53, sp: 83, crit: 45, sockets: ["r"], bonus: {int: 4}, phase: 4 },
         { id: 49788, title: "Cold Sweat Grips", ilvl: 219, int: 57, sp: 92, crit: 56, hit: 47, phase: 4 },
         { id: 47230, title: "Handwraps of Surrendered Hope", ilvl: 200, int: 41, spi: 49, sp: 73, haste: 29, sockets: ["r"], bonus: {sp: 5}, phase: 3 },
