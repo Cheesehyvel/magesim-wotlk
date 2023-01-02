@@ -5011,12 +5011,14 @@
             },
 
             deleteCustomItem(item) {
-                var index = _.findIndex(this.items.equip[this.active_slot], {id: item.id});
+                var slot = this.equipSlotToItemSlot(this.active_slot);
+                var index = _.findIndex(this.items.equip[slot], {id: item.id});
                 if (index != -1) {
                     if (this.isEquipped(this.active_slot, item.id))
                         this.unequip(this.active_slot);
-                    this.items.equip[this.active_slot].splice(index, 1);
+                    this.items.equip[slot].splice(index, 1);
                     this.saveCustomItems();
+                    this.refreshTooltips();
                 }
             },
 
