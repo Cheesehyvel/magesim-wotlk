@@ -851,8 +851,9 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         for (auto& i : onCastOrTick(state, spell))
             actions.push_back(std::move(i));
 
-        // Unconfirmed - on spell cast ?
-        if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
+        // Confirmed - on spell impact and channeled harmful spell cast
+        // Does not proc on blizzard(aoe?) cast start (only am?)
+        if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && spell->channeling && is_harmful && spell->id != spell::BLIZZARD && random<int>(0, 99) < 35) {
             actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
         }
 
@@ -861,11 +862,6 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             auto action = manaAction(400, "Darkglow");
             action.cooldown = std::make_shared<cooldown::Darkglow>();
             actions.push_back(std::move(action));
-        }
-
-        // Unconfirmed - on spell cast ?
-        if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
-            actions.push_back(buffAction<buff::EyeBroodmother>());
         }
 
         // Unconfirmed - on spell cast ?
@@ -1041,6 +1037,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffCooldownAction<buff::Lightweave, cooldown::Lightweave>());
             }
 
+            // Confirmed - on spell impact and channeled cast success
+            if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
+                actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
+            }
+
             // Unconfirmed - on spell impact
             if (config->ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
                 actions.push_back(buffCooldownAction<buff::AshenBand, cooldown::AshenBand>());
@@ -1148,20 +1149,20 @@ std::vector<action::Action> Player::onSpellTickProc(const State& state, std::sha
         actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
 
     if (hasBuff(buff::ARCANE_POTENCY)) {
-        // Special case for blizzard
+        // Special case for blizzard (maybe all channeled aoe?)
         if (spell->min_dmg && (spell->id != spell::BLIZZARD || tick == spell->ticks))
             actions.push_back(buffExpireAction<buff::ArcanePotency>());
     }
 
     if (spell->can_proc) {
-        for (auto &i : onCastOrTick(state, spell))
+        for (auto &i : onCastOrTick(state, spell, tick))
             actions.push_back(std::move(i));
     }
 
     return actions;
 }
 
-std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell)
+std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, int tick)
 {
     std::vector<action::Action> actions;
 
@@ -1171,8 +1172,15 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
     }
 
     // Confirmed - on cast/tick
-    if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL)) {
+    // Exception for blizzard ticks (maybe all channeled aoe?)
+    if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL) && (spell->id != spell::BLIZZARD || !tick)) {
         actions.push_back(buffAction<buff::IllustrationDragonSoul>());
+    }
+
+    // Unconfirmed - on cast/tick ?
+    // Assumed to be the same as Illustration
+    if (hasTrinket(TRINKET_EYE_BROODMOTHER) && (spell->id != spell::BLIZZARD || !tick)) {
+        actions.push_back(buffAction<buff::EyeBroodmother>());
     }
 
     // Confirmed - on cast/tick

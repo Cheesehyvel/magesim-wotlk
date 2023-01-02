@@ -111,7 +111,7 @@ public:
 
     std::vector<action::Action> onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, int tick);
 
-    std::vector<action::Action> onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell);
+    std::vector<action::Action> onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, int tick = 0);
 
     bool hasManaGem() const;
 
