@@ -49,8 +49,8 @@ var ids = {
     ASHEN_BAND_UNMATCHED_WISDOM: 50399,
     ASHEN_BAND_ENDLESS_WISDOM: 50400,
     // Item sets
-    T10_SET: 483,
-    T9_SET: 344,
+    T10_SET: 883,
+    T9_SET: 844,
     T8_SET: 836,
     T7_SET: 803,
     T6_SET: 671,
