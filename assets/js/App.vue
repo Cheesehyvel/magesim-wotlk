@@ -682,7 +682,7 @@
                                             {{ formatDateTime(profile.date) }}
                                         </td>
                                         <td>
-                                            <span v-if="profile.result.all_results" class="btn small my-n" @click="allResults(profile.result)">
+                                            <span v-if="profile.result && profile.result.all_results" class="btn small my-n" @click="allResults(profile.result)">
                                                 Simulation data
                                             </span>
                                         </td>
