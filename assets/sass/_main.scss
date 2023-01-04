@@ -371,14 +371,6 @@ table {
             color: #ccd4ff;
         }
 
-        th, td {
-            &:nth-child(n+4) {
-                width: 7%;
-                white-space: nowrap;
-                text-align: center;
-            }
-        }
-
         tbody tr {
             border-top: 0;
             border-bottom: 1px solid rgba(200,210,255,0.2);
@@ -709,6 +701,17 @@ table {
 
                                 input {
                                     width: 200px;
+                                }
+                            }
+                        }
+
+                        .items-table,
+                        .enchants-table {
+                            th, td {
+                                &:nth-child(n+4) {
+                                    width: 7%;
+                                    white-space: nowrap;
+                                    text-align: center;
                                 }
                             }
                         }
@@ -1206,6 +1209,15 @@ table {
             }
             tr.type-10 td:nth-child(4) {
                 color: #fb2;
+            }
+        }
+    }
+
+    .history-table {
+        th,td {
+            &:first-child,
+            &:last-child {
+                width: 1%;
             }
         }
     }

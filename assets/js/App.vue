@@ -233,6 +233,9 @@
                 <div class="tabs">
                     <div class="tab" :class="{active: active_tab == 'gear'}" @click="setTab('gear')">Gear</div>
                     <div class="tab" :class="{active: active_tab == 'config'}" @click="setTab('config')">Config</div>
+                    <template v-if="history.length">
+                        <div class="tab" :class="{active: active_tab == 'history'}" @click="setTab('history')">History</div>
+                    </template>
                     <template v-if="result && !result.iterations">
                         <div class="tab" :class="{active: active_tab == 'log'}" @click="setTab('log')">Combat log</div>
                         <div class="tab" :class="{active: active_tab == 'timeline'}" @click="setTab('timeline')">Timeline</div>
@@ -630,6 +633,63 @@
 
                     <div class="histog" v-if="active_tab == 'histogram'">
                         <histogram ref="histogram" :data="result.histogram" :avg="result.avg_dps"></histogram>
+                    </div>
+
+                    <div class="history" v-if="active_tab == 'history'">
+                        <div class="history-wrapper">
+                            <table class="history-table large">
+                                <thead>
+                                    <th></th>
+                                    <th>DPS</th>
+                                    <th>Min/Max</th>
+                                    <th>Rotation</th>
+                                    <th>Duration</th>
+                                    <th>Iterations</th>
+                                    <th>Execution time</th>
+                                    <th>Time</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="profile in history">
+                                        <td>
+                                            <div class="btn small my-n" @click="loadHistory(profile)">Load profile</div>
+                                        </td>
+                                        <td>
+                                            <template v-if="profile.result">
+                                                <b>{{ $round(profile.result.avg_dps, 2) }}</b>
+                                            </template>
+                                            <template v-else>-</template>
+                                        </td>
+                                        <td>
+                                            <template v-if="profile.result">
+                                                {{ $round(profile.result.min_dps) }} - {{ $round(profile.result.max_dps) }}
+                                            </template>
+                                            <template v-else>-</template>
+                                        </td>
+                                        <td>
+                                            {{ getRotationString(profile.config.rotation) }}
+                                        </td>
+                                        <td>
+                                            {{ profile.config.duration }}
+                                            <span class="faded" v-if="profile.config.duration_variance"> &#177;{{ profile.config.duration_variance }}</span>
+                                        </td>
+                                        <td>{{ profile.config.iterations }}</td>
+                                        <td>
+                                            <template v-if="profile.end">{{ formatTimeDiff(profile.date, profile.end) }}</template>
+                                            <template v-else>-</template>
+                                        </td>
+                                        <td>
+                                            {{ formatDateTime(profile.date) }}
+                                        </td>
+                                        <td>
+                                            <span v-if="profile.result.all_results" class="btn small my-n" @click="allResults(profile.result)">
+                                                Simulation data
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="config" v-if="active_tab == 'config'">
@@ -1659,6 +1719,8 @@
                 lightweave_embroidery: false,
                 darkglow_embroidery: false,
                 hyperspeed_accelerators: false,
+                ashen_band: false,
+                t3_2set: false,
                 t5_2set: false,
                 t5_4set: false,
                 t6_2set: false,
@@ -1843,6 +1905,7 @@
                 },
                 default_profiles: [],
                 profiles: [],
+                history: [],
                 active_slot: "weapon",
                 new_profile: null,
                 import_profile: {
@@ -2632,20 +2695,27 @@
 
             runMultiple() {
                 var self = this;
-                var sim = new SimulationWorkers(this.config.iterations, (result) => {
-                    self.is_running = false;
-                    self.result = result;
-                }, (error) => {
-                    self.is_running = false;
-                    console.error(error);
-                });
 
                 if (["log", "timeline", "spells"].indexOf(this.active_tab) != -1)
                     this.setTab("gear");
 
                 this.ep_result = null;
                 this.prepare();
+                var save_history = this.saveHistory();
                 this.is_running = true;
+
+                var sim = new SimulationWorkers(this.config.iterations, (result) => {
+                    self.is_running = false;
+                    self.result = result;
+                    if (save_history) {
+                        self.history[0].result = result;
+                        self.history[0].end = new Date;
+                    }
+                }, (error) => {
+                    self.is_running = false;
+                    console.error(error);
+                });
+
                 sim.start(this.config);
             },
 
@@ -4167,6 +4237,14 @@
                 return sign+(sec < 10 ? "0"+sec : sec)+"."+(dec < 10 ? "0"+dec : dec);
             },
 
+            formatTimeDiff(start, end) {
+                return this.$round(Math.abs(start.getTime() - end.getTime())/1000, 2)+"s";
+            },
+
+            formatDateTime(date) {
+                return date.toLocaleTimeString("sv");
+            },
+
             round(num) {
                 return Math.round(num);
             },
@@ -4778,6 +4856,65 @@
                 window.location.reload(true);
             },
 
+            saveHistory() {
+                var profile = {
+                    id: "",
+                    name: "",
+                    equipped: _.cloneDeep(this.equipped),
+                    enchants: _.cloneDeep(this.enchants),
+                    gems: _.cloneDeep(this.gems),
+                    config: _.cloneDeep(this.config),
+                }
+                var str = JSON.stringify(profile);
+
+                // Check if config is the same as last run
+                if (this.history.length) {
+                    var p = _.cloneDeep(this.history[0]);
+                    p.id = p.name = "";
+                    delete p.date;
+                    delete p.end;
+                    delete p.result;
+                    if (JSON.stringify(p) == JSON.stringify(profile))
+                        return false;
+                }
+
+                profile.date = new Date;
+                profile.end = null;
+                profile.result = null;
+
+                this.history.unshift(profile);
+
+                if (this.history.length > 30)
+                    this.history.pop();
+
+                return true;
+            },
+
+            loadHistory(profile) {
+                var p = _.cloneDeep(profile);
+                delete p.result;
+                delete p.date;
+                this.loadProfile(p);
+            },
+
+            getRotationString(rot) {
+                if (rot == this.rotations.ROTATION_ST_FROSTFIRE)
+                    return "Frostfire";
+                if (rot == this.rotations.ROTATION_ST_FIRE || rot == this.rotations.ROTATION_ST_FIRE_SC)
+                    return "Fire";
+                if (rot == this.rotations.ROTATION_ST_FROST)
+                    return "Frost";
+                if (rot == this.rotations.ROTATION_ST_AB_AM || rot == this.rotations.ROTATION_ST_AB_AM_BARRAGE)
+                    return "Arcane";
+                if (rot == this.rotations.ROTATION_AOE_AE)
+                    return "Arcane Explosion";
+                if (rot == this.rotations.ROTATION_AOE_BLIZZ)
+                    return "Blizzard";
+                if (rot == this.rotations.ROTATION_AOE_BLIZZ_FS)
+                    return "Blizzard + FS";
+                return "Unknown";
+            },
+
             moveProfile(index, dir) {
                 var pos = (this.profiles.length + index + dir) % this.profiles.length;
                 this.profiles.splice(pos, 0, this.profiles.splice(index, 1)[0]);
@@ -5053,9 +5190,11 @@
                     this.refreshTooltips();
             },
 
-            allResults() {
+            allResults(result) {
+                if (!result)
+                    result = this.result;
                 var a = document.createElement("a");
-                a.href = "data:text/csv,"+encodeURIComponent(this.result.all_results);
+                a.href = "data:text/csv,"+encodeURIComponent(result.all_results);
                 a.download = "simdata.csv";
                 a.click();
             },
