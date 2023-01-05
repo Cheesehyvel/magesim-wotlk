@@ -60,6 +60,7 @@ public:
     void removeBuff(buff::ID id, bool snapshot = false);
 
     bool canReactTo(buff::ID id, double t) const;
+    bool canReactTo(cooldown::ID id, double t) const;
 
     bool hasSnapshot(buff::ID id) const;
     void removeSnapshot(buff::ID id);

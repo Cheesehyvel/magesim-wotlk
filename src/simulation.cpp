@@ -943,6 +943,7 @@ void Simulation::onCooldownGain(std::shared_ptr<unit::Unit> unit, std::shared_pt
     if (mod)
         cooldown->duration += unit->cooldownMod(*cooldown);
 
+    cooldown->t_gained = state.t;
     unit->addCooldown(cooldown);
 
     if (cooldownDuration(unit, cooldown->id) < cooldown->duration) {

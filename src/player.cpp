@@ -39,6 +39,10 @@ void Player::reset()
     used_dark_rune = false;
     waited = false;
     should_wait = false;
+    black_magic = false;
+
+    if (config->rot_black_magic)
+        swapWeapons();
 }
 
 Stats Player::getStats()
@@ -626,6 +630,31 @@ void Player::interrupt(const Interruption& interruption)
     }
 }
 
+void Player::swapWeapons()
+{
+    black_magic = !black_magic;
+
+    if (config->rot_black_magic_ench != ENCHANT_NONE) {
+        Stats ench_stats;
+        if (config->rot_black_magic_ench == ENCHANT_WEAPON_GREATER_SPELLPOWER) {
+            ench_stats.spell_power = 63;
+        }
+        else if (config->rot_black_magic_ench == ENCHANT_WEAPON_MIGHTY_SPELLPOWER) {
+            ench_stats.spell_power = 81;
+        }
+        else if (config->rot_black_magic_ench == ENCHANT_WEAPON_ACCURACY) {
+            ench_stats.hit = hitRatingToChance(25);
+            ench_stats.crit = critRatingToChance(25);
+        }
+
+        // Buff stats are reset every sim
+        if (black_magic)
+            removeBuffStats(ench_stats);
+        else
+            addBuffStats(ench_stats);
+    }
+}
+
 std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_ptr<buff::Buff> buff)
 {
     auto actions = Unit::onBuffGain(state, buff);
@@ -853,7 +882,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
 
         // Confirmed - on spell impact and channeled harmful spell cast
         // Does not proc on blizzard(aoe?) cast start (only am?)
-        if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && spell->channeling && is_harmful && spell->id != spell::BLIZZARD && random<int>(0, 99) < 35) {
+        if ((config->black_magic || black_magic) && !hasCooldown(cooldown::BLACK_MAGIC) && spell->channeling && is_harmful && spell->id != spell::BLIZZARD && random<int>(0, 99) < 35) {
             actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
         }
 
@@ -890,6 +919,12 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             actions.push_back(buffAction<buff::EnergizedNm>());
         }
 
+    }
+
+    if (config->rot_black_magic && spell->actual_cast_time == 0 && is_harmful) {
+        if (black_magic && canReactTo(cooldown::BLACK_MAGIC, state.t) || !black_magic && !hasCooldown(cooldown::BLACK_MAGIC)) {
+            swapWeapons();
+        }
     }
 
     return actions;
@@ -1038,7 +1073,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             }
 
             // Confirmed - on spell impact and channeled cast success
-            if (config->black_magic && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
+            if ((config->black_magic || black_magic) && !hasCooldown(cooldown::BLACK_MAGIC) && random<int>(0, 99) < 35) {
                 actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
             }
 

@@ -66,6 +66,7 @@ namespace cooldown
     {
         ID id;
         double duration;
+        double t_gained = 0;
 
         Cooldown(ID _id = NONE, double _duration = 0) : id(_id), duration(std::max(0.0, _duration)) {}
     };

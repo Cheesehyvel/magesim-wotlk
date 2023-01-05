@@ -922,6 +922,15 @@
                                     </label>
                                     <input type="text" v-model.number="config.evo_ticks">
                                 </div>
+                                <div class="form-item" v-if="enchants.weapon != items.ids.BLACK_MAGIC">
+                                    <label><input type="checkbox" v-model="config.rot_black_magic">
+                                        <span>Black Magic weaving</span>
+                                        <help>
+                                            This will swap your weapon with an identical weapon with Black Magic enchant, and then swap back after it procs.<br>
+                                            The swaps will only happen after an instant cast spell to avoid a gcd.
+                                        </help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-debuffs">
                                 <legend>Debuffs</legend>
@@ -1763,6 +1772,8 @@
                 rot_mb_mana: 0,
                 rot_ice_lance: false,
                 rot_brain_freeze_hold: 15,
+                rot_black_magic: false,
+                rot_black_magic_ench: 0,
                 ignite_munching: false,
                 hot_streak_cqs: false,
                 hot_streak_cqs_time: 100,
@@ -2437,7 +2448,7 @@
                 if (this.config.talents.firestarter)
                     buffs.push({id: constants.buffs.FIRESTARTER, name: "Firestarter"});
 
-                if (this.enchants.weapon == this.items.ids.BLACK_MAGIC)
+                if (this.enchants.weapon == this.items.ids.BLACK_MAGIC || this.config.rot_black_magic)
                     buffs.push({id: constants.buffs.BLACK_MAGIC, name: "Black Magic"});
                 if (this.enchants.back == this.items.ids.LIGHTWEAVE_EMBROIDERY)
                     buffs.push({id: constants.buffs.LIGHTWEAVE, name: "Lightweave Embroidery"});
@@ -3246,6 +3257,10 @@
                     this.config.ashen_band = true;
                 else
                     this.config.ashen_band = false;
+
+                this.config.rot_black_magic_ench = 0;
+                if (this.config.rot_black_magic)
+                    this.config.rot_black_magic_ench = this.enchants.weapon;
 
             },
 
@@ -4978,9 +4993,9 @@
                 }
 
                 if (profile.config && (!only || only == "config")) {
-                    this.config.timings = [];
-                    this.config.interruptions = [];
-                    _.merge(this.config, _.pick(profile.config, _.keys(this.config)));
+                    var config = _.cloneDeep(this.default_config);
+                    _.merge(config, _.pick(profile.config, _.keys(config)));
+                    _.merge(this.config, config);
                     this.onLoadConfig(profile.config);
                     this.profile_status.config = true;
                 }

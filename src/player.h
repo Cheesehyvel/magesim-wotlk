@@ -32,6 +32,7 @@ public:
     bool used_dark_rune;
     bool waited;
     bool should_wait;
+    bool black_magic;
 
     Player(std::shared_ptr<Config> _config);
 
@@ -98,6 +99,8 @@ public:
     bool hasChillEffect(std::shared_ptr<spell::Spell> spell) const;
 
     void interrupt(const Interruption& interruption);
+
+    void swapWeapons();
 
     std::vector<action::Action> onBuffGain(const State& state, std::shared_ptr<buff::Buff> buff);
 

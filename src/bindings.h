@@ -130,6 +130,12 @@ EMSCRIPTEN_BINDINGS(my_module)
         .value("META_BEAMING_EARTHSIEGE", META_BEAMING_EARTHSIEGE)
         .value("META_INSIGHTFUL_EARTHSIEGE", META_INSIGHTFUL_EARTHSIEGE);
 
+    emscripten::enum_<Enchant>("Enchant")
+        .value("ENCHANT_NONE", ENCHANT_NONE)
+        .value("ENCHANT_WEAPON_GREATER_SPELLPOWER", ENCHANT_WEAPON_GREATER_SPELLPOWER)
+        .value("ENCHANT_WEAPON_MIGHTY_SPELLPOWER", ENCHANT_WEAPON_MIGHTY_SPELLPOWER)
+        .value("ENCHANT_WEAPON_ACCURACY", ENCHANT_WEAPON_ACCURACY);
+
     emscripten::enum_<Potion>("Potion")
         .value("POTION_NONE", POTION_NONE)
         .value("POTION_MANA", POTION_MANA)
@@ -229,6 +235,8 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("rot_mb_mana", &Config::rot_mb_mana)
         .property("rot_ice_lance", &Config::rot_ice_lance)
         .property("rot_brain_freeze_hold", &Config::rot_brain_freeze_hold)
+        .property("rot_black_magic", &Config::rot_black_magic)
+        .property("rot_black_magic_ench", &Config::rot_black_magic_ench)
         .property("maintain_imp_scorch", &Config::maintain_imp_scorch)
         .property("ignite_munching", &Config::ignite_munching)
         .property("hot_streak_cqs", &Config::hot_streak_cqs)

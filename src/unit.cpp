@@ -130,6 +130,16 @@ bool Unit::canReactTo(buff::ID id, double t) const
     return i != buffs.end() && t - i->second->t_gained >= config->reaction_time / 1000.0;
 }
 
+bool Unit::canReactTo(cooldown::ID id, double t) const
+{
+    if (t < t_gcd)
+        t = t_gcd;
+
+    auto const i = cooldowns.find(id);
+
+    return i != cooldowns.end() && t - i->second->t_gained >= config->reaction_time / 1000.0;
+}
+
 bool Unit::hasSnapshot(buff::ID id) const
 {
     return snapshot_buffs.find(id) != snapshot_buffs.end();

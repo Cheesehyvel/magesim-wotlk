@@ -30,6 +30,8 @@ onmessage = (event) => {
                 config.pre_potion = m.Potion.values[data.config.pre_potion];
             if (m.Conjured.values.hasOwnProperty(data.config.conjured))
                 config.conjured = m.Conjured.values[data.config.conjured];
+            if (data.config.rot_black_magic && data.config.rot_black_magic_ench && m.Enchant.values.hasOwnProperty(data.config.rot_black_magic_ench))
+                config.rot_black_magic_ench = m.Enchant.values[data.config.rot_black_magic_ench];
 
             for (var i=0; i<data.config.timings.length; i++) {
                 m.addTiming(

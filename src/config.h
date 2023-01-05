@@ -83,6 +83,8 @@ struct Config
     double rot_mb_mana = 0;
     bool rot_ice_lance = false;
     double rot_brain_freeze_hold = 15;
+    bool rot_black_magic = false;
+    Enchant rot_black_magic_ench = ENCHANT_NONE;
     bool maintain_imp_scorch = false;
     bool ignite_munching = false;
     bool hot_streak_cqs = false;
