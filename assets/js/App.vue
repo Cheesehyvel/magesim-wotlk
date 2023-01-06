@@ -512,7 +512,7 @@
                             </div>
                             <div class="character" v-if="splitview">
                                 <div class="paperdoll">
-                                    <div :class="pos" v-for="pos in ['left', 'right', 'center']">
+                                    <div :class="pos" v-for="pos in ['left', 'right']">
                                         <div class="paperslot" :class="[slot, active_slot == slot ? 'active' : '']" v-for="slot in dollSlots(pos)">
                                             <div class="paperv paperitem" @click="paperClick(slot)">
                                                 <a
@@ -523,7 +523,7 @@
                                                 ></a>
                                             </div>
                                             <div class="papers">
-                                                <div class="paperv paperenchant" v-if="items.enchants.hasOwnProperty(equipSlotToItemSlot(slot))" @click="paperClick(slot, 'enchant')">
+                                                <div class="paperv paperenchant" v-if="items.enchants.hasOwnProperty(equipSlotToItemSlot(slot)) && pos == 'left'" @click="paperClick(slot, 'enchant')">
                                                     <a
                                                         v-if="enchants[slot]"
                                                         :href="spellUrl(enchants[slot])"
@@ -535,6 +535,14 @@
                                                     <a
                                                         v-if="gems[slot][index]"
                                                         :href="itemUrl(gems[slot][index])"
+                                                        data-wh-icon-size="large"
+                                                        @click="$event.preventDefault()"
+                                                    ></a>
+                                                </div>
+                                                <div class="paperv paperenchant" v-if="items.enchants.hasOwnProperty(equipSlotToItemSlot(slot)) && pos == 'right'" @click="paperClick(slot, 'enchant')">
+                                                    <a
+                                                        v-if="enchants[slot]"
+                                                        :href="spellUrl(enchants[slot])"
                                                         data-wh-icon-size="large"
                                                         @click="$event.preventDefault()"
                                                     ></a>
