@@ -922,7 +922,7 @@
                                     </label>
                                     <input type="text" v-model.number="config.evo_ticks">
                                 </div>
-                                <div class="form-item" v-if="enchants.weapon != items.ids.BLACK_MAGIC">
+                                <div class="form-item" v-if="canBlackMagicWeave">
                                     <label><input type="checkbox" v-model="config.rot_black_magic">
                                         <span>Black Magic weaving</span>
                                         <help>
@@ -2118,6 +2118,17 @@
                 });
             },
 
+            canBlackMagicWeave() {
+                if (this.enchants.weapon == this.items.ids.BLACK_MAGIC)
+                    return false;
+                if (!this.equipped.weapon)
+                    return false;
+                var weapon = this.getItem("weapon", this.equipped.weapon);
+                if (_.get(weapon, "unique"))
+                    return false;
+                return true;
+            },
+
             activeItems() {
                 var slot = this.equipSlotToItemSlot(this.active_slot);
 
@@ -3259,6 +3270,8 @@
                     this.config.ashen_band = false;
 
                 this.config.rot_black_magic_ench = 0;
+                if (this.config.rot_black_magic && !this.canBlackMagicWeave)
+                    this.config.rot_black_magic = false;
                 if (this.config.rot_black_magic)
                     this.config.rot_black_magic_ench = this.enchants.weapon;
 
