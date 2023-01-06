@@ -717,13 +717,6 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
             removeSpellImpacts(unit, spell);
         for (int i = 1; i <= spell->ticks; i++)
             pushDot(unit, spell, i);
-
-        // Living bomb special
-        if (spell->id == spell::LIVING_BOMB) {
-            auto bomb = std::make_shared<spell::LivingBombExplosion>();
-            removeSpellImpact(unit, bomb);
-            pushSpellImpact(unit, bomb, spell->ticks * spell->t_interval);
-        }
     }
 }
 

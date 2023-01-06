@@ -1008,6 +1008,10 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             actions.push_back(std::move(i));
     }
 
+    if (instance.spell->id == spell::LIVING_BOMB && instance.tick == instance.spell->ticks) {
+        actions.push_back(spellAction<spell::LivingBombExplosion>());
+    }
+
     if (instance.result != spell::MISS) {
         if (talents.imp_scorch && instance.spell->id == spell::SCORCH)
             actions.push_back(debuffAction<debuff::ImprovedScorch>());
