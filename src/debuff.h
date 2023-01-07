@@ -6,6 +6,7 @@ namespace debuff
     {
         IMPROVED_SCORCH = 22959,
         WINTERS_CHILL = 12579,
+        HODIR_SINGED = 65280,
     };
 
     // Prolonged ownership by Event, State and Unit. TODO: Do Event and Unit really need the same copy (i.e. pointer)?
@@ -50,6 +51,17 @@ namespace debuff
             name = "Winter's Chill";
             duration = 15;
             max_stacks = 5;
+        }
+    };
+
+    class HodirSinged : public Debuff
+    {
+    public:
+        HodirSinged()
+        {
+            id = HODIR_SINGED;
+            name = "Singed";
+            duration = 3000;
         }
     };
 

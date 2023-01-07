@@ -76,6 +76,10 @@ enum ID : int
     DISLODGED_OBJECT_NM = 71601,
     NAMELESS_LICH_HC = 71636,
     NAMELESS_LICH_NM = 71605,
+    // Encounters
+    HODIR_STORM_POWER = 63711,
+    HODIR_STARLIGHT = 62807,
+    IRON_COUNCIL_SHIELD_OF_RUNES = 63967,
     // TBC Stuff
     FLAME_CAP = 28714,
     SKULL_GULDAN = 40396,
@@ -575,6 +579,27 @@ class NamelessLichNm : public Buff
 
 public:
     NamelessLichNm();
+};
+
+class HodirStormPower : public Buff
+{
+
+public:
+    HodirStormPower();
+};
+
+class HodirStarlight : public Buff
+{
+
+public:
+    HodirStarlight();
+};
+
+class IronCouncilShieldOfRunes : public Buff
+{
+
+public:
+    IronCouncilShieldOfRunes();
 };
 
 class FlameCap : public Buff

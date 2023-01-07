@@ -194,6 +194,9 @@ double Player::castHaste() const
     if (hasBuff(buff::PUSHING_THE_LIMIT))
         haste *= 1.12;
 
+    if (hasBuff(buff::HODIR_STARLIGHT))
+        haste *= 1.5;
+
     return 1.0 / haste;
 }
 
@@ -301,6 +304,8 @@ double Player::baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const
 
     if (config->meta_gem == META_CHAOTIC_SKYFLARE)
         base *= 1.03;
+    if (hasBuff(buff::HODIR_STORM_POWER))
+        base *= 2.35;
 
     return base;
 }
@@ -384,6 +389,9 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
         multi *= 1.03;
     if (config->cudc_3set)
         multi *= 1.02;
+
+    if (hasBuff(buff::IRON_COUNCIL_SHIELD_OF_RUNES))
+        multi *= 1.5;
 
     if (talents.torment_of_the_weak) {
         if (spell->id == spell::FROSTBOLT ||

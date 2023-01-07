@@ -109,6 +109,14 @@ SimulationResult Simulation::run(bool single)
             pushBuffGain(player, std::make_shared<buff::PowerInfusion>(), timing.t);
         else if (timing.name == "mana_tide")
             pushBuffGain(player, std::make_shared<buff::ManaTide>(), timing.t);
+        else if (timing.name == "hodir_storm_power")
+            pushBuffGain(player, std::make_shared<buff::HodirStormPower>(), timing.t);
+        else if (timing.name == "hodir_starlight")
+            pushBuffGain(player, std::make_shared<buff::HodirStarlight>(), timing.t);
+        else if (timing.name == "hodir_singed")
+            pushDebuffGain(std::make_shared<debuff::HodirSinged>(), timing.t);
+        else if (timing.name == "iron_council_shield_of_runes")
+            pushBuffGain(player, std::make_shared<buff::IronCouncilShieldOfRunes>(), timing.t);
     }
 
     for (int i=0; i<config->interruptions.size(); i++) {
@@ -1154,6 +1162,9 @@ double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit>, std::shared_
 
     if (config->debuff_spell_dmg)
         multi *= 1.13;
+
+    if (state.hasDebuff(debuff::HODIR_SINGED))
+        multi *= 1.5;
 
     return multi;
 }

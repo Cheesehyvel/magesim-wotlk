@@ -544,6 +544,27 @@ NamelessLichNm::NamelessLichNm()
     stats.spell_power = 1074;
 }
 
+HodirStormPower::HodirStormPower()
+{
+    id = HODIR_STORM_POWER;
+    name = "Storm Power";
+    duration = 30;
+}
+
+HodirStarlight::HodirStarlight()
+{
+    id = HODIR_STARLIGHT;
+    name = "Starlight";
+    duration = 50;
+}
+
+IronCouncilShieldOfRunes::IronCouncilShieldOfRunes()
+{
+    id = IRON_COUNCIL_SHIELD_OF_RUNES;
+    name = "Shield of Runes";
+    duration = 15;
+}
+
 FlameCap::FlameCap()
 {
     id = FLAME_CAP;

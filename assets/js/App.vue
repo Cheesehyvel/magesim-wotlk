@@ -822,6 +822,15 @@
                                         </help>
                                     </label>
                                 </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.encounters">
+                                        <span>Enable encounters</span>
+                                        <help>
+                                            This will enable certain buffs/debuffs from encounters.<br>
+                                            They can be found under cooldowns.
+                                        </help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-rotation">
                                 <legend>Rotation</legend>
@@ -1689,6 +1698,7 @@
                 target_level: 83,
                 spell_travel_time: 1000,
                 reaction_time: 300,
+                encounters: false,
 
                 // Debuffs
                 debuff_crit: false,
@@ -2450,6 +2460,28 @@
                     }
                 }
 
+                // Encounters
+                timings.push({
+                    name: "hodir_storm_power",
+                    title: "Hodir: Storm Power",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_staticshock.jpg",
+                });
+                timings.push({
+                    name: "hodir_starlight",
+                    title: "Hodir: Starlight (50 sec)",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_elunesgrace.jpg",
+                });
+                timings.push({
+                    name: "hodir_singed",
+                    title: "Hodir: Singed (25 stacks)",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_summerfest_brazierorange.jpg",
+                });
+                timings.push({
+                    name: "iron_council_shield_of_runes",
+                    title: "Iron Council: Shield of Runes (popped)",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_runetap.jpg",
+                });
+
                 return timings;
             },
 
@@ -2602,6 +2634,15 @@
                     return this.equipped.trinket1 && _.get(this.equippedItem("trinket1"), "use");
                 if (name == "trinket2")
                     return this.equipped.trinket2 && _.get(this.equippedItem("trinket2"), "use");
+
+                if (this.config.encounters) {
+                    var encounters = [
+                        "hodir_storm_power", "hodir_starlight", "hodir_singed",
+                        "iron_council_shield_of_runes",
+                    ];
+                    if (encounters.indexOf(name) != -1)
+                        return true;
+                }
 
                 return false;
             },
@@ -3095,6 +3136,8 @@
                         return a.t - b.t;
                     return a.name.localeCompare(b.name);
                 };
+
+                this.config.timings = this.config.timings.filter(t => this.timingEnabled(t.name));
 
                 this.config.timings.sort(fn);
             },
