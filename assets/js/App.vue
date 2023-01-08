@@ -754,14 +754,18 @@
                                     <input type="text" v-model.number="config.targets">
                                 </div>
                                 <div class="form-item">
-                                    <label>Spell travel time (ms)</label>
-                                    <input type="text" v-model.number="config.spell_travel_time">
+                                    <label>
+                                        <span>Distance from target</span>
+                                        <help>This only affects travel time.<br>No range checks are made.</help>
+                                    </label>
+                                    <input type="text" v-model.number="config.distance">
                                 </div>
                                 <div class="form-item">
                                     <label>
                                         <span>Reaction time (ms)</span>
                                         <help>
                                             This only affects certain mechanics where an instant reaction can have an important impact on the rotation, like:<br>
+                                            Cooldowns with "wait for"<br>
                                             Missile Barrage<br>
                                             Hot Streak<br>
                                             Brain Freeze
@@ -1696,7 +1700,7 @@
                 targets: 1,
                 target_resistance: 0,
                 target_level: 83,
-                spell_travel_time: 1000,
+                distance: 20,
                 reaction_time: 300,
                 encounters: false,
 

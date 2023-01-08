@@ -1083,15 +1083,10 @@ void Simulation::removeUnitEvents(std::shared_ptr<unit::Unit> unit)
 
 double Simulation::travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
 {
-    if (!spell->has_travel_time)
+    if (!spell->speed)
         return 0;
 
-    double t = config->spell_travel_time / 1000.0;
-
-    if (spell->travel_time_factor)
-        t *= spell->travel_time_factor;
-
-    return t;
+    return std::max(config->distance / spell->speed, 0.0);
 }
 
 double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const

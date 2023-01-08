@@ -14,7 +14,7 @@ struct Config
     int targets = 1;
     int target_resistance = 0;
     int target_level = 83;
-    int spell_travel_time = 500;
+    int distance = 20;
     int reaction_time = 300;
 
     // Buffs / debuffs

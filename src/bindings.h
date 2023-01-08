@@ -169,7 +169,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("targets", &Config::targets)
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)
-        .property("spell_travel_time", &Config::spell_travel_time)
+        .property("distance", &Config::distance)
         .property("reaction_time", &Config::reaction_time)
 
         .property("debuff_spell_crit", &Config::debuff_spell_crit)

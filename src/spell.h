@@ -69,7 +69,7 @@ namespace spell
         double delay = 0;
         double coeff = 1;
         double gcd = 1.5;
-        double travel_time_factor = 1;
+        double speed = 0;
         bool channeling = false;
         bool dot = false;
         bool overlap = false;
@@ -77,7 +77,6 @@ namespace spell
         bool binary = false;
         bool aoe = false;
         bool aoe_capped = true;
-        bool has_travel_time = false;
         bool fixed_dmg = false;
         bool active_use = true;
         bool off_gcd = false;
@@ -120,7 +119,7 @@ namespace spell
             max_dmg = 1144;
             cast_time = 0;
             coeff = 2.5/3.5;
-            has_travel_time = true;
+            speed = 24;
         }
     };
 
@@ -160,8 +159,7 @@ namespace spell
             coeff = 5.0/3.5;
             channeling = true;
             ticks = 5;
-            has_travel_time = true;
-            travel_time_factor = 0.5;
+            speed = 20;
         }
     };
 
@@ -189,7 +187,7 @@ namespace spell
             max_dmg = 866;
             cast_time = 3;
             coeff = 3/3.5;
-            has_travel_time = true;
+            speed = 28;
         }
     };
 
@@ -202,7 +200,7 @@ namespace spell
             max_dmg = 1143;
             cast_time = 3.5;
             coeff = 1;
-            has_travel_time = true;
+            speed = 24;
         }
     };
 
@@ -229,8 +227,7 @@ namespace spell
             max_dmg = 838;
             cast_time = 3;
             coeff = 3/3.5;
-            has_travel_time = true;
-            travel_time_factor = 0.85;
+            speed = 28;
         }
     };
 
@@ -281,7 +278,7 @@ namespace spell
             max_dmg = 258;
             cast_time = 0;
             coeff = 1.5/3.5/3.0;
-            has_travel_time = true;
+            speed = 38;
         }
     };
 
@@ -294,7 +291,7 @@ namespace spell
             max_dmg = 1531;
             cast_time = 5;
             coeff = 1.15;
-            has_travel_time = true;
+            speed = 24;
         }
     };
 
@@ -518,7 +515,6 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
-            has_travel_time = true;
         }
     };
 
@@ -532,7 +528,7 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
-            has_travel_time = true;
+            speed = 20;
         }
     };
 
@@ -546,7 +542,7 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
-            has_travel_time = true;
+            speed = 20;
         }
     };
 
@@ -560,7 +556,7 @@ namespace spell
             coeff = 0;
             gcd = 0;
             active_use = false;
-            has_travel_time = true;
+            speed = 20;
         }
     };
 
@@ -583,7 +579,7 @@ namespace spell
             max_dmg = 169;
             cast_time = 3;
             coeff = 0.3;
-            has_travel_time = true;
+            speed = 24;
         }
     };
 
@@ -617,6 +613,7 @@ namespace spell
             max_dmg = 673;
             cast_time = 2.5;
             coeff = 2.5/3.0;
+            speed = 16;
         }
     };
 }
