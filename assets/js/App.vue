@@ -192,7 +192,7 @@
                                 <tooltip position="r">Set reference</tooltip>
                             </span>
                         </div>
-                        <div class="btn mt-2" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
+                        <div class="btn mt-2" v-if="!config.rng_seed" :class="[is_running ? 'disabled' : '']" @click="findAvg(result.avg_dps)">Find average fight</div>
                         <div class="btn mt-1" v-if="result.all_results" @click="allResults">Simulation data</div>
                     </template>
                     <template v-else>
