@@ -11,5 +11,5 @@ struct Timing
     bool used = false;
 
     Timing() {}
-    void Use() { used = true; }
+    void use() { used = true; }
 };

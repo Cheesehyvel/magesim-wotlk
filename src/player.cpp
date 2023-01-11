@@ -1306,8 +1306,6 @@ double Player::manaGemMax() const
     return max;
 }
 
-// TODO: This calls timing.Use() which is a side-effect, and this function probably
-// should not have any side effects.
 bool Player::shouldUseManaGem(const State& state)
 {
     if (hasCooldown(cooldown::MANA_GEM) || !hasManaGem())
@@ -1315,14 +1313,8 @@ bool Player::shouldUseManaGem(const State& state)
 
     // Check for planned mana gem timings
     auto timing = getNextTiming("mana_gem");
-    if (timing) {
-        if (isTimingReady(*timing, state)) {
-            timing->Use();
-            return true;
-        }
-        if (timing->t < state.t + 120)
-            return false;
-    }
+    if (timing && timing->t < state.t + 120)
+        return false;
 
     double max = manaGemMax();
 
@@ -1333,8 +1325,6 @@ bool Player::shouldUseManaGem(const State& state)
     return maxMana() - mana >= max;
 }
 
-// TODO: Given the name, this function should be const and not affect state
-// (i.e. not call useTiming)
 bool Player::shouldUseManaPotion(const State& state)
 {
     if (config->potion != POTION_MANA || hasCooldown(cooldown::POTION))
@@ -1342,13 +1332,8 @@ bool Player::shouldUseManaPotion(const State& state)
 
     // Check for planned potions timings
     auto timing = getNextTiming("potion");
-    if (timing) {
-        if (isTimingReady(*timing, state)) {
-            timing->Use();
-            return true;
-        }
+    if (timing)
         return false;
-    }
 
     if (hasBuff(buff::INNERVATE))
         return false;
@@ -1384,7 +1369,7 @@ bool Player::shouldEvocate(const State& state)
     auto timing = getNextTiming("evocation");
     if (timing) {
         if (isTimingReady(*timing, state)) {
-            timing->Use();
+            timing->use();
             return true;
         }
         if (timing->t < state.t + 480)
@@ -1585,7 +1570,7 @@ bool Player::useTimingIfPossible(const std::string& name, const State& state, bo
         return true;
 
     if (timing != NULL && isTimingReady(*timing, state)) {
-        timing->Use();
+        timing->use();
         return true;
     }
 
@@ -1726,6 +1711,12 @@ action::Action Player::useCooldown(const State& state)
         action.primary_action = true;
         return action;
     }
+    else if (config->potion == POTION_MANA && !hasCooldown(cooldown::POTION) && useTimingIfPossible("potion", state, true)) {
+        action::Action action { action::TYPE_POTION };
+        action.potion = config->potion;
+        action.primary_action = true;
+        return action;
+    }
     else if (config->conjured == CONJURED_DARK_RUNE && !hasCooldown(cooldown::CONJURED) && (
         useTimingIfPossible("conjured", state, true) ||
         (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && hasBuff(buff::MANA_SHIELD) && hasBuff(buff::ARCANE_POWER) && getNextTiming("conjured") == NULL) ||
@@ -1741,6 +1732,9 @@ action::Action Player::useCooldown(const State& state)
         action.conjured = config->conjured;
         action.primary_action = true;
         return action;
+    }
+    else if (!hasCooldown(cooldown::MANA_GEM) && useTimingIfPossible("mana_gem", state, true)) {
+        return spellAction<spell::ManaGem>();
     }
     else if (!hasCooldown(cooldown::SAPPER_CHARGE) && (
         useTimingIfPossible("sapper_charge", state, true) ||
