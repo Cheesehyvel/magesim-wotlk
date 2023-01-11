@@ -60,6 +60,7 @@ export default {
         MISSILE_BARRAGE: 44401,
         HOT_STREAK: 48108,
         FIRESTARTER: 54741,
+        MOLTEN_FURY: 31680,
         BLACK_MAGIC: 59626,
         LIGHTWEAVE: 55637,
         BRAIN_FREEZE: 57761,

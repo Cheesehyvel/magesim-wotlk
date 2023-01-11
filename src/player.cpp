@@ -1555,6 +1555,8 @@ bool Player::isTimingReady(const Timing& timing, const State& state) const
 
     if (timing.wait_for_buff != 0 && timing.wait_t + timing.t > state.t) {
         auto buff_id = static_cast<buff::ID>(timing.wait_for_buff);
+        if (buff_id == buff::MOLTEN_FURY)
+            return state.t / state.duration >= 0.65;
         if (!canReactTo(buff_id, state.t))
             return false;
     }

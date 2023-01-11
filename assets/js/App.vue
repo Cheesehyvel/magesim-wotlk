@@ -2502,6 +2502,8 @@
                     buffs.push({id: constants.buffs.HOT_STREAK, name: "Hot Streak"});
                 if (this.config.talents.firestarter)
                     buffs.push({id: constants.buffs.FIRESTARTER, name: "Firestarter"});
+                if (this.config.talents.molten_fury)
+                    buffs.push({id: constants.buffs.MOLTEN_FURY, name: "Molten Fury"});
 
                 if (this.enchants.weapon == this.items.ids.BLACK_MAGIC || this.config.rot_black_magic)
                     buffs.push({id: constants.buffs.BLACK_MAGIC, name: "Black Magic"});
