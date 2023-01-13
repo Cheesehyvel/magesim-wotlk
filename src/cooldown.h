@@ -87,10 +87,10 @@ namespace cooldown
     {
 
     public:
-        Potion(bool in_combat)
+        Potion(bool in_combat, double _duration = 60)
         {
             id = POTION;
-            duration = in_combat ? 100000 : 60;
+            duration = in_combat ? 100000 : _duration;
         }
 
     };

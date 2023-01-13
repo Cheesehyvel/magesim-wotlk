@@ -1218,13 +1218,13 @@
                                         <option :value="potions.POTION_MANA">Mana potion</option>
                                         <option :value="potions.POTION_SPEED">Potion of Speed</option>
                                         <option :value="potions.POTION_WILD_MAGIC">Potion of Wild Magic</option>
+                                        <option :value="potions.POTION_FLAME_CAP">Flame Cap</option>
                                     </select>
                                 </div>
                                 <div class="form-item">
                                     <label>Conjured</label>
                                     <select v-model="config.conjured">
                                         <option :value="conjureds.CONJURED_NONE">None</option>
-                                        <option :value="conjureds.CONJURED_FLAME_CAP">Flame Cap</option>
                                         <option :value="conjureds.CONJURED_DARK_RUNE">Dark Rune</option>
                                     </select>
                                 </div>
@@ -1238,6 +1238,7 @@
                                         <option :value="potions.POTION_MANA">Mana potion</option>
                                         <option :value="potions.POTION_SPEED">Potion of Speed</option>
                                         <option :value="potions.POTION_WILD_MAGIC">Potion of Wild Magic</option>
+                                        <option :value="potions.POTION_FLAME_CAP">Flame Cap</option>
                                     </select>
                                 </div>
                                 <div class="form-item">
@@ -2350,20 +2351,17 @@
                     potion.title = "Potion of Speed";
                     potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
                 }
-                if (this.config.potion == constants.potions.POTION_WILD_MAGIC) {
+                else if (this.config.potion == constants.potions.POTION_WILD_MAGIC) {
                     potion.title = "Potion of Wild Magic";
                     potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
                 }
+                else if (this.config.potion == constants.potions.POTION_FLAME_CAP) {
+                    potion.title = "Flame Cap";
+                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg";
+                }
                 timings.push(potion);
 
-                if (this.config.conjured == constants.conjureds.CONJURED_FLAME_CAP) {
-                    timings.push({
-                        name: "conjured",
-                        title: "Flame Cap",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg",
-                    });
-                }
-                else if (this.config.conjured == constants.conjureds.CONJURED_DARK_RUNE) {
+                if (this.config.conjured == constants.conjureds.CONJURED_DARK_RUNE) {
                     timings.push({
                         name: "conjured",
                         title: "Dark Rune",
@@ -5317,6 +5315,8 @@
             },
 
             onLoadConfig(cfg) {
+                if (this.config.conjured == constants.potions.POTION_FLAME_CAP)
+                    this.config.conjured = constants.conjureds.CONJURED_NONE;
                 this.parseTalents();
             },
 

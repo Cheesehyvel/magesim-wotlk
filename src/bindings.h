@@ -140,11 +140,11 @@ EMSCRIPTEN_BINDINGS(my_module)
         .value("POTION_NONE", POTION_NONE)
         .value("POTION_MANA", POTION_MANA)
         .value("POTION_SPEED", POTION_SPEED)
-        .value("POTION_WILD_MAGIC", POTION_WILD_MAGIC);
+        .value("POTION_WILD_MAGIC", POTION_WILD_MAGIC)
+        .value("POTION_FLAME_CAP", POTION_FLAME_CAP);
 
     emscripten::enum_<Conjured>("Conjured")
         .value("CONJURED_NONE", CONJURED_NONE)
-        .value("CONJURED_FLAME_CAP", CONJURED_FLAME_CAP)
         .value("CONJURED_DARK_RUNE", CONJURED_DARK_RUNE);
 
     emscripten::enum_<LogType>("LogType")

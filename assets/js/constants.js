@@ -49,11 +49,11 @@ export default {
         POTION_MANA: 33448,
         POTION_SPEED: 40211,
         POTION_WILD_MAGIC: 40212,
+        POTION_FLAME_CAP: 22788,
     },
     conjureds: {
         CONJURED_NONE: 0,
         CONJURED_MANA_GEM: 33312,
-        CONJURED_FLAME_CAP: 22788,
         CONJURED_DARK_RUNE: 20520,
     },
     buffs: {

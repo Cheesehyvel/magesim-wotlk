@@ -1430,11 +1430,7 @@ std::vector<action::Action> Player::useConjured(const State& state, Conjured con
 
     double cd = 120;
 
-    if (conjured == CONJURED_FLAME_CAP) {
-        cd = 180;
-        actions.push_back(buffAction<buff::FlameCap>());
-    }
-    else if (conjured == CONJURED_DARK_RUNE) {
+    if (conjured == CONJURED_DARK_RUNE) {
         if (used_dark_rune) {
             cd = 900;
         }
@@ -1461,6 +1457,7 @@ std::vector<action::Action> Player::usePotion(Potion potion, bool in_combat)
 {
     std::vector<action::Action> actions = Unit::usePotion(potion, in_combat);
 
+    double duration = 60;
     if (potion == POTION_MANA) {
         double mana = round(random<double>(4200, 4400));
 
@@ -1477,11 +1474,15 @@ std::vector<action::Action> Player::usePotion(Potion potion, bool in_combat)
     else if (potion == POTION_WILD_MAGIC) {
         actions.push_back(buffAction<buff::WildMagic>());
     }
+    else if (potion == POTION_FLAME_CAP) {
+        actions.push_back(buffAction<buff::FlameCap>());
+        duration = 180;
+    }
     else {
         return actions;
     }
 
-    actions.push_back(cooldownAction<cooldown::Potion>(in_combat));
+    actions.push_back(cooldownAction<cooldown::Potion>(in_combat, duration));
 
     return actions;
 }
@@ -1724,12 +1725,6 @@ action::Action Player::useCooldown(const State& state)
         (talents.incanters_absorption && config->pre_incanters_absorption && config->pre_mana_incanters_absorption && hasBuff(buff::MANA_SHIELD) && hasBuff(buff::ARCANE_POWER) && getNextTiming("conjured") == NULL) ||
         ((!talents.incanters_absorption || !config->pre_incanters_absorption || !config->pre_mana_incanters_absorption) && maxMana() - mana > 1500 && useTimingIfPossible("conjured", state))))
     {
-        action::Action action{ action::TYPE_CONJURED };
-        action.conjured = config->conjured;
-        action.primary_action = true;
-        return action;
-    }
-    else if (config->conjured == CONJURED_FLAME_CAP && !hasCooldown(cooldown::CONJURED) && useTimingIfPossible("conjured", state)) {
         action::Action action{ action::TYPE_CONJURED };
         action.conjured = config->conjured;
         action.primary_action = true;
