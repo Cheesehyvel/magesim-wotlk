@@ -1934,7 +1934,7 @@ action::Action Player::nextAction(const State& state)
 
         if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
             if (talents.arcane_barrage && !hasCooldown(cooldown::ARCANE_BARRAGE)) {
-                return spellAction<spell::FireBlast>();
+                return spellAction<spell::ArcaneBarrage>();
             }
             else if (!hasCooldown(cooldown::FIRE_BLAST)) {
                 return spellAction<spell::FireBlast>();
