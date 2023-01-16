@@ -2001,7 +2001,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                phase_filter: 0,
+                phase_filter: 2,
                 pvp_filter: null,
                 search_item: "",
                 search_gem: "",
