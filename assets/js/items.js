@@ -132,6 +132,7 @@ var equip = {
         { id: 46025, title: "Devotion", ilvl: 225, int: 86, spi: 112, sp: 515, haste: 92, twohand: true, phase: 2 },
         { id: 45886, title: "Icecore Staff", ilvl: 245, int: 128, spi: 96, sp: 626, haste: 106, sockets: ["b", "r"], bonus: {sp: 7}, twohand: true, phase: 2 },
         { id: 45934, title: "Unraveling Reach", ilvl: 225, int: 80, spi: 98, sp: 515, hit: 121, twohand: true, phase: 2 },
+        { id: 46350, title: "Pillar of Fortitude", ilvl: 225, int: 112, spi: 86, sp: 515, crit: 56, twohand: true, phase: 2 },
         // eoe
         { id: 40489, title: "Greatstaff of the Nexus", ilvl: 213, int: 77, sp: 461, hit: 95, haste: 104, twohand: true },
         // os
@@ -423,9 +424,10 @@ var equip = {
         { id: 45443, title: "Charm of Meticulous Timing", ilvl: 252, int: 58, sp: 85, haste: 45, mp5: 27, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 45933, title: "Pendant of the Shallow Grave", ilvl: 239, int: 49, sp: 84, crit: 46, haste: 35, sockets: ["y"], bonus: {crit: 4}, phase: 2 },
         { id: 45447, title: "Watchful Eye of Fate", ilvl: 239, int: 41, spi: 42, sp: 84, haste: 45, sockets: ["y"], bonus: {crit: 4}, phase: 2 },
+        { id: 46047, title: "Pendant of the Somber Witness", ilvl: 239, int: 52, sp: 75, crit: 41, mp5: 21, sockets: ["r"], bonus: {sp: 5}, phase: 2 },
         { id: 45236, title: "Unblinking Eye", ilvl: 232, int: 45, spi: 43, sp: 78, crit: 52, phase: 2 },
         { id: 45116, title: "Freya's Choker of Warding", ilvl: 232, int: 49, sp: 78, haste: 41, mp5: 24, phase: 2 },
-        { id: 46047, title: "Pendant of the Somber Witness", ilvl: 239, int: 52, sp: 75, crit: 41, mp5: 21, sockets: ["r"], bonus: {sp: 5}, phase: 2 },
+        { id: 45539, title: "Pendant of Focused Energies", ilvl: 232, int: 44, spi: 38, sp: 78, hit: 49, phase: 2 },
         { id: 45699, title: "Pendant of the Piercing Glare", ilvl: 225, int: 48, sp: 73, hit: 49, haste: 31, phase: 2 },
         { id: 46015, title: "Pendant of Endless Despair", ilvl: 225, int: 42, sp: 74, crit: 31, mp5: 24, phase: 2 },
         { id: 45822, title: "Evoker's Charm", ilvl: 232, int: 45, spi: 43, sp: 78, haste: 44, phase: 2 },
@@ -582,7 +584,10 @@ var equip = {
         { id: 46042, title: "Drape of the Messenger", ilvl: 239, int: 41, sp: 83, crit: 56, hit: 35, sockets: ["y"], bonus: {sp: 5}, phase: 2 },
         { id: 45493, title: "Asimov's Drape", ilvl: 232, int: 44, spi: 44, sp: 78, crit: 52, phase: 2 },
         { id: 45529, title: "Shawl of Haunted Memories", ilvl: 232, int: 49, spi: 52, sp: 78, crit: 38, phase: 2 },
+        { id: 45541, title: "Shroud of Alteration", ilvl: 232, int: 52, sp: 78, haste: 38, mp5: 24, phase: 2 },
+        { id: 46341, title: "Drape of the Spellweaver", ilvl: 225, int: 39, sp: 72, crit: 41, haste: 32, phase: 2 },
         { id: 45317, title: "Shawl of the Caretaker", ilvl: 225, int: 37, sp: 78, haste: 41, mp5: 16, phase: 2 },
+        { id: 46347, title: "Cloak of the Dormant Blaze", ilvl: 225, int: 32, sp: 73, crit: 31, mp5: 25, phase: 2 },
         // os
         { id: 44005, title: "Pennant Cloak", ilvl: 226, int: 46, sp: 64, crit: 34, haste: 42, sockets: ["b"], bonus: {sp: 5} },
         // naxx
@@ -748,6 +753,7 @@ var equip = {
         { id: 45446, title: "Grasps of Reason", ilvl: 252, int: 59, spi: 54, sp: 85, haste: 44, sockets: ["r"], bonus: {spi: 4}, phase: 2 },
         { id: 45275, title: "Bracers of Unleashed Magic", ilvl: 232, int: 49, sp: 78, hit: 38, haste: 44, phase: 2 },
         { id: 45146, title: "Shackles of the Odalisque", ilvl: 232, int: 44, spi: 52, sp: 78, crit: 44, phase: 2 },
+        { id: 45549, title: "Grips of Chaos", ilvl: 232, int: 52, spi: 49, sp: 78, hit: 38, phase: 2 },
         { id: 45291, title: "Combustion Bracers", ilvl: 225, int: 43, spi: 47, sp: 74, hit: 34, phase: 2 },
         { id: 45423, title: "Runetouch Wristwraps", ilvl: 225, int: 44, spi: 31, sp: 73, crit: 49, phase: 2 },
         // os
