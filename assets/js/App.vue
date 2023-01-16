@@ -3141,7 +3141,7 @@
                     return a.name.localeCompare(b.name);
                 };
 
-                this.config.timings = this.config.timings.filter(t => this.timingEnabled(t.name));
+                this.config.timings = this.config.timings.filter(t => this.timingEnabled(t.name) || t.name.indexOf("trinket") == 0);
 
                 this.config.timings.sort(fn);
             },
