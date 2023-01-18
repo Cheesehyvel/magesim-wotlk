@@ -59,7 +59,7 @@ struct Event
 class Simulation
 {
 private:
-    std::shared_ptr<Config> config;
+    const Config config;
 
 public:
     bool logging = true;
@@ -68,7 +68,7 @@ public:
     std::shared_ptr<unit::Player> player;
     State state;
 
-    Simulation(std::shared_ptr<Config> _config, std::shared_ptr<unit::Player> _player);
+    Simulation(const Config& config, std::shared_ptr<unit::Player> player);
 
     void reset();
 
@@ -249,7 +249,7 @@ public:
 
     void logUnitDespawn(std::shared_ptr<unit::Unit> unit);
 
-    void logInterruption(Interruption& interruption);
+    void logInterruption(const Interruption* interruption);
 
     std::string jsonLog() const;
 

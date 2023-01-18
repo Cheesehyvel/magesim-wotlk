@@ -1,6 +1,7 @@
 #pragma once
 
 #include "unit.h"
+#include "stats.h"
 
 namespace unit
 {
@@ -12,9 +13,7 @@ class WaterElemental : public Unit
 
 public:
 
-    WaterElemental(std::shared_ptr<Config> _config);
-
-    void setStats(Stats _stats);
+    WaterElemental(const Config& config, const Stats& stats);
 
     double maxMana() const;
 

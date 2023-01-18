@@ -11,7 +11,8 @@
 
 namespace unit
 {
-Unit::Unit(std::shared_ptr<Config> _config) : config(_config) {}
+Unit::Unit(const Config& _config, const Stats& _stats)
+    : config(_config), stats(_stats) {}
 
 void Unit::reset()
 {
@@ -34,17 +35,6 @@ void Unit::reset()
     buff_stats.haste = 0;
     buff_stats.haste_rating = 0;
     buff_stats.spell_power = 0;
-}
-
-// TODO: Pointer?
-Stats Unit::getStats()
-{
-    return stats;
-}
-
-void Unit::setStats(Stats _stats)
-{
-    stats = _stats;
 }
 
 bool Unit::hasCooldown(cooldown::ID id) const
@@ -127,7 +117,7 @@ bool Unit::canReactTo(buff::ID id, double t) const
 
     auto const i = buffs.find(id);
 
-    return i != buffs.end() && t - i->second->t_gained >= config->reaction_time / 1000.0;
+    return i != buffs.end() && t - i->second->t_gained >= config.reaction_time / 1000.0;
 }
 
 bool Unit::canReactTo(cooldown::ID id, double t) const
@@ -137,7 +127,7 @@ bool Unit::canReactTo(cooldown::ID id, double t) const
 
     auto const i = cooldowns.find(id);
 
-    return i != cooldowns.end() && t - i->second->t_gained >= config->reaction_time / 1000.0;
+    return i != cooldowns.end() && t - i->second->t_gained >= config.reaction_time / 1000.0;
 }
 
 bool Unit::hasSnapshot(buff::ID id) const
@@ -302,9 +292,9 @@ double Unit::castHaste() const
         haste *= 1.2;
 
     if (get_raid_buffs) {
-        if (config->buff_haste)
+        if (config.buff_haste)
             haste *= 1.03;
-        if (config->buff_spell_haste)
+        if (config.buff_spell_haste)
             haste *= 1.05;
     }
 
@@ -321,7 +311,7 @@ double Unit::critChance(std::shared_ptr<spell::Spell>) const
     double crit = stats.crit + buff_stats.crit;
 
     if (get_raid_buffs) {
-        if (config->buff_spell_crit)
+        if (config.buff_spell_crit)
             crit += 5;
     }
 
@@ -373,7 +363,7 @@ double Unit::buffDmgMultiplier(std::shared_ptr<spell::Spell>, const State&) cons
     double multi = 1;
 
     if (get_raid_buffs) {
-        if (config->buff_dmg)
+        if (config.buff_dmg)
             multi *= 1.03;
     }
 
@@ -436,14 +426,14 @@ double Unit::getSpellPower(School school) const
     double sp = stats.spell_power + buff_stats.spell_power;
 
     if (get_raid_buffs) {
-        if (config->demonic_pact || config->totem_of_wrath || config->flametongue) {
+        if (config.demonic_pact || config.totem_of_wrath || config.flametongue) {
             double x = 0;
-            if (config->totem_of_wrath)
+            if (config.totem_of_wrath)
                 x = 280;
-            else if (config->flametongue)
+            else if (config.flametongue)
                 x = 144;
-            if (config->demonic_pact && config->demonic_pact_bonus > x)
-                x = config->demonic_pact_bonus;
+            if (config.demonic_pact && config.demonic_pact_bonus > x)
+                x = config.demonic_pact_bonus;
             sp += x;
         }
     }

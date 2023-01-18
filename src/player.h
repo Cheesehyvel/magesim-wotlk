@@ -10,10 +10,15 @@ namespace unit
 {
 class Player : public Unit
 {
+private:
+    std::vector<bool> used_timings;
+    const Timing* getNextTiming(const std::string& name) const;
+    void useTiming(const Timing* timing);
+
 public:
-    Stats summon_stats;
-    Talents talents;
-    Glyphs glyphs;
+    const Talents talents;
+    const Glyphs glyphs;
+
     Race race = RACE_UNDEAD;
 
     int combustion;
@@ -34,7 +39,7 @@ public:
     bool should_wait;
     bool black_magic;
 
-    Player(std::shared_ptr<Config> _config);
+    Player(const Config& config, const Stats& stats, const Talents& talents, const Glyphs& glyphs);
 
     void reset();
 
@@ -54,7 +59,7 @@ public:
 
     void setGlyphs(Glyphs _glyphs);
 
-    Faction faction();
+    Faction faction() const;
 
     bool hasTrinket(Trinket trinket) const;
 
@@ -120,12 +125,8 @@ public:
 
     double manaGemMax() const;
 
-    // TODO: Given the name, this function should be const and not affect state
-    // (i.e. not call useTiming)
     bool shouldUseManaGem(const State& state);
 
-    // TODO: Given the name, this function should be const and not affect state
-    // (i.e. not call useTiming)
     bool shouldUseManaPotion(const State& state);
 
     bool shouldEvocate(const State& state);
@@ -142,7 +143,7 @@ public:
 
     bool isUseTrinket(Trinket trinket) const;
 
-    bool isTimingReady(const Timing& timing, const State& state) const;
+    bool isTimingReady(const Timing* timing, const State& state) const;
 
     bool useTimingIfPossible(const std::string& name, const State& state, bool expl = false);
 
@@ -159,8 +160,5 @@ public:
     action::Action preCombat(const State& state);
 
     action::Action nextAction(const State& state);
-
-private:
-    Timing* getNextTiming(const std::string& name);
 };
 }

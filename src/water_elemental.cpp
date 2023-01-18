@@ -2,23 +2,28 @@
 #include "unit.h"
 #include "state.h"
 
+namespace
+{
+Stats CorrectStats(const Stats& stats)
+{
+    Stats result = stats;
+    result.haste_rating = 0;
+    result.haste = 0;
+    result.spell_power *= 0.33;
+    result.intellect = 369 + stats.intellect * 0.3;
+    return result;
+}
+}
+
 namespace unit
 {
-WaterElemental::WaterElemental(std::shared_ptr<Config> _config) : Unit(_config)
+WaterElemental::WaterElemental(const Config& _config, const Stats &_stats)
+    : Unit(_config, CorrectStats(_stats))
 {
     base_mana = 1082;
     name = "Water Elemental";
     id = WATER_ELEMENTAL;
     duration = 45;
-}
-
-void WaterElemental::setStats(Stats _stats)
-{
-    stats = _stats;
-    stats.haste_rating = 0;
-    stats.haste = 0;
-    stats.spell_power *= 0.33;
-    stats.intellect = 369 + stats.intellect * 0.3;
 }
 
 double WaterElemental::maxMana() const

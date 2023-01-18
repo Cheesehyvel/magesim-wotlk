@@ -16,7 +16,7 @@ class Unit;
 struct State
 {
 private:
-    std::shared_ptr<Config> config;
+    const Config config;
 
 public:
     double t;
@@ -30,7 +30,7 @@ public:
     std::vector<std::shared_ptr<unit::Unit>> units;
     std::vector<bool> active_interruptions;
 
-    State(std::shared_ptr<Config> _config);
+    State(const Config& config);
 
     void reset();
 

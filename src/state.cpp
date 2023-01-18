@@ -2,9 +2,9 @@
 #include "config.h"
 #include "unit.h"
 
-State::State(std::shared_ptr<Config> _config) : config(_config)
+State::State(const Config& _config) : config(_config)
 {
-    active_interruptions.resize(config->interruptions.size());
+    active_interruptions.resize(config.interruptions.size());
     reset();
 }
 
@@ -12,8 +12,8 @@ void State::reset()
 {
     t = 0;
     dmg = 0;
-    duration = config->duration;
-    duration += -config->duration_variance + random<double>(0, config->duration_variance * 2);
+    duration = config.duration;
+    duration += -config.duration_variance + random<double>(0, config.duration_variance * 2);
 
     ignite_dmg = 0;
     ignite_t = -20;
@@ -108,8 +108,8 @@ double State::interruptedFor(bool is_player) const
     double d = 0;
 
     for (int i=0; i<active_interruptions.size(); i++) {
-        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all)) {
-            d = config->interruptions[i].t + config->interruptions[i].duration;
+        if (active_interruptions[i] && (is_player || config.interruptions[i].affects_all)) {
+            d = config.interruptions[i].t + config.interruptions[i].duration;
             if (d > max)
                 max = d;
         }
@@ -121,7 +121,7 @@ double State::interruptedFor(bool is_player) const
 bool State::isInterrupted(bool is_player) const
 {
     for (int i=0; i<active_interruptions.size(); i++) {
-        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all))
+        if (active_interruptions[i] && (is_player || config.interruptions[i].affects_all))
             return true;
     }
 
@@ -131,7 +131,7 @@ bool State::isInterrupted(bool is_player) const
 bool State::isSilenced(bool is_player) const
 {
     for (int i=0; i<active_interruptions.size(); i++) {
-        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all) && config->interruptions[i].silence)
+        if (active_interruptions[i] && (is_player || config.interruptions[i].affects_all) && config.interruptions[i].silence)
             return true;
     }
 
@@ -143,8 +143,8 @@ bool State::isMoving(bool is_player) const
     bool is_moving = false;
 
     for (int i=0; i<active_interruptions.size(); i++) {
-        if (active_interruptions[i] && (is_player || config->interruptions[i].affects_all)) {
-            if (config->interruptions[i].silence)
+        if (active_interruptions[i] && (is_player || config.interruptions[i].affects_all)) {
+            if (config.interruptions[i].silence)
                 return false;
             is_moving = true;
         }

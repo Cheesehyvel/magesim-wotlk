@@ -2,6 +2,7 @@
 #include "player.h"
 #include "simulation.h"
 #include "common.h"
+#include "talents.h"
 
 #include <emscripten.h>
 #include <emscripten/bind.h>
@@ -33,14 +34,29 @@ std::shared_ptr<Config> allocConfig()
     return std::make_shared<Config>();
 }
 
-std::shared_ptr<unit::Player> allocPlayer(std::shared_ptr<Config> config)
+Stats emptyStats()
 {
-    return std::make_shared<unit::Player>(config);
+    return {};
+}
+
+Talents emptyTalents()
+{
+    return {};
+}
+
+Glyphs emptyGlyphs()
+{
+    return {};
+}
+
+std::shared_ptr<unit::Player> allocPlayer(std::shared_ptr<Config> config, Stats stats, Talents talents, Glyphs glyphs)
+{
+    return std::make_shared<unit::Player>(*config, stats, talents, glyphs);
 }
 
 SimulationResult runSimulation(std::shared_ptr<Config> config, std::shared_ptr<unit::Player> player)
 {
-    auto sim = std::make_shared<Simulation>(config, player);
+    auto sim = std::make_shared<Simulation>(*config, player);
     sim->logging = true;
 
     return sim->run(true);
@@ -48,7 +64,7 @@ SimulationResult runSimulation(std::shared_ptr<Config> config, std::shared_ptr<u
 
 SimulationsResult runSimulations(std::shared_ptr<Config> config, std::shared_ptr<unit::Player> player, int iterations)
 {
-    return std::make_shared<Simulation>(config, player)->runMultiple(iterations);
+    return std::make_shared<Simulation>(*config, player)->runMultiple(iterations);
 }
 
 EMSCRIPTEN_BINDINGS(my_module)
@@ -346,13 +362,7 @@ EMSCRIPTEN_BINDINGS(my_module)
 
     emscripten::class_<unit::Player>("Player")
         .smart_ptr<std::shared_ptr<unit::Player>>("Player")
-        .property("race", &unit::Player::race)
-        .function("getStats", &unit::Player::getStats)
-        .function("setStats", &unit::Player::setStats)
-        .function("getTalents", &unit::Player::getTalents)
-        .function("setTalents", &unit::Player::setTalents)
-        .function("getGlyphs", &unit::Player::getGlyphs)
-        .function("setGlyphs", &unit::Player::setGlyphs);
+        .property("race", &unit::Player::race);
 
     emscripten::function("allocPlayer", &allocPlayer);
 
@@ -373,6 +383,9 @@ EMSCRIPTEN_BINDINGS(my_module)
         .field("histogram", &SimulationsResult::histogram)
         .field("all_results", &SimulationsResult::all_results);
 
+    emscripten::function("emptyStats", &emptyStats);
+    emscripten::function("emptyTalents", &emptyTalents);
+    emscripten::function("emptyGlyphs", &emptyGlyphs);
     emscripten::function("runSimulation", &runSimulation);
     emscripten::function("runSimulations", &runSimulations);
 }
