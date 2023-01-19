@@ -563,6 +563,7 @@ var equip = {
         { id: 50014, title: "Greatcloak of the Turned Champion", ilvl: 264, int: 69, spi: 60, sp: 97, haste: 52, sockets: ["b"], bonus: {sp: 5}, phase: 4 },
         { id: 51826, title: "Lich Wrappings", ilvl: 264, int: 69, sp: 97, hit: 48, haste: 63, sockets: ["y"], bonus: {hit: 4}, phase: 4 },
         { id: 51584, title: "Lich Wrappings", ilvl: 251, int: 61, sp: 85, hit: 41, haste: 56, sockets: ["y"], bonus: {hit: 4}, phase: 4 },
+        { id: 50469, title: "Volde's Cloak of the Night Sky", ilvl: 264, int: 69, spi: 60, sp: 97, crit: 52, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 51382, title: "Heartsick Mender's Cape", ilvl: 251, int: 61, sp: 85, haste: 45, mp5: 27, sockets: ["r"], phase: 4 },
         // onyxia
         { id: 49491, title: "Flowing Sapphiron Drape", ilvl: 245, int: 54, sp: 89, crit: 50, haste: 35, phase: 3 },
