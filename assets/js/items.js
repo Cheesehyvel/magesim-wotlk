@@ -129,6 +129,7 @@ var equip = {
         { id: 45287, title: "Firesoul", ilvl: 225, int: 49, sp: 515, hit: 36, haste: 27, unique: true, phase: 2 },
         { id: 45990, title: "Fusion Blade", ilvl: 245, int: 41, sp: 624, crit: 42, hit: 59, sockets: ["y"], bonus: {hit: 4}, unique: true, phase: 2 },
         { id: 45685, title: "Plasma Foil", ilvl: 225, int: 48, spi: 49, sp: 515, crit: 37, unique: true, phase: 2 },
+        { id: 45332, title: "Stormtip", ilvl: 225, int: 37, spi: 36, sp: 515, haste: 56, unique: true, phase: 2 },
         { id: 46025, title: "Devotion", ilvl: 225, int: 86, spi: 112, sp: 515, haste: 92, twohand: true, phase: 2 },
         { id: 45886, title: "Icecore Staff", ilvl: 245, int: 128, spi: 96, sp: 626, haste: 106, sockets: ["b", "r"], bonus: {sp: 7}, twohand: true, phase: 2 },
         { id: 45934, title: "Unraveling Reach", ilvl: 225, int: 80, spi: 98, sp: 515, hit: 121, twohand: true, phase: 2 },
