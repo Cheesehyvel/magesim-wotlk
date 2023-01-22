@@ -517,7 +517,7 @@
                                             <div class="paperv paperitem" @click="paperClick(slot)">
                                                 <a
                                                     v-if="equipped[slot]"
-                                                    :href="itemUrl(equipped[slot])"
+                                                    :href="equippedUrl(slot)"
                                                     data-wh-icon-size="large"
                                                     @click="$event.preventDefault()"
                                                 ></a>
@@ -3101,13 +3101,19 @@
                 var sockets = [];
                 if (item && item.sockets)
                     sockets = _.clone(item.sockets);
-                if (slot == "wrist" && this.config.wrist_socket)
-                    sockets.push("a");
-                if (slot == "hands" && this.config.hands_socket)
-                    sockets.push("a");
-                if (slot == "waist" && this.config.waist_socket)
+                if (this.hasExtraSocket(slot))
                     sockets.push("a");
                 return sockets;
+            },
+
+            hasExtraSocket(slot) {
+                if (slot == "wrist" && this.config.wrist_socket)
+                    return true;
+                if (slot == "hands" && this.config.hands_socket)
+                    return true;
+                if (slot == "waist" && this.config.waist_socket)
+                    return true;
+                return false;
             },
 
             activeGems(index) {
@@ -3606,6 +3612,31 @@
                 if (this.item_source == "evo")
                     return "https://wotlk.evowow.com/?spell="+id;
                 return "https://www.wowhead.com/wotlk/spell="+id;
+            },
+
+            equippedUrl(slot) {
+                if (!this.equipped[slot])
+                    return null;
+                var url = this.itemUrl(this.equipped[slot]);
+
+                var sockets = this.slotSockets(slot);
+                if (sockets.length) {
+                    var gems = [];
+                    for (var i=0; i<sockets.length; i++)
+                        gems.push(this.gems[slot][i] ? this.gems[slot][i] : "");
+                    url+= "&gems="+gems.join(":");
+                }
+
+                if (this.hasExtraSocket(slot))
+                    url+="&sock=1";
+
+                if (_.get(this.enchants, slot)) {
+                    var enchant = this.getEnchant(slot, this.enchants[slot]);
+                    if (enchant)
+                        url+= "&ench="+enchant.enchantmentId;
+                }
+
+                return url;
             },
 
             critRatingToChance(rating) {
