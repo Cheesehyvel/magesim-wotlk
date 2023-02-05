@@ -716,6 +716,23 @@ table {
                             }
                         }
 
+                        .diff {
+                            &.gt {
+                                color: #0a0;
+                            }
+                            &.lt {
+                                color: #a00;
+                            }
+                        }
+
+                        .warning {
+                            color: #fa0;
+                            cursor: pointer;
+                            margin-left: 2px;
+                            position: relative;
+                            top: -2px;
+                        }
+
                         .socket-color {
                             display: inline-block;
                             width: 10px;

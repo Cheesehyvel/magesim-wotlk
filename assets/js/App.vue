@@ -380,7 +380,16 @@
                                                     </span>
                                                 </td>
                                                 <td v-if="hasComparisons">
-                                                    {{ comparisonDps(item) }}
+                                                    <template v-if="comparisonDps(item)">
+                                                        {{ comparisonDps(item) }}
+                                                        <span v-if="pin_dps" class="diff" :class="[pin_dps > comparisonDps(item) ? 'lt' : 'gt']">
+                                                            (<template v-if="pin_dps <= comparisonDps(item)">+</template>{{ $roundFixed(comparisonDps(item) - pin_dps, 2) }})
+                                                        </span>
+                                                        <span v-if="comparisonMetaGemInactive(item)" class="warning">
+                                                            <span class="material-icons">&#xe002;</span>
+                                                            <tooltip position="right">Meta gem requirements have not been met.</tooltip>
+                                                        </span>
+                                                    </template>
                                                 </td>
                                                 <td>{{ $get(item, "ilvl", "") }}</td>
                                                 <td>{{ $get(item, "phase", 1) }}</td>
@@ -2947,6 +2956,7 @@
                     cmp = this.item_comparison[i];
                     result = await this.runComparisonFor(cmp.id);
                     this.item_comparison[i].dps = result.avg_dps;
+                    this.item_comparison[i].is_meta_gem_active = this.isMetaGemActive();
                 }
 
                 this.equip(this.active_slot, old_item_id);
@@ -4139,6 +4149,11 @@
             comparisonDps(item) {
                 var cmp = _.find(this.item_comparison, {id: item.id});
                 return cmp && cmp.dps ? _.round(cmp.dps, 2) : null;
+            },
+
+            comparisonMetaGemInactive(item) {
+                var cmp = _.find(this.item_comparison, {id: item.id});
+                return cmp && !cmp.is_meta_gem_active;
             },
 
             setSpec(spec) {

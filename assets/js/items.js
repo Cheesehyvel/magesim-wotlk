@@ -1217,6 +1217,7 @@ var equip = {
         // ulduar
         { id: ids.TRINKET_FLARE_HEAVENS, title: "Flare of the Heavens", ilvl: 252, crit: 135, unique: true, phase: 2 },
         { id: ids.TRINKET_SHOW_FAITH, title: "Show of Faith", ilvl: 252, sp: 158, unique: true, phase: 2 },
+        { id: 46312, title: "Vanquished Clutches of Yogg-Saron", ilvl: 239, crit: 154, unique: true, phase: 2 },
         { id: ids.TRINKET_PANDORAS_PLEA, title: "Pandora's Plea", ilvl: 232, int: 114, unique: true, phase: 2 },
         { id: ids.TRINKET_LIVING_FLAME, title: "Living Flame", ilvl: 232, hit: 113, use: true, unique: true, phase: 2 },
         { id: ids.TRINKET_SCALE_FATES, title: "Scale of Fates", ilvl: 232, sp: 132, use: true, unique: true, phase: 2 },
