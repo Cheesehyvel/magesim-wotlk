@@ -3628,6 +3628,7 @@
                 if (!this.equipped[slot])
                     return null;
                 var url = this.itemUrl(this.equipped[slot]);
+                var item = this.getItem(slot, this.equipped[slot]);
 
                 var sockets = this.slotSockets(slot);
                 if (sockets.length) {
@@ -3644,6 +3645,17 @@
                     var enchant = this.getEnchant(slot, this.enchants[slot]);
                     if (enchant)
                         url+= "&ench="+enchant.enchantmentId;
+                }
+
+                if (item.itemset) {
+                    var pcs = [];
+                    for (var key in this.equipped) {
+                        var itm = this.getItem(key, this.equipped[key]);
+                        if (_.get(itm, "itemset") == item.itemset)
+                            pcs.push(itm.id);
+                    }
+                    if (pcs.length)
+                        url+= "&pcs="+pcs.join(":");
                 }
 
                 return url;
