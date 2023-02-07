@@ -923,25 +923,27 @@
                                         </help>
                                     </label>
                                 </div>
-                                <div class="form-item" v-if="config.talents.hot_streak">
-                                    <label><input type="checkbox" v-model="config.hot_streak_cqs">
-                                        <span>Delay Pyroblast slightly</span>
-                                        <help>
-                                            This will delay Pyroblast by {{ config.hot_streak_cqs_time }}ms after a Hot Streak to prevent ignite munching.<br>
-                                            There is no way to do this perfectly in-game, but a cqs macro can do this with about 70-90% reliability.
-                                        </help>
-                                    </label>
-                                </div>
-                                <div class="form-item" v-if="config.talents.hot_streak && config.hot_streak_cqs">
-                                    <label>
-                                        <span>Pyroblast delay (ms)</span>
-                                        <help>
-                                            A delay of 10ms or less will cause ignite munching in the sim.<br>
-                                            In game this is more complicated. Sometimes you get munching with 60ms, sometimes you don't with 0ms.
-                                        </help>
-                                    </label>
-                                    <input type="text" v-model.number="config.hot_streak_cqs_time">
-                                </div>
+                                <template v-if="config.talents.hot_streak && config.talents.ignite && config.ignite_munching && config.rotation == rotations.ROTATION_ST_FIRE">
+                                    <div class="form-item">
+                                        <label><input type="checkbox" v-model="config.hot_streak_cqs">
+                                            <span>Delay Pyroblast slightly</span>
+                                            <help>
+                                                This will delay Pyroblast by {{ config.hot_streak_cqs_time }}ms after a Hot Streak to prevent ignite munching.<br>
+                                                There is no way to do this perfectly in-game, but a cqs macro can do this with about 70-90% reliability.
+                                            </help>
+                                        </label>
+                                    </div>
+                                    <div class="form-item" v-if="config.hot_streak_cqs">
+                                        <label>
+                                            <span>Pyroblast delay (ms)</span>
+                                            <help>
+                                                A delay of 10ms or less will cause ignite munching in the sim.<br>
+                                                In game this is more complicated. Sometimes you get munching with 60ms, sometimes you don't with 0ms.
+                                            </help>
+                                        </label>
+                                        <input type="text" v-model.number="config.hot_streak_cqs_time">
+                                    </div>
+                                </template>
                                 <div class="form-item">
                                     <label>
                                         <span>Number of Evocation ticks</span>
