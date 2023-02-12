@@ -270,25 +270,17 @@
                                 <div class="items-wrapper">
                                     <div class="top clearfix">
                                         <div class="fl clearfix">
-                                            <div class="form-item form-item-phase">
-                                                <select v-model="phase_filter" @change="refreshTooltips">
-                                                    <option :value="0">- Filter by phase -</option>
-                                                    <option :value="1">Phase 1 - Naxxramas, Eye of Eternity, Obsidian Sanctum</option>
-                                                    <option :value="2">Phase 2 - Ulduar</option>
-                                                    <option :value="3">Phase 3 - Trial of the Crusader, Onyxia</option>
-                                                    <option :value="4">Phase 4 - Icecrown Citadel</option>
-                                                    <option :value="5">Phase 5 - Ruby Sanctum</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-item">
-                                                <select v-model="pvp_filter" @change="refreshTooltips">
-                                                    <option :value="null">PvE and PvP</option>
-                                                    <option value="pve">Only PvE</option>
-                                                    <option value="pvp">Only PvP</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-item">
+                                            <div class="form-item text-search">
                                                 <input type="text" ref="search" v-model="search_item" placeholder="Search..." @input="refreshTooltips">
+                                                <tooltip position="bl">
+                                                    <b>Text search with filters</b><br><br>
+                                                    Yes/no filters: pvp, 2h, set<br>
+                                                    Example: 'pvp:no' will exclude all pvp items.<br><br>
+                                                    Number filters: phase, ilvl, sp, crit, hit, haste, int, spi, mp5<br>
+                                                    Example: 'ilvl:252+' will find items with ilvl 252 or higher.<br>
+                                                    Example: 'ilvl:252-' will find items with ilvl 252 or lower.<br>
+                                                    Example: 'ilvl:239-252' will find items with ilvl between 239 and 252.
+                                                </tooltip>
                                             </div>
                                         </div>
                                         <div class="fr">
@@ -1993,7 +1985,7 @@
                     id: null,
                     title: null,
                     slot: null,
-                    q: "rare",
+                    q: "epic",
                     sockets: null,
                     meta_socket: false,
                     int: null,
@@ -2019,9 +2011,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                phase_filter: 2,
-                pvp_filter: null,
-                search_item: "",
+                search_item: "phase:2- ",
                 search_gem: "",
                 search_log: "",
                 log_filter: {
@@ -2178,16 +2168,104 @@
                 if (!items)
                     return [];
 
-                if (this.phase_filter && this.phase_filter != "0")
-                    items = items.filter(item => _.get(item, "phase", 1) <= this.phase_filter);
+                if (this.search_item) {
+                    var terms = this.search_item.toLowerCase().split(" ");
+                    var str = [];
+                    var last_str = false;
+                    var arr, value, op;
 
-                if (this.pvp_filter == "pvp")
-                    items = items.filter(item => item.title.indexOf(" Gladiator's ") != -1);
-                if (this.pvp_filter == "pve")
-                    items = items.filter(item => item.title.indexOf(" Gladiator's ") == -1);
+                    var fnBool = function(str) {
+                        if (str[0] == "y")
+                            return true;
+                        return false;
+                    };
 
-                if (this.search_item)
-                    items = items.filter(item => item.title.toLowerCase().indexOf(this.search_item.toLowerCase()) != -1);
+                    var filterBool = function(str, val) {
+                        if (str[0] == "y")
+                            return val;
+                        return !val;
+                    };
+
+                    var filterInt = function(str, val) {
+                        var m;
+                        if (m = str.match(/^([0-9]+)\-([0-9]+)$/)) {
+                            return val >= m[1] && val <= str[2];
+                        }
+                        else if (m = str.match(/^([0-9]+)$/)) {
+                            return val == m[1];
+                        }
+                        else if (m = str.match(/^([0-9]+)\+$/)) {
+                            return val >= m[1];
+                        }
+                        else if (m = str.match(/^([0-9]+)\-$/)) {
+                            return val <= m[1];
+                        }
+
+                        return true;
+                    };
+
+                    for (var i=0; i<terms.length; i++) {
+                        arr = terms[i].split(":");
+                        if (arr.length == 2) {
+                            if (!arr[1].length)
+                                continue;
+                            if (arr[0] == "pvp") {
+                                value = fnBool(arr[1]);
+                                if (value)
+                                    items = items.filter(item => item.title.indexOf(" Gladiator's ") != -1);
+                                else if (value !== null)
+                                    items = items.filter(item => item.title.indexOf(" Gladiator's ") == -1);
+                            }
+                            else if (arr[0] == "ilvl") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "ilvl", 1)));
+                            }
+                            else if (arr[0] == "p" || arr[0] == "phase") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "phase", 1)));
+                            }
+                            else if (arr[0] == "sp") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "sp", 1)));
+                            }
+                            else if (arr[0] == "crit") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "crit", 1)));
+                            }
+                            else if (arr[0] == "hit") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "hit", 1)));
+                            }
+                            else if (arr[0] == "haste") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "haste", 1)));
+                            }
+                            else if (arr[0] == "spi" || arr[0] == "spirit") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "spi", 1)));
+                            }
+                            else if (arr[0] == "int" || arr[0] == "intellect") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "int", 1)));
+                            }
+                            else if (arr[0] == "mp5") {
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "mp5", 1)));
+                            }
+                            else if (arr[0] == "2h") {
+                                items = items.filter(item => filterBool(arr[1], _.get(item, "twohand", false)));
+                            }
+                            else if (arr[0] == "set" || arr[0] == "itemset") {
+                                items = items.filter(item => filterBool(arr[1], _.get(item, "itemset", false)));
+                            }
+
+                            last_str = false;
+                        }
+                        else {
+                            if (last_str)
+                                str[str.length-1]+= " "+terms[i];
+                            else
+                                str.push(terms[i]);
+                            last_str = true;
+                        }
+                    }
+
+                    if (str.length) {
+                        for (var i=0; i<str.length; i++)
+                            items = items.filter(item => item.title.toLowerCase().indexOf(str[i]) != -1);
+                    }
+                }
 
                 return this.sort(items, this.item_sort);
             },
@@ -2980,6 +3058,18 @@
                 this.calcStats();
             },
 
+            clearSearchText() {
+                var str = [];
+                var terms = this.search_item.toLowerCase().split(" ");
+
+                for (var i=0; i<terms.length; i++) {
+                    if (terms[i].split(":").length == 2)
+                        str.push(terms[i]);
+                }
+
+                this.search_item = str.join(" ")+" ";
+            },
+
             setActiveSlot(slot) {
                 if (this.is_running)
                     return;
@@ -2988,7 +3078,7 @@
                 this.item_comparison = [];
 
                 this.$nextTick(function() {
-                    this.search_item = "";
+                    this.clearSearchText();
                     this.$refs.search.focus();
                     this.refreshTooltips();
                 });
@@ -3144,8 +3234,6 @@
                 else
                     var gems = this.items.gems.filter(g => g.color != "m");
 
-                if (this.phase_filter && this.phase_filter != "0")
-                    gems = gems.filter(g => _.get(g, "phase", 1) <= this.phase_filter);
                 if (this.search_gem)
                     gems = gems.filter(g => g.title.toLowerCase().indexOf(this.search_gem.toLowerCase()) != -1);
 
