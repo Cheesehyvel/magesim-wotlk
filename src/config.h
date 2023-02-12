@@ -32,6 +32,7 @@ struct Config
     double demonic_pact_bonus = 0;
     bool mana_replenishment = false;
     bool judgement_of_wisdom = false;
+    bool gift_of_arthas = false;
     bool mage_armor = true;
     bool molten_armor = false;
     bool amplify_magic = false;

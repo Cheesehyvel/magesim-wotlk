@@ -438,6 +438,10 @@ double Unit::getSpellPower(School school) const
         }
     }
 
+    // Huge buff
+    if (config.gift_of_arthas)
+        sp+= 8;
+
     return sp;
 }
 

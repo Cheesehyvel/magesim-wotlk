@@ -1002,6 +1002,12 @@
                                         <help>Chance to restore 2% base mana on spell hit</help>
                                     </label>
                                 </div>
+                                <div class="form-item">
+                                    <label><input type="checkbox" v-model="config.gift_of_arthas">
+                                        <span>Gift of Arthas</span>
+                                        <help>Acts as +8 spell power debuff on target</help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-buffs">
                                 <legend>Buffs</legend>
@@ -1722,6 +1728,7 @@
                 debuff_spell_hit: false,
                 debuff_spell_dmg: false,
                 judgement_of_wisdom: false,
+                gift_of_arthas: false,
 
                 // Buffs
                 mage_armor: false,
