@@ -1049,10 +1049,10 @@ var equip = {
         // ulduar
         { id: 45135, title: "Boots of Fiery Resolution", ilvl: 252, int: 82, spi: 73, sp: 116, haste: 63, sockets: ["r", "y"], bonus: {haste: 6}, phase: 2 },
         { id: 45537, title: "Treads of the False Oracle", ilvl: 252, int: 79, sp: 105, crit: 69, haste: 54, sockets: ["r", "b"], bonus: {sp: 7}, phase: 2 },
+        { id: 46050, title: "Starlight Treads", ilvl: 239, int: 69, spi: 48, sp: 100, crit: 61, sockets: ["b", "y"], bonus: {spi: 6}, phase: 2 },
         { id: 45483, title: "Boots of the Servant", ilvl: 232, int: 59, spi: 51, sp: 95, haste: 66, sockets: ["b"], bonus: {sp: 5}, phase: 2 },
         { id: 45258, title: "Sandals of Rash Temperament", ilvl: 232, int: 63, sp: 105, crit: 59, hit: 60, phase: 2 },
         { id: 45441, title: "Sandals of the Ancient Keeper", ilvl: 232, int: 68, spi: 66, sp: 105, crit: 52, phase: 2 },
-        { id: 46050, title: "Starlight Treads", ilvl: 232, int: 69, spi: 48, sp: 100, crit: 61, sockets: ["b", "y"], bonus: {spi: 6}, phase: 2 },
         { id: 45566, title: "Spellslinger's Slippers", ilvl: 232, int: 68, spi: 44, sp: 86, haste: 60, sockets: ["b", "r"], bonus: {sp: 7}, phase: 2 },
         { id: 45567, title: "Savior's Slippers", ilvl: 232, int: 64, spi: 61, sp: 86, crit: 43, sockets: ["r", "b"], bonus: {sp: 7}, phase: 2 },
         { id: 46030, title: "Treads of the Dragon Council", ilvl: 225, int: 60, spi: 44, sp: 98, crit: 62, phase: 2 },

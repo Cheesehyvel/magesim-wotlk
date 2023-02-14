@@ -2189,7 +2189,7 @@
                     var filterInt = function(str, val) {
                         var m;
                         if (m = str.match(/^([0-9]+)\-([0-9]+)$/)) {
-                            return val >= m[1] && val <= str[2];
+                            return val >= m[1] && val <= m[2];
                         }
                         else if (m = str.match(/^([0-9]+)$/)) {
                             return val == m[1];
