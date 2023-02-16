@@ -1,6 +1,6 @@
 <template>
     <div class="help">
-        <div class="material-icons" v-html="iconCode"></div>
+        <div class="material-icons" :class="[outlined ? 'material-symbols-outlined' : '']" v-html="iconCode"></div>
         <tooltip :position="position">
             <slot></slot>
         </tooltip>
@@ -20,6 +20,11 @@
                 default() {
                     return "e8fd";
                 }
+            },
+
+            outlined: {
+                type: Boolean,
+                default: false,
             }
         },
 

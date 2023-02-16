@@ -305,6 +305,7 @@
                                                     </span>
                                                 </th>
                                                 <th class="min"></th>
+                                                <th class="min"></th>
                                                 <th class="title">
                                                     <sort-link v-model="item_sort" name="title">Name</sort-link>
                                                 </th>
@@ -354,6 +355,12 @@
                                                 <td class="min">
                                                     <span class="compare" :class="[isComparing(item) ? 'active' : '']" @click.stop="compareItem(item)">
                                                         <help icon="e915">Add to comparison</help>
+                                                    </span>
+                                                </td>
+                                                <td class="min">
+                                                    <span class="favorite" :class="[isFavorite(item) ? 'active' : '']" @click.stop="toggleFavorite(item)">
+                                                        <help icon="e87d" v-if="isFavorite(item)">Favorite</help>
+                                                        <help icon="e87d" :outlined="true" v-else>Favorite</help>
                                                     </span>
                                                 </td>
                                                 <td class="min">
@@ -471,10 +478,9 @@
                                                         <th class="min">
                                                             <span class="socket-color" :class="['color-'+socket]"></span>
                                                         </th>
+                                                        <th class="min narrow"></th>
                                                         <th>Gem</th>
                                                         <th>Stats</th>
-                                                        <th v-if="socket == 'm'">Requires</th>
-                                                        <th v-else>Unique</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -487,23 +493,18 @@
                                                         <td class="min">
                                                             <span class="socket-color" :class="['color-'+gem.color]"></span>
                                                         </td>
+                                                        <td class="min narrow">
+                                                            <span class="favorite" :class="[isFavorite(gem) ? 'active' : '']" @click.stop="toggleFavorite(gem)">
+                                                                <help icon="e87d" v-if="isFavorite(gem)">Favorite</help>
+                                                                <help icon="e87d" :outlined="true" v-else>Favorite</help>
+                                                            </span>
+                                                        </td>
                                                         <td>
                                                             <a :href="itemUrl(gem)" class="gem-color" :class="['color-'+gem.color]" target="_blank" @click.stop>
                                                                 {{ gem.title }}
                                                             </a>
                                                         </td>
                                                         <td>{{ formatStats(gem) }}</td>
-                                                        <td v-if="socket == 'm'">
-                                                            <template v-if="gem.req">
-                                                                <template v-if="metaGemHasCustomReq(gem)">
-                                                                    {{ gem.req }}
-                                                                </template>
-                                                                <template v-else>
-                                                                    <div class="socket-text-color" :class="['color-'+c]" v-for="(n, c) in gem.req">{{ n }}</div>
-                                                                </template>
-                                                            </template>
-                                                        </td>
-                                                        <td v-else><template v-if="gem.unique">Yes</template></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1686,6 +1687,7 @@
 
         mounted() {
             this.loadCustomItems();
+            this.loadFavorites();
             this.loadCurrentProfile();
             this.loadDefaultProfiles();
             this.loadProfiles();
@@ -1950,6 +1952,7 @@
                 default_profiles: [],
                 profiles: [],
                 history: [],
+                favorites: [],
                 active_slot: "weapon",
                 new_profile: null,
                 import_profile: {
@@ -2781,8 +2784,19 @@
             },
 
             sort(items, sorting) {
-                if (!sorting || !sorting.name)
-                    return items;
+                var self = this;
+
+                if (!sorting || !sorting.name) {
+                    return items.sort(function(a, b) {
+                        var fa = self.isFavorite(a);
+                        var fb = self.isFavorite(b);
+                        if (fa && !fb)
+                            return -1;
+                        if (!fa && fb)
+                            return 1;
+                        return 0;
+                    });
+                }
 
                 var type = null;
                 for (var i=0; i<items.length; i++) {
@@ -2804,8 +2818,6 @@
 
                 if (type === null)
                     return items;
-
-                var self = this;
 
                 return items.sort(function(a, b) {
                     var av = _.get(a, sorting.name, null);
@@ -3237,7 +3249,17 @@
                 if (this.search_gem)
                     gems = gems.filter(g => g.title.toLowerCase().indexOf(this.search_gem.toLowerCase()) != -1);
 
-                return gems;
+                var self = this;
+
+                return gems.sort(function(a, b) {
+                    var fa = self.isFavorite(a);
+                    var fb = self.isFavorite(b);
+                    if (fa && !fb)
+                        return -1;
+                    if (!fa && fb)
+                        return 1;
+                    return 0;
+                });
             },
 
             fillEmptyFields() {
@@ -5133,6 +5155,37 @@
                 delete p.result;
                 delete p.date;
                 this.loadProfile(p);
+            },
+
+            toggleFavorite(item) {
+                var id = _.isObject(item) ? item.id : item;
+                var index = this.favorites.indexOf(id);
+                if (index == -1)
+                    this.favorites.push(id);
+                else
+                    this.favorites.splice(index, 1);
+                this.saveFavorites();
+            },
+
+            isFavorite(item) {
+                var id = _.isObject(item) ? item.id : item;
+                return this.favorites.indexOf(id) != -1;
+            },
+
+            loadFavorites() {
+                var str = window.localStorage.getItem("magesim_wotlk_favorites");
+                if (!str)
+                    return;
+
+                var favorites = JSON.parse(str);
+                if (!favorites || !Array.isArray(favorites))
+                    return;
+
+                this.favorites = favorites;
+            },
+
+            saveFavorites() {
+                window.localStorage.setItem("magesim_wotlk_favorites", JSON.stringify(this.favorites));
             },
 
             getRotationString(rot) {
