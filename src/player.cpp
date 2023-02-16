@@ -1051,6 +1051,12 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
             }
 
+            // Confirmed - on spell impact
+            // Assumed to be the same as Illustration
+            if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
+                actions.push_back(buffAction<buff::EyeBroodmother>());
+            }
+
             // Unconfirmed - on spell impact
             if (config.ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
                 actions.push_back(buffCooldownAction<buff::AshenBand, cooldown::AshenBand>());
@@ -1184,12 +1190,6 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
     // Exception for blizzard ticks (maybe all channeled aoe?)
     if (hasTrinket(TRINKET_ILLUSTRATION_DRAGON_SOUL) && (spell->id != spell::BLIZZARD || !tick)) {
         actions.push_back(buffAction<buff::IllustrationDragonSoul>());
-    }
-
-    // Unconfirmed - on cast/tick ?
-    // Assumed to be the same as Illustration
-    if (hasTrinket(TRINKET_EYE_BROODMOTHER) && (spell->id != spell::BLIZZARD || !tick)) {
-        actions.push_back(buffAction<buff::EyeBroodmother>());
     }
 
     // Confirmed - on cast/tick
