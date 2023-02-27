@@ -850,6 +850,11 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         for (auto& i : onCastOrTick(state, spell))
             actions.push_back(std::move(i));
 
+        // Confirmed - on harmful cast
+        if (hasTrinket(TRINKET_FLARE_HEAVENS) && !hasCooldown(cooldown::FLARE_HEAVENS) && is_harmful && random<int>(0, 9) == 0) {
+            actions.push_back(buffCooldownAction<buff::FlareHeavens, cooldown::FlareHeavens>());
+        }
+
         // Confirmed - on spell impact and channeled harmful spell cast
         // Does not proc on blizzard(aoe?) cast start (only am?)
         if ((config.black_magic || black_magic) && !hasCooldown(cooldown::BLACK_MAGIC) && spell->channeling && is_harmful && spell->id != spell::BLIZZARD && random<int>(0, 99) < 35) {
@@ -1051,16 +1056,15 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffCooldownAction<buff::BlackMagic, cooldown::BlackMagic>());
             }
 
-            // Confirmed - on spell impact
-            // Assumed to be the same as Illustration
-            if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
-                actions.push_back(buffAction<buff::EyeBroodmother>());
-            }
-
             // Unconfirmed - on spell impact
             if (config.ashen_band && !hasCooldown(cooldown::ASHEN_BAND) && random<int>(0, 9) == 0) {
                 actions.push_back(buffCooldownAction<buff::AshenBand, cooldown::AshenBand>());
             }
+        }
+
+        // Confirmed - on spell impact, dots included
+        if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
+            actions.push_back(buffAction<buff::EyeBroodmother>());
         }
 
         if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
@@ -1218,11 +1222,6 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
         // Unconfirmed - on harmful ?
         if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && random<int>(0, 19) < 3) {
             actions.push_back(spellCooldownAction<spell::PendulumTelluricCurrents, cooldown::PendulumTelluricCurrents>());
-        }
-
-        // Unconfirmed - on harmful ?
-        if (hasTrinket(TRINKET_FLARE_HEAVENS) && !hasCooldown(cooldown::FLARE_HEAVENS) && random<int>(0, 9) == 0) {
-            actions.push_back(buffCooldownAction<buff::FlareHeavens, cooldown::FlareHeavens>());
         }
 
         // Unconfirmed - on harmful ?
