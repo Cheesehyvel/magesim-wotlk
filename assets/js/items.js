@@ -1270,6 +1270,7 @@ var gems = [
     { id: ids.META_EMBER_SKYFLARE, title: "Ember Skyflare Diamond", color: "m", sp: 25, desc: "+2% int", req: {r: 3} },
     { id: ids.META_BEAMING_EARTHSIEGE, title: "Beaming Earthsiege Diamond", color: "m", crit: 21, desc: "+2% mana", req: {y: 1, r: 2} },
     { id: ids.META_INSIGHTFUL_EARTHSIEGE, title: "Insightful Earthsiege Diamond", color: "m", int: 21, desc: "Chance to restore mana", req: {b: 1, y: 1, r: 1} },
+    { id: 41375, title: "Tireless Skyflare Diamond", color: "m", sp: 25, desc: "Minor Run Speed Increase", req: {b: 1, y: 1, r: 1} },
     { id: 42144, title: "Runed Dragon's Eye", color: "r", sp: 39 },
     { id: 40113, title: "Runed Cardinal Ruby", color: "r", sp: 23 },
     { id: 45883, title: "Runed Stormjewel", color: "r", sp: 23, unique: "stormjewel" },
