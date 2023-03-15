@@ -1354,7 +1354,7 @@ var enchants = {
         { id: 59936, enchantmentId: 3809, title: "Greater Inscription of the Crag", sp: 24, mp5: 8 },
     ],
     back: [
-        { id: ids.LIGHTWEAVE_EMBROIDERY, enchantmentId: 3722, title: "Lightweave Embroidery" },
+        { id: ids.LIGHTWEAVE_EMBROIDERY, enchantmentId: 3722, title: "Lightweave Embroidery", spi: 1 },
         { id: ids.DARKGLOW_EMBROIDERY, enchantmentId: 3728, title: "Darkglow Embroidery" },
         { id: 63765, enchantmentId: 3859, title: "Springy Arachnoweave", sp: 27 },
         { id: 47898, enchantmentId: 3831, title: "Greater Speed", haste: 23 },
