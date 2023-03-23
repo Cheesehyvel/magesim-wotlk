@@ -246,7 +246,7 @@
                     </template>
                 </div>
                 <div class="body">
-                    <div class="gear" v-if="active_tab == 'gear'">
+                    <div class="gear" :class="{splitview}" v-if="active_tab == 'gear'">
                         <div class="slots">
                             <div
                                 class="slot"
@@ -265,7 +265,7 @@
                                 </template>
                             </div>
                         </div>
-                        <div class="gear-wrapper" :class="{splitview}">
+                        <div class="gear-wrapper">
                             <div class="items" ref="items">
                                 <div class="items-wrapper">
                                     <div class="top clearfix">
@@ -287,10 +287,10 @@
                                             <div class="btn" :class="[!hasComparisons || is_running ? 'disabled' : '']" @click="runComparison">
                                                 Run item comparison
                                             </div>
-                                            <div class="btn" @click="openEquiplist">
+                                            <div class="btn ml-n" @click="openEquiplist">
                                                 Equipped items overview
                                             </div>
-                                            <div class="btn" @click="openCustomItem">
+                                            <div class="btn ml-n" @click="openCustomItem">
                                                 Add custom item
                                             </div>
                                         </div>
@@ -305,7 +305,6 @@
                                                     </span>
                                                 </th>
                                                 <th class="min"></th>
-                                                <th class="min"></th>
                                                 <th class="title">
                                                     <sort-link v-model="item_sort" name="title">Name</sort-link>
                                                 </th>
@@ -316,28 +315,28 @@
                                                     <sort-link v-model="item_sort" name="ilvl" order="desc">ilvl</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="phase">Phase</sort-link>
+                                                    <sort-link v-model="item_sort" name="phase">{{ splitviewShort("Phase", "P") }}</sort-link>
                                                 </th>
                                                 <th>
                                                     <sort-link v-model="item_sort" name="sockets" order="desc">Sockets</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="sp" order="desc">Spell power</sort-link>
+                                                    <sort-link v-model="item_sort" name="sp" order="desc">{{ splitviewShort("Spell power", "SP") }}</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="crit" order="desc">Crit rating</sort-link>
+                                                    <sort-link v-model="item_sort" name="crit" order="desc">{{ splitviewShort("Crit rating", "Crit") }}</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="hit" order="desc">Hit rating</sort-link>
+                                                    <sort-link v-model="item_sort" name="hit" order="desc">{{ splitviewShort("Hit rating", "Hit") }}</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="haste" order="desc">Haste rating</sort-link>
+                                                    <sort-link v-model="item_sort" name="haste" order="desc">{{ splitviewShort("Haste rating", "Haste") }}</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="int" order="desc">Intellect</sort-link>
+                                                    <sort-link v-model="item_sort" name="int" order="desc">{{ splitviewShort("Intellect", "Int") }}</sort-link>
                                                 </th>
                                                 <th>
-                                                    <sort-link v-model="item_sort" name="spi" order="desc">Spirit</sort-link>
+                                                    <sort-link v-model="item_sort" name="spi" order="desc">{{ splitviewShort("Spirit", "Spi") }}</sort-link>
                                                 </th>
                                                 <th>
                                                     <sort-link v-model="item_sort" name="mp5" order="desc">Mp5</sort-link>
@@ -363,11 +362,6 @@
                                                         <help icon="e87d" :outlined="true" v-else>Favorite</help>
                                                     </span>
                                                 </td>
-                                                <td class="min">
-                                                    <span class="delete" @click.stop="deleteCustomItem(item)" v-if="$get(item, 'custom')">
-                                                        <help icon="e872">Delete custom item</help>
-                                                    </span>
-                                                </td>
                                                 <td class="title">
                                                     <a :href="itemUrl(item)" :class="['quality-'+$get(item, 'q', 'epic')]" target="_blank" @click.prevent>
                                                         {{ item.title }}
@@ -376,6 +370,9 @@
                                                         <span class="material-icons">
                                                             &#xe895;
                                                         </span>
+                                                    </span>
+                                                    <span class="delete" @click.stop="deleteCustomItem(item)" v-if="$get(item, 'custom')">
+                                                        <help icon="e872">Delete custom item</help>
                                                     </span>
                                                 </td>
                                                 <td v-if="hasComparisons">
@@ -2673,6 +2670,10 @@
 
             toggleSplitview(e) {
                 this.setSplitview(!this.splitview);
+            },
+
+            splitviewShort(long, short) {
+                return this.splitview ? short : long;
             },
 
             newTimingId() {

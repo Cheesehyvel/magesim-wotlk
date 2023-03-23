@@ -370,9 +370,12 @@ table {
 
     &.large {
         th {
-            background: rgba(0,0,10,0.6);
+            background: #08001a;
             font-weight: 500;
             color: #ccd4ff;
+            position: sticky;
+            top: 0;
+            z-index: 2;
         }
 
         tbody tr {
@@ -657,30 +660,18 @@ table {
                                 border-color: #fff;
                             }
                         }
-
-                        .btn-splitview {
-                            position: absolute;
-                            top: 23px;
-                            right: 25px;
-                            cursor: pointer;
-
-                            span {
-                                vertical-align: middle;
-
-                                + .material-icons {
-                                    margin-left: 5px;
-                                }
-                            }
-                        }
                     }
 
                     .gear-wrapper {
                         display: grid;
                         grid-template-columns: 1fr;
+                    }
 
-                        &.splitview {
-                            grid-template-columns: 1fr 350px;
-                        }
+                    .btn-splitview {
+                        cursor: pointer;
+                        position: absolute;
+                        right: 25px;
+                        top: 23px;
                     }
 
                     .items {
@@ -846,25 +837,6 @@ table {
                         }
                     }
 
-                    .splitview .items {
-                        .form-item-phase {
-                            width: 140px;
-                        }
-                        .items-table {
-                            td, th {
-                                &:nth-child(n+4) {
-                                    width: 10%;
-                                }
-                                &:nth-last-child(-n+7) {
-                                    display: none;
-                                }
-                            }
-                        }
-                        .enchants-table tr > :nth-child(n+2) {
-                            display: none;
-                        }
-                    }
-
                     .character {
                         padding: $spacer*0.5;
 
@@ -985,6 +957,53 @@ table {
                                 &.weapon .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_mainhand.jpg"); }
                                 &.off_hand .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_offhand.jpg"); }
                                 &.ranged .paperitem { background-image: url("https://wow.zamimg.com/images/wow/icons/large/inventoryslot_ranged.jpg"); }
+                            }
+                        }
+                    }
+
+                    &.splitview {
+                        .gear-wrapper {
+                            grid-template-columns: 1fr 350px;
+                        }
+
+                        .items {
+                            .items-table {
+                                td, th {
+                                    @media all and (max-width: 1800px) {
+                                        &:nth-last-child(-n+1) {
+                                            display: none;
+                                        }
+                                    }
+                                    @media all and (max-width: 1700px) {
+                                        &:nth-last-child(-n+2) {
+                                            display: none;
+                                        }
+                                    }
+                                    @media all and (max-width: 1650px) {
+                                        &:nth-last-child(-n+3) {
+                                            display: none;
+                                        }
+                                    }
+                                    @media all and (max-width: 1600px) {
+                                        &:nth-last-child(-n+4) {
+                                            display: none;
+                                        }
+                                    }
+                                    @media all and (max-width: 1550px) {
+                                        &:nth-last-child(-n+5) {
+                                            display: none;
+                                        }
+                                    }
+                                    @media all and (max-width: 1500px) {
+                                        &:nth-last-child(-n+6) {
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .enchants-table tr > :nth-child(n+2) {
+                                display: none;
                             }
                         }
                     }
