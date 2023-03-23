@@ -83,6 +83,7 @@ struct Config
     int rot_mb_below_ab = 0;
     double rot_mb_mana = 0;
     bool rot_ice_lance = false;
+    bool rot_brain_freeze_fireball = false;
     double rot_brain_freeze_hold = 15;
     bool rot_black_magic = false;
     Enchant rot_black_magic_ench = ENCHANT_NONE;

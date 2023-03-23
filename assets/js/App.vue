@@ -894,6 +894,12 @@
                                             <span>Ice Lance at end of Fingers of Frost</span>
                                         </label>
                                     </div>
+                                    <div class="form-item">
+                                        <label><input type="checkbox" v-model="config.rot_brain_freeze_fireball">
+                                            <span>Fireball with Brain Freeze</span>
+                                            <help>Instead of Frostfire Bolt, which is the default</help>
+                                        </label>
+                                    </div>
                                     <div class="form-item" v-if="config.talents.brain_freeze">
                                         <label>
                                             <span>Brain Freeze duration cutoff</span>
@@ -1806,6 +1812,7 @@
                 rot_mb_below_ab: 0,
                 rot_mb_mana: 0,
                 rot_ice_lance: false,
+                rot_brain_freeze_fireball: false,
                 rot_brain_freeze_hold: 15,
                 rot_black_magic: false,
                 rot_black_magic_ench: 0,

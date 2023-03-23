@@ -671,11 +671,13 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
     if (buff->id == buff::VOLATILE_POWER_HC)
         actions.push_back(buffExpireAction<buff::VolatilityHc>());
     if (buff->id == buff::VOLATILE_POWER_NM)
-        actions.push_back(buffExpireAction< buff::VolatilityNm>());
+        actions.push_back(buffExpireAction<buff::VolatilityNm>());
     if (buff->id == buff::FIRE_WARD)
         fire_ward = 0;
     if (buff->id == buff::ARCANE_BLAST)
         ab_streak = 0;
+    if (buff->id == buff::BRAIN_FREEZE)
+        actions.push_back(cooldownAction<cooldown::BrainFreeze>());
 
     return actions;
 }
@@ -758,7 +760,8 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
 
     if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        if (!config.t8_4set || random<int>(0, 4) != 0) {
+        // Confirmed bug: FFB is unaffected by the t8 4p bonus
+        if (!config.t8_4set || random<int>(0, 4) != 0 || spell->id == spell::FROSTFIRE_BOLT) {
             actions.push_back(buffExpireAction<buff::BrainFreeze>());
             if (config.t10_2set)
                 actions.push_back(buffAction<buff::PushingTheLimit>());
@@ -1150,7 +1153,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
     }
 
     if (talents.brain_freeze) {
-        if (hasChillEffect(instance.spell)) {
+        if (hasChillEffect(instance.spell) && !hasCooldown(cooldown::BRAIN_FREEZE)) {
             int chance = 5 * talents.brain_freeze;
             if (random<int>(0, 99) < chance)
                 actions.push_back(buffAction<buff::BrainFreeze>());
@@ -1950,14 +1953,21 @@ action::Action Player::nextAction(const State& state)
     // Frost
     else if (config.rotation == ROTATION_ST_FROST) {
         if (hasBuff(buff::GHOST_FINGERS)) {
-            if (talents.deep_freeze && !hasCooldown(cooldown::DEEP_FREEZE))
+            if (talents.deep_freeze && !hasCooldown(cooldown::DEEP_FREEZE)) {
                 return spellAction<spell::DeepFreeze>();
-            else if (canReactTo(buff::BRAIN_FREEZE, state.t))
+            }
+            else if (canReactTo(buff::BRAIN_FREEZE, state.t)) {
+                if (config.rot_brain_freeze_fireball)
+                    return spellAction<spell::Fireball>();
                 return spellAction<spell::FrostfireBolt>();
-            else if (config.rot_ice_lance)
+            }
+            else if (config.rot_ice_lance) {
                 return spellAction<spell::IceLance>();
+            }
         }
         else if (canReactTo(buff::BRAIN_FREEZE, state.t) && 15.0 - (state.t - t_brain_freeze) <= config.rot_brain_freeze_hold) {
+            if (config.rot_brain_freeze_fireball)
+                return spellAction<spell::Fireball>();
             return spellAction<spell::FrostfireBolt>();
         }
         else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {

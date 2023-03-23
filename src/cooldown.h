@@ -17,6 +17,7 @@ namespace cooldown
         COLD_SNAP = 11958,
         WATER_ELEMENTAL = 31687,
         DEEP_FREEZE = 44572,
+        BRAIN_FREEZE = 57761,
         BERSERKING = 20554,
         ICY_VEINS = 12472,
         FIRE_BLAST = 42873,
@@ -283,6 +284,18 @@ namespace cooldown
         {
             id = DEEP_FREEZE;
             duration = 30;
+        }
+
+    };
+
+    class BrainFreeze : public Cooldown
+    {
+
+    public:
+        BrainFreeze()
+        {
+            id = BRAIN_FREEZE;
+            duration = 2;
         }
 
     };
