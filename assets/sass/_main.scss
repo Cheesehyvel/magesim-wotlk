@@ -465,6 +465,10 @@ table {
                 left: $spacer*0.5;
                 right: $spacer*0.5;
                 bottom: 130px;
+
+                td.active {
+                    color: $color_primary;
+                }
             }
 
             .ep-stats {

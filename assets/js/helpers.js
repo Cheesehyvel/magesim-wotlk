@@ -32,3 +32,9 @@ window.app.config.globalProperties.$roundFixed = function(value, dec) {
         value+= "0";
     return value;
 };
+
+window.app.config.globalProperties.$plusMinus = function(value) {
+    if (value >= 0)
+        return "+"+value;
+    return value;
+};

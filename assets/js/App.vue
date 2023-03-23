@@ -53,30 +53,66 @@
                                 <td>{{ display_stats.mana }}</td>
                             </tr>
                             <tr>
-                                <td>Intellect</td>
+                                <td :class="[config.custom_stats.intellect ? 'active' : '']">
+                                    Intellect
+                                    <span v-if="config.custom_stats.intellect">
+                                        ({{ $plusMinus(config.custom_stats.intellect) }})
+                                        <tooltip position="t">{{ config.custom_stats.intellect }} bonus intellect</tooltip>
+                                    </span>
+                                </td>
                                 <td>{{ display_stats.intellect }}</td>
                             </tr>
                             <tr>
-                                <td>Spirit</td>
+                                <td :class="[config.custom_stats.spirit ? 'active' : '']">
+                                    Spirit
+                                    <span v-if="config.custom_stats.spirit">
+                                        ({{ $plusMinus(config.custom_stats.spirit) }})
+                                        <tooltip position="t">{{ config.custom_stats.spirit }} bonus spirit</tooltip>
+                                    </span>
+                                </td>
                                 <td>{{ display_stats.spirit }}</td>
                             </tr>
                             <tr>
-                                <td>Mp5</td>
+                                <td :class="[config.custom_stats.mp5 ? 'active' : '']">
+                                    Mp5
+                                    <span v-if="config.custom_stats.mp5">
+                                        ({{ $plusMinus(config.custom_stats.mp5) }})
+                                        <tooltip position="t">{{ config.custom_stats.mp5 }} bonus mp5</tooltip>
+                                    </span>
+                                </td>
                                 <td>{{ display_stats.mp5 }}</td>
                             </tr>
                             <tr>
-                                <td>Spell power</td>
+                                <td :class="[config.custom_stats.spell_power ? 'active' : '']">
+                                    Spell power
+                                    <span v-if="config.custom_stats.spell_power">
+                                        ({{ $plusMinus(config.custom_stats.spell_power) }})
+                                        <tooltip position="t">{{ config.custom_stats.spell_power }} bonus spell power</tooltip>
+                                    </span>
+                                </td>
                                 <td>{{ display_stats.spell_power }}</td>
                             </tr>
                             <tr>
-                                <td>Crit</td>
+                                <td :class="[config.custom_stats.crit_rating ? 'active' : '']">
+                                    Crit
+                                    <span v-if="config.custom_stats.crit_rating">
+                                        ({{ $plusMinus(config.custom_stats.crit_rating) }})
+                                        <tooltip position="t">{{ config.custom_stats.crit_rating }} bonus crit rating</tooltip>
+                                    </span>
+                                </td>
                                 <td>
                                     <span>{{ $round(display_stats.crit, 2) }}%</span>
                                     <tooltip position="r">{{ display_stats.crit_rating }} crit rating</tooltip>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Hit</td>
+                                <td :class="[config.custom_stats.hit_rating ? 'active' : '']">
+                                    Hit
+                                    <span v-if="config.custom_stats.hit_rating">
+                                        ({{ $plusMinus(config.custom_stats.hit_rating) }})
+                                        <tooltip position="t">{{ config.custom_stats.hit_rating }} bonus hit rating</tooltip>
+                                    </span>
+                                </td>
                                 <td>
                                     <span>{{ $round(display_stats.hit, 2) }}%</span>
                                     <tooltip position="r">
@@ -92,7 +128,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Haste</td>
+                                <td :class="[config.custom_stats.haste_rating ? 'active' : '']">
+                                    Haste
+                                    <span v-if="config.custom_stats.haste_rating">
+                                        ({{ $plusMinus(config.custom_stats.haste_rating) }})
+                                        <tooltip position="t">{{ config.custom_stats.haste_rating }} bonus haste rating</tooltip>
+                                    </span>
+                                </td>
                                 <td>
                                     <span>{{ $round(display_stats.haste, 2) }}%</span>
                                     <tooltip position="r">{{ display_stats.haste_rating }} haste rating</tooltip>
