@@ -701,7 +701,14 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
     // Ignite special case
     if (spell->id == spell::IGNITE) {
         auto leftover = getDotDamage(unit, spell);
-        removeSpellImpacts(unit, spell);
+
+        // Remove pending ignite ticks unless they happen next tick (same time window as ignite munching)
+        for (auto i = queue.begin(); i != queue.end();) {
+            if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && (!config.ignite_munching || i->t - state.t > IGNITE_MUNCH_WINDOW))
+                i = queue.erase(i);
+            else
+                ++i;
+        }
 
         for (int i = 1; i <= spell->ticks; i++) {
             auto dot = getSpellInstance(unit, spell);
