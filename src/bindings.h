@@ -260,6 +260,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("rot_black_magic_ench", &Config::rot_black_magic_ench)
         .property("maintain_imp_scorch", &Config::maintain_imp_scorch)
         .property("ignite_munching", &Config::ignite_munching)
+        .property("ignite_bleeding", &Config::ignite_bleeding)
         .property("hot_streak_cqs", &Config::hot_streak_cqs)
         .property("hot_streak_cqs_time", &Config::hot_streak_cqs_time)
         .property("evo_ticks", &Config::evo_ticks);

@@ -974,6 +974,15 @@
                                     </div>
                                 </template>
                                 <div class="form-item" v-if="config.talents.ignite">
+                                    <label><input type="checkbox" v-model="config.ignite_bleeding">
+                                        <span>Ignite bleeding</span>
+                                        <help>
+                                            When a spell crits right before an ignite tick, it is possible for that tick<br>
+                                            to happen and also keep that damage rolling onto the next ignite.
+                                        </help>
+                                    </label>
+                                </div>
+                                <div class="form-item" v-if="config.talents.ignite">
                                     <label><input type="checkbox" v-model="config.ignite_munching">
                                         <span>Ignite munching</span>
                                         <help>
@@ -1879,7 +1888,8 @@
                 rot_brain_freeze_hold: 15,
                 rot_black_magic: false,
                 rot_black_magic_ench: 0,
-                ignite_munching: false,
+                ignite_munching: true,
+                ignite_bleeding: true,
                 hot_streak_cqs: false,
                 hot_streak_cqs_time: 100,
                 evo_ticks: 0,

@@ -732,12 +732,26 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
     if (spell->id == spell::IGNITE) {
         auto leftover = getDotDamage(unit, spell, target);
 
-        // Remove pending ignite ticks unless they happen next tick (same time window as ignite munching)
+        // Remove pending ignite ticks unless they bleed
+        // 0 <= dt <= window
+        // Chance to bleed: 40 - dt/window*30 (between 0 and bleed window)
+        // as dt -> 0 = 40-0 = 40% chance
+        // as dt -> window = 40-30 = 10% chance
+        double bleed_factor = 30.0/IGNITE_BLEED_WINDOW;
+        double dt;
         for (auto i = queue.begin(); i != queue.end();) {
-            if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target && (!config.ignite_munching || i->t - state.t > IGNITE_MUNCH_WINDOW))
-                i = queue.erase(i);
-            else
-                ++i;
+            if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target) {
+                dt = i->t - state.t;
+                if (!config.ignite_bleeding || dt > IGNITE_BLEED_WINDOW || random<double>(0, 100) > 40.0 - dt*bleed_factor) {
+                    if (dt <= IGNITE_BLEED_WINDOW)
+                        printf("%.2f: No bleed rng\n", state.t);
+                    i = queue.erase(i);
+                    continue;
+                }
+                if (dt <= IGNITE_BLEED_WINDOW)
+                    printf("%.2f: Bleed rng\n", state.t);
+            }
+            ++i;
         }
 
         for (int i = 1; i <= spell->ticks; i++) {
