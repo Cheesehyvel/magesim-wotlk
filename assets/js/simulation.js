@@ -18,9 +18,12 @@ class SimulationWorker {
     }
 
     start(config, iterations) {
+        config = _.cloneDeep(config);
+        if (!config.dot_targets || config.dot_targets > config.targets)
+            config.dot_targets = config.targets;
         this.worker.postMessage({
             type: "start",
-            config: _.cloneDeep(config),
+            config: config,
             iterations: iterations ? iterations : 1,
         });
     }
