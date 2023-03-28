@@ -30,9 +30,9 @@ MirrorImage::MirrorImage(const Config& _config, const Stats& _stats)
     unique = false;
 }
 
-std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell)
+std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
-    auto actions = Unit::onCastSuccessProc(state, spell);
+    auto actions = Unit::onCastSuccessProc(state, spell, target);
 
     // Cooldowns
     if (spell->id == spell::MIRROR_FIRE_BLAST)
@@ -54,10 +54,12 @@ action::Action MirrorImage::nextAction(const State& state)
         return action;
     }
 
+    auto target = state.targets[0];
+
     if (!hasCooldown(cooldown::FIRE_BLAST) && random<int>(0, 2) == 0)
-        return spellAction<spell::MirrorFireBlast>();
+        return spellAction<spell::MirrorFireBlast>(target);
     else
-        return spellAction<spell::MirrorFrostbolt>();
+        return spellAction<spell::MirrorFrostbolt>(target);
 
     return { action::TYPE_NONE };
 }

@@ -11,6 +11,7 @@ struct Config
     int rng_seed = 0;
     bool avg_spell_dmg = false;
     bool additional_data = false;
+    bool only_main_dmg = false;
     int targets = 1;
     int target_resistance = 0;
     int target_level = 83;

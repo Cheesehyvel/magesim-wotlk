@@ -24,6 +24,8 @@ namespace spell
         LIVING_BOMB_EXPLOSION = 55362,
         FLAMESTRIKE = 42926,
         FLAMESTRIKE_DOT = 4292600,
+        FLAMESTRIKE_DR = 42925,
+        FLAMESTRIKE_DR_DOT = 4292500,
         BLAST_WAVE = 42945,
         DRAGONS_BREATH = 42950,
         ICE_LANCE = 42914,
@@ -72,7 +74,6 @@ namespace spell
         double speed = 0;
         bool channeling = false;
         bool dot = false;
-        bool overlap = false;
         bool proc = false;
         bool binary = false;
         bool aoe = false;
@@ -328,13 +329,41 @@ namespace spell
         {
             aoe = true;
             aoe_capped = false;
-            overlap = true;
             dot = true;
             active_use = false;
             t_interval = 2;
             ticks = 4;
             min_dmg = 195;
             max_dmg = 195;
+            coeff = 0.122;
+        }
+    };
+
+    struct FlamestrikeDR : Spell
+    {
+        FlamestrikeDR() : Spell(FLAMESTRIKE_DR, "Flamestrike (Rank 8)", SCHOOL_FIRE)
+        {
+            aoe = true;
+            cost = 30;
+            min_dmg = 699;
+            max_dmg = 854;
+            cast_time = 2;
+            coeff = 0.2357;
+        }
+    };
+
+    struct FlamestrikeDRDot : Spell
+    {
+        FlamestrikeDRDot() : Spell(FLAMESTRIKE_DR_DOT, "Flamestrike (Rank 8)", SCHOOL_FIRE)
+        {
+            aoe = true;
+            aoe_capped = false;
+            dot = true;
+            active_use = false;
+            t_interval = 2;
+            ticks = 4;
+            min_dmg = 155;
+            max_dmg = 155;
             coeff = 0.122;
         }
     };

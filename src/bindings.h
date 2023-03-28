@@ -81,7 +81,8 @@ EMSCRIPTEN_BINDINGS(my_module)
         .value("ROTATION_ST_FROST", ROTATION_ST_FROST)
         .value("ROTATION_AOE_AE", ROTATION_AOE_AE)
         .value("ROTATION_AOE_BLIZZ", ROTATION_AOE_BLIZZ)
-        .value("ROTATION_AOE_BLIZZ_FS", ROTATION_AOE_BLIZZ_FS);
+        .value("ROTATION_AOE_BLIZZ_FS", ROTATION_AOE_BLIZZ_FS)
+        .value("ROTATION_AOE_FIRE", ROTATION_AOE_FIRE);
 
     emscripten::enum_<Race>("Race")
         .value("RACE_BLOOD_ELF", RACE_BLOOD_ELF)
@@ -182,6 +183,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("rng_seed", &Config::rng_seed)
         .property("avg_spell_dmg", &Config::avg_spell_dmg)
         .property("additional_data", &Config::additional_data)
+        .property("only_main_dmg", &Config::only_main_dmg)
         .property("targets", &Config::targets)
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)

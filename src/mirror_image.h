@@ -21,7 +21,7 @@ public:
 
     MirrorImage(const Config& config, const Stats& stats);
 
-    std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell);
+    std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     action::Action nextAction(const State& state);
 };

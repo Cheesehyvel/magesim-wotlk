@@ -8,10 +8,8 @@
 #include <unordered_map>
 #include <vector>
 
-namespace unit
-{
-class Unit;
-}
+namespace unit { class Unit; }
+namespace target { class Target; }
 
 struct State
 {
@@ -20,14 +18,12 @@ private:
 
 public:
     double t;
-    unsigned long long dmg;
     double duration;
-    double ignite_dmg;
-    double ignite_t;
 
     std::unordered_map<spell::ID, SpellStats> spells;
     std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
     std::vector<std::shared_ptr<unit::Unit>> units;
+    std::vector<std::shared_ptr<target::Target>> targets;
     std::vector<bool> active_interruptions;
 
     State(const Config& config);
@@ -36,18 +32,16 @@ public:
 
     bool inCombat() const;
 
-    double dps() const;
-
-    int debuffStacks(debuff::ID id) const;
-    bool hasDebuff(debuff::ID id) const;
-    int addDebuff(std::shared_ptr<debuff::Debuff> debuff);
-    void removeDebuff(debuff::ID id);
-
     bool hasUnit(int id) const;
     void addUnit(std::shared_ptr<unit::Unit> unit);
     void removeUnit(std::shared_ptr<unit::Unit> unit);
 
+    void addTarget(int id = 0);
+
     double timeRemain() const;
+
+    unsigned long long totalDmg() const;
+    unsigned long long mainDmg() const;
 
     void activateInterruption(int index);
     void deactivateInterruption(int index);

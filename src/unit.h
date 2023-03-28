@@ -7,6 +7,7 @@
 #include "debuff.h"
 #include "config.h"
 #include "spell.h"
+#include "target.h"
 #include "action.h"
 
 #include <string>
@@ -145,11 +146,11 @@ public:
 
     virtual std::vector<action::Action> onBuffExpire(const State &state, std::shared_ptr<buff::Buff> buff);
 
-    virtual std::vector<action::Action> onCastSuccessProc(const State &state, std::shared_ptr<spell::Spell> spell);
+    virtual std::vector<action::Action> onCastSuccessProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    virtual std::vector<action::Action> onSpellImpactProc(const State &state, const spell::SpellInstance &instance);
+    virtual std::vector<action::Action> onSpellImpactProc(const State &state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
-    virtual std::vector<action::Action> onSpellTickProc(const State &state, std::shared_ptr<spell::Spell> spell, int tick);
+    virtual std::vector<action::Action> onSpellTickProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
     virtual std::vector<action::Action> usePotion(Potion potion, bool in_combat);
 
@@ -168,7 +169,7 @@ public:
     action::Action buffExpireAction(bool primary_action = false, Args... args) const;
 
     template <typename T, typename... Args>
-    action::Action debuffAction(bool primary_action = false, Args... args) const;
+    action::Action debuffAction(std::shared_ptr<target::Target> target, bool primary_action = false, Args... args) const;
 
     action::Action cooldownAction(std::shared_ptr<cooldown::Cooldown> cooldown) const;
 
@@ -186,8 +187,11 @@ public:
     template <typename T, typename... Args>
     action::Action spellAction(Args... args) const;
 
+    template <typename T, typename... Args>
+    action::Action spellAction(std::shared_ptr<target::Target> target, Args... args) const;
+
     template <typename S, typename C>
-    action::Action spellCooldownAction() const;
+    action::Action spellCooldownAction(std::shared_ptr<target::Target> target = NULL) const;
 
     virtual action::Action manaAction(double mana, const std::string& str = "") const;
 
@@ -214,10 +218,11 @@ action::Action Unit::buffExpireAction(bool primary_action, Args... args) const
 }
 
 template <typename T, typename... Args>
-action::Action Unit::debuffAction(bool primary_action, Args... args) const
+action::Action Unit::debuffAction(std::shared_ptr<target::Target> target, bool primary_action, Args... args) const
 {
     action::Action action{ action::TYPE_DEBUFF };
     action.debuff = std::make_shared<T>(std::forward<Args>(args)...);
+    action.target = target;
     action.primary_action = primary_action;
     return action;
 }
@@ -254,11 +259,22 @@ action::Action Unit::spellAction(Args... args) const
     return action;
 }
 
+template <typename T, typename... Args>
+action::Action Unit::spellAction(std::shared_ptr<target::Target> target, Args... args) const
+{
+    action::Action action{ action::TYPE_SPELL };
+    action.spell = std::make_shared<T>(std::forward<Args>(args)...);
+    action.target = target;
+    return action;
+}
+
 template <typename S, typename C>
-action::Action Unit::spellCooldownAction() const
+action::Action Unit::spellCooldownAction(std::shared_ptr<target::Target> target) const
 {
     auto action = spellAction<S>();
     action.cooldown = std::make_shared<C>();
+    action.target = target;
     return action;
 }
+
 }

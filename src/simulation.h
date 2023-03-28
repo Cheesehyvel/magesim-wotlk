@@ -41,6 +41,9 @@ struct Event
     // ownership is shared between this, actions, and possibly the simulator itself
     std::shared_ptr<unit::Unit> unit;
 
+    // ownership is shared between this, actions, and possibly the simulator itself
+    std::shared_ptr<target::Target> target;
+
     // must be a pointer because some child classes may be larger than base
     // must be shared because multiple actions may refer to it
     std::shared_ptr<spell::Spell> spell;
@@ -85,19 +88,19 @@ public:
 
     void push(Event& event);
 
-    void pushCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t);
+    void pushCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t);
 
-    void pushCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t);
+    void pushCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t);
 
-    void pushSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t = 0);
+    void pushSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t = 0);
 
-    void pushSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, double t = 0);
+    void pushSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, std::shared_ptr<target::Target> target, double t = 0);
 
-    void pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t, int tick);
+    void pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t, int tick);
 
-    void pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick);
+    void pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
-    void pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance);
+    void pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, std::shared_ptr<target::Target> target);
 
     void pushManaRegen(std::shared_ptr<unit::Unit> unit);
 
@@ -109,9 +112,9 @@ public:
 
     void pushBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff, double t = 0);
 
-    void pushDebuffGain(std::shared_ptr<debuff::Debuff> debuff, double t);
+    void pushDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff, double t);
 
-    void pushDebuffExpire(std::shared_ptr<debuff::Debuff> debuff);
+    void pushDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff);
 
     void pushCooldownGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<cooldown::Cooldown> cooldown, double t);
 
@@ -119,7 +122,7 @@ public:
 
     void pushUnitDespawn(std::shared_ptr<unit::Unit> unit, double t);
 
-    void pushWait(std::shared_ptr<unit::Unit> unit, double t, const std::string &str = "", std::shared_ptr<spell::Spell> spell = NULL);
+    void pushWait(std::shared_ptr<unit::Unit> unit, double t, const std::string &str = "", std::shared_ptr<spell::Spell> spell = NULL, std::shared_ptr<target::Target> target = NULL);
 
     void pushInterruption(int index);
 
@@ -129,25 +132,25 @@ public:
 
     void processActions(std::shared_ptr<unit::Unit> unit, std::vector<action::Action> &actions);
 
-    void cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void onCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance);
+    void onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
-    void onSpellTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick);
+    void onSpellTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
-    void dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance);
+    void onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
-    void onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick);
+    void onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
     void onUnitSpawn(std::shared_ptr<unit::Unit> unit);
 
@@ -159,7 +162,7 @@ public:
 
     void onManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source = "");
 
-    void onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell = NULL);
+    void onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell = NULL, std::shared_ptr<target::Target> target = NULL);
 
     void onInterruption(int index);
 
@@ -171,9 +174,9 @@ public:
 
     void onBuffGainAll(std::shared_ptr<buff::Buff> buff);
 
-    void onDebuffGain(std::shared_ptr<debuff::Debuff> debuff);
+    void onDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff);
 
-    void onDebuffExpire(std::shared_ptr<debuff::Debuff> debuff);
+    void onDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff);
 
     void onCooldownGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<cooldown::Cooldown> cooldown, bool mod = true);
 
@@ -185,23 +188,19 @@ public:
 
     void useTrinket(std::shared_ptr<unit::Unit> unit, Trinket trinket, std::shared_ptr<cooldown::Cooldown> cooldown);
 
-    bool hasDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    double getDotDamage(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
-    double getDotDamage(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    void removeSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void removeSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void removeSpellImpacts(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void removeSpellImpacts(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void removeBuffExpiration(std::shared_ptr<unit::Unit> unit,std::shared_ptr<buff::Buff> buff);
 
-    void removeBuffExpiration(std::shared_ptr<unit::Unit> unit, const buff::Buff &buff);
-
-    void removeDebuffExpiration(const debuff::Debuff &debuff);
+    void removeDebuffExpiration(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff);
 
     void removeCooldownExpiration(std::shared_ptr<unit::Unit> unit, const cooldown::Cooldown &cooldown);
 
     double buffDuration(std::shared_ptr<unit::Unit> unit, buff::ID id) const;
-
-    double debuffDuration(debuff::ID id) const;
 
     double cooldownDuration(std::shared_ptr<unit::Unit> unit, cooldown::ID id) const;
 
@@ -209,39 +208,39 @@ public:
 
     double travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 
-    double hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    double hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
-    double critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    double critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
     double critMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
 
     double buffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
 
-    double debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    double debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
-    double spellDmg(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    double spellDmg(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     double spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance& instance);
 
-    spell::Result getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const;
+    spell::Result getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
-    spell::SpellInstance getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    spell::SpellInstance getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
+    void logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
-    void logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance);
+    void logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
-    void logBuffGain(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff, int stacks = 1);
+    void logBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff, int stacks = 1);
 
-    void logBuffExpire(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff);
+    void logBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff);
 
-    void logDebuffGain(const debuff::Debuff& debuff, int stacks = 1);
+    void logDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff, int stacks = 1);
 
-    void logDebuffExpire(const debuff::Debuff& debuff);
+    void logDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff);
 
     void logManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source);
 

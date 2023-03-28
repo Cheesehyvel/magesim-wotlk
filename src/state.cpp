@@ -1,6 +1,9 @@
 #include "state.h"
 #include "config.h"
 #include "unit.h"
+#include "target.h"
+
+#include <memory>
 
 State::State(const Config& _config) : config(_config)
 {
@@ -11,16 +14,14 @@ State::State(const Config& _config) : config(_config)
 void State::reset()
 {
     t = 0;
-    dmg = 0;
     duration = config.duration;
     duration += -config.duration_variance + random<double>(0, config.duration_variance * 2);
 
-    ignite_dmg = 0;
-    ignite_t = -20;
-
     spells.clear();
-    debuffs.clear();
     units.clear();
+
+    for (auto const& i : targets)
+        i->reset();
 
     std::fill(active_interruptions.begin(), active_interruptions.end(), false);
 }
@@ -28,39 +29,6 @@ void State::reset()
 bool State::inCombat() const
 {
     return t >= 0;
-}
-
-double State::dps() const
-{
-    return t == 0 ? 0 : dmg / t;
-}
-
-int State::debuffStacks(debuff::ID id) const
-{
-    auto const itr = debuffs.find(id);
-    if (itr != debuffs.end())
-        return itr->second->stacks;
-    return 0;
-}
-
-bool State::hasDebuff(debuff::ID id) const
-{
-    return debuffs.find(id) != debuffs.end();
-}
-
-int State::addDebuff(std::shared_ptr<debuff::Debuff> debuff)
-{
-    if (hasDebuff(debuff->id))
-        return debuffs[debuff->id]->addStack();
-    else
-        debuffs[debuff->id] = debuff;
-
-    return 1;
-}
-
-void State::removeDebuff(debuff::ID id)
-{
-    debuffs.erase(id);
 }
 
 bool State::hasUnit(int id) const
@@ -87,9 +55,30 @@ void State::removeUnit(std::shared_ptr<unit::Unit> unit)
     }
 }
 
+void State::addTarget(int id)
+{
+    if (id < 1)
+        id = targets.size()+1;
+    auto target = std::make_shared<target::Target>(config, id);
+    targets.push_back(target);
+}
+
 double State::timeRemain() const
 {
     return duration - t;
+}
+
+unsigned long long State::totalDmg() const
+{
+    unsigned long long dmg = 0;
+    for (auto const& i : targets)
+        dmg+= i->dmg;
+    return dmg;
+}
+
+unsigned long long State::mainDmg() const
+{
+    return targets[0]->dmg;
 }
 
 void State::activateInterruption(int index)

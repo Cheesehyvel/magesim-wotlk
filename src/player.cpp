@@ -28,8 +28,10 @@ void Player::reset()
     combustion = 0;
     fingers_of_frost = 0;
     heating_up = false;
-    t_living_bomb = -20;
+    hotstreak_crits = 0;
+    hotstreak_hits = 0;
     t_flamestrike = -20;
+    t_flamestrike_dr = -20;
     t_scorch = -60;
     t_brain_freeze = 0;
     t_incanters_absorption = 0;
@@ -682,9 +684,9 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
     return actions;
 }
 
-std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell)
+std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
-    auto actions = Unit::onCastSuccessProc(state, spell);
+    auto actions = Unit::onCastSuccessProc(state, spell, target);
 
     if (spell->id == spell::MANA_GEM)
         return useManaGem();
@@ -734,12 +736,16 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         actions.push_back(buffExpireAction<buff::ArcanePotency>());
 
     if (spell->id == spell::LIVING_BOMB)
-        t_living_bomb = state.t;
+        target->t_living_bomb = state.t;
     if (spell->id == spell::SCORCH)
         t_scorch = state.t;
     if (spell->id == spell::FLAMESTRIKE) {
         t_flamestrike = state.t;
         actions.push_back(spellAction<spell::FlamestrikeDot>());
+    }
+    if (spell->id == spell::FLAMESTRIKE_DR) {
+        t_flamestrike_dr = state.t;
+        actions.push_back(spellAction<spell::FlamestrikeDRDot>());
     }
 
     if (hasBuff(buff::GHOST_FINGERS))
@@ -850,7 +856,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
     }
 
     if (spell->can_proc) {
-        for (auto& i : onCastOrTick(state, spell))
+        for (auto& i : onCastOrTick(state, spell, target))
             actions.push_back(std::move(i));
 
         // Confirmed - on harmful cast
@@ -975,9 +981,9 @@ std::vector<action::Action> Player::onSelfDmg(const State& state, double dmg, Sc
     return actions;
 }
 
-std::vector<action::Action> Player::onSpellImpactProc(const State& state, const spell::SpellInstance &instance)
+std::vector<action::Action> Player::onSpellImpactProc(const State& state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
-    std::vector<action::Action> actions = Unit::onSpellImpactProc(state, instance);
+    std::vector<action::Action> actions = Unit::onSpellImpactProc(state, instance, target);
 
     // Special case for Sapper
     if (instance.spell->id == spell::SAPPER_CHARGE) {
@@ -992,7 +998,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
 
     if (instance.result != spell::MISS) {
         if (talents.imp_scorch && instance.spell->id == spell::SCORCH)
-            actions.push_back(debuffAction<debuff::ImprovedScorch>());
+            actions.push_back(debuffAction<debuff::ImprovedScorch>(target));
 
         if (instance.spell->id == spell::IGNITE && talents.empowered_fire) {
             double chance = talents.empowered_fire * 33;
@@ -1003,23 +1009,20 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         }
 
         if (instance.spell->id == spell::FIREBALL && !glyphs.fireball)
-            actions.push_back(spellAction<spell::FireballDot>());
+            actions.push_back(spellAction<spell::FireballDot>(target));
         if (instance.spell->id == spell::PYROBLAST)
-            actions.push_back(spellAction<spell::PyroblastDot>());
+            actions.push_back(spellAction<spell::PyroblastDot>(target));
         if (instance.spell->id == spell::FROSTFIRE_BOLT)
-            actions.push_back(spellAction<spell::FrostfireBoltDot>());
+            actions.push_back(spellAction<spell::FrostfireBoltDot>(target));
 
         if (instance.spell->dot) {
-            if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0) {
-                actions.push_back(spellCooldownAction<spell::ExtractNecromanticPower, cooldown::ExtractNecromanticPower>());
-            }
+            if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0)
+                actions.push_back(spellCooldownAction<spell::ExtractNecromanticPower, cooldown::ExtractNecromanticPower>(target));
 
-            if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3) {
+            if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3)
                 actions.push_back(buffCooldownAction<buff::NamelessLichHc, cooldown::NamelessLichHc>());
-            }
-            if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3) {
+            if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3)
                 actions.push_back(buffCooldownAction<buff::NamelessLichNm, cooldown::NamelessLichNm>());
-            }
         }
         else {
             if (talents.clearcast) {
@@ -1071,7 +1074,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         }
 
         if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
-            actions.push_back(spellCooldownAction<spell::DarkmoonDeath, cooldown::DarkmoonDeath>());
+            actions.push_back(spellCooldownAction<spell::DarkmoonDeath, cooldown::DarkmoonDeath>(target));
         }
 
         // Unconfirmed - on spell dmg ?
@@ -1087,7 +1090,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         // Ignite
         if (talents.ignite && (instance.spell->school == SCHOOL_FIRE || instance.spell->school == SCHOOL_FROSTFIRE)) {
             // 40% over 2 ticks = 20%
-            actions.push_back(spellAction<spell::Ignite>(round(instance.dmg * 0.2)));
+            actions.push_back(spellAction<spell::Ignite>(target, round(instance.dmg * 0.2)));
         }
 
         if (!instance.spell->dot) {
@@ -1129,14 +1132,40 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             instance.spell->id == spell::FROSTFIRE_BOLT ||
             instance.spell->id == spell::FIRE_BLAST)
         {
-            double heating = false;
-            if (instance.result == spell::CRIT) {
-                if (heating_up)
-                    actions.push_back(buffAction<buff::HotStreak>());
-                else
-                    heating = true;
+            if (instance.spell->aoe) {
+                hotstreak_hits++;
+                if (instance.result == spell::CRIT)
+                    hotstreak_crits++;
+
+                if (hotstreak_hits == config.targets) {
+                    if (hotstreak_crits == 1 && !heating_up) {
+                        heating_up = true;
+                    }
+                    else if (hotstreak_crits == 1 && heating_up || hotstreak_crits > 1) {
+                        actions.push_back(buffAction<buff::HotStreak>());
+                        heating_up = false;
+                    }
+                    else {
+                        heating_up = false;
+                    }
+
+                    hotstreak_hits = hotstreak_crits = 0;
+                }
             }
-            heating_up = heating;
+            else {
+                if (instance.result == spell::CRIT) {
+                    if (heating_up) {
+                        actions.push_back(buffAction<buff::HotStreak>());
+                        heating_up = false;
+                    }
+                    else {
+                        heating_up = true;
+                    }
+                }
+                else {
+                    heating_up = false;
+                }
+            }
         }
     }
 
@@ -1163,9 +1192,9 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
     return actions;
 }
 
-std::vector<action::Action> Player::onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, int tick)
+std::vector<action::Action> Player::onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
-    std::vector<action::Action> actions = Unit::onSpellTickProc(state, spell, tick);
+    std::vector<action::Action> actions = Unit::onSpellTickProc(state, spell, target, tick);
 
     if (spell->id == spell::EVOCATION)
         actions.push_back(manaAction(maxMana() * 0.15, "Evocation"));
@@ -1177,14 +1206,14 @@ std::vector<action::Action> Player::onSpellTickProc(const State& state, std::sha
     }
 
     if (spell->can_proc) {
-        for (auto &i : onCastOrTick(state, spell, tick))
+        for (auto &i : onCastOrTick(state, spell, target, tick))
             actions.push_back(std::move(i));
     }
 
     return actions;
 }
 
-std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, int tick)
+std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
     std::vector<action::Action> actions;
 
@@ -1224,7 +1253,9 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
 
         // Unconfirmed - on harmful ?
         if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && random<int>(0, 19) < 3) {
-            actions.push_back(spellCooldownAction<spell::PendulumTelluricCurrents, cooldown::PendulumTelluricCurrents>());
+            if (target == NULL)
+                target = state.targets[random<int>(0, state.targets.size()-1)];
+            actions.push_back(spellCooldownAction<spell::PendulumTelluricCurrents, cooldown::PendulumTelluricCurrents>(target));
         }
 
         // Unconfirmed - on harmful ?
@@ -1815,53 +1846,61 @@ action::Action Player::nextAction(const State& state)
         return spellAction<spell::Evocation>(evocationTicks());
     }
 
+    // Default target
+    auto target = state.targets[0];
+
     if (config.maintain_imp_scorch && talents.imp_scorch && t_scorch + 27.0 <= state.t) {
-        return spellAction<spell::Scorch>();
+        return spellAction<spell::Scorch>(target);
     }
 
     // FFB / Scorch
     if (config.rotation == ROTATION_ST_FROSTFIRE || config.rotation == ROTATION_ST_FIRE_SC) {
-        bool no_bomb = talents.living_bomb && t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
-        if (no_bomb && !heating_up) {
-            return spellAction<spell::LivingBomb>();
+
+        bool main_bomb = talents.living_bomb && target->t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
+
+        if (canReactTo(buff::HOT_STREAK, state.t) && talents.pyroblast && (config.targets > 1 || heating_up || !main_bomb)) {
+            return spellAction<spell::Pyroblast>(target);
         }
-        else if (canReactTo(buff::HOT_STREAK, state.t)) {
-            return spellAction<spell::Pyroblast>();
+
+        // Check for Living Bomb targets
+        if (talents.living_bomb && state.t + 12.0 < state.duration) {
+            for (auto const& tar : state.targets) {
+                if (tar->t_living_bomb + 12.0 < state.t)
+                    return spellAction<spell::LivingBomb>(tar);
+            }
         }
-        else if (no_bomb) {
-            return spellAction<spell::LivingBomb>();
-        }
-        else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
-            if (!hasCooldown(cooldown::FIRE_BLAST)) {
-                return spellAction<spell::FireBlast>();
+
+        // Moving
+        if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (config.targets > 2 && config.distance <= 10) {
+                return spellAction<spell::ArcaneExplosion>();
+            }
+            else if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>(target);
             }
             else {
                 action::Action action{ action::TYPE_WAIT };
-                action.value = state.interruptedFor()
-;                if (action.value > 0.1)
+                action.value = state.interruptedFor();
+                if (action.value > 0.1)
                     action.value = 0.1;
                 return action;
             }
         }
-        else {
-            if (config.rotation == ROTATION_ST_FIRE_SC)
-                return spellAction<spell::Scorch>();
-            else
-                return spellAction<spell::FrostfireBolt>();
-        }
+
+        if (config.rotation == ROTATION_ST_FIRE_SC)
+            return spellAction<spell::Scorch>(target);
+        else
+            return spellAction<spell::FrostfireBolt>(target);
     }
 
     // Fire rotation
     else if (config.rotation == ROTATION_ST_FIRE) {
-        bool no_bomb = talents.living_bomb && t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
-        if (no_bomb && !heating_up) {
-            auto action = spellAction<spell::LivingBomb>();
-            should_wait = false;
-            return action;
-        }
-        else if (canReactTo(buff::HOT_STREAK, state.t)) {
+
+        bool main_bomb = talents.living_bomb && target->t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
+
+        if (canReactTo(buff::HOT_STREAK, state.t) && talents.pyroblast && (config.targets > 1 || heating_up || !main_bomb)) {
             if (waited || !should_wait || !config.hot_streak_cqs) {
-                auto action = spellAction<spell::Pyroblast>();
+                auto action = spellAction<spell::Pyroblast>(target);
                 waited = false;
                 should_wait = false;
                 return action;
@@ -1874,14 +1913,24 @@ action::Action Player::nextAction(const State& state)
                 return action;
             }
         }
-        else if (no_bomb) {
-            auto action = spellAction<spell::LivingBomb>();
-            should_wait = false;
-            return action;
+
+        should_wait = false;
+
+        // Check for Living Bomb targets
+        if (talents.living_bomb && state.t + 12.0 < state.duration) {
+            for (auto const& tar : state.targets) {
+                if (tar->t_living_bomb + 12.0 < state.t)
+                    return spellAction<spell::LivingBomb>(tar);
+            }
         }
-        else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
-            if (!hasCooldown(cooldown::FIRE_BLAST)) {
-                return spellAction<spell::FireBlast>();
+
+        // Moving
+        if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
+            if (config.targets > 2 && config.distance <= 10) {
+                return spellAction<spell::ArcaneExplosion>();
+            }
+            else if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>(target);
             }
             else {
                 action::Action action{ action::TYPE_WAIT };
@@ -1891,11 +1940,9 @@ action::Action Player::nextAction(const State& state)
                 return action;
             }
         }
-        else {
-            auto action = spellAction<spell::Fireball>();
-            should_wait = true;
-            return action;
-        }
+
+        should_wait = true;
+        return spellAction<spell::Fireball>(target);
     }
 
     // Arcane rotations
@@ -1906,11 +1953,14 @@ action::Action Player::nextAction(const State& state)
         bool has_mb = canReactTo(buff::MISSILE_BARRAGE, state.t);
 
         if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
-            if (talents.arcane_barrage && !hasCooldown(cooldown::ARCANE_BARRAGE)) {
-                return spellAction<spell::ArcaneBarrage>();
+            if (config.targets > 2 && config.distance <= 10) {
+                return spellAction<spell::ArcaneExplosion>();
+            }
+            else if (talents.arcane_barrage && !hasCooldown(cooldown::ARCANE_BARRAGE)) {
+                return spellAction<spell::ArcaneBarrage>(target);
             }
             else if (!hasCooldown(cooldown::FIRE_BLAST)) {
-                return spellAction<spell::FireBlast>();
+                return spellAction<spell::FireBlast>(target);
             }
             else {
                 action::Action action{ action::TYPE_WAIT };
@@ -1922,57 +1972,60 @@ action::Action Player::nextAction(const State& state)
         }
         // AB until the end
         else if (canBlast(state))
-            return spellAction<spell::ArcaneBlast>();
+            return spellAction<spell::ArcaneBlast>(target);
         // Extra ABs before first AP
         else if (!hasBuff(buff::ARCANE_POWER) && isTimingReadySoon("arcane_power", state, 5) && state.t < 10)
-            return spellAction<spell::ArcaneBlast>();
+            return spellAction<spell::ArcaneBlast>(target);
         // Extra ABs during AP
         else if (hasBuff(buff::ARCANE_POWER) && config.rot_abs_ap + 4 > ab_streak && state.t < 60)
-            return spellAction<spell::ArcaneBlast>();
+            return spellAction<spell::ArcaneBlast>(target);
         // AM if we have MB and below n AB stacks
         else if (config.rot_mb_below_ab && has_mb && buffStacks(buff::ARCANE_BLAST) < config.rot_mb_below_ab)
-            return spellAction<spell::ArcaneMissiles>();
+            return spellAction<spell::ArcaneMissiles>(target);
         // AM if we have MB and below mana %
         else if (config.rot_mb_mana && has_mb && manaPercent() < config.rot_mb_mana)
-            return spellAction<spell::ArcaneMissiles>();
+            return spellAction<spell::ArcaneMissiles>(target);
         // AB if we don't have barrage and over mana %
         else if (!has_mb && config.rot_ab_no_mb_mana < manaPercent())
-            return spellAction<spell::ArcaneBlast>();
+            return spellAction<spell::ArcaneBlast>(target);
         // AM / Abarr if we have AB stacks
         else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
             // Arcane Barrage if we don't have Missile Barrage proc
             if (!has_mb && config.rotation == ROTATION_ST_AB_AM_BARRAGE)
-                return spellAction<spell::ArcaneBarrage>();
+                return spellAction<spell::ArcaneBarrage>(target);
             else
-                return spellAction<spell::ArcaneMissiles>();
+                return spellAction<spell::ArcaneMissiles>(target);
         }
         else
-            return spellAction<spell::ArcaneBlast>();
+            return spellAction<spell::ArcaneBlast>(target);
     }
 
     // Frost
     else if (config.rotation == ROTATION_ST_FROST) {
         if (hasBuff(buff::GHOST_FINGERS)) {
             if (talents.deep_freeze && !hasCooldown(cooldown::DEEP_FREEZE)) {
-                return spellAction<spell::DeepFreeze>();
+                return spellAction<spell::DeepFreeze>(target);
             }
             else if (canReactTo(buff::BRAIN_FREEZE, state.t)) {
                 if (config.rot_brain_freeze_fireball)
-                    return spellAction<spell::Fireball>();
-                return spellAction<spell::FrostfireBolt>();
+                    return spellAction<spell::Fireball>(target);
+                return spellAction<spell::FrostfireBolt>(target);
             }
             else if (config.rot_ice_lance) {
-                return spellAction<spell::IceLance>();
+                return spellAction<spell::IceLance>(target);
             }
         }
         else if (canReactTo(buff::BRAIN_FREEZE, state.t) && 15.0 - (state.t - t_brain_freeze) <= config.rot_brain_freeze_hold) {
             if (config.rot_brain_freeze_fireball)
-                return spellAction<spell::Fireball>();
-            return spellAction<spell::FrostfireBolt>();
+                return spellAction<spell::Fireball>(target);
+            return spellAction<spell::FrostfireBolt>(target);
         }
         else if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
-            if (!hasCooldown(cooldown::FIRE_BLAST)) {
-                return spellAction<spell::FireBlast>();
+            if (config.targets > 2 && config.distance <= 10) {
+                return spellAction<spell::ArcaneExplosion>();
+            }
+            else if (!hasCooldown(cooldown::FIRE_BLAST)) {
+                return spellAction<spell::FireBlast>(target);
             }
             else {
                 action::Action action{ action::TYPE_WAIT };
@@ -1983,8 +2036,9 @@ action::Action Player::nextAction(const State& state)
             }
         }
 
-        return spellAction<spell::Frostbolt>();
+        return spellAction<spell::Frostbolt>(target);
     }
+
     // Arcane Explosion
     else if (config.rotation == ROTATION_AOE_AE) {
         return spellAction<spell::ArcaneExplosion>();
@@ -2008,9 +2062,39 @@ action::Action Player::nextAction(const State& state)
             return spellAction<spell::Blizzard>();
     }
 
+    // Fire
+    else if (config.rotation == ROTATION_AOE_FIRE) {
+        auto fs = std::make_shared<spell::Flamestrike>();
+
+        // Above aoe cap
+        if (config.targets > 12 && !state.isMoving()) {
+            if (t_flamestrike + 8.0 + castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+                return spellAction(fs);
+            else if (t_flamestrike_dr + 8.0 + castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+                return spellAction<spell::FlamestrikeDR>();
+        }
+
+        // Check for Living Bomb targets
+        if (talents.living_bomb && state.t + 12.0 < state.duration) {
+            for (auto const& tar : state.targets) {
+                if (tar->t_living_bomb + 12.0 < state.t)
+                    return spellAction<spell::LivingBomb>(tar);
+            }
+        }
+
+        if (state.isMoving())
+            return spellAction<spell::ArcaneExplosion>();
+        else if (t_flamestrike + 8.0 + castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+            return spellAction(fs);
+        else if (t_flamestrike_dr + 8.0 + castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+            return spellAction<spell::FlamestrikeDR>();
+        else
+            return spellAction(fs);
+    }
+
     // Undefined rotation
     else {
-        return spellAction<spell::Fireball>();
+        return spellAction<spell::Fireball>(target);
     }
 
     throw std::runtime_error("Player::nextAction failed to decide");

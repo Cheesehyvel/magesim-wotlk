@@ -849,6 +849,15 @@
                                         <option :value="2">Alternative</option>
                                     </select>
                                 </div>
+                                <div class="form-item" v-if="config.targets > 1">
+                                    <label><input type="checkbox" v-model="config.only_main_dmg">
+                                        <span>Show dps for main target only</span>
+                                        <help>
+                                            This will ignore damage done to secondary targets in the summary.<br>
+                                            This is only applicable if the numbers of targets is more than 1.
+                                        </help>
+                                    </label>
+                                </div>
                                 <div class="form-item">
                                     <label><input type="checkbox" v-model="config.avg_spell_dmg">
                                         <span>Use average spell damage</span>
@@ -891,6 +900,7 @@
                                         <option :value="rotations.ROTATION_AOE_AE">Arcane Explosion</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ">Blizzard</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ_FS">Flamestrike > Blizzard</option>
+                                        <option :value="rotations.ROTATION_AOE_FIRE">Fire AoE</option>
                                     </select>
                                 </div>
                                 <div class="form-item" v-if="config.talents.imp_scorch">
@@ -1752,6 +1762,7 @@
                 duration_variance: 0,
                 rng_seed: 0,
                 stat_weight_increment: 20,
+                only_main_dmg: false,
                 avg_spell_dmg: false,
                 additional_data: false,
                 targets: 1,
@@ -5253,6 +5264,8 @@
                     return "Blizzard";
                 if (rot == this.rotations.ROTATION_AOE_BLIZZ_FS)
                     return "Blizzard + FS";
+                if (rot == this.rotations.ROTATION_AOE_FIRE)
+                    return "AoE Fire";
                 return "Unknown";
             },
 

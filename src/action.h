@@ -43,6 +43,7 @@ namespace action
         std::shared_ptr<debuff::Debuff> debuff;
         std::shared_ptr<cooldown::Cooldown> cooldown;
         std::shared_ptr<unit::Unit> unit;
+        std::shared_ptr<target::Target> target;
 
         Action() = default;
         Action(const Action&) = delete;

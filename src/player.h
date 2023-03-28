@@ -24,8 +24,10 @@ public:
     int combustion;
     int fingers_of_frost;
     bool heating_up;
-    double t_living_bomb;
+    int hotstreak_crits;
+    int hotstreak_hits;
     double t_flamestrike;
+    double t_flamestrike_dr;
     double t_scorch;
     double t_brain_freeze;
     double t_incanters_absorption;
@@ -111,15 +113,15 @@ public:
 
     std::vector<action::Action> onBuffExpire(const State& state, std::shared_ptr<buff::Buff> buff);
 
-    std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell);
+    std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     std::vector<action::Action> onSelfDmg(const State& state, double dmg, School school = SCHOOL_NONE);
 
-    std::vector<action::Action> onSpellImpactProc(const State& state, const spell::SpellInstance &instance);
+    std::vector<action::Action> onSpellImpactProc(const State& state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
-    std::vector<action::Action> onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, int tick);
+    std::vector<action::Action> onSpellTickProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
-    std::vector<action::Action> onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, int tick = 0);
+    std::vector<action::Action> onCastOrTick(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick = 0);
 
     bool hasManaGem() const;
 

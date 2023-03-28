@@ -4,6 +4,7 @@
 #include "debuff.h"
 #include "cooldown.h"
 #include "unit.h"
+#include "target.h"
 #include "log.h"
 #include "player.h"
 #include "state.h"
@@ -19,7 +20,11 @@
 #include <algorithm>
 
 Simulation::Simulation(const Config& _config, std::shared_ptr<unit::Player> _player)
-    : config(_config), player(_player), state(_config) {}
+    : config(_config), player(_player), state(_config)
+{
+    for (int i=1; i<=config.targets; i++)
+        state.addTarget(i);
+}
 
 void Simulation::reset()
 {
@@ -111,7 +116,7 @@ SimulationResult Simulation::run(bool single)
         else if (timing.name == "hodir_starlight")
             pushBuffGain(player, std::make_shared<buff::HodirStarlight>(), timing.t);
         else if (timing.name == "hodir_singed")
-            pushDebuffGain(std::make_shared<debuff::HodirSinged>(), timing.t);
+            pushDebuffGain(state.targets[0], std::make_shared<debuff::HodirSinged>(), timing.t);
         else if (timing.name == "iron_council_shield_of_runes")
             pushBuffGain(player, std::make_shared<buff::IronCouncilShieldOfRunes>(), timing.t);
     }
@@ -132,9 +137,12 @@ SimulationResult Simulation::run(bool single)
     work();
 
     SimulationResult result;
-    result.dmg = state.dmg;
+    if (config.only_main_dmg)
+        result.dmg = state.mainDmg();
+    else
+        result.dmg = state.totalDmg();
     result.t = state.t;
-    result.dps = state.dmg / state.t;
+    result.dps = result.dmg / state.t;
     result.t_gcd_capped = player->t_gcd_capped;
 
     if (logging) {
@@ -217,16 +225,16 @@ void Simulation::tick(Event& event)
         case EVENT_DOT:
             break;
         case EVENT_CAST_START:
-            cast(event.unit, event.spell);
+            cast(event.unit, event.spell, event.target);
             break;
         case EVENT_CAST_FINISH:
-            onCastFinish(event.unit, event.spell);
+            onCastFinish(event.unit, event.spell, event.target);
             break;
         case EVENT_SPELL_IMPACT:
-            onSpellImpact(event.unit, event.instance);
+            onSpellImpact(event.unit, event.instance, event.target);
             break;
         case EVENT_SPELL_TICK:
-            onSpellTick(event.unit, event.spell, event.tick);
+            onSpellTick(event.unit, event.spell, event.target, event.tick);
             break;
         case EVENT_MANA_REGEN:
             onManaRegen(event.unit);
@@ -244,10 +252,10 @@ void Simulation::tick(Event& event)
             onBuffGainAll(event.buff);
             break;
         case EVENT_DEBUFF_GAIN:
-            onDebuffGain(event.debuff);
+            onDebuffGain(event.target, event.debuff);
             break;
         case EVENT_DEBUFF_EXPIRE:
-            onDebuffExpire(event.debuff);
+            onDebuffExpire(event.target, event.debuff);
             break;
         case EVENT_CD_GAIN:
             onCooldownGain(event.unit, event.cooldown);
@@ -262,7 +270,7 @@ void Simulation::tick(Event& event)
             onUnitDespawn(event.unit);
             break;
         case EVENT_WAIT:
-            onWait(event.unit, event.spell);
+            onWait(event.unit, event.spell, event.target);
             break;
         case EVENT_INTERRUPTION:
             onInterruption(event.interruption_index);
@@ -287,82 +295,89 @@ void Simulation::push(Event& event)
     queue.push_back(event);
 }
 
-void Simulation::pushCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t)
+void Simulation::pushCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t)
 {
     Event event;
     event.type = EVENT_CAST_START;
     event.spell = spell;
     event.unit = unit;
+    event.target = target;
     event.t = t;
 
     push(event);
 }
 
-void Simulation::pushCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t)
+void Simulation::pushCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t)
 {
     Event event;
     event.type = EVENT_CAST_FINISH;
     event.spell = spell;
     event.unit = unit;
+    event.target = target;
     event.t = t;
 
     push(event);
 }
 
-void Simulation::pushSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t)
+void Simulation::pushSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t)
 {
     Event event;
     event.type = EVENT_SPELL_IMPACT;
-    event.instance = getSpellInstance(unit, spell);
+    event.instance = getSpellInstance(unit, spell, target);
     event.unit = unit;
+    event.target = target;
     event.t = t;
 
     push(event);
 }
 
-void Simulation::pushSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, double t)
+void Simulation::pushSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, std::shared_ptr<target::Target> target, double t)
 {
     Event event;
     event.type = EVENT_SPELL_IMPACT;
     event.instance = instance;
     event.unit = unit;
+    event.target = target;
     event.t = t;
 
     push(event);
 }
 
-void Simulation::pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, double t, int tick)
+void Simulation::pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t, int tick)
 {
     Event event;
     event.type = EVENT_SPELL_TICK;
     event.spell = spell;
     event.unit = unit;
+    event.target = target;
     event.t = t;
     event.tick = tick;
 
     push(event);
 }
 
-void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick)
+void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
-    auto instance = getSpellInstance(unit, spell);
+    auto instance = getSpellInstance(unit, spell, target);
     instance.tick = tick;
 
     Event event;
     event.type = EVENT_SPELL_IMPACT;
     event.instance = instance;
     event.unit = unit;
+    event.target = target;
     event.t = tick * spell->t_interval;
 
     push(event);
 }
 
-void Simulation::pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance)
+void Simulation::pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
     Event event;
     event.type = EVENT_SPELL_IMPACT;
     event.instance = instance;
     event.unit = unit;
+    event.target = target;
     event.t = instance.tick * instance.spell->t_interval;
 
     push(event);
@@ -421,21 +436,23 @@ void Simulation::pushBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_pt
     push(event);
 }
 
-void Simulation::pushDebuffGain(std::shared_ptr<debuff::Debuff> debuff, double t)
+void Simulation::pushDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff, double t)
 {
     Event event;
     event.type = EVENT_DEBUFF_GAIN;
     event.t = t;
+    event.target = target;
     event.debuff = debuff;
 
     push(event);
 }
 
-void Simulation::pushDebuffExpire(std::shared_ptr<debuff::Debuff> debuff)
+void Simulation::pushDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff)
 {
     Event event;
     event.type = EVENT_DEBUFF_EXPIRE;
     event.t = debuff->duration;
+    event.target = target;
     event.debuff = debuff;
 
     push(event);
@@ -473,13 +490,14 @@ void Simulation::pushUnitDespawn(std::shared_ptr<unit::Unit> unit, double t)
     push(event);
 }
 
-void Simulation::pushWait(std::shared_ptr<unit::Unit> unit, double t, const std::string &str, std::shared_ptr<spell::Spell> spell)
+void Simulation::pushWait(std::shared_ptr<unit::Unit> unit, double t, const std::string &str, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     Event event;
     event.type = EVENT_WAIT;
     event.unit = unit;
     event.t = t;
     event.spell = spell;
+    event.target = target;
 
     push(event);
 
@@ -505,10 +523,10 @@ void Simulation::pushInterruption(int index)
 void Simulation::onAction(std::shared_ptr<unit::Unit> unit, action::Action &action)
 {
     if (action.type == action::TYPE_WAIT) {
-        pushWait(unit, action.value, action.str);
+        pushWait(unit, action.value, action.str, action.spell, action.target);
     }
     else if (action.type == action::TYPE_SPELL) {
-        cast(unit, action.spell);
+        cast(unit, action.spell, action.target);
         if (action.cooldown)
             onCooldownGain(unit, action.cooldown);
     }
@@ -523,7 +541,7 @@ void Simulation::onAction(std::shared_ptr<unit::Unit> unit, action::Action &acti
             onCooldownGain(unit, action.cooldown);
     }
     else if (action.type == action::TYPE_DEBUFF) {
-        onDebuffGain(action.debuff);
+        onDebuffGain(action.target, action.debuff);
         if (action.cooldown)
             onCooldownGain(unit, action.cooldown);
     }
@@ -573,24 +591,24 @@ void Simulation::processActions(std::shared_ptr<unit::Unit> unit, std::vector<ac
         onAction(unit, i);
 }
 
-void Simulation::cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (unit->canCast(spell)) {
         if (spell->active_use && !spell->off_gcd && unit->t_gcd > state.t)
-            pushWait(unit, unit->t_gcd - state.t, "GCD", spell);
+            pushWait(unit, unit->t_gcd - state.t, "GCD", spell, target);
         else
-            onCastStart(unit, spell);
+            onCastStart(unit, spell, target);
     }
     else {
         pushWait(unit, 0.5, "Out of mana", spell);
     }
 }
 
-void Simulation::onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     spell->actual_cast_time = unit->castTime(spell);
 
-    logCastStart(unit, spell);
+    logCastStart(unit, spell, target);
 
     if (spell->active_use) {
         unit->t_gcd = state.t + unit->gcd(spell->gcd);
@@ -599,50 +617,62 @@ void Simulation::onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<s
     }
 
     if (spell->channeling)
-        onCastSuccess(unit, spell);
+        onCastSuccess(unit, spell, target);
     else
-        pushCastFinish(unit, spell, spell->actual_cast_time);
+        pushCastFinish(unit, spell, target, spell->actual_cast_time);
 }
 
-void Simulation::onCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::onCastFinish(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (spell->tick || unit->canCast(spell))
-        onCastSuccess(unit, spell);
+        onCastSuccess(unit, spell, target);
     else
         nextAction(unit);
 }
 
-void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
-    int targets = spell->aoe ? config.targets : 1;
-
     spell->actual_cost = unit->manaCost(spell);
     unit->applyMana(state, -spell->actual_cost);
 
-    if (spell->dot && spell->active_use && random<double>(0, 100) > hitChance(unit, spell)) {
-        logCastMiss(unit, spell);
+    if (spell->dot && spell->active_use && random<double>(0, 100) > hitChance(unit, spell, target)) {
+        logCastMiss(unit, spell, target);
     }
     else {
-        logCastSuccess(unit, spell);
+        logCastSuccess(unit, spell, target);
 
         if (spell->channeling && !spell->tick)
             unit->is_channeling = true;
 
-        for (int t = 0; t < targets; t++) {
+        if (spell->aoe) {
+            for (auto const& tar : state.targets) {
+                if (spell->channeling && !spell->tick) {
+                    for (int i = 1; i <= spell->ticks; i++)
+                        pushChannelingTick(unit, spell, tar, spell->actual_cast_time / spell->ticks * i, i);
+                }
+                else if (spell->dot) {
+                    dotApply(unit, spell, tar);
+                }
+                else if (!spell->is_trigger) {
+                    pushSpellImpact(unit, spell, tar, travelTime(unit, spell));
+                }
+            }
+        }
+        else {
             if (spell->channeling && !spell->tick) {
                 for (int i = 1; i <= spell->ticks; i++)
-                    pushChannelingTick(unit, spell, spell->actual_cast_time / spell->ticks * i, i);
+                    pushChannelingTick(unit, spell, target, spell->actual_cast_time / spell->ticks * i, i);
             }
             else if (spell->dot) {
-                dotApply(unit, spell);
+                dotApply(unit, spell, target);
             }
             else if (!spell->is_trigger) {
-                pushSpellImpact(unit, spell, travelTime(unit, spell));
+                pushSpellImpact(unit, spell, target, travelTime(unit, spell));
             }
         }
 
         if (spell->active_use)
-            onCastSuccessProc(unit, spell);
+            onCastSuccessProc(unit, spell, target);
     }
 
     if (spell->active_use) {
@@ -655,16 +685,16 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
     }
 }
 
-void Simulation::onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance)
+void Simulation::onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
     if (instance.spell->dot) {
         instance.resist = spellDmgResist(unit, instance);
         instance.dmg -= instance.resist;
     }
 
-    state.dmg += static_cast<unsigned long long>(instance.dmg);
-    logSpellImpact(unit, instance);
-    onSpellImpactProc(unit, instance);
+    target->dmg += static_cast<unsigned long long>(instance.dmg);
+    logSpellImpact(unit, instance, target);
+    onSpellImpactProc(unit, instance, target);
 
     // Log spell use
     if (logging) {
@@ -685,68 +715,68 @@ void Simulation::onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellIns
     }
 }
 
-void Simulation::onSpellTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick)
+void Simulation::onSpellTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
     if (!spell->is_trigger) {
-        auto instance = getSpellInstance(unit, spell);
+        auto instance = getSpellInstance(unit, spell, target);
         instance.tick = tick;
-        pushSpellImpact(unit, instance, travelTime(unit, spell));
+        pushSpellImpact(unit, instance, target, travelTime(unit, spell));
     }
 
-    onSpellTickProc(unit, spell, tick);
+    onSpellTickProc(unit, spell, target, tick);
 }
 
-void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     // Ignite special case
     if (spell->id == spell::IGNITE) {
-        auto leftover = getDotDamage(unit, spell);
+        auto leftover = getDotDamage(unit, spell, target);
 
         // Remove pending ignite ticks unless they happen next tick (same time window as ignite munching)
         for (auto i = queue.begin(); i != queue.end();) {
-            if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && (!config.ignite_munching || i->t - state.t > IGNITE_MUNCH_WINDOW))
+            if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target && (!config.ignite_munching || i->t - state.t > IGNITE_MUNCH_WINDOW))
                 i = queue.erase(i);
             else
                 ++i;
         }
 
         for (int i = 1; i <= spell->ticks; i++) {
-            auto dot = getSpellInstance(unit, spell);
+            auto dot = getSpellInstance(unit, spell, target);
             dot.tick = i;
             dot.dmg += round(leftover / 2.0);
-            if (config.ignite_munching && state.ignite_dmg > 0 && state.t - state.ignite_t <= IGNITE_MUNCH_WINDOW)
-                dot.dmg -= state.ignite_dmg;
-            pushDotTick(unit, dot);
+            if (config.ignite_munching && target->ignite_dmg > 0 && state.t - target->t_ignite <= IGNITE_MUNCH_WINDOW)
+                dot.dmg -= target->ignite_dmg;
+            pushDotTick(unit, dot, target);
         }
 
         if (config.ignite_munching) {
-            state.ignite_t = state.t;
-            state.ignite_dmg = spell->min_dmg;
+            target->t_ignite = state.t;
+            target->ignite_dmg = spell->min_dmg;
         }
     }
     else {
-        if (!spell->overlap)
-            removeSpellImpacts(unit, spell);
+        removeSpellImpacts(unit, spell, target);
+
         for (int i = 1; i <= spell->ticks; i++)
-            pushDot(unit, spell, i);
+            pushDot(unit, spell, target, i);
     }
 }
 
-void Simulation::onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
-    auto actions = unit->onCastSuccessProc(state, spell);
+    auto actions = unit->onCastSuccessProc(state, spell, target);
     processActions(unit, actions);
 }
 
-void Simulation::onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance)
+void Simulation::onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
-    std::vector<action::Action> actions = unit->onSpellImpactProc(state, instance);
+    std::vector<action::Action> actions = unit->onSpellImpactProc(state, instance, target);
     processActions(unit, actions);
 }
 
-void Simulation::onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, int tick)
+void Simulation::onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
-    std::vector<action::Action> actions = unit->onSpellTickProc(state, spell, tick);
+    std::vector<action::Action> actions = unit->onSpellTickProc(state, spell, target, tick);
     processActions(unit, actions);
 }
 
@@ -798,7 +828,7 @@ void Simulation::onManaGain(std::shared_ptr<unit::Unit> unit, double mana, const
     logManaGain(unit, mana, source);
 }
 
-void Simulation::onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (unit->is_channeling) {
         unit->removeSnapshots();
@@ -806,7 +836,7 @@ void Simulation::onWait(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell:
     }
 
     if (spell != NULL)
-        cast(unit, spell);
+        cast(unit, spell, target);
     else
         nextAction(unit);
 }
@@ -876,7 +906,7 @@ void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<bu
     int stacks = unit->addBuff(buff);
 
     if (old_stacks < 1 || buff->stack_refresh) {
-        removeBuffExpiration(unit, *buff);
+        removeBuffExpiration(unit, buff);
         pushBuffExpire(unit, buff);
     }
 
@@ -896,7 +926,7 @@ void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<bu
     }
 
     if (stacks > old_stacks || buff->show_refresh)
-        logBuffGain(unit, *buff, stacks);
+        logBuffGain(unit, buff, stacks);
 
     auto actions = unit->onBuffGain(state, buff);
     processActions(unit, actions);
@@ -908,8 +938,8 @@ void Simulation::onBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     if (buff->snapshot && unit->is_channeling && buffDuration(unit, buff->id) > 0)
         snapshot = true;
 
-    removeBuffExpiration(unit, *buff);
-    logBuffExpire(unit, *buff);
+    removeBuffExpiration(unit, buff);
+    logBuffExpire(unit, buff);
     unit->removeBuff(buff->id, snapshot);
 
     auto actions = unit->onBuffExpire(state, buff);
@@ -926,21 +956,21 @@ void Simulation::onBuffGainAll(std::shared_ptr<buff::Buff> buff)
     }
 }
 
-void Simulation::onDebuffGain(std::shared_ptr<debuff::Debuff> debuff)
+void Simulation::onDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff)
 {
-    int stacks = state.addDebuff(debuff);
-    removeDebuffExpiration(*debuff);
-    pushDebuffExpire(debuff);
+    int stacks = target->addDebuff(debuff);
+    removeDebuffExpiration(target, debuff);
+    pushDebuffExpire(target, debuff);
 
     if (stacks)
-        logDebuffGain(*debuff, stacks);
+        logDebuffGain(target, debuff, stacks);
 }
 
-void Simulation::onDebuffExpire(std::shared_ptr<debuff::Debuff> debuff)
+void Simulation::onDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff)
 {
-    removeDebuffExpiration(*debuff);
-    logDebuffExpire(*debuff);
-    state.removeDebuff(debuff->id);
+    removeDebuffExpiration(target, debuff);
+    logDebuffExpire(target, debuff);
+    target->removeDebuff(debuff->id);
 }
 
 void Simulation::onCooldownGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<cooldown::Cooldown> cooldown, bool mod)
@@ -980,57 +1010,49 @@ void Simulation::useTrinket(std::shared_ptr<unit::Unit> unit, Trinket trinket, s
     processActions(unit, actions);
 }
 
-bool Simulation::hasDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
-{
-    for (auto const& i : queue)
-        if (i.type == EVENT_SPELL_IMPACT && i.instance.spell->id == spell->id && i.unit == unit)
-            return true;
-    return false;
-}
-
-double Simulation::getDotDamage(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+double Simulation::getDotDamage(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
     double ret = 0;
     for (auto const& i : queue)
-        if (i.type == EVENT_SPELL_IMPACT && i.instance.spell->id == spell->id && i.unit == unit)
+        if (i.type == EVENT_SPELL_IMPACT && i.instance.spell->id == spell->id && i.unit == unit && i.target == target)
             ret += i.instance.dmg;
     return ret;
 }
 
-void Simulation::removeSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::removeSpellImpact(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     for (auto i = queue.begin(); i != queue.end(); ++i)
-        if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit)
+        if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target)
         {
             queue.erase(i);
             return;
         }
 }
 
-void Simulation::removeSpellImpacts(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::removeSpellImpacts(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     for (auto i = queue.begin(); i != queue.end();) {
-        if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit)
+        if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target)
             i = queue.erase(i);
         else
             ++i;
     }
 }
 
-void Simulation::removeBuffExpiration(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff)
+void Simulation::removeBuffExpiration(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff)
 {
     for (auto i = queue.begin(); i != queue.end(); ++i) {
-        if (i->type == EVENT_BUFF_EXPIRE && i->buff->id == buff.id && i->unit == unit) {
+        if (i->type == EVENT_BUFF_EXPIRE && i->buff->id == buff->id && i->unit == unit) {
             queue.erase(i);
             return;
         }
     }
 }
 
-void Simulation::removeDebuffExpiration(const debuff::Debuff &debuff)
+void Simulation::removeDebuffExpiration(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff)
 {
     for (auto i = queue.begin(); i != queue.end(); ++i) {
-        if (i->type == EVENT_DEBUFF_EXPIRE && i->debuff->id == debuff.id) {
+        if (i->type == EVENT_DEBUFF_EXPIRE && i->debuff->id == debuff->id && i->target == target) {
             queue.erase(i);
             return;
         }
@@ -1051,15 +1073,6 @@ double Simulation::buffDuration(std::shared_ptr<unit::Unit> unit, buff::ID id) c
 {
     for (auto const& i : queue)
         if (i.type == EVENT_BUFF_EXPIRE && i.buff->id == id && i.unit == unit)
-            return i.t - state.t;
-
-    return 0;
-}
-
-double Simulation::debuffDuration(debuff::ID id) const
-{
-    for (auto const& i : queue)
-        if (i.type == EVENT_BUFF_EXPIRE && i.debuff->id == id)
             return i.t - state.t;
 
     return 0;
@@ -1093,7 +1106,7 @@ double Simulation::travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     return std::max(config.distance / spell->speed, 0.0);
 }
 
-double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
     int dlevel = config.target_level - 80;
 
@@ -1110,15 +1123,15 @@ double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<s
     return std::min(hit, 100.0);
 }
 
-double Simulation::critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+double Simulation::critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
     double crit = unit->critChance(spell);
     double crit_debuff = 0;
 
-    if (config.debuff_spell_crit || state.hasDebuff(debuff::IMPROVED_SCORCH))
+    if (config.debuff_spell_crit || target->hasDebuff(debuff::IMPROVED_SCORCH))
         crit_debuff += 5.0;
-    else if (state.hasDebuff(debuff::WINTERS_CHILL))
-        crit_debuff += state.debuffStacks(debuff::WINTERS_CHILL);
+    else if (target->hasDebuff(debuff::WINTERS_CHILL))
+        crit_debuff += target->debuffStacks(debuff::WINTERS_CHILL);
 
     if (config.debuff_crit)
         crit_debuff += 3.0;
@@ -1155,20 +1168,20 @@ double Simulation::buffDmgMultiplier(const std::shared_ptr<unit::Unit> unit, std
     return multi;
 }
 
-double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit>, std::shared_ptr<spell::Spell>) const
+double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
     double multi = 1;
 
     if (config.debuff_spell_dmg)
         multi *= 1.13;
 
-    if (state.hasDebuff(debuff::HODIR_SINGED))
+    if (target->hasDebuff(debuff::HODIR_SINGED))
         multi *= 1.5;
 
     return multi;
 }
 
-double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     double dmg;
 
@@ -1195,9 +1208,9 @@ double Simulation::spellDmg(const std::shared_ptr<unit::Unit> unit, std::shared_
     dmg *= buffDmgMultiplier(unit, spell);
 
     if (spell->aoe && spell->aoe_capped && config.targets > 10)
-        dmg *= 10 / config.targets;
+        dmg *= 10.0 / config.targets;
 
-    dmg *= debuffDmgMultiplier(unit, spell);
+    dmg *= debuffDmgMultiplier(unit, spell, target);
 
     return dmg;
 }
@@ -1230,28 +1243,28 @@ double Simulation::spellDmgResist(std::shared_ptr<unit::Unit> unit, const spell:
     return round(instance.dmg * resistance_multiplier);
 }
 
-spell::Result Simulation::getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell) const
+spell::Result Simulation::getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
-    if (unit->canMiss(spell) && random<double>(0, 100) > hitChance(unit, spell))
+    if (unit->canMiss(spell) && random<double>(0, 100) > hitChance(unit, spell, target))
         return spell::MISS;
 
-    if (unit->canCrit(spell) && random<double>(0, 100) <= critChance(unit, spell))
+    if (unit->canCrit(spell) && random<double>(0, 100) <= critChance(unit, spell, target))
         return spell::CRIT;
 
     return spell::HIT;
 }
 
-spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     spell::SpellInstance instance;
 
     instance.spell = spell;
 
     if (spell->max_dmg > 0) {
-        instance.result = getSpellResult(unit, spell);
+        instance.result = getSpellResult(unit, spell, target);
 
         if (instance.result != spell::MISS) {
-            instance.dmg = spellDmg(unit, spell);
+            instance.dmg = spellDmg(unit, spell, target);
 
             if (instance.result == spell::CRIT)
                 instance.dmg *= critMultiplier(unit, spell);
@@ -1268,31 +1281,40 @@ spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> un
     return instance;
 }
 
-void Simulation::logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (!logging || !spell->active_use || !spell->cast_time)
         return;
 
-    addLog(unit, LOG_CAST_START, unit->name + " started casting " + spell->name + ".");
+    if (target)
+        addLog(unit, LOG_CAST_START, unit->name + " started casting " + spell->name + " on "+target->name+".");
+    else
+        addLog(unit, LOG_CAST_START, unit->name + " started casting " + spell->name + ".");
 }
 
-void Simulation::logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::logCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (!logging || !spell->active_use)
         return;
 
-    addLog(unit, LOG_CAST_SUCCESS, unit->name + " successfully cast " + spell->name + ".");
+    if (target)
+        addLog(unit, LOG_CAST_SUCCESS, unit->name + " successfully cast " + spell->name + " on "+target->name+".");
+    else
+        addLog(unit, LOG_CAST_SUCCESS, unit->name + " successfully cast " + spell->name + ".");
 }
 
-void Simulation::logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
+void Simulation::logCastMiss(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     if (!logging || !spell->active_use)
         return;
 
-    addLog(unit, LOG_CAST_SUCCESS, unit->name + "'s " + spell->name+" missed");
+    if (target)
+        addLog(unit, LOG_CAST_SUCCESS, unit->name + "'s " + spell->name+" missed "+target->name+".");
+    else
+        addLog(unit, LOG_CAST_SUCCESS, unit->name + "'s " + spell->name+" missed.");
 }
 
-void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance)
+void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
     if (!logging)
         return;
@@ -1311,51 +1333,54 @@ void Simulation::logSpellImpact(std::shared_ptr<unit::Unit> unit, const spell::S
     if (instance.resist)
         s += " (" + std::to_string(static_cast<unsigned int>(instance.resist)) + " resisted)";
 
+    if (target)
+        s += " on "+target->name;
+
     s += ".";
 
     addLog(unit, LOG_SPELL_IMPACT, s);
 }
 
-void Simulation::logBuffGain(std::shared_ptr<unit::Unit> unit, const buff::Buff& buff, int stacks)
+void Simulation::logBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff, int stacks)
 {
-    if (!logging || buff.hidden)
+    if (!logging || buff->hidden)
         return;
 
-    std::string s = unit->name + " gained " + buff.name;
-    if (buff.max_stacks > 1)
+    std::string s = unit->name + " gained " + buff->name;
+    if (buff->max_stacks > 1)
         s += " (" + std::to_string(stacks) + ")";
     s += ".";
 
     addLog(unit, LOG_BUFF, s);
 }
 
-void Simulation::logBuffExpire(std::shared_ptr<unit::Unit> unit, const buff::Buff &buff)
+void Simulation::logBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff)
 {
-    if (!logging || buff.hidden)
+    if (!logging || buff->hidden)
         return;
 
-    addLog(unit, LOG_BUFF, unit->name + " lost " + buff.name + ".");
+    addLog(unit, LOG_BUFF, unit->name + " lost " + buff->name + ".");
 }
 
-void Simulation::logDebuffGain(const debuff::Debuff& debuff, int stacks)
+void Simulation::logDebuffGain(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff, int stacks)
 {
-    if (!logging || debuff.hidden)
+    if (!logging || debuff->hidden)
         return;
 
-    std::string s = "Target gained " + debuff.name;
-    if (debuff.max_stacks > 1)
+    std::string s = target->name+" gained " + debuff->name;
+    if (debuff->max_stacks > 1)
         s += " (" + std::to_string(stacks) + ")";
     s += ".";
 
     addLog(player, LOG_BUFF, s);
 }
 
-void Simulation::logDebuffExpire(const debuff::Debuff& debuff)
+void Simulation::logDebuffExpire(std::shared_ptr<target::Target> target, std::shared_ptr<debuff::Debuff> debuff)
 {
-    if (!logging || debuff.hidden)
+    if (!logging || debuff->hidden)
         return;
 
-    addLog(player, LOG_BUFF, "Target lost " + debuff.name + ".");
+    addLog(player, LOG_BUFF, target->name+" lost " + debuff->name + ".");
 }
 
 void Simulation::logManaGain(std::shared_ptr<unit::Unit> unit, double mana, const std::string &source)
@@ -1441,30 +1466,12 @@ std::string Simulation::jsonLog() const
     return s.str();
 }
 
-std::string Simulation::getLog() const
-{
-    std::ostringstream s;
-
-    for (auto const& i : log)
-    {
-        s
-            << std::setw(6) << i.t
-            << ": Unit " << (i.unit ? i.unit->name : "Unknown")
-            << ": " << i.text
-            << " damage: " << i.dmg
-            << " mana: " << i.mana
-            << " mana %: " << i.mana_percent << "\n";
-    }
-
-    return s.str();
-}
-
 void Simulation::addLog(std::shared_ptr<unit::Unit> unit, LogType type, const std::string &text)
 {
     if (!logging)
         return;
 
-    log.emplace_back(type, unit, text, state.t, unit->mana, unit->manaPercent(), state.dmg);
+    log.emplace_back(type, unit, text, state.t, unit->mana, unit->manaPercent(), state.totalDmg());
 }
 
 void Simulation::clearLog()

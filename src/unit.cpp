@@ -475,17 +475,17 @@ std::vector<action::Action> Unit::onBuffExpire(const State &state, std::shared_p
     return {};
 }
 
-std::vector<action::Action> Unit::onCastSuccessProc(const State &state, std::shared_ptr<spell::Spell> spell)
+std::vector<action::Action> Unit::onCastSuccessProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     return {};
 }
 
-std::vector<action::Action> Unit::onSpellImpactProc(const State &state, const spell::SpellInstance &instance)
+std::vector<action::Action> Unit::onSpellImpactProc(const State &state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
     return {};
 }
 
-std::vector<action::Action> Unit::onSpellTickProc(const State &state, std::shared_ptr<spell::Spell> spell, int tick)
+std::vector<action::Action> Unit::onSpellTickProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
 {
     return {};
 }

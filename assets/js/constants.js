@@ -17,6 +17,7 @@ export default {
         ROTATION_AOE_AE: 100,
         ROTATION_AOE_BLIZZ: 110,
         ROTATION_AOE_BLIZZ_FS: 111,
+        ROTATION_AOE_FIRE: 120,
     },
     foods: {
         FOOD_NONE: 0,

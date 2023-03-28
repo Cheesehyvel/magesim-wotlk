@@ -45,6 +45,6 @@ action::Action WaterElemental::nextAction(const State& state)
         return action;
     }
 
-    return spellAction<spell::Waterbolt>();
+    return spellAction<spell::Waterbolt>(state.targets[0]);
 }
 }
