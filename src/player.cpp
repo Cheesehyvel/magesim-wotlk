@@ -634,11 +634,11 @@ std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_p
     auto actions = Unit::onBuffGain(state, buff);
 
     if (buff->id == buff::REIGN_UNLIVING_HC && buffStacks(buff->id) == 3) {
-        actions.push_back(spellAction<spell::PillarOfFlameHc>());
+        actions.push_back(spellAction<spell::PillarOfFlameHc>(state.targets[0]));
         actions.push_back(buffExpireAction<buff::ReignUnlivingHc>());
     }
     else if (buff->id == buff::REIGN_UNLIVING_NM && buffStacks(buff->id) == 3) {
-        actions.push_back(spellAction<spell::PillarOfFlameNm>());
+        actions.push_back(spellAction<spell::PillarOfFlameNm>(state.targets[0]));
         actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
     }
     else if (buff->id == buff::FIRE_WARD) {
