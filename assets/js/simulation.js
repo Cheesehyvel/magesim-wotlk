@@ -81,6 +81,8 @@ class SimulationWorkers {
 
     start(config) {
         config = _.cloneDeep(config);
+        if (!config.dot_targets || config.dot_targets > config.targets)
+            config.dot_targets = config.targets;
         var seed = config.rng_seed;
         for (var i=0; i<this.workers.length; i++) {
             var it = this.iterations/this.threads;

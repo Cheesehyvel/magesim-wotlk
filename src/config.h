@@ -13,6 +13,7 @@ struct Config
     bool additional_data = false;
     bool only_main_dmg = false;
     int targets = 1;
+    int dot_targets = 1;
     int target_resistance = 0;
     int target_level = 83;
     int distance = 20;

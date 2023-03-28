@@ -1865,7 +1865,7 @@ action::Action Player::nextAction(const State& state)
         // Check for Living Bomb targets
         if (talents.living_bomb && state.t + 12.0 < state.duration) {
             for (auto const& tar : state.targets) {
-                if (tar->t_living_bomb + 12.0 < state.t)
+                if (tar->t_living_bomb + 12.0 < state.t && tar->id <= config.dot_targets)
                     return spellAction<spell::LivingBomb>(tar);
             }
         }
@@ -1919,7 +1919,7 @@ action::Action Player::nextAction(const State& state)
         // Check for Living Bomb targets
         if (talents.living_bomb && state.t + 12.0 < state.duration) {
             for (auto const& tar : state.targets) {
-                if (tar->t_living_bomb + 12.0 < state.t)
+                if (tar->t_living_bomb + 12.0 < state.t && tar->id <= config.dot_targets)
                     return spellAction<spell::LivingBomb>(tar);
             }
         }
@@ -2077,7 +2077,7 @@ action::Action Player::nextAction(const State& state)
         // Check for Living Bomb targets
         if (talents.living_bomb && state.t + 12.0 < state.duration) {
             for (auto const& tar : state.targets) {
-                if (tar->t_living_bomb + 12.0 < state.t)
+                if (tar->t_living_bomb + 12.0 < state.t && tar->id <= config.dot_targets)
                     return spellAction<spell::LivingBomb>(tar);
             }
         }

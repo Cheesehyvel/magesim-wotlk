@@ -790,9 +790,21 @@
                                         <option :value="80">80</option>
                                     </select>
                                 </div>
-                                <div class="form-item">
-                                    <label>No. of targets</label>
-                                    <input type="text" v-model.number="config.targets">
+                                <div class="form-item form-row">
+                                    <div class="form-item">
+                                        <label>No. of targets</label>
+                                        <input type="text" v-model.number="config.targets">
+                                    </div>
+                                    <div class="form-item">
+                                        <label>
+                                            <span>No. of dot targets</span>
+                                            <help>
+                                                Number of targets to multidot.<br>
+                                                Leave this empty or set to 0 to use the same as No. of targets.
+                                            </help>
+                                        </label>
+                                        <input type="text" v-model.number="config.dot_targets">
+                                    </div>
                                 </div>
                                 <div class="form-item">
                                     <label>
@@ -1766,6 +1778,7 @@
                 avg_spell_dmg: false,
                 additional_data: false,
                 targets: 1,
+                dot_targets: 0,
                 target_resistance: 0,
                 target_level: 83,
                 distance: 20,
