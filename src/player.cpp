@@ -633,15 +633,7 @@ std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_p
 {
     auto actions = Unit::onBuffGain(state, buff);
 
-    if (buff->id == buff::REIGN_UNLIVING_HC && buffStacks(buff->id) == 3) {
-        actions.push_back(spellAction<spell::PillarOfFlameHc>(state.targets[0]));
-        actions.push_back(buffExpireAction<buff::ReignUnlivingHc>());
-    }
-    else if (buff->id == buff::REIGN_UNLIVING_NM && buffStacks(buff->id) == 3) {
-        actions.push_back(spellAction<spell::PillarOfFlameNm>(state.targets[0]));
-        actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
-    }
-    else if (buff->id == buff::FIRE_WARD) {
+    if (buff->id == buff::FIRE_WARD) {
         fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE) * 0.8053;
     }
     else if (buff->id == buff::MANA_SHIELD) {
@@ -1113,11 +1105,24 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             if (hasTrinket(TRINKET_ASHTONGUE_TALISMAN) && random<int>(0, 1))
                 actions.push_back(buffAction<buff::AshtongueTalisman>());
 
+
             if (hasTrinket(TRINKET_REIGN_UNLIVING_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC)) {
-                actions.push_back(buffCooldownAction<buff::ReignUnlivingHc, cooldown::ReignUnlivingHc>());
+                if (buffStacks(buff::REIGN_UNLIVING_HC) == 2) {
+                    actions.push_back(spellAction<spell::PillarOfFlameHc>(target));
+                    actions.push_back(buffExpireAction<buff::ReignUnlivingHc>());
+                }
+                else {
+                    actions.push_back(buffCooldownAction<buff::ReignUnlivingHc, cooldown::ReignUnlivingHc>());
+                }
             }
             if (hasTrinket(TRINKET_REIGN_UNLIVING_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM)) {
-                actions.push_back(buffCooldownAction<buff::ReignUnlivingNm, cooldown::ReignUnlivingNm>());
+                if (buffStacks(buff::REIGN_UNLIVING_NM) == 2) {
+                    actions.push_back(spellAction<spell::PillarOfFlameNm>(target));
+                    actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
+                }
+                else {
+                    actions.push_back(buffCooldownAction<buff::ReignUnlivingNm, cooldown::ReignUnlivingNm>());
+                }
             }
 
             if (config.t5_4set)
