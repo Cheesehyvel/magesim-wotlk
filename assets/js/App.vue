@@ -863,9 +863,10 @@
                                 </div>
                                 <div class="form-item" v-if="config.targets > 1">
                                     <label><input type="checkbox" v-model="config.only_main_dmg">
-                                        <span>Show dps for main target only</span>
+                                        <span>Focus dps on main target</span>
                                         <help>
-                                            This will ignore damage done to secondary targets in the summary.<br>
+                                            This will ignore damage done to secondary targets in the result.<br>
+                                            When in doubt it will focus damage on the main target rather than maximizing overall damage.<br>
                                             This is only applicable if the numbers of targets is more than 1.
                                         </help>
                                     </label>

@@ -21,6 +21,7 @@ public:
     double ignite_dmg;
     double t_ignite;
     double t_living_bomb;
+    double t_pyroblast;
 
     std::unordered_map<debuff::ID, std::shared_ptr<debuff::Debuff>> debuffs;
 
