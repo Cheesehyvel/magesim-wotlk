@@ -377,7 +377,7 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
 
     // Below 35% - We'll estimate that to last 35% of duration
     // Living Bomb dot is not affected by Molten Fury for some reason
-    if (talents.molten_fury && state.t / state.duration >= 0.65 && spell->id != spell::LIVING_BOMB)
+    if (talents.molten_fury && state.hpRemain() <= 35.0 && spell->id != spell::LIVING_BOMB)
         multi *= 1 + (talents.molten_fury * 0.06);
 
     if (spell->school == SCHOOL_ARCANE && hasBuff(buff::ARCANE_BLAST, true)) {

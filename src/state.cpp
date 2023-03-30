@@ -68,6 +68,14 @@ double State::timeRemain() const
     return duration - t;
 }
 
+double State::hpRemain() const
+{
+    if (t <= 0)
+        return config.target_hp;
+
+    return timeRemain() / duration * config.target_hp;
+}
+
 unsigned long long State::totalDmg() const
 {
     unsigned long long dmg = 0;

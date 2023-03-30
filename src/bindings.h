@@ -188,6 +188,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("dot_targets", &Config::dot_targets)
         .property("target_resistance", &Config::target_resistance)
         .property("target_level", &Config::target_level)
+        .property("target_hp", &Config::target_hp)
         .property("distance", &Config::distance)
         .property("reaction_time", &Config::reaction_time)
 

@@ -39,6 +39,7 @@ public:
     void addTarget(int id = 0);
 
     double timeRemain() const;
+    double hpRemain() const;
 
     unsigned long long totalDmg() const;
     unsigned long long mainDmg() const;
