@@ -119,10 +119,10 @@
                                         <div class="tal">
                                             <div>{{ $round(hitRatingToChance(display_stats.hit_rating),2) }}% from {{ display_stats.hit_rating }} hit rating</div>
                                             <div v-if="config.talents.precision">{{ config.talents.precision }}% from Precision</div>
-                                            <div v-if="config.talents.precision && config.rotation == rotations.ROTATION_ST_FROSTFIRE">{{ config.talents.precision }}% extra from Precision (ffb only, not included)</div>
+                                            <div v-if="config.talents.precision && config.rotation == rotations.ROTATION_ST_FROSTFIRE">{{ config.talents.precision }}% extra from Precision (ffb only)</div>
                                             <div v-if="config.debuff_spell_hit">3% from spell hit debuff</div>
                                             <div v-if="config.heroic_presence && faction == 'alliance'">1% from Heroic Presence</div>
-                                            <div v-if="config.talents.arcane_focus">3% from Arcane Focus (arcane only, not included)</div>
+                                            <div v-if="config.talents.arcane_focus">3% from Arcane Focus (arcane only)</div>
                                         </div>
                                     </tooltip>
                                 </td>
