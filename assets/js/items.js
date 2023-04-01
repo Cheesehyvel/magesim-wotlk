@@ -322,6 +322,7 @@ var equip = {
         { id: 34348, title: "Wand of Cleansing Light", ilvl: 154, int: 8, spi: 18, sp: 22, haste: 8, sockets: ["r"], bonus: {spi: 2} },
     ],
     head: [
+        { id: 12064, title: "Gamemaster Hood", ilvl: 420, int: 321, spi: 344, sp: 808, crit: 309, haste: 499, sockets: ["m", "r"], bonus: {sp: 59} },
         // icc
         { id: 51281, itemset: ids.T10_SET, title: "Sanctified Bloodmage Hood", ilvl: 277, int: 139, sp: 186, crit: 122, haste: 98, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51158, itemset: ids.T10_SET, title: "Sanctified Bloodmage Hood", ilvl: 264, int: 123, sp: 162, crit: 108, haste: 84, sockets: ["m", "b"], bonus: {sp: 9}, phase: 4 },
@@ -635,6 +636,7 @@ var equip = {
         { id: 34242, title: "Tattered Cape of Antonidas", ilvl: 164, int: 26, sp: 42, haste: 32, sockets: ["r"], bonus: { sp: 2 } },
     ],
     chest: [
+        { id: 2586, title: "Gamemaster's Robe", ilvl: 420, int: 298, spi: 296, sp: 871, crit: 410, hit: 381 },
         // icc
         { id: 51283, itemset: ids.T10_SET, title: "Sanctified Bloodmage Robe", ilvl: 277, int: 139, sp: 195, crit: 106, haste: 122, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
         { id: 51156, itemset: ids.T10_SET, title: "Sanctified Bloodmage Robe", ilvl: 264, int: 123, sp: 171, crit: 92, haste: 108, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
@@ -1025,6 +1027,7 @@ var equip = {
         { id: 22497, itemset: ids.T3_SET, title: "Frostfire Leggings", ilvl: 88, int: 26, spi: 10, sp: 46, hit: 8 },
     ],
     feet: [
+        { id: 11508, title: "Gamemaster's Slippers", ilvl: 520, int: 298, spi: 289, sp: 891, crit: 871, hit: 815, haste: 1204 },
         // icc
         { id: 50699, title: "Plague Scientist's Boots", ilvl: 277, int: 103, sp: 140, crit: 74, haste: 90, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
         { id: 50062, title: "Plague Scientist's Boots", ilvl: 264, int: 92, sp: 122, crit: 64, haste: 80, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
