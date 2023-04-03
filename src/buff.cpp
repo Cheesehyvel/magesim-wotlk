@@ -456,6 +456,22 @@ VolatilityNm::VolatilityNm()
     stats.haste_rating = 57;
 }
 
+ShardCrystalHeart::ShardCrystalHeart()
+{
+    id = SHARD_CRYSTAL_HEART;
+    name = "Celerity";
+    duration = 20;
+    stats.haste_rating = 512;
+}
+
+TalismanResurgence::TalismanResurgence()
+{
+    id = TALISMAN_RESURGENCE;
+    name = "Hospitality";
+    duration = 20;
+    stats.spell_power = 599;
+}
+
 EnergizedHc::EnergizedHc()
 {
     id = ENERGIZED_HC;

@@ -1512,6 +1512,10 @@ bool Player::isUseTrinket(Trinket trinket) const
         return true;
     if (trinket == TRINKET_VOLATILE_POWER_NM)
         return true;
+    if (trinket == TRINKET_SHARD_CRYSTAL_HEART)
+        return true;
+    if (trinket == TRINKET_TALISMAN_RESURGENCE)
+        return true;
     if (trinket == TRINKET_SCALE_FATES)
         return true;
     if (trinket == TRINKET_LIVING_FLAME)
@@ -1628,6 +1632,12 @@ std::vector<action::Action> Player::useTrinket(Trinket trinket, std::shared_ptr<
     }
     else if (trinket == TRINKET_VOLATILE_POWER_NM) {
         buff = std::make_shared<buff::VolatilePowerNm>();
+    }
+    else if (trinket == TRINKET_SHARD_CRYSTAL_HEART) {
+        buff = std::make_shared<buff::ShardCrystalHeart>();
+    }
+    else if (trinket == TRINKET_TALISMAN_RESURGENCE) {
+        buff = std::make_shared<buff::TalismanResurgence>();
     }
     else if (trinket == TRINKET_SCALE_FATES) {
         buff = std::make_shared<buff::ScaleFates>();

@@ -2581,6 +2581,16 @@
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
+                        id: this.items.ids.TRINKET_SHARD_CRYSTAL_HEART,
+                        title: "Shard of the Crystal Heart",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_01.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_TALISMAN_RESURGENCE,
+                        title: "Talisman of Resurgence",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_gem_bloodstone_03.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_SCALE_FATES,
                         title: "Scale of Fates",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_02.jpg",

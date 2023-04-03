@@ -67,6 +67,8 @@ enum ID : int
     VOLATILE_POWER_NM = 67736,
     VOLATILITY_HC = 67743,
     VOLATILITY_NM = 67735,
+    SHARD_CRYSTAL_HEART = 67683,
+    TALISMAN_RESURGENCE = 67684,
     ENERGIZED_HC = 67750,
     ENERGIZED_NM = 67696,
     REIGN_UNLIVING_HC = 67759,
@@ -510,6 +512,20 @@ class VolatilityNm : public Buff
 
 public:
     VolatilityNm();
+};
+
+class ShardCrystalHeart : public Buff
+{
+
+public:
+    ShardCrystalHeart();
+};
+
+class TalismanResurgence : public Buff
+{
+
+public:
+    TalismanResurgence();
 };
 
 class EnergizedHc : public Buff

@@ -38,6 +38,8 @@ var ids = {
     TRINKET_DISLODGED_OBJECT_NM: 50353,
     TRINKET_NAMELESS_LICH_HC: 50365,
     TRINKET_NAMELESS_LICH_NM: 50360,
+    TRINKET_SHARD_CRYSTAL_HEART: 48722,
+    TRINKET_TALISMAN_RESURGENCE: 48724,
     // Enchants
     BLACK_MAGIC: 59625,
     HYPERSPEED_ACCELERATORS: 54999,
@@ -278,6 +280,7 @@ var equip = {
         // totc
         { id: 47922, title: "Rod of Imprisoned Souls", ilvl: 245, int: 29, sp: 50, crit: 31, haste: 24, phase: 3 },
         { id: 47612, title: "Rod of Imprisoned Souls", ilvl: 232, int: 26, sp: 44, crit: 28, haste: 21, phase: 3 },
+        { id: 47658, title: "Brimstone Igniter", ilvl: 245, int: 32, spi: 28, sp: 50, hit: 28, phase: 3 },
         // ulduar
         { id: 45294, title: "Petrified Ivy Sprig", ilvl: 245, int: 22, spi: 25, sp: 51, hit: 33, sockets: ["y"], bonus: {spi: 4}, phase: 2 },
         { id: 45257, title: "Quartz Crystal Wand", ilvl: 238, int: 26, spi: 25, sp: 47, hit: 29, phase: 2 },
@@ -342,7 +345,10 @@ var equip = {
         { id: 47761, itemset: ids.T9_SET, title: "Khadgar's Hood of Triumph", ilvl: 258, int: 116, sp: 151, hit: 86, haste: 94, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47754, itemset: ids.T9_SET, title: "Khadgar's Hood of Triumph", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         { id: 47748, itemset: ids.T9_SET, title: "Khadgar's Hood of Conquest", ilvl: 232, int: 92, sp: 113, hit: 64, haste: 72, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
-        { id: 47564, title: "Gaze of the Unknown", ilvl: 219, int: 74, sp: 115, crit: 67, hit: 57, sockets: ["m", "r"], bonus: {hit: 8}, phase: 3 },
+        { id: 47695, title: "Hood of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
+        { id: 47694, title: "Helm of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
+        { id: 47692, title: "Hood of Smoldering Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47693, title: "Hood of Fiery Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
         // ulduar
         { id: 46129, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Hood", ilvl: 232, int: 92, spi: 70, sp: 120, hit: 73, sockets: ["m", "r"], bonus: {sp: 9}, phase: 2 },
         { id: 45365, itemset: ids.T8_SET, title: "Valorous Kirin Tor Hood", ilvl: 225, int: 86, spi: 65, sp: 112, hit: 68, sockets: ["m", "r"], bonus: {sp: 9}, phase: 2 },
@@ -376,10 +382,7 @@ var equip = {
         { id: 41944, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Cowl", ilvl: 200, int: 45, sp: 87, crit: 44, sockets: ["m", "r"] },
         { id: 41943, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Cowl", ilvl: 200, int: 39, sp: 73, crit: 36, sockets: ["m", "r"], q: "rare" },
         // prebis
-        { id: 47695, title: "Hood of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
-        { id: 47694, title: "Helm of Clouded Sight", ilvl: 245, int: 103, spi: 90, sp: 131, crit: 66, sockets: ["m", "y"], bonus: {sp: 9}, phase: 3 },
-        { id: 47692, title: "Hood of Smoldering Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
-        { id: 47693, title: "Hood of Fiery Aftermath", ilvl: 245, int: 103, sp: 131, hit: 74, haste: 82, sockets: ["m", "b"], bonus: {sp: 9}, phase: 3 },
+        { id: 47564, title: "Gaze of the Unknown", ilvl: 219, int: 74, sp: 115, crit: 67, hit: 57, sockets: ["m", "r"], bonus: {hit: 8}, phase: 3 },
         { id: 50298, title: "Sightless Crown of Ulmaas", ilvl: 232, int: 84, sp: 122, hit: 62, haste: 78, sockets: ["m", "b"], bonus: {crit: 8}, phase: 4 },
         { id: 49849, title: "Tattered Glacial-Woven Hood", ilvl: 219, int: 68, spi: 66, sp: 105, haste: 58, sockets: ["m", "y"], bonus: {sp: 9}, phase: 4 },
         { id: 42553, title: "Visage Liquification Goggles", ilvl: 200, int: 60, sp: 87, crit: 73, sockets: ["m", "y"], bonus: {crit: 8} },
@@ -503,6 +506,10 @@ var equip = {
         { id: 47758, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Triumph", ilvl: 258, int: 86, sp: 124, crit: 68, haste: 76, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47757, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Triumph", ilvl: 245, int: 77, sp: 109, crit: 59, haste: 67, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
         { id: 47751, itemset: ids.T9_SET, title: "Khadgar's Shoulderpads of Conquest", ilvl: 232, int: 68, sp: 96, crit: 52, haste: 60, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47716, title: "Mantle of Revered Mortality", ilvl: 245, int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47715, title: "Pauldrons of Revered Mortality", ilvl: 245, int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
+        { id: 47714, title: "Pauldrons of Catastrophic Emanation", ilvl: 245, int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
+        { id: 47713, title: "Mantle of Catastrophic Emanation", ilvl: 245, int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
         // ulduar
         { id: 46134, itemset: ids.T8_SET, title: "Conqueror's Kirin Tor Shoulderpads", ilvl: 232, int: 69, spi: 35, sp: 104, haste: 66, sockets: ["y"], bonus: {int: 4}, phase: 2 },
         { id: 45369, itemset: ids.T8_SET, title: "Valorous Kirin Tor Shoulderpads", ilvl: 225, int: 64, spi: 32, sp: 96, haste: 60, sockets: ["y"], bonus: {int: 4}, phase: 2 },
@@ -539,10 +546,6 @@ var equip = {
         { id: 49854, title: "Mantle of Tattered Feathers", ilvl: 219, int: 59, spi: 53, sp: 92, crit: 53, phase: 4 },
         { id: 50193, title: "Very Fashionable Shoulders", ilvl: 232, int: 68, sp: 105, hit: 62, haste: 55, phase: 4 },
         { id: 49834, title: "Frayed Abomination Stitching Shoulders", ilvl: 219, int: 56, sp: 92, crit: 60, haste: 40, phase: 4 },
-        { id: 47716, title: "Mantle of Revered Mortality", ilvl: 245, int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
-        { id: 47715, title: "Pauldrons of Revered Mortality", ilvl: 245, int: 77, spi: 67, sp: 109, haste: 59, sockets: ["b"], bonus: {sp: 5}, phase: 3 },
-        { id: 47714, title: "Pauldrons of Catastrophic Emanation", ilvl: 245, int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
-        { id: 47713, title: "Mantle of Catastrophic Emanation", ilvl: 245, int: 77, sp: 109, crit: 59, hit: 67, sockets: ["y"], bonus: {sp: 5}, phase: 3 },
         { id: 47226, title: "Mantle of Inconsolable Fear", ilvl: 200, int: 47, sp: 78, crit: 37, haste: 49, phase: 3 },
         { id: 37196, title: "Runecaster's Mantle", ilvl: 200, int: 47, spi: 44, sp: 68, sockets: ["y"], bonus: {sp: 5}, q: "rare" },
         { id: 37655, title: "Mantle of the Tribunal", ilvl: 200, int: 59, sp: 68, haste: 42, q: "rare" },
@@ -1138,6 +1141,8 @@ var equip = {
         { id: 47223, title: "Ring of the Darkmender", ilvl: 245, int: 58, sp: 89, haste: 50, mp5: 25, unique: true, phase: 3 },
         { id: 47928, title: "Firestorm Ring", ilvl: 245, int: 59, sp: 80, crit: 33, hit: 56, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 3 },
         { id: 47618, title: "Firestorm Ring", ilvl: 232, int: 52, sp: 78, crit: 36, hit: 50, unique: true, phase: 3 },
+        { id: 47732, title: "Band of the Invoker", ilvl: 245, int: 58, spi: 50, sp: 89, haste: 50, unique: true, phase: 3 },
+        { id: 47733, title: "Heartmender Circle", ilvl: 245, int: 58, sp: 89, crit: 50, mp5: 25, unique: true, phase: 3 },
         { id: 48957, title: "Etched Signet of the Kirin Tor", ilvl: 226, int: 43, sp: 74, crit: 41, haste: 43, unique: true, phase: 3 },
         // ulduar
         { id: 45495, title: "Conductive Seal", ilvl: 252, int: 54, spi: 44, sp: 85, haste: 62, sockets: ["b"], bonus: {sp: 5}, unique: true, phase: 2 },
@@ -1217,6 +1222,8 @@ var equip = {
         { id: ids.TRINKET_SOLACE_DEFEATED_NM, title: "Solace of the Defeated", ilvl: 245, sp: 150, unique: true, phase: 3 },
         { id: ids.TRINKET_VOLATILE_POWER_HC, title: "Talisman of Volatile Power", ilvl: 245, crit: 126, use: true, unique: true, phase: 3 },
         { id: ids.TRINKET_VOLATILE_POWER_NM, title: "Talisman of Volatile Power", ilvl: 232, crit: 114, use: true, unique: true, phase: 3 },
+        { id: ids.TRINKET_SHARD_CRYSTAL_HEART, title: "Shard of the Crystal Heart", ilvl: 245, hit: 128, use: true, unique: true, phase: 3 },
+        { id: ids.TRINKET_TALISMAN_RESURGENCE, title: "Talisman of Resurgence", ilvl: 245, int: 128, use: true, unique: true, phase: 3 },
         // ulduar
         { id: ids.TRINKET_FLARE_HEAVENS, title: "Flare of the Heavens", ilvl: 252, crit: 135, unique: true, phase: 2 },
         { id: ids.TRINKET_SHOW_FAITH, title: "Show of Faith", ilvl: 252, sp: 158, unique: true, phase: 2 },

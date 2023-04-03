@@ -82,6 +82,8 @@
                     { title: "Cultivated Power", color: "#ddd" },
                     { title: "Energized", color: "#ddd" },
                     { title: "Volatility", color: "#ddd" },
+                    { title: "Celerity", color: "#ddd" },
+                    { title: "Hospitality", color: "#ddd" },
                     { title: "Scale of Fates", color: "#ddd" },
                     { title: "Show of Faith", color: "#ddd" },
                     { title: "Flame of the Heavens", color: "#ddd" },
