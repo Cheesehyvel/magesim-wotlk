@@ -6,6 +6,7 @@ namespace spell
 {
     enum ID : int
     {
+        ARCANE_TORRENT = 28730,
         ARCANE_BARRAGE = 44781,
         ARCANE_BLAST = 42897,
         ARCANE_EXPLOSION = 42921,
@@ -586,6 +587,17 @@ namespace spell
             gcd = 0;
             active_use = false;
             speed = 20;
+        }
+    };
+
+    struct ArcaneTorrent : Spell
+    {
+        ArcaneTorrent() : Spell(ARCANE_TORRENT, "Arcane Torrent", SCHOOL_ARCANE)
+        {
+            gcd = 0;
+            cost = 0;
+            is_trigger = true;
+            can_proc = false;
         }
     };
 

@@ -724,6 +724,11 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         actions.push_back(buffAction<buff::ManaShield>());
     }
 
+    if (spell->id == spell::ARCANE_TORRENT) {
+        actions.push_back(manaAction(maxMana()*0.06, "Arcane Torrent"));
+        actions.push_back(cooldownAction<cooldown::ArcaneTorrent>());
+    }
+
     if (hasBuff(buff::ARCANE_POTENCY) && !spell->channeling)
         actions.push_back(buffExpireAction<buff::ArcanePotency>());
 
@@ -1726,6 +1731,9 @@ action::Action Player::useCooldown(const State& state)
     }
     else if (race == RACE_TROLL && !hasCooldown(cooldown::BERSERKING) && useTimingIfPossible("berserking", state)) {
         return buffCooldownAction<buff::Berserking, cooldown::Berserking>(true);
+    }
+    else if (race == RACE_BLOOD_ELF && !hasCooldown(cooldown::ARCANE_TORRENT) && manaPercent() <= 94.0 && useTimingIfPossible("arcane_torrent", state)) {
+        return spellAction<spell::ArcaneTorrent>();
     }
     else if (config.hyperspeed_accelerators && !hasCooldown(cooldown::HYPERSPEED_ACCELERATION) && useTimingIfPossible("hyperspeed_accelerators", state)) {
         return buffCooldownAction<buff::HyperspeedAcceleration, cooldown::HyperspeedAcceleration>(true);

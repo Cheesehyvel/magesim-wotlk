@@ -19,6 +19,7 @@ namespace cooldown
         DEEP_FREEZE = 44572,
         BRAIN_FREEZE = 57761,
         BERSERKING = 20554,
+        ARCANE_TORRENT = 28730,
         ICY_VEINS = 12472,
         FIRE_BLAST = 42873,
         BLAST_WAVE = 42945,
@@ -248,6 +249,18 @@ namespace cooldown
         {
             id = BERSERKING;
             duration = 180;
+        }
+
+    };
+
+    class ArcaneTorrent : public Cooldown
+    {
+
+    public:
+        ArcaneTorrent()
+        {
+            id = ARCANE_TORRENT;
+            duration = 120;
         }
 
     };

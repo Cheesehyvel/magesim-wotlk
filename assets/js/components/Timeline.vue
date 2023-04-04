@@ -110,6 +110,7 @@
                 mana_gains: [
                     { title: "Mana Gem", color: "rgba(85,255,85)" },
                     { title: "Mana Potion", color: "#00d" },
+                    { title: "Arcane Torrent", color: "#bbd" },
                     { title: "Sliver of Pure Ice", color: "rgba(85,255,85)" },
                 ]
             }

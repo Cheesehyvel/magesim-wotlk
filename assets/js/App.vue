@@ -2497,6 +2497,11 @@
                     icon: "https://www.wowhead.com/images/wow/icons/large/racial_troll_berserk.jpg",
                 });
                 timings.push({
+                    name: "arcane_torrent",
+                    title: "Arcane Torrent",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_teleport.jpg",
+                });
+                timings.push({
                     name: "presence_of_mind",
                     title: "Presence of Mind",
                     icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_enchantarmor.jpg",
@@ -2818,6 +2823,8 @@
 
                 if (name == "berserking")
                     return this.config.race == constants.races.RACE_TROLL;
+                if (name == "arcane_torrent")
+                    return this.config.race == constants.races.RACE_BLOOD_ELF;
                 if (name == "potion")
                     return this.config.potion != constants.potions.POTION_NONE;
                 if (name == "conjured")
