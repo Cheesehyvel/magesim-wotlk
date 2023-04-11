@@ -64,6 +64,7 @@ public:
     Faction faction() const;
 
     bool hasTrinket(Trinket trinket) const;
+    bool hasTrinkets(Trinket trinket1, Trinket trinket2) const;
 
     void applyMana(const State& state, double _mana);
 

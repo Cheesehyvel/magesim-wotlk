@@ -63,6 +63,11 @@ bool Player::hasTrinket(Trinket trinket) const
     return config.trinket1 == trinket || config.trinket2 == trinket;
 }
 
+bool Player::hasTrinkets(Trinket trinket1, Trinket trinket2) const
+{
+    return hasTrinket(trinket1) || hasTrinket(trinket2);
+}
+
 void Player::applyMana(const State& state, double _mana)
 {
     Unit::applyMana(state, _mana);
@@ -888,18 +893,18 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         }
 
         // Unconfirmed - on harmful spell cast ?
-        if (hasTrinket(TRINKET_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC) && is_harmful) {
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC) && is_harmful) {
             actions.push_back(buffAction<buff::VolatilityHc>());
         }
-        if (hasTrinket(TRINKET_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM) && is_harmful) {
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM) && is_harmful) {
             actions.push_back(buffAction<buff::VolatilityNm>());
         }
 
         // Unconfirmed - on spell cast ?
-        if (hasTrinket(TRINKET_SOLACE_DEFEATED_HC)) {
+        if (hasTrinkets(TRINKET_SOLACE_FALLEN_HC, TRINKET_SOLACE_DEFEATED_HC)) {
             actions.push_back(buffAction<buff::EnergizedHc>());
         }
-        if (hasTrinket(TRINKET_SOLACE_DEFEATED_NM)) {
+        if (hasTrinkets(TRINKET_SOLACE_FALLEN_NM, TRINKET_SOLACE_DEFEATED_NM)) {
             actions.push_back(buffAction<buff::EnergizedNm>());
         }
 
@@ -1114,7 +1119,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffAction<buff::AshtongueTalisman>());
 
 
-            if (hasTrinket(TRINKET_REIGN_UNLIVING_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC) && instance.spell->id != spell::PILLAR_OF_FLAME_HC) {
+            if (hasTrinkets(TRINKET_REIGN_DEAD_HC, TRINKET_REIGN_DEAD_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC) && instance.spell->id != spell::PILLAR_OF_FLAME_HC) {
                 if (buffStacks(buff::REIGN_UNLIVING_HC) == 2) {
                     actions.push_back(spellAction<spell::PillarOfFlameHc>(target));
                     actions.push_back(buffExpireAction<buff::ReignUnlivingHc>());
@@ -1124,7 +1129,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                     actions.push_back(buffCooldownAction<buff::ReignUnlivingHc, cooldown::ReignUnlivingHc>());
                 }
             }
-            if (hasTrinket(TRINKET_REIGN_UNLIVING_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM) && instance.spell->id != spell::PILLAR_OF_FLAME_NM) {
+            if (hasTrinkets(TRINKET_REIGN_DEAD_NM, TRINKET_REIGN_DEAD_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM) && instance.spell->id != spell::PILLAR_OF_FLAME_NM) {
                 if (buffStacks(buff::REIGN_UNLIVING_NM) == 2) {
                     actions.push_back(spellAction<spell::PillarOfFlameNm>(target));
                     actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
@@ -1515,9 +1520,9 @@ bool Player::isUseTrinket(Trinket trinket) const
         return true;
     if (trinket == TRINKET_SLIVER_PURE_ICE_NM)
         return true;
-    if (trinket == TRINKET_VOLATILE_POWER_HC)
+    if (trinket == TRINKET_FETISH_VOLATILE_POWER_HC || trinket == TRINKET_FETISH_VOLATILE_POWER_NM)
         return true;
-    if (trinket == TRINKET_VOLATILE_POWER_NM)
+    if (trinket == TRINKET_TALISMAN_VOLATILE_POWER_HC || trinket == TRINKET_TALISMAN_VOLATILE_POWER_NM)
         return true;
     if (trinket == TRINKET_SHARD_CRYSTAL_HEART)
         return true;
@@ -1634,10 +1639,10 @@ std::vector<action::Action> Player::useTrinket(Trinket trinket, std::shared_ptr<
         actions.push_back(manaAction(1625, "Sliver of Pure Ice"));
         actions.push_back(cooldownAction(cooldown));
     }
-    else if (trinket == TRINKET_VOLATILE_POWER_HC) {
+    else if (trinket == TRINKET_FETISH_VOLATILE_POWER_HC || trinket == TRINKET_TALISMAN_VOLATILE_POWER_HC) {
         buff = std::make_shared<buff::VolatilePowerHc>();
     }
-    else if (trinket == TRINKET_VOLATILE_POWER_NM) {
+    else if (trinket == TRINKET_FETISH_VOLATILE_POWER_NM || trinket == TRINKET_TALISMAN_VOLATILE_POWER_NM) {
         buff = std::make_shared<buff::VolatilePowerNm>();
     }
     else if (trinket == TRINKET_SHARD_CRYSTAL_HEART) {
