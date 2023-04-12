@@ -1119,7 +1119,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffAction<buff::AshtongueTalisman>());
 
 
-            if (hasTrinkets(TRINKET_REIGN_DEAD_HC, TRINKET_REIGN_DEAD_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC) && instance.spell->id != spell::PILLAR_OF_FLAME_HC) {
+            if (hasTrinkets(TRINKET_REIGN_DEAD_HC, TRINKET_REIGN_UNLIVING_HC) && !hasCooldown(cooldown::REIGN_UNLIVING_HC) && instance.spell->id != spell::PILLAR_OF_FLAME_HC) {
                 if (buffStacks(buff::REIGN_UNLIVING_HC) == 2) {
                     actions.push_back(spellAction<spell::PillarOfFlameHc>(target));
                     actions.push_back(buffExpireAction<buff::ReignUnlivingHc>());
@@ -1129,7 +1129,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                     actions.push_back(buffCooldownAction<buff::ReignUnlivingHc, cooldown::ReignUnlivingHc>());
                 }
             }
-            if (hasTrinkets(TRINKET_REIGN_DEAD_NM, TRINKET_REIGN_DEAD_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM) && instance.spell->id != spell::PILLAR_OF_FLAME_NM) {
+            if (hasTrinkets(TRINKET_REIGN_DEAD_NM, TRINKET_REIGN_UNLIVING_NM) && !hasCooldown(cooldown::REIGN_UNLIVING_NM) && instance.spell->id != spell::PILLAR_OF_FLAME_NM) {
                 if (buffStacks(buff::REIGN_UNLIVING_NM) == 2) {
                     actions.push_back(spellAction<spell::PillarOfFlameNm>(target));
                     actions.push_back(buffExpireAction<buff::ReignUnlivingNm>());
