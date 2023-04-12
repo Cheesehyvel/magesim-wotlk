@@ -5,7 +5,7 @@ import pprint
 import re
 import json
 
-def getItem(item_id, phase = 1):
+def getItem(item_id, phase = 1, faction = None):
     if item_id[:4] == "http":
         url = item_id + "&xml"
     else:
@@ -124,9 +124,13 @@ def getItem(item_id, phase = 1):
     if m:
         stats["unique"] = True
 
+    # Faction
+    if faction != None:
+        stats["faction"] = faction
+
     # Phase
     if phase > 1:
-        stats["phase"] = phase;
+        stats["phase"] = phase
 
     # Convert to item string
     output = json.dumps(stats)
@@ -140,11 +144,12 @@ def getItem(item_id, phase = 1):
 parser = argparse.ArgumentParser()
 parser.add_argument("item_id", help="Item ID(s)")
 parser.add_argument("-p", help="Phase", type=int, default=1)
+parser.add_argument("-f", help="Faction", type=str, default=None)
 args = parser.parse_args()
 
 ids = args.item_id.split(",")
 
 for index, item_id in enumerate(ids):
-    item = getItem(item_id, args.p)
+    item = getItem(item_id, args.p, args.f)
     if item != None:
         print(item+",")

@@ -2255,12 +2255,19 @@
             },
 
             activeItems() {
+                var self = this;
                 var slot = this.equipSlotToItemSlot(this.active_slot);
 
                 var items = this.items.equip[slot];
 
                 if (!items)
                     return [];
+
+                items = items.filter(function(item) {
+                    if (!item.hasOwnProperty("faction"))
+                        return true;
+                    return self.faction.substr(0, 1) == item.faction;
+                });
 
                 if (this.search_item) {
                     var terms = this.search_item.toLowerCase().split(" ");
