@@ -2,6 +2,8 @@
 
 Mage DPS simulator for WoW Wotlk Classic.
 
+[Live sim website](https://cheesehyvel.github.io/magesim-wotlk/)
+
 Backend is written in C++ and compiled with Emscripten into WebAssembly.\
 Frontend is written in Vue.js and SCSS and compiled with Laravel mix.
 
