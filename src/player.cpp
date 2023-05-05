@@ -1938,7 +1938,7 @@ action::Action Player::nextAction(const State& state)
         bool main_bomb = talents.living_bomb && target->t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
 
         if (canReactTo(buff::HOT_STREAK, state.t) && talents.pyroblast && (config.targets > 1 || heating_up || !main_bomb)) {
-            if (waited || !should_wait || !config.hot_streak_cqs) {
+            if (waited || !should_wait || !config.hot_streak_cqs || !config.ignite_munching) {
                 waited = false;
                 should_wait = false;
                 if (!config.only_main_dmg) {
