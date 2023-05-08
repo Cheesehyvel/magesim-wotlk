@@ -1093,7 +1093,7 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
 
     if (instance.result == spell::CRIT) {
         // Ignite
-        if (talents.ignite && (instance.spell->school == SCHOOL_FIRE || instance.spell->school == SCHOOL_FROSTFIRE)) {
+        if (talents.ignite && (instance.spell->school == SCHOOL_FIRE || instance.spell->school == SCHOOL_FROSTFIRE) && !instance.spell->proc) {
             // 40% over 2 ticks = 20%
             actions.push_back(spellAction<spell::Ignite>(target, round(instance.dmg * 0.2)));
         }
