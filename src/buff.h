@@ -79,6 +79,8 @@ enum ID : int
     DISLODGED_OBJECT_NM = 71601,
     NAMELESS_LICH_HC = 71636,
     NAMELESS_LICH_NM = 71605,
+    CHARRED_TWILIGHT_SCALE_HC = 75473,
+    CHARRED_TWILIGHT_SCALE_NM = 75466,
     // Encounters
     HODIR_STORM_POWER = 63711,
     HODIR_STARLIGHT = 62807,
@@ -596,6 +598,20 @@ class NamelessLichNm : public Buff
 
 public:
     NamelessLichNm();
+};
+
+class CharredTwilightScaleHc : public Buff
+{
+
+public:
+    CharredTwilightScaleHc();
+};
+
+class CharredTwilightScaleNm : public Buff
+{
+
+public:
+    CharredTwilightScaleNm();
 };
 
 class HodirStormPower : public Buff

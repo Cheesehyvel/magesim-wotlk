@@ -60,6 +60,8 @@ namespace cooldown
         DISLODGED_OBJECT_NM = 71601,
         NAMELESS_LICH_HC = 71636,
         NAMELESS_LICH_NM = 71605,
+        CHARRED_TWILIGHT_SCALE_HC = 75473,
+        CHARRED_TWILIGHT_SCALE_NM = 75466,
     };
 
 
@@ -657,6 +659,30 @@ namespace cooldown
         {
             id = NAMELESS_LICH_NM;
             duration = 100;
+        }
+
+    };
+
+    class CharredTwilightScaleHc : public Cooldown
+    {
+
+    public:
+        CharredTwilightScaleHc()
+        {
+            id = CHARRED_TWILIGHT_SCALE_HC;
+            duration = 50;
+        }
+
+    };
+
+    class CharredTwilightScaleNm : public Cooldown
+    {
+
+    public:
+        CharredTwilightScaleNm()
+        {
+            id = CHARRED_TWILIGHT_SCALE_NM;
+            duration = 50;
         }
 
     };

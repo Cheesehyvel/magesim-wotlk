@@ -1266,6 +1266,14 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
             actions.push_back(buffCooldownAction<buff::ForgeEmber, cooldown::ForgeEmber>());
         }
 
+        // Unconfirmed - on harmful
+        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_HC) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_HC) && random<int>(0, 9) == 0) {
+            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleHc, cooldown::CharredTwilightScaleHc>());
+        }
+        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_NM) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_NM) && random<int>(0, 9) == 0) {
+            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleNm, cooldown::CharredTwilightScaleNm>());
+        }
+
         // Confirmed - on harmful
         if (hasTrinket(TRINKET_SUNDIAL_EXILED) && !hasCooldown(cooldown::NOW_IS_THE_TIME) && random<int>(0, 9) == 0) {
             actions.push_back(buffCooldownAction<buff::NowIsTheTime, cooldown::NowIsTheTime>());

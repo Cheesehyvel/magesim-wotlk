@@ -2747,6 +2747,10 @@
                     buffs.push({id: constants.buffs.NAMELESS_LICH_HC, name: "Phylactery of the Nameless Lich"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_NM))
                     buffs.push({id: constants.buffs.NAMELESS_LICH_NM, name: "Phylactery of the Nameless Lich"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_CHARRED_TWILIGHT_SCALE_HC))
+                    buffs.push({id: constants.buffs.CHARRED_TWILIGHT_SCALE_HC, name: "Glowing Twilight Scale"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_CHARRED_TWILIGHT_SCALE_NM))
+                    buffs.push({id: constants.buffs.CHARRED_TWILIGHT_SCALE_NM, name: "Glowing Twilight Scale"});
 
                 if (this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_DESTRUCTION) || this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_DESTRUCTION))
                     buffs.push({id: constants.buffs.ASHEN_BAND, name: "Frostforged Sage (Ashen Band)"});

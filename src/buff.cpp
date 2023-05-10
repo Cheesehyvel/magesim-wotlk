@@ -560,6 +560,22 @@ NamelessLichNm::NamelessLichNm()
     stats.spell_power = 1074;
 }
 
+CharredTwilightScaleHc::CharredTwilightScaleHc()
+{
+    id = CHARRED_TWILIGHT_SCALE_HC;
+    name = "Twilight Flames";
+    duration = 15;
+    stats.spell_power = 861;
+}
+
+CharredTwilightScaleNm::CharredTwilightScaleNm()
+{
+    id = CHARRED_TWILIGHT_SCALE_NM;
+    name = "Twilight Flames";
+    duration = 15;
+    stats.spell_power = 763;
+}
+
 HodirStormPower::HodirStormPower()
 {
     id = HODIR_STORM_POWER;

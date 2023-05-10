@@ -46,6 +46,8 @@ var ids = {
     TRINKET_NAMELESS_LICH_NM: 50360,
     TRINKET_SHARD_CRYSTAL_HEART: 48722,
     TRINKET_TALISMAN_RESURGENCE: 48724,
+    TRINKET_CHARRED_TWILIGHT_SCALE_HC: 54588,
+    TRINKET_CHARRED_TWILIGHT_SCALE_NM: 54572,
     // Enchants
     BLACK_MAGIC: 59625,
     HYPERSPEED_ACCELERATORS: 54999,
@@ -591,6 +593,11 @@ var equip = {
         { id: 22499, itemset: ids.T3_SET, title: "Frostfire Shoulderpads", ilvl: 86, int: 18, spi: 9, sp: 36 },
     ],
     back: [
+        // ruby
+        { id: 54583, title: "Cloak of Burning Dusk", ilvl: 284, int: 83, sp: 118, crit: 65, haste: 73, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
+        { id: 53489, title: "Cloak of Burning Dusk", ilvl: 271, int: 73, sp: 104, crit: 56, haste: 64, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
+        { id: 54556, title: "Abduction's Cover", ilvl: 271, int: 73, sp: 104, haste: 64, mp5: 28, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
+        { id: 53115, title: "Abduction's Cover", ilvl: 258, int: 65, sp: 91, haste: 57, mp5: 24, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
         // icc
         { id: 50628, title: "Frostbinder's Shredded Cape", ilvl: 277, int: 78, sp: 110, crit: 68, haste: 60, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 50205, title: "Frostbinder's Shredded Cape", ilvl: 264, int: 69, sp: 97, crit: 60, haste: 52, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
@@ -773,6 +780,9 @@ var equip = {
         { id: 23085, itemset: ids.CUDC_SET, title: "Robe of Undead Cleansing", ilvl: 63, int: 13, q: "rare" },
     ],
     wrist: [
+        // ruby
+        { id: 54582, title: "Bracers of Fiery Night", ilvl: 284, int: 83, sp: 118, crit: 65, haste: 73, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
+        { id: 53486, title: "Bracers of Fiery Night", ilvl: 271, int: 73, sp: 104, crit: 56, haste: 64, sockets: ["r"], bonus: {sp: 5}, phase: 5 },
         // icc
         { id: 50651, title: "The Lady's Brittle Bracers", ilvl: 277, int: 78, sp: 110, crit: 73, hit: 52, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 49994, title: "The Lady's Brittle Bracers", ilvl: 264, int: 69, sp: 97, crit: 65, hit: 45, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
@@ -933,6 +943,9 @@ var equip = {
         { id: 23084, itemset: ids.CUDC_SET, title: "Gloves of Undead Cleansing", ilvl: 64, int: 10, q: "rare" },
     ],
     waist: [
+        // ruby
+        { id: 54562, title: "Misbegotten Belt", ilvl: 271, int: 98, sp: 131, crit: 92, hit: 59, sockets: ["r", "r"], bonus: {sp: 7}, phase: 5 },
+        { id: 53118, title: "Misbegotten Belt", ilvl: 258, int: 86, sp: 114, crit: 81, hit: 50, sockets: ["r", "r"], bonus: {sp: 7}, phase: 5 },
         // icc
         { id: 50613, title: "Crushing Coldwraith Belt", ilvl: 277, int: 103, sp: 140, crit: 74, haste: 90, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
         { id: 49978, title: "Crushing Coldwraith Belt", ilvl: 264, int: 92, sp: 122, crit: 64, haste: 80, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
@@ -1169,6 +1182,11 @@ var equip = {
         { id: 22500, itemset: ids.T3_SET, title: "Frostfire Sandals", ilvl: 86, int: 18, spi: 10, sp: 28 },
     ],
     finger: [
+        // ruby
+        { id: 54563, title: "Saviana's Tribute", ilvl: 271, int: 73, sp: 104, crit: 64, hit: 56, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 5 },
+        { id: 53116, title: "Saviana's Tribute", ilvl: 258, int: 65, sp: 91, crit: 57, hit: 49, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 5 },
+        { id: 54585, title: "Ring of Phased Regeneration", ilvl: 284, int: 83, sp: 118, haste: 65, mp5: 36, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 5 },
+        { id: 53490, title: "Ring of Phased Regeneration", ilvl: 271, int: 73, sp: 104, haste: 56, mp5: 32, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 5 },
         // icc
         { id: ids.ASHEN_BAND_ENDLESS_DESTRUCTION, title: "Ashen Band of Endless Destruction", ilvl: 277, int: 73, sp: 101, hit: 51, haste: 64, sockets: ["y"], bonus: {sp: 5}, unique: true, phase: 4 },
         { id: ids.ASHEN_BAND_UNMATCHED_DESTRUCTION, title: "Ashen Band of Unmatched Destruction", ilvl: 268, int: 66, sp: 101, hit: 50, haste: 62, unique: true, phase: 4 },
@@ -1271,6 +1289,11 @@ var equip = {
         { id: 23062, itemset: ids.T3_SET, title: "Frostfire Ring", ilvl: 92, int: 10, sp: 30, unique: true },
     ],
     trinket: [
+        // ruby
+        { id: ids.TRINKET_CHARRED_TWILIGHT_SCALE_HC, title: "Charred Twilight Scale", ilvl: 284, haste: 184, unique: true, phase: 5 },
+        { id: ids.TRINKET_CHARRED_TWILIGHT_SCALE_NM, title: "Charred Twilight Scale", ilvl: 271, haste: 163, unique: true, phase: 5 },
+        { id: 54589, title: "Glowing Twilight Scale", ilvl: 284, sp: 215, unique: true, phase: 5 },
+        { id: 54573, title: "Glowing Twilight Scale", ilvl: 271, sp: 190, unique: true, phase: 5 },
         // icc
         { id: ids.TRINKET_DISLODGED_OBJECT_HC, title: "Dislodged Foreign Object", ilvl: 277, haste: 170, unique: true, phase: 4 },
         { id: ids.TRINKET_DISLODGED_OBJECT_NM, title: "Dislodged Foreign Object", ilvl: 264, haste: 155, unique: true, phase: 4 },
