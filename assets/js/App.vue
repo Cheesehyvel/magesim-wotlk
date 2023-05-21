@@ -2583,12 +2583,22 @@
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
                     },
                     {
-                        id: this.items.ids.TRINKET_VOLATILE_POWER_HC,
+                        id: this.items.ids.TRINKET_FETISH_VOLATILE_POWER_HC,
+                        title: "Fetish of Volatile Power",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_FETISH_VOLATILE_POWER_NM,
+                        title: "Fetish of Volatile Power",
+                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                    },
+                    {
+                        id: this.items.ids.TRINKET_TALISMAN_VOLATILE_POWER_HC,
                         title: "Talisman of Volatile Power",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
-                        id: this.items.ids.TRINKET_VOLATILE_POWER_NM,
+                        id: this.items.ids.TRINKET_TALISMAN_VOLATILE_POWER_NM,
                         title: "Talisman of Volatile Power",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
