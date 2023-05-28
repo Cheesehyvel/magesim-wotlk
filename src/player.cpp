@@ -1046,6 +1046,8 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                     chance*= instance.spell->actual_cast_time;
                 else
                     chance*= 0.75;
+                if (instance.spell->channeling)
+                    chance/= (double) instance.spell->ticks;
                 if (random<double>(0, 100) < chance)
                     actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
             }
