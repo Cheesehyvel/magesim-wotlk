@@ -1040,8 +1040,15 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             }
 
             // 50% chance, no icd ? unconfirmed
-            if (config.judgement_of_wisdom && random<int>(0, 1) == 1)
-                actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
+            if (config.judgement_of_wisdom) {
+                double chance = 25;
+                if (instance.spell->actual_cast_time > 0)
+                    chance*= instance.spell->actual_cast_time;
+                else
+                    chance*= 0.75;
+                if (random<double>(0, 100) < chance)
+                    actions.push_back(manaAction(base_mana * 0.02, "Judgement of Wisdom"));
+            }
 
             if (hasBuff(buff::COMBUSTION) && (instance.spell->school == SCHOOL_FIRE || instance.spell->school == SCHOOL_FROSTFIRE)) {
                 if (instance.result == spell::CRIT)
