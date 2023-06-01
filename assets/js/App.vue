@@ -1517,6 +1517,16 @@
                                 <div class="profiles">
                                     <div class="profile" v-for="(profile, index) in default_profiles" :key="profile.id">
                                         <div class="name" @click="loadProfile(profile)">{{ profile.name }}</div>
+                                        <div class="actions">
+                                            <div class="load-items" @click="loadProfile(profile, 'items')">
+                                                <span class="material-icons">&#xe84e;</span>
+                                                <tooltip position="t">Load items only</tooltip>
+                                            </div>
+                                            <div class="load-config" @click="loadProfile(profile, 'config')">
+                                                <span class="material-icons">&#xe8b8;</span>
+                                                <tooltip position="t">Load config only</tooltip>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -2105,7 +2115,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                search_item: "phase:2- ",
+                search_item: "phase:3- ",
                 search_gem: "",
                 search_log: "",
                 log_filter: {
@@ -4249,16 +4259,21 @@
 
                 if (sockets.length) {
                     for (var i=0; i<sockets.length; i++)
-                        gems[i] = this.defaultGem(sockets[i]);
+                        gems[i] = this.defaultGem(sockets[i], item);
                 }
 
                 return gems;
             },
 
-            defaultGem(color) {
+            defaultGem(color, item) {
                 if (color == "m")
                     return this.items.ids.META_CHAOTIC_SKYFLARE;
-                return 39998; // 19 sp
+
+                if (color == "y")
+                    return 40155; // 12 sp / 10 haste
+                if (color == "b")
+                    return 40133; // 12 sp / 10 spi
+                return 40113; // 23 sp
             },
 
             confirmGems() {
