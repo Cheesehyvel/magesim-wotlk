@@ -5112,6 +5112,18 @@
 
                 var errors = [];
 
+                var findGlyph = function(g) {
+                    if (_.isObject(g)) {
+                        if (g.spellID) {
+                            var gl = _.find(glyphs, {spellId: g.spellID});
+                            if (gl)
+                                return gl;
+                        }
+                        g = g.name;
+                    }
+                    return _.find(glyphs, {name: g});
+                };
+
                 if (this.import_profile.items) {
                     profile.equipped = {};
                     profile.enchants = {};
@@ -5201,7 +5213,7 @@
 
                         if (data.glyphs.major) {
                             for (var i=0, n=0; i<data.glyphs.major.length; i++, n++) {
-                                glyph = _.find(glyphs, {name: data.glyphs.major[i]});
+                                glyph = findGlyph(data.glyphs.major[i]);
                                 if (!glyph)
                                     continue;
                                 if (glyph.spellId == 56363)
@@ -5220,7 +5232,7 @@
 
                         if (data.glyphs.minor) {
                             for (var i=0, n=3; i<data.glyphs.minor.length; i++, n++) {
-                                glyph = _.find(glyphs, {name: data.glyphs.minor[i]});
+                                glyph = findGlyph(data.glyphs.minor[i]);
                                 if (!glyph)
                                     continue;
                                 id = glyph.spellId;
