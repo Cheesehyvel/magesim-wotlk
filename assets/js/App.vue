@@ -4445,7 +4445,7 @@
                     this.config.rotation = constants.rotations.ROTATION_ST_AB_AM_BARRAGE;
                 }
                 else if (spec == "fire") {
-                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503110003-0055030012303331053120301351_001q1g11xkk21q1y31rj441rj551rj7";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/23000503310003-0055030012303330053120300351_001q1g11xkk21q1y31rj441rj551rj7";
                     this.config.rotation = constants.rotations.ROTATION_ST_FIRE;
                 }
                 else if (spec == "frost") {
@@ -4453,7 +4453,7 @@
                     this.config.rotation = constants.rotations.ROTATION_ST_FROST;
                 }
                 else if (spec == "ffb") {
-                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/-2305030012303331053120311351-023303031002_001vrn11xkk21q1y31rj441rj551rj6";
+                    this.config.build = "https://www.wowhead.com/wotlk/talent-calc/mage/-2305032012303330053120300351-023303031003_001vrn11xkk21q1y31rj441rj551rj6";
                     this.config.rotation = constants.rotations.ROTATION_ST_FROSTFIRE;
                 }
 
