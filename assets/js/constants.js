@@ -73,6 +73,7 @@ export default {
         // Trinkets
         FORGE_EMBER: 60479,
         NOW_IS_THE_TIME: 60064,
+        ELUSIVE_POWER: 67669,
         FLARE_HEAVENS: 64713,
         PANDORAS_PLEA: 64741,
         EMBRACE_SPIDER: 60492,

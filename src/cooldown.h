@@ -45,6 +45,7 @@ namespace cooldown
         PENDULUM_TELLURIC_CURRENTS = 60483,
         DARKMOON_DEATH = 60203,
         NOW_IS_THE_TIME = 60064,
+        ELUSIVE_POWER = 67669,
         EMBRACE_SPIDER = 60492,
         DYING_CURSE = 60494,
         EXTRACT_NECROMANTIC_POWER = 60488,
@@ -478,6 +479,18 @@ namespace cooldown
         NowIsTheTime()
         {
             id = NOW_IS_THE_TIME;
+            duration = 45;
+        }
+
+    };
+
+    class ElusivePower : public Cooldown
+    {
+
+    public:
+        ElusivePower()
+        {
+            id = ELUSIVE_POWER;
             duration = 45;
         }
 

@@ -94,6 +94,7 @@
                     { title: "Alacrity of the Elements", color: "#ddd" },
                     { title: "Dying Curse", color: "#5b5" },
                     { title: "Now is the Time!", color: "#ddd" },
+                    { title: "Elusive Power", color: "#ddd" },
                     { title: "Embrace of the Spider", color: "#777" },
                     { title: "Twilight Serpent", color: "#ddd" },
                     { title: "Infinite Power", color: "#ddd" },

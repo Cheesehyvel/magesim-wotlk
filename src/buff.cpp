@@ -334,6 +334,14 @@ NowIsTheTime::NowIsTheTime()
     stats.spell_power = 590;
 }
 
+ElusivePower::ElusivePower()
+{
+    id = ELUSIVE_POWER;
+    name = "Elusive Power";
+    duration = 10;
+    stats.spell_power = 590;
+}
+
 EmbraceSpider::EmbraceSpider()
 {
     id = EMBRACE_SPIDER;

@@ -1289,6 +1289,11 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
         }
 
         // Unconfirmed - on harmful ?
+        if (hasTrinket(TRINKET_ABYSSAL_RUNE) && !hasCooldown(cooldown::ELUSIVE_POWER) && random<int>(0, 4) == 0) {
+            actions.push_back(buffCooldownAction<buff::ElusivePower, cooldown::ElusivePower>());
+        }
+
+        // Unconfirmed - on harmful ?
         if (hasTrinket(TRINKET_PENDULUM_TELLURIC_CURRENTS) && !hasCooldown(cooldown::PENDULUM_TELLURIC_CURRENTS) && random<int>(0, 19) < 3) {
             if (target == NULL)
                 target = state.targets[random<int>(0, state.targets.size()-1)];

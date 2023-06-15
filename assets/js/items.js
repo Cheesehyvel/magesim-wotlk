@@ -9,6 +9,7 @@ var ids = {
     TRINKET_FORGE_EMBER: 37660,
     TRINKET_PENDULUM_TELLURIC_CURRENTS: 37264,
     TRINKET_DARKMOON_DEATH: 42990,
+    TRINKET_ABYSSAL_RUNE: 47213,
     TRINKET_SUNDIAL_EXILED: 40682,
     TRINKET_EMBRACE_SPIDER: 39229,
     TRINKET_DYING_CURSE: 40255,
@@ -1346,6 +1347,7 @@ var equip = {
         { id: 42129, title: "Battlemaster's Accuracy", ilvl: 213, hit: 95 },
         { id: 42128, title: "Battlemaster's Hostility", ilvl: 213, crit: 95 },
         // prebis
+        { id: ids.TRINKET_ABYSSAL_RUNE, title: "Abyssal Rune", ilvl: 200, haste: 84, unique: true, phase: 3 },
         { id: ids.TRINKET_SUNDIAL_EXILED, title: "Sundial of the Exiled", ilvl: 200, crit: 84, unique: true },
         { id: ids.TRINKET_DARKMOON_DEATH, title: "Darkmoon Card: Death", ilvl: 200, crit: 85, unique: true },
         { id: 42988, title: "Darkmoon Card: Illusion", ilvl: 200, sp: 100, unique: true },

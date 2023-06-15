@@ -52,6 +52,7 @@ enum ID : int
     MARK_WAR_PRISONER = 60480,
     FORGE_EMBER = 60479,
     NOW_IS_THE_TIME = 60064,
+    ELUSIVE_POWER = 67669,
     EMBRACE_SPIDER = 60492,
     DYING_CURSE = 60494,
     ILLUSTRATION_DRAGON_SOUL = 60486,
@@ -409,6 +410,13 @@ class NowIsTheTime : public Buff
 
 public:
     NowIsTheTime();
+};
+
+class ElusivePower : public Buff
+{
+
+public:
+    ElusivePower();
 };
 
 class EmbraceSpider : public Buff
