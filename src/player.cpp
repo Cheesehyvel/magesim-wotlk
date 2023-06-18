@@ -198,6 +198,9 @@ double Player::critChance(std::shared_ptr<spell::Spell> spell) const
         crit += critRatingToChance(round(getSpirit() * multi));
     }
 
+    if (spell->proc)
+        return crit;
+
     if (talents.arcane_potency && hasBuff(buff::ARCANE_POTENCY))
         crit += talents.arcane_potency * 15.0;
 
@@ -232,7 +235,7 @@ double Player::critChance(std::shared_ptr<spell::Spell> spell) const
         }
     }
 
-    if ((spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE) && talents.critical_mass)
+    if (talents.critical_mass && (spell->school == SCHOOL_FIRE || spell->school == SCHOOL_FROSTFIRE))
         crit += talents.critical_mass * 2.0;
 
     if (spell->id == spell::FROSTFIRE_BOLT && glyphs.frostfire)
@@ -284,6 +287,9 @@ double Player::baseCritMultiplier(std::shared_ptr<spell::Spell> spell) const
 double Player::critMultiplierMod(std::shared_ptr<spell::Spell> spell) const
 {
     double multi = Unit::critMultiplierMod(spell);
+
+    if (spell->proc)
+        return multi;
 
     if (talents.spell_power)
         multi += talents.spell_power * 0.25;
@@ -364,6 +370,9 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
     if (hasBuff(buff::IRON_COUNCIL_SHIELD_OF_RUNES))
         multi *= 1.5;
 
+    if (spell->proc)
+        return multi;
+
     if (talents.torment_of_the_weak) {
         if (spell->id == spell::FROSTBOLT ||
             spell->id == spell::FIREBALL ||
@@ -413,7 +422,7 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
         additive += 0.02;
     if (config.t6_4set && (spell->id == spell::FIREBALL || spell->id == spell::FROSTBOLT || spell->id == spell::ARCANE_MISSILES))
         additive += 0.05;
-    if (hasBuff(buff::ARCANE_POWER) && !spell->proc)
+    if (hasBuff(buff::ARCANE_POWER))
         additive += 0.2;
 
     if (talents.spell_impact) {
