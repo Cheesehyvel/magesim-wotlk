@@ -277,7 +277,7 @@ class Wcl {
     }
 
     redirectUri() {
-        return window.location.origin+"/";
+        return window.location.href.replace(/\?.*$/, "").replace(/\#.*$/, "");
     }
 
     async createChallenge(code_verifier) {

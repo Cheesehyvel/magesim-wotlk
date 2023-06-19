@@ -1851,10 +1851,9 @@
     export default {
         beforeCreate() {
             if (window.location.search.length) {
-                document.documentElement.classList.add("callback");
-
                 var params = new URLSearchParams(window.location.search.substr(1));
                 if (params.get("code")) {
+                    document.documentElement.classList.add("callback");
                     var wcl = new Wcl(WCL_CLIENT_ID);
                     wcl.oauthConfirm(params.get("code"))
                     .then(r => {
