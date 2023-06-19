@@ -1583,19 +1583,19 @@
                     <template v-else-if="!import_wcl.fight">
                         <div class="description">
                             <div>This import will attempt to find the following settings in the raid log:</div>
-                            <div class="mt-n">
-                                Player gear<br>
-                                Fight duration<br>
-                                Bloodlust timing<br>
-                                Demonic Pact values
+                            <div class="checklist mt-n">
+                                <check-item :value="import_profile.items">Player gear</check-item>
+                                <check-item :value="import_profile.config">Fight duration</check-item>
+                                <check-item :value="import_profile.config">Bloodlust timing</check-item>
+                                <check-item :value="import_profile.config">Demonic Pact values</check-item>
                             </div>
                             <div class="mt-2">It will <b>NOT</b> import the following:</div>
-                            <div class="mt-n mb-2">
-                                Player talents<br>
-                                Rotation<br>
-                                Buffs/Debuffs<br>
-                                Personal Cooldowns<br>
-                                Interruptions such as silence or movement
+                            <div class="checklist mt-n mb-2">
+                                <check-item :value="false">Player talents</check-item>
+                                <check-item :value="false">Rotation</check-item>
+                                <check-item :value="false">Buffs/Debuffs</check-item>
+                                <check-item :value="false">Personal Cooldowns</check-item>
+                                <check-item :value="false">Interruptions such as silence or movement</check-item>
                             </div>
                         </div>
                         <template v-if="import_wcl.raid">
@@ -1621,18 +1621,18 @@
                         <div class="description">
                             Successfully retrieved the following data:
                             <div class="checklist mt-n">
-                                <check-item :value="import_wcl.fight.player.gear.length">
+                                <check-item :value="import_profile.items && import_wcl.fight.player.gear.length">
                                     Player gear
                                 </check-item>
-                                <check-item :value="import_wcl.fight.duration">
+                                <check-item :value="import_profile.config && import_wcl.fight.duration">
                                     Fight duration 
                                     <template v-if="import_wcl.fight.duration">({{ $round(import_wcl.fight.duration/1000) }}s)</template>
                                 </check-item>
-                                <check-item :value="import_wcl.fight.timings.length">
+                                <check-item :value="import_profile.config && import_wcl.fight.timings.length">
                                     Bloodlust timing 
                                     <template v-if="import_wcl.fight.timings.length">({{ $round(import_wcl.fight.timings[0].t/1000) }}s)</template>
                                 </check-item>
-                                <check-item :value="import_wcl.fight.dp_avg">
+                                <check-item :value="import_profile.config && import_wcl.fight.dp_avg">
                                     Demonic Pact values
                                     <template v-if="import_wcl.fight.dp_avg">({{ import_wcl.fight.dp_avg }})</template>
                                 </check-item>
@@ -4836,15 +4836,6 @@
             },
 
             checkImportString() {
-                if (this.import_profile.string && this.import_profile.string.match(/https\:\/\/classic\.warcraftlogs\.com\/reports\/([a-z0-9]+)/i)) {
-                    this.import_status.items = false;
-                    this.import_status.config = false;
-                    return;
-                }
-
-                this.import_status.items = true;
-                this.import_status.config = true;
-
                 try {
                     var json = atob(this.import_profile.string);
                     if (!json)
@@ -5476,34 +5467,41 @@
 
             importWCLConfirm() {
                 var profile = {
-                    equipped: {},
-                    enchants: {},
-                    gems: {},
-                    config: _.cloneDeep(this.config),
+                    equipped: null,
+                    enchants: null,
+                    gems: null,
+                    config: null,
                 };
 
                 var fight = this.import_wcl.fight;
 
-                var bloodlust = _.find(fight.timings, {name: "bloodlust"});
-                if (bloodlust) {
-                    var bl = _.find(this.config.timings, {name: "bloodlust"});
-                    if (!bl)
-                        bl = this.addTiming("bloodlust");
-                    bl.t = _.round(bloodlust.t/1000);
+                if (this.import_profile.config) {
+                    profile.config = _.cloneDeep(this.config);
+
+                    var bloodlust = _.find(fight.timings, {name: "bloodlust"});
+                    if (bloodlust) {
+                        var bl = _.find(this.config.timings, {name: "bloodlust"});
+                        if (!bl)
+                            bl = this.addTiming("bloodlust");
+                        bl.t = _.round(bloodlust.t/1000);
+                    }
+
+                    if (fight.duration)
+                        profile.config.duration = _.round(fight.duration/1000);
+
+                    if (fight.dp_avg > 0) {
+                        profile.config.demonic_pact = true;
+                        profile.config.demonic_pact_bonus = fight.dp_avg;
+                    }
+                    else {
+                        profile.config.demonic_pact = false;
+                    }
                 }
 
-                if (fight.duration)
-                    profile.config.duration = _.round(fight.duration/1000);
-
-                if (fight.dp_avg > 0) {
-                    profile.config.demonic_pact = true;
-                    profile.config.demonic_pact_bonus = fight.dp_avg;
-                }
-                else {
-                    profile.config.demonic_pact = false;
-                }
-
-                if (fight.player.gear && _.isArray(fight.player.gear)) {
+                if (this.import_profile.items && fight.player.gear && _.isArray(fight.player.gear)) {
+                    profile.equipped = {};
+                    profile.enchants = {};
+                    profile.gems = {};
 
                     var re, slot, item, eslot, enchant, gem;
                     fight.player.gear.forEach(g => {
