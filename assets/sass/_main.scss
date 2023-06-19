@@ -9,6 +9,14 @@ body {
     line-height: 1.5;
 }
 
+html.callback {
+    body {
+        > * {
+            display: none !important;
+        }
+    }
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -1197,6 +1205,7 @@ table {
 
                 > * {
                     display: inline-block;
+                    margin-left: 4px;
 
                     .material-icons {
                         font-size: 16px;
@@ -1442,6 +1451,10 @@ table {
     text-align: left;
 
     .check-item {
+        .material-icons {
+            margin-right: 4px;
+        }
+
         &.checked .material-icons {
             color: #0f0;
         }
@@ -1453,6 +1466,10 @@ table {
 
 
 .design-2 {
+    body {
+        background: rgb(20, 15, 23);
+    }
+    
     #app {
         .wrapper {
             .sidebar {

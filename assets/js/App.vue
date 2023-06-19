@@ -1568,6 +1568,79 @@
                 </div>
             </div>
 
+            <div class="lightbox small" v-if="import_wcl.open">
+                <div class="closer" @click="closeImportWCL"></div>
+                <div class="inner">
+                    <div class="title">Import raid from WCL</div>
+                    <template v-if="!wcl.access_token">
+                        <div class="description my-2">
+                            In order to fetch data from the API, you need to authorize the application.<br><br>
+                        </div>
+                        <div class="btn btn-primary" @click="wcl.oauthInit()">Continue to WCL</div>
+                    </template>
+                    <template v-else-if="!import_wcl.fight">
+                        <div class="description">
+                            <div>This import will attempt to find the following settings in the raid log:</div>
+                            <div class="mt-n">
+                                Player gear<br>
+                                Fight duration<br>
+                                Bloodlust timing<br>
+                                Demonic Pact values
+                            </div>
+                            <div class="mt-2">It will <b>NOT</b> import the following:</div>
+                            <div class="mt-n mb-2">
+                                Player talents<br>
+                                Rotation<br>
+                                Buffs/Debuffs<br>
+                                Personal Cooldowns<br>
+                                Interruptions such as silence or movement
+                            </div>
+                        </div>
+                        <template v-if="import_wcl.raid">
+                            <div class="form-item">
+                                <label>Choose player</label>
+                                <select v-model="import_wcl.player_id">
+                                    <option :value="null">- Choose -</option>
+                                    <option :value="player.id" v-for="player in import_wcl.raid.players.filter(p => p.type == 'Mage')">{{ player.name }}</option>
+                                </select>
+                            </div>
+                            <div class="form-item">
+                                <label>Choose fight</label>
+                                <select v-model="import_wcl.fight_id">
+                                    <option :value="null">- Choose -</option>
+                                    <option :value="fight.id" v-for="fight in import_wcl.raid.fights">{{ fight.name }}</option>
+                                </select>
+                            </div>
+                        </template>
+                        <div v-else class="mt-2">Loading log data...</div>
+                        <div class="btn btn-primary mt-2" :class="{disabled: !import_wcl.fight_id || !import_wcl.player_id || import_wcl.loading}" @click="importWCLFight()">Continue</div>
+                    </template>
+                    <template v-else>
+                        <div class="description">
+                            Successfully retrieved the following data:
+                            <div class="checklist mt-n">
+                                <check-item :value="import_wcl.fight.player.gear.length">
+                                    Player gear
+                                </check-item>
+                                <check-item :value="import_wcl.fight.duration">
+                                    Fight duration 
+                                    <template v-if="import_wcl.fight.duration">({{ $round(import_wcl.fight.duration/1000) }}s)</template>
+                                </check-item>
+                                <check-item :value="import_wcl.fight.timings.length">
+                                    Bloodlust timing 
+                                    <template v-if="import_wcl.fight.timings.length">({{ $round(import_wcl.fight.timings[0].t/1000) }}s)</template>
+                                </check-item>
+                                <check-item :value="import_wcl.fight.dp_avg">
+                                    Demonic Pact values
+                                    <template v-if="import_wcl.fight.dp_avg">({{ import_wcl.fight.dp_avg }})</template>
+                                </check-item>
+                            </div>
+                        </div>
+                        <div class="btn btn-primary mt-2" @click="importWCLConfirm()">Confirm and import</div>
+                    </template>
+                </div>
+            </div>
+
             <div class="lightbox" v-if="equiplist_open">
                 <div class="closer" @click="closeEquiplist"></div>
                 <div class="inner">
@@ -1765,13 +1838,51 @@
 
 <script>
     import { SimulationWorker, SimulationWorkers } from "./simulation";
+    import { Wcl } from "./wcl";
     import items from "./items";
     import glyphs from "./glyphs";
     import constants from "./constants";
     import default_profiles from "./default_profiles";
+    
     const DEFAULT_DESIGN = 2;
+    // const WCL_CLIENT_ID = process.env.MIX_WCL_CLIENT_ID;
+    const WCL_CLIENT_ID = "9970a7cf-9127-424a-a18d-a0503fb2dc1d";
 
     export default {
+        beforeCreate() {
+            if (window.location.search.length) {
+                document.documentElement.classList.add("callback");
+
+                var params = new URLSearchParams(window.location.search.substr(1));
+                if (params.get("code")) {
+                    var wcl = new Wcl(WCL_CLIENT_ID);
+                    wcl.oauthConfirm(params.get("code"))
+                    .then(r => {
+                        var msg = {
+                            type: "oauth_token",
+                            data: r,
+                        };
+                        if (window.opener) {
+                            window.opener.postMessage(msg, "*");
+                            window.close();
+                        }
+                        else {
+                            window.postMessage(msg, "*");
+                            window.history.replaceState(null, null, wcl.redirectUri());
+                            document.documentElement.classList.remove("callback");
+                        }
+                    })
+                    .catch(e => {
+                        console.error(e);
+                        if (window.opener)
+                            window.close();
+                        else
+                            window.history.replaceState(null, null, wcl.redirectUri());
+                    });
+                }
+            }
+        },
+
         created() {
             var design = localStorage.getItem("design");
             if (!design)
@@ -1779,6 +1890,8 @@
             document.documentElement.classList.add("design-"+design);
 
             this.checkNewUser();
+
+            window.addEventListener("message", this.onMessage);
         },
 
         mounted() {
@@ -2062,6 +2175,14 @@
                     items: true,
                     config: true,
                 },
+                import_wcl: {
+                    open: false,
+                    code: null,
+                    player_id: null,
+                    fight_id: null,
+                    fight: null,
+                    raid: null,
+                },
                 export_profile: {
                     open: false,
                     string: null,
@@ -2136,6 +2257,7 @@
                 talent_map: [[],[],[]],
                 default_config: default_config,
                 config: _.cloneDeep(default_config),
+                wcl: new Wcl(WCL_CLIENT_ID),
             };
 
             var slots = [
@@ -2786,6 +2908,16 @@
         },
 
         methods: {
+            onMessage(e) {
+                if (_.get(e, "data.type") == "oauth_token") {
+                    this.wcl.setAccessToken(e.data.data);
+                    this.errorNotice("Success!", "WCL authentication successful");
+
+                    if (this.import_wcl.open)
+                        this.importWCLReport(this.import_wcl.code);
+                }
+            },
+
             setDesign(design) {
                 document.documentElement.className = document.documentElement.className.replace(/design-[0-9]+/);
                 localStorage.setItem("design", design);
@@ -2819,15 +2951,17 @@
             },
 
             addTiming(name) {
-                this.config.timings.push({
+                var timing = {
                     id: this.newTimingId(),
                     name: name,
                     t: 0,
                     wait_t: 0,
                     wait_for_buff: 0,
-                });
-
+                };
+                this.config.timings.push(timing);
                 this.config.timings = _.sortBy(this.config.timings, "name");
+
+                return timing;
             },
 
             removeTiming(id) {
@@ -3283,6 +3417,17 @@
                     item =_.find(this.items.equip[this.itemSlots[i]], {id: id});
                     if (item)
                         return item;
+                }
+
+                return null;
+            },
+
+            getSlotAndItem(id) {
+                var item;
+                for (var key in this.items.equip) {
+                    item = _.find(this.items.equip[key], {id: id});
+                    if (item)
+                        return [key, item];
                 }
 
                 return null;
@@ -4660,6 +4805,9 @@
             },
 
             errorNotice(title, text) {
+                if (typeof(text) == "string")
+                    text = [text];
+
                 this.error_notice.open = true;
                 this.error_notice.title = title;
                 this.error_notice.text = text;
@@ -4687,6 +4835,15 @@
             },
 
             checkImportString() {
+                if (this.import_profile.string && this.import_profile.string.match(/https\:\/\/classic\.warcraftlogs\.com\/reports\/([a-z0-9]+)/i)) {
+                    this.import_status.items = false;
+                    this.import_status.config = false;
+                    return;
+                }
+
+                this.import_status.items = true;
+                this.import_status.config = true;
+
                 try {
                     var json = atob(this.import_profile.string);
                     if (!json)
@@ -4720,13 +4877,21 @@
                         import_type = "wse";
                 }
                 catch (e) {
-                    import_type = "native";
+                    var m = str.match(/https\:\/\/classic\.warcraftlogs\.com\/reports\/([a-z0-9]+)/i);
+                    if (m)
+                        import_type = "wcl";
+                    else
+                        import_type = "native";
                 }
 
                 if (import_type == "80up")
                     return this.importEightyUpgradesString(str);
                 else if (import_type == "wse")
                     return this.importWSEString(str);
+                else if (import_type == "wcl") {
+                    this.importWCLReport(m[1]);
+                    return true;
+                }
                 else if (import_type != "native")
                     return this.importError("Could not parse import string");
 
@@ -5269,6 +5434,125 @@
                 return true;
             },
 
+            async importWCLReport(code) {
+                this.import_wcl.open = true;
+                this.import_wcl.code = code;
+
+                if (this.wcl.hasAccessToken()) {
+                    try {
+                        this.import_wcl.loading = true;
+                        var raid = await this.wcl.getRaid(this.import_wcl.code);
+                        if (!raid)
+                            throw new Error("Could not fetch raid info");
+                        if (!raid.fights || !raid.fights.length)
+                            throw new Error("Could not fetch any fights");
+                    }
+                    catch (e) {
+                        return this.wclException(e);
+                    }
+
+                    this.import_wcl.loading = false;
+                    this.import_wcl.raid = raid;
+                }
+            },
+
+            async importWCLFight() {
+                if (!this.import_wcl.fight_id)
+                    return;
+
+                this.import_wcl.loading = true;
+
+                try {
+                    var fight = await this.wcl.getFightData(this.import_wcl.code, this.import_wcl.raid, this.import_wcl.fight_id, this.import_wcl.player_id);
+                }
+                catch (e) {
+                    return this.wclException(e);
+                }
+
+                this.import_wcl.loading = false;
+                this.import_wcl.fight = fight;
+            },
+
+            importWCLConfirm() {
+                var profile = {
+                    equipped: {},
+                    enchants: {},
+                    gems: {},
+                    config: _.cloneDeep(this.config),
+                };
+
+                var fight = this.import_wcl.fight;
+
+                var bloodlust = _.find(fight.timings, {name: "bloodlust"});
+                if (bloodlust) {
+                    var bl = _.find(this.config.timings, {name: "bloodlust"});
+                    if (!bl)
+                        bl = this.addTiming("bloodlust");
+                    bl.t = _.round(bloodlust.t/1000);
+                }
+
+                if (fight.duration)
+                    profile.config.duration = _.round(fight.duration/1000);
+
+                if (fight.dp_avg > 0) {
+                    profile.config.demonic_pact = true;
+                    profile.config.demonic_pact_bonus = fight.dp_avg;
+                }
+                else {
+                    profile.config.demonic_pact = false;
+                }
+
+                if (fight.player.gear && _.isArray(fight.player.gear)) {
+
+                    var re, slot, item, eslot, enchant, gem;
+                    fight.player.gear.forEach(g => {
+                        if (g.itemLevel <= 1)
+                            return;
+                        re = this.getSlotAndItem(g.id);
+                        if (re) {
+                            [slot, item] = re;
+                            eslot = slot;
+                            if (slot == "trinket" || slot == "finger")
+                                eslot+= (profile.equipped.hasOwnProperty(slot+"1") ? "2" : "1");
+                            profile.equipped[eslot] = item.id;
+                            if (_.get(g, "permanentEnchant")) {
+                                enchant = this.getEnchantFromEnchantmentId(slot, g.permanentEnchant);
+                                if (enchant)
+                                    profile.enchants[eslot] = enchant.id;
+                            }
+                            if (g.hasOwnProperty("gems") && _.isArray(g.gems)) {
+                                profile.gems[eslot] = [null, null, null];
+                                for (var i=0; i<g.gems.length; i++) {
+                                    gem = this.getGem(g.gems[i].id);
+                                    if (gem)
+                                        profile.gems[eslot][i] = gem.id;
+                                }
+                            }
+                        }
+                        else {
+                            console.log("Could not find item", g);
+                        }
+                    });
+                }
+
+                this.loadProfile(profile);
+                this.closeImportWCL();
+            },
+
+            wclException(e) {
+                this.import_wcl.loading = false;
+                this.errorNotice("Error", e.message);
+                console.error(e);
+            },
+
+            closeImportWCL() {
+                this.import_wcl.open = false;
+                this.import_wcl.raid = null;
+                this.import_wcl.fight = null;
+                this.import_wcl.fight_id = null;
+                this.import_wcl.player_id = null;
+            },
+
 
             nukeSettings() {
                 if (!window.confirm("This will remove all profiles and configurations from this computer"))
@@ -5562,11 +5846,11 @@
 
                 try {
                     if (!this.custom_item.slot)
-                        throw "Choose a slot";
+                        throw new Error("Choose a slot");
                     if (!this.custom_item.title)
-                        throw "Enter a title";
+                        throw new Error("Enter a title");
                     if (this.custom_item.id && this.findItem(this.custom_item.id))
-                        throw "Item id already exists";
+                        throw new Error("Item id already exists");
                 }
                 catch(e) {
                     this.custom_item_error = e;
