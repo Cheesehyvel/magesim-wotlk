@@ -281,10 +281,12 @@
                     <template v-if="result && !result.iterations">
                         <div class="tab" :class="{active: active_tab == 'log'}" @click="setTab('log')">Combat log</div>
                         <div class="tab" :class="{active: active_tab == 'timeline'}" @click="setTab('timeline')">Timeline</div>
-                        <div class="tab" :class="{active: active_tab == 'spells'}" @click="setTab('spells')">Spells</div>
                     </template>
                     <template v-if="result && result.iterations">
                         <div class="tab" :class="{active: active_tab == 'histogram'}" @click="setTab('histogram')">Histogram</div>
+                    </template>
+                    <template v-if="result && result.hasOwnProperty('spells')">
+                        <div class="tab" :class="{active: active_tab == 'spells'}" @click="setTab('spells')">Spells</div>
                     </template>
                 </div>
                 <div class="body">
@@ -666,11 +668,11 @@
                                     <tr v-for="spell in spellStats">
                                         <td>{{ spell.source }}</td>
                                         <td>{{ spell.name }}</td>
-                                        <td>{{ spell.casts }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
-                                        <td>{{ spell.misses }} ({{ $round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
-                                        <td>{{ spell.hits }}</td>
-                                        <td>{{ spell.crits }} ({{ $round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
-                                        <td>{{ $round(spell.dmg, 0) }} ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</td>
+                                        <td>{{ $round(spell.casts, 1) }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
+                                        <td>{{ $round(spell.misses, 1) }} ({{ $round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
+                                        <td>{{ $round(spell.hits, 1) }}</td>
+                                        <td>{{ $round(spell.crits, 1) }} ({{ $round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
+                                        <td>{{ $round(spell.dmg, 0) }}<template v-if="result.hasOwnProperty('dmg')"> ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</template></td>
                                         <td>{{ $round(spell.min_dmg, 0) }}</td>
                                         <td>{{ $round(spell.dmg / (spell.hits + spell.crits), 0) }}</td>
                                         <td>{{ $round(spell.max_dmg, 0) }}</td>

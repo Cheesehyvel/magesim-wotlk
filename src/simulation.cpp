@@ -39,9 +39,11 @@ SimulationsResult Simulation::runMultiple(int iterations)
     SimulationsResult result;
 
     logging = iterations == 1;
+    logging_spells = true;
 
     constexpr double bin_size = 50;
 
+    std::unordered_map<spell::ID, SpellStats> spells;
     std::unordered_map<int, int> histogram;
     std::string results{ "" };
 
@@ -68,6 +70,26 @@ SimulationsResult Simulation::runMultiple(int iterations)
         else
             histogram[bin] = 1;
 
+        if (logging_spells) {
+            for (auto itr = state.spells.begin(); itr != state.spells.end(); itr++) {
+                if (spells.find(itr->first) == spells.end()) {
+                    spells[itr->first].name = itr->second.name;
+                    spells[itr->first].source = itr->second.source;
+                    spells[itr->first].min_dmg = itr->second.min_dmg;
+                    spells[itr->first].max_dmg = itr->second.max_dmg;
+                }
+                spells[itr->first].casts += (itr->second.casts - spells[itr->first].casts) / (i+1.0);
+                spells[itr->first].misses += (itr->second.misses - spells[itr->first].misses) / (i+1.0);
+                spells[itr->first].hits += (itr->second.hits - spells[itr->first].hits) / (i+1.0);
+                spells[itr->first].crits += (itr->second.crits - spells[itr->first].crits) / (i+1.0);
+                spells[itr->first].dmg += (itr->second.dmg - spells[itr->first].dmg) / (i+1.0);
+                if (itr->second.max_dmg > spells[itr->first].max_dmg)
+                    spells[itr->first].max_dmg = itr->second.max_dmg;
+                if (itr->second.min_dmg < spells[itr->first].min_dmg)
+                    spells[itr->first].min_dmg = itr->second.min_dmg;
+            }
+        }
+
         if (config.additional_data)
             results += std::to_string(r.dps) + "," + std::to_string(r.t) + "\n";
     }
@@ -76,6 +98,9 @@ SimulationsResult Simulation::runMultiple(int iterations)
 
     if (config.additional_data)
         result.all_results = std::move(results);
+
+    if (logging_spells)
+        result.spells = spellStats(spells);
 
     // Histogram json string
     std::string ss{ "{" };
@@ -147,7 +172,7 @@ SimulationResult Simulation::run(bool single)
 
     if (logging) {
         result.log = jsonLog();
-        result.spells = spellStats();
+        result.spells = spellStats(state.spells);
     }
 
     return result;
@@ -697,7 +722,7 @@ void Simulation::onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellIns
     onSpellImpactProc(unit, instance, target);
 
     // Log spell use
-    if (logging) {
+    if (logging_spells) {
         initSpellStats(unit, instance.spell);
         state.spells[instance.spell->id].casts++;
         if (instance.result == spell::MISS)
@@ -1499,12 +1524,12 @@ void Simulation::initSpellStats(std::shared_ptr<unit::Unit> unit, std::shared_pt
     }
 }
 
-std::string Simulation::spellStats()
+std::string Simulation::spellStats(std::unordered_map<spell::ID, SpellStats> spells)
 {
     std::string s{ "[" };
 
-    for (auto itr = state.spells.begin(); itr != state.spells.end(); itr++) {
-        if (itr != state.spells.begin())
+    for (auto itr = spells.begin(); itr != spells.end(); itr++) {
+        if (itr != spells.begin())
             s += ",";
         s += "{";
         s += "\"id\":" + std::to_string(itr->first) + ",";

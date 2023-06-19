@@ -400,7 +400,8 @@ EMSCRIPTEN_BINDINGS(my_module)
         .field("t_gcd_capped", &SimulationsResult::t_gcd_capped)
         .field("iterations", &SimulationsResult::iterations)
         .field("histogram", &SimulationsResult::histogram)
-        .field("all_results", &SimulationsResult::all_results);
+        .field("all_results", &SimulationsResult::all_results)
+        .field("spells", &SimulationsResult::spells);
 
     emscripten::function("emptyStats", &emptyStats);
     emscripten::function("emptyTalents", &emptyTalents);

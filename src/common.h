@@ -171,10 +171,10 @@ struct SpellStats
 {
     std::string source;
     std::string name;
-    int casts = 0;
-    int misses = 0;
-    int hits = 0;
-    int crits = 0;
+    double casts = 0;
+    double misses = 0;
+    double hits = 0;
+    double crits = 0;
     double dmg = 0;
     double min_dmg = 0;
     double max_dmg = 0;
@@ -199,6 +199,7 @@ struct SimulationsResult
     int iterations;
     std::string histogram;
     std::string all_results;
+    std::string spells;
 };
 
 double critRatingToChance(double rating);

@@ -66,6 +66,7 @@ private:
 
 public:
     bool logging = true;
+    bool logging_spells = true;
     std::list<Event> queue;
     std::vector<LogEntry> log;
     std::shared_ptr<unit::Player> player;
@@ -260,5 +261,5 @@ public:
 
     void initSpellStats(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
 
-    std::string spellStats();
+    std::string spellStats(std::unordered_map<spell::ID, SpellStats> spells);
 };
