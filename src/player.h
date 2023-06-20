@@ -37,8 +37,6 @@ public:
     int mana_sapphire;
     int ab_streak;
     bool used_dark_rune;
-    bool waited;
-    bool should_wait;
     bool black_magic;
 
     Player(const Config& config, const Stats& stats, const Talents& talents, const Glyphs& glyphs);
@@ -105,8 +103,6 @@ public:
     bool isFrozen() const;
 
     bool hasChillEffect(std::shared_ptr<spell::Spell> spell) const;
-
-    void interrupt(const Interruption& interruption);
 
     void swapWeapons();
 

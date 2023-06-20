@@ -985,46 +985,6 @@
                                         <input type="text" v-model.number="config.rot_brain_freeze_hold">
                                     </div>
                                 </template>
-                                <div class="form-item" v-if="config.talents.ignite">
-                                    <label><input type="checkbox" v-model="config.ignite_bleeding">
-                                        <span>Ignite bleeding</span>
-                                        <help>
-                                            When a spell crits right before an ignite tick, it is possible for that tick<br>
-                                            to happen and also keep that damage rolling onto the next ignite.
-                                        </help>
-                                    </label>
-                                </div>
-                                <div class="form-item" v-if="config.talents.ignite">
-                                    <label><input type="checkbox" v-model="config.ignite_munching">
-                                        <span>Ignite munching</span>
-                                        <help>
-                                            When two spells crit at the same time, only the latter spell will count towards ignite.<br>
-                                            For example when an instant pyroblast lands right after a fireball, or when Living Bomb explodes at the same time as another spell lands on the target.<br>
-                                            However, this does not affect Hot Streak with Frostfire Bolt due to Frostfire Bolt having a faster travel time.
-                                        </help>
-                                    </label>
-                                </div>
-                                <template v-if="config.talents.hot_streak && config.talents.ignite && config.ignite_munching && config.rotation == rotations.ROTATION_ST_FIRE">
-                                    <div class="form-item">
-                                        <label><input type="checkbox" v-model="config.hot_streak_cqs">
-                                            <span>Delay Pyroblast slightly</span>
-                                            <help>
-                                                This will delay Pyroblast by {{ config.hot_streak_cqs_time }}ms after a Hot Streak to prevent ignite munching.<br>
-                                                There is no way to do this perfectly in-game, but a cqs macro can do this with about 70-90% reliability.
-                                            </help>
-                                        </label>
-                                    </div>
-                                    <div class="form-item" v-if="config.hot_streak_cqs">
-                                        <label>
-                                            <span>Pyroblast delay (ms)</span>
-                                            <help>
-                                                A delay of 10ms or less will cause ignite munching in the sim.<br>
-                                                In game this is more complicated. Sometimes you get munching with 60ms, sometimes you don't with 0ms.
-                                            </help>
-                                        </label>
-                                        <input type="text" v-model.number="config.hot_streak_cqs_time">
-                                    </div>
-                                </template>
                                 <div class="form-item">
                                     <label>
                                         <span>Number of Evocation ticks</span>
@@ -2023,10 +1983,6 @@
                 rot_brain_freeze_hold: 15,
                 rot_black_magic: false,
                 rot_black_magic_ench: 0,
-                ignite_munching: true,
-                ignite_bleeding: true,
-                hot_streak_cqs: false,
-                hot_streak_cqs_time: 100,
                 evo_ticks: 0,
 
                 timings: Array(),

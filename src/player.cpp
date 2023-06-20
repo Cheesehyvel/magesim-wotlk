@@ -41,8 +41,6 @@ void Player::reset()
     mana_sapphire = 3;
     ab_streak = 0;
     used_dark_rune = false;
-    waited = false;
-    should_wait = false;
     black_magic = false;
 
     if (config.rot_black_magic)
@@ -608,16 +606,6 @@ bool Player::hasChillEffect(std::shared_ptr<spell::Spell> spell) const
     return false;
 }
 
-void Player::interrupt(const Interruption& interruption)
-{
-    Unit::interrupt(interruption);
-
-    if (interruption.duration > 0) {
-        waited = false;
-        should_wait = false;
-    }
-}
-
 void Player::swapWeapons()
 {
     black_magic = !black_magic;
@@ -777,8 +765,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
 
     if (hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0 && (spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        // Confirmed bug: FFB is unaffected by the t8 4p bonus
-        if (!config.t8_4set || random<int>(0, 4) != 0 || spell->id == spell::FROSTFIRE_BOLT) {
+        if (!config.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::BrainFreeze>());
             if (config.t10_2set)
                 actions.push_back(buffAction<buff::PushingTheLimit>());
@@ -1969,27 +1956,14 @@ action::Action Player::nextAction(const State& state)
         bool main_bomb = talents.living_bomb && target->t_living_bomb + 12.0 <= state.t && state.t + 12.0 < state.duration;
 
         if (canReactTo(buff::HOT_STREAK, state.t) && talents.pyroblast && (config.targets > 1 || heating_up || !main_bomb)) {
-            if (waited || !should_wait || !config.hot_streak_cqs || !config.ignite_munching) {
-                waited = false;
-                should_wait = false;
-                if (!config.only_main_dmg) {
-                    for (auto const& tar : state.targets) {
-                        if (tar->t_pyroblast + 12.0 < state.t)
-                            return spellAction<spell::Pyroblast>(tar);
-                    }
+            if (!config.only_main_dmg) {
+                for (auto const& tar : state.targets) {
+                    if (tar->t_pyroblast + 12.0 < state.t)
+                        return spellAction<spell::Pyroblast>(tar);
                 }
-                return spellAction<spell::Pyroblast>(target);
             }
-            else {
-                action::Action action;
-                action.type = action::TYPE_WAIT;
-                action.value = config.hot_streak_cqs_time / 1000.0;
-                waited = true;
-                return action;
-            }
+            return spellAction<spell::Pyroblast>(target);
         }
-
-        should_wait = false;
 
         // Check for Living Bomb targets
         if (talents.living_bomb && state.t + 12.0 < state.duration) {
@@ -2016,7 +1990,6 @@ action::Action Player::nextAction(const State& state)
             }
         }
 
-        should_wait = true;
         return spellAction<spell::Fireball>(target);
     }
 

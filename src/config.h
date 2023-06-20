@@ -91,10 +91,6 @@ struct Config
     bool rot_black_magic = false;
     Enchant rot_black_magic_ench = ENCHANT_NONE;
     bool maintain_imp_scorch = false;
-    bool ignite_munching = false;
-    bool ignite_bleeding = false;
-    bool hot_streak_cqs = false;
-    double hot_streak_cqs_time = 100;
     int evo_ticks = 0;
 
     std::vector<Timing> timings;
