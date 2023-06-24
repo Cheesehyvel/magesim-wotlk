@@ -1231,6 +1231,7 @@ var equip = {
         { id: 47618, title: "Firestorm Ring", ilvl: 232, int: 52, sp: 78, crit: 36, hit: 50, unique: true, faction: "a", phase: 3 },
         { id: 47732, title: "Band of the Invoker", ilvl: 245, int: 58, spi: 50, sp: 89, haste: 50, unique: true, phase: 3 },
         { id: 47733, title: "Heartmender Circle", ilvl: 245, int: 58, sp: 89, crit: 50, mp5: 25, unique: true, phase: 3 },
+        { id: 49486, title: "Polished Dragonslayer's Signet", ilvl: 245, int: 56, spi: 36, sp: 89, crit: 53, phase: 3 },
         { id: 48957, title: "Etched Signet of the Kirin Tor", ilvl: 232, int: 45, sp: 78, crit: 43, haste: 45, unique: true, phase: 3 },
         // ulduar
         { id: 45495, title: "Conductive Seal", ilvl: 252, int: 54, spi: 44, sp: 85, haste: 62, sockets: ["b"], bonus: {sp: 5}, unique: true, phase: 2 },
