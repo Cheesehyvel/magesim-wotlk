@@ -1517,7 +1517,7 @@
                 <div class="inner">
                     <div class="title">Import</div>
                     <div class="description">
-                        Supported formats: MageSim, EightyUpgrades, WowSims Exporter addon.
+                        Supported formats: MageSim, EightyUpgrades, WowSims Exporter, Warcraft Logs.
                     </div>
                     <div class="form-item">
                         <textarea v-model="import_profile.string" ref="import_input" @input="checkImportString"></textarea>
