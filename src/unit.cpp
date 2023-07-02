@@ -260,9 +260,6 @@ double Unit::gcd(double t) const
 
 double Unit::baseCastTime(std::shared_ptr<spell::Spell> spell) const
 {
-    if (hasBuff(buff::PRESENCE_OF_MIND) && !spell->channeling)
-        return 0;
-
     return spell->cast_time;
 }
 

@@ -149,6 +149,8 @@ double Player::baseCastTime(std::shared_ptr<spell::Spell> spell) const
         t = 0;
     if ((spell->id == spell::FIREBALL || spell->id == spell::FROSTFIRE_BOLT) && hasBuff(buff::BRAIN_FREEZE))
         t = 0;
+    if (hasBuff(buff::PRESENCE_OF_MIND) && !spell->channeling)
+        t = 0;
 
     return t;
 }
