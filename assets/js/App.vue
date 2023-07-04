@@ -2407,31 +2407,31 @@
                                     items = items.filter(item => item.title.indexOf(" Gladiator's ") == -1);
                             }
                             else if (arr[0] == "ilvl") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "ilvl", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "ilvl", 0)));
                             }
                             else if (arr[0] == "p" || arr[0] == "phase") {
                                 items = items.filter(item => filterInt(arr[1], _.get(item, "phase", 1)));
                             }
                             else if (arr[0] == "sp") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "sp", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "sp", 0)));
                             }
                             else if (arr[0] == "crit") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "crit", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "crit", 0)));
                             }
                             else if (arr[0] == "hit") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "hit", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "hit", 0)));
                             }
                             else if (arr[0] == "haste") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "haste", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "haste", 0)));
                             }
                             else if (arr[0] == "spi" || arr[0] == "spirit") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "spi", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "spi", 0)));
                             }
                             else if (arr[0] == "int" || arr[0] == "intellect") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "int", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "int", 0)));
                             }
                             else if (arr[0] == "mp5") {
-                                items = items.filter(item => filterInt(arr[1], _.get(item, "mp5", 1)));
+                                items = items.filter(item => filterInt(arr[1], _.get(item, "mp5", 0)));
                             }
                             else if (arr[0] == "2h") {
                                 items = items.filter(item => filterBool(arr[1], _.get(item, "twohand", false)));
