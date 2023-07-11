@@ -890,7 +890,8 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             actions.push_back(buffCooldownAction<buff::ShowFaith, cooldown::ShowFaith>());
         }
 
-        // Unconfirmed - on harmful spell cast ?
+        // Confirmed - on harmful spell cast
+        // Also procs on ignite application and living bomb explosion
         if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC) && is_harmful) {
             actions.push_back(buffAction<buff::VolatilityHc>());
         }
@@ -997,6 +998,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
 
     if (instance.spell->id == spell::LIVING_BOMB && instance.tick == instance.spell->ticks) {
         actions.push_back(spellAction<spell::LivingBombExplosion>());
+
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC))
+            actions.push_back(buffAction<buff::VolatilityHc>());
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM))
+            actions.push_back(buffAction<buff::VolatilityNm>());
     }
 
     if (instance.result != spell::MISS) {
@@ -1103,6 +1109,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         if (talents.ignite && (instance.spell->school == SCHOOL_FIRE || instance.spell->school == SCHOOL_FROSTFIRE) && !instance.spell->proc) {
             // 40% over 2 ticks = 20%
             actions.push_back(spellAction<spell::Ignite>(target, round(instance.dmg * 0.2)));
+
+            if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC))
+                actions.push_back(buffAction<buff::VolatilityHc>());
+            if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM))
+                actions.push_back(buffAction<buff::VolatilityNm>());
         }
 
         if (!instance.spell->dot) {
