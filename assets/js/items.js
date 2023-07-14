@@ -675,6 +675,7 @@ var equip = {
         { id: 42055, title: "Hateful Gladiator's Cloak of Dominance", ilvl: 200, int: 24, sp: 59, crit: 34 },
         { id: 42056, title: "Hateful Gladiator's Cloak of Subjugation", ilvl: 200, int: 24, sp: 59, haste: 34 },
         // prebis
+        { id: 47501, title: "Kurisu's Indecision", ilvl: 219, int: 42, sp: 70, crit: 33, hit: 44, phase: 3 },
         { id: 40723, title: "Disguise of the Kumiho", ilvl: 213, int: 38, spi: 37, sp: 65, haste: 41 },
         { id: 40724, title: "Cloak of Kea Feathers", ilvl: 213, int: 43, sp: 66, haste: 28, mp5: 21 },
         { id: 41610, title: "Deathchill Cloak", ilvl: 200, sp: 59, crit: 43, haste: 53 },
