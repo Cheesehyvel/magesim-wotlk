@@ -216,6 +216,7 @@ var equip = {
         { id: 44418, title: "Hateful Gladiator's Focus Staff", ilvl: 200, int: 57, sp: 408, hit: 75, twohand: true },
         { id: 44417, title: "Hateful Gladiator's War Staff", ilvl: 200, int: 57, sp: 408, haste: 75, twohand: true },
         // prebis
+        { id: 47569, title: "Spectral Kris", ilvl: 219, int: 30, sp: 487, crit: 36, haste: 46, sockets: ["b"], bonus: {crit: 4}, unique: true, phase: 3 },
         { id: 45085, title: "Titansteel Spellblade", ilvl: 200, sp: 408, crit: 53, hit: 30 },
         { id: 44173, title: "Flameheart Spell Scalpel", ilvl: 200, int: 33, sp: 355, crit: 25, hit: 34, q: "rare" },
         { id: 37377, title: "Netherbreath Spellblade", ilvl: 200, int: 32, spi: 26, sp: 355, crit: 34, q: "rare" },
@@ -507,6 +508,8 @@ var equip = {
         { id: 42022, title: "Hateful Gladiator's Pendant of Dominance", ilvl: 200, int: 24, sp: 59, crit: 34 },
         { id: 42023, title: "Hateful Gladiator's Pendant of Subjugation", ilvl: 200, int: 24, sp: 59, haste: 34 },
         // prebis
+        { id: 47562, title: "Symbol of Redemption", ilvl: 219, int: 41, sp: 67, crit: 29, mp5: 21, sockets: ["b"], bonus: {int: 4}, phase: 3 },
+        { id: 47219, title: "Brilliant Hailstone Amulet", ilvl: 200, int: 34, sp: 53, crit: 36, hit: 21, sockets: ["y"], bonus: {hit: 4}, phase: 3 },
         { id: 39472, title: "Chain of Latent Energies", ilvl: 200, int: 33, sp: 59, hit: 34, haste: 36 },
         { id: 40680, title: "Encircling Burnished Gold Chains", ilvl: 200, int: 38, spi: 34, sp: 59, hit: 25 },
         { id: 40681, title: "Lattice Choker of Light", ilvl: 200, int: 38, sp: 59, crit: 34, mp5: 16 },
@@ -762,8 +765,8 @@ var equip = {
         // prebis
         { id: 50266, title: "Ancient Polar Bear Hide", ilvl: 232, int: 92, sp: 141, hit: 61, haste: 92, phase: 4 },
         { id: 50213, title: "Mord'rethar Robes", ilvl: 232, int: 92, spi: 86, sp: 141, crit: 70, phase: 4 },
-        { id: 47527, title: "Embrace of Madness", ilvl: 219, int: 70, spi: 56, sp: 124, crit: 69, sockets: ["b", "b"], bonus: {int: 6}, phase: 4 },
         { id: 49825, title: "Palebone Robes", ilvl: 219, int: 79, sp: 124, crit: 71, haste: 71, phase: 4 },
+        { id: 47527, title: "Embrace of Madness", ilvl: 219, int: 70, spi: 56, sp: 124, crit: 69, sockets: ["b", "b"], bonus: {int: 6}, phase: 3 },
         { id: 43583, title: "Glacial Robe", ilvl: 213, sockets: ["r", "y", "b"] },
         { id: 42102, title: "Spellweave Robe", ilvl: 200, int: 64, spi: 52, sp: 104, haste: 90 },
         { id: 42101, title: "Ebonweave Robe", ilvl: 200, int: 89, sp: 105, hit: 68 },
@@ -847,6 +850,7 @@ var equip = {
         // prebis
         { id: 40740, title: "Wraps of the Astral Traveler", ilvl: 213, int: 41, spi: 43, sp: 65, hit: 28 },
         { id: 40741, title: "Cuffs of the Shadow Ascendant", ilvl: 213, int: 43, sp: 66, haste: 38, mp5: 19 },
+        { id: 47173, title: "Bindings of the Wicked", ilvl: 200, int: 37, sp: 58, crit: 33, hit: 33, phase: 3 },
         { id: 37361, title: "Cuffs of Winged Levitation", ilvl: 200, int: 38, spi: 32, sp: 59, haste: 33 },
         { id: 37884, title: "Azure Cloth Bindings", ilvl: 200, int: 38, sp: 59, crit: 50 },
         { id: 41555, itemset: ids.DUSKWEAVE_SET, title: "Black Duskweave Wristwraps", ilvl: 187, int: 27, sp: 46, haste: 38, q: "rare" },
@@ -1012,6 +1016,8 @@ var equip = {
         { id: 41896, title: "Hateful Gladiator's Cord of Dominance", ilvl: 200, int: 33, sp: 68, crit: 36, sockets: ["b"], bonus: {sp: 5} },
         { id: 41877, title: "Hateful Gladiator's Cord of Salvation", ilvl: 200, int: 33, spi: 36, sp: 68, sockets: ["b"], bonus: {sp: 5} },
         // prebis
+        { id: 47181, title: "Belt of the Churning Blaze", ilvl: 200, int: 49, sp: 78, crit: 35, hit: 50, phase: 3 },
+        { id: 47218, title: "The Confessor's Binding", ilvl: 200, int: 53, spi: 45, sp: 69, crit: 34, sockets: ["y"], bonus: {spi: 4}, phase: 3 },
         { id: 37408, title: "Girdle of Bane", ilvl: 200, int: 51, spi: 38, sp: 77, hit: 48 },
         { id: 40696, title: "Plush Sash of Guzbah", ilvl: 200, int: 52, sp: 68, hit: 33, haste: 42, sockets: ["y"], bonus: {hit: 4} },
         { id: 44309, title: "Sash of Jordan", ilvl: 200, int: 55, spi: 55, sp: 66, sockets: ["r"], bonus: {sp: 5} },
@@ -1088,6 +1094,7 @@ var equip = {
         { id: 41957, itemset: ids.GLADIATOR_SET, title: "Hateful Gladiator's Silk Trousers", ilvl: 200, int: 45, sp: 87, crit: 44, sockets: ["r", "b"], bonus: { sp: 7 } },
         { id: 41956, itemset: ids.GLADIATOR_SET, title: "Savage Gladiator's Silk Trousers", ilvl: 200, int: 39, sp: 73, crit: 36, sockets: ["r", "b"], bonus: { sp: 7 }, q: "rare" },
         // prebis
+        { id: 47185, title: "Leggings of the Haggard Apprentice", ilvl: 200, int: 49, spi: 56, sp: 96, crit: 47, sockets: ["b", "y"], bonus: {sp: 7}, phase: 3 },
         { id: 37854, title: "Woven Bracae Leggings", ilvl: 200, int: 68, sp: 105, crit: 89 },
         { id: 37622, title: "Skirt of the Old Kingdom", ilvl: 200, int: 68, sp: 104, mp5: 45 },
         { id: 37369, title: "Sorrowgrave's Breeches", ilvl: 200, int: 71, sp: 82, crit: 59, sockets: ["r"], bonus: {crit: 4}, q: "rare" },
@@ -1272,6 +1279,7 @@ var equip = {
         { id: 42110, title: "Hateful Gladiator's Band of Dominance", ilvl: 200, int: 24, sp: 59, crit: 34, unique: true },
         { id: 42112, title: "Hateful Gladiator's Band of Triumph", ilvl: 200, crit: 34, unique: true },
         // prebis
+        { id: 47512, title: "Sinner's Confession", ilvl: 219, int: 45, sp: 70, crit: 33, hit: 44, unique: true, phase: 3 },
         { id: 40719, title: "Band of Channeled Magic", ilvl: 213, int: 41, spi: 32, sp: 65, haste: 43, unique: true },
         { id: 40720, title: "Renewal of Life", ilvl: 213, int: 41, sp: 66, crit: 28, mp5: 21, unique: true },
         { id: 49123, title: "The Horseman's Seal", ilvl: 200, int: 38, sp: 58, hit: 29, haste: 36, unique: true },
