@@ -476,7 +476,7 @@
                                                 @click="enchant(active_slot, item)"
                                             >
                                                 <td>
-                                                    <a :href="spellUrl(item)" :class="['quality-'+$get(item, 'q', 'uncommon')]" target="_blank" @click.stop>
+                                                    <a :href="spellUrl(item)" :class="['quality-'+$get(item, 'q', 'uncommon')]" target="_blank" @click.prevent>
                                                         {{ item.title }}
                                                     </a>
                                                 </td>
@@ -541,7 +541,7 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <a :href="itemUrl(gem)" class="gem-color" :class="['color-'+gem.color]" target="_blank" @click.stop>
+                                                            <a :href="itemUrl(gem)" class="gem-color" :class="['color-'+gem.color]" target="_blank" @click.prevent>
                                                                 {{ gem.title }}
                                                             </a>
                                                         </td>
