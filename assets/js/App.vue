@@ -2662,6 +2662,11 @@
 
                 var trinkets = [
                     {
+                        id: this.items.ids.TRINKET_MISGUIDED_QUILL,
+                        title: "Maghia's Misguided Quill",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_trinket_02.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_SLIVER_PURE_ICE_HC,
                         title: "Sliver of Pure Ice",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
@@ -2852,6 +2857,8 @@
                     buffs.push({id: constants.buffs.CHARRED_TWILIGHT_SCALE_HC, name: "Glowing Twilight Scale"});
                 if (this.isEquipped("trinket", this.items.ids.TRINKET_CHARRED_TWILIGHT_SCALE_NM))
                     buffs.push({id: constants.buffs.CHARRED_TWILIGHT_SCALE_NM, name: "Glowing Twilight Scale"});
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_PURIFIED_LUNAR_DUST))
+                    buffs.push({id: constants.buffs.PURIFIED_LUNAR_DUST, name: "Purified Lunar Dust"});
 
                 if (this.isEquipped("finger", this.items.ids.ASHEN_BAND_ENDLESS_DESTRUCTION) || this.isEquipped("finger", this.items.ids.ASHEN_BAND_UNMATCHED_DESTRUCTION))
                     buffs.push({id: constants.buffs.ASHEN_BAND, name: "Frostforged Sage (Ashen Band)"});

@@ -584,6 +584,22 @@ CharredTwilightScaleNm::CharredTwilightScaleNm()
     stats.spell_power = 763;
 }
 
+MisguidedQuill::MisguidedQuill()
+{
+    id = MISGUIDED_QUILL;
+    name = "Elusive Power";
+    duration = 20;
+    stats.spell_power = 716;
+}
+
+PurifiedLunarDust::PurifiedLunarDust()
+{
+    id = PURIFIED_LUNAR_DUST;
+    name = "Revitalized";
+    duration = 15;
+    stats.mp5 = 304;
+}
+
 HodirStormPower::HodirStormPower()
 {
     id = HODIR_STORM_POWER;

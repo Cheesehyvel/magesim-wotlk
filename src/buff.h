@@ -82,6 +82,8 @@ enum ID : int
     NAMELESS_LICH_NM = 71605,
     CHARRED_TWILIGHT_SCALE_HC = 75473,
     CHARRED_TWILIGHT_SCALE_NM = 75466,
+    MISGUIDED_QUILL = 71579,
+    PURIFIED_LUNAR_DUST = 71584,
     // Encounters
     HODIR_STORM_POWER = 63711,
     HODIR_STARLIGHT = 62807,
@@ -620,6 +622,20 @@ class CharredTwilightScaleNm : public Buff
 
 public:
     CharredTwilightScaleNm();
+};
+
+class MisguidedQuill : public Buff
+{
+
+public:
+    MisguidedQuill();
+};
+
+class PurifiedLunarDust : public Buff
+{
+
+public:
+    PurifiedLunarDust();
 };
 
 class HodirStormPower : public Buff

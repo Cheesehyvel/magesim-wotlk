@@ -85,5 +85,6 @@ export default {
         NAMELESS_LICH_NM: 71605,
         CHARRED_TWILIGHT_SCALE_HC: 75473,
         CHARRED_TWILIGHT_SCALE_NM: 75466,
+        PURIFIED_LUNAR_DUST: 71584,
     }
 };

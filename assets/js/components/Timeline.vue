@@ -77,6 +77,7 @@
                     { title: "Frostforged Sage", color: "#ddd" },
                 ],
                 trinkets: [
+                    { title: "Revitalized", color: "#ddd" },
                     { title: "Twilight Flames", color: "#ddd" },
                     { title: "Surge of Power", color: "#ddd" },
                     { title: "Siphoned Power", color: "#ddd" },

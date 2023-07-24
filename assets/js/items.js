@@ -49,6 +49,8 @@ var ids = {
     TRINKET_TALISMAN_RESURGENCE: 48724,
     TRINKET_CHARRED_TWILIGHT_SCALE_HC: 54588,
     TRINKET_CHARRED_TWILIGHT_SCALE_NM: 54572,
+    TRINKET_MISGUIDED_QUILL: 50357,
+    TRINKET_PURIFIED_LUNAR_DUST: 50358,
     // Enchants
     BLACK_MAGIC: 59625,
     HYPERSPEED_ACCELERATORS: 54999,
@@ -609,6 +611,7 @@ var equip = {
         { id: 50014, title: "Greatcloak of the Turned Champion", ilvl: 264, int: 69, spi: 60, sp: 97, haste: 52, sockets: ["b"], bonus: {sp: 5}, phase: 4 },
         { id: 51826, title: "Lich Wrappings", ilvl: 264, int: 69, sp: 97, hit: 48, haste: 63, sockets: ["y"], bonus: {hit: 4}, phase: 4 },
         { id: 51584, title: "Lich Wrappings", ilvl: 251, int: 61, sp: 85, hit: 41, haste: 56, sockets: ["y"], bonus: {hit: 4}, phase: 4 },
+        { id: 50468, title: "Drape of the Violet Tower", ilvl: 264, int: 69, sp: 97, crit: 52, mp5: 30, sockets: ["b"], bonus: {sp: 5}, phase: 4 },
         { id: 50469, title: "Volde's Cloak of the Night Sky", ilvl: 264, int: 69, spi: 60, sp: 97, crit: 52, sockets: ["y"], bonus: {sp: 5}, phase: 4 },
         { id: 51382, title: "Heartsick Mender's Cape", ilvl: 251, int: 61, sp: 85, haste: 45, mp5: 27, sockets: ["r"], phase: 4 },
         // totc
@@ -965,6 +968,8 @@ var equip = {
         { id: 51017, title: "Cauterized Cord", ilvl: 251, int: 81, sp: 106, crit: 76, haste: 46, sockets: ["y", "r"], bonus: {sp: 7}, phase: 4 },
         { id: 51930, title: "Cord of the Patronizing Practitioner", ilvl: 264, int: 92, spi: 62, sp: 122, haste: 78, sockets: ["b", "y"], bonus: {sp: 7}, phase: 4 },
         { id: 50773, title: "Cord of the Patronizing Practitioner", ilvl: 251, int: 81, spi: 54, sp: 106, haste: 68, sockets: ["b", "y"], bonus: {sp: 7}, phase: 4 },
+        { id: 50996, title: "Belt of Omission", ilvl: 264, int: 92, sp: 122, crit: 80, hit: 64, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
+        { id: 50997, title: "Circle of Ossus", ilvl: 264, int: 92, spi: 64, sp: 122, haste: 80, sockets: ["b", "r"], bonus: {sp: 7}, phase: 4 },
         // totc
         { id: 47447, title: "Belt of Biting Cold", ilvl: 258, int: 86, sp: 114, crit: 73, hit: 58, sockets: ["b", "r"], bonus: {sp: 7}, faction: "h", phase: 3 },
         { id: 47286, title: "Belt of Biting Cold", ilvl: 245, int: 77, sp: 109, crit: 72, hit: 51, sockets: ["b"], bonus: {sp: 5}, faction: "h", phase: 3 },
@@ -1318,6 +1323,8 @@ var equip = {
         { id: ids.TRINKET_MURADINS_SPYGLASS_NM, title: "Muradin's Spyglass", ilvl: 251, crit: 131, unique: true, phase: 4 },
         { id: ids.TRINKET_SLIVER_PURE_ICE_HC, title: "Sliver of Pure Ice", ilvl: 264, sp: 178, use: true, unique: true, phase: 4 },
         { id: ids.TRINKET_SLIVER_PURE_ICE_NM, title: "Sliver of Pure Ice", ilvl: 251, sp: 158, use: true, unique: true, phase: 4 },
+        { id: ids.TRINKET_MISGUIDED_QUILL, title: "Maghia's Misguided Quill", ilvl: 264, hit: 152, unique: true, use: true, phase: 4 },
+        { id: ids.TRINKET_PURIFIED_LUNAR_DUST, title: "Purified Lunar Dust", ilvl: 264, sp: 179, unique: true, phase: 4 },
         // totc
         { id: ids.TRINKET_REIGN_DEAD_HC, title: "Reign of the Dead", ilvl: 258, sp: 168, unique: true, faction: "h", phase: 3 },
         { id: ids.TRINKET_REIGN_DEAD_NM, title: "Reign of the Dead", ilvl: 245, sp: 150, unique: true, faction: "h", phase: 3 },

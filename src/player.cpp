@@ -907,6 +907,11 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
             actions.push_back(buffAction<buff::EnergizedNm>());
         }
 
+        // Unconfirmed - on spell cast ?
+        if (hasTrinket(TRINKET_PURIFIED_LUNAR_DUST) && !hasCooldown(cooldown::PURIFIED_LUNAR_DUST) && random<int>(0, 9) == 0) {
+            actions.push_back(buffCooldownAction<buff::PurifiedLunarDust, cooldown::PurifiedLunarDust>());
+        }
+
     }
 
     if (config.rot_black_magic && spell->actual_cast_time == 0 && is_harmful) {
@@ -1547,6 +1552,8 @@ bool Player::trinketSharesCD(Trinket trinket) const
 
 bool Player::isUseTrinket(Trinket trinket) const
 {
+    if (trinket == TRINKET_MISGUIDED_QUILL)
+        return true;
     if (trinket == TRINKET_SLIVER_PURE_ICE_HC)
         return true;
     if (trinket == TRINKET_SLIVER_PURE_ICE_NM)
@@ -1658,6 +1665,9 @@ std::vector<action::Action> Player::useTrinket(Trinket trinket, std::shared_ptr<
 
     if (trinket == TRINKET_TWILIGHT_SERPENT) {
         buff = std::make_shared<buff::TwilightSerpent>();
+    }
+    else if (trinket == TRINKET_MISGUIDED_QUILL) {
+        buff = std::make_shared<buff::MisguidedQuill>();
     }
     else if (trinket == TRINKET_RUNE_INFINITE_POWER) {
         buff = std::make_shared<buff::InfinitePower>();
