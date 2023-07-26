@@ -288,6 +288,8 @@
                     <template v-if="result && result.hasOwnProperty('spells')">
                         <div class="tab" :class="{active: active_tab == 'spells'}" @click="setTab('spells')">Spells</div>
                     </template>
+                    <div class="tab" @click="openImport()">Import</div>
+                    <div class="tab" @click="openExport()">Export</div>
                 </div>
                 <div class="body">
                     <div class="gear" :class="{splitview}" v-if="active_tab == 'gear'">
@@ -1517,7 +1519,8 @@
                 <div class="inner">
                     <div class="title">Import</div>
                     <div class="description">
-                        Supported formats: MageSim, EightyUpgrades, WowSims Exporter, Warcraft Logs.
+                        Paste the data from any of these supported sources:<br>
+                        MageSim, EightyUpgrades, WowSims Exporter Addon, Warcraft Logs.
                     </div>
                     <div class="form-item">
                         <textarea v-model="import_profile.string" ref="import_input" @input="checkImportString"></textarea>
