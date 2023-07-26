@@ -275,6 +275,8 @@
                 <div class="tabs">
                     <div class="tab" :class="{active: active_tab == 'gear'}" @click="setTab('gear')">Gear</div>
                     <div class="tab" :class="{active: active_tab == 'config'}" @click="setTab('config')">Config</div>
+                    <div class="tab" @click="openImport()">Import</div>
+                    <div class="tab" @click="openExport()">Export</div>
                     <template v-if="history.length">
                         <div class="tab" :class="{active: active_tab == 'history'}" @click="setTab('history')">History</div>
                     </template>
@@ -288,8 +290,6 @@
                     <template v-if="result && result.hasOwnProperty('spells')">
                         <div class="tab" :class="{active: active_tab == 'spells'}" @click="setTab('spells')">Spells</div>
                     </template>
-                    <div class="tab" @click="openImport()">Import</div>
-                    <div class="tab" @click="openExport()">Export</div>
                 </div>
                 <div class="body">
                     <div class="gear" :class="{splitview}" v-if="active_tab == 'gear'">
