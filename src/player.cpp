@@ -2073,6 +2073,7 @@ action::Action Player::nextAction(const State& state)
             ab_stacks = 3;
 
         bool has_mb = canReactTo(buff::MISSILE_BARRAGE, state.t);
+        auto ab = std::make_shared<spell::ArcaneBlast>();
 
         if (state.isMoving() && !hasBuff(buff::PRESENCE_OF_MIND)) {
             if (config.targets > 2 && config.distance <= 10) {
@@ -2092,18 +2093,20 @@ action::Action Player::nextAction(const State& state)
                 return action;
             }
         }
+        else if (state.duration - state.t < castTime(ab) && !hasCooldown(cooldown::FIRE_BLAST))
+            return spellAction<spell::FireBlast>(target);
         // AM asap with t10 2-set
         else if (config.t10_2set && has_mb && !hasBuff(buff::BLOODLUST))
             return spellAction<spell::ArcaneMissiles>(target);
         // AB until the end
         else if (canBlast(state))
-            return spellAction<spell::ArcaneBlast>(target);
+            return spellAction(ab, target);
         // Extra ABs before first AP
         else if (!hasBuff(buff::ARCANE_POWER) && isTimingReadySoon("arcane_power", state, 5) && state.t < 10)
-            return spellAction<spell::ArcaneBlast>(target);
+            return spellAction(ab, target);
         // Extra ABs during AP
         else if (hasBuff(buff::ARCANE_POWER) && config.rot_abs_ap + 4 > ab_streak && state.t < 60)
-            return spellAction<spell::ArcaneBlast>(target);
+            return spellAction(ab, target);
         // AM if we have MB and below n AB stacks
         else if (config.rot_mb_below_ab && has_mb && buffStacks(buff::ARCANE_BLAST) < config.rot_mb_below_ab)
             return spellAction<spell::ArcaneMissiles>(target);
@@ -2112,7 +2115,7 @@ action::Action Player::nextAction(const State& state)
             return spellAction<spell::ArcaneMissiles>(target);
         // AB if we don't have barrage and over mana %
         else if (!has_mb && config.rot_ab_no_mb_mana < manaPercent())
-            return spellAction<spell::ArcaneBlast>(target);
+            return spellAction(ab, target);
         // AM / Abarr if we have AB stacks
         else if (buffStacks(buff::ARCANE_BLAST) >= ab_stacks) {
             // Arcane Barrage if we don't have Missile Barrage proc
@@ -2122,7 +2125,7 @@ action::Action Player::nextAction(const State& state)
                 return spellAction<spell::ArcaneMissiles>(target);
         }
         else
-            return spellAction<spell::ArcaneBlast>(target);
+            return spellAction(ab, target);
     }
 
     // Frost
