@@ -253,6 +253,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("pre_water_elemental", &Config::pre_water_elemental)
         .property("pre_incanters_absorption", &Config::pre_incanters_absorption)
         .property("pre_mana_incanters_absorption", &Config::pre_mana_incanters_absorption)
+        .property("pre_cast", &Config::pre_cast)
 
         .property("potion", &Config::potion)
         .property("pre_potion", &Config::pre_potion)

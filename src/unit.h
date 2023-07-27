@@ -94,6 +94,8 @@ public:
 
     virtual double castHaste() const;
 
+    double travelTime(std::shared_ptr<spell::Spell> spell);
+
     virtual double hitChance(std::shared_ptr<spell::Spell> spell, double dlevel = 3) const;
 
     virtual double critChance(std::shared_ptr<spell::Spell> spell) const;
@@ -183,6 +185,8 @@ public:
     action::Action cooldownExpireAction(Args... args) const;
 
     action::Action spellAction(std::shared_ptr<spell::Spell> spell) const;
+    
+    action::Action spellAction(std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
     template <typename T, typename... Args>
     action::Action spellAction(Args... args) const;

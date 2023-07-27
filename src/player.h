@@ -31,6 +31,7 @@ public:
     double t_scorch;
     double t_brain_freeze;
     double t_incanters_absorption;
+    double t_pushing_the_limit;
     double t_mana_spent;
     double fire_ward;
     double mana_shield;
@@ -38,6 +39,7 @@ public:
     int ab_streak;
     bool used_dark_rune;
     bool black_magic;
+    bool has_pre_cast;
 
     Player(const Config& config, const Stats& stats, const Talents& talents, const Glyphs& glyphs);
 
@@ -155,6 +157,12 @@ public:
     action::Action useCooldown(const State& state);
 
     bool canBlast(const State& state) const;
+
+    bool shouldPreCast() const;
+
+    std::shared_ptr<spell::Spell> preCastSpell();
+
+    double preCombatDuration(const State& state);
 
     action::Action preCombat(const State& state);
 

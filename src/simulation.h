@@ -207,8 +207,6 @@ public:
 
     void removeUnitEvents(std::shared_ptr<unit::Unit> unit);
 
-    double travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell);
-
     double hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
     double critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;

@@ -156,7 +156,7 @@ SimulationResult Simulation::run(bool single)
 
     workCurrent();
 
-    if (!state.isSilenced())
+    if (!state.isSilenced() && !player->shouldPreCast())
         nextAction(player);
 
     work();
@@ -180,27 +180,22 @@ SimulationResult Simulation::run(bool single)
 
 void Simulation::runPrecombat()
 {
-    double t = 0;
+    double t = player->preCombatDuration(state);
+    if (t <= 0)
+        t += player->gcd();
 
-    if (config.pre_mirror_image)
-        t -= 1.5;
-    if (player->talents.water_elemental && config.pre_water_elemental)
-        t -= 1.5;
-    if (player->talents.incanters_absorption && config.pre_incanters_absorption) {
-        t -= 1.5;
-        if (config.pre_mana_incanters_absorption)
-            t -= 1.5;
-    }
-    if (t >= 0)
-        t -= 1.5;
-
-    state.t = player->t_gcd = t;
+    state.t = player->t_gcd = 0.0 - t;
     int i = 0;
     while (nextAction(player)) {
         workCurrent();
+
         if (player->t_gcd != state.t)
             state.t = player->t_gcd;
-        workCurrent();
+
+        if (state.t >= 0 && config.pre_potion && !player->hasCooldown(cooldown::POTION)) {
+            state.t = -0.1;
+            usePotion(player, config.pre_potion);
+        }
 
         if (state.t >= 0)
             break;
@@ -679,7 +674,7 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
                     dotApply(unit, spell, tar);
                 }
                 else if (!spell->is_trigger) {
-                    pushSpellImpact(unit, spell, tar, travelTime(unit, spell));
+                    pushSpellImpact(unit, spell, tar, unit->travelTime(spell));
                 }
             }
         }
@@ -692,7 +687,7 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
                 dotApply(unit, spell, target);
             }
             else if (!spell->is_trigger) {
-                pushSpellImpact(unit, spell, target, travelTime(unit, spell));
+                pushSpellImpact(unit, spell, target, unit->travelTime(spell));
             }
         }
 
@@ -745,7 +740,7 @@ void Simulation::onSpellTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<s
     if (!spell->is_trigger) {
         auto instance = getSpellInstance(unit, spell, target);
         instance.tick = tick;
-        pushSpellImpact(unit, instance, target, travelTime(unit, spell));
+        pushSpellImpact(unit, instance, target, unit->travelTime(spell));
     }
 
     onSpellTickProc(unit, spell, target, tick);
@@ -1114,14 +1109,6 @@ void Simulation::removeUnitEvents(std::shared_ptr<unit::Unit> unit)
         else
             ++i;
     }
-}
-
-double Simulation::travelTime(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell)
-{
-    if (!spell->speed)
-        return 0;
-
-    return std::max(config.distance / spell->speed, 0.0);
 }
 
 double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const

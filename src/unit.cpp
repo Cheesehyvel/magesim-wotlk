@@ -298,6 +298,14 @@ double Unit::castHaste() const
     return 1.0 / haste;
 }
 
+double Unit::travelTime(std::shared_ptr<spell::Spell> spell)
+{
+    if (!spell->speed)
+        return 0;
+
+    return std::max(config.distance / spell->speed, 0.0);
+}
+
 double Unit::hitChance(std::shared_ptr<spell::Spell>, double dlevel) const
 {
     return stats.hit + buff_stats.hit;
@@ -529,6 +537,14 @@ action::Action Unit::spellAction(std::shared_ptr<spell::Spell> spell) const
 {
     action::Action action{ action::TYPE_SPELL };
     action.spell = spell;
+    return action;
+}
+
+action::Action Unit::spellAction(std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
+{
+    action::Action action{ action::TYPE_SPELL };
+    action.spell = spell;
+    action.target = target;
     return action;
 }
 

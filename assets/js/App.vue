@@ -1327,6 +1327,11 @@
                                         </help>
                                     </label>
                                 </div>
+                                <div class="form-item" v-if="!aoeRotation">
+                                    <label><input type="checkbox" v-model="config.pre_cast">
+                                        <span>Pre-cast main spell</span>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-cooldowns">
                                 <legend>Cooldowns</legend>
@@ -1962,6 +1967,7 @@
                 pre_water_elemental: false,
                 pre_incanters_absorption: false,
                 pre_mana_incanters_absorption: false,
+                pre_cast: false,
 
                 wrist_socket: false,
                 hands_socket: false,
@@ -2871,6 +2877,17 @@
                 buffs = _.sortBy(buffs, "name");
 
                 return buffs;
+            },
+
+            aoeRotation() {
+                var aoe = [
+                    constants.rotations.ROTATION_AOE_AE,
+                    constants.rotations.ROTATION_AOE_BLIZZ,
+                    constants.rotations.ROTATION_AOE_BLIZZ_FS,
+                    constants.rotations.ROTATION_AOE_FIRE,
+                ];
+
+                return aoe.indexOf(this.config.rotation) != -1;
             }
         },
 
