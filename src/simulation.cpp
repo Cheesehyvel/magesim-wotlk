@@ -144,6 +144,8 @@ SimulationResult Simulation::run(bool single)
             pushDebuffGain(state.targets[0], std::make_shared<debuff::HodirSinged>(), timing.t);
         else if (timing.name == "iron_council_shield_of_runes")
             pushBuffGain(player, std::make_shared<buff::IronCouncilShieldOfRunes>(), timing.t);
+        else if (timing.name == "icehowl_staggered_daze")
+            pushDebuffGain(state.targets[0], std::make_shared<debuff::IcehowlStaggeredDaze>(), timing.t);
     }
 
     for (int i=0; i<config.interruptions.size(); i++) {
@@ -1182,6 +1184,8 @@ double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::sh
 
     if (target->hasDebuff(debuff::HODIR_SINGED))
         multi *= 1.5;
+    if (target->hasDebuff(debuff::ICEHOWL_STAGGERED_DAZE))
+        multi *= 2;
 
     return multi;
 }

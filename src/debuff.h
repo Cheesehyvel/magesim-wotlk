@@ -9,6 +9,7 @@ namespace debuff
         IMPROVED_SCORCH = 22959,
         WINTERS_CHILL = 12579,
         HODIR_SINGED = 65280,
+        ICEHOWL_STAGGERED_DAZE = 66758,
     };
 
     // Prolonged ownership by Event, State and Unit. TODO: Do Event and Unit really need the same copy (i.e. pointer)?
@@ -64,6 +65,17 @@ namespace debuff
             id = HODIR_SINGED;
             name = "Singed";
             duration = 3000;
+        }
+    };
+
+    class IcehowlStaggeredDaze : public Debuff
+    {
+    public:
+        IcehowlStaggeredDaze()
+        {
+            id = ICEHOWL_STAGGERED_DAZE;
+            name = "Staggered Daze";
+            duration = 15;
         }
     };
 

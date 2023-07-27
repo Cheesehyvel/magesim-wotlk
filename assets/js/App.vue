@@ -2808,6 +2808,11 @@
                     title: "Iron Council: Shield of Runes (popped)",
                     icon: "https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_runetap.jpg",
                 });
+                timings.push({
+                    name: "icehowl_staggered_daze",
+                    title: "Icehowl: Staggered Daze",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_stun.jpg",
+                });
 
                 return timings;
             },
@@ -3005,6 +3010,7 @@
                     var encounters = [
                         "hodir_storm_power", "hodir_starlight", "hodir_singed",
                         "iron_council_shield_of_runes",
+                        "icehowl_staggered_daze",
                     ];
                     if (encounters.indexOf(name) != -1)
                         return true;
