@@ -44,6 +44,7 @@ void Player::reset()
     used_dark_rune = false;
     black_magic = false;
     has_pre_cast = false;
+    pending_ptl = false;
 
     if (config.rot_black_magic)
         swapWeapons();
@@ -784,7 +785,7 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         if (!config.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::MissileBarrage>());
             if (config.t10_2set)
-                actions.push_back(buffAction<buff::PushingTheLimit>());
+                pending_ptl = true;
         }
     }
     if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
@@ -1256,6 +1257,11 @@ std::vector<action::Action> Player::onSpellTickProc(const State& state, std::sha
     if (spell->can_proc) {
         for (auto &i : onCastOrTick(state, spell, target, tick))
             actions.push_back(std::move(i));
+    }
+
+    if (spell->id == spell::ARCANE_MISSILES && tick == spell->ticks && pending_ptl) {
+        pending_ptl = false;
+        actions.push_back(buffAction<buff::PushingTheLimit>());
     }
 
     return actions;

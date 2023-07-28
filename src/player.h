@@ -40,6 +40,7 @@ public:
     bool used_dark_rune;
     bool black_magic;
     bool has_pre_cast;
+    bool pending_ptl;
 
     Player(const Config& config, const Stats& stats, const Talents& talents, const Glyphs& glyphs);
 
