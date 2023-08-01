@@ -781,6 +781,16 @@ void Simulation::onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared
 {
     auto actions = unit->onCastSuccessProc(state, spell, target);
     processActions(unit, actions);
+
+    // Special for fetish of volatile power
+    if (unit->id != 1) {
+        if (player->hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && player->hasBuff(buff::VOLATILE_POWER_HC) && spell->max_dmg > 0) {
+            onBuffGain(player, std::make_shared<buff::VolatilityHc>());
+        }
+        if (player->hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && player->hasBuff(buff::VOLATILE_POWER_NM) && spell->max_dmg > 0) {
+            onBuffGain(player, std::make_shared<buff::VolatilityNm>());
+        }
+    }
 }
 
 void Simulation::onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
