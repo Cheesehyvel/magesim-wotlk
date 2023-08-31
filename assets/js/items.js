@@ -1212,8 +1212,12 @@ var equip = {
         // icc
         { id: ids.ASHEN_BAND_ENDLESS_DESTRUCTION, title: "Ashen Band of Endless Destruction", ilvl: 277, int: 73, sp: 101, hit: 51, haste: 64, sockets: ["y"], bonus: {sp: 5}, unique: true, phase: 4 },
         { id: ids.ASHEN_BAND_UNMATCHED_DESTRUCTION, title: "Ashen Band of Unmatched Destruction", ilvl: 268, int: 66, sp: 101, hit: 50, haste: 62, unique: true, phase: 4 },
+        { id: 50384, title: "Ashen Band of Greater Destruction", ilvl: 259, int: 66, sp: 101, hit: 50, haste: 62, unique: true, phase: 4 },
+        { id: 50377, title: "Ashen Band of Destruction", ilvl: 251, int: 61, sp: 94, hit: 47, haste: 57, unique: true, phase: 4 },
         { id: ids.ASHEN_BAND_ENDLESS_WISDOM, title: "Ashen Band of Endless Wisdom", ilvl: 277, int: 73, sp: 101, haste: 59, mp5: 30, sockets: ["y"], unique: true, phase: 4 },
         { id: ids.ASHEN_BAND_UNMATCHED_WISDOM, title: "Ashen Band of Unmatched Wisdom", ilvl: 268, int: 66, sp: 101, haste: 57, mp5: 29, unique: true, phase: 4 },
+        { id: 50386, title: "Ashen Band of Greater Wisdom", ilvl: 259, int: 66, sp: 101, haste: 57, mp5: 29, unique: true, phase: 4 },
+        { id: 50378, title: "Ashen Band of Wisdom", ilvl: 251, int: 61, sp: 94, haste: 53, mp5: 27, unique: true, phase: 4 },
         { id: 50714, title: "Valanar's Other Signet Ring", ilvl: 277, int: 78, sp: 110, hit: 44, haste: 78, sockets: ["b"], bonus: {sp: 5}, unique: true, phase: 4 },
         { id: 50170, title: "Valanar's Other Signet Ring", ilvl: 264, int: 69, sp: 97, hit: 38, haste: 69, sockets: ["b"], bonus: {sp: 5}, unique: true, phase: 4 },
         { id: 50664, title: "Ring of Rapid Ascent", ilvl: 277, int: 78, sp: 110, crit: 68, haste: 60, sockets: ["b"], bonus: {sp: 5}, unique: true, phase: 4 },
