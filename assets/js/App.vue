@@ -2202,7 +2202,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                search_item: "phase:3- ",
+                search_item: "phase:4- ",
                 search_gem: "",
                 search_log: "",
                 log_filter: {
@@ -4408,6 +4408,7 @@
 
                 if (color == "y")
                     return 40155; // 12 sp / 10 haste
+                    // return 40152; // 12 sp / 10 crit
                 if (color == "b")
                     return 40133; // 12 sp / 10 spi
                 return 40113; // 23 sp

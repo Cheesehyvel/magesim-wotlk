@@ -1048,7 +1048,7 @@ var equip = {
         { id: 51157, itemset: ids.T10_SET, title: "Sanctified Bloodmage Leggings", ilvl: 264, int: 123, sp: 171, crit: 108, hit: 92, sockets: ["b", "y"], bonus: {sp: 7}, phase: 4 },
         { id: 50277, itemset: ids.T10_SET, title: "Bloodmage Leggings", ilvl: 251, int: 109, sp: 149, crit: 96, hit: 80, sockets: ["b", "y"], bonus: {sp: 7}, phase: 4 },
         { id: 50694, title: "Plaguebringer's Stained Pants", ilvl: 277, int: 139, sp: 185, hit: 104, haste: 116, sockets: ["r", "b", "y"], bonus: {sp: 9}, phase: 4 },
-        { id: 50056, title: "Plaguebringer's Stained Pants", int: 123, sp: 171, hit: 98, haste: 102, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
+        { id: 50056, title: "Plaguebringer's Stained Pants", ilvl: 264, int: 123, sp: 171, hit: 98, haste: 102, sockets: ["r", "b"], bonus: {sp: 7}, phase: 4 },
         { id: 51823, title: "Leggings of the Refracted Mind", ilvl: 264, int: 115, spi: 92, sp: 171, crit: 108, sockets: ["y", "r", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51777, title: "Leggings of the Refracted Mind", ilvl: 251, int: 101, spi: 80, sp: 149, crit: 96, sockets: ["y", "r", "b"], bonus: {sp: 9}, phase: 4 },
         { id: 51882, title: "Kilt of Untreated Wounds", ilvl: 264, int: 123, sp: 162, crit: 96, haste: 96, sockets: ["y", "y", "r"], bonus: {sp: 9}, phase: 4 },
