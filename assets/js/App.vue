@@ -317,7 +317,7 @@
                                     <div class="top clearfix">
                                         <div class="fl clearfix">
                                             <div class="form-item text-search">
-                                                <input type="text" ref="search" v-model="search_item" placeholder="Search..." @input="refreshTooltips">
+                                                <input type="text" ref="search" v-model="search_item" placeholder="Search..." @input="onSearch">
                                                 <tooltip position="bl">
                                                     <b>Text search with filters</b><br><br>
                                                     Yes/no filters: pvp, 2h, set<br>
@@ -2202,7 +2202,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                search_item: "phase:4- ",
+                search_item: this.loadFilters("phase:4-")+" ",
                 search_gem: "",
                 search_log: "",
                 log_filter: {
@@ -5927,6 +5927,22 @@
                 a.href = "data:text/csv,"+encodeURIComponent(result.all_results);
                 a.download = "simdata.csv";
                 a.click();
+            },
+
+            onSearch(e) {
+                this.refreshTooltips();
+                this.saveFilters();
+            },
+
+            saveFilters() {
+                var terms = this.search_item.toLowerCase().split(" ");
+                terms = terms.filter(t => t.indexOf(":") != -1);
+                window.localStorage.setItem("magesim_wotlk_filters", terms.join(" "));
+            },
+
+            loadFilters(def) {
+                var filters = window.localStorage.getItem("magesim_wotlk_filters");
+                return filters ? filters : def;
             },
 
             refreshTooltips() {

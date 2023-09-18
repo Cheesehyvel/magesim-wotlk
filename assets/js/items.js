@@ -222,6 +222,7 @@ var equip = {
         { id: 44418, title: "Hateful Gladiator's Focus Staff", ilvl: 200, int: 57, sp: 408, hit: 75, twohand: true },
         { id: 44417, title: "Hateful Gladiator's War Staff", ilvl: 200, int: 57, sp: 408, haste: 75, twohand: true },
         // prebis
+        { id: 50047, title: "Quel'Delar, Lens of the Mind", ilvl: 251, int: 59, sp: 657, crit: 54, haste: 49, unique: true, phase: 4 },
         { id: 47569, title: "Spectral Kris", ilvl: 219, int: 30, sp: 487, crit: 36, haste: 46, sockets: ["b"], bonus: {crit: 4}, unique: true, phase: 3 },
         { id: 45085, title: "Titansteel Spellblade", ilvl: 200, sp: 408, crit: 53, hit: 30 },
         { id: 44173, title: "Flameheart Spell Scalpel", ilvl: 200, int: 33, sp: 355, crit: 25, hit: 34, q: "rare" },
