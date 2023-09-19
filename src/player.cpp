@@ -900,12 +900,17 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
 
         // Confirmed - on harmful spell cast
         // Also procs on ignite application and living bomb explosion
-        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC) && is_harmful) {
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_HC, TRINKET_TALISMAN_VOLATILE_POWER_HC) && hasBuff(buff::VOLATILE_POWER_HC) && is_harmful)
             actions.push_back(buffAction<buff::VolatilityHc>());
-        }
-        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM) && is_harmful) {
+        if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM) && is_harmful)
             actions.push_back(buffAction<buff::VolatilityNm>());
-        }
+
+        // Confirmed - on harmful spell cast
+        // Also procs on ignite application and living bomb explosion
+        if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
+        if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrGuardian, cooldown::NibelungNm>());
 
         // Unconfirmed - on spell cast ?
         if (hasTrinkets(TRINKET_SOLACE_FALLEN_HC, TRINKET_SOLACE_DEFEATED_HC)) {
@@ -1034,6 +1039,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             actions.push_back(buffAction<buff::VolatilityHc>());
         if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM))
             actions.push_back(buffAction<buff::VolatilityNm>());
+
+        if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
+        if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrGuardian, cooldown::NibelungNm>());
     }
 
     if (instance.result != spell::MISS) {
@@ -1133,12 +1143,6 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         if (hasTrinket(TRINKET_MURADINS_SPYGLASS_NM)) {
             actions.push_back(buffAction<buff::MuradinsSpyglassNm>());
         }
-
-        // Confirmed - on spell impact, dots included
-        if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
-            actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
-        if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
-            actions.push_back(spellCooldownAction<spell::ValkyrGuardian, cooldown::NibelungNm>());
     }
 
     if (instance.result == spell::CRIT) {
@@ -1151,6 +1155,11 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 actions.push_back(buffAction<buff::VolatilityHc>());
             if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM))
                 actions.push_back(buffAction<buff::VolatilityNm>());
+
+            if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
+                actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
+            if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
+                actions.push_back(spellCooldownAction<spell::ValkyrGuardian, cooldown::NibelungNm>());
         }
 
         if (!instance.spell->dot) {

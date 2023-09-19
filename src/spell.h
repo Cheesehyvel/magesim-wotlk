@@ -217,6 +217,7 @@ namespace spell
         {
             dot = true;
             active_use = false;
+            can_proc = false;
             coeff = 0;
             t_interval = 2;
             ticks = 4;
@@ -244,6 +245,7 @@ namespace spell
         {
             dot = true;
             active_use = false;
+            can_proc = false;
             t_interval = 3;
             ticks = 3;
             coeff = 0;
@@ -337,6 +339,7 @@ namespace spell
             aoe_capped = false;
             dot = true;
             active_use = false;
+            can_proc = false;
             t_interval = 2;
             ticks = 4;
             min_dmg = 195;
