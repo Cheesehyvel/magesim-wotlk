@@ -697,8 +697,9 @@ namespace spell
             cost = 1;
             min_dmg = 1804;
             max_dmg = 2022;
-            cast_time = 1.5;
+            cast_time = 0;
             coeff = 0;
+            gcd = 1.9;
         }
     };
 
@@ -709,8 +710,9 @@ namespace spell
             cost = 1;
             min_dmg = 1591;
             max_dmg = 1785;
-            cast_time = 1.5;
+            cast_time = 0;
             coeff = 0;
+            gcd = 1.9;
         }
     };
 }
