@@ -51,6 +51,11 @@ namespace spell
 
         WATER_ELEMENTAL = 31687,
         WATERBOLT = 31707,
+
+        VALKYR_PROTECTOR = 71844,
+        VALKYR_PROTECTOR_SMITE = 71842,
+        VALKYR_GUARDIAN = 71843,
+        VALKYR_GUARDIAN_SMITE = 71841,
     };
 
     enum Result : int
@@ -655,6 +660,54 @@ namespace spell
             cast_time = 2.5;
             coeff = 2.5/3.0;
             speed = 16;
+        }
+    };
+
+    struct ValkyrProtector : Spell
+    {
+        ValkyrProtector() : Spell(VALKYR_PROTECTOR, "Val'kyr Protector", SCHOOL_HOLY)
+        {
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+            is_trigger = true;
+            proc = true;
+        }
+    };
+
+    struct ValkyrGuardian : Spell
+    {
+        ValkyrGuardian() : Spell(VALKYR_GUARDIAN, "Val'kyr Guardian", SCHOOL_HOLY)
+        {
+            coeff = 0;
+            gcd = 0;
+            active_use = false;
+            is_trigger = true;
+            proc = true;
+        }
+    };
+
+    struct ValkyrProtectorSmite : Spell
+    {
+        ValkyrProtectorSmite() : Spell(VALKYR_PROTECTOR_SMITE, "Smite", SCHOOL_HOLY)
+        {
+            cost = 1;
+            min_dmg = 1804;
+            max_dmg = 2022;
+            cast_time = 1.5;
+            coeff = 0;
+        }
+    };
+
+    struct ValkyrGuardianSmite : Spell
+    {
+        ValkyrGuardianSmite() : Spell(VALKYR_GUARDIAN_SMITE, "Smite", SCHOOL_HOLY)
+        {
+            cost = 1;
+            min_dmg = 1591;
+            max_dmg = 1785;
+            cast_time = 1.5;
+            coeff = 0;
         }
     };
 }

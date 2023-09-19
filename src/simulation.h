@@ -153,6 +153,8 @@ public:
 
     void onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
 
+    void onProcSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
     void onUnitSpawn(std::shared_ptr<unit::Unit> unit);
 
     void onUnitDespawn(std::shared_ptr<unit::Unit> unit);

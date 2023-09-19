@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = src/buff.cpp src/common.cpp src/main.cpp src/mirror_image.cpp src/player.cpp src/simulation.cpp src/state.cpp src/target.cpp src/unit.cpp src/water_elemental.cpp
+OBJS = src/buff.cpp src/common.cpp src/main.cpp src/mirror_image.cpp src/player.cpp src/simulation.cpp src/state.cpp src/target.cpp src/unit.cpp src/water_elemental.cpp src/valkyr_protector.cpp src/valkyr_guardian.cpp
 
 #CC specifies which compiler we're using
 CC = em++

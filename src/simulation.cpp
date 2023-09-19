@@ -695,6 +695,8 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
 
         if (spell->active_use)
             onCastSuccessProc(unit, spell, target);
+        if (spell->proc)
+            onProcSuccess(unit, spell, target);
     }
 
     if (spell->active_use) {
@@ -805,6 +807,12 @@ void Simulation::onSpellTickProc(std::shared_ptr<unit::Unit> unit, std::shared_p
     processActions(unit, actions);
 }
 
+void Simulation::onProcSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
+{
+    std::vector<action::Action> actions = unit->onProcSuccess(state, spell, target);
+    processActions(unit, actions);
+}
+
 void Simulation::onUnitSpawn(std::shared_ptr<unit::Unit> unit)
 {
     if (unit->unique)
@@ -818,7 +826,7 @@ void Simulation::onUnitSpawn(std::shared_ptr<unit::Unit> unit)
         pushUnitDespawn(unit, unit->duration);
 
     if (state.inCombat())
-        pushWait(unit, 0.5);
+        pushWait(unit, 0.25);
     else
         pushWait(unit, -state.t);
 }
@@ -1134,7 +1142,7 @@ double Simulation::hitChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<s
 
     hit += unit->hitChance(spell);
 
-    if (config.debuff_spell_hit)
+    if (config.debuff_spell_hit && unit->get_raid_debuffs)
         hit += 3.0;
 
     return std::min(hit, 100.0);
@@ -1144,6 +1152,9 @@ double Simulation::critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
 {
     double crit = unit->critChance(spell);
     double crit_debuff = 0;
+
+    if (!unit->get_raid_debuffs)
+        return crit;
 
     if (config.debuff_spell_crit || target->hasDebuff(debuff::IMPROVED_SCORCH))
         crit_debuff += 5.0;
@@ -1188,6 +1199,9 @@ double Simulation::buffDmgMultiplier(const std::shared_ptr<unit::Unit> unit, std
 double Simulation::debuffDmgMultiplier(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const
 {
     double multi = 1;
+
+    if (!unit->get_raid_debuffs)
+        return multi;
 
     if (config.debuff_spell_dmg)
         multi *= 1.13;

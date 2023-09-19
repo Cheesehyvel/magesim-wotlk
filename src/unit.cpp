@@ -495,6 +495,11 @@ std::vector<action::Action> Unit::onSpellTickProc(const State &state, std::share
     return {};
 }
 
+std::vector<action::Action> Unit::onProcSuccess(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
+{
+    return {};
+}
+
 std::vector<action::Action> Unit::usePotion(Potion potion, bool in_combat)
 {
     return {};

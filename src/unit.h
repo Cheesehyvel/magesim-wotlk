@@ -35,6 +35,7 @@ public:
     double duration = 0;
     bool unique = true;
     bool get_raid_buffs = true;
+    bool get_raid_debuffs = true;
     bool is_channeling = false;
     double last_spell_cast_time = 0;
     int id = 0;
@@ -153,6 +154,8 @@ public:
     virtual std::vector<action::Action> onSpellImpactProc(const State &state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
 
     virtual std::vector<action::Action> onSpellTickProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
+
+    virtual std::vector<action::Action> onProcSuccess(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     virtual std::vector<action::Action> usePotion(Potion potion, bool in_combat);
 

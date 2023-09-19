@@ -1945,6 +1945,8 @@
                 darkglow_embroidery: false,
                 hyperspeed_accelerators: false,
                 ashen_band: false,
+                nibelung_hc: false,
+                nibelung_nm: false,
                 t3_2set: false,
                 t5_2set: false,
                 t5_4set: false,
@@ -3738,6 +3740,9 @@
                     this.config.ashen_band = true;
                 else
                     this.config.ashen_band = false;
+
+                this.config.nibelung_hc = this.isEquipped("weapon", this.items.ids.NIBELUNG_HC);
+                this.config.nibelung_nm = this.isEquipped("weapon", this.items.ids.NIBELUNG_NM);
 
                 this.config.rot_black_magic_ench = 0;
                 if (this.config.rot_black_magic && !this.canBlackMagicWeave)

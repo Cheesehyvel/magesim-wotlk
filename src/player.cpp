@@ -5,6 +5,8 @@
 #include "state.h"
 #include "mirror_image.h"
 #include "water_elemental.h"
+#include "valkyr_protector.h"
+#include "valkyr_guardian.h"
 
 #include <algorithm>
 #include <string>
@@ -929,6 +931,24 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
     return actions;
 }
 
+std::vector<action::Action> Player::onProcSuccess(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
+{
+    auto actions = Unit::onProcSuccess(state, spell, target);
+
+    if (spell->id == spell::VALKYR_PROTECTOR) {
+        action::Action action{ action::TYPE_UNIT };
+        action.unit = std::make_shared<unit::ValkyrProtector>(config, stats);
+        actions.push_back(std::move(action));
+    }
+    if (spell->id == spell::VALKYR_GUARDIAN) {
+        action::Action action{ action::TYPE_UNIT };
+        action.unit = std::make_shared<unit::ValkyrGuardian>(config, stats);
+        actions.push_back(std::move(action));
+    }
+
+    return actions;
+}
+
 std::vector<action::Action> Player::onSelfDmg(const State& state, double dmg, School school)
 {
     std::vector<action::Action> actions;
@@ -1113,6 +1133,12 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         if (hasTrinket(TRINKET_MURADINS_SPYGLASS_NM)) {
             actions.push_back(buffAction<buff::MuradinsSpyglassNm>());
         }
+
+        // Confirmed - on spell impact, dots included
+        if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
+        if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
+            actions.push_back(spellCooldownAction<spell::ValkyrGuardian, cooldown::NibelungNm>());
     }
 
     if (instance.result == spell::CRIT) {

@@ -40,6 +40,8 @@ namespace cooldown
         PRAXIS = 64867,
         SAPPER_CHARGE = 56488,
         ASHEN_BAND = 72416,
+        NIBELUNG_HC = 71844,
+        NIBELUNG_NM = 71843,
         // Trinkets
         FORGE_EMBER = 60479,
         PENDULUM_TELLURIC_CURRENTS = 60483,
@@ -433,6 +435,30 @@ namespace cooldown
         {
             id = ASHEN_BAND;
             duration = 60;
+        }
+
+    };
+
+    class NibelungHc : public Cooldown
+    {
+
+    public:
+        NibelungHc()
+        {
+            id = NIBELUNG_HC;
+            duration = 0.25;
+        }
+
+    };
+
+    class NibelungNm : public Cooldown
+    {
+
+    public:
+        NibelungNm()
+        {
+            id = NIBELUNG_NM;
+            duration = 0.25;
         }
 
     };

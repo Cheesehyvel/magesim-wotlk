@@ -115,6 +115,8 @@ public:
 
     std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
+    std::vector<action::Action> onProcSuccess(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
     std::vector<action::Action> onSelfDmg(const State& state, double dmg, School school = SCHOOL_NONE);
 
     std::vector<action::Action> onSpellImpactProc(const State& state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);
