@@ -2213,6 +2213,19 @@ action::Action Player::nextAction(const State& state)
         return spellAction<spell::ArcaneExplosion>();
     }
 
+    // Arcane Explosion + Flamestrike
+    else if (config.rotation == ROTATION_AOE_AE_FS) {
+        auto fs = std::make_shared<spell::Flamestrike>();
+        if (state.isMoving())
+            return spellAction<spell::ArcaneExplosion>();
+        else if (t_flamestrike + 8.0 - castTime(fs) <= state.t)
+            return spellAction(fs);
+        else if (t_flamestrike_dr + 8.0 - castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+            return spellAction<spell::FlamestrikeDR>();
+        else
+            return spellAction<spell::ArcaneExplosion>();
+    }
+
     // Blizzard
     else if (config.rotation == ROTATION_AOE_BLIZZ) {
         if (state.isMoving())
@@ -2225,8 +2238,10 @@ action::Action Player::nextAction(const State& state)
         auto fs = std::make_shared<spell::Flamestrike>();
         if (state.isMoving())
             return spellAction<spell::ArcaneExplosion>();
-        else if (t_flamestrike - 8.0 + castTime(fs) <= state.t)
+        else if (t_flamestrike + 8.0 - castTime(fs) <= state.t)
             return spellAction(fs);
+        else if (t_flamestrike_dr + 8.0 - castTime(fs) <= state.t && state.t + 8.0 < state.duration)
+            return spellAction<spell::FlamestrikeDR>();
         else
             return spellAction<spell::Blizzard>();
     }

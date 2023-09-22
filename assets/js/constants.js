@@ -15,6 +15,7 @@ export default {
         ROTATION_ST_FIRE_SC: 21,
         ROTATION_ST_FROST: 30,
         ROTATION_AOE_AE: 100,
+        ROTATION_AOE_AE_FS: 101,
         ROTATION_AOE_BLIZZ: 110,
         ROTATION_AOE_BLIZZ_FS: 111,
         ROTATION_AOE_FIRE: 120,

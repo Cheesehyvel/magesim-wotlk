@@ -924,6 +924,7 @@
                                         <option :value="rotations.ROTATION_ST_FIRE_SC">Fire (Scorch)</option>
                                         <option :value="rotations.ROTATION_ST_FROST">Frost</option>
                                         <option :value="rotations.ROTATION_AOE_AE">Arcane Explosion</option>
+                                        <option :value="rotations.ROTATION_AOE_AE_FS">Flamestrike > Arcane Explosion</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ">Blizzard</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ_FS">Flamestrike > Blizzard</option>
                                         <option :value="rotations.ROTATION_AOE_FIRE">Fire AoE</option>
@@ -5639,6 +5640,8 @@
                     return "Arcane";
                 if (rot == this.rotations.ROTATION_AOE_AE)
                     return "Arcane Explosion";
+                if (rot == this.rotations.ROTATION_AOE_AE_FS)
+                    return "Arcane Explosion + FS";
                 if (rot == this.rotations.ROTATION_AOE_BLIZZ)
                     return "Blizzard";
                 if (rot == this.rotations.ROTATION_AOE_BLIZZ_FS)
