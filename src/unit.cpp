@@ -82,14 +82,27 @@ bool Unit::hasBuff(buff::ID id, bool snapshot) const
 int Unit::addBuff(std::shared_ptr<buff::Buff> buff)
 {
     auto const stacks = buffStacks(buff->id);
+    bool has_buff = hasBuff(buff->id);
 
-    if (stacks < buff->max_stacks)
-        addBuffStats(buff->stats);
+    int add = buff->stack_increment;
 
-    if (stacks)
-        buffs[buff->id]->addStack();
-    else
+    if (add < 0 && !has_buff)
+        add = buff->max_stacks;
+    else if (stacks + add > buff->max_stacks)
+        add = buff->max_stacks - stacks;
+    else if (stacks + add < 0)
+        add = -stacks;
+
+    if (add != 0)
+        addBuffStats(buff->stats, add);
+
+    if (!has_buff) {
+        buff->stacks = add;
         buffs[buff->id] = buff;
+    }
+    else if (add != 0) {
+        buffs[buff->id]->addStacks(add);
+    }
 
     return buffs[buff->id]->stacks;
 }
@@ -152,16 +165,16 @@ void Unit::removeSnapshots()
     snapshot_buffs.clear();
 }
 
-void Unit::addBuffStats(const Stats& _stats)
+void Unit::addBuffStats(const Stats& _stats, int stacks)
 {
-    buff_stats.intellect += _stats.intellect;
-    buff_stats.spirit += _stats.spirit;
-    buff_stats.mp5 += _stats.mp5;
-    buff_stats.crit += _stats.crit;
-    buff_stats.hit += _stats.hit;
-    buff_stats.haste += _stats.haste;
-    buff_stats.haste_rating += _stats.haste_rating;
-    buff_stats.spell_power += _stats.spell_power;
+    buff_stats.intellect += _stats.intellect * stacks;
+    buff_stats.spirit += _stats.spirit * stacks;
+    buff_stats.mp5 += _stats.mp5 * stacks;
+    buff_stats.crit += _stats.crit * stacks;
+    buff_stats.hit += _stats.hit * stacks;
+    buff_stats.haste += _stats.haste * stacks;
+    buff_stats.haste_rating += _stats.haste_rating * stacks;
+    buff_stats.spell_power += _stats.spell_power * stacks;
 }
 
 void Unit::removeBuffStats(const Stats& _stats, int stacks)

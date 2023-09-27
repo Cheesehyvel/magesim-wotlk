@@ -65,7 +65,7 @@ public:
     void removeSnapshot(buff::ID id);
     void removeSnapshots();
 
-    void addBuffStats(const Stats& _stats);
+    void addBuffStats(const Stats& _stats, int stacks = 1);
     void removeBuffStats(const Stats& _stats, int stacks = 1);
 
     int debuffStacks(debuff::ID id) const;

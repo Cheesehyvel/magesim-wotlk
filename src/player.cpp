@@ -666,6 +666,9 @@ std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_p
     else if (buff->id == buff::PUSHING_THE_LIMIT) {
         t_pushing_the_limit = state.t;
     }
+    else if (buff->id == buff::NEVERMELTING_ICE_CRYSTAL) {
+        actions.push_back(buffAction<buff::DeadlyPrecision>());
+    }
 
     return actions;
 }
@@ -678,6 +681,8 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
         actions.push_back(buffExpireAction<buff::VolatilityHc>());
     if (buff->id == buff::VOLATILE_POWER_NM)
         actions.push_back(buffExpireAction<buff::VolatilityNm>());
+    if (buff->id == buff::NEVERMELTING_ICE_CRYSTAL)
+        actions.push_back(buffExpireAction<buff::DeadlyPrecision>());
     if (buff->id == buff::FIRE_WARD)
         fire_ward = 0;
     if (buff->id == buff::ARCANE_BLAST)
@@ -1204,6 +1209,9 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
                 }
             }
 
+            if (hasBuff(buff::NEVERMELTING_ICE_CRYSTAL))
+                actions.push_back(buffAction<buff::DeadlyPrecision>());
+
             if (config.t5_4set)
                 actions.push_back(buffAction<buff::ArcaneMadness>());
         }
@@ -1600,6 +1608,8 @@ bool Player::isUseTrinket(Trinket trinket) const
 {
     if (trinket == TRINKET_MISGUIDED_QUILL)
         return true;
+    if (trinket == TRINKET_NEVERMELTING_ICE_CRYSTAL)
+        return true;
     if (trinket == TRINKET_SLIVER_PURE_ICE_HC)
         return true;
     if (trinket == TRINKET_SLIVER_PURE_ICE_NM)
@@ -1711,6 +1721,10 @@ std::vector<action::Action> Player::useTrinket(Trinket trinket, std::shared_ptr<
 
     if (trinket == TRINKET_TWILIGHT_SERPENT) {
         buff = std::make_shared<buff::TwilightSerpent>();
+    }
+    else if (trinket == TRINKET_NEVERMELTING_ICE_CRYSTAL) {
+        buff = std::make_shared<buff::NevermeltingIceCrystal>();
+        cooldown->duration = 180;
     }
     else if (trinket == TRINKET_MISGUIDED_QUILL) {
         buff = std::make_shared<buff::MisguidedQuill>();

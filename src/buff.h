@@ -82,6 +82,8 @@ enum ID : int
     NAMELESS_LICH_NM = 71605,
     CHARRED_TWILIGHT_SCALE_HC = 75473,
     CHARRED_TWILIGHT_SCALE_NM = 75466,
+    NEVERMELTING_ICE_CRYSTAL = 71563,
+    DEADLY_PRECISION = 71564,
     MISGUIDED_QUILL = 71579,
     PURIFIED_LUNAR_DUST = 71584,
     // Encounters
@@ -107,6 +109,7 @@ struct Buff
     std::string name;
     double duration;
     int stacks = 1;
+    int stack_increment = 1;
     int max_stacks = 1;
     bool stack_refresh = true;
     bool show_refresh = false;
@@ -118,6 +121,8 @@ struct Buff
     Stats stats;
 
     int addStack();
+    int addStacks(int add);
+    int removeStack();
 };
 
 class ArcaneBlast : public Buff
@@ -622,6 +627,20 @@ class CharredTwilightScaleNm : public Buff
 
 public:
     CharredTwilightScaleNm();
+};
+
+class NevermeltingIceCrystal : public Buff
+{
+
+public:
+    NevermeltingIceCrystal();
+};
+
+class DeadlyPrecision : public Buff
+{
+
+public:
+    DeadlyPrecision();
 };
 
 class MisguidedQuill : public Buff

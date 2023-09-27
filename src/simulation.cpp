@@ -958,7 +958,7 @@ void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<bu
         pushBuffGain(unit, buff, 2);
     }
 
-    if (stacks > old_stacks || buff->show_refresh)
+    if (stacks != old_stacks || buff->show_refresh)
         logBuffGain(unit, buff, stacks);
 
     auto actions = unit->onBuffGain(state, buff);

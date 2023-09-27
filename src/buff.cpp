@@ -17,6 +17,26 @@ int Buff::addStack()
     return stacks;
 }
 
+int Buff::addStacks(int add)
+{
+    stacks+= add;
+    if (stacks > max_stacks)
+        stacks = max_stacks;
+    else if (stacks < 0)
+        stacks = 0;
+    return stacks;
+}
+
+int Buff::removeStack()
+{
+    if (stacks > 0)
+        stacks--;
+    else
+        return 0;
+
+    return stacks;
+}
+
 ArcaneBlast::ArcaneBlast()
 {
     id = ARCANE_BLAST;
@@ -582,6 +602,24 @@ CharredTwilightScaleNm::CharredTwilightScaleNm()
     name = "Twilight Flames";
     duration = 15;
     stats.spell_power = 763;
+}
+
+NevermeltingIceCrystal::NevermeltingIceCrystal()
+{
+    id = NEVERMELTING_ICE_CRYSTAL;
+    name = "Nevermelting Ice Crystal";
+    duration = 20;
+}
+
+DeadlyPrecision::DeadlyPrecision()
+{
+    id = DEADLY_PRECISION;
+    name = "Deadly Precision";
+    duration = 20;
+    stack_refresh = false;
+    stack_increment = -1;
+    max_stacks = 5;
+    stats.crit = 184;
 }
 
 MisguidedQuill::MisguidedQuill()

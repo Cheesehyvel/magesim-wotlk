@@ -49,6 +49,7 @@ var ids = {
     TRINKET_TALISMAN_RESURGENCE: 48724,
     TRINKET_CHARRED_TWILIGHT_SCALE_HC: 54588,
     TRINKET_CHARRED_TWILIGHT_SCALE_NM: 54572,
+    TRINKET_NEVERMELTING_ICE_CRYSTAL: 50259,
     TRINKET_MISGUIDED_QUILL: 50357,
     TRINKET_PURIFIED_LUNAR_DUST: 50358,
     // Enchants
@@ -1375,6 +1376,7 @@ var equip = {
         { id: 42129, title: "Battlemaster's Accuracy", ilvl: 213, hit: 95 },
         { id: 42128, title: "Battlemaster's Hostility", ilvl: 213, crit: 95 },
         // prebis
+        { id: ids.TRINKET_NEVERMELTING_ICE_CRYSTAL, title: "Nevermelting Ice Crystal", ilvl: 232, sp: 111, unique: true, use: true, phase: 4 },
         { id: ids.TRINKET_ABYSSAL_RUNE, title: "Abyssal Rune", ilvl: 200, haste: 84, unique: true, phase: 3 },
         { id: ids.TRINKET_SUNDIAL_EXILED, title: "Sundial of the Exiled", ilvl: 200, crit: 84, unique: true },
         { id: ids.TRINKET_DARKMOON_DEATH, title: "Darkmoon Card: Death", ilvl: 200, crit: 85, unique: true },

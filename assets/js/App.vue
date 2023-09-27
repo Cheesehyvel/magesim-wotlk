@@ -2679,6 +2679,11 @@
                         icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_trinket_02.jpg",
                     },
                     {
+                        id: this.items.ids.TRINKET_NEVERMELTING_ICE_CRYSTAL,
+                        title: "Nevermelting Ice Crystal",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_datacrystal09.jpg",
+                    },
+                    {
                         id: this.items.ids.TRINKET_SLIVER_PURE_ICE_HC,
                         title: "Sliver of Pure Ice",
                         icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
