@@ -12,6 +12,7 @@ Stats CorrectStats(const Stats& stats)
     result.haste_rating = 0;
     result.haste = 0;
     result.spell_power *= 0.33;
+    result.crit = 8;
     return result;
 }
 }
@@ -28,6 +29,7 @@ MirrorImage::MirrorImage(const Config& _config, const Stats& _stats)
     duration = 30;
     get_raid_buffs = false;
     unique = false;
+    crit_suppression = true;
 }
 
 std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
@@ -36,7 +38,7 @@ std::vector<action::Action> MirrorImage::onCastSuccessProc(const State& state, s
 
     // Cooldowns
     if (spell->id == spell::MIRROR_FIRE_BLAST)
-        actions.emplace_back(cooldownAction<cooldown::FireBlast>());
+        actions.emplace_back(cooldownAction<cooldown::MirrorFireBlast>());
 
     return actions;
 }
@@ -56,7 +58,7 @@ action::Action MirrorImage::nextAction(const State& state)
 
     auto target = state.targets[0];
 
-    if (!hasCooldown(cooldown::FIRE_BLAST) && random<int>(0, 2) == 0)
+    if (!hasCooldown(cooldown::MIRROR_FIRE_BLAST) && random<int>(0, 9) != 0)
         return spellAction<spell::MirrorFireBlast>(target);
     else
         return spellAction<spell::MirrorFrostbolt>(target);

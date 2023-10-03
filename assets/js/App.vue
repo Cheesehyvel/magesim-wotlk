@@ -674,7 +674,11 @@
                                         <td>{{ $round(spell.misses, 1) }} ({{ $round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
                                         <td>{{ $round(spell.hits, 1) }}</td>
                                         <td>{{ $round(spell.crits, 1) }} ({{ $round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
-                                        <td>{{ $round(spell.dmg, 0) }}<template v-if="result.hasOwnProperty('dmg')"> ({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</template></td>
+                                        <td>
+                                            {{ $round(spell.dmg, 0) }}
+                                            <template v-if="result.hasOwnProperty('dmg')">({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</template>
+                                            <template v-else>({{ $round(spell.dmg / spellDmg * 100, 2) }}%)</template>
+                                        </td>
                                         <td>{{ $round(spell.min_dmg, 0) }}</td>
                                         <td>{{ $round(spell.dmg / (spell.hits + spell.crits), 0) }}</td>
                                         <td>{{ $round(spell.max_dmg, 0) }}</td>
@@ -2514,6 +2518,12 @@
                 if (!this.result || !this.result.spells)
                     return 0;
                 return _.sumBy(this.result.spells, "casts");
+            },
+
+            spellDmg() {
+                if (!this.result || !this.result.spells)
+                    return 1;
+                return _.sumBy(this.result.spells, "dmg");
             },
 
             epCalc() {

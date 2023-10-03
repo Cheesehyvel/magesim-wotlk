@@ -1172,7 +1172,7 @@ double Simulation::critChance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<
     crit = std::min(crit, 100.0);
 
     // Crit suppression
-    if (unit->id == player->id) {
+    if (unit->crit_suppression) {
         if (config.target_level == 83)
             crit -= 2.1;
         if (config.target_level == 82)

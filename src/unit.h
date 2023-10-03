@@ -37,6 +37,7 @@ public:
     bool get_raid_buffs = true;
     bool get_raid_debuffs = true;
     bool is_channeling = false;
+    bool crit_suppression = false;
     double last_spell_cast_time = 0;
     int id = 0;
 

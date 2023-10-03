@@ -47,6 +47,7 @@ void Player::reset()
     black_magic = false;
     has_pre_cast = false;
     pending_ptl = false;
+    crit_suppression = true;
 
     if (config.rot_black_magic)
         swapWeapons();

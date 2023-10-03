@@ -31,6 +31,7 @@ namespace cooldown
         PRESENCE_OF_MIND = 12043,
         FIRE_WARD = 43010,
         MIRROR_IMAGE = 55342,
+        MIRROR_FIRE_BLAST = 59637,
         POWER_INFUSION = 10060,
         BLACK_MAGIC = 59626,
         LIGHTWEAVE = 55637,
@@ -171,6 +172,18 @@ namespace cooldown
         {
             id = MIRROR_IMAGE;
             duration = 180;
+        }
+
+    };
+
+    class MirrorFireBlast : public Cooldown
+    {
+
+    public:
+        MirrorFireBlast()
+        {
+            id = MIRROR_FIRE_BLAST;
+            duration = 6;
         }
 
     };
