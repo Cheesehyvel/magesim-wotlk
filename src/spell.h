@@ -357,7 +357,7 @@ namespace spell
             min_dmg = 699;
             max_dmg = 854;
             cast_time = 2;
-            coeff = 0.2357;
+            coeff = 0.2357 * 0.9;
         }
     };
 
@@ -373,7 +373,7 @@ namespace spell
             ticks = 4;
             min_dmg = 155;
             max_dmg = 155;
-            coeff = 0.122;
+            coeff = 0.122 * 0.9;
         }
     };
 
