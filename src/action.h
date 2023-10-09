@@ -24,6 +24,7 @@ namespace action
         TYPE_TRINKET,
         TYPE_MANA,
         TYPE_UNIT,
+        TYPE_SULFURON_SLAMMER,
     };
 
     struct Action

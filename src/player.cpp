@@ -39,6 +39,7 @@ void Player::reset()
     t_incanters_absorption = 0;
     t_pushing_the_limit = -20;
     t_mana_spent = 0;
+    t_slammer = -20;
     fire_ward = 0;
     mana_shield = 0;
     mana_sapphire = 3;
@@ -1497,6 +1498,17 @@ bool Player::shouldEvocate(const State& state)
     return true;
 }
 
+bool Player::shouldSlammer(const State& state)
+{
+    if (t_slammer + 6.0 >= state.t)
+        return false;
+    if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC))
+        return true;
+    if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM))
+        return true;
+    return false;
+}
+
 std::vector<action::Action> Player::useManaGem()
 {
     std::vector<action::Action> actions;
@@ -2042,6 +2054,14 @@ action::Action Player::nextAction(const State& state)
     }
     else if (shouldEvocate(state)) {
         return spellAction<spell::Evocation>(evocationTicks());
+    }
+
+    // Epic slammer
+    if (config.sulfuron_slammer && shouldSlammer(state)) {
+        t_slammer = state.t;
+        action::Action action{ action::TYPE_SULFURON_SLAMMER };
+        action.primary_action = true;
+        return action;
     }
 
     // Default target

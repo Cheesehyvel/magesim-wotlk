@@ -33,6 +33,7 @@ public:
     double t_incanters_absorption;
     double t_pushing_the_limit;
     double t_mana_spent;
+    double t_slammer;
     double fire_ward;
     double mana_shield;
     int mana_sapphire;
@@ -134,6 +135,8 @@ public:
     bool shouldUseManaPotion(const State& state);
 
     bool shouldEvocate(const State& state);
+
+    bool shouldSlammer(const State& state);
 
     std::vector<action::Action> useManaGem();
 

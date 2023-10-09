@@ -1234,6 +1234,15 @@
                                         <help>25% extra from mana potions</help>
                                     </label>
                                 </div>
+                                <div class="form-item" v-if="canSulfuronSlammer">
+                                    <label><input type="checkbox" v-model="config.sulfuron_slammer">
+                                        <span>Sulfuron Slammer</span>
+                                        <help>
+                                            Using Sulfuron Slammer can proc certain trinkets such as 
+                                            Phylactery of the Nameless Lich
+                                        </help>
+                                    </label>
+                                </div>
                             </fieldset>
                             <fieldset class="config-consumes">
                                 <legend>Consumes</legend>
@@ -1944,7 +1953,8 @@
                 flask: 0,
                 battle_elixir: 0,
                 guardian_elixir: 0,
-
+                
+                sulfuron_slammer: false,
                 black_magic: false,
                 lightweave_embroidery: false,
                 darkglow_embroidery: false,
@@ -2357,6 +2367,14 @@
                 if (_.get(weapon, "unique"))
                     return false;
                 return true;
+            },
+
+            canSulfuronSlammer() {
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_HC))
+                    return true;
+                if (this.isEquipped("trinket", this.items.ids.TRINKET_NAMELESS_LICH_NM))
+                    return true;
+                return false;
             },
 
             activeItems() {

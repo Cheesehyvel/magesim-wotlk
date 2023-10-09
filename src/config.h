@@ -42,6 +42,7 @@ struct Config
     bool prof_engineer = false;
 
     // Enchants / procs
+    bool sulfuron_slammer = false;
     bool black_magic = false;
     bool lightweave_embroidery = false;
     bool darkglow_embroidery = false;

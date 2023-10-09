@@ -300,6 +300,12 @@ void Simulation::tick(Event& event)
         case EVENT_INTERRUPTION_END:
             onInterruptionEnd(event.interruption_index);
             break;
+        case EVENT_SLAMMER_START:
+            onSlammerStart(event.unit);
+            break;
+        case EVENT_SLAMMER_TICK:
+            onSlammerTick(event.unit);
+            break;
     }
 }
 
@@ -589,6 +595,9 @@ void Simulation::onAction(std::shared_ptr<unit::Unit> unit, action::Action &acti
     }
     else if (action.type == action::TYPE_UNIT) {
         onUnitSpawn(action.unit);
+    }
+    else if (action.type == action::TYPE_SULFURON_SLAMMER) {
+        onSlammerStart(unit);
     }
 
     if (action.primary_action)
@@ -920,6 +929,46 @@ void Simulation::onInterruptionEnd(int index)
                 nextAction(*i);
         }
     }
+}
+
+void Simulation::onSlammerStart(std::shared_ptr<unit::Unit> unit)
+{
+    addLog(unit, LOG_NONE, "Sulfuron Slammer consumed");
+
+    // Remove pending slammer ticks
+    for (auto i = queue.begin(); i != queue.end();) {
+        if (i->type == EVENT_SLAMMER_TICK && i->unit->id == unit->id)
+            i = queue.erase(i);
+        else
+            ++i;
+    }
+
+    Event e1;
+    e1.type = EVENT_SLAMMER_TICK;
+    e1.unit = unit;
+    e1.t = 3;
+    push(e1);
+
+    Event e2;
+    e2.type = EVENT_SLAMMER_TICK;
+    e2.unit = unit;
+    e2.t = 6;
+    push(e2);
+}
+
+void Simulation::onSlammerTick(std::shared_ptr<unit::Unit> unit)
+{
+    addLog(unit, LOG_NONE, "Sulfuron Slammer tick");
+
+    // Procs from slammers
+    std::vector<action::Action> actions;
+    if (unit->id == player->id) {
+        if (player->hasTrinket(TRINKET_NAMELESS_LICH_HC) && !player->hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3)
+            actions.push_back(player->buffCooldownAction<buff::NamelessLichHc, cooldown::NamelessLichHc>());
+        if (player->hasTrinket(TRINKET_NAMELESS_LICH_NM) && !player->hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3)
+            actions.push_back(player->buffCooldownAction<buff::NamelessLichNm, cooldown::NamelessLichNm>());
+    }
+    processActions(unit, actions);
 }
 
 void Simulation::onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff)

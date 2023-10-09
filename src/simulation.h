@@ -171,6 +171,10 @@ public:
 
     void onInterruptionEnd(int index);
 
+    void onSlammerStart(std::shared_ptr<unit::Unit> unit);
+
+    void onSlammerTick(std::shared_ptr<unit::Unit> unit);
+
     void onBuffGain(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff);
 
     void onBuffExpire(std::shared_ptr<unit::Unit> unit, std::shared_ptr<buff::Buff> buff);
