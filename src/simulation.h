@@ -99,7 +99,7 @@ public:
 
     void pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, double t, int tick);
 
-    void pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick);
+    void pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick, double t_offset = 0);
 
     void pushDotTick(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, std::shared_ptr<target::Target> target);
 
@@ -230,6 +230,8 @@ public:
     spell::Result getSpellResult(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target) const;
 
     spell::SpellInstance getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
+    void rollSpellInstance(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, std::shared_ptr<target::Target> target);
 
     void logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 

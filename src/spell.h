@@ -63,7 +63,8 @@ namespace spell
         NONE,
         HIT,
         CRIT,
-        MISS
+        MISS,
+        PENDING
     };
 
     struct Spell
@@ -89,6 +90,8 @@ namespace spell
         bool off_gcd = false;
         bool is_trigger = false;
         bool can_proc = true;
+        bool tick_refresh = true;
+        bool dynamic = false;
         int ticks = 0;
         int t_interval = 1;
         const School school = SCHOOL_NONE;
@@ -340,6 +343,8 @@ namespace spell
             dot = true;
             active_use = false;
             can_proc = false;
+            tick_refresh = false;
+            dynamic = true;
             t_interval = 2;
             ticks = 4;
             min_dmg = 195;
@@ -369,6 +374,9 @@ namespace spell
             aoe_capped = false;
             dot = true;
             active_use = false;
+            can_proc = false;
+            tick_refresh = false;
+            dynamic = true;
             t_interval = 2;
             ticks = 4;
             min_dmg = 155;

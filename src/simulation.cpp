@@ -384,9 +384,18 @@ void Simulation::pushChannelingTick(std::shared_ptr<unit::Unit> unit, std::share
     push(event);
 }
 
-void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick)
+void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target, int tick, double t_offset)
 {
-    auto instance = getSpellInstance(unit, spell, target);
+    spell::SpellInstance instance;
+
+    if (spell->dynamic) {
+        instance.spell = spell;
+        instance.result = spell::PENDING;
+    }
+    else {
+        instance = getSpellInstance(unit, spell, target);
+    }
+
     instance.tick = tick;
 
     Event event;
@@ -394,7 +403,7 @@ void Simulation::pushDot(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell
     event.instance = instance;
     event.unit = unit;
     event.target = target;
-    event.t = tick * spell->t_interval;
+    event.t = tick * spell->t_interval + t_offset;
 
     push(event);
 }
@@ -720,6 +729,9 @@ void Simulation::onCastSuccess(std::shared_ptr<unit::Unit> unit, std::shared_ptr
 
 void Simulation::onSpellImpact(std::shared_ptr<unit::Unit> unit, spell::SpellInstance &instance, std::shared_ptr<target::Target> target)
 {
+    if (instance.result == spell::PENDING)
+        rollSpellInstance(unit, instance, target);
+
     if (instance.spell->dot) {
         instance.resist = spellDmgResist(unit, instance);
         instance.dmg -= instance.resist;
@@ -781,10 +793,33 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
         }
     }
     else {
-        removeSpellImpacts(unit, spell, target);
+        // Remove all dot ticks and create new ones
+        if (spell->tick_refresh) {
+            removeSpellImpacts(unit, spell, target);
 
-        for (int i = 1; i <= spell->ticks; i++)
-            pushDot(unit, spell, target, i);
+            for (int i = 1; i <= spell->ticks; i++)
+                pushDot(unit, spell, target, i);
+        }
+        else {
+
+            // Find pending dot ticks
+            double queued_ticks = 0;
+            double last_tick = 0;
+            for (auto i = queue.begin(); i != queue.end(); i++) {
+                if (i->type == EVENT_SPELL_IMPACT && i->instance.spell->id == spell->id && i->unit == unit && i->target == target) {
+                    queued_ticks++;
+                    last_tick = i->t;
+                }
+            }
+
+            // Tick relative to current time
+            if (queued_ticks > 0)
+                last_tick -= state.t;
+
+            // Add dot ticks at the end
+            for (int i = 1 + queued_ticks; i <= spell->ticks; i++)
+                pushDot(unit, spell, target, i, last_tick - queued_ticks * spell->t_interval);
+        }
     }
 }
 
@@ -1349,19 +1384,25 @@ spell::Result Simulation::getSpellResult(std::shared_ptr<unit::Unit> unit, std::
 spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     spell::SpellInstance instance;
-
     instance.spell = spell;
 
-    if (spell->max_dmg > 0) {
-        instance.result = getSpellResult(unit, spell, target);
+    rollSpellInstance(unit, instance, target);
+
+    return instance;
+}
+
+void Simulation::rollSpellInstance(std::shared_ptr<unit::Unit> unit, spell::SpellInstance& instance, std::shared_ptr<target::Target> target)
+{
+    if (instance.spell->max_dmg > 0) {
+        instance.result = getSpellResult(unit, instance.spell, target);
 
         if (instance.result != spell::MISS) {
-            instance.dmg = spellDmg(unit, spell, target);
+            instance.dmg = spellDmg(unit, instance.spell, target);
 
             if (instance.result == spell::CRIT)
-                instance.dmg *= critMultiplier(unit, spell);
+                instance.dmg *= critMultiplier(unit, instance.spell);
 
-            if (unit->canResist(spell)) {
+            if (unit->canResist(instance.spell)) {
                 instance.resist = spellDmgResist(unit, instance);
                 instance.dmg -= instance.resist;
             }
@@ -1369,8 +1410,6 @@ spell::SpellInstance Simulation::getSpellInstance(std::shared_ptr<unit::Unit> un
             instance.dmg = round(instance.dmg);
         }
     }
-
-    return instance;
 }
 
 void Simulation::logCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)

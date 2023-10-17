@@ -932,6 +932,7 @@
                                         <option :value="rotations.ROTATION_AOE_BLIZZ">Blizzard</option>
                                         <option :value="rotations.ROTATION_AOE_BLIZZ_FS">Flamestrike > Blizzard</option>
                                         <option :value="rotations.ROTATION_AOE_FIRE">Fire AoE</option>
+                                        <option :value="rotations.ROTATION_AOE_FS">Flamestrike</option>
                                     </select>
                                 </div>
                                 <div class="form-item" v-if="config.talents.imp_scorch">
@@ -2926,6 +2927,7 @@
                     constants.rotations.ROTATION_AOE_BLIZZ,
                     constants.rotations.ROTATION_AOE_BLIZZ_FS,
                     constants.rotations.ROTATION_AOE_FIRE,
+                    constants.rotations.ROTATION_AOE_FS,
                 ];
 
                 return aoe.indexOf(this.config.rotation) != -1;
@@ -5680,6 +5682,8 @@
                     return "Blizzard + FS";
                 if (rot == this.rotations.ROTATION_AOE_FIRE)
                     return "AoE Fire";
+                if (rot == this.rotations.ROTATION_AOE_FS)
+                    return "Flamestrike";
                 return "Unknown";
             },
 

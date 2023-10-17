@@ -2281,6 +2281,15 @@ action::Action Player::nextAction(const State& state)
             return spellAction<spell::Blizzard>();
     }
 
+    // Flamestrike
+    else if (config.rotation == ROTATION_AOE_FS) {
+        auto fs = std::make_shared<spell::Flamestrike>();
+        double ct = castTime(fs);
+        if (t_flamestrike + 8.0 - ct > state.t && t_flamestrike_dr + 8.0 - ct <= state.t && state.t + 8.0 < state.duration)
+            return spellAction<spell::FlamestrikeDR>();
+        return spellAction(fs);
+    }
+
     // Fire
     else if (config.rotation == ROTATION_AOE_FIRE) {
         auto fs = std::make_shared<spell::Flamestrike>();
