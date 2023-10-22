@@ -1832,7 +1832,7 @@ action::Action Player::useCooldown(const State& state)
         return { action::TYPE_NONE };
     }
 
-    if (config.t10_4set && !hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state) && state.duration - state.t > 20.0) {
+    if (config.t10_4set && !hasCooldown(cooldown::MIRROR_IMAGE) && useTimingIfPossible("mirror_image", state) && state.duration - state.t >= 10.0) {
         return spellCooldownAction<spell::MirrorImage, cooldown::MirrorImage>();
     }
     else if (talents.arcane_power && !hasCooldown(cooldown::ARCANE_POWER) && !hasBuff(buff::PRESENCE_OF_MIND) && useTimingIfPossible("arcane_power", state)) {
