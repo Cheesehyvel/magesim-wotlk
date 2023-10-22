@@ -292,6 +292,7 @@ var equip = {
         { id: 42531, title: "Deadly Gladiator's Reprieve", ilvl: 213, int: 29, spi: 38, sp: 66 },
         { id: 42537, title: "Deadly Gladiator's Grimoire", ilvl: 213, int: 29, sp: 66 },
         // prebis
+        { id: 50309, title: "Shriveled Heart", ilvl: 232, int: 34, sp: 78, crit: 51, haste: 50, phase: 4 },
         { id: 40698, title: "Ward of the Violet Citadel", ilvl: 200, int: 34, sp: 59, crit: 25, hit: 38 },
         { id: 44210, title: "Faces of Doom", ilvl: 200, int: 42, spi: 42, sp: 49, crit: 42 },
         { id: 38322, title: "Iron-bound Tome", ilvl: 200, sp: 74, crit: 33 },
@@ -1296,6 +1297,7 @@ var equip = {
         { id: 42110, title: "Hateful Gladiator's Band of Dominance", ilvl: 200, int: 24, sp: 59, crit: 34, unique: true },
         { id: 42112, title: "Hateful Gladiator's Band of Triumph", ilvl: 200, crit: 34, unique: true },
         // prebis
+        { id: 211844, title: "The Horseman's Seal", ilvl: 232, int: 51, sp: 78, hit: 39, haste: 48, unique: true, phase: 4 },
         { id: 47512, title: "Sinner's Confession", ilvl: 219, int: 45, sp: 70, crit: 33, hit: 44, unique: true, phase: 3 },
         { id: 40719, title: "Band of Channeled Magic", ilvl: 213, int: 41, spi: 32, sp: 65, haste: 43, unique: true },
         { id: 40720, title: "Renewal of Life", ilvl: 213, int: 41, sp: 66, crit: 28, mp5: 21, unique: true },
