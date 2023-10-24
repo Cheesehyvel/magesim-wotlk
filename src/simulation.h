@@ -147,6 +147,8 @@ public:
 
     void dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
+    void onCastStartProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
     void onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     void onSpellImpactProc(std::shared_ptr<unit::Unit> unit, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);

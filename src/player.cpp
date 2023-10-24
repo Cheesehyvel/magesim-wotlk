@@ -695,6 +695,20 @@ std::vector<action::Action> Player::onBuffExpire(const State& state, std::shared
     return actions;
 }
 
+std::vector<action::Action> Player::onCastStartProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
+{
+    auto actions = Unit::onCastStartProc(state, spell, target);
+
+    if (config.t10_2set) {
+        if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK))
+            actions.push_back(buffAction<buff::PushingTheLimit>());
+        else if ((spell->id == spell::FROSTFIRE_BOLT || spell->id == spell::FIREBALL) && hasBuff(buff::BRAIN_FREEZE) && spell->actual_cast_time == 0)
+            actions.push_back(buffAction<buff::PushingTheLimit>());
+    }
+
+    return actions;
+}
+
 std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
     auto actions = Unit::onCastSuccessProc(state, spell, target);
@@ -784,8 +798,6 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
         // 20% chance - Sorta confirmed from elitist jerks
         if (!config.t8_4set || random<int>(0, 4) != 0) {
             actions.push_back(buffExpireAction<buff::BrainFreeze>());
-            if (config.t10_2set)
-                actions.push_back(buffAction<buff::PushingTheLimit>());
         }
     }
 
@@ -799,11 +811,8 @@ std::vector<action::Action> Player::onCastSuccessProc(const State& state, std::s
     }
     if (spell->id == spell::PYROBLAST && hasBuff(buff::HOT_STREAK)) {
         // 20% chance - Sorta confirmed from elitist jerks
-        if (!config.t8_4set || random<int>(0, 4) != 0) {
+        if (!config.t8_4set || random<int>(0, 4) != 0)
             actions.push_back(buffExpireAction<buff::HotStreak>());
-            if (config.t10_2set)
-                actions.push_back(buffAction<buff::PushingTheLimit>());
-        }
     }
 
     if (spell->id == spell::PYROBLAST)
@@ -2111,9 +2120,12 @@ action::Action Player::nextAction(const State& state)
 
         // Pyroblast - second check
         if (hot_streak && pyro_will_land) {
-            double ptl = t_pushing_the_limit + 5.0 - state.t;
-            if (ptl <= 1.0 || ptl <= castTime(main_spell))
+            if (!hasBuff(buff::PUSHING_THE_LIMIT) || 
+                state.duration - state.t < castTime(main_spell) + travelTime(main_spell) ||
+                target->t_living_bomb + 12.0 < state.t + Unit::gcd())
+            {
                 return spellAction(pyroblast, target);
+            }
         }
 
         if (!hasBuff(buff::PRESENCE_OF_MIND)) {

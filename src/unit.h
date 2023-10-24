@@ -150,6 +150,8 @@ public:
 
     virtual std::vector<action::Action> onBuffExpire(const State &state, std::shared_ptr<buff::Buff> buff);
 
+    virtual std::vector<action::Action> onCastStartProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
     virtual std::vector<action::Action> onCastSuccessProc(const State &state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     virtual std::vector<action::Action> onSpellImpactProc(const State &state, const spell::SpellInstance &instance, std::shared_ptr<target::Target> target);

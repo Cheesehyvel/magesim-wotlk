@@ -114,6 +114,8 @@ public:
 
     std::vector<action::Action> onBuffExpire(const State& state, std::shared_ptr<buff::Buff> buff);
 
+    std::vector<action::Action> onCastStartProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
+
     std::vector<action::Action> onCastSuccessProc(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);
 
     std::vector<action::Action> onProcSuccess(const State& state, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target);

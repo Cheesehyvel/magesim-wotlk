@@ -646,9 +646,10 @@ void Simulation::cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::S
 
 void Simulation::onCastStart(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
 {
-    spell->actual_cast_time = unit->castTime(spell);
-
     logCastStart(unit, spell, target);
+    onCastStartProc(unit, spell, target);
+
+    spell->actual_cast_time = unit->castTime(spell);
 
     if (spell->active_use) {
         unit->t_gcd = state.t + unit->gcd(spell->gcd);
@@ -821,6 +822,12 @@ void Simulation::dotApply(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spel
                 pushDot(unit, spell, target, i, last_tick - queued_ticks * spell->t_interval);
         }
     }
+}
+
+void Simulation::onCastStartProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
+{
+    auto actions = unit->onCastStartProc(state, spell, target);
+    processActions(unit, actions);
 }
 
 void Simulation::onCastSuccessProc(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::Spell> spell, std::shared_ptr<target::Target> target)
