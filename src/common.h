@@ -194,6 +194,7 @@ struct SimulationResult
     double t;
     double dps;
     double t_gcd_capped;
+    double t_oom;
     std::string log;
     std::string spells;
 };
@@ -204,6 +205,7 @@ struct SimulationsResult
     double max_dps = 0;
     double avg_dps = 0;
     double t_gcd_capped = 0;
+    int n_oom = 0;
     int iterations;
     std::string histogram;
     std::string all_results;

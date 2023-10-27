@@ -19,6 +19,7 @@ void Unit::reset()
     mana = maxMana();
     t_gcd = 0;
     t_gcd_capped = 0;
+    t_oom = 0;
     is_channeling = false;
     last_spell_cast_time = 0;
 

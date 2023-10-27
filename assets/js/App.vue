@@ -210,9 +210,18 @@
                             <div>DPS</div>
                             <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
                             <div class="dps">{{ $round(result.avg_dps, 2) }}</div>
-                            <div class="faded mb-1" v-if="result.t_gcd_capped">
-                                <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
-                                <help>Time spent gcd capped</help>
+                            <div class="mb-1" v-if="result.t_gcd_capped >= 0.01 || result.n_oom">
+                                <div class="faded" v-if="result.t_gcd_capped >= 0.01">
+                                    <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
+                                    <help>Time spent gcd capped</help>
+                                </div>
+                                <div class="faded warning" v-if="result.n_oom">
+                                    <span>OOM: {{ $round(result.n_oom / result.iterations * 100) }}%</span>
+                                    <help>
+                                        Out of mana in {{ $round(result.n_oom) }} iterations<br>
+                                        Common issues might be due to the number of Evocation ticks or timing of mana cooldowns.
+                                    </help>
+                                </div>
                             </div>
                         </div>
                         <div class="pinned" v-if="pin_dps">
@@ -245,6 +254,13 @@
                             <div class="faded" v-if="result.t_gcd_capped">
                                 <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
                                 <help>Time spent gcd capped</help>
+                            </div>
+                            <div class="faded warning" v-if="result.t_oom">
+                                <span>OOM at {{ $round(result.t_oom, 2) }}s</span>
+                                <help>
+                                    Ran out of mana at {{ $round(result.t_oom, 2) }}<br>
+                                    Common issues might be the number of Evocation ticks or the timing of mana cooldowns.
+                                </help>
                             </div>
                         </div>
                     </template>

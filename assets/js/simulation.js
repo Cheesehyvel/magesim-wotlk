@@ -48,7 +48,9 @@ class SimulationWorkers {
                     if (result.max_dps > sum.max_dps)
                         sum.max_dps = result.max_dps;
                     sum.avg_dps = (sum.avg_dps * sum.iterations + result.avg_dps * result.iterations) / (sum.iterations + result.iterations);
+                    sum.t_gcd_capped = (sum.t_gcd_capped * sum.iterations + result.t_gcd_capped * result.iterations) / (sum.iterations + result.iterations);
                     sum.iterations+= result.iterations;
+                    sum.n_oom+= result.n_oom;
 
                     if (result.histogram) {
                         for (var key in result.histogram) {
@@ -57,14 +59,6 @@ class SimulationWorkers {
                             else
                                 sum.histogram[key]+= result.histogram[key];
                         }
-                    }
-
-                    if (result.stats) {
-                        if (result.stats.evocated.n) {
-                            sum.stats.evocated.t = (sum.stats.evocated.t * sum.stats.evocated.n + result.stats.evocated.t * result.stats.evocated.n) / (sum.stats.evocated.n + result.stats.evocated.n);
-                            sum.stats.evocated.n+= result.stats.evocated.n;
-                        }
-                        sum.stats.t_gcd_capped = (sum.stats.t_gcd_capped * sum.iterations + result.stats.t_gcd_capped * result.iterations) / (sum.iterations + result.iterations);
                     }
 
                     if (result.all_results) {

@@ -64,6 +64,9 @@ SimulationsResult Simulation::runMultiple(int iterations)
 
         result.t_gcd_capped += (r.t_gcd_capped - result.t_gcd_capped) / (i + 1);
 
+        if (r.t_oom)
+            result.n_oom++;
+
         auto const bin = static_cast<int>(floor(r.dps / bin_size) * bin_size);
         if (histogram.find(bin) != histogram.end())
             histogram[bin]++;
@@ -171,6 +174,7 @@ SimulationResult Simulation::run(bool single)
     result.t = state.t;
     result.dps = result.dmg / state.t;
     result.t_gcd_capped = player->t_gcd_capped;
+    result.t_oom = player->t_oom;
 
     if (logging) {
         result.log = jsonLog();
@@ -640,6 +644,8 @@ void Simulation::cast(std::shared_ptr<unit::Unit> unit, std::shared_ptr<spell::S
             onCastStart(unit, spell, target);
     }
     else {
+        if (!unit->t_oom)
+            unit->t_oom = state.t;
         pushWait(unit, 0.5, "Out of mana", spell);
     }
 }

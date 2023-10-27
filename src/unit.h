@@ -32,6 +32,7 @@ public:
     double mana = 0;
     double t_gcd = 0;
     double t_gcd_capped = 0;
+    double t_oom = 0;
     double duration = 0;
     bool unique = true;
     bool get_raid_buffs = true;
