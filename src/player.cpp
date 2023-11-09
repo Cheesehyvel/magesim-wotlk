@@ -1085,10 +1085,12 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             if (hasTrinket(TRINKET_EXTRACT_NECROMANTIC_POWER) && !hasCooldown(cooldown::EXTRACT_NECROMANTIC_POWER) && random<int>(0, 9) == 0)
                 actions.push_back(spellCooldownAction<spell::ExtractNecromanticPower, cooldown::ExtractNecromanticPower>(target));
 
-            if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3)
-                actions.push_back(buffCooldownAction<buff::NamelessLichHc, cooldown::NamelessLichHc>());
-            if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3)
-                actions.push_back(buffCooldownAction<buff::NamelessLichNm, cooldown::NamelessLichNm>());
+            if (instance.spell->id != spell::IGNITE) {
+                if (hasTrinket(TRINKET_NAMELESS_LICH_HC) && !hasCooldown(cooldown::NAMELESS_LICH_HC) && random<int>(0, 9) < 3)
+                    actions.push_back(buffCooldownAction<buff::NamelessLichHc, cooldown::NamelessLichHc>());
+                if (hasTrinket(TRINKET_NAMELESS_LICH_NM) && !hasCooldown(cooldown::NAMELESS_LICH_NM) && random<int>(0, 9) < 3)
+                    actions.push_back(buffCooldownAction<buff::NamelessLichNm, cooldown::NamelessLichNm>());
+            }
         }
         else {
             if (talents.clearcast) {
