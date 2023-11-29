@@ -353,6 +353,8 @@ double Player::buffDmgMultiplier(std::shared_ptr<spell::Spell> spell, const Stat
     double multi = Unit::buffDmgMultiplier(spell, state);
     double additive = 1;
 
+    if (config.icc_buff)
+        multi *= 1 + config.icc_buff * 0.01;
     if (talents.arcane_instability)
         multi *= 1 + talents.arcane_instability * 0.01;
     if (talents.playing_with_fire)
@@ -645,10 +647,10 @@ std::vector<action::Action> Player::onBuffGain(const State& state, std::shared_p
     auto actions = Unit::onBuffGain(state, buff);
 
     if (buff->id == buff::FIRE_WARD) {
-        fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE) * 0.8053;
+        fire_ward = 1950.0 + getSpellPower(SCHOOL_FIRE) * 0.8053 * config.icc_buff;
     }
     else if (buff->id == buff::MANA_SHIELD) {
-        mana_shield = 1330.0 + getSpellPower(SCHOOL_ARCANE) * 0.8053;
+        mana_shield = 1330.0 + getSpellPower(SCHOOL_ARCANE) * 0.8053 * config.icc_buff;
     }
     else if ((buff->id == buff::CLEARCAST || buff->id == buff::PRESENCE_OF_MIND) && talents.arcane_potency) {
         actions.push_back(buffAction<buff::ArcanePotency>());

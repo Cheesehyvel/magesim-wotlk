@@ -229,6 +229,7 @@ EMSCRIPTEN_BINDINGS(my_module)
         .property("amplify_magic", &Config::amplify_magic)
         .property("prof_engineer", &Config::prof_engineer)
 
+        .property("icc_buff", &Config::icc_buff)
         .property("sulfuron_slammer", &Config::sulfuron_slammer)
         .property("black_magic", &Config::black_magic)
         .property("lightweave_embroidery", &Config::lightweave_embroidery)
