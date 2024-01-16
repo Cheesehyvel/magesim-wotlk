@@ -1148,21 +1148,23 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
         }
 
         // Confirmed - on spell impact, dots included
-        if (hasTrinket(TRINKET_EYE_BROODMOTHER)) {
-            actions.push_back(buffAction<buff::EyeBroodmother>());
-        }
+        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_HC) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_HC) && random<int>(0, 9) == 0)
+            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleHc, cooldown::CharredTwilightScaleHc>());
+        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_NM) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_NM) && random<int>(0, 9) == 0)
+            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleNm, cooldown::CharredTwilightScaleNm>());
 
-        if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3) {
+        // Confirmed - on spell impact, dots included
+        if (hasTrinket(TRINKET_EYE_BROODMOTHER))
+            actions.push_back(buffAction<buff::EyeBroodmother>());
+
+        if (hasTrinket(TRINKET_DARKMOON_DEATH) && !hasCooldown(cooldown::DARKMOON_DEATH) && random<int>(0, 19) < 3)
             actions.push_back(spellCooldownAction<spell::DarkmoonDeath, cooldown::DarkmoonDeath>(target));
-        }
 
         // Unconfirmed - on spell dmg ?
-        if (hasTrinket(TRINKET_MURADINS_SPYGLASS_HC)) {
+        if (hasTrinket(TRINKET_MURADINS_SPYGLASS_HC))
             actions.push_back(buffAction<buff::MuradinsSpyglassHc>());
-        }
-        if (hasTrinket(TRINKET_MURADINS_SPYGLASS_NM)) {
+        if (hasTrinket(TRINKET_MURADINS_SPYGLASS_NM))
             actions.push_back(buffAction<buff::MuradinsSpyglassNm>());
-        }
     }
 
     if (instance.result == spell::CRIT) {
@@ -1361,14 +1363,6 @@ std::vector<action::Action> Player::onCastOrTick(const State& state, std::shared
         // Confirmed - on harmful
         if (hasTrinket(TRINKET_FORGE_EMBER) && !hasCooldown(cooldown::FORGE_EMBER) && random<int>(0, 9) == 0) {
             actions.push_back(buffCooldownAction<buff::ForgeEmber, cooldown::ForgeEmber>());
-        }
-
-        // Unconfirmed - on harmful
-        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_HC) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_HC) && random<int>(0, 9) == 0) {
-            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleHc, cooldown::CharredTwilightScaleHc>());
-        }
-        if (hasTrinket(TRINKET_CHARRED_TWILIGHT_SCALE_NM) && !hasCooldown(cooldown::CHARRED_TWILIGHT_SCALE_NM) && random<int>(0, 9) == 0) {
-            actions.push_back(buffCooldownAction<buff::CharredTwilightScaleNm, cooldown::CharredTwilightScaleNm>());
         }
 
         // Confirmed - on harmful
