@@ -2255,7 +2255,7 @@
                 is_running_ep: false,
                 active_tab: "gear",
                 item_source: "wowhead",
-                search_item: this.loadFilters("phase:4-")+" ",
+                search_item: this.loadFilters("phase:5-")+" ",
                 search_gem: "",
                 search_log: "",
                 log_filter: {
