@@ -1178,11 +1178,6 @@ std::vector<action::Action> Player::onSpellImpactProc(const State& state, const 
             if (hasTrinkets(TRINKET_FETISH_VOLATILE_POWER_NM, TRINKET_TALISMAN_VOLATILE_POWER_NM) && hasBuff(buff::VOLATILE_POWER_NM))
                 actions.push_back(buffAction<buff::VolatilityNm>());
 
-            if (hasTrinket(TRINKET_DISLODGED_OBJECT_HC) && !hasCooldown(cooldown::DISLODGED_OBJECT_HC) && random<int>(0, 9) == 0)
-                actions.push_back(buffCooldownAction<buff::DislodgedObjectHc, cooldown::DislodgedObjectHc>());
-            if (hasTrinket(TRINKET_DISLODGED_OBJECT_NM) && !hasCooldown(cooldown::DISLODGED_OBJECT_NM) && random<int>(0, 9) == 0)
-                actions.push_back(buffCooldownAction<buff::DislodgedObjectNm, cooldown::DislodgedObjectNm>());
-
             if (config.nibelung_hc && !hasCooldown(cooldown::NIBELUNG_HC) && random<int>(0, 49) == 0)
                 actions.push_back(spellCooldownAction<spell::ValkyrProtector, cooldown::NibelungHc>());
             if (config.nibelung_nm && !hasCooldown(cooldown::NIBELUNG_NM) && random<int>(0, 49) == 0)
