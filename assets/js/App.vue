@@ -2626,47 +2626,47 @@
                 timings.push({
                     name: "bloodlust",
                     title: "Bloodlust",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_bloodlust.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_bloodlust.jpg",
                 });
                 timings.push({
                     name: "power_infusion",
                     title: "Power Infusion",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_holy_powerinfusion.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_holy_powerinfusion.jpg",
                 });
                 timings.push({
                     name: "mana_tide",
                     title: "Mana Tide",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg",
                 });
                 timings.push({
                     name: "innervate",
                     title: "Innervate",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_lightning.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg",
                 });
                 timings.push({
                     name: "mana_gem",
                     title: "Mana Gem",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_sapphire_02.jpg",
                 });
                 timings.push({
                     name: "evocation",
                     title: "Evocation",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_purge.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_purge.jpg",
                 });
                 timings.push({
                     name: "mirror_image",
                     title: "Mirror Image",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_magic_lesserinvisibilty.jpg",
                 });
                 timings.push({
                     name: "water_elemental",
                     title: "Water Elemental",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_summonwaterelemental_2.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental_2.jpg",
                 });
                 timings.push({
                     name: "berserking",
                     title: "Berserking",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/racial_troll_berserk.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/racial_troll_berserk.jpg",
                 });
                 timings.push({
                     name: "arcane_torrent",
@@ -2676,55 +2676,55 @@
                 timings.push({
                     name: "presence_of_mind",
                     title: "Presence of Mind",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_enchantarmor.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_enchantarmor.jpg",
                 });
                 timings.push({
                     name: "arcane_power",
                     title: "Arcane Power",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_lightning.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg",
                 });
                 timings.push({
                     name: "combustion",
                     title: "Combustion",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_fire_sealoffire.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_sealoffire.jpg",
                 });
                 timings.push({
                     name: "icy_veins",
                     title: "Icy Veins",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_coldhearted.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_coldhearted.jpg",
                 });
                 timings.push({
                     name: "cold_snap",
                     title: "Cold Snap",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/spell_frost_wizardmark.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_wizardmark.jpg",
                 });
                 timings.push({
                     name: "hyperspeed_accelerators",
                     title: "Hyperspeed Accelerators",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_enggizmos_04.jpg",
                 });
                 timings.push({
                     name: "sapper_charge",
                     title: "Sapper Charge",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_gizmo_supersappercharge.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_gizmo_supersappercharge.jpg",
                 });
 
                 var potion = {
                     name: "potion",
                     title: "Runic Mana Potion",
-                    icon: "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg",
+                    icon: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_02.jpg",
                 };
                 if (this.config.potion == constants.potions.POTION_SPEED) {
                     potion.title = "Potion of Speed";
-                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
+                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_04.jpg";
                 }
                 else if (this.config.potion == constants.potions.POTION_WILD_MAGIC) {
                     potion.title = "Potion of Wild Magic";
-                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
+                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_elixir_01.jpg";
                 }
                 else if (this.config.potion == constants.potions.POTION_FLAME_CAP) {
                     potion.title = "Flame Cap";
-                    potion.icon = "https://www.wowhead.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg";
+                    potion.icon = "https://wow.zamimg.com/images/wow/icons/large/inv_misc_herb_flamecap.jpg";
                 }
                 timings.push(potion);
 
@@ -2750,72 +2750,72 @@
                     {
                         id: this.items.ids.TRINKET_SLIVER_PURE_ICE_HC,
                         title: "Sliver of Pure Ice",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_SLIVER_PURE_ICE_NM,
                         title: "Sliver of Pure Ice",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_trinket_05.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_FETISH_VOLATILE_POWER_HC,
                         title: "Fetish of Volatile Power",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_FETISH_VOLATILE_POWER_NM,
                         title: "Fetish of Volatile Power",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TALISMAN_VOLATILE_POWER_HC,
                         title: "Talisman of Volatile Power",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TALISMAN_VOLATILE_POWER_NM,
                         title: "Talisman of Volatile Power",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_necklace_27.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_SHARD_CRYSTAL_HEART,
                         title: "Shard of the Crystal Heart",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_01.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_spiritshard_01.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TALISMAN_RESURGENCE,
                         title: "Talisman of Resurgence",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_gem_bloodstone_03.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_gem_bloodstone_03.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_SCALE_FATES,
                         title: "Scale of Fates",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_spiritshard_02.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_spiritshard_02.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_LIVING_FLAME,
                         title: "Living Flame",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/spell_fire_burnout.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_burnout.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TWILIGHT_SERPENT,
                         title: "Figurine - Twilight Serpent",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelcrafting_purpleserpent.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_TOME_ARCANE_PHENOMENA,
                         title: "Tome of Arcane Phenomena",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_book_07.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_book_07.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_CANNONEERS_FUSELIGHTER,
                         title: "Cannoneer's Fuselighter",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_gizmo_elementalblastingpowder.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_MARK_WAR_PRISONER,
                         title: "Mark of the War Prisoner",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_13.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_talisman_13.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_RUNE_INFINITE_POWER,
@@ -2825,22 +2825,22 @@
                     {
                         id: this.items.ids.TRINKET_NAARU_SLIVER,
                         title: "Shifting Naaru Sliver",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_jewelry_talisman_15.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_SKULL_GULDAN,
                         title: "Skull of Gul'dan",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_bone_elfskull_01.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_SHRUNKEN_HEAD,
                         title: "Hex Shrunken Head",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/inv_misc_head_troll_01.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_head_troll_01.jpg",
                     },
                     {
                         id: this.items.ids.TRINKET_MQG,
                         title: "Mind Quickening Gem",
-                        icon: "https://www.wowhead.com/images/wow/icons/large/spell_nature_wispheal.jpg",
+                        icon: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_wispheal.jpg",
                     },
                 ];
 

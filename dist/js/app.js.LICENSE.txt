@@ -27,6 +27,12 @@
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
 
+/**
+* @vue/shared v3.4.20
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
+
 //! moment.js
 
 //! moment.js locale configuration
