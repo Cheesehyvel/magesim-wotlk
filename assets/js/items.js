@@ -1,4 +1,4 @@
-var ids = {
+let ids = {
     // Trinkets
     TRINKET_MERCURIAL_ALCHEMIST_STONE: 44322,
     TRINKET_TWILIGHT_SERPENT: 42395,
@@ -90,7 +90,7 @@ var ids = {
     TRINKET_ASHTONGUE_TALISMAN: 32488,
 };
 
-var equip = {
+let equip = {
     weapon: [
         // icc
         { id: 50732, title: "Bloodsurge, Kel'Thuzad's Blade of Agony", ilvl: 284, int: 81, sp: 893, crit: 55, haste: 71, sockets: ["r"], bonus: {sp: 5}, unique: true, phase: 4 },
@@ -1402,7 +1402,7 @@ var equip = {
     ],
 };
 
-var gems = [
+let gems = [
     { id: 49110, title: "Nightmare Tear", color: "a", int: 10, spi: 10, unique: true },
     { id: 42702, title: "Enchanted Tear", color: "a", int: 6, spi: 6, unique: true },
     { id: ids.META_CHAOTIC_SKYFLARE, title: "Chaotic Skyflare Diamond", color: "m", crit: 21, desc: "+3% crit dmg", req: {b: 2} },
@@ -1475,7 +1475,7 @@ var gems = [
     { id: 40010, title: "Lustrous Sky Sapphire", color: "b", mp5: 8 },
 ];
 
-var enchants = {
+let enchants = {
     weapon: [
         { id: 62948, enchantmentId: 3854, title: "Greater Spellpower", sp: 81, twohand: true },
         { id: 60714, enchantmentId: 3834, title: "Mighty Spellpower", sp: 63 },
@@ -1536,13 +1536,9 @@ var enchants = {
     ],
 };
 
-var itemsets = [
+let itemsets = [
     { id: ids.GLADIATOR_SET, set2: { sp: 29 }, set4: { sp: 88 } },
     { id: ids.DUSKWEAVE_SET, set2: { sp: 18 } },
 ];
 
-var quicksets = {
-
-};
-
-export default { ids, equip, gems, enchants, itemsets, quicksets };
+export default { ids, equip, gems, enchants, itemsets };

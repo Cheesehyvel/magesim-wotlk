@@ -1,5 +1,5 @@
 body {
-    background: #000 url("../img/wotlk_bg.jpg") no-repeat center top;
+    background: #000 url("/img/wotlk_bg.jpg") no-repeat center top;
     color: #fff;
     margin: 0;
     padding: 0;
@@ -34,7 +34,7 @@ label {
 }
 
 a {
-    color: $color_primary;
+    color: var(--color-primary);
     text-decoration: none;
 
     &:hover {
@@ -43,7 +43,7 @@ a {
 }
 
 .clearfix {
-    @include clearfix();
+    @mixin clearfix;
 }
 
 .fl { float: left; }
@@ -65,13 +65,13 @@ a {
 
     .events {
         padding-right: 20px;
-        margin-top: $spacer*0.5;
+        margin-top: 30px;
         line-height: 30px;
 
         .title {
             float: left;
             width: 200px;
-            border-right: 1px solid $color_stroke;
+            border-right: 1px solid var(--color-stroke);
         }
 
         .times {
@@ -85,7 +85,7 @@ a {
             position: absolute;
             top: 0;
             bottom: 0;
-            border-left: 1px solid $color_stroke;
+            border-left: 1px solid var(--color-stroke);
             padding-left: 3px;
         }
 
@@ -103,11 +103,11 @@ a {
 
         .timestamps,
         .item {
-            @include clearfix();
+            @mixin clearfix;
         }
 
         .item {
-            border-top: 1px solid $color_stroke;
+            border-top: 1px solid var(--color-stroke);
         }
     }
 }
@@ -122,7 +122,7 @@ a {
 
     &.active {
         .material-icons {
-            color: $color_primary;
+            color: var(--color-primary);
         }
     }
 }
@@ -140,7 +140,7 @@ a {
 .btn {
     display: inline-block;
     padding: 10px 12px;
-    background: $color_primary;
+    background: var(--color-primary);
     cursor: pointer;
     user-select: none;
     font-weight: 600;
@@ -150,7 +150,7 @@ a {
     line-height: 18px;
 
     &:hover {
-        background: $color_primary_hover;
+        background: var(--color-primary-hover);
         color: #fff;
     }
 
@@ -191,7 +191,7 @@ a {
         color: #ccc;
 
         &:hover {
-            background: $color_primary_hover;
+            background: var(--color-primary-hover);
             color: #fff;
         }
     }
@@ -230,7 +230,7 @@ a {
 
     .material-icons {
         margin-top: -2px;
-        color: $color_primary;
+        color: var(--color-primary);
     }
 }
 
@@ -265,7 +265,7 @@ fieldset {
 
     legend {
         font-weight: 700;
-        color: $color_primary;
+        color: var(--color-primary);
     }
 
     input[type="text"],
@@ -348,7 +348,7 @@ table {
     }
 
     tbody tr {
-        border-top: 1px solid $color_stroke;
+        border-top: 1px solid var(--color-stroke);
         cursor: pointer;
 
         &.active {
@@ -434,10 +434,10 @@ table {
         right: 0;
         bottom: 0;
         margin: 8px;
-        border: 8px solid $color_primary;
+        border: 8px solid var(--color-primary);
         border-radius: 50%;
         animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: $color_primary transparent transparent transparent;
+        border-color: var(--color-primary) transparent transparent transparent;
 
         &:nth-child(1) {
             animation-delay: -0.45s;
@@ -469,26 +469,26 @@ table {
         .sidebar {
             position: relative;
             background: rgba(0,0,0,0.8);
-            padding: $spacer*0.5 $spacer*0.5 360px;
+            padding: 30px 30px 360px;
             transition: background 0.2s ease;
 
             .display-stats {
                 position: absolute;
-                left: $spacer*0.5;
-                right: $spacer*0.5;
+                left: 30px;
+                right: 30px;
                 bottom: 130px;
 
                 td.active {
-                    color: $color_primary;
+                    color: var(--color-primary);
                 }
             }
 
             .ep-stats {
-                margin-top: $spacer*0.5;
+                margin-top: 30px;
             }
 
             .result {
-                margin-top: $spacer;
+                margin-top: 60px;
                 text-align: center;
 
                 .help {
@@ -500,7 +500,7 @@ table {
 
                     > div:nth-child(1) {
                         font-weight: 700;
-                        color: $color_primary;
+                        color: var(--color-primary);
                     }
                     > div.dps {
                         font-weight: 700;
@@ -525,7 +525,7 @@ table {
                 }
 
                 .pin {
-                    color: $color_primary;
+                    color: var(--color-primary);
                 }
 
                 .pinned {
@@ -547,7 +547,7 @@ table {
                     .update {
                         .material-icons {
                             margin-top: -4px;
-                            color: $color_primary;
+                            color: var(--color-primary);
                         }
                     }
 
@@ -576,7 +576,7 @@ table {
                 right: 0;
                 left: 0;
                 bottom: 40px;
-                background: url("../img/GitHub-Mark-Light-64px.png") no-repeat center center;
+                background: url("/img/GitHub-Mark-Light-64px.png") no-repeat center center;
                 background-size: 32px auto;
             }
 
@@ -635,7 +635,7 @@ table {
                 }
 
                 > div {
-                    padding: $spacer*0.5;
+                    padding: 30px;
                     animation: fade 0.2s ease;
                 }
 
@@ -645,7 +645,7 @@ table {
                     .slots {
                         position: relative;
                         background: rgba(0,0,0,0.2);
-                        padding: $spacer*0.5 $spacer*2.5 $spacer*0.5 $spacer*0.5;
+                        padding: 30px 150px 30px 30px;
 
                         .slot {
                             display: inline-block;
@@ -658,7 +658,7 @@ table {
                             transition: color 0.2s ease, border-color 0.2s ease;
 
                             &:nth-child(n+2) {
-                                margin-left: $spacer*0.5;
+                                margin-left: 30px;
 
                                 @media all and (max-width: 1820px) {
                                     margin-left: 20px;
@@ -706,12 +706,12 @@ table {
                         }
 
                         .items-wrapper {
-                            padding: $spacer*0.5;
+                            padding: 30px;
 
                             > .top {
                                 .form-item {
                                     float: left;
-                                    margin: 0 $spacer*0.25 0 0;
+                                    margin: 0 15px 0 0;
                                 }
 
                                 input {
@@ -799,7 +799,7 @@ table {
                             }
 
                             &.active .help .material-icons {
-                                color: $color_primary;
+                                color: var(--color-primary);
                             }
 
                             &.error .help .material-icons {
@@ -818,7 +818,7 @@ table {
                             }
 
                             &.active .help .material-icons {
-                                color: $color_primary;
+                                color: var(--color-primary);
                             }
 
                             &.error .help .material-icons {
@@ -836,7 +836,7 @@ table {
                         }
 
                         .sockets {
-                            @include clearfix();
+                            @mixin clearfix;
 
                             .socket {
                                 float: left;
@@ -852,16 +852,16 @@ table {
                             color: #888;
 
                             &:hover {
-                                color: $color_primary;
+                                color: var(--color-primary);
                             }
                         }
                     }
 
                     .character {
-                        padding: $spacer*0.5;
+                        padding: 30px;
 
                         .paperdoll {
-                            @include clearfix();
+                            @mixin clearfix;
 
                             .left {
                                 float: left;
@@ -884,7 +884,7 @@ table {
                                 margin-bottom: 5px;
 
                                 &.active .paperitem {
-                                    border-color: $color_primary;
+                                    border-color: var(--color-primary);
                                 }
 
                                 .paperv {
@@ -895,7 +895,8 @@ table {
                                 }
 
                                 a {
-                                    @include position-cover(absolute);
+                                    @mixin cover;
+                                    position: absolute;
                                     display: block;
                                     width: auto;
                                     height: auto;
@@ -905,7 +906,8 @@ table {
                                     }
 
                                     * {
-                                        @include position-cover(absolute);
+                                        @mixin cover;
+                                        position: absolute;
                                         display: block;
                                         width: auto;
                                         height: auto;
@@ -928,7 +930,7 @@ table {
                                 }
 
                                 .papers {
-                                    @include clearfix();
+                                    @mixin clearfix;
                                     position: absolute;
                                     left: 60px;
                                     bottom: 0;
@@ -1078,43 +1080,43 @@ table {
                     tr {
                         border: none;
 
-                        th,
-                        td {
-                            position: relative;
-                            padding: 2px;
-                            text-align: left;
-                            font-weight: 400;
+                        &:hover td .remove {
+                            opacity: 1;
+                        }
+                    }
 
-                            &.icon {
-                                width: 32px;
+                    th,
+                    td {
+                        position: relative;
+                        padding: 2px;
+                        text-align: left;
+                        font-weight: 400;
 
-                                img {
-                                    max-width: 32px;
-                                    vertical-align: top;
-                                }
-                            }
+                        &.icon {
+                            width: 32px;
 
-                            &.t,
-                            &.wait-t {
-                                width: 60px;
-                            }
-
-                            .remove {
-                                position: absolute;
-                                right: 100%;
-                                top: 0;
-                                cursor: pointer;
-                                padding: 0 5px;
-                                line-height: 32px;
-                                font-size: 18px;
-                                color: #c22;
-                                opacity: 0;
-                                transition: opacity 0.2s ease;
+                            img {
+                                max-width: 32px;
+                                vertical-align: top;
                             }
                         }
 
-                        &:hover td .remove {
-                            opacity: 1;
+                        &.t,
+                        &.wait-t {
+                            width: 60px;
+                        }
+
+                        .remove {
+                            position: absolute;
+                            right: 100%;
+                            top: 0;
+                            cursor: pointer;
+                            padding: 0 5px;
+                            line-height: 32px;
+                            font-size: 18px;
+                            color: #c22;
+                            opacity: 0;
+                            transition: opacity 0.2s ease;
                         }
                     }
                 }
@@ -1140,7 +1142,7 @@ table {
                     }
 
                     .menu {
-                        @include clearfix();
+                        @mixin clearfix;
                         position: absolute;
                         top: 0;
                         left: 34px;
@@ -1204,7 +1206,7 @@ table {
                 transition: color 0.2s ease;
 
                 &:hover {
-                    color: $color_primary;
+                    color: var(--color-primary);
                 }
             }
 
@@ -1227,7 +1229,7 @@ table {
             }
 
             .save {
-                color: $color_primary;
+                color: var(--color-primary);
             }
 
             .delete {
@@ -1238,19 +1240,19 @@ table {
         .new-profile {
             display: grid;
             grid-template-columns: 1fr min-content;
-            grid-gap: $spacer*0.25;
+            grid-gap: 15px;
         }
     }
 
     .log {
         .log-wrapper {
             .filter {
-                @include clearfix();
-                margin-bottom: $spacer*0.5;
+                @mixin clearfix;
+                margin-bottom: 30px;
 
                 .form-item {
                     float: left;
-                    margin: 0 $spacer*0.5 0 0;
+                    margin: 0 30px 0 0;
                 }
             }
         }
@@ -1268,7 +1270,7 @@ table {
                     color: #ccc;
                 }
                 &:nth-child(2) {
-                    color: $color_primary;
+                    color: var(--color-primary);
                 }
             }
 
@@ -1301,7 +1303,7 @@ table {
     }
 
     .profile-choices {
-        margin-top: $spacer*0.5;
+        margin-top: 30px;
 
         .profile-choice {
             margin: 0 10px 15px 0;
@@ -1333,20 +1335,20 @@ table {
             right: 10%;
             width: 80vw;
             background: rgba(8,13,28,0.8);
-            padding: $spacer*0.5;
+            padding: 30px;
             box-sizing: border-box;
             overflow: auto;
             animation: moveInFromBelow 0.4s ease forwards;
 
             > .title {
                 font-size: 18px;
-                margin-bottom: $spacer*0.25;
+                margin-bottom: 15px;
                 font-weight: 700;
             }
 
             > .description {
-                margin-top: -$spacer*0.25;
-                margin-bottom: $spacer*0.25;
+                margin-top: -15px;
+                margin-bottom: 15px;
             }
 
             textarea {
@@ -1414,17 +1416,17 @@ table {
 
     > .inner {
         background: #161620;
-        padding: $spacer*0.5;
+        padding: 30px;
 
         .title {
             font-size: 24px;
-            margin-bottom: $spacer*0.25;
+            margin-bottom: 15px;
             font-weight: 700;
             text-align: center;
         }
 
         .text {
-            margin-bottom: $spacer*0.25;
+            margin-bottom: 15px;
 
             b {
                 font-weight: 700;

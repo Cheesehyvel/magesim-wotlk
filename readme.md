@@ -5,7 +5,7 @@ Mage DPS simulator for WoW Wotlk Classic.
 [Live sim website](https://cheesehyvel.github.io/magesim-wotlk/)
 
 Backend is written in C++ and compiled with Emscripten into WebAssembly.\
-Frontend is written in Vue.js and SCSS and compiled with Laravel mix.
+Frontend is built with Vue and compiled with Vite.
 
 ## Building the project
 Requirements for backend
@@ -17,7 +17,7 @@ Requirements for frontend
 
 Standing in the root folder of the project.\
 Build backend: `$ make`\
-Build frontend: `$ npx mix`
+Build frontend: `$ npm run build`
 
 ## Common issues
 Some browsers have issues with WebAssembly when simply opening the file in the browser. This is when the url is something like `C://Users/Name/Downloads/magesim-wotlk/index.html`.\

@@ -56,7 +56,7 @@
                                 <td :class="[config.custom_stats.intellect ? 'active' : '']">
                                     Intellect
                                     <span v-if="config.custom_stats.intellect">
-                                        ({{ $plusMinus(config.custom_stats.intellect) }})
+                                        ({{ plusMinus(config.custom_stats.intellect) }})
                                         <tooltip position="t">{{ config.custom_stats.intellect }} bonus intellect</tooltip>
                                     </span>
                                 </td>
@@ -66,7 +66,7 @@
                                 <td :class="[config.custom_stats.spirit ? 'active' : '']">
                                     Spirit
                                     <span v-if="config.custom_stats.spirit">
-                                        ({{ $plusMinus(config.custom_stats.spirit) }})
+                                        ({{ plusMinus(config.custom_stats.spirit) }})
                                         <tooltip position="t">{{ config.custom_stats.spirit }} bonus spirit</tooltip>
                                     </span>
                                 </td>
@@ -76,7 +76,7 @@
                                 <td :class="[config.custom_stats.mp5 ? 'active' : '']">
                                     Mp5
                                     <span v-if="config.custom_stats.mp5">
-                                        ({{ $plusMinus(config.custom_stats.mp5) }})
+                                        ({{ plusMinus(config.custom_stats.mp5) }})
                                         <tooltip position="t">{{ config.custom_stats.mp5 }} bonus mp5</tooltip>
                                     </span>
                                 </td>
@@ -86,7 +86,7 @@
                                 <td :class="[config.custom_stats.spell_power ? 'active' : '']">
                                     Spell power
                                     <span v-if="config.custom_stats.spell_power">
-                                        ({{ $plusMinus(config.custom_stats.spell_power) }})
+                                        ({{ plusMinus(config.custom_stats.spell_power) }})
                                         <tooltip position="t">{{ config.custom_stats.spell_power }} bonus spell power</tooltip>
                                     </span>
                                 </td>
@@ -96,12 +96,12 @@
                                 <td :class="[config.custom_stats.crit_rating ? 'active' : '']">
                                     Crit
                                     <span v-if="config.custom_stats.crit_rating">
-                                        ({{ $plusMinus(config.custom_stats.crit_rating) }})
+                                        ({{ plusMinus(config.custom_stats.crit_rating) }})
                                         <tooltip position="t">{{ config.custom_stats.crit_rating }} bonus crit rating</tooltip>
                                     </span>
                                 </td>
                                 <td>
-                                    <span>{{ $round(display_stats.crit, 2) }}%</span>
+                                    <span>{{ round(display_stats.crit, 2) }}%</span>
                                     <tooltip position="r">{{ display_stats.crit_rating }} crit rating</tooltip>
                                 </td>
                             </tr>
@@ -109,15 +109,15 @@
                                 <td :class="[config.custom_stats.hit_rating ? 'active' : '']">
                                     Hit
                                     <span v-if="config.custom_stats.hit_rating">
-                                        ({{ $plusMinus(config.custom_stats.hit_rating) }})
+                                        ({{ plusMinus(config.custom_stats.hit_rating) }})
                                         <tooltip position="t">{{ config.custom_stats.hit_rating }} bonus hit rating</tooltip>
                                     </span>
                                 </td>
                                 <td>
-                                    <span>{{ $round(display_stats.hit, 2) }}%</span>
+                                    <span>{{ round(display_stats.hit, 2) }}%</span>
                                     <tooltip position="r">
                                         <div class="tal">
-                                            <div>{{ $round(hitRatingToChance(display_stats.hit_rating),2) }}% from {{ display_stats.hit_rating }} hit rating</div>
+                                            <div>{{ round(hitRatingToChance(display_stats.hit_rating),2) }}% from {{ display_stats.hit_rating }} hit rating</div>
                                             <div v-if="config.talents.precision">{{ config.talents.precision }}% from Precision</div>
                                             <div v-if="config.talents.precision && config.rotation == rotations.ROTATION_ST_FROSTFIRE">{{ config.talents.precision }}% extra from Precision (ffb only)</div>
                                             <div v-if="config.debuff_spell_hit">3% from spell hit debuff</div>
@@ -131,12 +131,12 @@
                                 <td :class="[config.custom_stats.haste_rating ? 'active' : '']">
                                     Haste
                                     <span v-if="config.custom_stats.haste_rating">
-                                        ({{ $plusMinus(config.custom_stats.haste_rating) }})
+                                        ({{ plusMinus(config.custom_stats.haste_rating) }})
                                         <tooltip position="t">{{ config.custom_stats.haste_rating }} bonus haste rating</tooltip>
                                     </span>
                                 </td>
                                 <td>
-                                    <span>{{ $round(display_stats.haste, 2) }}%</span>
+                                    <span>{{ round(display_stats.haste, 2) }}%</span>
                                     <tooltip position="r">{{ display_stats.haste_rating }} haste rating</tooltip>
                                 </td>
                             </tr>
@@ -171,31 +171,31 @@
                         <tbody>
                             <tr @click="ep_weight = 'intellect'">
                                 <td>Intellect</td>
-                                <td>{{ $nullRound(epCalc.intellect, 2) }}</td>
+                                <td>{{ nullRound(epCalc.intellect, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'spirit'">
                                 <td>Spirit</td>
-                                <td>{{ $nullRound(epCalc.spirit, 2) }}</td>
+                                <td>{{ nullRound(epCalc.spirit, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'mp5'">
                                 <td>Mp5</td>
-                                <td>{{ $nullRound(epCalc.mp5, 2) }}</td>
+                                <td>{{ nullRound(epCalc.mp5, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'spell_power'">
                                 <td>Spell power</td>
-                                <td>{{ $nullRound(epCalc.spell_power, 2) }}</td>
+                                <td>{{ nullRound(epCalc.spell_power, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'crit_rating'">
                                 <td>Crit rating</td>
-                                <td>{{ $nullRound(epCalc.crit_rating, 2) }}</td>
+                                <td>{{ nullRound(epCalc.crit_rating, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'hit_rating'">
                                 <td>Hit rating</td>
-                                <td>{{ $nullRound(epCalc.hit_rating, 2) }}</td>
+                                <td>{{ nullRound(epCalc.hit_rating, 2) }}</td>
                             </tr>
                             <tr @click="ep_weight = 'haste_rating'">
                                 <td>Haste rating</td>
-                                <td>{{ $nullRound(epCalc.haste_rating, 2) }}</td>
+                                <td>{{ nullRound(epCalc.haste_rating, 2) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -208,17 +208,17 @@
                     <template v-if="result.iterations">
                         <div class="dps-result">
                             <div>DPS</div>
-                            <div class="faded">{{ $round(result.min_dps, 2) }} - {{ $round(result.max_dps, 2) }}</div>
-                            <div class="dps">{{ $round(result.avg_dps, 2) }}</div>
+                            <div class="faded">{{ round(result.min_dps, 2) }} - {{ round(result.max_dps, 2) }}</div>
+                            <div class="dps">{{ round(result.avg_dps, 2) }}</div>
                             <div class="mb-1" v-if="result.t_gcd_capped >= 0.01 || result.n_oom">
                                 <div class="faded" v-if="result.t_gcd_capped >= 0.01">
-                                    <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
+                                    <span>Wasted haste: {{ round(result.t_gcd_capped, 2) }}s</span>
                                     <help>Time spent gcd capped</help>
                                 </div>
                                 <div class="faded warning" v-if="result.n_oom">
-                                    <span>OOM: {{ $round(result.n_oom / result.iterations * 100) }}%</span>
+                                    <span>OOM: {{ round(result.n_oom / result.iterations * 100) }}%</span>
                                     <help>
-                                        Out of mana in {{ $round(result.n_oom) }} iterations<br>
+                                        Out of mana in {{ round(result.n_oom) }} iterations<br>
                                         Common issues might be due to the number of Evocation ticks or timing of mana cooldowns.
                                     </help>
                                 </div>
@@ -230,7 +230,7 @@
                                 <tooltip position="r">Update reference</tooltip>
                             </span>
                             <span class="diff" :class="[pin_dps > result.avg_dps ? 'lt' : 'gt']">
-                                <template v-if="pin_dps <= result.avg_dps">+</template>{{ $roundFixed(result.avg_dps - pin_dps, 2) }}
+                                <template v-if="pin_dps <= result.avg_dps">+</template>{{ roundFixed(result.avg_dps - pin_dps, 2) }}
                             </span>
                             <span class="remove" @click="removePin">
                                 <span class="material-icons">&#xe5cd;</span>
@@ -250,15 +250,15 @@
                         <div class="dps-result">
                             <div>DPS</div>
                             <div class="faded">Damage: {{ result.dmg }}</div>
-                            <div class="dps">{{ $round(result.dps, 2) }}</div>
+                            <div class="dps">{{ round(result.dps, 2) }}</div>
                             <div class="faded" v-if="result.t_gcd_capped">
-                                <span>Wasted haste: {{ $round(result.t_gcd_capped, 2) }}s</span>
+                                <span>Wasted haste: {{ round(result.t_gcd_capped, 2) }}s</span>
                                 <help>Time spent gcd capped</help>
                             </div>
                             <div class="faded warning" v-if="result.t_oom">
-                                <span>OOM at {{ $round(result.t_oom, 2) }}s</span>
+                                <span>OOM at {{ round(result.t_oom, 2) }}s</span>
                                 <help>
-                                    Ran out of mana at {{ $round(result.t_oom, 2) }}<br>
+                                    Ran out of mana at {{ round(result.t_oom, 2) }}<br>
                                     Common issues might be the number of Evocation ticks or the timing of mana cooldowns.
                                 </help>
                             </div>
@@ -425,7 +425,7 @@
                                                     </span>
                                                 </td>
                                                 <td class="title">
-                                                    <a :href="itemUrl(item)" :class="['quality-'+$get(item, 'q', 'epic')]" target="_blank" @click.prevent>
+                                                    <a :href="itemUrl(item)" :class="['quality-'+get(item, 'q', 'epic')]" target="_blank" @click.prevent>
                                                         {{ item.title }}
                                                     </a>
                                                     <span class="link" @click.stop="openItem(item)">
@@ -433,7 +433,7 @@
                                                             &#xe895;
                                                         </span>
                                                     </span>
-                                                    <span class="delete" @click.stop="deleteCustomItem(item)" v-if="$get(item, 'custom')">
+                                                    <span class="delete" @click.stop="deleteCustomItem(item)" v-if="get(item, 'custom')">
                                                         <help icon="e872">Delete custom item</help>
                                                     </span>
                                                 </td>
@@ -441,7 +441,7 @@
                                                     <template v-if="comparisonDps(item)">
                                                         {{ comparisonDps(item) }}
                                                         <span v-if="pin_dps" class="diff" :class="[pin_dps > comparisonDps(item) ? 'lt' : 'gt']">
-                                                            (<template v-if="pin_dps <= comparisonDps(item)">+</template>{{ $roundFixed(comparisonDps(item) - pin_dps, 2) }})
+                                                            (<template v-if="pin_dps <= comparisonDps(item)">+</template>{{ roundFixed(comparisonDps(item) - pin_dps, 2) }})
                                                         </span>
                                                         <span v-if="comparisonMetaGemInactive(item)" class="warning">
                                                             <span class="material-icons">&#xe002;</span>
@@ -449,8 +449,8 @@
                                                         </span>
                                                     </template>
                                                 </td>
-                                                <td>{{ $get(item, "ilvl", "") }}</td>
-                                                <td>{{ $get(item, "phase", 1) }}</td>
+                                                <td>{{ get(item, "ilvl", "") }}</td>
+                                                <td>{{ get(item, "phase", 1) }}</td>
                                                 <td @click.prevent.stop="scrollToGems">
                                                     <template v-if="item.sockets">
                                                         <div class="socket-color" :class="['color-'+socket]" v-for="socket in item.sockets"></div>
@@ -459,13 +459,13 @@
                                                         +{{ formatStats(item.bonus) }}
                                                     </span>
                                                 </td>
-                                                <td>{{ $get(item, "sp", "") }}</td>
-                                                <td>{{ $get(item, "crit", "") }}</td>
-                                                <td>{{ $get(item, "hit", "") }}</td>
-                                                <td>{{ $get(item, "haste", "") }}</td>
-                                                <td>{{ $get(item, "int", "") }}</td>
-                                                <td>{{ $get(item, "spi", "") }}</td>
-                                                <td>{{ $get(item, "mp5", "") }}</td>
+                                                <td>{{ get(item, "sp", "") }}</td>
+                                                <td>{{ get(item, "crit", "") }}</td>
+                                                <td>{{ get(item, "hit", "") }}</td>
+                                                <td>{{ get(item, "haste", "") }}</td>
+                                                <td>{{ get(item, "int", "") }}</td>
+                                                <td>{{ get(item, "spi", "") }}</td>
+                                                <td>{{ get(item, "mp5", "") }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -494,17 +494,17 @@
                                                 @click="enchant(active_slot, item)"
                                             >
                                                 <td>
-                                                    <a :href="spellUrl(item)" :class="['quality-'+$get(item, 'q', 'uncommon')]" target="_blank" @click.prevent>
+                                                    <a :href="spellUrl(item)" :class="['quality-'+get(item, 'q', 'uncommon')]" target="_blank" @click.prevent>
                                                         {{ item.title }}
                                                     </a>
                                                 </td>
-                                                <td>{{ $get(item, "sp", "") }}</td>
-                                                <td>{{ $get(item, "crit", "") }}</td>
-                                                <td>{{ $get(item, "hit", "") }}</td>
-                                                <td>{{ $get(item, "haste", "") }}</td>
-                                                <td>{{ $get(item, "int", "") }}</td>
-                                                <td>{{ $get(item, "spi", "") }}</td>
-                                                <td>{{ $get(item, "mp5", "") }}</td>
+                                                <td>{{ get(item, "sp", "") }}</td>
+                                                <td>{{ get(item, "crit", "") }}</td>
+                                                <td>{{ get(item, "hit", "") }}</td>
+                                                <td>{{ get(item, "haste", "") }}</td>
+                                                <td>{{ get(item, "int", "") }}</td>
+                                                <td>{{ get(item, "spi", "") }}</td>
+                                                <td>{{ get(item, "mp5", "") }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -646,10 +646,12 @@
                             </div>
                             <table>
                                 <thead>
-                                    <th>Time</th>
-                                    <th>Mana</th>
-                                    <th>DPS</th>
-                                    <th>Event</th>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Mana</th>
+                                        <th>DPS</th>
+                                        <th>Event</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="log in activeLog" :class="['type-'+log.type]">
@@ -671,33 +673,35 @@
                         <div class="spells-wrapper">
                             <table class="large">
                                 <thead>
-                                    <th>Caster</th>
-                                    <th>Spell</th>
-                                    <th>Casts</th>
-                                    <th>Misses</th>
-                                    <th>Hits</th>
-                                    <th>Crits</th>
-                                    <th>Damage</th>
-                                    <th>Min dmg</th>
-                                    <th>Avg dmg</th>
-                                    <th>Max dmg</th>
+                                    <tr>
+                                        <th>Caster</th>
+                                        <th>Spell</th>
+                                        <th>Casts</th>
+                                        <th>Misses</th>
+                                        <th>Hits</th>
+                                        <th>Crits</th>
+                                        <th>Damage</th>
+                                        <th>Min dmg</th>
+                                        <th>Avg dmg</th>
+                                        <th>Max dmg</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="spell in spellStats">
                                         <td>{{ spell.source }}</td>
                                         <td>{{ spell.name }}</td>
-                                        <td>{{ $round(spell.casts, 1) }} ({{ $round(spell.casts / numCasts * 100, 1) }}%)</td>
-                                        <td>{{ $round(spell.misses, 1) }} ({{ $round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
-                                        <td>{{ $round(spell.hits, 1) }}</td>
-                                        <td>{{ $round(spell.crits, 1) }} ({{ $round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
+                                        <td>{{ round(spell.casts, 1) }} ({{ round(spell.casts / numCasts * 100, 1) }}%)</td>
+                                        <td>{{ round(spell.misses, 1) }} ({{ round(spell.misses/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
+                                        <td>{{ round(spell.hits, 1) }}</td>
+                                        <td>{{ round(spell.crits, 1) }} ({{ round(spell.crits/(spell.hits + spell.crits + spell.misses)*100, 2) }}%)</td>
                                         <td>
-                                            {{ $round(spell.dmg, 0) }}
-                                            <template v-if="result.hasOwnProperty('dmg')">({{ $round(spell.dmg / result.dmg * 100, 2) }}%)</template>
-                                            <template v-else>({{ $round(spell.dmg / spellDmg * 100, 2) }}%)</template>
+                                            {{ round(spell.dmg, 0) }}
+                                            <template v-if="result.hasOwnProperty('dmg')">({{ round(spell.dmg / result.dmg * 100, 2) }}%)</template>
+                                            <template v-else>({{ round(spell.dmg / spellDmg * 100, 2) }}%)</template>
                                         </td>
-                                        <td>{{ $round(spell.min_dmg, 0) }}</td>
-                                        <td>{{ $round(spell.dmg / (spell.hits + spell.crits), 0) }}</td>
-                                        <td>{{ $round(spell.max_dmg, 0) }}</td>
+                                        <td>{{ round(spell.min_dmg, 0) }}</td>
+                                        <td>{{ round(spell.dmg / (spell.hits + spell.crits), 0) }}</td>
+                                        <td>{{ round(spell.max_dmg, 0) }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -712,15 +716,17 @@
                         <div class="history-wrapper">
                             <table class="history-table large">
                                 <thead>
-                                    <th></th>
-                                    <th>DPS</th>
-                                    <th>Min/Max</th>
-                                    <th>Rotation</th>
-                                    <th>Duration</th>
-                                    <th>Iterations</th>
-                                    <th>Execution time</th>
-                                    <th>Time</th>
-                                    <th></th>
+                                    <tr>
+                                        <th></th>
+                                        <th>DPS</th>
+                                        <th>Min/Max</th>
+                                        <th>Rotation</th>
+                                        <th>Duration</th>
+                                        <th>Iterations</th>
+                                        <th>Execution time</th>
+                                        <th>Time</th>
+                                        <th></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="profile in history">
@@ -729,13 +735,13 @@
                                         </td>
                                         <td>
                                             <template v-if="profile.result">
-                                                <b>{{ $round(profile.result.avg_dps, 2) }}</b>
+                                                <b>{{ round(profile.result.avg_dps, 2) }}</b>
                                             </template>
                                             <template v-else>-</template>
                                         </td>
                                         <td>
                                             <template v-if="profile.result">
-                                                {{ $round(profile.result.min_dps) }} - {{ $round(profile.result.max_dps) }}
+                                                {{ round(profile.result.min_dps) }} - {{ round(profile.result.max_dps) }}
                                             </template>
                                             <template v-else>-</template>
                                         </td>
@@ -1643,11 +1649,11 @@
                                 </check-item>
                                 <check-item :value="import_profile.config && import_wcl.fight.duration">
                                     Fight duration 
-                                    <template v-if="import_wcl.fight.duration">({{ $round(import_wcl.fight.duration/1000) }}s)</template>
+                                    <template v-if="import_wcl.fight.duration">({{ round(import_wcl.fight.duration/1000) }}s)</template>
                                 </check-item>
                                 <check-item :value="import_profile.config && import_wcl.fight.timings.length">
                                     Bloodlust timing 
-                                    <template v-if="import_wcl.fight.timings.length">({{ $round(import_wcl.fight.timings[0].t/1000) }}s)</template>
+                                    <template v-if="import_wcl.fight.timings.length">({{ round(import_wcl.fight.timings[0].t/1000) }}s)</template>
                                 </check-item>
                                 <check-item :value="import_profile.config && import_wcl.fight.dp_avg">
                                     Demonic Pact values
@@ -1678,13 +1684,13 @@
                                 <template v-if="item_id">
                                     <td>{{ formatKey(slot) }}</td>
                                     <td>
-                                        <a :href="itemUrl(item_id)" target="_blank" :class="['quality-'+$get(getItem(slot, item_id), 'q', 'epic')]">
+                                        <a :href="itemUrl(item_id)" target="_blank" :class="['quality-'+get(getItem(slot, item_id), 'q', 'epic')]">
                                             {{ getItem(slot, item_id).title }}
                                         </a>
                                     </td>
                                     <td>
-                                        <template v-if="$get(enchants, slot)">
-                                            <a :href="spellUrl(enchants[slot])" target="_blank" :class="['quality-'+$get(getEnchant(slot, enchants[slot]), 'q', 'uncommon')]">
+                                        <template v-if="get(enchants, slot)">
+                                            <a :href="spellUrl(enchants[slot])" target="_blank" :class="['quality-'+get(getEnchant(slot, enchants[slot]), 'q', 'uncommon')]">
                                                 {{ getEnchant(slot, enchants[slot]).title }}
                                             </a>
                                         </template>
@@ -1862,9 +1868,10 @@
     import glyphs from "./glyphs";
     import constants from "./constants";
     import default_profiles from "./default_profiles";
+    import get from "lodash/get";
     
     const DEFAULT_DESIGN = 2;
-    // const WCL_CLIENT_ID = process.env.MIX_WCL_CLIENT_ID;
+    // const WCL_CLIENT_ID = import.meta.env.VITE_WCL_CLIENT_ID;
     const WCL_CLIENT_ID = "9970a7cf-9127-424a-a18d-a0503fb2dc1d";
 
     export default {
@@ -4617,9 +4624,6 @@
             },
 
             compareAll() {
-                if (this.active_slot == "quicksets")
-                    return;
-
                 if (this.item_comparison.length == this.activeItems.length && _.find(this.item_comparison, {id: this.activeItems[0].id})) {
                     this.item_comparison = [];
                 }
@@ -4859,7 +4863,7 @@
             },
 
             formatTimeDiff(start, end) {
-                return this.$round(Math.abs(start.getTime() - end.getTime())/1000, 2)+"s";
+                return this.round(Math.abs(start.getTime() - end.getTime())/1000, 2)+"s";
             },
 
             formatDateTime(date) {
@@ -5866,7 +5870,7 @@
                 }
 
                 str = arr.join("\r\n");
-                this.$copyToClipboard(str);
+                this.copyToClipboard(str);
             },
 
             openEquiplist() {
@@ -5886,9 +5890,7 @@
             },
 
             openCustomItem() {
-                var slot = this.equipSlotToItemSlot(this.active_slot);
-                if (slot != "quicksets")
-                    this.custom_item.slot = slot;
+                this.custom_item.slot = this.equipSlotToItemSlot(this.active_slot);
                 this.custom_item_open = true;
             },
 
@@ -6100,6 +6102,49 @@
                     }
                 }
             },
+
+            copyToClipboard() {
+                var el = document.createElement("textarea");
+                el.value = str;
+                el.style.opacity = 0;
+                el.style.position = "absolute";
+                el.style.top = 0;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy')
+                document.body.removeChild(el);
+            },
+
+            nullRound(value, dec) {
+                if (value === null || isNaN(value))
+                    return "-";
+                return _.round(value, dec);
+            },
+
+            round(value) {
+                return Math.round(value);
+            },
+
+            roundFixed(value, dec) {
+                value = _.round(value, dec);
+                value = value.toString();
+                if (dec == 0)
+                    return value;
+                if (value.indexOf(".") == -1)
+                    value+= ".0";
+                var index = value.indexOf(".");
+                while (value.length - index <= dec)
+                    value+= "0";
+                return value;
+            },
+
+            plusMinus(value) {
+                if (value >= 0)
+                    return "+"+value;
+                return value;
+            },
+
+            get: get,
         }
     }
 </script>

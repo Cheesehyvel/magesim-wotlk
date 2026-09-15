@@ -1,13 +1,12 @@
-importScripts("./magesim.js");
+import MageSim from "../../public/magesim.js";
 
 onmessage = (event) => {
     var data = event.data;
 
     if (data.type == "start") {
-        const wasm = fetch("./magesim.wasm", {cache: "no-store"})
+        const wasm = fetch("/magesim.wasm", {cache: "no-store"})
         .then(r => r.arrayBuffer())
         .then(binary => MageSim({wasmBinary: binary}))
-        .then(w => w.ready)
         .then(m => {
             var config = m.allocConfig();
             for (var key in data.config) {
@@ -91,7 +90,6 @@ onmessage = (event) => {
                 type: "success",
                 result: result
             });
-        })
-        .catch(e => console.error(e));
+        });
     }
 }

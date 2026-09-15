@@ -1,4 +1,4 @@
-@mixin clearfix() {
+@define-mixin clearfix {
     &:after {
         content: "";
         display: block;
@@ -6,8 +6,7 @@
     }
 }
 
-@mixin position-cover($pos) {
-    position: $pos;
+@define-mixin cover {
     left: 0;
     right: 0;
     bottom: 0;

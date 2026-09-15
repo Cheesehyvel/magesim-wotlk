@@ -1,0 +1,6 @@
+:root {
+    --spacer: 60px;
+    --color-primary: #06f;
+    --color-primary-hover: #038;
+    --color-stroke: rgba(120,140,240,0.4);
+}

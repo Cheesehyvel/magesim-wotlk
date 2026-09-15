@@ -6,13 +6,13 @@ CC = em++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = --bind -sMODULARIZE=1 -sNO_FILESYSTEM=1 -sASSERTIONS=1 -sEXPORT_NAME="MageSim" -O3
+COMPILER_FLAGS = --bind -sMODULARIZE=1 -sEXPORT_ES6=1 -sNO_FILESYSTEM=1 -sASSERTIONS=1 -sEXPORT_NAME=MageSim -O3
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS =
 
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = dist/js/magesim.js
+OBJ_NAME = public/magesim.js
 
 #This is the target that compiles our executable
 all : $(OBJS)
