@@ -17,8 +17,5 @@ Requirements for frontend
 
 Standing in the root folder of the project.\
 Build backend: `$ make`\
-Build frontend: `$ npm run build`
-
-## Common issues
-Some browsers have issues with WebAssembly when simply opening the file in the browser. This is when the url is something like `C://Users/Name/Downloads/magesim-wotlk/index.html`.\
-To solve this, run the project through a web server. If you have Python3 installed you can simply run `$ python3 -m http.server` in the project folder to start a simple web server.
+Build frontend: `$ npm run build`\
+Frontend development: `$ npm run dev`
