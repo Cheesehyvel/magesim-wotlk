@@ -4,7 +4,7 @@ onmessage = (event) => {
     var data = event.data;
 
     if (data.type == "start") {
-        const wasm = fetch("/magesim.wasm", {cache: "no-store"})
+        const wasm = fetch(import.meta.env.BASE_URL+"magesim.wasm", {cache: "no-store"})
         .then(r => r.arrayBuffer())
         .then(binary => MageSim({wasmBinary: binary}))
         .then(m => {

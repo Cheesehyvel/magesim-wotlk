@@ -2,4 +2,6 @@ node_modules
 magesim
 notes
 dist/
+public/magesim.js
+public/magesim.wasm
 .env
