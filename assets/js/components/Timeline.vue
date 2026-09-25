@@ -1,7 +1,7 @@
 <template>
     <div class="timeline">
         <div class="graph">
-            <canvas ref="canvas" height="80"></canvas>
+            <Line :data="chartData" :options="chartOptions" height="80" />
         </div>
         <div class="events">
             <div class="timestamps">
@@ -30,16 +30,22 @@
 </template>
 
 <script>
+    import {
+        Chart as ChartJS,
+        Legend,
+        LinearScale,
+        LineElement,
+        PointElement,
+        Tooltip,
+    } from 'chart.js';
     import { Line } from 'vue-chartjs';
 
+    ChartJS.register(Legend, LinearScale, LineElement, PointElement, Tooltip);
+
     export default {
-        mixins: [Line],
+        components: { Line },
 
         mounted() {
-            this.addPlugin({
-                id: "custom-plugin",
-                afterRender: this.afterRender,
-            });
             this.draw();
         },
 
@@ -53,6 +59,10 @@
 
         data() {
             return {
+                chartData: {
+                    datasets: [],
+                },
+                chartOptions: {},
                 cds: [
                     { title: "Mana Tide", color: "#05c" },
                     { title: "Innervate", color: "#05c" },
@@ -248,16 +258,18 @@
                 };
 
                 var options = {
-                    legend: {
-                        display: true,
-                        labels: {
-                            filter: function(item, chart) {
-                                return item.text != "";
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                filter: function(item) {
+                                    return item.text != "";
+                                }
                             }
-                        }
-                    },
-                    tooltips: {
-                        enabled: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                        },
                     },
                     elements: {
                         line: {
@@ -265,42 +277,36 @@
                         }
                     },
                     scales: {
-                        xAxes: [{
+                        x: {
                             type: "linear",
-                            ticks: {
-                                max: this.result.t,
-                            },
-                            scaleLabel: {
+                            max: this.result.t,
+                            title: {
                                 display: true,
-                                labelString: "Time (s)",
+                                text: "Time (s)",
                             },
-                            gridLines: {
+                            grid: {
                                 color: "rgba(120,140,240,0.1)",
                             }
-                        }],
-                        yAxes: [{
+                        },
+                        y: {
                             type: "linear",
-                            ticks: {
-                                beginAtZero: true,
-                            },
-                            scaleLabel: {
+                            beginAtZero: true,
+                            title: {
                                 display: true,
-                                labelString: "Mana (%)",
+                                text: "Mana (%)",
                             },
-                            gridLines: {
+                            grid: {
                                 color: "rgba(120,140,240,0.4)",
                             }
-                        }, {
-                            id: "dps",
+                        },
+                        dps: {
                             type: "linear",
-                            ticks: {
-                                beginAtZero: true,
-                            },
-                            scaleLabel: {
+                            beginAtZero: true,
+                            title: {
                                 display: true,
-                                labelString: "DPS",
+                                text: "DPS",
                             }
-                        }]
+                        }
                     }
                 };
 
@@ -352,7 +358,8 @@
                     yAxisID: "dps",
                 });
 
-                this.renderChart(data, options);
+                this.chartData = data;
+                this.chartOptions = options;
             },
         }
     }
