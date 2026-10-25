@@ -709,7 +709,7 @@
                     </div>
 
                     <div class="histog" v-if="active_tab == 'histogram'">
-                        <histogram ref="histogram" :data="result.histogram" :avg="result.avg_dps"></histogram>
+                        <histogram ref="histogram" :data="result.histogram" />
                     </div>
 
                     <div class="history" v-if="active_tab == 'history'">

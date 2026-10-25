@@ -1,14 +1,17 @@
 <template>
     <div class="histogram">
-        <canvas ref="canvas"></canvas>
+        <template v-if="chartData">
+            <Bar :data="chartData" :options="chartOptions" />
+        </template>
     </div>
 </template>
 
 <script>
     import { Bar } from 'vue-chartjs';
+    import 'chart.js/auto';
 
     export default {
-        mixins: [Bar],
+        components: { Bar },
 
         mounted() {
             this.draw();
@@ -20,7 +23,14 @@
             }
         },
 
-        props: ["data", "avg"],
+        props: ['data'],
+
+        data() {
+            return {
+                chartData: null,
+                chartOptions: null,
+            }
+        },
 
         methods: {
             draw() {
@@ -37,8 +47,6 @@
                     }],
                 };
 
-                var avg = Math.floor(this.avg/bin_size)*bin_size;
-
                 var keys = _.keys(this.data).sort((a,b) => a-b);
                 var first = parseInt(keys[0]);
                 var last = parseInt(_.last(keys));
@@ -48,53 +56,47 @@
                 }
                 data.labels.push(i);
 
-                var options = {
-                    legend: {
-                        display: false,
-                    },
-                    tooltips: {
-                        enabled: false,
+                this.chartData = data;
+
+                this.chartOptions = {
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            enabled: false,
+                        },
                     },
                     scales: {
-                        xAxes: [
-                            {
-                                display: false,
-                                ticks: {
-                                    max: data.labels[data.labels.length-2],
-                                }
-                            },
-                            {
+                        x: {
+                            display: true,
+                            max: data.labels[data.labels.length-1],
+                            title: {
                                 display: true,
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: "DPS",
-                                },
-                                gridLines: {
-                                    color: "rgba(255,255,255,0.05)",
-                                },
-                                ticks: {
-                                    autoSkip: false,
-                                    max: data.labels[data.labels.length-1],
-                                }
+                                text: "DPS",
+                            },
+                            grid: {
+                                color: "rgba(255,255,255,0.05)",
+                            },
+                            ticks: {
+                                autoSkip: false,
                             }
-                        ],
-                        yAxes: [{
-                            scaleLabel: {
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
                                 display: true,
-                                labelString: "Iterations",
+                                text: "Iterations",
                             },
-                            gridLines: {
+                            grid: {
                                 color: "rgba(255,255,255,0.05)",
                             },
                             ticks: {
                                 maxTicksLimit: 20,
-                                beginAtZero: true,
                             }
-                        }]
+                        }
                     }
                 };
-
-                this.renderChart(data, options);
             }
         }
     }
